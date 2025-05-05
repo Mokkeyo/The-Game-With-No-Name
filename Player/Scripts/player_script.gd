@@ -324,6 +324,7 @@ func jump(multiplikator: float) -> void:
 func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vector2) -> void:
 	can_doublejump = true
 	SoundMusic.play_sound_effect("jump")
+	print("wall jump")
 	do_knockback(knockbackDuration, knockbackDirection)
 	if not animatedSprite.flip_h == left:
 		animatedSprite.flip_h = left
