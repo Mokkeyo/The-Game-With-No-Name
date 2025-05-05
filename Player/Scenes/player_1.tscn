@@ -178,6 +178,7 @@ floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
 resetComp = NodePath("ResetComponent")
+currentPlayer = null
 
 [node name="PointLight2D" parent="." instance=ExtResource("7")]
 visible = false

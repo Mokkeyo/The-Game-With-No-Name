@@ -48,7 +48,6 @@ const WATER_GRAVITY: int = 200
 var otherPlayer: int
 
 var can_doublejump: bool = false
-var is_jumping: bool = false
 var is_alive: bool = true
 var knockback_on: bool = false
 var knockback: Vector2 = Vector2.ZERO
@@ -87,7 +86,7 @@ func configure_floor_settings() -> void:
 func connect_signals() -> void:
 	HealthComponent.value_changed.connect(on_value_changed)
 	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jumpComponent.jump.bind(1))
+	Hitbox.damage_dealth.connect(jump.bind(1))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
@@ -121,8 +120,8 @@ func _physics_process(delta: float) -> void:
 		apply_gravity(delta)
 	
 	if on_ceiling:
-		if is_jumping:
-			is_jumping = false
+		if jumpComponent.is_jumping:
+			jumpComponent.is_jumping = false
 	
 	if ( on_ceiling or is_on_wall() ) and knockback_on:
 		knockback_on = false
@@ -282,10 +281,12 @@ func check_for_jumping() -> void:
 	
 	if buffered_jump and on_floor:
 		jumpComponent.jump(1)
+		print("buffered jump")
 		return
 	
-	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater and is_jumping:
+	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater and jumpComponent.is_jumping:
 		jumpComponent.jump_cut(-100)
+		print("jump cut")
 		return
 	
 	if C.just_pressed(C.jump, currentPlayer):
@@ -294,17 +295,19 @@ func check_for_jumping() -> void:
 		
 		if on_floor or not coyoteTimer.is_stopped() or lavaWaterDetector.inWater or grabZone.rope_part:
 			jumpComponent.jump(1)
+			print("jump")
 			return
 		
 		if next_to_wall():
 			var direction: int = (int(next_to_left_wall()) - int(next_to_right_wall()))
 			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
+			print("wall jump")
 			return
 		
 		if can_doublejump and coyoteTimer.is_stopped():
-			jumpComponent.jump(0.5)
+			jumpComponent.jump(0.8)
 			can_doublejump = false
-
+			print("double_jump")
 
 #func do_jump() -> void:
 #	can_doublejump = true
@@ -388,7 +391,7 @@ func respawn() -> void:
 
 func enable_player() -> void:
 	is_alive = true
-	is_jumping = false
+	jumpComponent.is_jumping = false
 	islaunching = false
 	grabZone.rope_part = null
 	grabZone.can_grab = true

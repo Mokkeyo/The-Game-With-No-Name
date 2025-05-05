@@ -10,6 +10,7 @@ class_name JumpComponent
 @export var waterDetector: LavaWaterDetector
 @export var grabZone: GrabZone
 
+
 var is_jumping: bool = false
 
 var velocity: Vector2:
@@ -24,10 +25,10 @@ func _ready() -> void:
 func jump(multiplikator: float) -> void:
 	is_jumping = true
 	
-	if not (waterDetector or waterDetector.inWater):
+	if not waterDetector or not waterDetector.inWater:
 		velocity.y = -JUMP_POWER * multiplikator
 	else:
-		velocity.y = WATER_JUMP * multiplikator
+		velocity.y = -WATER_JUMP * multiplikator
 	
 	if grabZone or grabZone.rope_part:
 		grabZone.rope_part = null
