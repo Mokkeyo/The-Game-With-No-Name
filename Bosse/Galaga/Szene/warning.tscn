@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyu85obj33ig7"]
 
 [ext_resource type="Script" uid="uid://cw5d5mmlsensj" path="res://Scripts/warning.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dg3xd5igr35jg" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bmagrkxkial83" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
 
 [node name="warning" type="Node2D"]
 z_as_relative = false

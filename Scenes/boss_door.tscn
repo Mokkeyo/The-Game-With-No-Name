@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpuwh0wehq0k0"]
 
 [ext_resource type="Script" uid="uid://cvk1b6mnienjg" path="res://Scripts/boss_door.gd" id="1_ctxq3"]
-[ext_resource type="Texture2D" uid="uid://73gjg2q8nbnp" path="res://PathToNewLevelObjects/Textures/boss_door_open.png" id="1_xlxte"]
+[ext_resource type="Texture2D" uid="uid://bujxmm08mvi1c" path="res://PathToNewLevelObjects/Textures/boss_door_open.png" id="1_xlxte"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="3_4733c"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4_2ar5a"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="5_5k6tv"]

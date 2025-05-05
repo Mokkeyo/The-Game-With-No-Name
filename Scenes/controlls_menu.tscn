@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://duqwa532kjkgf" path="res://Scenes/input_button.tscn" id="1"]
 [ext_resource type="Script" uid="uid://pyho72aqyfi1" path="res://Scripts/controlls_menu.gd" id="2"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="3_rlqrm"]
-[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="4"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="3_rlqrm"]
+[ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="4"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="7_7ov7i"]
 [ext_resource type="PackedScene" uid="uid://bob0eucjbifmb" path="res://Scenes/controller_input_button.tscn" id="10_4wto1"]
-[ext_resource type="Texture2D" uid="uid://hhc7uctf3qx7" path="res://GuiElements/Textures/circle.png" id="11_kr0n2"]
+[ext_resource type="Texture2D" uid="uid://damabjs4xy6pq" path="res://GuiElements/Textures/circle.png" id="11_kr0n2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugkq1"]
 bg_color = Color(0, 0, 0, 1)

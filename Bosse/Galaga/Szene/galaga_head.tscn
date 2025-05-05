@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cacuixtknxi48" path="res://Bosse/Galaga/Scripts/galaga_head.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cfel3887iknvk" path="res://Bosse/Galaga/Grafik/galaga_head.tres" id="2_1ws5v"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_rrp8u"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_rrp8u"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="5_rvps8"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="5_sp5xw"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_8msrq"]
@@ -187,7 +187,7 @@ position = Vector2(40, 11.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x1d82")
+&"": SubResource("AnimationLibrary_x1d82")
 }
 
 [node name="LaserPosition" type="Marker2D" parent="."]

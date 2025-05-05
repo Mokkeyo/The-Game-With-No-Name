@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqlfus07w3dpx" path="res://Scripts/in_game.gd" id="1_sbfge"]
 [ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="3_x4u0x"]
-[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="4_u5pl2"]
+[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="4_u5pl2"]
 [ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
 [ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="6_m0r43"]
 [ext_resource type="PackedScene" uid="uid://bgjgn30nuvrb3" path="res://Scenes/hp_bar_player_2.tscn" id="7_pi7ch"]

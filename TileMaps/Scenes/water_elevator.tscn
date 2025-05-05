@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://whcqmpdmnimg"]
 
-[ext_resource type="Texture2D" uid="uid://dj064o0hbkjrp" path="res://TileMaps/Textures/water_elevator.png" id="2_03eq2"]
+[ext_resource type="Texture2D" uid="uid://tlpbww08ekou" path="res://TileMaps/Textures/water_elevator.png" id="2_03eq2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xp5tg"]
 texture = ExtResource("2_03eq2")

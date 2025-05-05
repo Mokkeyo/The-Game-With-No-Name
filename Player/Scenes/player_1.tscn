@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Player1/Textures/player_1_texture.tres" id="3_f5fds"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="5_g0fuf"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="5_g0fuf"]
 [ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://c2aeevkukhjb3" path="res://Scenes/wand.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="9"]
@@ -171,7 +171,6 @@ size = Vector2(12, 2)
 size = Vector2(9, 17)
 
 [node name="Player1" type="CharacterBody2D" node_paths=PackedStringArray("resetComp") groups=["Player", "Player_0"]]
-visible = false
 light_mask = 2
 collision_layer = 2
 collision_mask = 17

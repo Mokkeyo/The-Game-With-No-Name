@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://croc44wygw66k"]
 
-[ext_resource type="Texture2D" uid="uid://d3g8e2opeww3k" path="res://Objects/Textures/falling_spiketrap.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://do7lynex6yb76" path="res://Objects/Textures/falling_spiketrap.png" id="1"]
 [ext_resource type="Script" uid="uid://s8vay082u8o3" path="res://Scripts/falling_spiketrap.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://mb06g0syhfat" path="res://NormalMap/falling_trap_normal.png" id="3_has2c"]
+[ext_resource type="Texture2D" uid="uid://b33wmi4o0rxuh" path="res://NormalMap/falling_trap_normal.png" id="3_has2c"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_qp0pc"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="5_3tfm7"]
 

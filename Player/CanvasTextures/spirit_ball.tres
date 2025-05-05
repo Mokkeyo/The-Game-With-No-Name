@@ -1,7 +1,7 @@
 [gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://wgf4amtg8m0x"]
 
-[ext_resource type="Texture2D" uid="uid://vad7vyidkgpj" path="res://Player/Textures/spirit_ball.png" id="1_51084"]
-[ext_resource type="Texture2D" uid="uid://c3lk5mhwyscy2" path="res://NormalMap/spirit_ball_normal.png" id="2_wrvac"]
+[ext_resource type="Texture2D" uid="uid://b5ai3eperhxdr" path="res://Player/Textures/spirit_ball.png" id="1_51084"]
+[ext_resource type="Texture2D" uid="uid://ca1umgjvslro2" path="res://NormalMap/spirit_ball_normal.png" id="2_wrvac"]
 
 [resource]
 diffuse_texture = ExtResource("1_51084")

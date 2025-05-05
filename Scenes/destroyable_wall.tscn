@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckug54a3viqe3"]
 
-[ext_resource type="Texture2D" uid="uid://wymycy0xsqla" path="res://TileMaps/Textures/dirt.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bm37b02yebr5" path="res://TileMaps/Textures/dirt.png" id="1"]
 [ext_resource type="Script" uid="uid://bqw4yi60jk44m" path="res://Scripts/destroyable_wall.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://culey73luibnc" path="res://Objects/Textures/crack.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d3ivmflrsaora" path="res://Objects/Textures/crack.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="4_3u1dm"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="5_2b0nm"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="6_0lk6f"]

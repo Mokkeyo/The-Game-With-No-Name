@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://55vy58qkmiqg" path="res://Enemys/Scripts/moving_bat.gd" id="1_edxt4"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="2_s6qtb"]
 [ext_resource type="Texture2D" uid="uid://5pgbj8qljedg" path="res://Enemys/CanvasTextures/bat.tres" id="3_qe7br"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="4_hdl30"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="4_hdl30"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="5_g3xa8"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="6_cxfov"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="7_getqo"]

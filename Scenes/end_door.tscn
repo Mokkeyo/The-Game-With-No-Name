@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://xiv1m78mvcbm"]
 
-[ext_resource type="Texture2D" uid="uid://dsj2kut80kbyb" path="res://PathToNewLevelObjects/Textures/end_door_frame_2.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cgi8qeb1w26x4" path="res://PathToNewLevelObjects/Textures/end_door_frame_2.png" id="1"]
 [ext_resource type="Script" uid="uid://bf75ylrbkjjk0" path="res://Scripts/end_door.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bg2hxq1fnumdv" path="res://PathToNewLevelObjects/Textures/end_door_frame_1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://diai8r6cbmdvu" path="res://PathToNewLevelObjects/Textures/end_door_frame_1.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="5_ftskw"]
 

@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://b323pi7cpo560"]
 
-[ext_resource type="Texture2D" uid="uid://bxt3tkc8pyr5d" path="res://GuiElements/Textures/rahmen_m_focused.png" id="1_3kqsa"]
+[ext_resource type="Texture2D" uid="uid://b7m3pk0i8toi2" path="res://GuiElements/Textures/rahmen_m_focused.png" id="1_3kqsa"]
 [ext_resource type="Script" uid="uid://ditqvdvfd8q44" path="res://Scripts/arena_choose.gd" id="1_dfqf7"]
-[ext_resource type="Texture2D" uid="uid://c53isaac7yjwv" path="res://GuiElements/Textures/rahmen_m_unfocused.png" id="2_kri5d"]
-[ext_resource type="Texture2D" uid="uid://dpv0aawodtx3j" path="res://Arena/Textures/arena_1.png" id="3_upvkj"]
-[ext_resource type="FontFile" uid="uid://xo3p6l5s5qqj" path="res://Font/Robus-BWqOd.otf" id="4_4m8yr"]
-[ext_resource type="Texture2D" uid="uid://cghjolpoe48mg" path="res://Arena/Textures/arrow_unpressed.png" id="5_b5yyt"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="6_l0d4u"]
+[ext_resource type="Texture2D" uid="uid://dwnconq58l4ip" path="res://GuiElements/Textures/rahmen_m_unfocused.png" id="2_kri5d"]
+[ext_resource type="Texture2D" uid="uid://bfyad1wp4h4a4" path="res://Arena/Textures/arena_1.png" id="3_upvkj"]
+[ext_resource type="FontFile" uid="uid://bw0klgwc6v2e3" path="res://Font/Robus-BWqOd.otf" id="4_4m8yr"]
+[ext_resource type="Texture2D" uid="uid://46hd5pn7srfq" path="res://Arena/Textures/arrow_unpressed.png" id="5_b5yyt"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="6_l0d4u"]
 [ext_resource type="PackedScene" uid="uid://8ecrcakuunjn" path="res://Scenes/battle_ready.tscn" id="8_veym4"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="9_344hg"]
 

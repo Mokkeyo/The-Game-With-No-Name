@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dynqee17gcfo4" path="res://Scripts/falling_spike_trap_with_rope.gd" id="1_ooxaq"]
 [ext_resource type="PackedScene" uid="uid://croc44wygw66k" path="res://Scenes/falling_spiketrap.tscn" id="2_2btbp"]
-[ext_resource type="Texture2D" uid="uid://dmflkdmw45jh8" path="res://Objects/Textures/ghost_chain.png" id="2_70btn"]
+[ext_resource type="Texture2D" uid="uid://bhay6l0t1rtyb" path="res://Objects/Textures/ghost_chain.png" id="2_70btn"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_d1avb"]
 a = Vector2(-0.5, 0)

@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://d0o7pm0ffnej8"]
 
-[ext_resource type="Texture2D" uid="uid://7o0hj2k7aji2" path="res://GuiElements/Textures/rahmen_unfocused.png" id="1_ogdem"]
+[ext_resource type="Texture2D" uid="uid://bdwedh20wrtoq" path="res://GuiElements/Textures/rahmen_unfocused.png" id="1_ogdem"]
 
 [resource]
 content_margin_top = 0.0

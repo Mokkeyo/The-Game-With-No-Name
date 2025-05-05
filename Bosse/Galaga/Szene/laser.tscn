@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bksaw43m67sj5"]
 
 [ext_resource type="Script" uid="uid://dpn1vje4i60a7" path="res://Scripts/laser.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://dg3xd5igr35jg" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bmagrkxkial83" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_tbput"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l743"]

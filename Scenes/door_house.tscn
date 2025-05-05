@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dx8illpn0h2cv"]
 
-[ext_resource type="Texture2D" uid="uid://du1r7fbktrb74" path="res://Objects/Textures/door_house.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cg3tnu5vd4we6" path="res://Objects/Textures/door_house.png" id="1"]
 [ext_resource type="Script" uid="uid://cb0dj3e0pspf" path="res://Scripts/door_house.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://d31e3hnc7woh4" path="res://NormalMap/door_house_normal.png" id="2_wc32e"]
+[ext_resource type="Texture2D" uid="uid://cyg553gur0ljt" path="res://NormalMap/door_house_normal.png" id="2_wc32e"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="3_c2irr"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="4_gr8po"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dbokg7m3bstbv"]
 
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="1"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="2"]
 [ext_resource type="Script" uid="uid://cso0q86vwskb7" path="res://Npcs/Scripts/textbox.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c0gb8q2p05ie5" path="res://Scenes/decide_box.tscn" id="4_ul3rc"]
 

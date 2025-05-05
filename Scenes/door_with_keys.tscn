@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://dphwcm2lteg07"]
 
-[ext_resource type="Texture2D" uid="uid://c4mgbbjlbqsx1" path="res://PathToNewLevelObjects/Textures/door_with_keys.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://cjyus6rp6ao0s" path="res://PathToNewLevelObjects/Textures/key_spinned.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dju0h154qnqwy" path="res://PathToNewLevelObjects/Textures/key.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://cd5d78tyhy3cd" path="res://NormalMap/door_with_keys_normal.png" id="3_j6bfr"]
+[ext_resource type="Texture2D" uid="uid://ilrs2h7d08dd" path="res://PathToNewLevelObjects/Textures/door_with_keys.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://poaocc5b05ti" path="res://PathToNewLevelObjects/Textures/key_spinned.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dpteyww7hppkc" path="res://PathToNewLevelObjects/Textures/key.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c2cixjinep6w" path="res://NormalMap/door_with_keys_normal.png" id="3_j6bfr"]
 [ext_resource type="Script" uid="uid://si78hb8s0lei" path="res://Scripts/door_with_keys.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="7_0hl4c"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://4aouv1eodo1n"]
 
-[ext_resource type="Texture2D" uid="uid://cwycmln66jmdd" path="res://Objects/Textures/turret_eye.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://cowybv6k7cr2k" path="res://Objects/Textures/turret_plattform.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dam6x4i61pnrb" path="res://NormalMap/_turret_eye_normal.png" id="3_7xmsd"]
+[ext_resource type="Texture2D" uid="uid://dg8fypubwnoc1" path="res://Objects/Textures/turret_eye.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cjykk7f204yd0" path="res://Objects/Textures/turret_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bdoxo5lw6g447" path="res://NormalMap/_turret_eye_normal.png" id="3_7xmsd"]
 [ext_resource type="Script" uid="uid://djrgri111eoa5" path="res://Scripts/turret.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://do5026ql72y1p" path="res://NormalMap/turret_plattform_normal.png" id="5_jqxwu"]
+[ext_resource type="Texture2D" uid="uid://cgwuws6dkqgdr" path="res://NormalMap/turret_plattform_normal.png" id="5_jqxwu"]
 [ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="7_hyxdo"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="8_x83vg"]
 
@@ -153,7 +153,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ss6qi")
+&"": SubResource("AnimationLibrary_ss6qi")
 }
 
 [node name="airshipDetector" parent="." instance=ExtResource("7_hyxdo")]

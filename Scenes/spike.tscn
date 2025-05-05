@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsj42ubu3v0b0"]
 
-[ext_resource type="Texture2D" uid="uid://b001liulnsh8p" path="res://Objects/Textures/spike.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://wnv4xk1fmmyb" path="res://Objects/Textures/spike.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_qprbw"]
 
 [sub_resource type="OccluderPolygon2D" id="1"]

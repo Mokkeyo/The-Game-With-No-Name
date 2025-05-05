@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnfeaj1wqtdfv"]
 
-[ext_resource type="Texture2D" uid="uid://oi842bnffx25" path="res://TileMaps/Textures/dead_tree.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ss246w7mrl0g" path="res://TileMaps/Textures/dead_tree.png" id="1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_winfm"]
 texture = ExtResource("1")

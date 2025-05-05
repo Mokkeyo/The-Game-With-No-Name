@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dx8xxo1jihgy1"]
 
-[ext_resource type="Texture2D" uid="uid://5kx8ed5wmb7x" path="res://TileMaps/Textures/water_bottom.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://br04886umuram" path="res://TileMaps/Textures/water.png" id="5_efcmi"]
+[ext_resource type="Texture2D" uid="uid://dewxjnpbnlngg" path="res://TileMaps/Textures/water_bottom.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c5eiphvw0302l" path="res://TileMaps/Textures/water.png" id="5_efcmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqdv3"]
 texture = ExtResource("5")

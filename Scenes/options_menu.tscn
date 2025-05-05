@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dy1fgoh5bt2i6"]
 
-[ext_resource type="Texture2D" uid="uid://bkgumtlm8jk32" path="res://GuiElements/Textures/slider_focused_button.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://rdsokng1mqft" path="res://GuiElements/Textures/slider_unfocused_button.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bjoqdh0a0s6af" path="res://GuiElements/Textures/slider_focused_button.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvd1ivnrm35gr" path="res://GuiElements/Textures/slider_unfocused_button.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://cgrt6qaa8f5dv" path="res://GuiElements/menu_optionbutton.tscn" id="5_2iq7d"]
 [ext_resource type="PackedScene" uid="uid://cdvs7u2cs6qmr" path="res://GuiElements/menu_label.tscn" id="5_aimb4"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="6_e8upl"]
@@ -13,9 +13,9 @@
 [ext_resource type="Script" uid="uid://b3hrokuxsfanl" path="res://Scripts/max_fps_button.gd" id="12_1fbch"]
 [ext_resource type="PackedScene" uid="uid://oyiue23v8dul" path="res://GuiElements/menu_checkbox.tscn" id="14_1g7v3"]
 [ext_resource type="Script" uid="uid://uxwecagrliec" path="res://Scripts/volume_slider.gd" id="14_eatxe"]
-[ext_resource type="Texture2D" uid="uid://4kc52vt5j21h" path="res://Button/Playstation/Joypad Button 10 (Right Shoulder, Sony R1, Xbox RB).png" id="16_38e0f"]
+[ext_resource type="Texture2D" uid="uid://b8yiupoeoq1sr" path="res://Button/Playstation/Joypad Button 10 (Right Shoulder, Sony R1, Xbox RB).png" id="16_38e0f"]
 [ext_resource type="Script" uid="uid://cdllrydt48nuk" path="res://Scripts/vsync_button.gd" id="17_etax8"]
-[ext_resource type="Texture2D" uid="uid://c5doft57b41ub" path="res://Button/Playstation/Joypad Button 9 (Left Shoulder, Sony L1, Xbox LB).png" id="17_npo1y"]
+[ext_resource type="Texture2D" uid="uid://dos2frxi6wdse" path="res://Button/Playstation/Joypad Button 9 (Left Shoulder, Sony L1, Xbox LB).png" id="17_npo1y"]
 [ext_resource type="Script" uid="uid://biupomnaxfjka" path="res://Scripts/print_fps_button.gd" id="18_motc5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isntc"]

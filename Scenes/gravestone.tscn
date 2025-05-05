@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://shmuc3812yli"]
 
-[ext_resource type="Texture2D" uid="uid://de244tfuoud1m" path="res://Objects/Textures/gravestone.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bpacca1g83uer" path="res://Objects/Textures/gravestone.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="3_yt6r5"]
 [ext_resource type="Script" uid="uid://dykafd5spvrkr" path="res://Scripts/gravestone.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="4_lb0m4"]

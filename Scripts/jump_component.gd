@@ -2,8 +2,8 @@ extends Node
 class_name JumpComponent
 
 @export_group("Jump Stats")
-@export var JUMP_POWER: int
-@export var WATER_JUMP: int
+@export var JUMP_POWER: int = 210
+@export var WATER_JUMP: int = 100
 
 @export_group("Components")
 @export var body: CharacterBody2D

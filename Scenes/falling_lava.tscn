@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bw771rbwr7168"]
 
 [ext_resource type="Script" uid="uid://dlpw0ks08nno2" path="res://Scripts/falling_lava.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://qvuf4ocjt5ve" path="res://Objects/Textures/lava_stay.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b5vrkoimq0kkv" path="res://Objects/Textures/lava_stay.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_8ouuy"]
 
 [sub_resource type="RectangleShape2D" id="2"]

@@ -1,7 +1,7 @@
 [gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://ch2r0ux3lvl0i"]
 
-[ext_resource type="Texture2D" uid="uid://ciw46dw761xee" path="res://Bosse/Galaga/Grafik/galaga_arm.png" id="1_kwcre"]
-[ext_resource type="Texture2D" uid="uid://0ny0w7715tol" path="res://NormalMap/boss_arm.png" id="2_egka4"]
+[ext_resource type="Texture2D" uid="uid://8bwcmpkk7rhj" path="res://Bosse/Galaga/Grafik/galaga_arm.png" id="1_kwcre"]
+[ext_resource type="Texture2D" uid="uid://be57nfrxq4th0" path="res://NormalMap/boss_arm.png" id="2_egka4"]
 
 [resource]
 diffuse_texture = ExtResource("1_kwcre")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fo101wee8p4x" path="res://Scripts/enemy_airship.gd" id="1_siygl"]
 [ext_resource type="Texture2D" uid="uid://jbx86cbqto5d" path="res://Enemys/CanvasTextures/enemy_airship.tres" id="2_10gvk"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_fttxn"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_fttxn"]
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="4_gylce"]
 [ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="5_skqmn"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_f2h7g"]
@@ -195,7 +195,7 @@ offset_bottom = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_e7f1u")
+&"": SubResource("AnimationLibrary_e7f1u")
 }
 
 [node name="PlayerDetector" parent="." instance=ExtResource("5_skqmn")]
@@ -211,8 +211,8 @@ bulletSpeed = -250
 
 [node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar") instance=ExtResource("8_hpl2s")]
 health = 100.0
-hpBar = NodePath("../HPbar")
 invisibiltyFrames = 0.1
+hpBar = NodePath("../HPbar")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_mklbp")]
 collision_layer = 4

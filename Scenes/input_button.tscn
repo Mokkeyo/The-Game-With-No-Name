@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://duqwa532kjkgf"]
 
 [ext_resource type="Script" uid="uid://licmk3k5m56w" path="res://Scripts/input_button.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="2"]
 [ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_xjqet"]
 [ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_uqw7h"]
-[ext_resource type="Texture2D" uid="uid://baro0tba11pio" path="res://Button/Left Mouse Button.png" id="5_0wacc"]
+[ext_resource type="Texture2D" uid="uid://8tsa20tmqajd" path="res://Button/Left Mouse Button.png" id="5_0wacc"]
 
 [sub_resource type="FontFile" id="6"]
 fallbacks = Array[Font]([ExtResource("2")])

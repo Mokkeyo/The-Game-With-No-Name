@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=3 uid="uid://b3qrsj1qcrc0l"]
 
 [ext_resource type="Script" uid="uid://dvyhhrarty0wg" path="res://AutoLoads/Scripts/achievment_informer.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://bl22ub71d08bt" path="res://GuiElements/Textures/noob.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://blv1flwq67i4w" path="res://GuiElements/Textures/its_just_the_beginning.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://b7leimsn13ecv" path="res://GuiElements/Textures/chatter.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://bcnv8lsq3go4u" path="res://GuiElements/Textures/unkillable.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://ch51e6sc3ap20" path="res://GuiElements/Textures/you_got_a_friend_in_me.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://dh6fjl12amw4k" path="res://GuiElements/Textures/questionmark.png" id="8"]
-[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="9_qs6qn"]
+[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqrpdvaemol8t" path="res://GuiElements/Textures/noob.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://boxlq0yhvmhxq" path="res://GuiElements/Textures/its_just_the_beginning.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cpdp62kvvmhv3" path="res://GuiElements/Textures/chatter.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bsbdfjpn52pi4" path="res://GuiElements/Textures/unkillable.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bsnil3yekvvh8" path="res://GuiElements/Textures/you_got_a_friend_in_me.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cq4rc67kqwfv6" path="res://GuiElements/Textures/questionmark.png" id="8"]
+[ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="9_qs6qn"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.423529, 0.180392, 0.0627451, 1)

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://qd264kol6kmt" path="res://Scripts/swingable_rope.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bkxvjvaobawtr" path="res://Scenes/swingable_rope_part.tscn" id="2_17cdc"]
-[ext_resource type="Texture2D" uid="uid://bn3yr5mr0hwam" path="res://Objects/Textures/spikeball.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d4dq7tc4pyg84" path="res://Objects/Textures/spikeball.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="4_fwwdr"]
-[ext_resource type="Texture2D" uid="uid://ghnkp05lyh1o" path="res://NormalMap/spikeball_normal.png" id="4_ufff1"]
+[ext_resource type="Texture2D" uid="uid://cn3uwwumg8pjf" path="res://NormalMap/spikeball_normal.png" id="4_ufff1"]
 
 [sub_resource type="Animation" id="Animation_bw5j8"]
 length = 0.001
@@ -75,7 +75,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bw3on")
+&"": SubResource("AnimationLibrary_bw3on")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

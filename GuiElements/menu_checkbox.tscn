@@ -2,8 +2,8 @@
 
 [ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="1_brkcw"]
 [ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_yyrbp"]
-[ext_resource type="Texture2D" uid="uid://cg5slkqotuama" path="res://GuiElements/Textures/frame_checked.png" id="3_48oh4"]
-[ext_resource type="Texture2D" uid="uid://chr3n76xo7gjj" path="res://GuiElements/Textures/frame_uncheked.png" id="4_wuxfs"]
+[ext_resource type="Texture2D" uid="uid://djxoh5j8ewi3x" path="res://GuiElements/Textures/frame_checked.png" id="3_48oh4"]
+[ext_resource type="Texture2D" uid="uid://bb7okfnhietun" path="res://GuiElements/Textures/frame_uncheked.png" id="4_wuxfs"]
 
 [node name="menu_checkbox" type="CheckBox"]
 offset_right = 180.0

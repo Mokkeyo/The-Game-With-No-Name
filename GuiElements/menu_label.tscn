@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdvs7u2cs6qmr"]
 
-[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="1_7b24d"]
+[ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="1_7b24d"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("1_7b24d"), ExtResource("1_7b24d")])

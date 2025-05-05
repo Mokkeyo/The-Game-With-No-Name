@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://s4e240cwhy1v"]
 
-[ext_resource type="Texture2D" uid="uid://1plch0hl03fc" path="res://Player/Textures/airship_player_1.png" id="2_dkhtt"]
+[ext_resource type="Texture2D" uid="uid://dkrlbqwfkh4oc" path="res://Player/Textures/airship_player_1.png" id="2_dkhtt"]
 [ext_resource type="Script" uid="uid://b2etl13a870ab" path="res://Scripts/airship_spawner.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://d1njf0fpab7np" path="res://Player/Textures/airship_player_2.png" id="3_syvlc"]
+[ext_resource type="Texture2D" uid="uid://n6uvvqq3lnpa" path="res://Player/Textures/airship_player_2.png" id="3_syvlc"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(54, 18)

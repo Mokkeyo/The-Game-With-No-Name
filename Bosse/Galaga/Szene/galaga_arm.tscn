@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdbscbgljoden" path="res://Bosse/Galaga/Scripts/galaga_arm.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://ch2r0ux3lvl0i" path="res://Bosse/Galaga/Grafik/galaga_arm.tres" id="2_mgbnf"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_a1uhn"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_a1uhn"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="4_28q4f"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="5_4kbcy"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="6_ghwev"]
@@ -184,7 +184,7 @@ position = Vector2(23, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_qunio")
+&"": SubResource("AnimationLibrary_qunio")
 }
 
 [node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("4_28q4f")]

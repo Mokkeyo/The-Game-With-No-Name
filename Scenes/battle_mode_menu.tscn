@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://c1i18eje8y7v2" path="res://TileMaps/Scenes/background.tscn" id="2_utuga"]
 [ext_resource type="PackedScene" uid="uid://b2cggka1ix7ys" path="res://TileMaps/Scenes/background_element.tscn" id="3_ijqqe"]
 [ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="4_m64t4"]
-[ext_resource type="Texture2D" uid="uid://by2aidxycm5x7" path="res://Player/Textures/sword.png" id="5_05uap"]
-[ext_resource type="FontFile" uid="uid://xo3p6l5s5qqj" path="res://Font/Robus-BWqOd.otf" id="6_vqkap"]
+[ext_resource type="Texture2D" uid="uid://cm76l3nuy2ivf" path="res://Player/Textures/sword.png" id="5_05uap"]
+[ext_resource type="FontFile" uid="uid://bw0klgwc6v2e3" path="res://Font/Robus-BWqOd.otf" id="6_vqkap"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="7_51wur"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="12_4r47o"]
 [ext_resource type="PackedScene" uid="uid://duirrk2ta88b3" path="res://Scenes/explanation.tscn" id="12_agddd"]
@@ -201,7 +201,6 @@ focus_neighbor_bottom = NodePath(".")
 text = "nothing button"
 
 [node name="Fader" parent="." instance=ExtResource("15_872qg")]
-visible = false
 layout_mode = 0
 
 [connection signal="pressed" from="Navigation/Battle" to="." method="_on_battle_pressed"]

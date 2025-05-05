@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://5pgbj8qljedg" path="res://Enemys/CanvasTextures/bat.tres" id="2_0loop"]
 [ext_resource type="Script" uid="uid://dblghccaet81c" path="res://Enemys/Scripts/bat.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_pejrr"]
+[ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_pejrr"]
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_cvypo"]
 [ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="9_p1qei"]
@@ -189,9 +189,9 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k3pgo")
 
 [node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar", "invisibilityComp") instance=ExtResource("12_ek4ux")]
+invisibiltyFrames = 0.1
 hpBar = NodePath("../HPBar")
 invisibilityComp = NodePath("../InvisibleFramesComp")
-invisibiltyFrames = 0.1
 
 [node name="EnemyResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_cvypo")]
 collisions = [NodePath("../CollisionShape2D"), NodePath("../PlayerDetector/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D")]

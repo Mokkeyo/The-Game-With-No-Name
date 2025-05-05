@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgpiw2qmnrmcw"]
 
-[ext_resource type="Texture2D" uid="uid://dsw1u6mfgctks" path="res://Objects/Textures/lightmap.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c3n3iepm0pslg" path="res://Objects/Textures/lightmap.png" id="1"]
 [ext_resource type="Script" uid="uid://b04xntpfsof4r" path="res://Scripts/lightmap.gd" id="2"]
 
 [node name="lightmap" type="Sprite2D"]

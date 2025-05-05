@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://c2k3pdrvbry3i"]
 
-[ext_resource type="Texture2D" uid="uid://bg5xavobdts1i" path="res://Npcs/Textures/buschi.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://do1iebekyjail" path="res://Npcs/Textures/busch.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cketskybfrh6x" path="res://Npcs/Textures/buschi.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dnx285y0tpf0k" path="res://Npcs/Textures/busch.png" id="2"]
 [ext_resource type="Script" uid="uid://dbw7086lgiilg" path="res://Scripts/buschi.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://chbovsnrr7jom" path="res://NormalMap/buschi_normal.png" id="3_3bnww"]
+[ext_resource type="Texture2D" uid="uid://dgiu74lu48xaf" path="res://NormalMap/buschi_normal.png" id="3_3bnww"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="5_nrcdm"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="6_nhcy5"]

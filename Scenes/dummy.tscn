@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bn81k5liigxdu"]
 
-[ext_resource type="Texture2D" uid="uid://bk34cgfokgubn" path="res://Objects/Textures/dummy.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bgc4bqqcw3wpd" path="res://Objects/Textures/dummy.png" id="1"]
 [ext_resource type="Script" uid="uid://dfpf6jtokqxoi" path="res://Scripts/dummy.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="3_ain4w"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="4_15iif"]
@@ -126,7 +126,7 @@ shape = SubResource("1")
 
 [node name="DamagePlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_p2ynv")
+&"": SubResource("AnimationLibrary_p2ynv")
 }
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_ain4w")]

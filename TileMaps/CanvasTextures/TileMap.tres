@@ -1,8 +1,0 @@
-[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cgm0f8p4q5o80"]
-
-[ext_resource type="Texture2D" uid="uid://c1p0765v73w1o" path="res://TileMaps/Textures/ground_tilemap.png" id="1_d17dp"]
-[ext_resource type="Texture2D" uid="uid://dxfd18bp54f14" path="res://NormalMap/tilemap_normal.png" id="2_agipv"]
-
-[resource]
-diffuse_texture = ExtResource("1_d17dp")
-normal_texture = ExtResource("2_agipv")

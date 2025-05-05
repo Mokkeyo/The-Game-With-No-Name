@@ -22,7 +22,6 @@ door_name = "w"
 
 [node name="Player_Spawner" parent="." instance=ExtResource("1")]
 position = Vector2(135, 196)
-battlemode = true
 
 [node name="FallingSpikes" parent="." instance=ExtResource("5")]
 position = Vector2(151, 0)

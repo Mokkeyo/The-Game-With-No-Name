@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://e8m2ret5vmxf"]
 
 [ext_resource type="Script" uid="uid://gada3fw7l6xn" path="res://Scripts/rules.gd" id="1_ttrm5"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="4_1s5ho"]
-[ext_resource type="Texture2D" uid="uid://cghjolpoe48mg" path="res://Arena/Textures/arrow_unpressed.png" id="5_f6c5y"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="4_1s5ho"]
+[ext_resource type="Texture2D" uid="uid://46hd5pn7srfq" path="res://Arena/Textures/arrow_unpressed.png" id="5_f6c5y"]
 [ext_resource type="PackedScene" uid="uid://cvbhirfwanijc" path="res://Scenes/weapon_choose_menu.tscn" id="6_rjita"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="8_xogaa"]
 

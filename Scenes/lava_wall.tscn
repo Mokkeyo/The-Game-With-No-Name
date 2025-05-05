@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwr7q5blpqwhd"]
 
-[ext_resource type="Texture2D" uid="uid://c3mkdrl6m053j" path="res://Objects/Textures/lavaWall.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bcuufvbu0cplo" path="res://Objects/Textures/lavaWall.png" id="1"]
 [ext_resource type="Script" uid="uid://hmu66bxgreun" path="res://Scripts/lava_wall.gd" id="2"]
 
 [node name="LavaWall" type="Node2D"]

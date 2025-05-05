@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cp800xwxb321l"]
 
-[ext_resource type="Texture2D" uid="uid://b2gjseatb3k6m" path="res://Bosse/Hades/Grafik/spike.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dl1mjhbcwqy0p" path="res://Bosse/Hades/Grafik/spike.png" id="1"]
 [ext_resource type="Script" uid="uid://d3aigydhvt4x0" path="res://Scripts/falling_spikes.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_e7llr"]
 

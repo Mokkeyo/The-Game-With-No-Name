@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://hpx56o8uob8o"]
 
 [ext_resource type="Script" uid="uid://d0pi7d6c5kudn" path="res://Scripts/movable_block.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cyb3vmg4e67ik" path="res://Objects/Textures/stone.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dslu8sljmhipu" path="res://NormalMap/stone_normal.png" id="3_ra022"]
+[ext_resource type="Texture2D" uid="uid://dr6g32o04r6rg" path="res://Objects/Textures/stone.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcmhlqr3p0q2n" path="res://NormalMap/stone_normal.png" id="3_ra022"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="4_od2n6"]
 
 [sub_resource type="OccluderPolygon2D" id="3"]

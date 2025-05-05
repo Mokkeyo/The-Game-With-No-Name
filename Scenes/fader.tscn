@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmbwnii5hqwja"]
 
 [ext_resource type="Script" uid="uid://du2tksteaqrb3" path="res://Scripts/fader.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://8meh1rluo0uk" path="res://Arena/Textures/secret_text.png" id="2_mqb7l"]
+[ext_resource type="Texture2D" uid="uid://c5cdfmc4uhuxi" path="res://Arena/Textures/secret_text.png" id="2_mqb7l"]
 
 [sub_resource type="Animation" id="Animation_i8gnq"]
 length = 0.001

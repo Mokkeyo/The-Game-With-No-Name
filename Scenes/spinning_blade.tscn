@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c63xsde6mme8y"]
 
-[ext_resource type="Texture2D" uid="uid://dbypul21oi6mk" path="res://Objects/Textures/spinning_blade.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dwjmoek7glkle" path="res://Objects/Textures/spinning_blade.png" id="1"]
 [ext_resource type="Script" uid="uid://cw42uhc8nhprm" path="res://Scripts/spinning_blade.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://b8i2dfbv05iii" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
+[ext_resource type="Texture2D" uid="uid://desaq7rosii1c" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_wl07d"]
 
 [sub_resource type="Animation" id="Animation_gc0oq"]
@@ -55,7 +55,7 @@ script = ExtResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_tb3x2")
+&"": SubResource("AnimationLibrary_tb3x2")
 }
 
 [node name="Path2D" type="Path2D" parent="."]

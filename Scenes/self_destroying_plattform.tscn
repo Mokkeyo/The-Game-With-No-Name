@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://b17dkb5l28cmy"]
 
-[ext_resource type="Texture2D" uid="uid://dce2644fl3gih" path="res://Objects/Textures/falling_plattform_vanished.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bkia2r7cmgfmf" path="res://Objects/Textures/falling_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bwjxky2cctmyj" path="res://Objects/Textures/falling_plattform_vanished.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bdamvxstwati8" path="res://Objects/Textures/falling_plattform.png" id="2"]
 [ext_resource type="Script" uid="uid://cbbemktamfnsd" path="res://Scripts/self_destroying_plattform.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://2r66lc5j150v" path="res://NormalMap/falling_plattform_normal.png" id="4_qd381"]
+[ext_resource type="Texture2D" uid="uid://ckbdq3x8qv62y" path="res://NormalMap/falling_plattform_normal.png" id="4_qd381"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_173kq"]
 diffuse_texture = ExtResource("2")
@@ -153,7 +153,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gecsg")
+&"": SubResource("AnimationLibrary_gecsg")
 }
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://duirrk2ta88b3"]
 
 [ext_resource type="Script" uid="uid://fm2rhlt1jf1g" path="res://Scripts/explanation.gd" id="1_r41kg"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_wokp5"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1_wokp5"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_fjur3"]
 
 [sub_resource type="FontFile" id="56"]

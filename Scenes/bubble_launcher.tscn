@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkmqrm7so4u62"]
 
-[ext_resource type="Texture2D" uid="uid://brike2n5vprti" path="res://Objects/Textures/bubble_launcher.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://rndsi05feq4w" path="res://Objects/Textures/bubble_launcher.png" id="1"]
 [ext_resource type="Script" uid="uid://dkwa84wuddgfc" path="res://Scripts/bubble_launcher.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://ban3j67ih2pg3" path="res://TileMaps/Textures/arrow.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://in2r3bbyfs4m" path="res://NormalMap/bubble_normal.png" id="3_3lrp7"]
+[ext_resource type="Texture2D" uid="uid://cs72pqv1k3vcr" path="res://TileMaps/Textures/arrow.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dttxmirrv00ml" path="res://NormalMap/bubble_normal.png" id="3_3lrp7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ay00c"]
 diffuse_texture = ExtResource("1")

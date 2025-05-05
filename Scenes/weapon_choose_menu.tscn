@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://cvbhirfwanijc"]
 
 [ext_resource type="Script" uid="uid://nyh3xv5dqgqa" path="res://Scripts/weapon_choose_menu.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c0rgov70extqn" path="res://Player/Textures/wand.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bulntp8jnbh1w" path="res://Player/Textures/wand.png" id="2"]
 [ext_resource type="StyleBox" uid="uid://cfh8dgxoaerqx" path="res://GuiElements/SytleBoxTexture/focused_rahmen.tres" id="2_0i1sg"]
-[ext_resource type="Texture2D" uid="uid://by2aidxycm5x7" path="res://Player/Textures/sword.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cm76l3nuy2ivf" path="res://Player/Textures/sword.png" id="3"]
 [ext_resource type="StyleBox" uid="uid://djec3voccpsp8" path="res://GuiElements/SytleBoxTexture/unfocused_rahmen.tres" id="3_c2srf"]
-[ext_resource type="Texture2D" uid="uid://bq5v55lx3nmdr" path="res://GuiElements/Textures/no.png" id="6"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="8_cqu8e"]
+[ext_resource type="Texture2D" uid="uid://dy41kqvv8sm3n" path="res://GuiElements/Textures/no.png" id="6"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="8_cqu8e"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="9_hrseb"]
-[ext_resource type="Texture2D" uid="uid://yrblmqa2iacl" path="res://GuiElements/Textures/jump.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://boinnbf3imkwv" path="res://GuiElements/Textures/jump.png" id="11"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.494118, 0.219608, 0, 1)

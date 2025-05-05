@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqyq6pohl8ehg"]
 
 [ext_resource type="Script" uid="uid://6i7dskjocwql" path="res://Scripts/bullet.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://globi1p5gtik" path="res://Objects/Textures/bullet.png" id="2_hmh2x"]
+[ext_resource type="Texture2D" uid="uid://cnrbkdrw25hqn" path="res://Objects/Textures/bullet.png" id="2_hmh2x"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_vod8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0fe"]

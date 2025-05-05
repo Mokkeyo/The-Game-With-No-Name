@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt77os0lde6em"]
 
-[ext_resource type="Texture2D" uid="uid://cn0q6k30cf7q6" path="res://Player/Textures/mana_bar.png" id="1_wakge"]
+[ext_resource type="Texture2D" uid="uid://b75kmbw38x1s4" path="res://Player/Textures/mana_bar.png" id="1_wakge"]
 [ext_resource type="Script" uid="uid://3n1rk3wgmvat" path="res://Scripts/hp_bar.gd" id="2_o7def"]
-[ext_resource type="Texture2D" uid="uid://dpws3b1irbf4c" path="res://Player/Textures/mana_progress_bar_player_1.png" id="3_0cbhw"]
+[ext_resource type="Texture2D" uid="uid://507kjjixnbjm" path="res://Player/Textures/mana_progress_bar_player_1.png" id="3_0cbhw"]
 
 [node name="Mana" type="TextureRect"]
 offset_right = 38.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=101 format=3 uid="uid://5si55om8l0w7"]
 
-[ext_resource type="Texture2D" uid="uid://c1p0765v73w1o" path="res://TileMaps/Textures/ground_tilemap.png" id="4_e58tt"]
-[ext_resource type="Texture2D" uid="uid://bq1qrsrjkq8hl" path="res://TileMaps/Textures/background_busch.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://cedmmq24kehgw" path="res://TileMaps/Textures/ground_tilemap.png" id="4_e58tt"]
+[ext_resource type="Texture2D" uid="uid://cjdg2wu5el4o" path="res://TileMaps/Textures/background_busch.png" id="10"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnfwy"]
 polygon = PackedVector2Array(4, -5, 4, -4, 5, -4, 5, -1, 6, -1, 6, 2, 5, 2, 5, 4, 4, 4, 4, 5, 1, 5, 1, 6, -2, 6, -2, 5, -4, 5, -4, 4, -5, 4, -5, 1, -6, 1, -6, -2, -5, -2, -5, -4, -4, -4, -4, -5, -1, -5, -1, -6, 2, -6, 2, -5)

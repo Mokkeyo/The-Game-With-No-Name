@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1i18eje8y7v2"]
 
-[ext_resource type="Texture2D" uid="uid://lfi5iecwmh3f" path="res://TileMaps/Textures/background_black.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://dpjccc1lapbys" path="res://TileMaps/CanvasTextures/DIRT.tres" id="2_udcbd"]
-[ext_resource type="Texture2D" uid="uid://bpoau4vsgdrvb" path="res://TileMaps/Textures/background_dark.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://kejfmira4cmw" path="res://TileMaps/Textures/background_black.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dpjccc1lapbys" path="res://TileMaps/CanvasTextures/dirt.tres" id="2_udcbd"]
+[ext_resource type="Texture2D" uid="uid://t78bpjrh61e7" path="res://TileMaps/Textures/background_dark.png" id="4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_46iwh"]
 texture = ExtResource("2_udcbd")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkxvjvaobawtr"]
 
-[ext_resource type="Texture2D" uid="uid://dijlvatk6fusw" path="res://Objects/Textures/swingable_rope.png" id="1_g5ccl"]
-[ext_resource type="Texture2D" uid="uid://cgd70qki0tbgd" path="res://NormalMap/swinging_rope_normal.png" id="2_2w6xs"]
+[ext_resource type="Texture2D" uid="uid://d0ari8on310jx" path="res://Objects/Textures/swingable_rope.png" id="1_g5ccl"]
+[ext_resource type="Texture2D" uid="uid://v5axlkifk2c1" path="res://NormalMap/swinging_rope_normal.png" id="2_2w6xs"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lieiy"]
 diffuse_texture = ExtResource("1_g5ccl")

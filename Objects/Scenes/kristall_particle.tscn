@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbykd4v5sd0lc"]
 
-[ext_resource type="Texture2D" uid="uid://cc27edno68bho" path="res://Objects/Textures/particle_effect.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://csvyqo4id0qrx" path="res://Objects/Textures/particle_effect.png" id="1"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 blend_mode = 1
@@ -35,6 +35,6 @@ process_priority = 1
 material = SubResource("1")
 position = Vector2(-2, -6)
 scale = Vector2(0.01, 0.01)
-process_material = SubResource("4")
 texture = ExtResource("1")
 lifetime = 0.5
+process_material = SubResource("4")

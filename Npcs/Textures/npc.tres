@@ -1,7 +1,7 @@
 [gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://bkb65txl1jf0f"]
 
-[ext_resource type="Texture2D" uid="uid://dq7pikfaqshv6" path="res://Npcs/Textures/npc.png" id="1_w76re"]
-[ext_resource type="Texture2D" uid="uid://b6u3fk1x8ajcl" path="res://NormalMap/npc_normal.png" id="2_hmkh3"]
+[ext_resource type="Texture2D" uid="uid://ccm2ohsn1c5gr" path="res://Npcs/Textures/npc.png" id="1_w76re"]
+[ext_resource type="Texture2D" uid="uid://cd7271gyqi1ts" path="res://NormalMap/npc_normal.png" id="2_hmkh3"]
 
 [resource]
 diffuse_texture = ExtResource("1_w76re")

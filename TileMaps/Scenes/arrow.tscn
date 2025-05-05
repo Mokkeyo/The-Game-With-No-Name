@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4nxkpmfjlfsu"]
 
-[ext_resource type="Texture2D" uid="uid://ban3j67ih2pg3" path="res://TileMaps/Textures/arrow.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://b6jrr8hkafuwq" path="res://TileMaps/CanvasTextures/ArrowCanvas.tres" id="2_2kgsh"]
+[ext_resource type="Texture2D" uid="uid://cs72pqv1k3vcr" path="res://TileMaps/Textures/arrow.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b6jrr8hkafuwq" path="res://TileMaps/CanvasTextures/arrow.tres" id="2_2kgsh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fdlbb"]
 texture = ExtResource("1")

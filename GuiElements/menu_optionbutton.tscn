@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgrt6qaa8f5dv"]
 
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_jbsv0"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1_jbsv0"]
 [ext_resource type="Theme" uid="uid://cubk20gfebvan" path="res://Themes/option_button_theme.tres" id="1_vp4dr"]
 [ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="2_enb7g"]
 [ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="3_bc3ec"]
-[ext_resource type="Texture2D" uid="uid://cgs70lujy7cs6" path="res://GuiElements/Textures/Arrow.png" id="4_xu5t2"]
+[ext_resource type="Texture2D" uid="uid://b2oslmict7f4g" path="res://GuiElements/Textures/Arrow.png" id="4_xu5t2"]
 
 [node name="menu_optionbutton" type="OptionButton"]
 offset_right = 180.0

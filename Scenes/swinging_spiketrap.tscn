@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://ck4c4oeoscdvj"]
 
-[ext_resource type="Texture2D" uid="uid://bnyyu8h6o5n0q" path="res://Objects/Textures/swinging_spiketrap.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dcdotvukbylid" path="res://Objects/Textures/swinging_spiketrap.png" id="1"]
 [ext_resource type="Script" uid="uid://buww3sr80j3wu" path="res://Scripts/swinging_spiketrap.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bhnwc4bjowpxg" path="res://Objects/Textures/swingingSpikeButton.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://xpt3yqg2mm47" path="res://NormalMap/swinging_spiketrap_normal.png" id="3_auyxv"]
+[ext_resource type="Texture2D" uid="uid://ckkm23jk3bsg6" path="res://Objects/Textures/swingingSpikeButton.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://8tatjwvtig5b" path="res://NormalMap/swinging_spiketrap_normal.png" id="3_auyxv"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_y2fjb"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tmyr8"]
@@ -76,5 +76,5 @@ texture = ExtResource("3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_d85ya")
+&"": SubResource("AnimationLibrary_d85ya")
 }

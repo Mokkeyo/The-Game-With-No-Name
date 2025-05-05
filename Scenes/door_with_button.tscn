@@ -1,10 +1,10 @@
 [gd_scene load_steps=33 format=3 uid="uid://dffqqqfuq47wm"]
 
-[ext_resource type="Texture2D" uid="uid://c5jbxt3e7gn84" path="res://Objects/Textures/button.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cke05b1hpq5ji" path="res://Objects/Textures/button.png" id="4"]
 [ext_resource type="Script" uid="uid://jr6cxtkcj3t4" path="res://Scripts/door_with_button.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="6_sd8rr"]
-[ext_resource type="Texture2D" uid="uid://bh4mgueth42st" path="res://Objects/Textures/open_door_particle.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://b8hwj2rtwd31j" path="res://Objects/Textures/door_with_button.png" id="10_8k20b"]
+[ext_resource type="Texture2D" uid="uid://ryuu43p51n0a" path="res://Objects/Textures/open_door_particle.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://qtgaar8ay2da" path="res://Objects/Textures/door_with_button.png" id="10_8k20b"]
 [ext_resource type="PackedScene" uid="uid://bn81k5liigxdu" path="res://Scenes/dummy.tscn" id="21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4y67r"]

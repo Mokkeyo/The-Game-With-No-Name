@@ -1,7 +1,7 @@
 [gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://bqsitp0h23poh"]
 
-[ext_resource type="Texture2D" uid="uid://cx3cjdnrvjdjo" path="res://Objects/Textures/kristalls.png" id="1_mjhe7"]
-[ext_resource type="Texture2D" uid="uid://d4ecq64hs3vf7" path="res://NormalMap/kristalls_normal.png" id="2_hyfsq"]
+[ext_resource type="Texture2D" uid="uid://crsyq5n0m5tw0" path="res://Objects/Textures/kristalls.png" id="1_mjhe7"]
+[ext_resource type="Texture2D" uid="uid://by5lwt8uv4rfo" path="res://NormalMap/kristalls_normal.png" id="2_hyfsq"]
 
 [resource]
 diffuse_texture = ExtResource("1_mjhe7")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bm3q1m66y457b" path="res://Scripts/save_stats_menu.gd" id="1_q7khg"]
 [ext_resource type="PackedScene" uid="uid://btywad8nch0tx" path="res://Scenes/save_stat.tscn" id="2_itox8"]
-[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="3_nedyd"]
+[ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="3_nedyd"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="6_vxfum"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="8_jcprx"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="8_jcprx"]
 
 [sub_resource type="FontFile" id="37"]
 fallbacks = Array[Font]([ExtResource("3_nedyd")])

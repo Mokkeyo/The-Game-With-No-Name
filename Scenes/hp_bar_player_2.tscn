@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgjgn30nuvrb3"]
 
-[ext_resource type="Texture2D" uid="uid://yuocgxs786y0" path="res://Player/Textures/hp_bar.png" id="1_dbui6"]
+[ext_resource type="Texture2D" uid="uid://cai1g0e6p5cpb" path="res://Player/Textures/hp_bar.png" id="1_dbui6"]
 [ext_resource type="Script" uid="uid://3n1rk3wgmvat" path="res://Scripts/hp_bar.gd" id="2_y0ojj"]
-[ext_resource type="Texture2D" uid="uid://0fwo38svd8vu" path="res://Player/Textures/hp_progress_bar_player_2.png" id="3_2ntu7"]
+[ext_resource type="Texture2D" uid="uid://cwkicpt7dbtdd" path="res://Player/Textures/hp_progress_bar_player_2.png" id="3_2ntu7"]
 
 [node name="HPBar" type="TextureRect"]
 offset_right = 39.0

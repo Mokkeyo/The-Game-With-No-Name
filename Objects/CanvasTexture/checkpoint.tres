@@ -1,7 +1,7 @@
 [gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://drwrrl3atnl63"]
 
-[ext_resource type="Texture2D" uid="uid://brtkb1gpuoivk" path="res://Objects/Textures/checkpoint.png" id="1_wwhjm"]
-[ext_resource type="Texture2D" uid="uid://j5xo1rwmydr6" path="res://NormalMap/checkpoint_normal.png" id="2_suc7t"]
+[ext_resource type="Texture2D" uid="uid://bdjs00sl01ti7" path="res://Objects/Textures/checkpoint.png" id="1_wwhjm"]
+[ext_resource type="Texture2D" uid="uid://q5vaon664cbk" path="res://NormalMap/checkpoint_normal.png" id="2_suc7t"]
 
 [resource]
 diffuse_texture = ExtResource("1_wwhjm")

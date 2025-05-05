@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bowcmya00mvsq" path="res://Scenes/pause_menu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cj63f0dlucbmw" path="res://Scenes/in_game.tscn" id="2_5u1uf"]
-[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="5"]
+[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="5"]
 [ext_resource type="PackedScene" uid="uid://dmbwnii5hqwja" path="res://Scenes/fader.tscn" id="6"]
 [ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
-[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="15"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("5")])

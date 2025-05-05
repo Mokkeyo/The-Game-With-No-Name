@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://bowcmya00mvsq"]
 
-[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="1"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Scenes/options_menu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_jlidi"]
 [ext_resource type="Script" uid="uid://dqrl7t5nlu8s5" path="res://Scripts/pause_menu.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://c32irumryilnl" path="res://Scenes/achievments_menu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://chdt1oeflseao" path="res://Scenes/2_player_mode_menu.tscn" id="11"]
-[ext_resource type="Texture2D" uid="uid://dnkc1b7dta20p" path="res://GuiElements/Textures/pokal.png" id="28"]
-[ext_resource type="Texture2D" uid="uid://c71s4uli1pi1m" path="res://GuiElements/Textures/multyplayer.png" id="29"]
+[ext_resource type="Texture2D" uid="uid://rlxkncbl4m5a" path="res://GuiElements/Textures/pokal.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://pg8n0i7gx02u" path="res://GuiElements/Textures/multyplayer.png" id="29"]
 
 [sub_resource type="FontFile" id="23"]
 fallbacks = Array[Font]([ExtResource("1")])
