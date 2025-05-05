@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://xiv1m78mvcbm"]
+
+[ext_resource type="Texture2D" uid="uid://dsj2kut80kbyb" path="res://PathToNewLevelObjects/Textures/end_door_frame_2.png" id="1"]
+[ext_resource type="Script" uid="uid://bf75ylrbkjjk0" path="res://Scripts/end_door.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bg2hxq1fnumdv" path="res://PathToNewLevelObjects/Textures/end_door_frame_1.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="5_ftskw"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(3.30828, 20)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="End_door" type="Sprite2D"]
+visible = false
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(1.81363, 1.81363)
+script = ExtResource("2")
+level_number = 6
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5.25837e-07, 1.10276)
+shape = SubResource("1")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(5.25837e-07, 11.0276)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.470588, 0.470588, 0.470588, 1)
+sprite_frames = SubResource("2")
+
+[node name="Ping" parent="." instance=ExtResource("4")]
+position = Vector2(0.2, -21.504)
+scale = Vector2(0.5, 0.5)
+
+[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_ftskw")]
+marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

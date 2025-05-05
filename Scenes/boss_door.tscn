@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpuwh0wehq0k0"]
+
+[ext_resource type="Script" uid="uid://cvk1b6mnienjg" path="res://Scripts/boss_door.gd" id="1_ctxq3"]
+[ext_resource type="Texture2D" uid="uid://73gjg2q8nbnp" path="res://PathToNewLevelObjects/Textures/boss_door_open.png" id="1_xlxte"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="3_4733c"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4_2ar5a"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="5_5k6tv"]
+[ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="6_vkkh7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxspb"]
+size = Vector2(8, 54)
+
+[node name="BossDoor" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader")]
+script = ExtResource("1_ctxq3")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="BossDoorOpen" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_xlxte")
+hframes = 3
+frame = 2
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("3_4733c")]
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_dxspb")
+
+[node name="Ping" parent="." instance=ExtResource("4_2ar5a")]
+position = Vector2(0, -73)
+
+[node name="DialogueLoader" parent="." instance=ExtResource("5_5k6tv")]
+npc = "bossDoor"
+blackBox = true
+
+[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("6_vkkh7")]
+marker = NodePath("../Marker2D")
+area = NodePath("../NPCArea")

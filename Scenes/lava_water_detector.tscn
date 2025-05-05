@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8wj04cl43dvv"]
+
+[ext_resource type="Script" uid="uid://bmj73qe8cq8i8" path="res://Scripts/lava_water_dector_component.gd" id="1_3xa10"]
+
+[node name="LavaWater_Detector" type="Area2D"]
+collision_layer = 0
+collision_mask = 384
+script = ExtResource("1_3xa10")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://blleebef2ijss"]
+
+[ext_resource type="Script" uid="uid://dkru578xxnyv3" path="res://Player/Scripts/ghost_pet.gd" id="1_toswg"]
+[ext_resource type="Texture2D" uid="uid://dnn3qgdu47lbs" path="res://Player/CanvasTextures/ghost_pet.tres" id="2_nmbdw"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylaaq"]
+atlas = ExtResource("2_nmbdw")
+region = Rect2(0, 0, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fyr7"]
+atlas = ExtResource("2_nmbdw")
+region = Rect2(15, 0, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g26fb"]
+atlas = ExtResource("2_nmbdw")
+region = Rect2(0, 16, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhh26"]
+atlas = ExtResource("2_nmbdw")
+region = Rect2(15, 16, 14, 15)
+
+[sub_resource type="SpriteFrames" id="4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylaaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fyr7")
+}],
+"loop": true,
+"name": &"pet_0",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g26fb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhh26")
+}],
+"loop": true,
+"name": &"pet_1",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksleq"]
+radius = 24.1868
+
+[node name="ghost_pet" type="CharacterBody2D"]
+z_index = 3
+script = ExtResource("1_toswg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23, 0)
+shape = SubResource("1")
+disabled = true
+
+[node name="ghost_dog" type="AnimatedSprite2D" parent="."]
+position = Vector2(-23, -1)
+sprite_frames = SubResource("4")
+animation = &"pet_0"
+
+[node name="RadiusArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RadiusArea"]
+shape = SubResource("CircleShape2D_ksleq")
+
+[connection signal="body_exited" from="RadiusArea" to="." method="_on_radius_area_body_exited"]

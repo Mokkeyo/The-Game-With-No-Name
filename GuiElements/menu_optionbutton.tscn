@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgrt6qaa8f5dv"]
+
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_jbsv0"]
+[ext_resource type="Theme" uid="uid://cubk20gfebvan" path="res://Themes/option_button_theme.tres" id="1_vp4dr"]
+[ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="2_enb7g"]
+[ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="3_bc3ec"]
+[ext_resource type="Texture2D" uid="uid://cgs70lujy7cs6" path="res://GuiElements/Textures/Arrow.png" id="4_xu5t2"]
+
+[node name="menu_optionbutton" type="OptionButton"]
+offset_right = 180.0
+offset_bottom = 84.0
+theme = ExtResource("1_vp4dr")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_jbsv0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("2_enb7g")
+theme_override_styles/disabled = ExtResource("3_bc3ec")
+theme_override_styles/hover_pressed = ExtResource("3_bc3ec")
+theme_override_styles/hover = ExtResource("3_bc3ec")
+theme_override_styles/pressed = ExtResource("3_bc3ec")
+theme_override_styles/normal = ExtResource("3_bc3ec")
+theme_override_constants/arrow_margin = 8
+theme_override_icons/arrow = ExtResource("4_xu5t2")
+alignment = 1

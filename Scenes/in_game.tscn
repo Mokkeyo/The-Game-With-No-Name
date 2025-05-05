@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://cj63f0dlucbmw"]
+
+[ext_resource type="Script" uid="uid://bqlfus07w3dpx" path="res://Scripts/in_game.gd" id="1_sbfge"]
+[ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="3_x4u0x"]
+[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="4_u5pl2"]
+[ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
+[ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="6_m0r43"]
+[ext_resource type="PackedScene" uid="uid://bgjgn30nuvrb3" path="res://Scenes/hp_bar_player_2.tscn" id="7_pi7ch"]
+[ext_resource type="PackedScene" uid="uid://f35a2dk8xal2" path="res://Scenes/mana_player_2.tscn" id="8_rlmnr"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("4_u5pl2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[node name="InGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sbfge")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_constants/separation = 0
+
+[node name="ViewportContainerP1" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP1"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(512, 576)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport"]
+visible = false
+texture_filter = 1
+zoom = Vector2(2, 2)
+limit_left = 0
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
+
+[node name="ViewportContainerP2" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP2"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(512, 576)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP2/SubViewport"]
+texture_filter = 1
+zoom = Vector2(2, 2)
+limit_left = 0
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
+
+[node name="lightmap" parent="." instance=ExtResource("3_x4u0x")]
+visible = false
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 508.0
+offset_right = 516.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="Coin_Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 388.0
+offset_top = 33.0
+offset_right = 501.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.72549, 0.780392, 0.152941, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("2")
+text = "Coins: 0"
+
+[node name="Player1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" parent="Player1" instance=ExtResource("5_uw4fe")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="Player1" instance=ExtResource("6_m0r43")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 50.0
+offset_right = 42.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+
+[node name="Player2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HPBar" parent="Player2" instance=ExtResource("7_pi7ch")]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 4.0
+offset_right = 904.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="Player2" instance=ExtResource("8_rlmnr")]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 50.0
+offset_right = 944.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)

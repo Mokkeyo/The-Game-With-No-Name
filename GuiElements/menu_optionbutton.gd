@@ -1,0 +1,2 @@
+extends OptionButton
+class_name Menu_OptionButton

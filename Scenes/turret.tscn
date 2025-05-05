@@ -1,0 +1,171 @@
+[gd_scene load_steps=15 format=3 uid="uid://4aouv1eodo1n"]
+
+[ext_resource type="Texture2D" uid="uid://cwycmln66jmdd" path="res://Objects/Textures/turret_eye.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cowybv6k7cr2k" path="res://Objects/Textures/turret_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dam6x4i61pnrb" path="res://NormalMap/_turret_eye_normal.png" id="3_7xmsd"]
+[ext_resource type="Script" uid="uid://djrgri111eoa5" path="res://Scripts/turret.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://do5026ql72y1p" path="res://NormalMap/turret_plattform_normal.png" id="5_jqxwu"]
+[ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="7_hyxdo"]
+[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="8_x83vg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_shxg7"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_7xmsd")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_h1rt8"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("5_jqxwu")
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="Animation" id="Animation_i8stu"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/geschütz(2):modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/geschütz(2):modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/geschütz(2):modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/geschütz(2):modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Warning"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/geschütz(2):modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/geschütz(2):modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/geschütz(2):modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/geschütz(2):modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ss6qi"]
+_data = {
+&"RESET": SubResource("Animation_i8stu"),
+&"Warning": SubResource("3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnj7k"]
+radius = 122.262
+
+[node name="Geschütz" type="CharacterBody2D"]
+script = ExtResource("4")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="geschütz(2)" type="Sprite2D" parent="Node2D"]
+rotation = 2.26893
+texture = SubResource("CanvasTexture_shxg7")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/geschütz(2)"]
+visible = false
+rotation = -2.26893
+
+[node name="geschütz" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = SubResource("CanvasTexture_h1rt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("1")
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ss6qi")
+}
+
+[node name="airshipDetector" parent="." instance=ExtResource("7_hyxdo")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector"]
+shape = SubResource("CircleShape2D_cnj7k")
+
+[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent", "rotation_point") instance=ExtResource("8_x83vg")]
+shootingPoint = NodePath("../Node2D/geschütz(2)/Marker2D")
+parent = NodePath("..")
+rotation_point = NodePath("../Node2D")
+
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

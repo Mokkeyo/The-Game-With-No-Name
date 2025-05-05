@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdvs7u2cs6qmr"]
+
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="1_7b24d"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1_7b24d"), ExtResource("1_7b24d")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/64/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/64/0 = Vector2(0, 0)
+
+[node name="MenuLabel" type="Label"]
+offset_right = 128.0
+offset_bottom = 64.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 2

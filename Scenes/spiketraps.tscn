@@ -1,0 +1,149 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2u6hlvrjrap1"]
+
+[ext_resource type="Script" uid="uid://fyuebu1hbc0s" path="res://Scripts/spiketraps.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dbphjymd68aq8" path="res://NormalMap/spiketrap_normal.png" id="3_8fl4x"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_mmq1x"]
+[ext_resource type="Texture2D" uid="uid://bsx47jtxdfqiv" path="res://Objects/Textures/spiketrap.png" id="16_pjruj"]
+
+[sub_resource type="Animation" id="Animation_5llda"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spike_Traps(13):frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="1"]
+resource_name = "default"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spike_Traps(13):frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qddfn"]
+_data = {
+&"RESET": SubResource("Animation_5llda"),
+&"default": SubResource("1")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_67bn0"]
+diffuse_texture = ExtResource("16_pjruj")
+normal_texture = ExtResource("3_8fl4x")
+
+[sub_resource type="Animation" id="Animation_27nxi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spike_Traps(13):frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Trap"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spike_Traps(13):frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 1.37, 1.38, 1.39, 1.4, 1.41, 1.42, 1.43, 1.44, 1.45, 1.46, 1.47),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 11, 10, 9, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_10g87"]
+_data = {
+&"RESET": SubResource("Animation_27nxi"),
+&"Trap": SubResource("2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21fav"]
+size = Vector2(18, 13)
+
+[node name="Spike_Traps" type="Node2D"]
+script = ExtResource("1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qddfn")
+}
+
+[node name="Spike_Traps(13)" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = SubResource("CanvasTexture_67bn0")
+hframes = 5
+vframes = 3
+frame = 4
+
+[node name="Spike_Player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_10g87")
+}
+
+[node name="Wait_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource("15_mmq1x")]
+visible = false
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_21fav")
+disabled = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="Spike_Player" to="." method="_on_Spike_Player_animation_finished"]
+[connection signal="timeout" from="Wait_Timer" to="." method="_on_Wait_Timer_timeout"]

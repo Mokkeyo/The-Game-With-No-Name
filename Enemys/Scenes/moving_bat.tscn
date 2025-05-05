@@ -1,0 +1,119 @@
+[gd_scene load_steps=19 format=3 uid="uid://dcpodon74aubj"]
+
+[ext_resource type="Script" uid="uid://55vy58qkmiqg" path="res://Enemys/Scripts/moving_bat.gd" id="1_edxt4"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="2_s6qtb"]
+[ext_resource type="Texture2D" uid="uid://5pgbj8qljedg" path="res://Enemys/CanvasTextures/bat.tres" id="3_qe7br"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="4_hdl30"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="5_g3xa8"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="6_cxfov"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="7_getqo"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="8_sjfh5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12cdk"]
+size = Vector2(28, 12)
+
+[sub_resource type="RectangleShape2D" id="1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3b5p"]
+atlas = ExtResource("3_qe7br")
+region = Rect2(0, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj0cq"]
+atlas = ExtResource("3_qe7br")
+region = Rect2(33, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl4x8"]
+atlas = ExtResource("4_hdl30")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u0tq"]
+atlas = ExtResource("4_hdl30")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mayd3"]
+atlas = ExtResource("4_hdl30")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mioms"]
+atlas = ExtResource("4_hdl30")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3b5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj0cq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl4x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u0tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mayd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mioms")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb8kh"]
+size = Vector2(28, 12)
+
+[node name="MovingBat" type="CharacterBody2D"]
+z_index = 3
+collision_layer = 4
+collision_mask = 0
+platform_floor_layers = 0
+script = ExtResource("1_edxt4")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_s6qtb")]
+visible = false
+collision_layer = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_12cdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("1")
+
+[node name="bat" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("2")
+frame_progress = 0.49765
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_g3xa8")]
+visible = false
+collision_mask = 2
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gb8kh")
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("6_cxfov")]
+invisibilityComp = NodePath("../InvisibleFramesComp")
+
+[node name="EnemyResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("7_getqo")]
+collisions = [NodePath("../Hurtbox/CollisionShape2D"), NodePath("../CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D")]
+healthComp = NodePath("../healthComponent")
+physics_process = true
+
+[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("8_sjfh5")]
+parent = NodePath("../bat")
+
+[connection signal="animation_finished" from="bat" to="." method="_on_bat_animation_finished"]

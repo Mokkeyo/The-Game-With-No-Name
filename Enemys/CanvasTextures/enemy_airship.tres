@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://jbx86cbqto5d"]
+
+[ext_resource type="Texture2D" uid="uid://csc4tcnqr2k1w" path="res://Enemys/Textures/enemy_airship.png" id="1_rq08s"]
+[ext_resource type="Texture2D" uid="uid://dib7botdo5x84" path="res://NormalMap/airship_normal.png" id="2_6jupy"]
+
+[resource]
+diffuse_texture = ExtResource("1_rq08s")
+normal_texture = ExtResource("2_6jupy")

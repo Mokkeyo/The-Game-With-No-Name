@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwr7q5blpqwhd"]
+
+[ext_resource type="Texture2D" uid="uid://c3mkdrl6m053j" path="res://Objects/Textures/lavaWall.png" id="1"]
+[ext_resource type="Script" uid="uid://hmu66bxgreun" path="res://Scripts/lava_wall.gd" id="2"]
+
+[node name="LavaWall" type="Node2D"]
+z_index = 2
+script = ExtResource("2")
+waittime = 6
+
+[node name="lava wall" type="Sprite2D" parent="."]
+position = Vector2(0, 7.5)
+texture = ExtResource("1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(19, 0, 19, 12, 16, 15, 14, 15, -16, 15, -19, 12, -19, 0)
+
+[node name="LavaLenghtTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="LavaTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+
+[connection signal="timeout" from="LavaLenghtTimer" to="." method="_on_LavaLenghtTimer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
+[connection signal="timeout" from="LavaTimer" to="." method="_on_LavaTimer_timeout"]

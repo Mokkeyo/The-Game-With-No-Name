@@ -1,0 +1,168 @@
+[gd_scene load_steps=24 format=3 uid="uid://bhflrsdg72bef"]
+
+[ext_resource type="Texture2D" uid="uid://bebhyynl0fv3c" path="res://Enemys/CanvasTextures/enemy.tres" id="2_nooeg"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_rtllk"]
+[ext_resource type="Script" uid="uid://dfl7cto4e7noh" path="res://Enemys/Scripts/enemy_ver_1.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_pcxjl"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="10_crpyg"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="11_qgys3"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="12_ycax0"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="13_ckrvk"]
+[ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="14_lb0cv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxnv8"]
+atlas = ExtResource("2_nooeg")
+region = Rect2(11, 15, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yobpf"]
+atlas = ExtResource("2_nooeg")
+region = Rect2(22, 15, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jexi3"]
+atlas = ExtResource("3_rtllk")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45ona"]
+atlas = ExtResource("3_rtllk")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lex38"]
+atlas = ExtResource("3_rtllk")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jptjr"]
+atlas = ExtResource("3_rtllk")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rdrg"]
+atlas = ExtResource("2_nooeg")
+region = Rect2(11, 0, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg3oe"]
+atlas = ExtResource("2_nooeg")
+region = Rect2(22, 0, 10, 14)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxnv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yobpf")
+}],
+"loop": true,
+"name": &"air",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jexi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45ona")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lex38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jptjr")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rdrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg3oe")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rr1vs"]
+radius = 5.0
+height = 14.0007
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi8kd"]
+size = Vector2(10, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvo"]
+size = Vector2(10.2306, 13.86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t33p0"]
+size = Vector2(10, 14)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy", "kill"]]
+collision_layer = 4
+collision_mask = 529
+platform_floor_layers = 1
+script = ExtResource("6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["coin"]]
+sprite_frames = SubResource("1")
+animation = &"walk"
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(3.00877, 5.79542)
+target_position = Vector2(-0.00876999, 11.2046)
+collision_mask = 513
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-2.99123, 5.81627)
+target_position = Vector2(-0.00876999, 11.1837)
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.01166e-07, -0.000325203)
+shape = SubResource("CapsuleShape2D_rr1vs")
+
+[node name="HPbar(enemy)" parent="." instance=ExtResource("9")]
+offset_left = -7.0
+offset_top = -12.0
+offset_right = 7.0
+offset_bottom = -8.0
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar", "invisibilityComp") instance=ExtResource("11_qgys3")]
+hpBar = NodePath("../HPbar(enemy)")
+invisibilityComp = NodePath("../InvisibleFramesComp")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("12_ycax0")]
+visible = false
+collision_layer = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_bi8kd")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_ckrvk")]
+visible = false
+collision_mask = 2
+health = NodePath("../healthComponent")
+knockback = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.00838614, 0.070004)
+shape = SubResource("RectangleShape2D_epjvo")
+
+[node name="LavaWater_Detector" parent="." instance=ExtResource("14_lb0cv")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector"]
+shape = SubResource("RectangleShape2D_t33p0")
+
+[node name="EnemyResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_pcxjl")]
+collisions = [NodePath("../CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
+hpBar = NodePath("../HPbar(enemy)")
+healthComp = NodePath("../healthComponent")
+physics_process = true
+
+[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("10_crpyg")]
+parent = NodePath("../AnimatedSprite2D")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

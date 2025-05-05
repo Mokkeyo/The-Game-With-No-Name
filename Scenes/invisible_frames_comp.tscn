@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5dtvmxqaq5ik"]
+
+[ext_resource type="Script" uid="uid://b36xaugih70sd" path="res://Scripts/invisible_frames_comp.gd" id="1_pbxys"]
+
+[node name="InvisibleFramesComp" type="Node"]
+script = ExtResource("1_pbxys")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

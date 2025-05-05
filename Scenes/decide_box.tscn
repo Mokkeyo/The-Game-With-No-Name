@@ -1,0 +1,157 @@
+[gd_scene load_steps=18 format=3 uid="uid://c0gb8q2p05ie5"]
+
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="1"]
+[ext_resource type="Texture2D" uid="uid://cslt0r5wixuim" path="res://Objects/Textures/ping.png" id="2"]
+[ext_resource type="Script" uid="uid://3d8mn06j860k" path="res://Scripts/decide_box.gd" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="15"]
+bg_color = Color(0.227451, 0.0352941, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="16"]
+bg_color = Color(0.611765, 0.2, 0, 1)
+
+[sub_resource type="FontFile" id="8"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StyleBoxTexture" id="19"]
+
+[sub_resource type="StyleBoxTexture" id="20"]
+
+[sub_resource type="StyleBoxTexture" id="17"]
+
+[sub_resource type="StyleBoxTexture" id="18"]
+
+[sub_resource type="StyleBoxTexture" id="21"]
+
+[sub_resource type="FontFile" id="14"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StyleBoxTexture" id="11"]
+
+[sub_resource type="StyleBoxTexture" id="12"]
+
+[sub_resource type="StyleBoxTexture" id="9"]
+
+[sub_resource type="StyleBoxTexture" id="10"]
+
+[sub_resource type="StyleBoxTexture" id="13"]
+
+[node name="DecideBox" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 78.0
+offset_top = -192.0
+offset_right = 118.0
+offset_bottom = -152.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 464.0
+offset_right = 914.0
+offset_bottom = 552.0
+theme_override_styles/panel = SubResource("15")
+
+[node name="Panel2" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 738.0
+offset_top = 472.0
+offset_right = 906.0
+offset_bottom = 544.0
+theme_override_styles/panel = SubResource("16")
+
+[node name="ButtonYes" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 796.0
+offset_top = 478.0
+offset_right = 916.0
+offset_bottom = 510.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ButtonNo")
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("8")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("19")
+theme_override_styles/disabled = SubResource("20")
+theme_override_styles/hover = SubResource("17")
+theme_override_styles/pressed = SubResource("18")
+theme_override_styles/normal = SubResource("21")
+text = "Yes"
+
+[node name="ButtonNo" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 514.0
+offset_right = 918.0
+offset_bottom = 546.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ButtonYes")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("11")
+theme_override_styles/disabled = SubResource("12")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("13")
+text = "No"
+
+[node name="PingYes" type="Sprite2D" parent="Control"]
+position = Vector2(808, 491)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+
+[node name="PingNo" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(809, 526)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="focus_entered" from="Control/ButtonYes" to="." method="_on_button_yes_focus_entered"]
+[connection signal="pressed" from="Control/ButtonYes" to="." method="_on_button_yes_pressed"]
+[connection signal="focus_entered" from="Control/ButtonNo" to="." method="_on_button_no_focus_entered"]
+[connection signal="pressed" from="Control/ButtonNo" to="." method="_on_button_no_pressed"]

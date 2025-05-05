@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkxvjvaobawtr"]
+
+[ext_resource type="Texture2D" uid="uid://dijlvatk6fusw" path="res://Objects/Textures/swingable_rope.png" id="1_g5ccl"]
+[ext_resource type="Texture2D" uid="uid://cgd70qki0tbgd" path="res://NormalMap/swinging_rope_normal.png" id="2_2w6xs"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lieiy"]
+diffuse_texture = ExtResource("1_g5ccl")
+normal_texture = ExtResource("2_2w6xs")
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 3.0
+
+[node name="swingable_rope" type="Sprite2D" groups=["Rope"]]
+position = Vector2(0, 3)
+texture = SubResource("CanvasTexture_lieiy")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Rope"]]
+visible = false
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("1")

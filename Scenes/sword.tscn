@@ -1,0 +1,228 @@
+[gd_scene load_steps=13 format=3 uid="uid://bpskafuab3c07"]
+
+[ext_resource type="Script" uid="uid://diqmg4mxj7seh" path="res://Scripts/sword.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://by2aidxycm5x7" path="res://Player/Textures/sword.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_idk6c"]
+[ext_resource type="Texture2D" uid="uid://5n0584r418da" path="res://NormalMap/sword_normal.png" id="3_ys30g"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d8c8o"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("3_ys30g")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jckm"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_7j0fk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="6"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2.44346, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="7"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2.44346, -0.25, 0, 0.25, 0, -0.698132, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="8"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.698132, -0.25, 0, 0.25, 0, 2.44346, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="9"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2.44346, -0.25, 0, 0.25, 0, 0.698132, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1fxdp"]
+_data = {
+&"RESET": SubResource("Animation_7j0fk"),
+&"SwingLeft(Down)": SubResource("6"),
+&"SwingLeft(Up)": SubResource("7"),
+&"SwingRight(Down)": SubResource("8"),
+&"SwingRight(Up)": SubResource("9")
+}
+
+[node name="Sword" type="Node2D"]
+z_index = 3
+script = ExtResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_d8c8o")
+offset = Vector2(0, -9)
+
+[node name="Hitbox" parent="Sprite2D" instance=ExtResource("3_idk6c")]
+collision_mask = 4
+knockback = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_4jckm")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1fxdp")
+}
+
+[node name="VisibleTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="VisibleTimer" to="." method="_on_VisibleTimer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

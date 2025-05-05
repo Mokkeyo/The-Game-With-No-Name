@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxh0yhfdpn6js"]
+
+[ext_resource type="Script" uid="uid://c5ekibaj81ccx" path="res://Npcs/Scripts/kratos.gd" id="1_0thu1"]
+[ext_resource type="Texture2D" uid="uid://bkb65txl1jf0f" path="res://Npcs/Textures/npc.tres" id="2_iaoiw"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="3_v6ntj"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="5_55wam"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="5_jwgrn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibrec"]
+size = Vector2(24, 26)
+
+[node name="NPC" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["NPC"]]
+z_index = 1
+script = ExtResource("1_0thu1")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="NpcCanvas" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_iaoiw")
+flip_h = true
+
+[node name="Ping" parent="." instance=ExtResource("3_v6ntj")]
+z_as_relative = false
+position = Vector2(2, -35)
+
+[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("5_jwgrn")]
+visible = false
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ibrec")
+
+[node name="DialogueLoader" parent="." instance=ExtResource("5_55wam")]
+visible = false
+npc = "kratos"

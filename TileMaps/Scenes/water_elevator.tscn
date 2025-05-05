@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://whcqmpdmnimg"]
+
+[ext_resource type="Texture2D" uid="uid://dj064o0hbkjrp" path="res://TileMaps/Textures/water_elevator.png" id="2_03eq2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xp5tg"]
+texture = ExtResource("2_03eq2")
+separation = Vector2i(1, 0)
+texture_region_size = Vector2i(14, 14)
+0:0/animation_speed = 50.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+
+[sub_resource type="TileSet" id="2"]
+tile_size = Vector2i(14, 14)
+physics_layer_0/collision_layer = 128
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_xp5tg")
+
+[node name="WaterElevator" type="TileMapLayer" groups=["WaterElevator"]]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = 2
+tile_set = SubResource("2")

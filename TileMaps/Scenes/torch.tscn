@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://xpossmoje8oq"]
+
+[ext_resource type="PackedScene" uid="uid://brxvni4brw46f" path="res://Scenes/torch.tscn" id="1_w6dkn"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_idt0p"]
+scenes/1/scene = ExtResource("1_w6dkn")
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(14, 14)
+sources/0 = SubResource("TileSetScenesCollectionSource_idt0p")
+
+[node name="Torch" type="TileMapLayer"]
+tile_set = SubResource("1")

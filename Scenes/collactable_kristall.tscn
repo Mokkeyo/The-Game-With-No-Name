@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3rfkjntxnk5o"]
+
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="1"]
+[ext_resource type="Script" uid="uid://c6yd1ti1jfc1l" path="res://Scripts/collactable_kristall.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqsitp0h23poh" path="res://Objects/CanvasTexture/kristalls.tres" id="5_t1rro"]
+[ext_resource type="PackedScene" uid="uid://bbykd4v5sd0lc" path="res://Objects/Scenes/kristall_particle.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="7_4q6mx"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="9_un3nd"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="10_2vjcu"]
+
+[sub_resource type="Animation" id="Animation_rj6au"]
+length = 0.001
+
+[sub_resource type="Animation" id="3"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gpnhf"]
+_data = {
+&"RESET": SubResource("Animation_rj6au"),
+&"default": SubResource("3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
+size = Vector2(22, 24)
+
+[node name="Kristall_1" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["Door"]]
+script = ExtResource("2")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="Ping" parent="." instance=ExtResource("1")]
+position = Vector2(0, -30)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gpnhf")
+}
+
+[node name="DialogueLoader" parent="." instance=ExtResource("9_un3nd")]
+visible = false
+npc = "kristall"
+blackBox = true
+
+[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("10_2vjcu")]
+visible = false
+collision_mask = 10
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_8rjsi")
+
+[node name="Kristall" type="Sprite2D" parent="."]
+texture = ExtResource("5_t1rro")
+hframes = 4
+vframes = 2
+
+[node name="KristallParticle" parent="." instance=ExtResource("7")]
+
+[node name="LeveltransitionComponent" parent="." instance=ExtResource("7_4q6mx")]

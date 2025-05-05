@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://dawgg82qwgee0"]
+
+[ext_resource type="Script" uid="uid://qd264kol6kmt" path="res://Scripts/swingable_rope.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bkxvjvaobawtr" path="res://Scenes/swingable_rope_part.tscn" id="2_17cdc"]
+[ext_resource type="Texture2D" uid="uid://bn3yr5mr0hwam" path="res://Objects/Textures/spikeball.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="4_fwwdr"]
+[ext_resource type="Texture2D" uid="uid://ghnkp05lyh1o" path="res://NormalMap/spikeball_normal.png" id="4_ufff1"]
+
+[sub_resource type="Animation" id="Animation_bw5j8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Swing_Left"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.872665, -0.25, 0, 0.25, 0, 0.872665, -0.25, 0, 0.25, 0, -0.872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "Swing_Right"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.872665, -0.25, 0, 0.25, 0, -0.872665, -0.25, 0, 0.25, 0, 0.872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bw3on"]
+_data = {
+&"RESET": SubResource("Animation_bw5j8"),
+&"Swing_Left": SubResource("4"),
+&"Swing_Right": SubResource("5")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8stjc"]
+diffuse_texture = ExtResource("3")
+normal_texture = ExtResource("4_ufff1")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbgb5"]
+
+[node name="swingable Rope" type="Node2D"]
+rotation = -0.872665
+script = ExtResource("2")
+swing_direction = "Left"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bw3on")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="swingable_rope" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+
+[node name="swingable_rope2" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 9)
+
+[node name="swingable_rope3" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 15)
+
+[node name="swingable_rope4" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 21)
+
+[node name="swingable_rope5" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 27)
+
+[node name="swingable_rope6" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 33)
+
+[node name="swingable_rope7" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 39)
+
+[node name="swingable_rope8" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 45)
+
+[node name="swingable_rope9" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 51)
+
+[node name="swingable_rope10" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 57)
+
+[node name="swingable_rope11" parent="Sprite2D" instance=ExtResource("2_17cdc")]
+position = Vector2(0, 63)
+
+[node name="StachelKugel" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0.238506, 70.2918)
+texture = SubResource("CanvasTexture_8stjc")
+
+[node name="Hitbox" parent="Sprite2D/StachelKugel" instance=ExtResource("4_fwwdr")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StachelKugel/Hitbox"]
+shape = SubResource("CircleShape2D_vbgb5")

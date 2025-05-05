@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://croc44wygw66k"]
+
+[ext_resource type="Texture2D" uid="uid://d3g8e2opeww3k" path="res://Objects/Textures/falling_spiketrap.png" id="1"]
+[ext_resource type="Script" uid="uid://s8vay082u8o3" path="res://Scripts/falling_spiketrap.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://mb06g0syhfat" path="res://NormalMap/falling_trap_normal.png" id="3_has2c"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_qp0pc"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="5_3tfm7"]
+
+[sub_resource type="OccluderPolygon2D" id="1"]
+polygon = PackedVector2Array(0, -5, 0, 3, 1, 3, 1, 4, 2, 4, 2, 7, 3, 7, 3, 9, 4, 9, 4, 11, 5, 11, 5, 9, 6, 9, 6, 7, 7, 7, 7, 5, 10, 5, 10, 7, 11, 7, 11, 9, 12, 9, 12, 11, 13, 11, 13, 9, 14, 9, 14, 7, 15, 7, 15, 5, 18, 5, 18, 7, 19, 7, 19, 9, 20, 9, 20, 11, 21, 11, 21, 9, 22, 9, 22, 7, 23, 7, 23, 5, 26, 5, 26, 7, 27, 7, 27, 9, 28, 9, 28, 11, 29, 11, 29, 9, 30, 9, 30, 7, 31, 7, 31, 4, 32, 4, 32, 3, 33, 3, 33, -5, 32, -5, 32, -6, 31, -6, 31, -9, 30, -9, 30, -11, 29, -11, 29, -13, 28, -13, 28, -11, 27, -11, 27, -9, 26, -9, 26, -7, 23, -7, 23, -9, 22, -9, 22, -11, 21, -11, 21, -13, 20, -13, 20, -11, 19, -11, 19, -9, 18, -9, 18, -7, 15, -7, 15, -9, 14, -9, 14, -11, 13, -11, 13, -13, 12, -13, 12, -11, 11, -11, 11, -9, 10, -9, 10, -7, 7, -7, 7, -9, 6, -9, 6, -11, 5, -11, 5, -13, 4, -13, 4, -11, 3, -11, 3, -9, 2, -9, 2, -6, 1, -6, 1, -5)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hg3fn"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_has2c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brp0d"]
+size = Vector2(44, 22.6667)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(48, 18)
+
+[node name="FallingSpikeTrap" type="CharacterBody2D"]
+collision_layer = 513
+collision_mask = 775
+script = ExtResource("2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(-24.75, 1.5)
+scale = Vector2(1.5, 1.5)
+occluder = SubResource("1")
+
+[node name="falling_spike_trap" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_hg3fn")
+
+[node name="Hitbox" parent="falling_spike_trap" instance=ExtResource("3_qp0pc")]
+visible = false
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="falling_spike_trap/Hitbox"]
+shape = SubResource("RectangleShape2D_brp0d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("3")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyResetComponent" parent="." instance=ExtResource("5_3tfm7")]

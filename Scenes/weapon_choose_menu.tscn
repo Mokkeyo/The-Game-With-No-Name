@@ -1,0 +1,157 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvbhirfwanijc"]
+
+[ext_resource type="Script" uid="uid://nyh3xv5dqgqa" path="res://Scripts/weapon_choose_menu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c0rgov70extqn" path="res://Player/Textures/wand.png" id="2"]
+[ext_resource type="StyleBox" uid="uid://cfh8dgxoaerqx" path="res://GuiElements/SytleBoxTexture/focused_rahmen.tres" id="2_0i1sg"]
+[ext_resource type="Texture2D" uid="uid://by2aidxycm5x7" path="res://Player/Textures/sword.png" id="3"]
+[ext_resource type="StyleBox" uid="uid://djec3voccpsp8" path="res://GuiElements/SytleBoxTexture/unfocused_rahmen.tres" id="3_c2srf"]
+[ext_resource type="Texture2D" uid="uid://bq5v55lx3nmdr" path="res://GuiElements/Textures/no.png" id="6"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="8_cqu8e"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="9_hrseb"]
+[ext_resource type="Texture2D" uid="uid://yrblmqa2iacl" path="res://GuiElements/Textures/jump.png" id="11"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.494118, 0.219608, 0, 1)
+
+[node name="Weapons" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+startButton = NodePath("WandButton")
+exitButton = NodePath("Back")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1016.0
+offset_bottom = 568.0
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1008.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="WandButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 153.0
+offset_right = 343.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SwordButton")
+focus_neighbor_bottom = NodePath("../Back")
+theme_override_styles/focus = ExtResource("2_0i1sg")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/normal = ExtResource("3_c2srf")
+toggle_mode = true
+
+[node name="Wand" type="Node2D" parent="."]
+
+[node name="Wand" type="Sprite2D" parent="Wand"]
+position = Vector2(208, 288)
+rotation = 0.785398
+scale = Vector2(14, 14)
+texture = ExtResource("2")
+
+[node name="No" type="Sprite2D" parent="Wand"]
+position = Vector2(208, 288)
+scale = Vector2(8, 8)
+texture = ExtResource("6")
+
+[node name="SwordButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 153.0
+offset_right = 647.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath("../WandButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../JumpButton")
+focus_neighbor_bottom = NodePath("../Back")
+theme_override_styles/focus = ExtResource("2_0i1sg")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/normal = ExtResource("3_c2srf")
+toggle_mode = true
+
+[node name="Sword" type="Node2D" parent="."]
+
+[node name="Sword" type="Sprite2D" parent="Sword"]
+position = Vector2(512, 288)
+rotation = 0.785398
+scale = Vector2(14, 14)
+texture = ExtResource("3")
+
+[node name="No" type="Sprite2D" parent="Sword"]
+position = Vector2(512, 288)
+scale = Vector2(8, 8)
+texture = ExtResource("6")
+
+[node name="JumpButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 153.0
+offset_right = 951.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath("../SwordButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Back")
+theme_override_styles/focus = ExtResource("2_0i1sg")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/normal = ExtResource("3_c2srf")
+toggle_mode = true
+
+[node name="Jump" type="Node2D" parent="."]
+
+[node name="jump" type="Sprite2D" parent="Jump"]
+position = Vector2(819, 284)
+scale = Vector2(12.4, 12.4)
+texture = ExtResource("11")
+
+[node name="No" type="Sprite2D" parent="Jump"]
+position = Vector2(816, 288)
+scale = Vector2(8, 8)
+texture = ExtResource("6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 38.0
+offset_right = 1008.0
+offset_bottom = 125.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_cqu8e")
+theme_override_font_sizes/font_size = 48
+text = "Activate / Deactivate Weapons"
+horizontal_alignment = 1
+
+[node name="Back" parent="." instance=ExtResource("9_hrseb")]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 432.0
+offset_right = 646.0
+offset_bottom = 518.0
+text = "Back"
+
+[connection signal="toggled" from="WandButton" to="." method="_on_WandButton_toggled"]
+[connection signal="toggled" from="SwordButton" to="." method="_on_SwordButton_toggled"]
+[connection signal="toggled" from="JumpButton" to="." method="_on_JumpButton_toggled"]

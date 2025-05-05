@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://duqwa532kjkgf"]
+
+[ext_resource type="Script" uid="uid://licmk3k5m56w" path="res://Scripts/input_button.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="2"]
+[ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_xjqet"]
+[ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_uqw7h"]
+[ext_resource type="Texture2D" uid="uid://baro0tba11pio" path="res://Button/Left Mouse Button.png" id="5_0wacc"]
+
+[sub_resource type="FontFile" id="6"]
+fallbacks = Array[Font]([ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/167/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/167/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/167/0/ascent = 0.0
+cache/0/167/0/descent = 0.0
+cache/0/167/0/underline_position = 0.0
+cache/0/167/0/underline_thickness = 0.0
+cache/0/167/0/scale = 1.0
+cache/0/167/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/167/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/167/0/kerning_overrides/167/0 = Vector2(0, 0)
+cache/0/167/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/167/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+
+[node name="InputButton" type="Button"]
+offset_right = 92.0
+offset_bottom = 40.0
+scale = Vector2(0.997825, 1)
+theme_override_colors/font_disabled_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_focus_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("6")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = ExtResource("2_xjqet")
+theme_override_styles/disabled = ExtResource("3_uqw7h")
+theme_override_styles/hover_pressed = ExtResource("3_uqw7h")
+theme_override_styles/hover = ExtResource("3_uqw7h")
+theme_override_styles/pressed = ExtResource("3_uqw7h")
+theme_override_styles/normal = ExtResource("3_uqw7h")
+toggle_mode = true
+text = "Test"
+clip_text = true
+expand_icon = true
+script = ExtResource("1")
+action = "jump"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(46, 20)
+texture = ExtResource("5_0wacc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2yvgcbsekcx7"]
+
+[ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Scenes/options_menu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="3_kcwph"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_s555s"]
+[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="10"]
+[ext_resource type="Script" uid="uid://dqrl7t5nlu8s5" path="res://Scripts/pause_menu.gd" id="11"]
+
+[sub_resource type="FontFile" id="23"]
+fallbacks = Array[Font]([ExtResource("10"), ExtResource("10")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_d8dro"]
+
+[node name="pause" type="Control" node_paths=PackedStringArray("menus")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("11")
+menus = [NodePath("Options"), NodePath("Controlls")]
+
+[node name="Paused" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+mouse_filter = 2
+
+[node name="Pause_Label" type="Label" parent="Paused"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 182.0
+offset_right = 679.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0.968627, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("23")
+theme_override_font_sizes/font_size = 100
+text = "Paused"
+
+[node name="Continue" parent="Paused" instance=ExtResource("3_s555s")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 340.0
+offset_right = 832.0
+offset_bottom = 410.0
+text = "Continue"
+
+[node name="Controlls" parent="Paused" instance=ExtResource("3_s555s")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 412.0
+offset_right = 511.0
+offset_bottom = 482.0
+text = "Controlls"
+
+[node name="Options" parent="Paused" instance=ExtResource("3_s555s")]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 412.0
+offset_right = 832.0
+offset_bottom = 482.0
+text = "Options
+"
+
+[node name="ReturnToMainMenu" parent="Paused" instance=ExtResource("3_s555s")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 484.0
+offset_right = 832.0
+offset_bottom = 554.0
+text = "End Battle (Pussy)"
+
+[node name="Options" parent="." instance=ExtResource("2")]
+visible = false
+offset_left = 1024.0
+offset_right = 2048.0
+group = SubResource("ButtonGroup_d8dro")
+
+[node name="Controlls" parent="." instance=ExtResource("3_kcwph")]
+visible = false
+offset_left = -1024.0
+offset_right = 0.0
+
+[node name="NothingButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = -45.0
+offset_right = 138.0
+offset_bottom = -14.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Nothing button"
+
+[connection signal="pressed" from="Paused/Controlls" to="." method="_on_controlls_pressed"]
+[connection signal="pressed" from="Paused/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Paused/ReturnToMainMenu" to="." method="_on_return_to_main_menu_pressed"]

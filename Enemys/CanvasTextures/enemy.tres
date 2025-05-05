@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://bebhyynl0fv3c"]
+
+[ext_resource type="Texture2D" uid="uid://dpdvohfc7dqyl" path="res://Enemys/Textures/enemy.png" id="1_2pc25"]
+[ext_resource type="Texture2D" uid="uid://dathofj37723" path="res://NormalMap/enemy_normal.png" id="2_7n2ry"]
+
+[resource]
+diffuse_texture = ExtResource("1_2pc25")
+normal_texture = ExtResource("2_7n2ry")

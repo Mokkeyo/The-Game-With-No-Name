@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cebshykj68nr3"]
+
+[ext_resource type="PackedScene" path="res://BossGalaga/Szene/Boss.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://BossGalaga/Szene/Boss(arm).tscn" id="2"]
+[ext_resource type="Script" path="res://BossGalaga/Szene/Boss Galaga.gd" id="3"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(386, 170)
+
+[node name="Boss Galaga" type="Node2D"]
+script = ExtResource("3")
+
+[node name="BossArm(left)" parent="." instance=ExtResource("2")]
+position = Vector2(5, 15)
+
+[node name="BossArm(right)" parent="." instance=ExtResource("2")]
+position = Vector2(5, -99)
+
+[node name="Boss" parent="." instance=ExtResource("1")]
+position = Vector2(9, -42)
+
+[node name="Radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radius"]
+position = Vector2(-183, -42)
+shape = SubResource("1")
+
+[connection signal="body_entered" from="Radius" to="." method="_on_Radius_body_entered"]

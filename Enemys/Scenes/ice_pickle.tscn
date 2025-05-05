@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckk2rawpri7mo"]
+
+[ext_resource type="Texture2D" uid="uid://cwrjwg3plrt7w" path="res://Enemys/Textures/ice_pickle.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bcaqk181q8ww5" path="res://Enemys/Textures/ice_ball.png" id="2"]
+[ext_resource type="Script" uid="uid://c5vifupe8s6qw" path="res://Enemys/Scripts/ice_pickle.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="4_34ef8"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="6_uwics"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhdgy"]
+atlas = ExtResource("4_34ef8")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v4es"]
+atlas = ExtResource("4_34ef8")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_378ks"]
+atlas = ExtResource("4_34ef8")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp1cq"]
+atlas = ExtResource("4_34ef8")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhdgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v4es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_378ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp1cq")
+}],
+"loop": true,
+"name": &"die",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"nothing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="3"]
+radius = 21.0
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="4"]
+radius = 21.0
+height = 42.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("3")
+
+[node name="Ice-Ball" type="Sprite2D" parent="."]
+position = Vector2(18, -15)
+texture = ExtResource("2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("1")
+animation = &"nothing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+shape = SubResource("2")
+
+[node name="HPbar(enemy)" parent="." instance=ExtResource("4")]
+offset_left = -7.0
+offset_top = -36.0
+offset_right = 7.0
+offset_bottom = -32.0
+
+[node name="Knockback_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, -3)
+target_position = Vector2(0, 5)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(7, -3)
+target_position = Vector2(0, 5)
+
+[node name="left" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
+position = Vector2(-25, -12)
+shape = SubResource("3")
+
+[node name="right" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
+position = Vector2(25, -12)
+shape = SubResource("4")
+
+[node name="EnemyResetComponent" parent="." instance=ExtResource("6_uwics")]
+
+[connection signal="body_entered" from="left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="right" to="." method="_on_right_body_entered"]

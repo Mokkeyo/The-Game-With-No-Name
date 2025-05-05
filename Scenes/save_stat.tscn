@@ -1,0 +1,431 @@
+[gd_scene load_steps=35 format=3 uid="uid://btywad8nch0tx"]
+
+[ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="1_agvbu"]
+[ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_bwyf3"]
+[ext_resource type="Script" uid="uid://dbos4i3vgrgjd" path="res://Scripts/save_stat.gd" id="3_m86f8"]
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="4_1qphd"]
+[ext_resource type="Texture2D" uid="uid://bb4ygvhtrndqj" path="res://Objects/Textures/kristall_1.png" id="5_3wqpg"]
+[ext_resource type="Texture2D" uid="uid://b0vhi4ouy5wcf" path="res://Objects/Textures/kristall_2.png" id="6_3mjvc"]
+[ext_resource type="Texture2D" uid="uid://bg1wxv2c1ef7k" path="res://Objects/Textures/kristall_3.png" id="7_mnhxc"]
+[ext_resource type="Texture2D" uid="uid://baqtho3u2k2kj" path="res://GuiElements/Textures/star.png" id="8_qurgd"]
+[ext_resource type="Texture2D" uid="uid://ctqmrgp2yloex" path="res://Button/Playstation/Joypad Button 2 (Left Action, Sony Square, Xbox X, Nintendo Y).png" id="9_pa12a"]
+[ext_resource type="Texture2D" uid="uid://cbamq75qvx5xs" path="res://Button/C-Button.png" id="10_icqlx"]
+[ext_resource type="Texture2D" uid="uid://cps88hav3r5ef" path="res://Button/E-Button.png" id="11_b5ocm"]
+[ext_resource type="Texture2D" uid="uid://g7tetinuaup3" path="res://Button/Middle Mouse Button.png" id="12_r4flr"]
+[ext_resource type="Texture2D" uid="uid://b6a37ae4pcwwb" path="res://Button/Right Mouse Button.png" id="13_gkvjy"]
+[ext_resource type="Texture2D" uid="uid://c6wwddy6p8858" path="res://Button/Playstation/Joypad Button 3 (Top Action, Sony Triangle, Xbox Y, Nintendo X).png" id="14_5bdh8"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="15_14434"]
+[ext_resource type="Texture2D" uid="uid://cslt0r5wixuim" path="res://Objects/Textures/ping.png" id="16_mcsbl"]
+[ext_resource type="Texture2D" uid="uid://crol5fajqtu3b" path="res://Objects/Textures/kristall_4.png" id="17_je6wy"]
+[ext_resource type="Texture2D" uid="uid://1dcryn1sf0gq" path="res://Objects/Textures/kristall_5.png" id="18_rcgpo"]
+[ext_resource type="Texture2D" uid="uid://o17i3tur24q1" path="res://Objects/Textures/kristall_6.png" id="19_uip58"]
+[ext_resource type="Texture2D" uid="uid://cnf1cfhyg5hmq" path="res://Objects/Textures/kristall_7.png" id="20_icw56"]
+[ext_resource type="Texture2D" uid="uid://bshlmfenouj5e" path="res://Objects/Textures/kristall_8.png" id="21_p628u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2uwf"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v84dd"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0dk7"]
+bg_color = Color(0.489377, 0.217978, 0.000391255, 1)
+
+[sub_resource type="FontFile" id="22"]
+fallbacks = Array[Font]([ExtResource("15_14434")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pl5v"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="13"]
+bg_color = Color(0.6, 0.282353, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="16"]
+
+[sub_resource type="StyleBoxTexture" id="17"]
+
+[sub_resource type="StyleBoxTexture" id="14"]
+
+[sub_resource type="StyleBoxTexture" id="15"]
+
+[sub_resource type="StyleBoxTexture" id="18"]
+
+[sub_resource type="FontFile" id="20"]
+fallbacks = Array[Font]([ExtResource("4_1qphd")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+
+[node name="SaveStat" type="Button"]
+offset_right = 436.0
+offset_bottom = 217.0
+theme_override_styles/focus = ExtResource("1_agvbu")
+theme_override_styles/disabled = ExtResource("2_bwyf3")
+theme_override_styles/hover_pressed = ExtResource("2_bwyf3")
+theme_override_styles/hover = ExtResource("2_bwyf3")
+theme_override_styles/pressed = ExtResource("2_bwyf3")
+theme_override_styles/normal = ExtResource("2_bwyf3")
+script = ExtResource("3_m86f8")
+
+[node name="CopyPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 420.0
+offset_bottom = 205.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u2uwf")
+
+[node name="CopyPanel" type="Panel" parent="CopyPanel"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 408.0
+offset_bottom = 189.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u2uwf")
+
+[node name="Stats" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Panel3" type="Panel" parent="Stats"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 167.0
+offset_right = 424.0
+offset_bottom = 171.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v84dd")
+
+[node name="Panel2" type="Panel" parent="Stats"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 171.0
+offset_right = 424.0
+offset_bottom = 201.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0dk7")
+
+[node name="Panel" type="Panel" parent="Stats"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 176.0
+offset_right = 420.0
+offset_bottom = 205.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0dk7")
+
+[node name="DeleteData" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 176.0
+offset_right = 338.0
+offset_bottom = 205.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 20
+text = "erease Data"
+
+[node name="Copy Data" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 176.0
+offset_right = 117.0
+offset_bottom = 205.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 20
+text = "Copy Data"
+
+[node name="Star" type="Sprite2D" parent="Stats"]
+visible = false
+position = Vector2(48, 38)
+scale = Vector2(3, 3)
+texture = ExtResource("8_qurgd")
+
+[node name="DeathCount" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 125.0
+offset_right = 140.0
+offset_bottom = 157.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 24
+text = "Deaths: 0"
+
+[node name="Viereck Knopf" type="Sprite2D" parent="Stats"]
+position = Vector2(134, 188)
+texture = ExtResource("9_pa12a")
+
+[node name="C-button" type="Sprite2D" parent="Stats/Viereck Knopf"]
+position = Vector2(28, 0)
+texture = ExtResource("10_icqlx")
+
+[node name="E-button" type="Sprite2D" parent="Stats/Viereck Knopf"]
+position = Vector2(203.615, 0)
+texture = ExtResource("11_b5ocm")
+
+[node name="MiddleMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf"]
+position = Vector2(50.5385, -1.52588e-05)
+texture = ExtResource("12_r4flr")
+
+[node name="RightMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf"]
+position = Vector2(228.231, 0)
+texture = ExtResource("13_gkvjy")
+
+[node name="Dreieck Knopf" type="Sprite2D" parent="Stats"]
+position = Vector2(397, 188)
+texture = ExtResource("14_5bdh8")
+
+[node name="PlayerNameLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 436.0
+offset_bottom = 58.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("22")
+theme_override_font_sizes/font_size = 32
+text = "Player Name"
+horizontal_alignment = 1
+
+[node name="HC" type="HBoxContainer" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 71.0
+offset_right = 240.0
+offset_bottom = 93.0
+scale = Vector2(1.8, 1.8)
+alignment = 1
+
+[node name="Kristall1" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("5_3wqpg")
+stretch_mode = 4
+
+[node name="Kristall2" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("6_3mjvc")
+stretch_mode = 4
+
+[node name="Kristall3" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("7_mnhxc")
+stretch_mode = 4
+
+[node name="Kristall4" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("17_je6wy")
+stretch_mode = 4
+
+[node name="Kristall5" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("18_rcgpo")
+stretch_mode = 4
+
+[node name="Kristall6" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("19_uip58")
+stretch_mode = 4
+
+[node name="Kristall7" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("20_icw56")
+stretch_mode = 4
+
+[node name="Kristall8" type="TextureRect" parent="Stats/HC"]
+layout_mode = 2
+texture = ExtResource("21_p628u")
+stretch_mode = 4
+
+[node name="NewGameLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 12.0
+offset_right = 436.0
+offset_bottom = 205.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 48
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Delete" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel2" type="Panel" parent="Delete"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 420.0
+offset_bottom = 205.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7pl5v")
+
+[node name="Panel" type="Panel" parent="Delete"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 201.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7pl5v")
+
+[node name="Panel3" type="Panel" parent="Delete"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 124.0
+offset_right = 188.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="Panel2" type="Panel" parent="Delete/Panel3"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 106.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("13")
+
+[node name="Yes" type="Button" parent="Delete/Panel3/Panel2"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 106.0
+offset_bottom = 55.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../../Panel4/Panel2/No")
+focus_neighbor_bottom = NodePath(".")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("16")
+theme_override_styles/disabled = SubResource("17")
+theme_override_styles/hover = SubResource("14")
+theme_override_styles/pressed = SubResource("15")
+theme_override_styles/normal = SubResource("18")
+text = "YES"
+
+[node name="PingYes" type="Sprite2D" parent="Delete/Panel3"]
+visible = false
+position = Vector2(-22, 28)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("16_mcsbl")
+
+[node name="Panel4" type="Panel" parent="Delete"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 124.0
+offset_right = 356.0
+offset_bottom = 181.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="Panel2" type="Panel" parent="Delete/Panel4"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 106.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("13")
+
+[node name="No" type="Button" parent="Delete/Panel4/Panel2"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 106.0
+offset_bottom = 55.0
+focus_neighbor_left = NodePath("../../../Panel3/Panel2/Yes")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("15_14434")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("16")
+theme_override_styles/disabled = SubResource("17")
+theme_override_styles/hover = SubResource("14")
+theme_override_styles/pressed = SubResource("15")
+theme_override_styles/normal = SubResource("18")
+text = "NO"
+
+[node name="PingNo" type="Sprite2D" parent="Delete/Panel4"]
+position = Vector2(-22, 28)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("16_mcsbl")
+
+[node name="Delete?" type="Label" parent="Delete"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 48.0
+offset_right = 422.0
+offset_bottom = 96.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("20")
+theme_override_font_sizes/font_size = 48
+text = "Delete?"
+horizontal_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="focus_entered" from="Delete/Panel3/Panel2/Yes" to="." method="_on_Yes_focus_entered"]
+[connection signal="pressed" from="Delete/Panel3/Panel2/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="focus_entered" from="Delete/Panel4/Panel2/No" to="." method="_on_No_focus_entered"]
+[connection signal="pressed" from="Delete/Panel4/Panel2/No" to="." method="_on_No_pressed"]

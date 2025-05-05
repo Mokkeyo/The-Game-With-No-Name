@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="saveStatInf" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://saveStatInf.gd" id="1_v703a"]
+
+[resource]
+script = ExtResource("1_v703a")
+deaths = Array[int]([3, 1, 0, 0])
+vsync = false
+musicVolume = 1.0
+sfxVolume = inf_neg
+maxVolume = 0.5
+printFps = true
+resolutionIndex = 0
+resolution = Vector2i(1024, 576)
+maxFps = 0
+fullscreen = true
+darknessValue = 180
+darknessOn = false
+textboxCount = 13
+textboxCollected = Array[String](["kristall", "buschi0", "shild0", "shild1", "buschi1", "kratos0", "rick0", "kratos1", "rick1", "bossDoor", "kratos2", "rick2", "houseDoor1"])
+achievments = Array[String]([])
+playerName = Array[String](["test", "test", "", ""])

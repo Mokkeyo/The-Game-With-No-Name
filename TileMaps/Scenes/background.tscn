@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1i18eje8y7v2"]
+
+[ext_resource type="Texture2D" uid="uid://lfi5iecwmh3f" path="res://TileMaps/Textures/background_black.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dpjccc1lapbys" path="res://TileMaps/CanvasTextures/DIRT.tres" id="2_udcbd"]
+[ext_resource type="Texture2D" uid="uid://bpoau4vsgdrvb" path="res://TileMaps/Textures/background_dark.png" id="4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_46iwh"]
+texture = ExtResource("2_udcbd")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(14, 14)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sjnk"]
+texture = ExtResource("4")
+texture_region_size = Vector2i(14, 14)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hnura"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(14, 14)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(14, 14)
+sources/2 = SubResource("TileSetAtlasSource_2sjnk")
+sources/3 = SubResource("TileSetAtlasSource_hnura")
+sources/1 = SubResource("TileSetAtlasSource_46iwh")
+
+[node name="Backround" type="TileMapLayer"]
+tile_set = SubResource("1")

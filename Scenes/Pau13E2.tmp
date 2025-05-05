@@ -1,0 +1,632 @@
+[gd_scene load_steps=50 format=3 uid="uid://bowcmya00mvsq"]
+
+[ext_resource type="FontFile" uid="uid://101g2f0jtddl" path="res://Font/Movement.ttf" id="1"]
+[ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Szenen/StoryControlls.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Szenen/Options.tscn" id="3"]
+[ext_resource type="Script" path="res://Scripts/paused.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://c32irumryilnl" path="res://Szenen/Achievments.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://chdt1oeflseao" path="res://Szenen/2PlayerMode.tscn" id="11"]
+[ext_resource type="FontFile" uid="uid://dpcv3d6qw55m3" path="res://Font/Extrude.ttf" id="14"]
+[ext_resource type="Texture2D" uid="uid://bew6e53lcxtd0" path="res://Grafik/TextBoxRahmen2.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://doj7smm8htist" path="res://Grafik/TextBoxRahmen.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://ctb6kd2phnyer" path="res://Grafik/Pokal.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://b2eicdbox1bbx" path="res://Grafik/Multiplayer.png" id="29"]
+
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("14")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="2"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="FontFile" id="10"]
+fallbacks = Array[Font]([ExtResource("14")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="9"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="6"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="7"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="8"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="FontFile" id="16"]
+fallbacks = Array[Font]([ExtResource("14")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="15"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="11"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="12"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="14"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="13"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="FontFile" id="22"]
+fallbacks = Array[Font]([ExtResource("14")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="21"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="17"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="18"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="20"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="19"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="FontFile" id="23"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="28"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="24"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="25"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="27"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="26"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="33"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="29"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="30"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="32"]
+texture = ExtResource("26")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="31"]
+texture = ExtResource("24")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_c3665"]
+
+[sub_resource type="Animation" id="37"]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Paused:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Paused:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="38"]
+resource_name = "Paused_to_Informer"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Achievments_2Player:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Achievments_2Player:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(576, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Paused:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Paused:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -576, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="39"]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Paused:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Paused:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Options:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1024, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Options:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8dpu"]
+_data = {
+"Paused_to_Controlls": SubResource("37"),
+"Paused_to_Informer": SubResource("38"),
+"Paused_to_Options": SubResource("39")
+}
+
+[node name="pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("2")]
+visible = false
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0001
+offset_bottom = 40.0
+
+[node name="Paused" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0001
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Continue" type="Button" parent="CanvasLayer/Paused"]
+process_mode = 3
+layout_mode = 0
+offset_left = 267.0
+offset_top = 357.0
+offset_right = 757.0
+offset_bottom = 403.0
+focus_neighbor_left = NodePath("../Pokal")
+focus_neighbor_top = NodePath("../ReturnToMainMenu")
+focus_neighbor_right = NodePath("../2Player")
+focus_neighbor_bottom = NodePath("../Controlls")
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("5")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("4")
+theme_override_styles/hover = SubResource("1")
+theme_override_styles/pressed = SubResource("2")
+theme_override_styles/focus = SubResource("3")
+text = "Continue"
+
+[node name="ReturnToMainMenu" type="Button" parent="CanvasLayer/Paused"]
+process_mode = 3
+layout_mode = 0
+offset_left = 267.0
+offset_top = 459.0
+offset_right = 757.0
+offset_bottom = 505.0
+focus_neighbor_left = NodePath("../Pokal")
+focus_neighbor_top = NodePath("../Controlls")
+focus_neighbor_right = NodePath("../2Player")
+focus_neighbor_bottom = NodePath("../Continue")
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("10")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("9")
+theme_override_styles/hover = SubResource("6")
+theme_override_styles/pressed = SubResource("7")
+theme_override_styles/focus = SubResource("8")
+text = "Return To Main Menu"
+
+[node name="exit_level" type="Button" parent="CanvasLayer/Paused"]
+visible = false
+layout_mode = 0
+offset_left = 272.0
+offset_top = 546.0
+offset_right = 764.0
+offset_bottom = 584.0
+mouse_filter = 2
+
+[node name="Options" type="Button" parent="CanvasLayer/Paused"]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 408.0
+offset_right = 757.0
+offset_bottom = 454.0
+focus_neighbor_left = NodePath("../Controlls")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../2Player")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("16")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("15")
+theme_override_styles/hover = SubResource("11")
+theme_override_styles/pressed = SubResource("12")
+theme_override_styles/disabled = SubResource("14")
+theme_override_styles/focus = SubResource("13")
+text = "Options"
+
+[node name="Controlls" type="Button" parent="CanvasLayer/Paused"]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 408.0
+offset_right = 508.0
+offset_bottom = 454.0
+focus_neighbor_left = NodePath("../Pokal")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("22")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("21")
+theme_override_styles/hover = SubResource("17")
+theme_override_styles/pressed = SubResource("18")
+theme_override_styles/disabled = SubResource("20")
+theme_override_styles/focus = SubResource("19")
+text = "Controlls"
+
+[node name="Pause_Label" type="Label" parent="CanvasLayer/Paused"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 182.0
+offset_right = 679.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0.968627, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("23")
+theme_override_font_sizes/font_size = 100
+text = "Paused"
+
+[node name="2Player" type="Button" parent="CanvasLayer/Paused"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 388.0
+offset_right = 856.0
+offset_bottom = 474.0
+focus_neighbor_left = NodePath("../Options")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Controlls")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
+theme_override_styles/normal = SubResource("28")
+theme_override_styles/hover = SubResource("24")
+theme_override_styles/pressed = SubResource("25")
+theme_override_styles/disabled = SubResource("27")
+theme_override_styles/focus = SubResource("26")
+
+[node name="Multiplayer" type="Sprite2D" parent="CanvasLayer/Paused/2Player"]
+position = Vector2(45, 43)
+scale = Vector2(2, 2)
+texture = ExtResource("29")
+
+[node name="Pokal" type="Button" parent="CanvasLayer/Paused"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 388.0
+offset_right = 256.0
+offset_bottom = 474.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Controlls")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
+mouse_filter = 2
+theme_override_styles/normal = SubResource("33")
+theme_override_styles/hover = SubResource("29")
+theme_override_styles/pressed = SubResource("30")
+theme_override_styles/disabled = SubResource("32")
+theme_override_styles/focus = SubResource("31")
+
+[node name="Pokal" type="Sprite2D" parent="CanvasLayer/Paused/Pokal"]
+position = Vector2(44, 43)
+scale = Vector2(3, 3)
+texture = ExtResource("28")
+
+[node name="Options" parent="CanvasLayer" instance=ExtResource("3")]
+visible = false
+offset_left = 1024.0
+offset_right = 1064.0
+offset_bottom = 40.0
+group = SubResource("ButtonGroup_c3665")
+
+[node name="Achievments_2Player" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 576.0
+offset_right = 40.0
+offset_bottom = 616.0
+
+[node name="Achievments" parent="CanvasLayer/Achievments_2Player" instance=ExtResource("5")]
+
+[node name="2PlayerMode" parent="CanvasLayer/Achievments_2Player" instance=ExtResource("11")]
+visible = false
+offset_left = 1.0
+offset_top = 574.0
+offset_right = 41.0
+offset_bottom = 614.0
+
+[node name="NothingButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = -24.0
+offset_top = -28.0
+offset_right = -12.0
+offset_bottom = -8.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f8dpu")
+}
+
+[node name="VisibleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ChangeButtonTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="pressed" from="CanvasLayer/Paused/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/ReturnToMainMenu" to="." method="_on_ReturnToMainMenu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/exit_level" to="." method="_on_exit_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/Controlls" to="." method="_on_Controlls_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/2Player" to="." method="_on_2Player_pressed"]
+[connection signal="pressed" from="CanvasLayer/Paused/Pokal" to="." method="_on_Pokal_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="VisibleTimer" to="." method="_on_VisibleTimer_timeout"]
+[connection signal="timeout" from="ChangeButtonTimer" to="." method="_on_ChangeButtonTimer_timeout"]

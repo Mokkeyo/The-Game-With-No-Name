@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://chcsx10qtt6m8"]
+
+[ext_resource type="Texture2D" uid="uid://c4ucadk3nu4r3" path="res://PathToNewLevelObjects/Textures/door.png" id="1"]
+[ext_resource type="Script" uid="uid://6e1c2vkqhtqq" path="res://PathToNewLevelObjects/Scripts/door.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bxjwuu03prylq" path="res://NormalMap/door_normal.png" id="3_5y01b"]
+[ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="5_uxktu"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="13_lftvb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_semyr"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_5y01b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqsjr"]
+size = Vector2(2, 25)
+
+[node name="Door" type="Node2D" groups=["Door"]]
+script = ExtResource("2")
+level_number = 1
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(-1, -12.5)
+texture = SubResource("CanvasTexture_semyr")
+offset = Vector2(1, 0)
+hframes = 2
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="achievmentComponent" parent="." instance=ExtResource("13_lftvb")]
+achievment_list = "Does Someone Need A Tutorial?"
+
+[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_uxktu")]
+marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+
+[node name="Ping" parent="." instance=ExtResource("6")]
+position = Vector2(0, -33)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_yqsjr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

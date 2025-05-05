@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://cebshykj68nr3"]
+
+[ext_resource type="PackedScene" uid="uid://cab2fkmqr87y7" path="res://Bosse/Galaga/Szene/galaga_head.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://l78bge7xekwn" path="res://Bosse/Galaga/Szene/galaga_arm.tscn" id="2"]
+[ext_resource type="Script" uid="uid://b5nqdijepaf13" path="res://Bosse/Galaga/Scripts/galaga.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="4_qg4ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vspnw"]
+size = Vector2(386, 170)
+
+[node name="Boss Galaga" type="Node2D"]
+script = ExtResource("3")
+
+[node name="BossArm(left)" parent="." instance=ExtResource("2")]
+position = Vector2(5, 15)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shoot" parent="BossArm(left)" index="5" node_paths=PackedStringArray("parent")]
+projectileType = 0
+parent = NodePath("../..")
+bulletSpeed = 250
+player = 0
+lifeTime = 2.0
+pool_size = 5
+
+[node name="BossArm(right)" parent="." instance=ExtResource("2")]
+position = Vector2(5, -99)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shoot" parent="BossArm(right)" index="5" node_paths=PackedStringArray("parent")]
+projectileType = 0
+parent = NodePath("../..")
+bulletSpeed = 250
+player = 0
+lifeTime = 2.0
+pool_size = 5
+
+[node name="Boss" parent="." instance=ExtResource("1")]
+position = Vector2(9, -42)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shoot" parent="Boss" index="10" node_paths=PackedStringArray("parent")]
+projectileType = 0
+parent = NodePath("../..")
+bulletSpeed = 250
+player = 0
+lifeTime = 2.0
+pool_size = 5
+
+[node name="Shoot2" parent="Boss" index="11" node_paths=PackedStringArray("parent")]
+projectileType = 0
+parent = NodePath("../..")
+bulletSpeed = 250
+player = 0
+lifeTime = 2.0
+pool_size = 5
+
+[node name="airshipDetector" parent="." instance=ExtResource("4_qg4ys")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector"]
+position = Vector2(-183, -42)
+shape = SubResource("RectangleShape2D_vspnw")
+
+[node name="shoot_cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="laser_cooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="laser_duration" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="body_entered" from="airshipDetector" to="." method="_on_airship_detector_body_entered"]
+
+[editable path="BossArm(left)"]
+[editable path="BossArm(right)"]
+[editable path="Boss"]

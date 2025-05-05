@@ -1,0 +1,296 @@
+[gd_scene load_steps=18 format=3 uid="uid://cv5ekjfi8ad65"]
+
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="1"]
+[ext_resource type="Texture2D" uid="uid://dsw1u6mfgctks" path="res://Objects/Textures/lightmap.png" id="2"]
+[ext_resource type="Script" uid="uid://ym23lg8su8ld" path="res://Scripts/credits.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="5_4ebpx"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Animation" id="3"]
+resource_name = "default"
+length = 9.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameTitle:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameTitle:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameTitle:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameTitle:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Label:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Ping:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_645w2"]
+_data = {
+&"default": SubResource("3")
+}
+
+[sub_resource type="StyleBoxTexture" id="6"]
+
+[sub_resource type="StyleBoxTexture" id="7"]
+
+[sub_resource type="StyleBoxTexture" id="4"]
+
+[sub_resource type="StyleBoxTexture" id="5"]
+
+[sub_resource type="StyleBoxTexture" id="8"]
+
+[sub_resource type="FontFile" id="9"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Animation" id="10"]
+resource_name = "Konami"
+length = 2.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Konami Code Entered:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Konami Code Entered:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Konami Code Entered:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Konami Code Entered:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Konami Code Entered:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7j2y"]
+_data = {
+&"Konami": SubResource("10")
+}
+
+[node name="Credits" type="Node2D"]
+position = Vector2(2, 0)
+script = ExtResource("3")
+
+[node name="lightmap" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(511.499, 314.5)
+scale = Vector2(79.5002, 47.7857)
+texture = ExtResource("2")
+
+[node name="GameTitle" type="VBoxContainer" parent="."]
+modulate = Color(0, 0, 0, 0)
+offset_left = -2.0
+offset_top = 193.0
+offset_right = 1022.0
+offset_bottom = 264.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GameTitle"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("1")
+text = "The Game With \"no Name\""
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 0)
+offset_left = -2.0
+offset_top = 314.0
+offset_right = 1022.0
+offset_bottom = 419.0
+theme_override_fonts/font = SubResource("2")
+text = "Created By:
+Mokkey"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_645w2")
+}
+
+[node name="Button" type="Button" parent="."]
+offset_left = 370.0
+offset_top = 550.0
+offset_right = 679.0
+offset_bottom = 570.0
+theme_override_styles/focus = SubResource("6")
+theme_override_styles/disabled = SubResource("7")
+theme_override_styles/hover = SubResource("4")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/normal = SubResource("8")
+
+[node name="Ping" parent="." instance=ExtResource("4")]
+position = Vector2(987, 536)
+scale = Vector2(2, 2)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Konami Code Entered" type="Label" parent="."]
+modulate = Color(0, 0, 0, 0)
+offset_left = -2.0
+offset_right = 1022.0
+offset_bottom = 576.0
+theme_override_colors/font_color = Color(1, 0.305882, 0.305882, 1)
+theme_override_fonts/font = SubResource("9")
+text = "Konami Code Entered..."
+
+[node name="KonamiPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m7j2y")
+}
+
+[node name="achievmentComponent" parent="." instance=ExtResource("5_4ebpx")]
+achievments = 5
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

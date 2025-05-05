@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4nxkpmfjlfsu"]
+
+[ext_resource type="Texture2D" uid="uid://ban3j67ih2pg3" path="res://TileMaps/Textures/arrow.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b6jrr8hkafuwq" path="res://TileMaps/CanvasTextures/ArrowCanvas.tres" id="2_2kgsh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fdlbb"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(14, 14)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nk2g2"]
+texture = ExtResource("2_2kgsh")
+texture_region_size = Vector2i(14, 14)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(14, 14)
+sources/0 = SubResource("TileSetAtlasSource_fdlbb")
+sources/1 = SubResource("TileSetAtlasSource_nk2g2")
+
+[node name="Arrow" type="TileMapLayer"]
+tile_set = SubResource("1")

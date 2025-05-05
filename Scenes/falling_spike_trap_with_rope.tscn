@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjnvdx5bao0kg"]
+
+[ext_resource type="Script" uid="uid://dynqee17gcfo4" path="res://Scripts/falling_spike_trap_with_rope.gd" id="1_ooxaq"]
+[ext_resource type="PackedScene" uid="uid://croc44wygw66k" path="res://Scenes/falling_spiketrap.tscn" id="2_2btbp"]
+[ext_resource type="Texture2D" uid="uid://dmflkdmw45jh8" path="res://Objects/Textures/ghost_chain.png" id="2_70btn"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_d1avb"]
+a = Vector2(-0.5, 0)
+b = Vector2(-0.5, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rjyv6"]
+a = Vector2(-0.5, 0)
+b = Vector2(-0.5, 10)
+
+[node name="FallingSpikeTrapWithRope" type="Node2D"]
+script = ExtResource("1_ooxaq")
+
+[node name="GhostChain2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(23.5, -23.3)
+scale = Vector2(1, 1.33333)
+texture = ExtResource("2_70btn")
+offset = Vector2(0, 4)
+region_enabled = true
+region_rect = Rect2(0, 0, 3, 9)
+
+[node name="GhostChain" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(-23.5, -23.3)
+scale = Vector2(1, 1.33333)
+texture = ExtResource("2_70btn")
+offset = Vector2(0, 4)
+region_enabled = true
+region_rect = Rect2(0, 0, 3, 9)
+
+[node name="FallingSpikeTrap" parent="." instance=ExtResource("2_2btbp")]
+position = Vector2(0, -6)
+
+[node name="Ropes" type="StaticBody2D" parent="."]
+position = Vector2(47, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Ropes"]
+position = Vector2(-23, -24)
+shape = SubResource("SegmentShape2D_d1avb")
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="Ropes"]
+position = Vector2(-70, -24)
+shape = SubResource("SegmentShape2D_rjyv6")

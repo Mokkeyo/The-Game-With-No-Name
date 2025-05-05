@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cubk20gfebvan"]
+
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_qx3vl"]
+[ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_1sbr0"]
+[ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="3_plm0d"]
+[ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="4_wvxcq"]
+[ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="5_v6qmn"]
+
+[resource]
+OptionButton/fonts/font = ExtResource("1_qx3vl")
+OptionButton/styles/disabled = ExtResource("2_1sbr0")
+OptionButton/styles/focus = ExtResource("3_plm0d")
+OptionButton/styles/hover = null
+OptionButton/styles/hover_pressed = ExtResource("2_1sbr0")
+OptionButton/styles/normal = ExtResource("2_1sbr0")
+OptionButton/styles/pressed = ExtResource("2_1sbr0")
+PopupMenu/fonts/font = ExtResource("1_qx3vl")
+PopupMenu/fonts/title_font = ExtResource("1_qx3vl")
+PopupMenu/styles/embedded_border = ExtResource("4_wvxcq")
+PopupMenu/styles/embedded_unfocused_border = ExtResource("5_v6qmn")
+PopupMenu/styles/hover = ExtResource("5_v6qmn")
+PopupMenu/styles/panel = ExtResource("5_v6qmn")

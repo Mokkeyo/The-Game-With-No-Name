@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx8illpn0h2cv"]
+
+[ext_resource type="Texture2D" uid="uid://du1r7fbktrb74" path="res://Objects/Textures/door_house.png" id="1"]
+[ext_resource type="Script" uid="uid://cb0dj3e0pspf" path="res://Scripts/door_house.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://d31e3hnc7woh4" path="res://NormalMap/door_house_normal.png" id="2_wc32e"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="3_c2irr"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="4_gr8po"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tygh7"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("2_wc32e")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twpjp"]
+size = Vector2(6, 24)
+
+[node name="Door_house" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader")]
+script = ExtResource("2")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="DoorHouse" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_tygh7")
+
+[node name="NPCArea" parent="." instance=ExtResource("3_c2irr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+shape = SubResource("RectangleShape2D_twpjp")
+
+[node name="DialogueLoader" parent="." instance=ExtResource("4_gr8po")]
+npc = "houseDoor"
+blackBox = true

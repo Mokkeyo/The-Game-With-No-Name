@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://dp70j37quyjs2"]
+
+[ext_resource type="Texture2D" uid="uid://djw2s5pn6ogst" path="res://TileMaps/Textures/torch.png" id="1_g067d"]
+[ext_resource type="Texture2D" uid="uid://by30el53w8o2u" path="res://NormalMap/torch_normal.png" id="2_cvi4r"]
+
+[resource]
+diffuse_texture = ExtResource("1_g067d")
+normal_texture = ExtResource("2_cvi4r")

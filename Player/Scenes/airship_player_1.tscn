@@ -1,0 +1,216 @@
+[gd_scene load_steps=19 format=3 uid="uid://qabv4vag8xq4"]
+
+[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://hiof1owmn7nq" path="res://Player/CanvasTextures/airship_player_1.tres" id="2_ttgib"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_hn1h1"]
+[ext_resource type="Script" uid="uid://b1vb4dlb3er7h" path="res://Player/Scripts/airship.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_xbjoc"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="7_kq3h5"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_eqdrp"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_vmje8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2gr4"]
+atlas = ExtResource("3_hn1h1")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4phu7"]
+atlas = ExtResource("3_hn1h1")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okkkg"]
+atlas = ExtResource("3_hn1h1")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dwer"]
+atlas = ExtResource("3_hn1h1")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ttgib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2gr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4phu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okkkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dwer")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5dh6"]
+radius = 8.5
+height = 27.0
+
+[sub_resource type="Animation" id="Animation_cfvkl"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.196078, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.196078, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.196078, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0bj1"]
+_data = {
+&"RESET": SubResource("Animation_cfvkl"),
+&"damage": SubResource("4")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyywu"]
+radius = 8.0
+height = 22.0
+
+[node name="airshipPlayer1" type="CharacterBody2D" groups=["airship", "airship(Player0)"]]
+collision_layer = 8
+script = ExtResource("6")
+currentPlayer = 0
+
+[node name="PointLight2D" parent="." instance=ExtResource("1")]
+visible = false
+
+[node name="airship" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("5")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n5dh6")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(13, 5)
+
+[node name="DamagePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n0bj1")
+}
+
+[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_xbjoc")]
+shootingPoint = NodePath("../Marker2D")
+parent = NodePath("..")
+bulletSpeed = 400
+player = 1
+lifeTime = 0.7
+
+[node name="healthComponent" parent="." instance=ExtResource("7_kq3h5")]
+health = 100.0
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_vmje8")]
+collision_layer = 2
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cyywu")
+
+[node name="wait_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("8_eqdrp")]
+collisions = [NodePath("../Hurtbox/CollisionShape2D"), NodePath("../CollisionPolygon2D")]
+healthComp = NodePath("../healthComponent")
+physics_process = true
+
+[connection signal="animation_finished" from="airship" to="." method="_on_airship_animation_finished"]

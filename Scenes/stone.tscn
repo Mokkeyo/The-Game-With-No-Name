@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://hpx56o8uob8o"]
+
+[ext_resource type="Script" uid="uid://d0pi7d6c5kudn" path="res://Scripts/movable_block.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyb3vmg4e67ik" path="res://Objects/Textures/stone.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dslu8sljmhipu" path="res://NormalMap/stone_normal.png" id="3_ra022"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="4_od2n6"]
+
+[sub_resource type="OccluderPolygon2D" id="3"]
+polygon = PackedVector2Array(9, -4, 9, 4, 8, 4, 8, 6, 7, 6, 7, 7, 6, 7, 6, 8, 4, 8, 4, 9, -4, 9, -4, 9, -4, 8, -6, 8, -6, 7, -7, 7, -7, 6, -8, 6, -8, 4, -9, 4, -9, -4, -8, -4, -8, -6, -7, -6, -7, -7, -6, -7, -6, -8, -4, -8, -4, -9, 4, -9, 4, -8, 6, -8, 6, -7, 7, -7, 7, -6, 8, -6, 8, -4)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_57q4q"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("3_ra022")
+
+[sub_resource type="CircleShape2D" id="2"]
+
+[node name="MovableBlock" type="RigidBody2D" groups=["Stone"]]
+collision_mask = 515
+script = ExtResource("1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("3")
+
+[node name="Stein" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_57q4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("2")
+
+[node name="EnemyResetComponent" parent="." instance=ExtResource("4_od2n6")]

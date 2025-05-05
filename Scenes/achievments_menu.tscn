@@ -1,0 +1,475 @@
+[gd_scene load_steps=24 format=3 uid="uid://c32irumryilnl"]
+
+[ext_resource type="PackedScene" uid="uid://xs4mgs21ekcp" path="res://Scenes/adv_button.tscn" id="2_u2yt6"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="5"]
+[ext_resource type="Script" uid="uid://cbd4e1ksw40qg" path="res://Scripts/achievments_menu.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://bl22ub71d08bt" path="res://GuiElements/Textures/noob.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bcnv8lsq3go4u" path="res://GuiElements/Textures/unkillable.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://ch51e6sc3ap20" path="res://GuiElements/Textures/you_got_a_friend_in_me.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://blv1flwq67i4w" path="res://GuiElements/Textures/its_just_the_beginning.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://b7leimsn13ecv" path="res://GuiElements/Textures/chatter.png" id="12"]
+[ext_resource type="FontFile" uid="uid://xo3p6l5s5qqj" path="res://Font/Robus-BWqOd.otf" id="13"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="13_xpth3"]
+[ext_resource type="FontFile" uid="uid://c2motn82nttuu" path="res://Font/Movement.ttf" id="14"]
+[ext_resource type="Texture2D" uid="uid://dh6fjl12amw4k" path="res://GuiElements/Textures/questionmark.png" id="15"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.32549, 0.105882, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="5"]
+
+[sub_resource type="StyleBoxFlat" id="11"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0.627451, 0.207843, 0, 1)
+
+[sub_resource type="FontFile" id="13"]
+fallbacks = Array[Font]([ExtResource("5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/28/0 = Vector2(0, 0)
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
+cache/0/28/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/28/0/kerning_overrides/28/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="14"]
+bg_color = Color(0.403922, 0.141176, 0, 1)
+
+[sub_resource type="FontFile" id="21"]
+fallbacks = Array[Font]([ExtResource("13")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="22"]
+fallbacks = Array[Font]([ExtResource("14")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+
+[node name="Achievments" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("7")
+startButton = NodePath("BackButton")
+exitButton = NodePath("BackButton")
+
+[node name="Background" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Background"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 11.0
+offset_right = 1023.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="Panel3" type="Panel" parent="Background"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 1020.0
+offset_bottom = 586.0
+theme_override_styles/panel = SubResource("2")
+
+[node name="Panel2" type="Panel" parent="Background"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 21.0
+offset_right = 1015.0
+offset_bottom = 581.0
+theme_override_styles/panel = SubResource("3")
+
+[node name="Panel4" type="Panel" parent="Background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 1012.0
+offset_bottom = 578.0
+
+[node name="Pfad" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 10.0
+pivot_offset = Vector2(592, 404)
+
+[node name="Background" type="Control" parent="Pfad"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 286.0
+offset_right = 130.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel3" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 318.0
+offset_right = 290.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel5" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 414.0
+offset_right = 930.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel6" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 352.0
+offset_right = 618.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel7" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 318.0
+offset_right = 770.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel8" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 278.0
+offset_right = 930.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Panel9" type="Panel" parent="Pfad/Background"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 352.0
+offset_right = 442.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("4")
+
+[node name="Pfad" type="Control" parent="Pfad"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel6" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 416.0
+offset_right = 896.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 350.0
+offset_right = 440.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel2" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 278.0
+offset_right = 928.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel3" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 350.0
+offset_right = 616.0
+offset_bottom = 422.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel4" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 286.0
+offset_right = 128.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel5" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 318.0
+offset_right = 288.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Panel8" type="Panel" parent="Pfad/Pfad"]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 318.0
+offset_right = 768.0
+offset_bottom = 416.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Advantments" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 38.0
+
+[node name="AdvButton1" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 104.0
+offset_right = 189.0
+offset_bottom = 258.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../AdvButton2")
+focus_neighbor_bottom = NodePath("../../BackButton")
+
+[node name="Chatter" type="Sprite2D" parent="Advantments/AdvButton1"]
+position = Vector2(77, 77)
+scale = Vector2(4, 4)
+texture = ExtResource("12")
+
+[node name="AdvButton2" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 136.0
+offset_right = 349.0
+offset_bottom = 290.0
+focus_neighbor_left = NodePath("../AdvButton1")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../AdvChatter3")
+focus_neighbor_bottom = NodePath("../../BackButton")
+achievment_name = "Its Just The Beginning"
+achievment_description = "finish the game"
+
+[node name="ItsJustTheBeginning" type="Sprite2D" parent="Advantments/AdvButton2"]
+position = Vector2(77, 78)
+scale = Vector2(5, 5)
+texture = ExtResource("11")
+
+[node name="AdvChatter3" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 170.0
+offset_right = 509.0
+offset_bottom = 324.0
+focus_neighbor_left = NodePath("../AdvButton2")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Adv_Button4")
+focus_neighbor_bottom = NodePath("../../BackButton")
+achievment_name = "Does Someone Need A Tutorial"
+achievment_description = "finish the tutorial"
+
+[node name="Noob" type="Sprite2D" parent="Advantments/AdvChatter3"]
+position = Vector2(77, 80)
+scale = Vector2(4, 4)
+texture = ExtResource("8")
+
+[node name="Adv_Button4" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 170.0
+offset_right = 669.0
+offset_bottom = 324.0
+focus_neighbor_left = NodePath("../AdvChatter3")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Adv_Button5")
+focus_neighbor_bottom = NodePath("../../BackButton")
+achievment_name = "Unkillable"
+achievment_description = "beat the game without dying"
+
+[node name="Unkillable" type="Sprite2D" parent="Advantments/Adv_Button4"]
+position = Vector2(77, 77)
+scale = Vector2(4, 4)
+texture = ExtResource("9")
+
+[node name="Adv_Button5" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 675.0
+offset_top = 136.0
+offset_right = 829.0
+offset_bottom = 290.0
+focus_neighbor_left = NodePath("../Adv_Button4")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Adv_Button6")
+focus_neighbor_bottom = NodePath("../../BackButton")
+achievment_name = "You Got A Friend In Me"
+achievment_description = "finish the game with a friend"
+
+[node name="YouGotAFriendInMe" type="Sprite2D" parent="Advantments/Adv_Button5"]
+position = Vector2(77, 77)
+scale = Vector2(4, 4)
+texture = ExtResource("10")
+
+[node name="Adv_Button6" parent="Advantments" instance=ExtResource("2_u2yt6")]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 96.0
+offset_right = 989.0
+offset_bottom = 250.0
+focus_neighbor_left = NodePath("../Adv_Button5")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BackButton")
+achievment_name = "Secret With No Name"
+achievment_description = "???"
+
+[node name="Questionmark" type="Sprite2D" parent="Advantments/Adv_Button6"]
+position = Vector2(79.0001, 75)
+scale = Vector2(6, 6)
+texture = ExtResource("15")
+
+[node name="TextBox" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 38.0
+
+[node name="Panel" type="Panel" parent="TextBox"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 440.0
+offset_right = 1002.0
+offset_bottom = 568.0
+theme_override_styles/panel = SubResource("11")
+
+[node name="Panel2" type="Panel" parent="TextBox"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 444.0
+offset_right = 998.0
+offset_bottom = 564.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="Name" type="RichTextLabel" parent="TextBox"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 444.0
+offset_right = 990.0
+offset_bottom = 487.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("13")
+theme_override_font_sizes/normal_font_size = 28
+
+[node name="Panel3" type="Panel" parent="TextBox"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 480.0
+offset_right = 994.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("14")
+
+[node name="Description" type="RichTextLabel" parent="TextBox"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 498.0
+offset_right = 994.0
+offset_bottom = 547.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("13")
+theme_override_font_sizes/normal_font_size = 28
+
+[node name="HeadLine" type="Label" parent="."]
+layout_mode = 0
+offset_left = 307.0
+offset_top = -3.0
+offset_right = 717.0
+offset_bottom = 98.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("21")
+theme_override_font_sizes/font_size = 100
+text = "Achievments"
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 0
+offset_left = 872.0
+offset_top = 444.0
+offset_right = 994.0
+offset_bottom = 500.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("22")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="BackButton" parent="." instance=ExtResource("13_xpth3")]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 326.0
+offset_right = 592.0
+offset_bottom = 433.0
+text = "Back"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="focus_entered" from="BackButton" to="." method="_on_back_button_focus_entered"]

@@ -1,0 +1,232 @@
+[gd_scene load_steps=21 format=3 uid="uid://ccs7k64ikvuep"]
+
+[ext_resource type="Script" uid="uid://fo101wee8p4x" path="res://Scripts/enemy_airship.gd" id="1_siygl"]
+[ext_resource type="Texture2D" uid="uid://jbx86cbqto5d" path="res://Enemys/CanvasTextures/enemy_airship.tres" id="2_10gvk"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_fttxn"]
+[ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="4_gylce"]
+[ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="5_skqmn"]
+[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_f2h7g"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="8_hpl2s"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_mklbp"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_ms50j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inxlx"]
+atlas = ExtResource("3_fttxn")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35tve"]
+atlas = ExtResource("3_fttxn")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp85v"]
+atlas = ExtResource("3_fttxn")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo6nt"]
+atlas = ExtResource("3_fttxn")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_10gvk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inxlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35tve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp85v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo6nt")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="8"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="6"]
+resource_name = "Damage"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+
+[sub_resource type="Animation" id="Animation_nib4u"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7f1u"]
+_data = {
+&"Damage": SubResource("6"),
+&"RESET": SubResource("Animation_nib4u")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbunf"]
+size = Vector2(352, 256)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqaaj"]
+radius = 8.0
+height = 22.0
+
+[node name="airship(enemy)" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 32769
+script = ExtResource("1_siygl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("1")
+flip_h = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("8")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HPbar" parent="." instance=ExtResource("4_gylce")]
+offset_left = -6.0
+offset_top = -14.0
+offset_right = 8.0
+offset_bottom = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e7f1u")
+}
+
+[node name="PlayerDetector" parent="." instance=ExtResource("5_skqmn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_jbunf")
+
+[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_f2h7g")]
+shootingPoint = NodePath("../Marker2D")
+parent = NodePath("..")
+bulletSpeed = -250
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar") instance=ExtResource("8_hpl2s")]
+health = 100.0
+hpBar = NodePath("../HPbar")
+invisibiltyFrames = 0.1
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_mklbp")]
+collision_layer = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aqaaj")
+
+[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_ms50j")]
+collisions = [NodePath("../CollisionShape2D2"), NodePath("../PlayerDetector/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D")]
+hpBar = NodePath("../HPbar")
+healthComp = NodePath("../healthComponent")
+physics_process = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2cggka1ix7ys"]
+
+[ext_resource type="Texture2D" uid="uid://yhlnnyhtnvuy" path="res://TileMaps/Textures/background_water.png" id="29_d2q52"]
+[ext_resource type="Texture2D" uid="uid://ck10mpf1et0s2" path="res://TileMaps/Textures/background_lava.png" id="30_n7l2w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_slt2m"]
+texture = ExtResource("29_d2q52")
+texture_region_size = Vector2i(14, 14)
+0:0/animation_speed = 28.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_434og"]
+texture = ExtResource("30_n7l2w")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(14, 14)
+0:0/animation_speed = 28.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:1/animation_speed = 28.0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/animation_frame_4/duration = 1.0
+0:1/animation_frame_5/duration = 1.0
+0:1/animation_frame_6/duration = 1.0
+0:1/animation_frame_7/duration = 1.0
+0:1/animation_frame_8/duration = 1.0
+0:1/animation_frame_9/duration = 1.0
+0:1/animation_frame_10/duration = 1.0
+0:1/animation_frame_11/duration = 1.0
+0:1/animation_frame_12/duration = 1.0
+0:1/animation_frame_13/duration = 1.0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/left_side = 0
+0:2/animation_speed = 28.0
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/animation_frame_4/duration = 1.0
+0:2/animation_frame_5/duration = 1.0
+0:2/animation_frame_6/duration = 1.0
+0:2/animation_frame_7/duration = 1.0
+0:2/animation_frame_8/duration = 1.0
+0:2/animation_frame_9/duration = 1.0
+0:2/animation_frame_10/duration = 1.0
+0:2/animation_frame_11/duration = 1.0
+0:2/animation_frame_12/duration = 1.0
+0:2/animation_frame_13/duration = 1.0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:3/animation_speed = 28.0
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 1.0
+0:3/animation_frame_2/duration = 1.0
+0:3/animation_frame_3/duration = 1.0
+0:3/animation_frame_4/duration = 1.0
+0:3/animation_frame_5/duration = 1.0
+0:3/animation_frame_6/duration = 1.0
+0:3/animation_frame_7/duration = 1.0
+0:3/animation_frame_8/duration = 1.0
+0:3/animation_frame_9/duration = 1.0
+0:3/animation_frame_10/duration = 1.0
+0:3/animation_frame_11/duration = 1.0
+0:3/animation_frame_12/duration = 1.0
+0:3/animation_frame_13/duration = 1.0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(14, 14)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Lava"
+terrain_set_0/terrain_0/color = Color(0, 0.376648, 0.733553, 1)
+sources/2 = SubResource("TileSetAtlasSource_slt2m")
+sources/3 = SubResource("TileSetAtlasSource_434og")
+
+[node name="BackroundElement" type="TileMapLayer"]
+modulate = Color(1, 1, 1, 0.588235)
+tile_set = SubResource("1")

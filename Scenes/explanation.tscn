@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://duirrk2ta88b3"]
+
+[ext_resource type="Script" uid="uid://fm2rhlt1jf1g" path="res://Scripts/explanation.gd" id="1_r41kg"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_wokp5"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_fjur3"]
+
+[sub_resource type="FontFile" id="56"]
+fallbacks = Array[Font]([ExtResource("1_wokp5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/16/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/0/size = Vector2(0, 0)
+cache/0/16/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/0/glyphs/0/texture_idx = -1
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/37/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/8 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/37/8 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/37/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/16/8 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/37/8 = Vector2(0, 0)
+cache/0/37/0/ascent = 0.0
+cache/0/37/0/descent = 0.0
+cache/0/37/0/underline_position = 0.0
+cache/0/37/0/underline_thickness = 0.0
+cache/0/37/0/scale = 1.0
+cache/0/37/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/37/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/37/0/glyphs/0/size = Vector2(0, 0)
+cache/0/37/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/37/0/glyphs/0/texture_idx = -1
+cache/0/37/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/37/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/37/0/kerning_overrides/37/0 = Vector2(0, 0)
+cache/0/37/0/kerning_overrides/16/8 = Vector2(0, 0)
+cache/0/37/0/kerning_overrides/37/8 = Vector2(0, 0)
+cache/0/16/8/glyphs/0/offset = Vector2(0, 0)
+cache/0/16/8/glyphs/0/size = Vector2(0, 0)
+cache/0/16/8/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/8/glyphs/0/texture_idx = -1
+cache/0/37/8/glyphs/0/offset = Vector2(0, 0)
+cache/0/37/8/glyphs/0/size = Vector2(0, 0)
+cache/0/37/8/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/37/8/glyphs/0/texture_idx = -1
+
+[node name="explanation" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("1_r41kg")
+startButton = NodePath("BackButton")
+exitButton = NodePath("BackButton")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("56")
+theme_override_font_sizes/normal_font_size = 37
+text = "In this game mode you fight against each other and have more hitpoints than in the normal mode.
+The player has a sword and a wand to damage the other player, but you can just jump on him to damage him.
+
+the player cannot swing ropes in this game mode.
+whoever dies, loses!!!"
+
+[node name="BackButton" parent="." instance=ExtResource("3_fjur3")]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 446.0
+offset_right = 752.0
+offset_bottom = 527.0
+text = "Back"

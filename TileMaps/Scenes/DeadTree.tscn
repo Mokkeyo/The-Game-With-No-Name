@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnfeaj1wqtdfv"]
+
+[ext_resource type="Texture2D" uid="uid://oi842bnffx25" path="res://TileMaps/Textures/dead_tree.png" id="1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_winfm"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(50, 80)
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(50, 80)
+sources/0 = SubResource("TileSetAtlasSource_winfm")
+
+[node name="DeadTree" type="TileMapLayer"]
+tile_set = SubResource("1")
+rendering_quadrant_size = 2

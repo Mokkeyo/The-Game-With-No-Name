@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=3 uid="uid://b17dkb5l28cmy"]
+
+[ext_resource type="Texture2D" uid="uid://dce2644fl3gih" path="res://Objects/Textures/falling_plattform_vanished.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bkia2r7cmgfmf" path="res://Objects/Textures/falling_plattform.png" id="2"]
+[ext_resource type="Script" uid="uid://cbbemktamfnsd" path="res://Scripts/self_destroying_plattform.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://2r66lc5j150v" path="res://NormalMap/falling_plattform_normal.png" id="4_qd381"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_173kq"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("4_qd381")
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(34, 10)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(33.6562, 2.55976)
+
+[sub_resource type="Animation" id="Animation_66ds5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Warning"
+length = 0.7
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gecsg"]
+_data = {
+&"RESET": SubResource("Animation_66ds5"),
+&"Warning": SubResource("3")
+}
+
+[node name="SelfDestroyingPlattform" type="Node2D"]
+script = ExtResource("3")
+
+[node name="falling_plattform(vanished)" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1")
+
+[node name="falling_plattform" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_173kq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("1")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="RepearTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gecsg")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="RepearTimer" to="." method="_on_RepearTimer_timeout"]

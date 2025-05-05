@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyu85obj33ig7"]
+
+[ext_resource type="Script" uid="uid://cw5d5mmlsensj" path="res://Scripts/warning.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dg3xd5igr35jg" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
+
+[node name="warning" type="Node2D"]
+z_as_relative = false
+script = ExtResource("1")
+
+[node name="Beam" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.1)
+texture = ExtResource("2")

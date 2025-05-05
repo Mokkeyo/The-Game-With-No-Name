@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://s4e240cwhy1v"]
+
+[ext_resource type="Texture2D" uid="uid://1plch0hl03fc" path="res://Player/Textures/airship_player_1.png" id="2_dkhtt"]
+[ext_resource type="Script" uid="uid://b2etl13a870ab" path="res://Scripts/airship_spawner.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://d1njf0fpab7np" path="res://Player/Textures/airship_player_2.png" id="3_syvlc"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(54, 18)
+
+[node name="Airship_spawner" type="Node2D"]
+script = ExtResource("3")
+
+[node name="Player2" type="Marker2D" parent="."]
+position = Vector2(-14, -7)
+
+[node name="Player" type="Marker2D" parent="."]
+visible = false
+position = Vector2(13, -7)
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -9)
+shape = SubResource("1")
+disabled = true
+
+[node name="AirshipeSprite" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="AirshipPlayer1" type="Sprite2D" parent="AirshipeSprite"]
+position = Vector2(-14, -9)
+texture = ExtResource("2_dkhtt")
+
+[node name="AirshipPlayer2" type="Sprite2D" parent="AirshipeSprite"]
+position = Vector2(13, -9)
+texture = ExtResource("3_syvlc")

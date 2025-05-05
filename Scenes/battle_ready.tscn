@@ -1,0 +1,263 @@
+[gd_scene load_steps=15 format=3 uid="uid://8ecrcakuunjn"]
+
+[ext_resource type="Script" uid="uid://ci3nwa811poxa" path="res://Scripts/battle_ready.gd" id="1_t7s2v"]
+[ext_resource type="Texture2D" uid="uid://be2x7gic4ldlw" path="res://GuiElements/Textures/controll_button.png" id="2_p0s13"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="3_7h27a"]
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="4_bj8wy"]
+
+[sub_resource type="StyleBoxFlat" id="86"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="87"]
+bg_color = Color(0.470588, 0.219608, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="92"]
+
+[sub_resource type="StyleBoxTexture" id="93"]
+
+[sub_resource type="StyleBoxTexture" id="90"]
+
+[sub_resource type="StyleBoxTexture" id="91"]
+
+[sub_resource type="StyleBoxTexture" id="94"]
+
+[sub_resource type="FontFile" id="88"]
+fallbacks = Array[Font]([ExtResource("3_7h27a")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="89"]
+fallbacks = Array[Font]([ExtResource("4_bj8wy")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="95"]
+fallbacks = Array[Font]([ExtResource("3_7h27a")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+
+[node name="BattleReady" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -615.0
+offset_right = 41.0
+offset_bottom = -575.0
+script = ExtResource("1_t7s2v")
+startButton = NodePath("Button")
+exitButton = NodePath("Button")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 622.0
+offset_right = 1016.0
+offset_bottom = 1184.0
+theme_override_styles/panel = SubResource("86")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 632.0
+offset_right = 1006.0
+offset_bottom = 1174.0
+theme_override_styles/panel = SubResource("87")
+
+[node name="Panel3" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 680.0
+offset_right = 1006.0
+offset_bottom = 690.0
+
+[node name="Panel4" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 506.0
+offset_top = 690.0
+offset_right = 516.0
+offset_bottom = 1174.0
+
+[node name="ControllButton" type="Sprite2D" parent="."]
+position = Vector2(246, 890)
+scale = Vector2(10, 10)
+texture = ExtResource("2_p0s13")
+
+[node name="ControllButton2" type="Sprite2D" parent="."]
+position = Vector2(776, 890)
+scale = Vector2(10, 10)
+texture = ExtResource("2_p0s13")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 632.0
+offset_right = 1006.0
+offset_bottom = 680.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_styles/focus = SubResource("92")
+theme_override_styles/disabled = SubResource("93")
+theme_override_styles/hover = SubResource("90")
+theme_override_styles/pressed = SubResource("91")
+theme_override_styles/normal = SubResource("94")
+disabled = true
+
+[node name="Confirm" type="Label" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 632.0
+offset_right = 1016.0
+offset_bottom = 680.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("88")
+theme_override_font_sizes/font_size = 32
+text = "press the \"jump\" Button to confirm, that you are ready"
+horizontal_alignment = 1
+
+[node name="Player1" type="Label" parent="."]
+modulate = Color(0, 0.831635, 0.894531, 1)
+layout_mode = 0
+offset_left = 151.0
+offset_top = 746.0
+offset_right = 352.0
+offset_bottom = 810.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("89")
+theme_override_font_sizes/font_size = 48
+text = "Player 1"
+
+[node name="Player2" type="Label" parent="."]
+modulate = Color(1, 0.701961, 0, 1)
+layout_mode = 0
+offset_left = 678.0
+offset_top = 746.0
+offset_right = 882.0
+offset_bottom = 810.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("89")
+theme_override_font_sizes/font_size = 48
+text = "Player 2"
+
+[node name="Esc" type="Label" parent="."]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 1128.0
+offset_right = 840.0
+offset_bottom = 1192.0
+theme_override_colors/font_color = Color(0.140447, 0.140447, 0.140447, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("89")
+theme_override_font_sizes/font_size = 48
+text = "Esc"
+horizontal_alignment = 1
+
+[node name="Return" type="Label" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 1124.0
+offset_right = 994.0
+offset_bottom = 1188.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("95")
+theme_override_font_sizes/font_size = 32
+text = "Press        To return"
+
+[node name="Ready1" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_top = 1050.0
+offset_right = 345.0
+offset_bottom = 1098.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("89")
+theme_override_font_sizes/font_size = 48
+text = "Ready!!!"
+
+[node name="Ready2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 689.0
+offset_top = 1052.0
+offset_right = 875.0
+offset_bottom = 1100.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("89")
+theme_override_font_sizes/font_size = 48
+text = "REady!!!"

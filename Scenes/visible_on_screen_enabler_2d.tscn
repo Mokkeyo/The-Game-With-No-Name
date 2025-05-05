@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkwrse4h7iir7"]
+
+[ext_resource type="Script" uid="uid://cqaecwvxtd6aj" path="res://Scripts/visible_on_screen_enabler_2d.gd" id="1_1mau4"]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D"]
+z_index = -1
+script = ExtResource("1_1mau4")
+
+[connection signal="screen_entered" from="." to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

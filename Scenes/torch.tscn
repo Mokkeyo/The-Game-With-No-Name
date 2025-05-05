@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://brxvni4brw46f"]
+
+[ext_resource type="Texture2D" uid="uid://dp70j37quyjs2" path="res://TileMaps/CanvasTextures/torch.tres" id="1_wiysb"]
+[ext_resource type="Script" uid="uid://buyqrjfv67671" path="res://TileMaps/torch.gd" id="2_fch0p"]
+[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="3_dnv1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bupk"]
+atlas = ExtResource("1_wiysb")
+region = Rect2(0, 0, 19, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4wmc"]
+atlas = ExtResource("1_wiysb")
+region = Rect2(19, 0, 19, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5en2d"]
+atlas = ExtResource("1_wiysb")
+region = Rect2(38, 0, 19, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0duo"]
+atlas = ExtResource("1_wiysb")
+region = Rect2(57, 0, 19, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehxj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bupk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4wmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5en2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0duo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Sprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ehxj2")
+frame_progress = 0.202318
+script = ExtResource("2_fch0p")
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_dnv1b")]
+position = Vector2(0, -5)

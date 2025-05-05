@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1s6u3oo647dn"]
+
+[ext_resource type="Script" uid="uid://dbtjohjckuylt" path="res://Scenes/jump_component.gd" id="1_lkrx6"]
+
+[node name="JumpComponent" type="Node"]
+script = ExtResource("1_lkrx6")

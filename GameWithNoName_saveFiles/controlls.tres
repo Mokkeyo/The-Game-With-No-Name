@@ -1,0 +1,176 @@
+[gd_resource type="Resource" script_class="savedInputmap" load_steps=38 format=3]
+
+[ext_resource type="Script" path="res://savedInputmap.gd" id="1_2nsof"]
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_xl3xk"]
+axis = 5
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_ynik2"]
+axis = 1
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_g3vvb"]
+button_index = 2
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ot2ei"]
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_8mkda"]
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_l0hhn"]
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_2fwgr"]
+button_index = 3
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_cia2b"]
+axis = 1
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_sc2rw"]
+axis = 4
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_470vk"]
+device = 1
+axis = 5
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_wjlj6"]
+device = 1
+axis = 1
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tnm4x"]
+device = 1
+button_index = 2
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_r8spv"]
+device = 1
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_byhq4"]
+device = 1
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_mxn05"]
+device = 1
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_q05xb"]
+device = 1
+button_index = 3
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_dkmuu"]
+device = 1
+axis = 1
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_wsajw"]
+device = 1
+axis = 4
+axis_value = 1.0
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_14s00"]
+button_index = 1
+
+[sub_resource type="InputEventKey" id="InputEventKey_rj3ha"]
+pressed = true
+keycode = 83
+physical_keycode = 83
+key_label = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_kxb6j"]
+keycode = 4194325
+
+[sub_resource type="InputEventKey" id="InputEventKey_q6x0g"]
+keycode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_xcl3c"]
+keycode = 65
+
+[sub_resource type="InputEventKey" id="InputEventKey_u2ie4"]
+keycode = 68
+
+[sub_resource type="InputEventKey" id="InputEventKey_xc2su"]
+keycode = 81
+
+[sub_resource type="InputEventKey" id="InputEventKey_7ifcl"]
+pressed = true
+keycode = 87
+physical_keycode = 87
+key_label = 87
+unicode = 119
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_pktge"]
+button_index = 2
+
+[sub_resource type="InputEventKey" id="InputEventKey_14s00"]
+keycode = 4194319
+
+[sub_resource type="InputEventKey" id="InputEventKey_pktge"]
+keycode = 71
+
+[sub_resource type="InputEventKey" id="InputEventKey_mvl37"]
+keycode = 4194322
+
+[sub_resource type="InputEventKey" id="InputEventKey_qajom"]
+keycode = 4194320
+
+[sub_resource type="InputEventKey" id="InputEventKey_uhy02"]
+keycode = 70
+
+[sub_resource type="InputEventKey" id="InputEventKey_ir1v1"]
+keycode = 72
+
+[sub_resource type="InputEventKey" id="InputEventKey_8qmsb"]
+keycode = 82
+
+[sub_resource type="InputEventKey" id="InputEventKey_efeg7"]
+keycode = 84
+
+[sub_resource type="InputEventKey" id="InputEventKey_h5hy5"]
+keycode = 4194321
+
+[resource]
+script = ExtResource("1_2nsof")
+device = Array[int]([0, 0])
+inputMap = {
+"C-player1_attack": SubResource("InputEventJoypadMotion_xl3xk"),
+"C-player1_down": SubResource("InputEventJoypadMotion_ynik2"),
+"C-player1_interact": SubResource("InputEventJoypadButton_g3vvb"),
+"C-player1_jump": SubResource("InputEventJoypadButton_ot2ei"),
+"C-player1_left": SubResource("InputEventJoypadMotion_8mkda"),
+"C-player1_right": SubResource("InputEventJoypadMotion_l0hhn"),
+"C-player1_spawn": SubResource("InputEventJoypadButton_2fwgr"),
+"C-player1_up": SubResource("InputEventJoypadMotion_cia2b"),
+"C-player1_wand": SubResource("InputEventJoypadMotion_sc2rw"),
+"C-player2_attack": SubResource("InputEventJoypadMotion_470vk"),
+"C-player2_down": SubResource("InputEventJoypadMotion_wjlj6"),
+"C-player2_interact": SubResource("InputEventJoypadButton_tnm4x"),
+"C-player2_jump": SubResource("InputEventJoypadButton_r8spv"),
+"C-player2_left": SubResource("InputEventJoypadMotion_byhq4"),
+"C-player2_right": SubResource("InputEventJoypadMotion_mxn05"),
+"C-player2_spawn": SubResource("InputEventJoypadButton_q05xb"),
+"C-player2_up": SubResource("InputEventJoypadMotion_dkmuu"),
+"C-player2_wand": SubResource("InputEventJoypadMotion_wsajw"),
+"player1_attack": SubResource("InputEventMouseButton_14s00"),
+"player1_down": SubResource("InputEventKey_rj3ha"),
+"player1_interact": SubResource("InputEventKey_kxb6j"),
+"player1_jump": SubResource("InputEventKey_q6x0g"),
+"player1_left": SubResource("InputEventKey_xcl3c"),
+"player1_right": SubResource("InputEventKey_u2ie4"),
+"player1_spawn": SubResource("InputEventKey_xc2su"),
+"player1_up": SubResource("InputEventKey_7ifcl"),
+"player1_wand": SubResource("InputEventMouseButton_pktge"),
+"player2_attack": SubResource("InputEventKey_14s00"),
+"player2_down": SubResource("InputEventKey_pktge"),
+"player2_interact": SubResource("InputEventKey_mvl37"),
+"player2_jump": SubResource("InputEventKey_qajom"),
+"player2_left": SubResource("InputEventKey_uhy02"),
+"player2_right": SubResource("InputEventKey_ir1v1"),
+"player2_spawn": SubResource("InputEventKey_8qmsb"),
+"player2_up": SubResource("InputEventKey_efeg7"),
+"player2_wand": SubResource("InputEventKey_h5hy5")
+}

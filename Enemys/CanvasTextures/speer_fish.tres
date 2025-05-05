@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://b8ko8g5qh3tiu"]
+
+[ext_resource type="Texture2D" uid="uid://dg5ohvhpqw42p" path="res://Enemys/Textures/speer_fish.png" id="1_nte6e"]
+[ext_resource type="Texture2D" uid="uid://b53tqojtg04rp" path="res://NormalMap/speer_fish_normal.png" id="2_cdld2"]
+
+[resource]
+diffuse_texture = ExtResource("1_nte6e")
+normal_texture = ExtResource("2_cdld2")

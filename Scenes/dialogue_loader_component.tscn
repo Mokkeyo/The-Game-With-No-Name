@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcqh6xyc513hf"]
+
+[ext_resource type="Script" uid="uid://kn6pe1fushc6" path="res://Scripts/dialogue_loader_component.gd" id="1_1q2u6"]
+
+[node name="DialogueLoader" type="Node2D"]
+script = ExtResource("1_1q2u6")
+npc = "shild"

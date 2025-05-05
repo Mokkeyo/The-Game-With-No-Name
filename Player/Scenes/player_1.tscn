@@ -1,0 +1,293 @@
+[gd_scene load_steps=36 format=3 uid="uid://da7p34a4g111f"]
+
+[ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
+[ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Player1/Textures/player_1_texture.tres" id="3_f5fds"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="5_g0fuf"]
+[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://c2aeevkukhjb3" path="res://Scenes/wand.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="9_6q2fa"]
+[ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="12_7suj3"]
+[ext_resource type="PackedScene" uid="uid://1s6u3oo647dn" path="res://Scenes/JumpComponent.tscn" id="14_ppsfs"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="15_2ei6y"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_kprxa"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="16_g5r0a"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="16_lq3ic"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="16_mxlaw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esn1r"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(84, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(84, 24, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l48r8"]
+atlas = ExtResource("5_g0fuf")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhvx3"]
+atlas = ExtResource("5_g0fuf")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px4ci"]
+atlas = ExtResource("5_g0fuf")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1lh4"]
+atlas = ExtResource("5_g0fuf")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxn00"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(63, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6b8b"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(105, 24, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25d23"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(105, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tbc1"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(0, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nemsl"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(21, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5w32"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(42, 0, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqklt"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(0, 24, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq3c6"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(21, 24, 21, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii6jc"]
+atlas = ExtResource("3_f5fds")
+region = Rect2(42, 24, 21, 24)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esn1r")
+}],
+"loop": true,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rheas")
+}],
+"loop": true,
+"name": &"door",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l48r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhvx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px4ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1lh4")
+}],
+"loop": false,
+"name": &"game_over",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxn00")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6b8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25d23")
+}],
+"loop": true,
+"name": &"nothing",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tbc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nemsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5w32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqklt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq3c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii6jc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 6.5
+height = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0k8br"]
+radius = 2.54951
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yajsf"]
+radius = 6.0
+height = 19.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bitc"]
+size = Vector2(12, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4w1dl"]
+size = Vector2(9, 17)
+
+[node name="Player1" type="CharacterBody2D" node_paths=PackedStringArray("resetComp") groups=["Player", "Player_0"]]
+visible = false
+light_mask = 2
+collision_layer = 2
+collision_mask = 17
+floor_constant_speed = true
+platform_floor_layers = 1
+script = ExtResource("1_y8o1x")
+resetComp = NodePath("ResetComponent")
+
+[node name="PointLight2D" parent="." instance=ExtResource("7")]
+visible = false
+position = Vector2(0, -10)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("1")
+animation = &"nothing"
+offset = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10.5)
+shape = SubResource("2")
+
+[node name="GrabZone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_6q2fa")]
+position = Vector2(0, -10)
+player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_0k8br")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("16_g5r0a")]
+visible = false
+position = Vector2(0, -10)
+collision_layer = 2
+collision_mask = 8
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("CapsuleShape2D_yajsf")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_kprxa")]
+visible = false
+position = Vector2(0, 1)
+collision_mask = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_3bitc")
+
+[node name="LavaWater_Detector" parent="." instance=ExtResource("12_7suj3")]
+visible = false
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_4w1dl")
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("15_2ei6y")]
+health = 100.0
+invisibiltyFrames = 2.0
+invisibilityComp = NodePath("../InvisibleFramesComp")
+
+[node name="Timer" type="Node" parent="."]
+
+[node name="KnockbackTimer" type="Timer" parent="Timer"]
+wait_time = 0.4
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Timer"]
+wait_time = 0.35
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timer"]
+wait_time = 0.35
+one_shot = true
+
+[node name="ManaTimer" type="Timer" parent="Timer"]
+wait_time = 4.0
+one_shot = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(-6, -11)
+rotation = 1.5708
+target_position = Vector2(0, 2)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(6, -11)
+rotation = -1.5708
+target_position = Vector2(0, 2)
+
+[node name="Sword" parent="." instance=ExtResource("9")]
+position = Vector2(7, -7)
+
+[node name="Wand" parent="." instance=ExtResource("8")]
+visible = false
+position = Vector2(-1, -6)
+
+[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
+parent = NodePath("../AnimatedSprite2D")
+
+[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
+collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
+healthComp = NodePath("../healthComponent")
+setStartPosition = false
+physics_process = true
+
+[node name="JumpComponent" parent="." node_paths=PackedStringArray("body", "waterDetector", "grabZone") instance=ExtResource("14_ppsfs")]
+body = NodePath("..")
+waterDetector = NodePath("../LavaWater_Detector")
+grabZone = NodePath("../GrabZone")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Timer/KnockbackTimer" to="." method="_on_damage_knockback_timeout"]
+[connection signal="timeout" from="Timer/JumpBufferTimer" to="." method="_on_JumpBufferTimer_timeout"]
+[connection signal="timeout" from="Timer/ManaTimer" to="." method="_on_ManaTimer_timeout"]

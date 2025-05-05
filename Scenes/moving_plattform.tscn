@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://wq7jtfjnavmo"]
+
+[ext_resource type="Texture2D" uid="uid://dicqt70nmnhc3" path="res://Objects/Textures/moving_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dh6kb7lwh1lah" path="res://NormalMap/moving_plattform_normal.png" id="2_b5tou"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends CharacterBody2D
+
+@export var move_speed: float = 2.0
+@export var move_distance: float = 50.0
+@export var move_direction: Vector2 = Vector2(1, 1)
+
+var origin: Vector2 = Vector2.ZERO
+var time_since_init: float = 0.0
+
+const pi: float = 3.14159265359
+
+func _ready() -> void:
+	origin = position
+
+func _physics_process(delta: float) -> void:
+	time_since_init += delta
+	var position_on_curve: float = sin(time_since_init * pi * move_speed)
+	var target_offset: Vector2 = move_direction * position_on_curve * move_distance
+	velocity = (origin + target_offset - position) / delta
+	
+	move_and_slide()
+"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ljeir"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("2_b5tou")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj2s0"]
+size = Vector2(40, 2)
+
+[node name="moving Plattform" type="CharacterBody2D"]
+collision_mask = 0
+platform_on_leave = 2
+platform_floor_layers = 0
+script = SubResource("1")
+move_speed = 0.5
+move_distance = 15.0
+move_direction = Vector2(1, 0)
+
+[node name="moving plattform" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_ljeir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_xj2s0")
+one_way_collision = true

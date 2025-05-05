@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bksaw43m67sj5"]
+
+[ext_resource type="Script" uid="uid://dpn1vje4i60a7" path="res://Scripts/laser.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dg3xd5igr35jg" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_tbput"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l743"]
+size = Vector2(100, 12)
+
+[node name="laser" type="RayCast2D"]
+z_as_relative = false
+target_position = Vector2(100, 0)
+script = ExtResource("1")
+
+[node name="Line2D" type="Line2D" parent="."]
+scale = Vector2(1, 1.16292)
+points = PackedVector2Array(0, 0, 100, 0)
+texture = ExtResource("2")
+texture_mode = 1
+
+[node name="Hitbox" parent="." instance=ExtResource("3_tbput")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_8l743")

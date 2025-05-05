@@ -1,0 +1,283 @@
+[gd_scene load_steps=17 format=3 uid="uid://chdt1oeflseao"]
+
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b1na4sw2c0rfe" path="res://Player/Player2/Textures/player_2.png" id="4_7vrv8"]
+[ext_resource type="Texture2D" uid="uid://be2x7gic4ldlw" path="res://GuiElements/Textures/controll_button.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://chcxj32hknkig" path="res://Player/Player1/Textures/player_1.png" id="8_riiw0"]
+[ext_resource type="Texture2D" uid="uid://dj13l3lfsijr4" path="res://GuiElements/Textures/computer.png" id="10"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="10_m2618"]
+[ext_resource type="Texture2D" uid="uid://ban3j67ih2pg3" path="res://TileMaps/Textures/arrow.png" id="11"]
+[ext_resource type="Script" uid="uid://bua0dc2p360kg" path="res://Scripts/2_player_mode_menu.gd" id="12"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.219608, 0.0980392, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muffq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmcob"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/31/0 = Vector2(0, 0)
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/31/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/31/0/kerning_overrides/31/0 = Vector2(0, 0)
+
+[node name="2PlayerMode" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("12")
+startButton = NodePath("BackButton")
+exitButton = NodePath("BackButton")
+
+[node name="Panel5" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -10.0
+offset_top = -581.0
+offset_right = 1030.0
+offset_bottom = 11.0
+
+[node name="Panel4" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = -565.0
+offset_right = 1014.0
+offset_bottom = -5.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="Panel6" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 686.0
+offset_right = 710.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_muffq")
+
+[node name="Panel7" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 318.0
+offset_right = 342.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hmcob")
+
+[node name="1Step" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 394.0
+offset_right = 321.0
+offset_bottom = 490.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("2")
+theme_override_font_sizes/normal_font_size = 22
+text = " 1. Step:
+ get a friend to play with"
+
+[node name="2Step" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 393.0
+offset_right = 691.0
+offset_bottom = 553.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("3")
+theme_override_font_sizes/normal_font_size = 22
+text = " 2. Step:
+ Press the \"Spawn\" button 
+ on your controller or
+ Keyboard to spawn into the 
+ action (look controlls)"
+
+[node name="3Step" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 703.0
+offset_top = 394.0
+offset_right = 1023.0
+offset_bottom = 562.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = SubResource("4")
+theme_override_font_sizes/normal_font_size = 22
+text = " 3. Step
+ if you die, you can 
+ respawn after 5sec, by
+ pressing the \"Spawn\" 
+ button"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 5.0
+offset_right = 1014.0
+offset_bottom = 58.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("5")
+theme_override_font_sizes/font_size = 31
+text = "Every game is more     fun with a friend      to play with  :D"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Node2D" parent="."]
+position = Vector2(0, 566)
+
+[node name="Computer" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(160, -316.5)
+scale = Vector2(9, 9)
+texture = ExtResource("10")
+
+[node name="Spieler2(Ver4)" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(800, -416)
+scale = Vector2(5, 5)
+texture = ExtResource("4_7vrv8")
+hframes = 6
+vframes = 2
+frame = 11
+
+[node name="Die 4" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(920, -413)
+scale = Vector2(8, 8)
+texture = ExtResource("4")
+hframes = 4
+
+[node name="controll_button2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(72, -212)
+scale = Vector2(4, 4)
+texture = ExtResource("8")
+
+[node name="controll_button" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(864, -258)
+scale = Vector2(8, 8)
+texture = ExtResource("8")
+
+[node name="controll_button3" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(232, -197)
+scale = Vector2(5, 5)
+texture = ExtResource("8")
+
+[node name="controll_button4" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(496, -252)
+scale = Vector2(8, 8)
+texture = ExtResource("8")
+
+[node name="Arrow" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(854, -322)
+rotation = -2.59705
+scale = Vector2(5, 5)
+texture = ExtResource("11")
+offset = Vector2(0, 2.46224)
+
+[node name="Arrow2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(492, -328)
+rotation = -2.59705
+scale = Vector2(5, 5)
+texture = ExtResource("11")
+
+[node name="Spieler2(Ver4)fall" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(544, -418)
+scale = Vector2(5, 5)
+texture = ExtResource("4_7vrv8")
+hframes = 6
+vframes = 2
+frame = 4
+
+[node name="Spieler(Ver4)Door_enter" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(432, -418)
+scale = Vector2(5, 5)
+texture = ExtResource("8_riiw0")
+hframes = 6
+vframes = 2
+frame = 10
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="BackButton" parent="." instance=ExtResource("10_m2618")]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 471.0
+offset_right = 185.0
+offset_bottom = 535.0
+text = "Back"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

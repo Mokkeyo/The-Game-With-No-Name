@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://dnn3qgdu47lbs"]
+
+[ext_resource type="Texture2D" uid="uid://bvdhlmbf0d0wv" path="res://Player/Textures/ghost_pet.png" id="1_vkp8m"]
+[ext_resource type="Texture2D" uid="uid://b77fvea22qdw" path="res://NormalMap/ghost_pet_normal.png" id="2_yft1e"]
+
+[resource]
+diffuse_texture = ExtResource("1_vkp8m")
+normal_texture = ExtResource("2_yft1e")

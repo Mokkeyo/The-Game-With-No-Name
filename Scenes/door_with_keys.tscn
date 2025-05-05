@@ -1,0 +1,339 @@
+[gd_scene load_steps=16 format=3 uid="uid://dphwcm2lteg07"]
+
+[ext_resource type="Texture2D" uid="uid://c4mgbbjlbqsx1" path="res://PathToNewLevelObjects/Textures/door_with_keys.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cjyus6rp6ao0s" path="res://PathToNewLevelObjects/Textures/key_spinned.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dju0h154qnqwy" path="res://PathToNewLevelObjects/Textures/key.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cd5d78tyhy3cd" path="res://NormalMap/door_with_keys_normal.png" id="3_j6bfr"]
+[ext_resource type="Script" uid="uid://si78hb8s0lei" path="res://Scripts/door_with_keys.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="7_0hl4c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_28mx3"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_j6bfr")
+
+[sub_resource type="Animation" id="Animation_674fr"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_With_Keys/Schlüssel(gedreht):position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door_With_Keys/Schlüssel(gedreht):position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-13, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Door_With_Keys/Schlüssel(gedreht):rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="1"]
+resource_name = "turn_key"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-13, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Door_With_Keys/Schlüssel(gedreht):position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Door_With_Keys/Schlüssel(gedreht):position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Door_With_Keys/Schlüssel(gedreht)2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Door_With_Keys/Schlüssel(gedreht)3:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Door_With_Keys/Schlüssel(gedreht):rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yyyq6"]
+_data = {
+&"RESET": SubResource("Animation_674fr"),
+&"turn_key": SubResource("1")
+}
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 3.0
+height = 9.0
+
+[sub_resource type="CapsuleShape2D" id="3"]
+radius = 3.0
+height = 9.0
+
+[sub_resource type="CapsuleShape2D" id="4"]
+radius = 3.0
+height = 9.0
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(6, 38)
+
+[node name="DoorWithKey" type="Node2D" groups=["Door"]]
+script = ExtResource("4")
+
+[node name="Door_With_Keys" type="Sprite2D" parent="."]
+position = Vector2(0, -22)
+texture = SubResource("CanvasTexture_28mx3")
+
+[node name="Schlüssel(gedreht)" type="Sprite2D" parent="Door_With_Keys"]
+visible = false
+position = Vector2(12, -12)
+texture = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="Schlüssel(gedreht)2" type="Sprite2D" parent="Door_With_Keys"]
+visible = false
+position = Vector2(-12, -12)
+texture = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="Schlüssel(gedreht)3" type="Sprite2D" parent="Door_With_Keys"]
+visible = false
+position = Vector2(0, -13)
+texture = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yyyq6")
+}
+
+[node name="Schlüssel" type="Sprite2D" parent="."]
+position = Vector2(-30, -35)
+texture = ExtResource("3")
+
+[node name="Area2D" type="Area2D" parent="Schlüssel"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Schlüssel/Area2D"]
+position = Vector2(-1.5, -2.5)
+shape = SubResource("2")
+metadata/_edit_lock_ = true
+
+[node name="Schlüssel2" type="Sprite2D" parent="."]
+position = Vector2(-28, -9)
+texture = ExtResource("3")
+
+[node name="Area2D2" type="Area2D" parent="Schlüssel2"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Schlüssel2/Area2D2"]
+position = Vector2(-1.5, -2.5)
+shape = SubResource("3")
+metadata/_edit_lock_ = true
+
+[node name="Schlüssel3" type="Sprite2D" parent="."]
+position = Vector2(34, -37)
+texture = ExtResource("3")
+
+[node name="Area2D3" type="Area2D" parent="Schlüssel3"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Schlüssel3/Area2D3"]
+position = Vector2(-1.5, -2.5)
+shape = SubResource("4")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -19)
+shape = SubResource("5")
+
+[node name="Ping" parent="." instance=ExtResource("5")]
+position = Vector2(0.5, -45)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("7_0hl4c")]
+marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="Schlüssel/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Schlüssel2/Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="Schlüssel3/Area2D3" to="." method="_on_Area2D3_body_entered"]

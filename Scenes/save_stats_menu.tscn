@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=3 uid="uid://t6hg547nwsd6"]
+
+[ext_resource type="Script" uid="uid://bm3q1m66y457b" path="res://Scripts/save_stats_menu.gd" id="1_q7khg"]
+[ext_resource type="PackedScene" uid="uid://btywad8nch0tx" path="res://Scenes/save_stat.tscn" id="2_itox8"]
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="3_nedyd"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="6_vxfum"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="8_jcprx"]
+
+[sub_resource type="FontFile" id="37"]
+fallbacks = Array[Font]([ExtResource("3_nedyd")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/80/0 = Vector2(0, 0)
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+cache/0/80/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/80/0/kerning_overrides/80/0 = Vector2(0, 0)
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etpa8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0ixx"]
+bg_color = Color(0.419608, 0.172549, 0.0156863, 1)
+
+[node name="SaveStats" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("1_q7khg")
+startButton = NodePath("SaveStat1")
+exitButton = NodePath("BackButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 1024.0
+offset_bottom = 98.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("37")
+theme_override_font_sizes/font_size = 64
+text = "Choose a file"
+horizontal_alignment = 1
+
+[node name="SaveStat1" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 80.0
+offset_right = 484.0
+offset_bottom = 297.0
+saveState = 1
+menu = NodePath("..")
+
+[node name="SaveStat2" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 80.0
+offset_right = 980.0
+offset_bottom = 297.0
+saveState = 2
+menu = NodePath("..")
+
+[node name="SaveStat3" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 300.0
+offset_right = 484.0
+offset_bottom = 517.0
+saveState = 3
+menu = NodePath("..")
+
+[node name="SaveStat4" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 300.0
+offset_right = 980.0
+offset_bottom = 517.0
+saveState = 4
+menu = NodePath("..")
+
+[node name="BackButton" parent="." instance=ExtResource("6_vxfum")]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 520.0
+offset_right = 608.0
+offset_bottom = 568.0
+text = "Back"
+
+[node name="NameEnterer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="NameEnterer"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 960.0
+offset_bottom = 528.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etpa8")
+
+[node name="Panel2" type="Panel" parent="NameEnterer"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 88.0
+offset_right = 952.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o0ixx")
+
+[node name="LineEdit" type="LineEdit" parent="NameEnterer"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 344.0
+offset_right = 648.0
+offset_bottom = 394.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_jcprx")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter  Here"
+alignment = 1
+max_length = 10
+
+[node name="Label" type="Label" parent="NameEnterer"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 176.0
+offset_right = 952.0
+offset_bottom = 281.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_jcprx")
+theme_override_font_sizes/font_size = 80
+text = "Enter a Name"
+horizontal_alignment = 1
+
+[connection signal="text_changed" from="NameEnterer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="NameEnterer/LineEdit" to="." method="_on_line_edit_text_submitted"]

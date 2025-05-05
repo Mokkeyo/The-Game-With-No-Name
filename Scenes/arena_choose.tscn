@@ -1,0 +1,175 @@
+[gd_scene load_steps=17 format=3 uid="uid://b323pi7cpo560"]
+
+[ext_resource type="Texture2D" uid="uid://bxt3tkc8pyr5d" path="res://GuiElements/Textures/rahmen_m_focused.png" id="1_3kqsa"]
+[ext_resource type="Script" uid="uid://ditqvdvfd8q44" path="res://Scripts/arena_choose.gd" id="1_dfqf7"]
+[ext_resource type="Texture2D" uid="uid://c53isaac7yjwv" path="res://GuiElements/Textures/rahmen_m_unfocused.png" id="2_kri5d"]
+[ext_resource type="Texture2D" uid="uid://dpv0aawodtx3j" path="res://Arena/Textures/arena_1.png" id="3_upvkj"]
+[ext_resource type="FontFile" uid="uid://xo3p6l5s5qqj" path="res://Font/Robus-BWqOd.otf" id="4_4m8yr"]
+[ext_resource type="Texture2D" uid="uid://cghjolpoe48mg" path="res://Arena/Textures/arrow_unpressed.png" id="5_b5yyt"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="6_l0d4u"]
+[ext_resource type="PackedScene" uid="uid://8ecrcakuunjn" path="res://Scenes/battle_ready.tscn" id="8_veym4"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="9_344hg"]
+
+[sub_resource type="StyleBoxTexture" id="40"]
+texture = ExtResource("1_3kqsa")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="41"]
+texture = ExtResource("2_kri5d")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="38"]
+texture = ExtResource("2_kri5d")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="39"]
+texture = ExtResource("2_kri5d")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="StyleBoxTexture" id="42"]
+texture = ExtResource("2_kri5d")
+region_rect = Rect2(0, 0, 30, 20)
+
+[sub_resource type="FontFile" id="85"]
+fallbacks = Array[Font]([ExtResource("6_l0d4u")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/60/0 = Vector2(0, 0)
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/60/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/60/0/kerning_overrides/60/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="49"]
+fallbacks = Array[Font]([ExtResource("4_4m8yr")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/120/0 = Vector2(0, 0)
+cache/0/120/0/ascent = 0.0
+cache/0/120/0/descent = 0.0
+cache/0/120/0/underline_position = 0.0
+cache/0/120/0/underline_thickness = 0.0
+cache/0/120/0/scale = 1.0
+cache/0/120/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/120/0/kerning_overrides/120/0 = Vector2(0, 0)
+
+[node name="ArenaChoose" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("1_dfqf7")
+startButton = NodePath("Arena_1")
+exitButton = NodePath("Back")
+
+[node name="Arena_1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 83.0
+offset_right = 770.0
+offset_bottom = 383.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ToRules")
+mouse_filter = 2
+theme_override_styles/focus = SubResource("40")
+theme_override_styles/disabled = SubResource("41")
+theme_override_styles/hover = SubResource("38")
+theme_override_styles/pressed = SubResource("39")
+theme_override_styles/normal = SubResource("42")
+
+[node name="Arena" type="Sprite2D" parent="Arena_1"]
+position = Vector2(257, 150)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_upvkj")
+
+[node name="Label" type="Label" parent="Arena_1"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 46.0
+offset_right = 364.0
+offset_bottom = 125.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = SubResource("85")
+theme_override_font_sizes/font_size = 60
+text = "Arena 1"
+
+[node name="richtung_left" type="Sprite2D" parent="Arena_1"]
+position = Vector2(-65, 148)
+scale = Vector2(4, 4)
+texture = ExtResource("5_b5yyt")
+flip_h = true
+
+[node name="richtung_right" type="Sprite2D" parent="Arena_1"]
+position = Vector2(577, 152)
+scale = Vector2(4, 4)
+texture = ExtResource("5_b5yyt")
+
+[node name="Choose_A_Arena" type="Label" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = -35.0
+offset_right = 794.0
+offset_bottom = 86.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("49")
+theme_override_font_sizes/font_size = 120
+text = "Choose a arena"
+
+[node name="ToRules" parent="." instance=ExtResource("9_344hg")]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 392.0
+offset_right = 664.0
+offset_bottom = 480.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Arena_1")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Back")
+text = "Rules"
+
+[node name="Back" parent="." instance=ExtResource("9_344hg")]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 496.0
+offset_right = 592.0
+offset_bottom = 560.0
+focus_neighbor_left = NodePath("../ToRules")
+focus_neighbor_top = NodePath("../Arena_1")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
+
+[node name="BattleReady" parent="." node_paths=PackedStringArray("arena_choose") instance=ExtResource("8_veym4")]
+visible = false
+arena_choose = NodePath("..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="focus_entered" from="Arena_1" to="." method="_on_arena_1_focus_entered"]
+[connection signal="focus_exited" from="Arena_1" to="." method="_on_arena_1_focus_exited"]
+[connection signal="pressed" from="Arena_1" to="." method="_on_arena_1_pressed"]
+[connection signal="pressed" from="ToRules" to="." method="_on_to_rules_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

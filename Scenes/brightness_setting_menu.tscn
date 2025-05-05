@@ -1,0 +1,381 @@
+[gd_scene load_steps=21 format=3 uid="uid://cnqu4ye8a2lsn"]
+
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="2"]
+[ext_resource type="Script" uid="uid://bovrxtiqjqmul" path="res://Scripts/brightness_setting_menu.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://b1na4sw2c0rfe" path="res://Player/Player2/Textures/player_2.png" id="5_t7u30"]
+[ext_resource type="Texture2D" uid="uid://chcxj32hknkig" path="res://Player/Player1/Textures/player_1.png" id="7_adxf7"]
+[ext_resource type="Texture2D" uid="uid://drn2i0c50ejjf" path="res://Player/Textures/player_lightmap.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bkgumtlm8jk32" path="res://GuiElements/Textures/slider_focused_button.png" id="10"]
+[ext_resource type="StyleBox" uid="uid://cfh8dgxoaerqx" path="res://GuiElements/SytleBoxTexture/focused_rahmen.tres" id="10_iodmc"]
+[ext_resource type="Texture2D" uid="uid://rdsokng1mqft" path="res://GuiElements/Textures/slider_unfocused_button.png" id="11"]
+[ext_resource type="StyleBox" uid="uid://djec3voccpsp8" path="res://GuiElements/SytleBoxTexture/unfocused_rahmen.tres" id="11_urcho"]
+[ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="12_r4c8r"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.219608, 0.0980392, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yylap"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontFile" id="11"]
+fallbacks = Array[Font]([ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="12"]
+fallbacks = Array[Font]([ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/487/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/487/0/ascent = 0.0
+cache/0/487/0/descent = 0.0
+cache/0/487/0/underline_position = 0.0
+cache/0/487/0/underline_thickness = 0.0
+cache/0/487/0/scale = 1.0
+cache/0/487/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/487/0/kerning_overrides/487/0 = Vector2(0, 0)
+cache/0/487/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/487/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="13"]
+fallbacks = Array[Font]([ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="14"]
+fallbacks = Array[Font]([ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[node name="Brightness" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4")
+startButton = NodePath("CheckButton")
+exitButton = NodePath("menu_button")
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1202.0
+offset_top = 186.0
+offset_right = 1870.0
+offset_bottom = 566.0
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 16.0
+offset_right = 2040.0
+offset_bottom = 584.0
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1032.0
+offset_top = 24.0
+offset_right = 2032.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="bright" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1224.0
+offset_top = 70.0
+offset_right = 1856.0
+offset_bottom = 90.0
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../CheckButton")
+theme_override_icons/grabber = ExtResource("11")
+theme_override_icons/grabber_highlight = ExtResource("10")
+theme_override_icons/grabber_disabled = ExtResource("11")
+theme_override_icons/tick = ExtResource("11")
+min_value = 150.0
+max_value = 250.0
+step = 10.0
+value = 200.0
+exp_edit = true
+rounded = true
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1208.0
+offset_top = 192.0
+offset_right = 1864.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 957.0
+offset_top = 25.0
+offset_right = 2062.0
+offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 26
+text = "Turn the brightness so, that you can barely see the right Person"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 1446.0
+offset_top = 91.0
+offset_right = 1678.0
+offset_bottom = 141.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../bright")
+focus_neighbor_right = NodePath(".")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 32
+text = "Darkness"
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Spieler2(Ver4)" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 0.784314)
+position = Vector2(1720, 368)
+scale = Vector2(10, 10)
+texture = ExtResource("5_t7u30")
+flip_h = true
+hframes = 6
+vframes = 2
+frame = 11
+
+[node name="Spieler2(lightmap)" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+position = Vector2(1720, 368)
+scale = Vector2(10, 10)
+texture = ExtResource("8")
+flip_h = true
+
+[node name="Spieler(Ver4)" type="Sprite2D" parent="Sprites"]
+position = Vector2(1376, 368)
+scale = Vector2(10, 10)
+texture = ExtResource("7_adxf7")
+hframes = 6
+vframes = 2
+frame = 11
+
+[node name="lightmap" parent="Sprites" instance=ExtResource("12")]
+modulate = Color(0, 0, 0, 0.862745)
+position = Vector2(1208, 192)
+scale = Vector2(46.8572, 26.2857)
+
+[node name="TurnDarknessOff" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel4" type="Panel" parent="TurnDarknessOff"]
+layout_mode = 0
+offset_left = 1208.0
+offset_top = 192.0
+offset_right = 1864.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yylap")
+
+[node name="Label2" type="RichTextLabel" parent="TurnDarknessOff"]
+layout_mode = 0
+offset_left = 1220.0
+offset_top = 260.0
+offset_right = 1868.0
+offset_bottom = 446.0
+theme_override_colors/font_outline_color = Color(0.396078, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = SubResource("11")
+theme_override_font_sizes/normal_font_size = 32
+text = " This setting is essential for the 
+ games felling and a essential part
+ of the game design. so only turn it 
+ off when its really bothering you "
+
+[node name="Label3" type="Label" parent="TurnDarknessOff"]
+layout_mode = 0
+offset_left = 1208.0
+offset_top = 208.0
+offset_right = 1864.0
+offset_bottom = 256.0
+theme_override_colors/font_outline_color = Color(0.427451, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("12")
+theme_override_font_sizes/font_size = 48
+text = "Warning !!!"
+horizontal_alignment = 1
+
+[node name="TurnOn" type="Button" parent="TurnDarknessOff"]
+layout_mode = 0
+offset_left = 1332.0
+offset_top = 464.0
+offset_right = 1506.0
+offset_bottom = 528.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../TurnOff")
+focus_neighbor_bottom = NodePath(".")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("13")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("10_iodmc")
+theme_override_styles/disabled = ExtResource("11_urcho")
+theme_override_styles/hover_pressed = ExtResource("11_urcho")
+theme_override_styles/hover = ExtResource("11_urcho")
+theme_override_styles/pressed = ExtResource("11_urcho")
+theme_override_styles/normal = ExtResource("11_urcho")
+text = "Stay On"
+
+[node name="TurnOff" type="Button" parent="TurnDarknessOff"]
+layout_mode = 0
+offset_left = 1566.0
+offset_top = 464.0
+offset_right = 1740.0
+offset_bottom = 528.0
+focus_neighbor_left = NodePath("../TurnOn")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("10_iodmc")
+theme_override_styles/disabled = ExtResource("11_urcho")
+theme_override_styles/hover_pressed = ExtResource("11_urcho")
+theme_override_styles/hover = ExtResource("11_urcho")
+theme_override_styles/pressed = ExtResource("11_urcho")
+theme_override_styles/normal = ExtResource("11_urcho")
+text = "Turn Off"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="menu_button" parent="." instance=ExtResource("12_r4c8r")]
+layout_mode = 0
+offset_left = 1453.0
+offset_top = 143.0
+offset_right = 1659.0
+offset_bottom = 185.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Finish"
+
+[connection signal="value_changed" from="bright" to="." method="_on_bright_value_changed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="TurnDarknessOff/TurnOn" to="." method="_on_TurnOn_pressed"]
+[connection signal="pressed" from="TurnDarknessOff/TurnOff" to="." method="_on_TurnOff_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

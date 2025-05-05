@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqyq6pohl8ehg"]
+
+[ext_resource type="Script" uid="uid://6i7dskjocwql" path="res://Scripts/bullet.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://globi1p5gtik" path="res://Objects/Textures/bullet.png" id="2_hmh2x"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_vod8l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2d0fe"]
+radius = 5.0
+
+[node name="Bullet" type="Node2D"]
+z_as_relative = false
+script = ExtResource("2")
+
+[node name="bullet" type="Sprite2D" parent="."]
+position = Vector2(-0.470613, 0.002083)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hmh2x")
+hframes = 3
+
+[node name="Hitbox" parent="." instance=ExtResource("3_vod8l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_2d0fe")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

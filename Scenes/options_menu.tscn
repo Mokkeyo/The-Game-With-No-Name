@@ -1,0 +1,347 @@
+[gd_scene load_steps=22 format=3 uid="uid://dy1fgoh5bt2i6"]
+
+[ext_resource type="Texture2D" uid="uid://bkgumtlm8jk32" path="res://GuiElements/Textures/slider_focused_button.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://rdsokng1mqft" path="res://GuiElements/Textures/slider_unfocused_button.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://cgrt6qaa8f5dv" path="res://GuiElements/menu_optionbutton.tscn" id="5_2iq7d"]
+[ext_resource type="PackedScene" uid="uid://cdvs7u2cs6qmr" path="res://GuiElements/menu_label.tscn" id="5_aimb4"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="6_e8upl"]
+[ext_resource type="Script" uid="uid://bfntw7txyx66s" path="res://Scripts/options_menu.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://cnqu4ye8a2lsn" path="res://Scenes/brightness_setting_menu.tscn" id="9"]
+[ext_resource type="Script" uid="uid://mhsfdauy4jj" path="res://Scripts/fullscreen_button.gd" id="10_uwmkc"]
+[ext_resource type="Script" uid="uid://bwjcbvje23eo1" path="res://Scripts/resolution_option_button.gd" id="11_2lnsa"]
+[ext_resource type="ButtonGroup" uid="uid://ch7t8s6rjlnyd" path="res://ButtonGroup/OptionButtonGroup.tres" id="12"]
+[ext_resource type="Script" uid="uid://b3hrokuxsfanl" path="res://Scripts/max_fps_button.gd" id="12_1fbch"]
+[ext_resource type="PackedScene" uid="uid://oyiue23v8dul" path="res://GuiElements/menu_checkbox.tscn" id="14_1g7v3"]
+[ext_resource type="Script" uid="uid://uxwecagrliec" path="res://Scripts/volume_slider.gd" id="14_eatxe"]
+[ext_resource type="Texture2D" uid="uid://4kc52vt5j21h" path="res://Button/Playstation/Joypad Button 10 (Right Shoulder, Sony R1, Xbox RB).png" id="16_38e0f"]
+[ext_resource type="Script" uid="uid://cdllrydt48nuk" path="res://Scripts/vsync_button.gd" id="17_etax8"]
+[ext_resource type="Texture2D" uid="uid://c5doft57b41ub" path="res://Button/Playstation/Joypad Button 9 (Left Shoulder, Sony L1, Xbox LB).png" id="17_npo1y"]
+[ext_resource type="Script" uid="uid://biupomnaxfjka" path="res://Scripts/print_fps_button.gd" id="18_motc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isntc"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_gesnm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_bopkt"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_xe16v"]
+
+[node name="Options" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("8")
+group = ExtResource("12")
+startButton = NodePath("GrafikOptions/BrightnessButton")
+exitButton = NodePath("BackButton")
+
+[node name="BackButton" parent="." instance=ExtResource("6_e8upl")]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 444.0
+offset_right = 752.0
+offset_bottom = 520.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "<---"
+
+[node name="BackLabel" parent="." instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 464.0
+offset_right = 528.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 48
+text = "Back"
+
+[node name="Panel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -935.0
+offset_top = 70.0
+offset_right = -895.0
+offset_bottom = 110.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 1047.0
+offset_top = 51.0
+offset_right = 1847.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_isntc")
+
+[node name="GrafikButton" parent="Panel" instance=ExtResource("6_e8upl")]
+layout_mode = 0
+offset_left = 1191.0
+offset_top = -22.0
+offset_right = 1351.0
+offset_bottom = 38.0
+focus_neighbor_left = NodePath(".")
+disabled = true
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_gesnm")
+text = "Video"
+
+[node name="SoundButton" parent="Panel" instance=ExtResource("6_e8upl")]
+layout_mode = 0
+offset_left = 1367.0
+offset_top = -22.0
+offset_right = 1527.0
+offset_bottom = 38.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bopkt")
+text = "Sound
+"
+
+[node name="EtcButton" parent="Panel" instance=ExtResource("6_e8upl")]
+layout_mode = 0
+offset_left = 1543.0
+offset_top = -22.0
+offset_right = 1703.0
+offset_bottom = 38.0
+focus_neighbor_right = NodePath(".")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_xe16v")
+text = "etc
+"
+
+[node name="JoypadButton10(rightShoulder,SonyR1,XboxRb)" type="Sprite2D" parent="Panel"]
+position = Vector2(1751, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("16_38e0f")
+
+[node name="JoypadButton9(leftShoulder,SonyL1,XboxLb)" type="Sprite2D" parent="Panel"]
+position = Vector2(1143, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("17_npo1y")
+
+[node name="GrafikOptions" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 70.0
+offset_right = 72.0
+offset_bottom = 110.0
+
+[node name="BrightnessLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 102.0
+offset_right = 492.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 48
+text = "Brigthness"
+
+[node name="BrightnessButton" parent="GrafikOptions" instance=ExtResource("6_e8upl")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 82.0
+offset_right = 720.0
+offset_bottom = 158.0
+text = "<---"
+
+[node name="FullscreenLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 198.0
+offset_right = 496.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 48
+text = "Fullscreen"
+
+[node name="FullscreenButton" parent="GrafikOptions" instance=ExtResource("14_1g7v3")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 178.0
+offset_right = 720.0
+offset_bottom = 254.0
+script = ExtResource("10_uwmkc")
+
+[node name="ResolutionLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 294.0
+offset_right = 496.0
+offset_bottom = 342.0
+theme_override_font_sizes/font_size = 48
+text = "Resolution"
+
+[node name="ResolutionButton" parent="GrafikOptions" instance=ExtResource("5_2iq7d")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 274.0
+offset_right = 720.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 25
+script = ExtResource("11_2lnsa")
+
+[node name="SoundOptions" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 31.0
+offset_right = 49.0
+offset_bottom = 71.0
+
+[node name="MaxLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 137.0
+offset_right = 327.0
+offset_bottom = 201.0
+theme_override_font_sizes/font_size = 48
+text = "Max"
+
+[node name="MaxSlider" type="HSlider" parent="SoundOptions"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 146.0
+offset_right = 735.0
+offset_bottom = 166.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+theme_override_icons/grabber = ExtResource("5")
+theme_override_icons/grabber_highlight = ExtResource("2")
+theme_override_icons/grabber_disabled = ExtResource("5")
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("14_eatxe")
+volume = 2
+
+[node name="SFXLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 232.0
+offset_right = 327.0
+offset_bottom = 296.0
+theme_override_font_sizes/font_size = 48
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SoundOptions"]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 234.0
+offset_right = 735.0
+offset_bottom = 271.0
+theme_override_icons/grabber = ExtResource("5")
+theme_override_icons/grabber_highlight = ExtResource("2")
+theme_override_icons/grabber_disabled = ExtResource("5")
+max_value = 0.1
+step = 0.01
+value = 0.1
+script = ExtResource("14_eatxe")
+volume = 1
+
+[node name="MusicLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 326.0
+offset_right = 327.0
+offset_bottom = 390.0
+theme_override_font_sizes/font_size = 48
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SoundOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.032
+anchor_bottom = 2.0
+offset_left = 357.0
+offset_top = 336.0
+offset_right = 693.72
+offset_bottom = 276.0
+theme_override_icons/grabber = ExtResource("5")
+theme_override_icons/grabber_highlight = ExtResource("2")
+theme_override_icons/grabber_disabled = ExtResource("5")
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_on_borders = true
+script = ExtResource("14_eatxe")
+
+[node name="EtcOptions" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 70.0
+offset_right = 72.0
+offset_bottom = 110.0
+
+[node name="VsyncLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 102.0
+offset_right = 493.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 48
+text = "V-sync"
+
+[node name="VsyncButton" parent="EtcOptions" instance=ExtResource("14_1g7v3")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 82.0
+offset_right = 720.0
+offset_bottom = 158.0
+script = ExtResource("17_etax8")
+
+[node name="MaxFpsLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 198.0
+offset_right = 497.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 48
+text = "Max Fps"
+
+[node name="MaxFpsButton" parent="EtcOptions" instance=ExtResource("5_2iq7d")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 178.0
+offset_right = 720.0
+offset_bottom = 254.0
+script = ExtResource("12_1fbch")
+
+[node name="PrintFpsLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 294.0
+offset_right = 497.0
+offset_bottom = 342.0
+theme_override_font_sizes/font_size = 48
+text = "Print Fps"
+
+[node name="PrintFpsButton" parent="EtcOptions" instance=ExtResource("14_1g7v3")]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 274.0
+offset_right = 720.0
+offset_bottom = 350.0
+script = ExtResource("18_motc5")
+
+[node name="Brightness" parent="." instance=ExtResource("9")]
+visible = false
+offset_left = -1020.0
+offset_top = -12.0
+offset_right = -980.0
+offset_bottom = 28.0
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="pressed" from="Panel/GrafikButton" to="." method="_on_grafik_button_pressed"]
+[connection signal="pressed" from="Panel/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="Panel/EtcButton" to="." method="_on_etc_button_pressed"]
+[connection signal="pressed" from="GrafikOptions/BrightnessButton" to="." method="_on_brightness_button_pressed"]
+[connection signal="toggled" from="GrafikOptions/FullscreenButton" to="GrafikOptions/FullscreenButton" method="_on_toggled"]
+[connection signal="item_selected" from="GrafikOptions/ResolutionButton" to="GrafikOptions/ResolutionButton" method="_on_item_selected"]
+[connection signal="value_changed" from="SoundOptions/MaxSlider" to="SoundOptions/MaxSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SoundOptions/SFXSlider" to="SoundOptions/SFXSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SoundOptions/MusicSlider" to="SoundOptions/MusicSlider" method="_on_value_changed"]
+[connection signal="toggled" from="EtcOptions/VsyncButton" to="EtcOptions/VsyncButton" method="_on_toggled"]
+[connection signal="item_selected" from="EtcOptions/MaxFpsButton" to="EtcOptions/MaxFpsButton" method="_on_item_selected"]
+[connection signal="toggled" from="EtcOptions/PrintFpsButton" to="EtcOptions/PrintFpsButton" method="_on_toggled"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

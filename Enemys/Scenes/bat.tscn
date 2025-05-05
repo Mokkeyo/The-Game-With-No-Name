@@ -1,0 +1,205 @@
+[gd_scene load_steps=24 format=3 uid="uid://834mkf0t3knb"]
+
+[ext_resource type="Texture2D" uid="uid://5pgbj8qljedg" path="res://Enemys/CanvasTextures/bat.tres" id="2_0loop"]
+[ext_resource type="Script" uid="uid://dblghccaet81c" path="res://Enemys/Scripts/bat.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_pejrr"]
+[ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_cvypo"]
+[ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="9_p1qei"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="10_0jo47"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="10_5kiuv"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="11_7eflq"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="12_ek4ux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b08is"]
+atlas = ExtResource("2_0loop")
+region = Rect2(0, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aw0i"]
+atlas = ExtResource("2_0loop")
+region = Rect2(33, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q21qr"]
+atlas = ExtResource("3_pejrr")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iekl"]
+atlas = ExtResource("3_pejrr")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ra2i"]
+atlas = ExtResource("3_pejrr")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spl7n"]
+atlas = ExtResource("3_pejrr")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b08is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aw0i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q21qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iekl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ra2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spl7n")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="6"]
+size = Vector2(28, 13)
+
+[sub_resource type="Animation" id="Animation_i3i0h"]
+resource_name = "Damage"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bat:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.470588, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bat:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bat:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bat:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pf10q"]
+_data = {
+&"Damage": SubResource("Animation_i3i0h")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uw242"]
+radius = 140.057
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00unu"]
+radius = 5.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3pgo"]
+radius = 5.89303
+height = 28.0517
+
+[node name="bat" type="CharacterBody2D"]
+z_index = 3
+collision_layer = 4
+collision_mask = 0
+platform_floor_layers = 0
+script = ExtResource("3")
+SPEED = 10
+
+[node name="bat" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 16384
+position = Vector2(0, 1.5)
+shape = SubResource("6")
+disabled = true
+
+[node name="HPBar" parent="." instance=ExtResource("9")]
+offset_left = -7.0
+offset_top = -12.0
+offset_right = 7.0
+offset_bottom = -8.0
+
+[node name="DamagePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pf10q")
+}
+
+[node name="PlayerDetector" parent="." instance=ExtResource("9_p1qei")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_uw242")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("10_5kiuv")]
+visible = false
+collision_mask = 2
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_00unu")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("11_7eflq")]
+visible = false
+collision_layer = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.0258508, 2.10697)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k3pgo")
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar", "invisibilityComp") instance=ExtResource("12_ek4ux")]
+hpBar = NodePath("../HPBar")
+invisibilityComp = NodePath("../InvisibleFramesComp")
+invisibiltyFrames = 0.1
+
+[node name="EnemyResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_cvypo")]
+collisions = [NodePath("../CollisionShape2D"), NodePath("../PlayerDetector/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D")]
+hpBar = NodePath("../HPBar")
+healthComp = NodePath("../healthComponent")
+physics_process = true
+
+[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("10_0jo47")]
+parent = NodePath("../bat")
+
+[connection signal="animation_finished" from="bat" to="." method="_on_bat_animation_finished"]

@@ -1,0 +1,218 @@
+[gd_scene load_steps=8 format=3 uid="uid://e8m2ret5vmxf"]
+
+[ext_resource type="Script" uid="uid://gada3fw7l6xn" path="res://Scripts/rules.gd" id="1_ttrm5"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="4_1s5ho"]
+[ext_resource type="Texture2D" uid="uid://cghjolpoe48mg" path="res://Arena/Textures/arrow_unpressed.png" id="5_f6c5y"]
+[ext_resource type="PackedScene" uid="uid://cvbhirfwanijc" path="res://Scenes/weapon_choose_menu.tscn" id="6_rjita"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="8_xogaa"]
+
+[sub_resource type="FontFile" id="60"]
+fallbacks = Array[Font]([ExtResource("4_1s5ho")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/72/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/72/0/kerning_overrides/72/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+
+[sub_resource type="FontFile" id="61"]
+fallbacks = Array[Font]([ExtResource("4_1s5ho")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/128/0 = Vector2(0, 0)
+cache/0/128/0/ascent = 0.0
+cache/0/128/0/descent = 0.0
+cache/0/128/0/underline_position = 0.0
+cache/0/128/0/underline_thickness = 0.0
+cache/0/128/0/scale = 1.0
+cache/0/128/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/128/0/kerning_overrides/128/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/96/0/ascent = 0.0
+cache/0/96/0/descent = 0.0
+cache/0/96/0/underline_position = 0.0
+cache/0/96/0/underline_thickness = 0.0
+cache/0/96/0/scale = 1.0
+
+[node name="Rules" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("1_ttrm5")
+startButton = NodePath("Hitpoints")
+exitButton = NodePath("Back")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Hitpoints" parent="." instance=ExtResource("8_xogaa")]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 40.0
+offset_right = 712.0
+offset_bottom = 168.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+
+[node name="Hitpoints" type="Label" parent="Hitpoints"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 408.0
+offset_bottom = 80.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_1s5ho")
+theme_override_font_sizes/font_size = 48
+text = "Hitpoints"
+horizontal_alignment = 1
+
+[node name="Number" type="Label" parent="Hitpoints"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 408.0
+offset_bottom = 120.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("60")
+theme_override_font_sizes/font_size = 48
+text = "10"
+horizontal_alignment = 1
+
+[node name="richtung_right" type="Sprite2D" parent="Hitpoints"]
+position = Vector2(472, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("5_f6c5y")
+
+[node name="richtung_left" type="Sprite2D" parent="Hitpoints"]
+position = Vector2(-64, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("5_f6c5y")
+flip_h = true
+
+[node name="Time" parent="." instance=ExtResource("8_xogaa")]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 176.0
+offset_right = 712.0
+offset_bottom = 304.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+
+[node name="Time" type="Label" parent="Time"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 408.0
+offset_bottom = 77.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_1s5ho")
+theme_override_font_sizes/font_size = 48
+text = "Time"
+horizontal_alignment = 1
+
+[node name="Number" type="Label" parent="Time"]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 57.0
+offset_right = 392.0
+offset_bottom = 120.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_1s5ho")
+theme_override_font_sizes/font_size = 48
+text = "50 Sec"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="richtung_right" type="Sprite2D" parent="Time"]
+position = Vector2(472, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("5_f6c5y")
+
+[node name="richtung_left" type="Sprite2D" parent="Time"]
+position = Vector2(-64, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("5_f6c5y")
+flip_h = true
+
+[node name="Infinite" type="Label" parent="Time"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 52.0
+offset_right = 476.0
+offset_bottom = 460.0
+rotation = 1.5708
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("61")
+theme_override_font_sizes/font_size = 96
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponsButton" parent="." instance=ExtResource("8_xogaa")]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 312.0
+offset_right = 712.0
+offset_bottom = 440.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+theme_override_font_sizes/font_size = 48
+text = "Weapons"
+
+[node name="Back" parent="." instance=ExtResource("8_xogaa")]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 464.0
+offset_right = 640.0
+offset_bottom = 552.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 48
+text = "Back"
+
+[node name="Weapons" parent="." instance=ExtResource("6_rjita")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1024.0
+offset_bottom = 576.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="focus_entered" from="Hitpoints" to="." method="_on_hitpoints_focus_entered"]
+[connection signal="focus_entered" from="Time" to="." method="_on_time_focus_entered"]
+[connection signal="pressed" from="WeaponsButton" to="." method="_on_weapons_button_pressed"]

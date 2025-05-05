@@ -1,0 +1,206 @@
+[gd_scene load_steps=18 format=3 uid="uid://l78bge7xekwn"]
+
+[ext_resource type="Script" uid="uid://bdbscbgljoden" path="res://Bosse/Galaga/Scripts/galaga_arm.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://ch2r0ux3lvl0i" path="res://Bosse/Galaga/Grafik/galaga_arm.tres" id="2_mgbnf"]
+[ext_resource type="Texture2D" uid="uid://dwwle4x8inb1g" path="res://GuiElements/Textures/die.png" id="3_a1uhn"]
+[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="4_28q4f"]
+[ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="5_4kbcy"]
+[ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="6_ghwev"]
+
+[sub_resource type="OccluderPolygon2D" id="1"]
+polygon = PackedVector2Array(36, -4, 36, 4, 35, 4, 35, 5, 34, 5, 34, 6, 33, 6, 33, 7, 32, 7, 32, 8, 20, 8, 20, 16, 19, 16, 19, 17, 18, 17, 18, 18, 17, 18, 17, 19, 16, 19, 16, 20, 15, 20, 15, 21, 14, 21, 14, 22, 13, 22, 13, 23, 12, 23, 12, 24, 11, 24, 11, 25, 10, 25, 10, 26, 9, 26, 9, 27, 8, 27, 8, 28, -24, 28, -24, 27, -25, 27, -25, 26, -26, 26, -26, 25, -27, 25, -27, 24, -28, 24, -28, 23, -29, 23, -29, 22, -30, 22, -30, 21, -31, 21, -31, 20, -32, 20, -32, 19, -33, 19, -33, 18, -34, 18, -34, 17, -35, 17, -35, 16, -36, 16, -36, -16, -35, -16, -35, -17, -34, -17, -34, -18, -33, -18, -33, -19, -32, -19, -32, -20, -31, -20, -31, -21, -30, -21, -30, -22, -29, -22, -29, -23, -28, -23, -28, -24, -27, -24, -27, -25, -26, -25, -26, -26, -25, -26, -25, -27, -24, -27, -24, -28, 8, -28, 8, -27, 9, -27, 9, -26, 10, -26, 10, -25, 11, -25, 11, -24, 12, -24, 12, -23, 13, -23, 13, -22, 14, -22, 14, -21, 15, -21, 15, -20, 16, -20, 16, -19, 17, -19, 17, -18, 18, -18, 18, -17, 19, -17, 19, -16, 20, -16, 20, -8, 32, -8, 32, -7, 33, -7, 33, -6, 34, -6, 34, -5, 35, -5, 35, -4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmrn1"]
+atlas = ExtResource("3_a1uhn")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi8fj"]
+atlas = ExtResource("3_a1uhn")
+region = Rect2(15, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucg24"]
+atlas = ExtResource("3_a1uhn")
+region = Rect2(30, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fa0h"]
+atlas = ExtResource("3_a1uhn")
+region = Rect2(45, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mgbnf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmrn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi8fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucg24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fa0h")
+}],
+"loop": false,
+"name": &"die",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="3"]
+radius = 8.0001
+height = 16.0002
+
+[sub_resource type="Animation" id="6"]
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_mn2am"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qunio"]
+_data = {
+&"Damage": SubResource("6"),
+&"RESET": SubResource("Animation_mn2am")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwoa8"]
+radius = 28.0
+
+[node name="Boss(arm)" type="StaticBody2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("2")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("3")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(23, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qunio")
+}
+
+[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("4_28q4f")]
+shootingPoint = NodePath("../Marker2D")
+rotation_point = NodePath("..")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_4kbcy")]
+collision_layer = 4
+health = NodePath("../healthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-8, 0)
+shape = SubResource("CircleShape2D_vwoa8")
+
+[node name="healthComponent" parent="." instance=ExtResource("6_ghwev")]
+health = 400.0
+invisibiltyFrames = 0.1
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

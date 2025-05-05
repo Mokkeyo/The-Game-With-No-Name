@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://uqu2t6hugyy0"]
+
+[ext_resource type="Texture2D" uid="uid://c81vtk8xxf050" path="res://Bosse/hp_bar_boss.png" id="1_m8vrw"]
+[ext_resource type="Script" uid="uid://3n1rk3wgmvat" path="res://Scripts/hp_bar.gd" id="2_mpyeb"]
+[ext_resource type="Texture2D" uid="uid://jh7ipmppdyvt" path="res://Enemys/Textures/hp_bar_progress_enemy.png" id="3_g0bn5"]
+
+[node name="BossHP" type="TextureRect"]
+offset_right = 20.0
+offset_bottom = 4.0
+texture = ExtResource("1_m8vrw")
+script = ExtResource("2_mpyeb")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 13.0
+offset_bottom = 3.0
+scale = Vector2(1.5, 1)
+value = 100.0
+texture_progress = ExtResource("3_g0bn5")

@@ -1,0 +1,770 @@
+[gd_scene load_steps=24 format=3 uid="uid://dwteec0yfwt0f"]
+
+[ext_resource type="PackedScene" uid="uid://duqwa532kjkgf" path="res://Scenes/input_button.tscn" id="1"]
+[ext_resource type="Script" uid="uid://pyho72aqyfi1" path="res://Scripts/controlls_menu.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="3_rlqrm"]
+[ext_resource type="FontFile" uid="uid://gee3j784ckbl" path="res://Font/Extrude.ttf" id="4"]
+[ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="7_7ov7i"]
+[ext_resource type="PackedScene" uid="uid://bob0eucjbifmb" path="res://Scenes/controller_input_button.tscn" id="10_4wto1"]
+[ext_resource type="Texture2D" uid="uid://hhc7uctf3qx7" path="res://GuiElements/Textures/circle.png" id="11_kr0n2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugkq1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6oirf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4wo5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drumt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ona7q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_764cp"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_57f8v"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_p7i4s"]
+
+[sub_resource type="FontFile" id="23"]
+fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0.184314, 0.0745098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.698039, 0.392157, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0, 0.0941176, 0.52549, 1)
+
+[sub_resource type="FontFile" id="15"]
+fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="14"]
+fallbacks = Array[Font]([ExtResource("4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/65/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/65/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/65/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/65/0 = Vector2(0, 0)
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/65/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/65/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/65/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/65/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/65/0/kerning_overrides/65/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqwue"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84mke"]
+bg_color = Color(0.45265, 0.177904, 0.0414533, 1)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("2")
+startButton = NodePath("ControllButtons/Back")
+exitButton = NodePath("ControllButtons/Back")
+
+[node name="Rahmen" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 33.0
+offset_right = 1010.0
+offset_bottom = 543.0
+
+[node name="Panel" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 992.0
+offset_right = 998.0
+offset_bottom = 510.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugkq1")
+
+[node name="Panel2" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 504.0
+offset_right = 992.0
+offset_bottom = 510.0
+pivot_offset = Vector2(356, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6oirf")
+
+[node name="Panel3" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 504.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel10" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 52.0
+offset_right = 584.0
+offset_bottom = 506.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel11" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 52.0
+offset_right = 790.0
+offset_bottom = 504.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel4" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 510.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_drumt")
+
+[node name="Panel5" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 52.0
+offset_right = 992.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
+
+[node name="Panel9" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 90.0
+offset_right = 994.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
+
+[node name="Panel8" type="Panel" parent="Rahmen"]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 992.0
+offset_bottom = 6.0
+pivot_offset = Vector2(356, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_764cp")
+
+[node name="ControllButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 39.0
+offset_right = 342.0
+offset_bottom = 537.0
+
+[node name="RestoreDefault" parent="ControllButtons" instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 95.0
+offset_right = 160.0
+offset_bottom = 171.0
+focus_neighbor_top = NodePath(".")
+
+[node name="RestoreDefaultLabel" type="RichTextLabel" parent="ControllButtons/RestoreDefault"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 10.0
+offset_right = 125.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rlqrm")
+theme_override_font_sizes/normal_font_size = 20
+text = " Restore 
+ Default"
+metadata/_edit_lock_ = true
+
+[node name="AssignController" parent="ControllButtons" instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 95.0
+offset_right = 320.0
+offset_bottom = 171.0
+focus_neighbor_top = NodePath(".")
+theme_override_font_sizes/font_size = 20
+
+[node name="AssignLabel" type="RichTextLabel" parent="ControllButtons/AssignController"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 142.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rlqrm")
+theme_override_font_sizes/normal_font_size = 20
+text = "    Assign
+ Controller"
+
+[node name="Player1Button" parent="ControllButtons" instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 190.0
+offset_right = 278.0
+offset_bottom = 266.0
+disabled = true
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_57f8v")
+text = "Player 1"
+
+[node name="Player2Button" parent="ControllButtons" instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 276.0
+offset_right = 278.0
+offset_bottom = 352.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_p7i4s")
+text = "Player 2"
+
+[node name="Controlls" type="Label" parent="ControllButtons"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 324.0
+offset_bottom = 58.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("23")
+theme_override_font_sizes/font_size = 48
+text = "Controlls"
+horizontal_alignment = 1
+
+[node name="Back" parent="ControllButtons" instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 376.0
+offset_right = 278.0
+offset_bottom = 452.0
+text = "Back"
+
+[node name="PlayerControlls" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 348.0
+offset_top = 39.0
+offset_right = 1004.0
+offset_bottom = 123.0
+
+[node name="KeyboardePanel" type="Panel" parent="PlayerControlls"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 52.0
+offset_right = 448.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="ControllerPanel" type="Panel" parent="PlayerControlls"]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 52.0
+offset_right = 656.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="Player2Background" type="Panel" parent="PlayerControlls"]
+visible = false
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Player1Background" type="Panel" parent="PlayerControlls"]
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("6")
+
+[node name="PlayerLabel" type="Label" parent="PlayerControlls"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 5.0
+offset_right = 654.0
+offset_bottom = 53.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("15")
+theme_override_font_sizes/font_size = 48
+text = "Player 1 Controlls"
+horizontal_alignment = 1
+
+[node name="Keyboard" type="Label" parent="PlayerControlls"]
+layout_mode = 2
+offset_left = 274.0
+offset_top = 56.0
+offset_right = 428.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Keyboard"
+horizontal_alignment = 1
+
+[node name="Actions" type="Label" parent="PlayerControlls"]
+layout_mode = 2
+offset_top = 56.0
+offset_right = 242.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Controller" type="Label" parent="PlayerControlls"]
+layout_mode = 2
+offset_left = 460.0
+offset_top = 56.0
+offset_right = 656.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Controller"
+horizontal_alignment = 2
+
+[node name="KeyButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 596.0
+offset_top = 129.0
+offset_right = 796.0
+offset_bottom = 537.0
+
+[node name="UpButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 2.0
+offset_right = 139.0
+offset_bottom = 42.0
+focus_neighbor_top = NodePath(".")
+action = "player1_up"
+controlls_menu = NodePath("../..")
+
+[node name="DownButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 44.0
+offset_right = 139.0
+offset_bottom = 84.0
+action = "player1_down"
+controlls_menu = NodePath("../..")
+
+[node name="LeftButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 86.0
+offset_right = 139.0
+offset_bottom = 126.0
+action = "player1_left"
+controlls_menu = NodePath("../..")
+
+[node name="RightButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 128.0
+offset_right = 139.0
+offset_bottom = 168.0
+action = "player1_right"
+controlls_menu = NodePath("../..")
+
+[node name="JumpButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 170.0
+offset_right = 139.0
+offset_bottom = 210.0
+action = "player1_jump"
+controlls_menu = NodePath("../..")
+
+[node name="AttackButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 212.0
+offset_right = 139.0
+offset_bottom = 252.0
+action = "player1_attack"
+controlls_menu = NodePath("../..")
+
+[node name="WandButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 254.0
+offset_right = 139.0
+offset_bottom = 294.0
+action = "player1_wand"
+controlls_menu = NodePath("../..")
+
+[node name="InteractButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 296.0
+offset_right = 139.0
+offset_bottom = 336.0
+action = "player1_interact"
+controlls_menu = NodePath("../..")
+
+[node name="SpawnButton" parent="KeyButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("1")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 365.0
+offset_right = 139.0
+offset_bottom = 405.0
+focus_neighbor_bottom = NodePath(".")
+action = "player1_spawn"
+controlls_menu = NodePath("../..")
+
+[node name="ControllerButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 802.0
+offset_top = 129.0
+offset_right = 1004.0
+offset_bottom = 537.0
+
+[node name="UpButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 2.0
+offset_right = 150.0
+offset_bottom = 42.0
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+action = "C-player1_up"
+controlls_menu = NodePath("../..")
+
+[node name="DownButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 44.0
+offset_right = 150.0
+offset_bottom = 84.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_down"
+controlls_menu = NodePath("../..")
+
+[node name="LeftButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 86.0
+offset_right = 150.0
+offset_bottom = 126.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_left"
+controlls_menu = NodePath("../..")
+
+[node name="RightButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 128.0
+offset_right = 150.0
+offset_bottom = 168.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_right"
+controlls_menu = NodePath("../..")
+
+[node name="JumpButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 170.0
+offset_right = 150.0
+offset_bottom = 210.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_jump"
+controlls_menu = NodePath("../..")
+
+[node name="AttackButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 212.0
+offset_right = 150.0
+offset_bottom = 252.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_attack"
+controlls_menu = NodePath("../..")
+
+[node name="WandButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 254.0
+offset_right = 150.0
+offset_bottom = 294.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_wand"
+controlls_menu = NodePath("../..")
+
+[node name="InteractButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 296.0
+offset_right = 150.0
+offset_bottom = 336.0
+focus_neighbor_right = NodePath(".")
+action = "C-player1_interact"
+controlls_menu = NodePath("../..")
+
+[node name="SpawnButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 364.0
+offset_right = 150.0
+offset_bottom = 404.0
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+action = "C-player1_spawn"
+controlls_menu = NodePath("../..")
+
+[node name="inputLabel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 348.0
+offset_top = 129.0
+offset_right = 590.0
+offset_bottom = 537.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inputLabel"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 242.0
+offset_bottom = 347.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Up" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Up"
+horizontal_alignment = 2
+
+[node name="Down" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Down"
+horizontal_alignment = 2
+
+[node name="Left" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Left"
+horizontal_alignment = 2
+
+[node name="Right" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Right"
+horizontal_alignment = 2
+
+[node name="Jump" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Jump"
+horizontal_alignment = 2
+
+[node name="Sword" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Sword"
+horizontal_alignment = 2
+
+[node name="Wand" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Wand"
+horizontal_alignment = 2
+
+[node name="Interact" type="Label" parent="inputLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Interact"
+horizontal_alignment = 2
+
+[node name="Spawn" type="Label" parent="inputLabel"]
+layout_mode = 2
+offset_left = 140.0
+offset_top = 372.0
+offset_right = 240.0
+offset_bottom = 404.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Spawn"
+horizontal_alignment = 2
+
+[node name="CanvasLayer" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 1012.0
+offset_bottom = 564.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqwue")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1008.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_84mke")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 51.0
+offset_right = 983.0
+offset_bottom = 91.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 36
+text = "Press Any Input on the Controller you wanna use"
+
+[node name="Circle" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(514, 310)
+scale = Vector2(18.9333, 18.9333)
+texture = ExtResource("11_kr0n2")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 676.0
+offset_top = 516.0
+offset_right = 990.0
+offset_bottom = 564.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("4")
+theme_override_font_sizes/font_size = 32
+text = "Pres ESC to Cancel"
+
+[connection signal="pressed" from="ControllButtons/RestoreDefault" to="." method="_on_restore_default_pressed"]
+[connection signal="pressed" from="ControllButtons/AssignController" to="." method="_on_assign_controller_pressed"]
+[connection signal="pressed" from="ControllButtons/Player1Button" to="." method="_on_player_1_button_pressed"]
+[connection signal="pressed" from="ControllButtons/Player2Button" to="." method="_on_player_2_button_pressed"]

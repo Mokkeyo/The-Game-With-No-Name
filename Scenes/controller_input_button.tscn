@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bob0eucjbifmb"]
+
+[ext_resource type="FontFile" uid="uid://cw2id6iw1l6oa" path="res://Font/Lemon Days.ttf" id="1_khey2"]
+[ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_mwmym"]
+[ext_resource type="Script" uid="uid://bjoh1bc62eu2w" path="res://Scripts/controller_input_button.gd" id="3_f66l4"]
+[ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_jfqcl"]
+[ext_resource type="Texture2D" uid="uid://c6srq804c6gn7" path="res://Button/Playstation/Joypad Button 0 (Bottom Action, Sony Cross, Xbox A, Nintendo B).png" id="5_cp2a7"]
+
+[node name="ControllerInputButton" type="Button"]
+offset_right = 92.0
+offset_bottom = 40.0
+theme_override_colors/font_disabled_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_focus_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_khey2")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("2_mwmym")
+theme_override_styles/disabled = ExtResource("3_jfqcl")
+theme_override_styles/hover_pressed = ExtResource("3_jfqcl")
+theme_override_styles/hover = ExtResource("3_jfqcl")
+theme_override_styles/pressed = ExtResource("3_jfqcl")
+theme_override_styles/normal = ExtResource("3_jfqcl")
+text = "
+"
+clip_text = true
+expand_icon = true
+script = ExtResource("3_f66l4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(46, 20)
+texture = ExtResource("5_cp2a7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

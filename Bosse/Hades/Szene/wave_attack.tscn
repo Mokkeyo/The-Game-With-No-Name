@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0ln7jbj24qj4"]
+
+[ext_resource type="Script" uid="uid://bpqfvmuwycafg" path="res://Bosse/Hades/Scripts/wave_attack.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ctb15i36n1prb" path="res://Bosse/Hades/Grafik/wave_attack.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvhekq0qm8unc" path="res://NormalMap/wave_attack_normal.png" id="3_hhu6n"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="4_jywx5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_of64w"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("3_hhu6n")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tr770"]
+radius = 13.0
+height = 44.0
+
+[node name="WaveAttack" type="Node2D"]
+script = ExtResource("1")
+
+[node name="wave_attack(Boss)" type="Sprite2D" parent="."]
+position = Vector2(-1.78814e-07, -16)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("CanvasTexture_of64w")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource("4_jywx5")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tr770")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
