@@ -115,24 +115,19 @@ func _physics_process(delta: float) -> void:
 	
 	if grabZone.rope_part:
 		global_position = grabZone.rope_part.global_position - Vector2(0, -4)
-	
 	elif not islaunching and not on_floor:
 		apply_gravity(delta)
 	
-	if on_ceiling:
-		if jumpComponent.is_jumping:
-			jumpComponent.is_jumping = false
+	if on_ceiling and jumpComponent.is_jumping:
+		jumpComponent.is_jumping = false
 	
-	if ( on_ceiling or is_on_wall() ) and knockback_on:
+	if (on_ceiling or is_on_wall()) and knockback_on:
 		knockback_on = false
 	
 	if on_floor and not can_doublejump:
 		can_doublejump = true
 	
-	var snap_value: int = 4 if on_floor else 0
-	
-	if not floor_snap_length == snap_value:
-		floor_snap_length = snap_value
+	floor_snap_length = 4 if on_floor else 0
 	
 	if G.SaveStat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
@@ -147,7 +142,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	var just_left_ground: bool = on_floor and not is_on_floor() and velocity.y >= 0
-	
 	if just_left_ground:
 		coyoteTimer.start(0.15)
 
@@ -186,7 +180,6 @@ func enter_airship(object: Airship) -> void:
 func handle_collision() -> void:
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(i)
-		
 		if collision.get_collider() is MovableBlock:
 			var rigid_collision: MovableBlock = collision.get_collider()
 			rigid_collision.apply_central_impulse(-collision.get_normal() * PUSH)
