@@ -10,7 +10,6 @@ class_name JumpComponent
 @export var waterDetector: LavaWaterDetector
 @export var grabZone: GrabZone
 
-
 var is_jumping: bool = false
 
 var velocity: Vector2:
