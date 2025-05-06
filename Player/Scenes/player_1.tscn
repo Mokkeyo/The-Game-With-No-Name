@@ -178,7 +178,6 @@ floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
 resetComp = NodePath("ResetComponent")
-currentPlayer = null
 
 [node name="PointLight2D" parent="." instance=ExtResource("7")]
 visible = false
@@ -236,6 +235,20 @@ health = 100.0
 invisibiltyFrames = 2.0
 invisibilityComp = NodePath("../InvisibleFramesComp")
 
+[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
+parent = NodePath("../AnimatedSprite2D")
+
+[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
+collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
+healthComp = NodePath("../healthComponent")
+setStartPosition = false
+physics_process = true
+
+[node name="JumpComponent" parent="." node_paths=PackedStringArray("body", "waterDetector", "grabZone") instance=ExtResource("14_ppsfs")]
+body = NodePath("..")
+waterDetector = NodePath("../LavaWater_Detector")
+grabZone = NodePath("../GrabZone")
+
 [node name="Timer" type="Node" parent="."]
 
 [node name="KnockbackTimer" type="Timer" parent="Timer"]
@@ -272,20 +285,6 @@ position = Vector2(7, -7)
 [node name="Wand" parent="." instance=ExtResource("8")]
 visible = false
 position = Vector2(-1, -6)
-
-[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
-parent = NodePath("../AnimatedSprite2D")
-
-[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
-collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
-healthComp = NodePath("../healthComponent")
-setStartPosition = false
-physics_process = true
-
-[node name="JumpComponent" parent="." node_paths=PackedStringArray("body", "waterDetector", "grabZone") instance=ExtResource("14_ppsfs")]
-body = NodePath("..")
-waterDetector = NodePath("../LavaWater_Detector")
-grabZone = NodePath("../GrabZone")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer/KnockbackTimer" to="." method="_on_damage_knockback_timeout"]

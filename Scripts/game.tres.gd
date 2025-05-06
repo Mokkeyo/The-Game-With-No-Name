@@ -20,7 +20,6 @@ var current_level_number: int
 func _ready() -> void:
 	fader.visible = true
 	var start_time: float = Time.get_ticks_msec()
-	
 	connect_to_signals()
 	setup_level()
 	initialize_variables()
@@ -52,7 +51,6 @@ func get_respawnable_objects() -> void:
 
 
 func initialize_variables() -> void:
-	G.player_can_respawn = true
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	lightMap.visible = true
@@ -62,9 +60,7 @@ func initialize_variables() -> void:
 func connect_to_signals() -> void:
 	G.enter_door.connect(reload)
 	G.start_dialog.connect(check_for_dialog)
-	G.player_died.connect(respawn_timer.start)
-	G.player_count_changed.connect(on_player_count_changed)
-	G.game_over.connect(game_over)
+	G.player_died.connect(on_player_count_changed)
 	G.boss_begin.connect(show_boss_hp)
 
 
@@ -97,6 +93,7 @@ func set_player_positions() -> void:
 
 func game_over() -> void:
 	pause.can_pause = false
+	G.tempDoor = G.SaveStat.door
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
 	restart_level()
@@ -122,10 +119,27 @@ func on_enter_kristall() -> void:
 
 
 func on_player_count_changed() -> void:
-	for i: int in G.playerAlive.size():
-		if G.playerAlive[i] and player_label[i].visible:
-			player_label[i].visible = false 
+	var both_death: bool = not G.playerAlive[0] and not G.playerAlive[1]
+	
+	if both_death:
+		game_over()
+		return
+	
+	respawn_timer.start()
 	in_game.set_viewport_size()
+
+
+func _unhandled_input(_event: InputEvent) -> void:
+	for i: int in range(G.playerAlive.size()):
+		if C.just_pressed(C.spawn, i) and not G.playerAlive[i]:
+			G.playerAlive[i] = true
+			player_label[i].visible = false
+			in_game.player[i].resetComp.reset_stats()
+			in_game.player[i].global_position = in_game.player[1 - i].global_position
+			
+			set_process_unhandled_input(false)
+			in_game.set_viewport_size()
+			break
 
 
 func check_for_dialog() -> void:
@@ -158,4 +172,4 @@ func _on_respawnTimer_timeout() -> void:
 		if not G.playerAlive[i]:
 			player_label[i].visible = true
 	animationPlayer.play("PlayerCanRespawn")
-	G.player_can_respawn = true
+	set_process_unhandled_input(true)

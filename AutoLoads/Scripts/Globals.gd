@@ -6,13 +6,11 @@ signal fullscreen_changed
 signal enter_door
 signal achievment_collected
 signal start_dialog
-signal player_count_changed
 signal player_died
 
 signal health_value_changed
 signal mana_value_changed
 
-signal game_over
 signal boss_begin
 signal boss_finished
 signal boss_value_changed
@@ -47,7 +45,6 @@ var maxBossHp: float = 0
 var npc: Npc
 var black_box: bool = false
 var options: bool = false
-var start_respawn_timer: bool = false
 
 #battle Mode Variables
 var sword: bool = true
@@ -62,7 +59,6 @@ var battle_damage: bool = false
 var battle_mode: bool = false
 
 var next_level_door: String = ""
-var player_can_respawn: bool = true
 var player_get_in: bool = false
 
 var airshipHeal: Array[float] = [100.0, 100.0]

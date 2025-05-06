@@ -42,42 +42,31 @@ func add_level(currentLevel: Node2D) -> void:
 
 
 func set_viewport_size() -> void:
-	var players_alive: int = G.playerAlive.size()
-	var both_alive: bool = G.playerAlive[0] and G.playerAlive[1]
+	panel.visible = G.playerAlive[0] and G.playerAlive[1]
 	
-	panel.visible = both_alive
-	
-	for i: int in players_alive:
-		match [both_alive, G.playerAlive[i]]:
-			[true, _]:
-				_set_player_viewport(i, 512, true, true, Node.PROCESS_MODE_INHERIT)
-			[false, true]:
-				var other_player: int = 1 - i
-				_set_player_viewport(i, 1024, true, true, Node.PROCESS_MODE_INHERIT)
-				_set_player_viewport(other_player, 0, false, false, Node.PROCESS_MODE_DISABLED)
-				camera[i].make_current()
-			_:
-				_set_player_viewport(i, 0, false, false, Node.PROCESS_MODE_DISABLED)
+	if panel.visible:
+		for i: int in range(G.playerAlive.size()):
+			_set_player_viewport(i, 512, true)
+	else:
+		var active: int = 0 if G.playerAlive[0] else 1
+		_set_player_viewport(active, 1024, true)
+		_set_player_viewport(1 - active, 0, false)
 
 
-func _set_player_viewport(index: int, width: int, bar_visible: bool, container_visible: bool, process: Node.ProcessMode) -> void:
+func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 	viewport[index].size.x = width
-	player_bar[index].visible = bar_visible
-	viewport_container[index].visible = container_visible
-	viewport[index].process_mode = process
+	player_bar[index].visible = view_visible
+	viewport_container[index].visible = view_visible
 
 
 func connet_camera_to_player() -> void:
 	for i: int in player.size():
 		var player_node: Player = get_tree().get_nodes_in_group("Player_%d" % i).front()
-		var cam: Camera2D = camera[i]
-		
-		if cam.get_parent():
-			cam.get_parent().remove_child(cam)
-		
-		player_node.add_child(cam)
-		
 		player[i] = player_node
+		
+		var remote_transform: RemoteTransform2D = RemoteTransform2D.new()
+		remote_transform.remote_path = camera[i].get_path()
+		player_node.add_child(remote_transform)
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:

@@ -86,7 +86,7 @@ func configure_floor_settings() -> void:
 func connect_signals() -> void:
 	HealthComponent.value_changed.connect(on_value_changed)
 	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jump.bind(1))
+	Hitbox.damage_dealth.connect(jumpComponent.jump.bind(JUMP_POWER))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
@@ -242,13 +242,6 @@ func check_key_input() -> void:
 	
 	if C.just_pressed(C.attack, currentPlayer) and sword.can_swing:
 		sword.attack()
-	
-	if C.just_pressed(C.spawn, otherPlayer) and not G.playerAlive[otherPlayer] and G.player_can_respawn:
-		G.playerAlive[otherPlayer] = true
-		G.player_can_respawn = false
-		player.resetComp.reset_stats()
-		player.global_position = global_position
-		G.emit_signal("player_count_changed")
 
 
 func check_for_horizontal_movement() -> void:
@@ -280,13 +273,11 @@ func check_for_jumping() -> void:
 		return
 	
 	if buffered_jump and on_floor:
-		jumpComponent.jump(1)
-		print("buffered jump")
+		jumpComponent.jump(JUMP_POWER)
 		return
 	
 	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater and jumpComponent.is_jumping:
 		jumpComponent.jump_cut(-100)
-		print("jump cut")
 		return
 	
 	if C.just_pressed(C.jump, currentPlayer):
@@ -294,28 +285,21 @@ func check_for_jumping() -> void:
 		jumpBufferTimer.start(0.15)
 		
 		if on_floor or not coyoteTimer.is_stopped() or lavaWaterDetector.inWater or grabZone.rope_part:
-			jumpComponent.jump(1)
-			print("jump")
+			jumpComponent.jump(JUMP_POWER)
 			return
 		
 		if next_to_wall():
 			var direction: int = (int(next_to_left_wall()) - int(next_to_right_wall()))
 			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
-			print("wall jump")
 			return
 		
 		if can_doublejump and coyoteTimer.is_stopped():
-			jumpComponent.jump(0.8)
 			can_doublejump = false
-			print("double_jump")
-
-#func do_jump() -> void:
-#	can_doublejump = true
-#	is_jumping = true
+			jumpComponent.jump(JUMP_POWER)
 
 
-func jump(multiplikator: float) -> void:
-	jumpComponent.jump(multiplikator)
+func jump() -> void:
+	jumpComponent.jump(JUMP_POWER)
 	buffered_jump = false
 	coyoteTimer.stop()
 	SoundMusic.play_sound_effect("water" if lavaWaterDetector.inWater else "jump")
@@ -324,7 +308,6 @@ func jump(multiplikator: float) -> void:
 func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vector2) -> void:
 	can_doublejump = true
 	SoundMusic.play_sound_effect("jump")
-	print("wall jump")
 	do_knockback(knockbackDuration, knockbackDirection)
 	if not animatedSprite.flip_h == left:
 		animatedSprite.flip_h = left
@@ -408,18 +391,9 @@ func enable_player() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
+		G.playerAlive[currentPlayer] = false
+		resetComp.set_stats()
 		G.emit_signal("player_died")
-#		G.SaveStat.playerMana[currentPlayer] = 100
-		
-		if G.playerAlive[otherPlayer]:
-			G.playerAlive[currentPlayer] = false
-			G.start_respawn_timer = true
-			G.player_can_respawn = false
-			resetComp.set_stats()
-			G.emit_signal("player_count_changed")
-		else:
-			G.emit_signal("game_over")
-			G.tempDoor = G.SaveStat.door
 
 
 func _on_damage_knockback_timeout() -> void: knockback_on = false

@@ -58,8 +58,8 @@ func check_key_input() -> void:
 		wait_timer.start(0.5)
 		shootComp.shoot_bullet()
 	
-	if C.just_pressed(C.spawn, otherPlayer) and G.player_can_respawn:
-		_respawn_player_and_airship()
+#	if C.just_pressed(C.spawn, otherPlayer) and G.player_can_respawn:
+#		_respawn_player_and_airship()
 
 
 func die() -> void:
@@ -115,9 +115,9 @@ func _on_airship_animation_finished() -> void:
 		set_player()
 		G.airshipHeal[currentPlayer] = 100
 		if G.playerAlive[otherPlayer]:
-			G.start_respawn_timer = true
+#			G.start_respawn_timer = true
 			G.playerAlive[currentPlayer] = false
-			G.player_can_respawn = false
+#			G.player_can_respawn = false
 			G.playerInAirship[currentPlayer] = false
 			reset_comp.set_stats()
 			player_node.resetComp.set_stats()

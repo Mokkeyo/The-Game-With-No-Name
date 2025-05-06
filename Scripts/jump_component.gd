@@ -21,15 +21,15 @@ func _ready() -> void:
 	assert(body != null, "JumpComponent requires 'body' to be set.")
 
 
-func jump(multiplikator: float) -> void:
+func jump(jump_power: int) -> void:
 	is_jumping = true
 	
 	if not waterDetector or not waterDetector.inWater:
-		velocity.y = -JUMP_POWER * multiplikator
+		velocity.y = -jump_power
 	else:
-		velocity.y = -WATER_JUMP * multiplikator
+		velocity.y = -jump_power * 0.5
 	
-	if grabZone or grabZone.rope_part:
+	if grabZone and grabZone.rope_part:
 		grabZone.rope_part = null
 		grabZone.timer.start()
 

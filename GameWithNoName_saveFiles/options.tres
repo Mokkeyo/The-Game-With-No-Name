@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_v703a")
-deaths = Array[int]([3, 1, 0, 0])
+deaths = Array[int]([8, 1, 0, 0])
 vsync = false
 musicVolume = 1.0
 sfxVolume = inf_neg
