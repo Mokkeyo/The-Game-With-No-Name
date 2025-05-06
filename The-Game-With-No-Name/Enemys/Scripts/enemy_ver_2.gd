@@ -9,6 +9,8 @@ var move: Vector2 = Vector2(SPEED, 0)
 @onready var healthComp: healthComponent = $healthComponent
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
+@onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent
+
 
 const GRAVITY: int = 100
 const SPEED: int = 80
@@ -27,7 +29,8 @@ func _physics_process(delta: float) -> void:
 	if not is_alive:
 		collision.disabled = true
 		return
-
+	
+	floorComp.update_rotation()
 	move.y += GRAVITY * delta
 
 	if is_on_floor():

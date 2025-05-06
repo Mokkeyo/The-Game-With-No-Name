@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bhflrsdg72bef"]
+[gd_scene load_steps=25 format=3 uid="uid://bhflrsdg72bef"]
 
 [ext_resource type="Texture2D" uid="uid://bebhyynl0fv3c" path="res://Enemys/CanvasTextures/enemy.tres" id="2_nooeg"]
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_rtllk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_pcxjl"]
 [ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="10_crpyg"]
+[ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="11_cbi0q"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="11_qgys3"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="12_ycax0"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="13_ckrvk"]
@@ -164,5 +165,9 @@ physics_process = true
 
 [node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("10_crpyg")]
 parent = NodePath("../AnimatedSprite2D")
+
+[node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("11_cbi0q")]
+body = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

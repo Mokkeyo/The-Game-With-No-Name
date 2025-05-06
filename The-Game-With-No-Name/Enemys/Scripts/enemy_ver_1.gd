@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var RayCastLeft: RayCast2D = $RayCastLeft
 @onready var RayCastRight: RayCast2D = $RayCastRight
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
+@onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent
 
 var knockback_on: bool = false
 
@@ -41,9 +42,10 @@ func _physics_process(delta: float) -> void:
 		collision.disabled = true
 		hpBar.visible = false
 		return
-
+	
+	floorComp.update_rotation()
 	move.y += GRAVITY * delta
-
+	
 	var snap_value: int = 4 if is_on_floor() else 0
 	
 	if not floor_snap_length == snap_value:
