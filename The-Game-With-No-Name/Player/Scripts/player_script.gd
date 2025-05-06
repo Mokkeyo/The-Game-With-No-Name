@@ -13,6 +13,7 @@ var tween: Tween
 @onready var lavaWaterDetectorCollision: CollisionShape2D = $LavaWater_Detector/CollisionShape2D
 @onready var HealthComponent: healthComponent = $healthComponent
 @onready var jumpComponent: JumpComponent = $JumpComponent
+@onready var rotaterComponent: FloorRotaterComponent = $FloorRotaterComponent
 
 @onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
 @onready var sword: Sword = $Sword
@@ -134,7 +135,7 @@ func _physics_process(delta: float) -> void:
 	
 	set_animation()
 	check_key_input()
-	update_rotation()
+	rotaterComponent.update_rotation()
 	handle_knockback(delta)
 	handle_airship_entry()
 	handle_collision()
@@ -197,24 +198,6 @@ func handle_knockback(delta: float) -> void:
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += (WATER_GRAVITY if lavaWaterDetector.inWater else GRAVITY) * delta
-
-
-func update_rotation() -> void:
-	if knockback_on or not on_floor:
-		if not animatedSprite.rotation_degrees == 0:
-			rotate_sprite(0)
-		return
-		
-	var floor_normal: Vector2 = get_floor_normal()
-	
-	var target_rotation: float = rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90
-	if not int(animatedSprite.rotation_degrees) == int(target_rotation):
-		rotate_sprite(target_rotation)
-
-
-func rotate_sprite(target_rotation: float) -> void:
-	tween = create_tween()
-	tween.tween_property(animatedSprite, "rotation_degrees", target_rotation, 0.1)
 
 
 func check_key_input() -> void:

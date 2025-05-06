@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://3qv8do6eeqsj"]
+[gd_scene load_steps=2 format=3 uid="uid://3qv8do6eeqsj"]
+
+[ext_resource type="Script" uid="uid://dh5hjaevh2rbk" path="res://Scripts/floor_rotater_component.gd" id="1_87ekq"]
 
 [node name="FloorRotaterComponent" type="Node"]
+script = ExtResource("1_87ekq")

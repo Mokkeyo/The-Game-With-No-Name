@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://da7p34a4g111f"]
+[gd_scene load_steps=37 format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Player1/Textures/player_1_texture.tres" id="3_f5fds"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="9_6q2fa"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="12_7suj3"]
+[ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="13_kmpdc"]
 [ext_resource type="PackedScene" uid="uid://1s6u3oo647dn" path="res://Scenes/JumpComponent.tscn" id="14_ppsfs"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="15_2ei6y"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_kprxa"]
@@ -230,10 +231,11 @@ position = Vector2(0, -10)
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_4w1dl")
 
-[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("15_2ei6y")]
+[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp", "lavaDetector") instance=ExtResource("15_2ei6y")]
 health = 100.0
 invisibiltyFrames = 2.0
 invisibilityComp = NodePath("../InvisibleFramesComp")
+lavaDetector = NodePath("../LavaWater_Detector")
 
 [node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
 parent = NodePath("../AnimatedSprite2D")
@@ -248,6 +250,10 @@ physics_process = true
 body = NodePath("..")
 waterDetector = NodePath("../LavaWater_Detector")
 grabZone = NodePath("../GrabZone")
+
+[node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
+body = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
 
 [node name="Timer" type="Node" parent="."]
 
