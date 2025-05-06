@@ -1,38 +1,32 @@
 extends Node
 class_name JumpComponent
 
-@export_group("Jump Stats")
-@export var JUMP_POWER: int = 210
-@export var WATER_JUMP: int = 100
+@export var velocity_component: VelocityComponent
+@export var jump_velocity: float = -210.0
+@export var jump_modifier: float = 1.0
 
-@export_group("Components")
-@export var body: CharacterBody2D
-@export var waterDetector: LavaWaterDetector
-@export var grabZone: GrabZone
-
-var is_jumping: bool = false
-
-var velocity: Vector2:
-	get: return body.velocity
-	set(value): body.velocity = value
-
+var want_to_jump: bool = false
+var cut_jump: bool = false
 
 func _ready() -> void:
-	assert(body != null, "JumpComponent requires 'body' to be set.")
+	assert(velocity_component != null, "VelocityComponent must be set.")
 
+# Called when you want to jump
+func request_jump() -> void:
+	want_to_jump = true
 
-func jump(jump_power: int) -> void:
-	is_jumping = true
+# Called when you want to cancel a jump early
+func request_jump_cut() -> void:
+	cut_jump = true
+
+# Apply jump logic to velocity (from the VelocityComponent)
+func apply_jump(velocity: Vector2) -> Vector2:
+	if want_to_jump:
+		velocity.y = jump_velocity * jump_modifier
+		want_to_jump = false
+
+	if cut_jump and velocity.y < 0:
+		velocity.y *= 0.5
+		cut_jump = false
 	
-	if not waterDetector or not waterDetector.inWater:
-		velocity.y = -jump_power
-	else:
-		velocity.y = -jump_power * 0.5
-	
-	if grabZone and grabZone.rope_part:
-		grabZone.rope_part = null
-		grabZone.timer.start()
-
-func jump_cut(max_velocity: float) -> void:
-	if velocity.y < max_velocity:
-		velocity.y = max_velocity
+	return velocity

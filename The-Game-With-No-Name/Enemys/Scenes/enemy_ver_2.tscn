@@ -145,9 +145,6 @@ knockback = 1.0
 position = Vector2(0.00282836, 0.210438)
 shape = SubResource("RectangleShape2D_6f7b2")
 
-[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("12_fypfs")]
-invisibilityComp = NodePath("../InvisibleFramesComp")
-
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_cmbwk")]
 visible = false
 collision_layer = 4
@@ -173,5 +170,8 @@ parent = NodePath("../AnimatedSprite2D")
 [node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("10_lj20v")]
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("12_fypfs")]
+invisibilityComp = NodePath("../InvisibleFramesComp")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
