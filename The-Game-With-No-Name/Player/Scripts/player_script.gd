@@ -252,8 +252,8 @@ func check_for_jumping() -> void:
 		jumpComponent.request_jump(JUMP_POWER)
 		return
 	
-	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater and jumpComponent.is_jumping:
-		jumpComponent.request_jump_cut(-100)
+	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater:
+		jumpComponent.request_jump_cut()
 		return
 	
 	if C.just_pressed(C.jump, currentPlayer):
@@ -275,7 +275,7 @@ func check_for_jumping() -> void:
 
 
 func jump() -> void:
-	jumpComponent.requestjump(JUMP_POWER)
+	jumpComponent.request_jump(JUMP_POWER)
 	buffered_jump = false
 	coyoteTimer.stop()
 	SoundMusic.play_sound_effect("water" if lavaWaterDetector.inWater else "jump")
