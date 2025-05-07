@@ -12,7 +12,8 @@ func _ready() -> void:
 	assert(velocity_component != null, "VelocityComponent must be set.")
 
 # Called when you want to jump
-func request_jump() -> void:
+func request_jump(jump_power: float) -> void:
+	jump_velocity = jump_power
 	want_to_jump = true
 
 # Called when you want to cancel a jump early

@@ -87,7 +87,7 @@ func configure_floor_settings() -> void:
 func connect_signals() -> void:
 	HealthComponent.value_changed.connect(on_value_changed)
 	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jumpComponent.jump.bind(JUMP_POWER))
+	Hitbox.damage_dealth.connect(jumpComponent.request_jump.bind(JUMP_POWER))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
@@ -119,8 +119,8 @@ func _physics_process(delta: float) -> void:
 	elif not islaunching and not on_floor:
 		apply_gravity(delta)
 	
-	if on_ceiling and jumpComponent.is_jumping:
-		jumpComponent.is_jumping = false
+	if on_ceiling:
+		jumpComponent.request_jump_cut()
 	
 	if (on_ceiling or is_on_wall()) and knockback_on:
 		knockback_on = false
@@ -249,11 +249,11 @@ func check_for_jumping() -> void:
 		return
 	
 	if buffered_jump and on_floor:
-		jumpComponent.jump(JUMP_POWER)
+		jumpComponent.request_jump(JUMP_POWER)
 		return
 	
 	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater and jumpComponent.is_jumping:
-		jumpComponent.jump_cut(-100)
+		jumpComponent.request_jump_cut(-100)
 		return
 	
 	if C.just_pressed(C.jump, currentPlayer):
@@ -261,7 +261,7 @@ func check_for_jumping() -> void:
 		jumpBufferTimer.start(0.15)
 		
 		if on_floor or not coyoteTimer.is_stopped() or lavaWaterDetector.inWater or grabZone.rope_part:
-			jumpComponent.jump(JUMP_POWER)
+			jumpComponent.request_jump(JUMP_POWER)
 			return
 		
 		if next_to_wall():
@@ -271,11 +271,11 @@ func check_for_jumping() -> void:
 		
 		if can_doublejump and coyoteTimer.is_stopped():
 			can_doublejump = false
-			jumpComponent.jump(JUMP_POWER)
+			jumpComponent.request_jump(JUMP_POWER)
 
 
 func jump() -> void:
-	jumpComponent.jump(JUMP_POWER)
+	jumpComponent.requestjump(JUMP_POWER)
 	buffered_jump = false
 	coyoteTimer.stop()
 	SoundMusic.play_sound_effect("water" if lavaWaterDetector.inWater else "jump")
@@ -351,7 +351,7 @@ func respawn() -> void:
 
 func enable_player() -> void:
 	is_alive = true
-	jumpComponent.is_jumping = false
+	jumpComponent.request_jump_cut()
 	islaunching = false
 	grabZone.rope_part = null
 	grabZone.can_grab = true

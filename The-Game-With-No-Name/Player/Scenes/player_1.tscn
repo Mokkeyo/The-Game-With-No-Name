@@ -246,10 +246,7 @@ healthComp = NodePath("../healthComponent")
 setStartPosition = false
 physics_process = true
 
-[node name="JumpComponent" parent="." node_paths=PackedStringArray("body", "waterDetector", "grabZone") instance=ExtResource("14_ppsfs")]
-body = NodePath("..")
-waterDetector = NodePath("../LavaWater_Detector")
-grabZone = NodePath("../GrabZone")
+[node name="JumpComponent" parent="." instance=ExtResource("14_ppsfs")]
 
 [node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
 body = NodePath("..")
