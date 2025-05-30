@@ -33,4 +33,4 @@ _The Game With No Name_ ist ein selbst entwickelter 2D-Action-Plattformer mit fl
 ```bash
 1. Repository klonen
 2. Mit Godot öffnen
-3. Szene `main.tscn` starten
+3. Szene `game_loader.tscn` starten
