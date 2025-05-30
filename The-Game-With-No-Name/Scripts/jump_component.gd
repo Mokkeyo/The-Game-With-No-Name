@@ -1,7 +1,6 @@
 extends Node
 class_name JumpComponent
 
-@export var jump_modifier: float = 1.0
 @export var body: CharacterBody2D
 
 func _ready() -> void:
