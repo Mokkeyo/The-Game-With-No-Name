@@ -26,15 +26,6 @@ _The Game With No Name_ ist ein selbst entwickelter 2D-Action-Plattformer mit fl
 
 ---
 
-## 📁 Projektstruktur
-
-- `scenes/` – Spiel- und UI-Szenen  
-- `scripts/` – GDScript-Code für Steuerung, Logik, Systeme  
-- `assets/` – Grafiken, Sounds & Musik  
-- `saves/` – Speicherstände
-
----
-
 ## 🚀 Wie starten?
 
 > ⚠️ Voraussetzung: [Godot Engine](https://godotengine.org/) (empfohlene Version: 4.x)
