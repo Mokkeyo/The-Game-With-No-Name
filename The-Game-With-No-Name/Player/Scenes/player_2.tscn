@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://51sf76w2bhgt"]
+[gd_scene load_steps=36 format=3 uid="uid://51sf76w2bhgt"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_opcjl"]
 [ext_resource type="Texture2D" uid="uid://cjbqwd1yi2nwt" path="res://Player/Player2/Textures/player_2_texture.tres" id="3_hmyw0"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://c2aeevkukhjb3" path="res://Scenes/wand.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="10"]
-[ext_resource type="PackedScene" uid="uid://1s6u3oo647dn" path="res://Scenes/JumpComponent.tscn" id="14_lgxc1"]
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="15_aumw4"]
 [ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="16_dhlbv"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="16_s05jt"]
@@ -282,11 +281,6 @@ physics_process = true
 
 [node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("24_6rijt")]
 parent = NodePath("../AnimatedSprite2D")
-
-[node name="JumpComponent" parent="." node_paths=PackedStringArray("body", "waterDetector", "grabZone") instance=ExtResource("14_lgxc1")]
-body = NodePath("..")
-waterDetector = NodePath("../LavaWater_Detector")
-grabZone = NodePath("../GrabZone")
 
 [node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("15_aumw4")]
 body = NodePath("..")

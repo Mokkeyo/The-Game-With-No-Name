@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_v703a")
-deaths = Array[int]([9, 1, 0, 0])
+deaths = Array[int]([0, 0, 0, 0])
 vsync = true
 musicVolume = 1.0
 sfxVolume = inf_neg
@@ -19,4 +19,4 @@ darknessOn = false
 textboxCount = 13
 textboxCollected = Array[String](["kristall", "buschi0", "shild0", "shild1", "buschi1", "kratos0", "rick0", "kratos1", "rick1", "bossDoor", "kratos2", "rick2", "houseDoor1"])
 achievments = Array[String]([])
-playerName = Array[String](["test", "test", "test", ""])
+playerName = Array[String](["", "", "test", ""])

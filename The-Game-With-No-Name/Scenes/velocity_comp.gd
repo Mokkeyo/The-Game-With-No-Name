@@ -1,9 +1,8 @@
 extends Node
-class_name VelocityComponent
+class_name VelocityComp
 
 enum MovementMode { GROUNDED, FLYING }
 
-var parent: CharacterBody2D
 @export var max_speed: float = 100.0
 @export var acceleration: float = 600.0
 @export var deceleration: float = 800.0
@@ -17,24 +16,30 @@ var input_direction: Vector2 = Vector2.ZERO
 @export var jump_component: JumpComponent
 
 func _ready() -> void:
-	parent = get_parent() as CharacterBody2D
+	# Ensure components are available
+	assert(gravity_component != null, "GravityComponent is required.")
+	assert(jump_component != null, "JumpComponent is required.")
 
-func handle_velocity(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	var parent :CharacterBody2D = get_parent() as CharacterBody2D
 	if not parent:
 		return
 	
+	# Gather input directions (horizontal or target follow)
+#	input_direction = _get_combined_direction()
+
 	# Apply movement logic based on mode
 	match movement_mode:
 		MovementMode.GROUNDED:
 			_handle_grounded_movement(delta)
 		MovementMode.FLYING:
 			_handle_flying_movement(delta)
-	
-	if gravity_component and not parent.is_on_floor():
-		velocity = gravity_component.apply_gravity(velocity, delta)
-	
-	if jump_component:
-		velocity = jump_component.apply_jump(velocity)
+
+	# Apply gravity
+	velocity = gravity_component.apply_gravity(velocity, delta)
+
+	# Handle jump logic
+	velocity = jump_component.apply_jump(velocity)
 
 	# Final movement (combine velocity)
 	parent.velocity = velocity
@@ -48,6 +53,9 @@ func _handle_grounded_movement(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
 
+	# Apply falling velocity (if grounded)
+	if velocity.y > 0:
+		velocity.y = min(velocity.y, max_fall_speed)
 
 # Handle movement for flying characters (no gravity, no ground interactions)
 func _handle_flying_movement(delta: float) -> void:

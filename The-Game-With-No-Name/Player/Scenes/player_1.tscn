@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://da7p34a4g111f"]
+[gd_scene load_steps=36 format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Player1/Textures/player_1_texture.tres" id="3_f5fds"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="9_6q2fa"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="12_7suj3"]
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="13_kmpdc"]
-[ext_resource type="PackedScene" uid="uid://1s6u3oo647dn" path="res://Scenes/JumpComponent.tscn" id="14_ppsfs"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="15_2ei6y"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_kprxa"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="16_g5r0a"]
@@ -245,8 +244,6 @@ collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionSh
 healthComp = NodePath("../healthComponent")
 setStartPosition = false
 physics_process = true
-
-[node name="JumpComponent" parent="." instance=ExtResource("14_ppsfs")]
 
 [node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
 body = NodePath("..")

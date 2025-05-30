@@ -12,7 +12,6 @@ var tween: Tween
 @onready var HitboxCollision: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var lavaWaterDetectorCollision: CollisionShape2D = $LavaWater_Detector/CollisionShape2D
 @onready var HealthComponent: healthComponent = $healthComponent
-@onready var jumpComponent: JumpComponent = $JumpComponent
 @onready var rotaterComponent: FloorRotaterComponent = $FloorRotaterComponent
 
 @onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
@@ -37,11 +36,9 @@ const GRAVITY: int = 600
 const SPEED: int = 120
 const ACCELERATION: int = 20
 const WATER_SPEED: int = 80
-const WALL_JUMP: int = 400
 const JUMP_POWER: int = 210
 const WATER_JUMP: int = 100
 const WATER_FLOOR_JUMP: int = 20
-const DOUBLE_JUMP: int = 210
 const UP_VECTOR: Vector2 = Vector2(0, -1)
 const WATER_GRAVITY: int = 200
 
@@ -87,7 +84,7 @@ func configure_floor_settings() -> void:
 func connect_signals() -> void:
 	HealthComponent.value_changed.connect(on_value_changed)
 	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jumpComponent.request_jump.bind(JUMP_POWER))
+	Hitbox.damage_dealth.connect(jump.bind(JUMP_POWER))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
@@ -118,9 +115,6 @@ func _physics_process(delta: float) -> void:
 		global_position = grabZone.rope_part.global_position - Vector2(0, -4)
 	elif not islaunching and not on_floor:
 		apply_gravity(delta)
-	
-	if on_ceiling:
-		jumpComponent.request_jump_cut()
 	
 	if (on_ceiling or is_on_wall()) and knockback_on:
 		knockback_on = false
@@ -249,11 +243,11 @@ func check_for_jumping() -> void:
 		return
 	
 	if buffered_jump and on_floor:
-		jumpComponent.request_jump(JUMP_POWER)
+		jump(JUMP_POWER)
 		return
 	
 	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater:
-		jumpComponent.request_jump_cut()
+		jump_cut()
 		return
 	
 	if C.just_pressed(C.jump, currentPlayer):
@@ -261,7 +255,7 @@ func check_for_jumping() -> void:
 		jumpBufferTimer.start(0.15)
 		
 		if on_floor or not coyoteTimer.is_stopped() or lavaWaterDetector.inWater or grabZone.rope_part:
-			jumpComponent.request_jump(JUMP_POWER)
+			jump(JUMP_POWER)
 			return
 		
 		if next_to_wall():
@@ -269,17 +263,24 @@ func check_for_jumping() -> void:
 			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
 			return
 		
-		if can_doublejump and coyoteTimer.is_stopped():
+		if can_doublejump and coyoteTimer.is_stopped() and not is_on_floor():
+			velocity.y = 0
 			can_doublejump = false
-			jumpComponent.request_jump(JUMP_POWER)
+			jump(JUMP_POWER)
 
 
-func jump() -> void:
-	jumpComponent.request_jump(JUMP_POWER)
+func jump(jump_power: float) -> void:
+	velocity.y -= jump_power
 	buffered_jump = false
 	coyoteTimer.stop()
 	SoundMusic.play_sound_effect("water" if lavaWaterDetector.inWater else "jump")
 
+func jump_cut() -> void:
+	if knockback_on:
+		knockback_on = false
+		return
+	if velocity.y < -100:
+		velocity.y = -100
 
 func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vector2) -> void:
 	can_doublejump = true
@@ -351,7 +352,6 @@ func respawn() -> void:
 
 func enable_player() -> void:
 	is_alive = true
-	jumpComponent.request_jump_cut()
 	islaunching = false
 	grabZone.rope_part = null
 	grabZone.can_grab = true
