@@ -8,7 +8,8 @@
 
 ## 🧾 Beschreibung
 
-_The Game With No Name_ ist ein selbst entwickelter 2D-Action-Plattformer mit flüssiger Steuerung, Controller-Unterstützung und einem spannenden Story-Modus. Das Spiel bietet sowohl Einzelspieler- als auch Mehrspielererlebnisse, verschiedene Modi und ein umfangreiches Einstellungs- sowie Speichersystem.
+The Game With No Name ist ein selbst entwickelter 2D-Action-Plattformer mit flüssiger Steuerung, Controller-Unterstützung und einem spannenden Story-Modus.
+Das Spiel bietet sowohl Einzelspieler- als auch Mehrspielererlebnisse, verschiedene Modi und ein umfangreiches Einstellungs- sowie Speichersystem.
 
 ⚠️ Das Spiel befindet sich derzeit in aktiver Entwicklung und ist noch nicht vollständig spielbar.
 Der Story-Modus ist begonnen, aber ein komplettes Durchspielen ist aktuell noch nicht möglich.
