@@ -254,7 +254,17 @@ func check_for_jumping() -> void:
 		buffered_jump = true
 		jumpBufferTimer.start(0.15)
 		
-		if on_floor or not coyoteTimer.is_stopped() or lavaWaterDetector.inWater or grabZone.rope_part:
+		if lavaWaterDetector.inWater:
+			jump(WATER_JUMP if not on_floor else WATER_FLOOR_JUMP)
+			return
+		
+		if grabZone.rope_part:
+			grabZone.rope_part = null
+			grabZone.timer.start()
+			jump(JUMP_POWER)
+			return
+		
+		if on_floor or not coyoteTimer.is_stopped():
 			jump(JUMP_POWER)
 			return
 		
@@ -264,12 +274,12 @@ func check_for_jumping() -> void:
 			return
 		
 		if can_doublejump and coyoteTimer.is_stopped() and not is_on_floor():
-			velocity.y = 0
 			can_doublejump = false
 			jump(JUMP_POWER)
 
 
 func jump(jump_power: float) -> void:
+	velocity.y = 0
 	velocity.y -= jump_power
 	buffered_jump = false
 	coyoteTimer.stop()

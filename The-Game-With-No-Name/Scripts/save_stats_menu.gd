@@ -13,12 +13,15 @@ class_name SaveStatMenu
 var copy_data_from_save: int
 
 func _unhandled_input(event: InputEvent) -> void:
-	super._unhandled_input(event)
-	if Input.is_action_just_pressed("back"):
-		var path: int = G.path - 1
-		save_stats[path].grab_focus()
+	var path: int = G.path - 1
+	var save_stat: SaveStateButton = save_stats[path]
+	if save_stat.state == save_stat.States.Nothing:
+		super._unhandled_input(event)
+		
+	if Input.is_action_just_pressed("back") and name_enterer.visible:
+		save_stat.grab_focus()
+		save_stat.state = save_stat.States.Nothing
 		name_enterer.visible = false
-		set_process_unhandled_input(false)
 
 
 func show_normal_text() -> void:

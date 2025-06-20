@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource("1_xo7fg")
-levelNumber = 1
+levelNumber = 2
 playerHp = Array[float]([100.0, 100.0])
 playerMana = Array[int]([99, 99])
 kristallCount = 0
 kristallCollected = Array[bool]([false, false, false, false, false, false, false, false])
-checkpointPosition = Vector2(951, 392)
+checkpointPosition = Vector2(178, 70)
 checkpointActive = false
 finished = Array[bool]([false, false, false])
 door = Array[int]([])

@@ -26,6 +26,7 @@ func _ready() -> void:
 	check_for_door()
 	set_player_positions()
 	on_player_count_changed() 
+	G.darkness_changed.connect(_on_darkness_changed)
 	print("Ready duration: ", Time.get_ticks_msec() - start_time, "ms")
 
 
@@ -166,6 +167,9 @@ func change_boss_hp() -> void:
 func change_boss_label() -> void: 
 	boss_label.text = G.bossLabel
 
+func _on_darkness_changed() -> void:
+	for obj: Light in get_tree().get_nodes_in_group("Light"):
+		obj.change_darkness()
 
 func _on_respawnTimer_timeout() -> void:
 	for i: int in range(G.playerAlive.size()):

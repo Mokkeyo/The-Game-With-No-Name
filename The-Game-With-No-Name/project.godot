@@ -86,6 +86,7 @@ import/blender/enabled=false
 
 NPC="Alle, die eine Textbox laden"
 respawnable="this group is for objects, who need to be reset after player died"
+Light=""
 
 [gui]
 

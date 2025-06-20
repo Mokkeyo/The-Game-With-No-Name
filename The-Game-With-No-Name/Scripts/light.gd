@@ -1,8 +1,8 @@
 extends PointLight2D
+class_name Light
 
 func _ready() -> void:
 	visible = true
-	G.darkness_changed.connect(change_darkness)
 	change_darkness()
 
 func change_darkness() -> void:

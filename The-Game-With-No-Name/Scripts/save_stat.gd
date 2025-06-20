@@ -67,7 +67,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		G.path = saveState
 		copy_data()
 	if not state == States.Nothing and Input.is_action_just_pressed("back"):
-		menu.set_process_unhandled_input(false)
 		hide_delete_copy_conformation()
 
 
@@ -90,25 +89,20 @@ func start_game_or_copy() -> void:
 		show_delete_copy_conformation("copy data?")
 	else:
 		release_focus()
-		menu.set_process_unhandled_input(true)
 		state = States.EnteringName
 		menu.start_game()
-		menu.set_process(false)
 
 
 func erease_data() -> void:
-	menu.set_process(false)
 	state = States.Ereasing
 	show_delete_copy_conformation("delete data?")
 
 
 func copy_data() -> void:
-	menu.set_process(false)
 	menu.copy_data_from_save = saveState
 	menu.show_copy_data_text()
 	G.load_data()
 	state = States.Copying
-
 
 
 func show_yes_ping(visibility: bool) -> void:
@@ -172,5 +166,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _on_pressed() -> void:
+	print("button pressed")
 	if state == States.Nothing:
+		print("starting")
 		start_game_or_copy()

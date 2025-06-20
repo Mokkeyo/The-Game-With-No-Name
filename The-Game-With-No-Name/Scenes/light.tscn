@@ -3,10 +3,9 @@
 [ext_resource type="Script" uid="uid://dn6pegp60veof" path="res://Scripts/light.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://mtura4m6ca8e" path="res://Objects/Textures/light.png" id="2"]
 
-[node name="PointLight2D" type="PointLight2D"]
+[node name="PointLight2D" type="PointLight2D" groups=["Light"]]
 process_mode = 3
 show_behind_parent = true
 color = Color(1, 1, 1, 0.705882)
-shadow_enabled = true
 texture = ExtResource("2")
 script = ExtResource("1")
