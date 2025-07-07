@@ -4,7 +4,7 @@ extends Control
 @onready var fader: Fader = $Fader
 @onready var player_label: Array[Label] = [$Player1Label, $Player2Label]
 @onready var text_box: TextBox = $TextBox
-@onready var lightMap: Sprite2D = $InGame/lightmap
+@onready var lightMap: ColorRect = $InGame/lightmap
 @onready var respawn_timer: Timer = $respawnTimer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var boss_node: Control = $Boss
@@ -16,8 +16,11 @@ var respawnable_obj: Array[EnemyResetComponent]
 var level: Node2D = null
 var current_level_number: int
 
+var player_size: int
 
 func _ready() -> void:
+	player_size = G.playerAlive.size()
+	
 	fader.visible = true
 	var start_time: float = Time.get_ticks_msec()
 	connect_to_signals()
@@ -87,7 +90,7 @@ func restart_level() -> void:
 
 
 func set_player_positions() -> void:
-	for i: int in G.playerAlive.size():
+	for i: int in player_size:
 		if in_game.player[i] and G.playerAlive[i]:
 			in_game.player[i].global_position = G.SaveStat.checkpointPosition 
 
@@ -131,7 +134,7 @@ func on_player_count_changed() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	for i: int in range(G.playerAlive.size()):
+	for i: int in player_size:
 		if C.just_pressed(C.spawn, i) and not G.playerAlive[i]:
 			G.playerAlive[i] = true
 			player_label[i].visible = false
@@ -172,7 +175,7 @@ func _on_darkness_changed() -> void:
 		obj.change_darkness()
 
 func _on_respawnTimer_timeout() -> void:
-	for i: int in range(G.playerAlive.size()):
+	for i: int in player_size:
 		if not G.playerAlive[i]:
 			player_label[i].visible = true
 	animationPlayer.play("PlayerCanRespawn")

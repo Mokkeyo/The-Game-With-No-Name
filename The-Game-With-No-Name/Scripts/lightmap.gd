@@ -1,4 +1,4 @@
-extends Sprite2D
+extends ColorRect
 
 func _ready() -> void:
 	change_darkness()

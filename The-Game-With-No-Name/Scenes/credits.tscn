@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cv5ekjfi8ad65"]
+[gd_scene load_steps=17 format=3 uid="uid://cv5ekjfi8ad65"]
 
 [ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="1"]
-[ext_resource type="Texture2D" uid="uid://c3n3iepm0pslg" path="res://Objects/Textures/lightmap.png" id="2"]
 [ext_resource type="Script" uid="uid://ym23lg8su8ld" path="res://Scripts/credits.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="5_4ebpx"]
@@ -221,11 +220,12 @@ _data = {
 position = Vector2(2, 0)
 script = ExtResource("3")
 
-[node name="lightmap" type="Sprite2D" parent="."]
+[node name="lightmap" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(511.499, 314.5)
-scale = Vector2(79.5002, 47.7857)
-texture = ExtResource("2")
+offset_left = -2.0
+offset_right = 1022.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 1)
 
 [node name="GameTitle" type="VBoxContainer" parent="."]
 modulate = Color(0, 0, 0, 0)

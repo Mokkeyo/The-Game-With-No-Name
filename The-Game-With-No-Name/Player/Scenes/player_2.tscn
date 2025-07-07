@@ -182,6 +182,7 @@ currentPlayer = 1
 [node name="PointLight2D" parent="." instance=ExtResource("8")]
 visible = false
 position = Vector2(0, -10)
+shadow_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

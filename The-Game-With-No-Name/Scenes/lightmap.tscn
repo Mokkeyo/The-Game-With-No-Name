@@ -1,12 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgpiw2qmnrmcw"]
+[gd_scene load_steps=2 format=3 uid="uid://bgpiw2qmnrmcw"]
 
-[ext_resource type="Texture2D" uid="uid://c3n3iepm0pslg" path="res://Objects/Textures/lightmap.png" id="1"]
 [ext_resource type="Script" uid="uid://b04xntpfsof4r" path="res://Scripts/lightmap.gd" id="2"]
 
-[node name="lightmap" type="Sprite2D"]
+[node name="lightmap" type="ColorRect"]
 process_mode = 3
 modulate = Color(0, 0, 0, 0.784314)
-scale = Vector2(73.1429, 41.1429)
-texture = ExtResource("1")
-centered = false
+offset_right = 1024.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 1)
 script = ExtResource("2")

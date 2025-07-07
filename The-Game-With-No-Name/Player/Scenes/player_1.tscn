@@ -182,6 +182,7 @@ resetComp = NodePath("ResetComponent")
 [node name="PointLight2D" parent="." instance=ExtResource("7")]
 visible = false
 position = Vector2(0, -10)
+shadow_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
