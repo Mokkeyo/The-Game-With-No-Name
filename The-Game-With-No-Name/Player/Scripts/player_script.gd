@@ -38,7 +38,7 @@ const ACCELERATION: int = 20
 const WATER_SPEED: int = 80
 const JUMP_POWER: int = 210
 const WATER_JUMP: int = 100
-const WATER_FLOOR_JUMP: int = 20
+const WATER_FLOOR_JUMP: int = 70
 const UP_VECTOR: Vector2 = Vector2(0, -1)
 const WATER_GRAVITY: int = 200
 

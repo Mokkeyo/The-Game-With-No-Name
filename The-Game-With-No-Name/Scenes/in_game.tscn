@@ -79,6 +79,7 @@ drag_bottom_margin = 0.05
 
 [node name="lightmap" parent="." instance=ExtResource("3_x4u0x")]
 visible = false
+layout_mode = 0
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
