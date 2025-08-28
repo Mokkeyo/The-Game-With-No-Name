@@ -28,7 +28,7 @@ func _ready() -> void:
 	initialize_variables()
 	check_for_door()
 	set_player_positions()
-	on_player_count_changed() 
+	on_player_count_changed(-1) 
 	G.darkness_changed.connect(_on_darkness_changed)
 	print("Ready duration: ", Time.get_ticks_msec() - start_time, "ms")
 
@@ -68,7 +68,7 @@ func connect_to_signals() -> void:
 	G.boss_begin.connect(show_boss_hp)
 
 
-func restart_level() -> void:
+func restart_level(player: int) -> void:
 	initialize_variables()
 	respawn_timer.stop()
 	for obj: EnemyResetComponent in respawnable_obj:
@@ -77,9 +77,8 @@ func restart_level() -> void:
 		if not parent.is_in_group("Player"):
 			obj.reset_stats()
 			continue
-			
-		var player: Player = parent as Player
-		if G.playerAlive[player.currentPlayer]:
+		
+		if parent. is_in_group("Player_" + str(player)):
 			obj.reset_stats()
 	
 	set_player_positions()
@@ -95,12 +94,12 @@ func set_player_positions() -> void:
 			in_game.player[i].global_position = G.SaveStat.checkpointPosition 
 
 
-func game_over() -> void:
+func game_over(player: int) -> void:
 	pause.can_pause = false
 	G.tempDoor = G.SaveStat.door
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
-	restart_level()
+	restart_level(player)
 
 
 func reload() -> void:
@@ -122,11 +121,11 @@ func on_enter_kristall() -> void:
 	reload()
 
 
-func on_player_count_changed() -> void:
+func on_player_count_changed(player: int) -> void:
 	var both_death: bool = not G.playerAlive[0] and not G.playerAlive[1]
 	
 	if both_death:
-		game_over()
+		game_over(player)
 		return
 	
 	respawn_timer.start()

@@ -450,6 +450,7 @@ esc={
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 common/enable_pause_aware_picking=true
 
 [rendering]

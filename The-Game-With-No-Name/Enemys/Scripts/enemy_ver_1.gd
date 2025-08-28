@@ -4,8 +4,7 @@ extends CharacterBody2D
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var hpBar: progressBar = $"HPbar(enemy)"
-@onready var RayCastLeft: RayCast2D = $RayCastLeft
-@onready var RayCastRight: RayCast2D = $RayCastRight
+@onready var RayCast: RayCast2D = $RayCast
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 @onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent
 
@@ -39,12 +38,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
-		collision.disabled = true
-		hpBar.visible = false
 		return
 	
 	floorComp.update_rotation()
 	move.y += GRAVITY * delta
+	
+	if is_on_floor():
+		if animatedSprite.animation == "air":
+			on_landing()
+		else:
+			move.y = 0
+			if is_on_wall() or is_over_abyss():
+				jump()
 	
 	var snap_value: int = 4 if is_on_floor() else 0
 	
@@ -54,14 +59,6 @@ func _physics_process(delta: float) -> void:
 	set_velocity(move)
 	set_up_direction(UP_VECTOR)
 	move_and_slide()
-
-	if is_on_floor():
-		if animatedSprite.animation == "air":
-			on_landing()
-		else:
-			move.y = 0
-			if is_on_wall() or is_over_abyss():
-				jump()
 
 
 func die() -> void:
@@ -81,15 +78,11 @@ func turn() -> void:
 	direction *= -1
 	move.x = SPEED * direction
 	animatedSprite.flip_h = not animatedSprite.flip_h
-
+	RayCast.position.x *= -1
 
 func is_over_abyss() -> bool:
-	if move.x < 0:
-		RayCastLeft.force_raycast_update()
-		return RayCastLeft.get_collider() == null
-	else:
-		RayCastRight.force_raycast_update()
-		return RayCastRight.get_collider() == null
+	RayCast.force_raycast_update()
+	return RayCast.get_collider() == null
 
 
 func respawn() -> void:

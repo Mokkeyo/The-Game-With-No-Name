@@ -270,8 +270,10 @@ frame = 11
 
 [node name="lightmap" parent="Sprites" instance=ExtResource("12")]
 modulate = Color(0, 0, 0, 0.862745)
-position = Vector2(1208, 192)
-scale = Vector2(46.8572, 26.2857)
+offset_left = 1208.0
+offset_top = 192.0
+offset_right = 1864.0
+offset_bottom = 560.0
 
 [node name="TurnDarknessOff" type="Control" parent="."]
 visible = false

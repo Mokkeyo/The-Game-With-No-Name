@@ -115,16 +115,9 @@ collision_mask = 529
 platform_floor_layers = 1
 script = ExtResource("2")
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-visible = false
-position = Vector2(-5.23223, 6.14905)
-target_position = Vector2(0, 2)
-collision_mask = 513
-
-[node name="RayCastRight" type="RayCast2D" parent="."]
-visible = false
-position = Vector2(4.7019, 6.14905)
-target_position = Vector2(0, 2)
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2(3, 6)
+target_position = Vector2(0.01, 11)
 collision_mask = 513
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

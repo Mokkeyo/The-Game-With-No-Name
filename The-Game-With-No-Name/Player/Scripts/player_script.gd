@@ -5,8 +5,6 @@ signal flip_value_changed
 
 const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
-var player: Player
-var tween: Tween
 
 @onready var hurtboxCollision: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var HitboxCollision: CollisionShape2D = $Hitbox/CollisionShape2D
@@ -361,6 +359,7 @@ func respawn() -> void:
 
 
 func enable_player() -> void:
+	print("enabling Player")
 	is_alive = true
 	islaunching = false
 	grabZone.rope_part = null
@@ -379,7 +378,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
 		G.playerAlive[currentPlayer] = false
 		resetComp.set_stats()
-		G.emit_signal("player_died")
+		G.emit_signal("player_died", currentPlayer)
 
 
 func _on_damage_knockback_timeout() -> void: knockback_on = false

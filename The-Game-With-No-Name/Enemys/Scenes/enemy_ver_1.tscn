@@ -109,14 +109,9 @@ script = ExtResource("6")
 sprite_frames = SubResource("1")
 animation = &"walk"
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(3.00877, 5.79542)
-target_position = Vector2(-0.00876999, 11.2046)
-collision_mask = 513
-
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-2.99123, 5.81627)
-target_position = Vector2(-0.00876999, 11.1837)
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2(3, 6)
+target_position = Vector2(-0.01, 11)
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

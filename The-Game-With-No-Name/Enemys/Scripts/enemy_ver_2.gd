@@ -3,8 +3,7 @@ extends CharacterBody2D
 const UP_VECTOR: Vector2 =  Vector2(0, -1)
 var move: Vector2 = Vector2(SPEED, 0)
 
-@onready var RayCastLeft: RayCast2D = $RayCastLeft
-@onready var RayCastRight: RayCast2D = $RayCastRight
+@onready var RayCast: RayCast2D = $RayCast
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthComp: healthComponent = $healthComponent
 @onready var collision: CollisionShape2D = $CollisionShape2D
@@ -23,11 +22,16 @@ func _ready() -> void:
 	animatedSprite.play("walk")
 	healthComp.died.connect(die)
 	resetComp.resetting_stats.connect(respawn)
+	
+	set_floor_stop_on_slope_enabled(true)
+	set_max_slides(4)
+	set_floor_max_angle(0.785398)
+	floor_constant_speed = true
+	slide_on_ceiling = false
 
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
-		collision.disabled = true
 		return
 	
 	floorComp.update_rotation()
@@ -40,7 +44,12 @@ func _physics_process(delta: float) -> void:
 			move.y = 0
 			if is_on_wall() or is_over_abyss():
 				turn()
-
+	
+	var snap_value: int = 4 if is_on_floor() else 0
+	
+	if not floor_snap_length == snap_value:
+		floor_snap_length = snap_value
+	
 	set_velocity(move)
 	set_up_direction(UP_VECTOR)
 	move_and_slide()
@@ -58,6 +67,7 @@ func turn() -> void:
 	direction *= -1
 	move.x = SPEED * direction
 	animatedSprite.flip_h = not animatedSprite.flip_h
+	RayCast.position.x *= -1
 
 
 func die() -> void:
@@ -71,12 +81,8 @@ func respawn() -> void:
 
 
 func is_over_abyss() -> bool:
-	if move.x < 0:
-		RayCastLeft.force_raycast_update()
-		return RayCastLeft.get_collider() == null
-	else:
-		RayCastRight.force_raycast_update()
-		return RayCastRight.get_collider() == null
+	RayCast.force_raycast_update()
+	return RayCast.get_collider() == null
 
 
 func jump() -> void:

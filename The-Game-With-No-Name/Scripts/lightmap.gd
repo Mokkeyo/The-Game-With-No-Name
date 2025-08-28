@@ -1,6 +1,7 @@
 extends ColorRect
 
 func _ready() -> void:
+	visible = true
 	change_darkness()
 	G.darkness_changed.connect(change_darkness)
 

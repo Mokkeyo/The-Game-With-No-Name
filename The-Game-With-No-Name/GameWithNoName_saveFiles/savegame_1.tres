@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_k3q2r")
-levelNumber = 3
+levelNumber = 2
 playerHp = Array[float]([100.0, 100.0])
 playerMana = Array[int]([99, 99])
 kristallCount = 0
 kristallCollected = Array[bool]([false, false, false, false, false, false, false, false])
-checkpointPosition = Vector2(623, -84)
-checkpointActive = true
+checkpointPosition = Vector2(178, 70)
+checkpointActive = false
 finished = Array[bool]([false, false, false])
-door = Array[int]([1])
+door = Array[int]([])
 enemysDefeated = Array[String]([])

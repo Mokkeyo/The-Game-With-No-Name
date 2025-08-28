@@ -16,6 +16,7 @@ extends Control
 var menus: Array[Menu]
 
 func _ready() -> void:
+	fader.visible = true
 	menus = [controlls, options, save_stats, achievments, two_player_mode]
 	for menu: Menu in menus:
 		menu.visible = false
@@ -26,7 +27,6 @@ func _ready() -> void:
 	G.playerAlive[0] = true
 	
 	animation_player.play("start")
-	fader.visible = true
 	fader.fade_in()
 	
 	await animation_player.animation_finished
