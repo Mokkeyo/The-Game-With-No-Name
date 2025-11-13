@@ -1,6 +1,8 @@
 extends Control
 class_name InGame
 
+@export var game: Game
+
 @onready var viewport_container: Array[SubViewportContainer] = [
 	$HBoxContainer/ViewportContainerP1,
 	$HBoxContainer/ViewportContainerP2
@@ -29,9 +31,9 @@ func _ready() -> void:
 	G.health_value_changed.connect(on_health_value_changed)
 	G.mana_value_changed.connect(on_mana_value_changed)
 	
-	for i: int in G.SaveStat.playerHp.size():
-		on_health_value_changed(i, G.SaveStat.playerHp[i])
-		on_mana_value_changed(i, G.SaveStat.playerMana[i])
+	for i: int in G.save_stat.playerHp.size():
+		on_health_value_changed(i, G.save_stat.playerHp[i])
+		on_mana_value_changed(i, G.save_stat.playerMana[i])
 		viewport[i].render_target_update_mode = SubViewport.UPDATE_WHEN_PARENT_VISIBLE
 
 
@@ -42,13 +44,13 @@ func add_level(currentLevel: Node2D) -> void:
 
 
 func set_viewport_size() -> void:
-	panel.visible = G.playerAlive[0] and G.playerAlive[1]
+	panel.visible = game.player_alive[0] and game.player_alive[1]
 	
 	if panel.visible:
-		for i: int in range(G.playerAlive.size()):
+		for i: int in game.player_alive.size():
 			_set_player_viewport(i, 512, true)
 	else:
-		var active: int = 0 if G.playerAlive[0] else 1
+		var active: int = 0 if game.player_alive[0] else 1
 		_set_player_viewport(active, 1024, true)
 		_set_player_viewport(1 - active, 0, false)
 
@@ -61,12 +63,9 @@ func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 
 func connet_camera_to_player() -> void:
 	for i: int in player.size():
-		var player_node: Player = get_tree().get_nodes_in_group("Player_%d" % i).front()
-		player[i] = player_node
-		
 		var remote_transform: RemoteTransform2D = RemoteTransform2D.new()
 		remote_transform.remote_path = camera[i].get_path()
-		player_node.add_child(remote_transform)
+		player[i].add_child(remote_transform)
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:

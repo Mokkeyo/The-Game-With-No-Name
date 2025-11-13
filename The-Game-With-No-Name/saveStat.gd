@@ -1,5 +1,5 @@
 extends Resource
-class_name saveStat
+class_name SaveStat
 
 @export var levelNumber: int  = 1
 @export var playerHp: Array[float] = [100, 100]

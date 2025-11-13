@@ -10,18 +10,18 @@ func _ready() -> void:
 
 func start() -> void:
 	if volume == 0:
-		value = G.SaveStatInf.musicVolume
+		value = G.save_stat_inf.musicVolume
 	elif volume == 1:
-		value = G.SaveStatInf.sfxVolume
+		value = G.save_stat_inf.sfxVolume
 	else:
-		value = G.SaveStatInf.maxVolume
+		value = G.save_stat_inf.maxVolume
 
 func _on_value_changed(_value: float) -> void:
 	if volume == 0:
-		G.SaveStatInf.musicVolume = value
+		G.save_stat_inf.musicVolume = value
 	elif volume == 1:
-		G.SaveStatInf.sfxVolume = value
+		G.save_stat_inf.sfxVolume = value
 	else:
-		G.SaveStatInf.maxVolume = value
+		G.save_stat_inf.maxVolume = value
 	SoundMusic.chance_sound_volume(value)
 	G.save_options()

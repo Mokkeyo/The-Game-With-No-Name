@@ -3,42 +3,52 @@ extends Node2D
 @onready var area: Area2D = $Area2D
 @onready var arrow: Array[Sprite2D] = [$Arrow, $Arrow2]
 
-var player_body: Array[Player] = [null, null]
+var arrow_count: int
+
+var player_bodies: Array[Player] = [null, null]
 var player_position: Vector2
 
 var direction: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
-var direction_map: Dictionary = {
-	"up": Vector2(0, -1),
-	"down": Vector2(0, 1),
-	"left": Vector2 (-1, 0),
-	"right": Vector2(1, 0)
-}
+
 
 func _ready() -> void:
 	player_position = global_position + Vector2(0, 11)
+	arrow_count = arrow.size()
 
 func _process(_delta: float) -> void:
-	for i: int in range(arrow.size()):
-		if player_body[i]:
-			player_body[i].global_position = player_position
-			if C.pressed(C.left, i):
-				set_direction("left", i)
-			elif C.pressed(C.right, i):
-				set_direction("right", i)
-			elif C.pressed(C.up, i):
-				set_direction("up", i)
-			elif C.pressed(C.down, i):
-				set_direction("down", i)
-			if not direction[i] == Vector2.ZERO:
-				var angle: float = atan2(direction[i].normalized().y, direction[i].normalized().x) - atan2(-1, 0)
-				arrow[i].rotation = angle
+	for i: int in range(arrow_count):
+		var player: Player = player_bodies[i]
+		if player == null:
+			continue
+		
+		player.global_position = player_position
+		
+		var dir: Vector2 = Vector2.ZERO
+		
+		if Input.is_action_pressed("player%d_left" % int(i + 1)):
+			dir = Vector2 (-1, 0)
+		elif Input.is_action_pressed("player%d_right" % int(i + 1)):
+			dir = Vector2(1, 0)
+		elif Input.is_action_pressed("player%d_up" % int(i + 1)):
+			dir = Vector2(0, -1)
+		elif Input.is_action_pressed("player%d_down" % int(i + 1)):
+			dir = Vector2(0, 1)
+		
+		if not dir == Vector2.ZERO:
+			set_direction(dir, i)
+		
+		var d: Vector2 = direction[i]
+		
+		if not d == Vector2.ZERO:
+			arrow[i].rotation = atan2(d.y, d.x) + PI / 2.0
+		
+		
+		if Input.is_action_just_pressed("player%d_interact" % int(i + 1)) or Input.is_action_just_pressed("player%d_jump" % int(i + 1)):
+			shoot_bubble(i)
 
-			if C.just_pressed(C.interact, i) or C.just_pressed(C.jump, i):
-				shoot_bubble(i)
 
-
-func set_direction(j: String, i: int) -> void:
-	direction[i] = direction_map[j]
+func set_direction(dir: Vector2, i: int) -> void:
+	direction[i] = dir
 	if not arrow[i].visible:
 		arrow[i].visible = true
 
@@ -47,22 +57,23 @@ func shoot_bubble(i: int) -> void:
 	for body: Player in area.get_overlapping_bodies():
 		if body.is_in_group("Player_%d" %i):
 			arrow[i].visible = false
-			player_body[i] = null
+			player_bodies[i] = null
 			body.freeze = false
 			body.velocity.y = 0
 			if not direction[i] == Vector2.ZERO:
 				body.islaunching = true
 				body.bubble_direction = direction[i]
 			direction[i] = Vector2.ZERO
+			break
 
 
 func _on_Area2D_body_entered(body: Player) -> void:
-	var arrow_size: int = arrow.size()
-	for i: int in range(arrow_size):
+	for i: int in range(arrow_count):
 		if body.is_in_group("Player_%d" %i):
 			body.global_position = player_position
-			player_body[i] = body
+			player_bodies[i] = body
 			body.velocity.y = 0
 			body.bubble_direction = Vector2.ZERO
 			body.islaunching = false
-			body.animatedSprite.play("air")
+			body.animatedSprite.play(str("jump_", i))
+			break

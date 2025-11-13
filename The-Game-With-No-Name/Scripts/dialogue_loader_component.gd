@@ -5,25 +5,29 @@ class_name DialogLoader
 
 @export var blackBox: bool = false
 @export var options: bool = false
+@export var npc_node: Npc
 var player: Player
 
+var speaker: String
+var dialog: Array
+
 func start_dialogue_no_check() -> void:
-	G.speaker = D.dialogue[npc][D.speaker]
-	G.dialog = D.dialogue[npc][D.dialog]
+	speaker = D.dialogue[npc][D.speaker]
+	dialog = D.dialogue[npc][D.dialog]
 	start()
 
 func start_dialogue(index: int) -> void:
-	G.speaker = D.dialogue[npc][D.speaker][index]
-	G.dialog = D.dialogue[npc][D.dialog][index]
+	speaker = D.dialogue[npc][D.speaker][index]
+	dialog = D.dialogue[npc][D.dialog][index]
 	start()
 
 func start() -> void:
-	G.black_box = blackBox
-	G.options = options
 	player.velocity.x = 0
-	player.animatedSprite.play("door")
+	player.animatedSprite.play("door_0")
 	player.freeze = true
-	G.emit_signal("start_dialog")
+	if npc_node == null:
+		npc_node = get_parent()
+	G.emit_signal("start_dialog", blackBox, options, speaker, dialog, npc_node)
 
 func check_for_dialog_collected(index: int) -> void:
 	check("%s%s" % [npc, index])
@@ -32,13 +36,14 @@ func check_for_dialog_collected_no_check() -> void:
 	check(npc)
 
 func check(string: String) -> void:
-	if not G.SaveStatInf.textboxCollected.has(string):
-		G.SaveStatInf.textboxCollected.append(string)
-		G.SaveStatInf.textboxCount += 1
+	if not G.save_stat_inf.textboxCollected.has(string):
+		G.save_stat_inf.textboxCollected.append(string)
+		G.save_stat_inf.textboxCount += 1
 		G.save_options()
+		G.check_if_chatter_unlocked()
 
 func has_dialog(npcing:String, index: int) -> bool:
-	if G.SaveStatInf.textboxCollected.has("%s%d" % [npcing, index]):
+	if G.save_stat_inf.textboxCollected.has("%s%d" % [npcing, index]):
 		return true
 	return false
 

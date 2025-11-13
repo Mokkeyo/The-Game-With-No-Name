@@ -5,6 +5,6 @@ class_name AchievmentComponent
 "Does Someone Need A Tutorial?", "Secret With No Name") var achievment_list: String
 
 func add_achievment() -> void:
-	if not G.SaveStatInf.achievments.has(achievment_list):
-		G.SaveStatInf.achievments.append(achievment_list)
+	if not G.save_stat_inf.achievments.has(achievment_list):
+		G.save_stat_inf.achievments.append(achievment_list)
 		AI._on_achievement_collected(achievment_list)

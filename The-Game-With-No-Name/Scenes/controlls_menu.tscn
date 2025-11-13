@@ -386,7 +386,7 @@ text = "Player 1 Controlls"
 horizontal_alignment = 1
 
 [node name="Keyboard" type="Label" parent="PlayerControlls"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 274.0
 offset_top = 56.0
 offset_right = 428.0
@@ -399,7 +399,7 @@ text = "Keyboard"
 horizontal_alignment = 1
 
 [node name="Actions" type="Label" parent="PlayerControlls"]
-layout_mode = 2
+layout_mode = 0
 offset_top = 56.0
 offset_right = 242.0
 offset_bottom = 88.0
@@ -411,7 +411,7 @@ text = "Actions"
 horizontal_alignment = 1
 
 [node name="Controller" type="Label" parent="PlayerControlls"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 460.0
 offset_top = 56.0
 offset_right = 656.0
@@ -528,7 +528,7 @@ offset_right = 150.0
 offset_bottom = 42.0
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
-action = "C-player1_up"
+action = "player1_up"
 controlls_menu = NodePath("../..")
 
 [node name="DownButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -538,7 +538,7 @@ offset_top = 44.0
 offset_right = 150.0
 offset_bottom = 84.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_down"
+action = "player1_down"
 controlls_menu = NodePath("../..")
 
 [node name="LeftButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -548,7 +548,7 @@ offset_top = 86.0
 offset_right = 150.0
 offset_bottom = 126.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_left"
+action = "player1_left"
 controlls_menu = NodePath("../..")
 
 [node name="RightButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -558,7 +558,7 @@ offset_top = 128.0
 offset_right = 150.0
 offset_bottom = 168.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_right"
+action = "player1_right"
 controlls_menu = NodePath("../..")
 
 [node name="JumpButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -568,7 +568,7 @@ offset_top = 170.0
 offset_right = 150.0
 offset_bottom = 210.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_jump"
+action = "player1_jump"
 controlls_menu = NodePath("../..")
 
 [node name="AttackButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -578,7 +578,7 @@ offset_top = 212.0
 offset_right = 150.0
 offset_bottom = 252.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_attack"
+action = "player1_attack"
 controlls_menu = NodePath("../..")
 
 [node name="WandButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -588,7 +588,7 @@ offset_top = 254.0
 offset_right = 150.0
 offset_bottom = 294.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_wand"
+action = "player1_wand"
 controlls_menu = NodePath("../..")
 
 [node name="InteractButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -598,7 +598,7 @@ offset_top = 296.0
 offset_right = 150.0
 offset_bottom = 336.0
 focus_neighbor_right = NodePath(".")
-action = "C-player1_interact"
+action = "player1_interact"
 controlls_menu = NodePath("../..")
 
 [node name="SpawnButton" parent="ControllerButtons" node_paths=PackedStringArray("controlls_menu") instance=ExtResource("10_4wto1")]
@@ -609,7 +609,7 @@ offset_right = 150.0
 offset_bottom = 404.0
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
-action = "C-player1_spawn"
+action = "player1_spawn"
 controlls_menu = NodePath("../..")
 
 [node name="inputLabel" type="Control" parent="."]
@@ -700,7 +700,7 @@ text = "Interact"
 horizontal_alignment = 2
 
 [node name="Spawn" type="Label" parent="inputLabel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 140.0
 offset_top = 372.0
 offset_right = 240.0

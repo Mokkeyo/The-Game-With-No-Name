@@ -78,6 +78,7 @@ sprite_frames = SubResource("SpriteFrames_pk57s")
 animation = &"deactivated"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -9)
 shape = SubResource("1")
 

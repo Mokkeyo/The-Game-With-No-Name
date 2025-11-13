@@ -11,11 +11,11 @@ var player: PackedScene
 var tween: Tween
 
 @onready var HealthComponent: healthComponent = $healthComponent
-@onready var LavaWaterDetector: lavaWaterDetector = $LavaWater_Detector
+@onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
-@onready var GrabZone: grabZone = $GrabZone
-@onready var AnimatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var grabZone: GrabZone = $GrabZone
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var PointLight: PointLight2D = $PointLight2D
 @onready var manaTimer: Timer = $Timer/ManaTimer
 @onready var coyoteTimer: Timer = $Timer/CoyoteTimer
@@ -54,6 +54,8 @@ var bubble_direction: Vector2 = Vector2()
 var freeze: bool = false
 var islaunching: bool = false
 
+var inputs: Dictionary[String, String] = {}
+
 func _ready() -> void:
 	set_floor_stop_on_slope_enabled(true)
 	set_max_slides(4)
@@ -66,7 +68,7 @@ func _ready() -> void:
 	HealthComponent.connect("died", Callable(self, "respawn"))
 	Hitbox.connect("damage_dealth", Callable(self, "on_stomp"))
 	HealthComponent.connect("setKnockback", Callable(self,"damage_knockback"))
-	LavaWaterDetector.connect("lava_entred", Callable(HealthComponent,"die"))
+	lavaWaterDetector.connect("lava_entred", Callable(HealthComponent,"die"))
 	
 	HealthComponent.health = G.SaveStat.playerHp[currentPlayer - 1]
 	
@@ -78,6 +80,19 @@ func _ready() -> void:
 	if HealthComponent.health <= 0:
 		HealthComponent.health = 100
 		G.SaveStat.playerHp[currentPlayer - 1] = 100
+
+func set_inputs() -> void:
+	inputs = {
+		"up": "player%d_up" % int(currentPlayer + 1),
+		"down": "player%d_down" % int(currentPlayer + 1),
+		"left": "player%d_left" % int(currentPlayer + 1),
+		"right": "player%d_right" % int(currentPlayer + 1),
+		"jump": "player%d_jump" % int(currentPlayer + 1),
+		"interact": "player%d_interact" % int(currentPlayer + 1),
+		"attack": "player%d_attack" % int(currentPlayer + 1),
+		"wand": "player%d_wand" % int(currentPlayer + 1)
+	}
+
 
 func _physics_process(delta: float) -> void:
 	if !is_alive:
@@ -92,13 +107,13 @@ func _physics_process(delta: float) -> void:
 			freeze = false
 			can_doublejump = true
 
-	if LavaWaterDetector.inWaterElevator:
+	if lavaWaterDetector.inWaterElevator:
 		velocity.y = -1 * 200
 
 	if freeze:
 		return
 
-	if LavaWaterDetector.inWater == false:
+	if lavaWaterDetector.inWater == false:
 		if velocity.y > 600:
 			velocity.y = 600
 	else:
@@ -108,8 +123,8 @@ func _physics_process(delta: float) -> void:
 	if sword.slow_down:
 		velocity.x = 0
 
-	if GrabZone.rope_part != null:
-		global_position = GrabZone.rope_part.global_position
+	if grabZone.rope_part != null:
+		global_position = grabZone.rope_part.global_position
 
 	if is_on_ceiling() or is_on_floor() or knockback_on:
 		velocity.y = 0
@@ -119,9 +134,9 @@ func _physics_process(delta: float) -> void:
 	if G.SaveStat.playerMana[currentPlayer -1] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
 	
-	if GrabZone.rope_part == null and LavaWaterDetector.inWater == false:
+	if grabZone.rope_part == null and lavaWaterDetector.inWater == false:
 		velocity.y += GRAVITY * delta
-	elif LavaWaterDetector.inWater:
+	elif lavaWaterDetector.inWater:
 		velocity.y += WATER_GRAVITY * delta
 
 	check_key_input()
@@ -136,14 +151,14 @@ func _physics_process(delta: float) -> void:
 		
 		if get_floor_normal().y == -1 or get_floor_normal().y == 0:
 			tween = create_tween()
-			tween.tween_property(AnimatedSprite, "rotation_degrees", 0, 0.1)
+			tween.tween_property(animatedSprite, "rotation_degrees", 0, 0.1)
 		elif get_floor_normal().y > - 1 and get_floor_normal().y < -0.5:
 			if get_floor_normal().x < 1 and get_floor_normal().x > 0:
 				tween = create_tween()
-				tween.tween_property(AnimatedSprite, "rotation_degrees", 45, 0.1)
+				tween.tween_property(animatedSprite, "rotation_degrees", 45, 0.1)
 			elif get_floor_normal().x > -1 and get_floor_normal().x < 0:
 				tween = create_tween()
-				tween.tween_property(AnimatedSprite, "rotation_degrees", -45, 0.1)
+				tween.tween_property(animatedSprite, "rotation_degrees", -45, 0.1)
 
 	else:
 		knockback = knockback.move_toward(Vector2.ZERO, -20 * delta)
@@ -158,21 +173,21 @@ func _physics_process(delta: float) -> void:
 	
 
 func check_key_input() -> void:
-	if GrabZone.rope_part != null:
-		if C.pressed(C.jump, currentPlayer):
+	if grabZone.rope_part != null:
+		if Input.is_action_just_pressed(inputs["jump"]):
 			velocity.y = -JUMP_POWER
 			SoundMusic.play_sound_effect("jump")
 			is_jumping = true
-			GrabZone.rope_part = null
+			grabZone.rope_part = null
 			grabZoneTimer.start()
 
-	var speed_limit: float = WATER_SPEED if LavaWaterDetector.inWater else SPEED
+	var speed_limit: float = WATER_SPEED if lavaWaterDetector.inWater else SPEED
 	
-	var direction: int = (int(C.pressed(C.right, currentPlayer)) - int(C.pressed(C.left, currentPlayer)))
+	var direction: int = int(Input.is_action_pressed(inputs["right"])) - int(Input.is_action_just_pressed(inputs["left"]))
 	if direction == 0:
 		velocity.x = lerp(velocity.x, 0.0, 0.5)
-		if is_on_floor() and is_alive and not AnimatedSprite.animation == "nothing(Ver2)":
-			AnimatedSprite.play("nothing(Ver2)")
+		if is_on_floor() and is_alive and not animatedSprite.animation == "nothing(Ver2)":
+			animatedSprite.play("nothing(Ver2)")
 	else:
 		if wand.sprite.flip_h == bool(direction > 0):
 			wand.flip(direction) 
@@ -180,38 +195,38 @@ func check_key_input() -> void:
 			sword.flip(direction)
 		velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
 
-	if C.pressed(C.jump, currentPlayer):
+	if Input.is_action_just_pressed(inputs["jump"]):
 		buffered_jump = true
 		jumpBufferTimer.start(0.15)
-		if LavaWaterDetector.inWater:
+		if lavaWaterDetector.inWater:
 			jump()
 			if !is_on_floor():
 				is_jumping = true
 				velocity.y = -WATER_JUMP
 				SoundMusic.play_sound_effect("water")
 
-		if next_to_left_wall() and !is_on_floor() and LavaWaterDetector.inWater == false:
+		if next_to_left_wall() and !is_on_floor() and lavaWaterDetector.inWater == false:
 			knockback = Vector2(2.5,-3) * 65
 			do_walljump(false)
 			
-		if next_to_right_wall() and !is_on_floor() and LavaWaterDetector.inWater == false:
+		if next_to_right_wall() and !is_on_floor() and lavaWaterDetector.inWater == false:
 			knockback = Vector2(-2.5,-3) * 65
 			do_walljump(true)
 
-		if can_doublejump and LavaWaterDetector.inWater == false and !next_to_right_wall() and !next_to_left_wall():
+		if can_doublejump and lavaWaterDetector.inWater == false and !next_to_right_wall() and !next_to_left_wall():
 			if !is_on_floor() and coyoteTimer.is_stopped():
 				velocity.y = -DOUBLE_JUMP
 				SoundMusic.play_sound_effect("jump")
 				can_doublejump = false
 
-	if C.pressed(C.jump, currentPlayer) or buffered_jump:
+	if Input.is_action_just_pressed(inputs["jump"]) or buffered_jump:
 		jump()
 
-	if C.released(C.jump, currentPlayer):
-		if LavaWaterDetector.inWater == false:
+	if Input.is_action_just_released(inputs["jump"]):
+		if lavaWaterDetector.inWater == false:
 			jump_cut()
 		
-	if C.pressed(C.wand, currentPlayer):
+	if Input.is_action_just_pressed(inputs["wand"]):
 		if wand.can_swing and G.SaveStat.playerMana[currentPlayer -1] >= 30:
 			wand.attack()
 			SoundMusic.play_sound_effect("magic")
@@ -219,8 +234,8 @@ func check_key_input() -> void:
 			get_parent().add_child(w)
 			w.global_position = wand.marker.global_position
 			change_mana_value()
-
-	if C.pressed(C.attack, currentPlayer) and sword.can_swing:
+	
+	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
 		sword.attack()
 
 func on_value_changed() -> void:
@@ -239,22 +254,22 @@ func set_animation() -> void:
 
 	if velocity.x > 0:
 		if is_on_floor():
-			AnimatedSprite.play("walk(Ver2)")
-		AnimatedSprite.flip_h = false
+			animatedSprite.play("walk(Ver2)")
+		animatedSprite.flip_h = false
 	elif velocity.x < 0:
 		if is_on_floor():
-			AnimatedSprite.play("walk(Ver2)")
-		AnimatedSprite.flip_h = true
+			animatedSprite.play("walk(Ver2)")
+		animatedSprite.flip_h = true
 
 	if velocity.y < 0 and is_on_floor() == false:
-		AnimatedSprite.play("jump(Ver2)")
+		animatedSprite.play("jump(Ver2)")
 	elif velocity.y > 0 and is_on_floor() == false:
-		AnimatedSprite.play("air")
+		animatedSprite.play("air")
 
 func on_stomp() -> void:
 	can_doublejump = true
 	is_jumping = true
-	if LavaWaterDetector.inWater == false:
+	if lavaWaterDetector.inWater == false:
 		velocity.y = -JUMP_POWER
 		SoundMusic.play_sound_effect("jump")
 	else:
@@ -267,7 +282,7 @@ func do_walljump(left: bool) -> void:
 	SoundMusic.play_sound_effect("jump")
 	knockback_on = true
 	knockbackTimer.start(0.25)
-	AnimatedSprite.flip_h = left
+	animatedSprite.flip_h = left
 
 func jump() -> void:
 	if is_on_floor() or coyoteTimer.is_stopped() == false:
@@ -275,7 +290,7 @@ func jump() -> void:
 		is_jumping = true
 		buffered_jump = false
 		coyoteTimer.stop()
-		if LavaWaterDetector.inWater == false:
+		if lavaWaterDetector.inWater == false:
 			velocity.y = -JUMP_POWER
 			SoundMusic.play_sound_effect("jump")
 		else:
@@ -305,7 +320,7 @@ func respawn() -> void:
 	G.save_options()
 	G.SaveStat.playerHp[currentPlayer - 1] = 100
 	G.SaveStat.playerMana[currentPlayer - 1] = 99
-	AnimatedSprite.play("game_over")
+	animatedSprite.play("game_over")
 
 func damage_knockback() -> void:
 	var knockbackStrength: float = 60
@@ -315,7 +330,7 @@ func damage_knockback() -> void:
 	knockback = Vector2(knockbackStrength,-2) * 90
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	if AnimatedSprite.animation == "game_over":
+	if animatedSprite.animation == "game_over":
 		G.SaveStat.playerMana[currentPlayer - 1] = 99
 		queue_free()
 		G.playerAlive[currentPlayer - 1] = false

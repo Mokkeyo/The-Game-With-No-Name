@@ -101,7 +101,6 @@ theme_override_fonts/font = SubResource("2")
 text = "Coins: 0"
 
 [node name="Player1" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -123,7 +122,6 @@ offset_bottom = 64.0
 scale = Vector2(3, 3)
 
 [node name="Player2" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 
 [node name="HPBar" parent="Player2" instance=ExtResource("7_pi7ch")]

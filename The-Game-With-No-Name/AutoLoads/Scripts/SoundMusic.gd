@@ -20,16 +20,19 @@ var sound_effects: Dictionary = {
 }
 
 func chance_musice_volume(value: float) -> void:
-	G.SaveStatInf.musicVolume = linear_to_db(value * G.SaveStatInf.maxVolume)
-	music_player.volume_db = G.SaveStatInf.musicVolume
+	G.save_stat_inf.musicVolume = linear_to_db(value * G.save_stat_inf.maxVolume)
+	music_player.volume_db = G.save_stat_inf.musicVolume
+
 
 func chance_max_volume(value: float) -> void:
-	G.SaveStatInf.maxVolume = value
-	chance_musice_volume(G.SaveStatInf.musicVolume)
-	chance_sound_volume(G.SaveStatInf.sfxVolume)
+	G.save_stat_inf.maxVolume = value
+	chance_musice_volume(G.save_stat_inf.musicVolume)
+	chance_sound_volume(G.save_stat_inf.sfxVolume)
+
 
 func chance_sound_volume(value: float) -> void:
-	G.SaveStatInf.sfxVolume = linear_to_db(value * G.SaveStatInf.maxVolume)
+	G.save_stat_inf.sfxVolume = linear_to_db(value * G.save_stat_inf.maxVolume)
+
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
@@ -41,27 +44,32 @@ func _ready() -> void:
 #		add_child(music_player)
 #		music_player.play()
 
+
 func play_boss() -> void:
 #	music_player.stream = load(music_tracks["Boss"])
 #	add_child(music_player)
 	music_player.play()
 
+
 func play_wind() -> void:
 #	music_player.stream = load(music_tracks["Wind"])
 #	add_child(music_player)
 	music_player.play()
-	
+
+
 func play_underground() -> void:
 #	music_player.stream = load(music_tracks["Underground"])
 #	add_child(music_player)
 	music_player.play()
-	
+
+
 func play_battle() -> void:
 	music_player.play()
-	
+
+
 func play_sound_effect(effect: String) -> void:
 	var sound: AudioStreamPlayer = AudioStreamPlayer.new()
-	sound.volume_db = G.SaveStatInf.sfxVolume
+	sound.volume_db = G.save_stat_inf.sfxVolume
 	var soundEffects: String = sound_effects[effect]
 	sound.stream = load(soundEffects)
 	add_child(sound)

@@ -6,4 +6,4 @@ func _ready() -> void:
 	change_darkness()
 
 func change_darkness() -> void:
-	energy = (G.SaveStatInf.darknessValue / 100.0) if G.SaveStatInf.darknessOn else (G.SaveStatInf.darknessValue / 200.0)
+	energy = (G.save_stat_inf.darknessValue / 100.0) if G.save_stat_inf.darknessOn else (G.save_stat_inf.darknessValue / 200.0)

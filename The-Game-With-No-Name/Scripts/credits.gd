@@ -29,7 +29,7 @@ func _on_AnimationPlayer_animation_finished(_default: String) -> void:
 func _on_Button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Szenen/MainMenu.tscn")
 	SoundMusic.play_underground()
-	G.SaveStat.levelNumber = 1
+	G.save_stat.levelNumber = 1
 	G.save_data()
 
 func _on_Timer_timeout() -> void:

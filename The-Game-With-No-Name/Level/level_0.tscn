@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dpqi8lxyxlqqx"]
+[gd_scene load_steps=10 format=4 uid="uid://dpqi8lxyxlqqx"]
 
 [ext_resource type="PackedScene" uid="uid://5si55om8l0w7" path="res://TileMaps/Scenes/level.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dt2x60hqbfqua" path="res://Scenes/player_spawner.tscn" id="2"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bprfqrry27xnf" path="res://Scenes/shild.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://dffqqqfuq47wm" path="res://Scenes/door_with_button.tscn" id="6_tmttk"]
 [ext_resource type="PackedScene" uid="uid://b2cggka1ix7ys" path="res://TileMaps/Scenes/background_element.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://baf36j2ma3cg4" path="res://button.tscn" id="7_n167w"]
+[ext_resource type="PackedScene" uid="uid://bn81k5liigxdu" path="res://Scenes/dummy.tscn" id="9_knjeg"]
 
 [node name="Level0" type="Node2D"]
 
@@ -51,25 +53,22 @@ position = Vector2(1659, 112)
 
 [node name="DoorAndButton" parent="Objects" instance=ExtResource("6_tmttk")]
 position = Vector2(1348, 98)
-recuired_input = 3
-
-[node name="AnimatedSprite2D" parent="Objects/DoorAndButton" index="0"]
-visible = false
-
-[node name="CharacterBody2D" parent="Objects/DoorAndButton" index="3"]
-visible = true
+door_color = "Dummy"
 
 [node name="DoorAndButton2" parent="Objects" instance=ExtResource("6_tmttk")]
 position = Vector2(1498, 98)
-recuired_input = 2
+door_color = "Spiritball"
 Door_Nr = 2
 
-[node name="AnimatedSprite2D" parent="Objects/DoorAndButton2" index="0"]
-position = Vector2(54, -41)
-rotation = -1.5708
+[node name="Button" parent="Objects" node_paths=PackedStringArray("door") instance=ExtResource("7_n167w")]
+position = Vector2(1554, 57)
+rotation = -1.5707964
+door = NodePath("../DoorAndButton2")
+required_input = "Spiritball"
 
 [node name="Player_Spawner" parent="." instance=ExtResource("2")]
 position = Vector2(48, 168)
 
-[editable path="Objects/DoorAndButton"]
-[editable path="Objects/DoorAndButton2"]
+[node name="Dummy" parent="." node_paths=PackedStringArray("door") instance=ExtResource("9_knjeg")]
+position = Vector2(1227, 182)
+door = NodePath("../Objects/DoorAndButton")

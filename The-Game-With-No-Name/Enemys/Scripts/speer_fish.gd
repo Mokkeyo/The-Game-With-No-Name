@@ -16,7 +16,7 @@ var is_moving: bool = false
 
 func _ready() -> void:
 	lavaWaterDetector.water_exited.connect(on_stomp)
-
+	resetComp.resetting_stats.connect(resseting)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -46,11 +46,15 @@ func _on_SpeerFish_animation_finished() -> void:
 	if animatedSprite.animation == "die":
 		resetComp.set_stats()
 
+func resseting() -> void:
+	is_alive = true
+	animatedSprite.play("default")
+	is_moving = false
 
 func _on_move_duration_timeout() -> void:
 	is_moving = false
-	if G.playerAlive[1] and G.playerAlive[0]:
-		DetectPlayer.changeTarget()
+#	if G.playerAlive[1] and G.playerAlive[0]:
+	DetectPlayer.changeTarget()
 
 
 

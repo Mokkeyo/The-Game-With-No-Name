@@ -37,14 +37,13 @@ region_rect = Rect2(0, 0, 3, 9)
 position = Vector2(0, -6)
 
 [node name="Ropes" type="StaticBody2D" parent="."]
-position = Vector2(47, 0)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Ropes"]
-position = Vector2(-23, -24)
+position = Vector2(24, -23)
 shape = SubResource("SegmentShape2D_d1avb")
 
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="Ropes"]
-position = Vector2(-70, -24)
+position = Vector2(-23, -23)
 shape = SubResource("SegmentShape2D_rjyv6")

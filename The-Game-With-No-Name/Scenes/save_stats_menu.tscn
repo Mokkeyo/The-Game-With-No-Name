@@ -69,7 +69,6 @@ offset_left = 48.0
 offset_top = 80.0
 offset_right = 484.0
 offset_bottom = 297.0
-saveState = 1
 menu = NodePath("..")
 
 [node name="SaveStat2" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
@@ -78,7 +77,7 @@ offset_left = 544.0
 offset_top = 80.0
 offset_right = 980.0
 offset_bottom = 297.0
-saveState = 2
+saveState = 1
 menu = NodePath("..")
 
 [node name="SaveStat3" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
@@ -87,7 +86,8 @@ offset_left = 48.0
 offset_top = 300.0
 offset_right = 484.0
 offset_bottom = 517.0
-saveState = 3
+focus_neighbor_right = NodePath("../SaveStat4")
+saveState = 2
 menu = NodePath("..")
 
 [node name="SaveStat4" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_itox8")]
@@ -96,7 +96,8 @@ offset_left = 544.0
 offset_top = 300.0
 offset_right = 980.0
 offset_bottom = 517.0
-saveState = 4
+focus_neighbor_left = NodePath("../SaveStat3")
+saveState = 3
 menu = NodePath("..")
 
 [node name="BackButton" parent="." instance=ExtResource("6_vxfum")]
@@ -109,7 +110,6 @@ text = "Back"
 
 [node name="NameEnterer" type="Control" parent="."]
 visible = false
-layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

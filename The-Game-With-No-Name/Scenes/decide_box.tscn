@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0gb8q2p05ie5"]
+[gd_scene load_steps=19 format=3 uid="uid://c0gb8q2p05ie5"]
 
 [ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="1"]
 [ext_resource type="Texture2D" uid="uid://b44k67t81aj86" path="res://Objects/Textures/ping.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://n1xpbhx8jjf1" path="res://GuiElements/Textures/decidebox.png" id="2_rmbmt"]
 [ext_resource type="Script" uid="uid://3d8mn06j860k" path="res://Scripts/decide_box.gd" id="3"]
 
 [sub_resource type="StyleBoxFlat" id="15"]
@@ -26,16 +27,31 @@ cache/0/32/0/descent = 0.0
 cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
 
-[sub_resource type="StyleBoxTexture" id="19"]
-
-[sub_resource type="StyleBoxTexture" id="20"]
-
-[sub_resource type="StyleBoxTexture" id="17"]
+[sub_resource type="StyleBoxTexture" id="21"]
 
 [sub_resource type="StyleBoxTexture" id="18"]
 
-[sub_resource type="StyleBoxTexture" id="21"]
+[sub_resource type="StyleBoxTexture" id="17"]
+
+[sub_resource type="StyleBoxTexture" id="20"]
+
+[sub_resource type="StyleBoxTexture" id="19"]
 
 [sub_resource type="FontFile" id="14"]
 fallbacks = Array[Font]([ExtResource("1")])
@@ -53,25 +69,38 @@ cache/0/32/0/descent = 0.0
 cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
-
-[sub_resource type="StyleBoxTexture" id="11"]
-
-[sub_resource type="StyleBoxTexture" id="12"]
-
-[sub_resource type="StyleBoxTexture" id="9"]
-
-[sub_resource type="StyleBoxTexture" id="10"]
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
 
 [sub_resource type="StyleBoxTexture" id="13"]
 
+[sub_resource type="StyleBoxTexture" id="10"]
+
+[sub_resource type="StyleBoxTexture" id="9"]
+
+[sub_resource type="StyleBoxTexture" id="12"]
+
+[sub_resource type="StyleBoxTexture" id="11"]
+
 [node name="DecideBox" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3")
 
 [node name="Control" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 78.0
 offset_top = -192.0
@@ -79,6 +108,7 @@ offset_right = 118.0
 offset_bottom = -152.0
 
 [node name="Panel" type="Panel" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 730.0
 offset_top = 464.0
@@ -87,6 +117,7 @@ offset_bottom = 552.0
 theme_override_styles/panel = SubResource("15")
 
 [node name="Panel2" type="Panel" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 738.0
 offset_top = 472.0
@@ -94,55 +125,60 @@ offset_right = 906.0
 offset_bottom = 544.0
 theme_override_styles/panel = SubResource("16")
 
+[node name="Decidebox" type="Sprite2D" parent="Control"]
+position = Vector2(822, 508)
+texture = ExtResource("2_rmbmt")
+
 [node name="ButtonYes" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 796.0
-offset_top = 478.0
-offset_right = 916.0
-offset_bottom = 510.0
+offset_left = 847.0
+offset_top = 484.0
+offset_right = 894.0
+offset_bottom = 512.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../ButtonNo")
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("8")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("19")
-theme_override_styles/disabled = SubResource("20")
-theme_override_styles/hover = SubResource("17")
-theme_override_styles/pressed = SubResource("18")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("21")
+theme_override_styles/pressed = SubResource("18")
+theme_override_styles/hover = SubResource("17")
+theme_override_styles/disabled = SubResource("20")
+theme_override_styles/focus = SubResource("19")
 text = "Yes"
 
 [node name="ButtonNo" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 798.0
-offset_top = 514.0
-offset_right = 918.0
-offset_bottom = 546.0
+offset_left = 856.0
+offset_top = 511.0
+offset_right = 893.0
+offset_bottom = 539.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../ButtonYes")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("14")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("11")
-theme_override_styles/disabled = SubResource("12")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("13")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/disabled = SubResource("12")
+theme_override_styles/focus = SubResource("11")
 text = "No"
 
 [node name="PingYes" type="Sprite2D" parent="Control"]
-position = Vector2(808, 491)
+visible = false
+position = Vector2(810, 496)
 rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("2")
 
 [node name="PingNo" type="Sprite2D" parent="Control"]
 visible = false
-position = Vector2(809, 526)
+position = Vector2(810, 520)
 rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("2")

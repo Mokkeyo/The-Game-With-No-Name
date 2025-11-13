@@ -375,5 +375,6 @@ rotation = 3.14159
 [node name="Airship_spawner" parent="." instance=ExtResource("4")]
 position = Vector2(150, 112)
 
-[node name="Player_Spawner" parent="." instance=ExtResource("1")]
+[node name="Player_Spawner" parent="." node_paths=PackedStringArray("airship_spawner") instance=ExtResource("1")]
 position = Vector2(48, 112)
+airship_spawner = NodePath("../Airship_spawner")

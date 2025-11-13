@@ -43,14 +43,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func handle_controller_assignment(device: int) -> void:
-	var temp_player: int = player -1
-	var previous: int = G.SavedInputMap.device[player]
+	var temp_player: int = player
+	var previous: int = G.saved_input_map.device[player]
 	var other_player: int = 1 - temp_player
 	
-	G.SavedInputMap.device[temp_player] = device
+	G.saved_input_map.device[temp_player] = device
 	
-	if G.SavedInputMap.device[other_player] == device:
-		G.SavedInputMap.device[other_player] = previous
+	if G.saved_input_map.device[other_player] == device:
+		G.saved_input_map.device[other_player] = previous
 
 	G.save_inputs()
 	reset_controller_assignment()
@@ -86,7 +86,7 @@ func display_key() -> void:
 	var player_prefix: String = "player%d" % (player + 1)
 	for i: int in player_inputs.size():
 		var action: String = str(player_prefix, player_inputs[i])
-		controller_inputs[i].action = "C-" + action
+		controller_inputs[i].action = action
 		controller_inputs[i].display_key()
 		keyboard_inputs[i].action = action
 		keyboard_inputs[i].display_key()
@@ -100,11 +100,11 @@ func disable_all_buttons(disable: bool) -> void:
 		Input.warp_mouse(mouse_position)
 
 
-func add_event(event: InputEvent, index: int) -> void:
+func add_event(event: InputEvent, index: int, player_i: int) -> void:
 	var action_name: StringName = "player%d%s" % [player + 1, player_inputs[index]]
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name, event)
-	G.SavedInputMap.inputMap[action_name] = event
+	G.saved_input_map.inputMap[action_name][player_i] = event
 
 
 func restore_default_bindings() -> void:
@@ -118,12 +118,12 @@ func restore_default_bindings() -> void:
 			var ev: InputEventMouseButton
 			ev = InputEventMouseButton.new()
 			ev.button_index = defaults[player][i]
-			add_event(ev, i)
+			add_event(ev, i, player)
 		else:
 			var ev: InputEventKey
 			ev = InputEventKey.new()
 			ev.keycode = defaults[player][i]
-			add_event(ev, i)
+			add_event(ev, i, player)
 	
 	display_key()
 	G.save_inputs()

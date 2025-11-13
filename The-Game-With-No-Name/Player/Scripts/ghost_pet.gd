@@ -15,9 +15,9 @@ func _ready() -> void:
 	playerNode.flip_value_changed.connect(Callable(self, "flip"))
 
 func _process(_delta: float) -> void:
-	if G.playerInAirship[player] or not G.playerAlive[player]:
-		queue_free()
-		return
+#	if G.playerInAirship[player] or not G.playerAlive[player]:
+#		queue_free()
+#		return
 		
 	if not follow_player:
 		velocity = Vector2(0, 0)

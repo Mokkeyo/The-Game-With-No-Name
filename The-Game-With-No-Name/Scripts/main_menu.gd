@@ -14,6 +14,7 @@ extends Control
 @onready var camera: Camera2D = $Camera2D
 
 var menus: Array[Menu]
+var tween: Tween
 
 func _ready() -> void:
 	fader.visible = true
@@ -23,8 +24,6 @@ func _ready() -> void:
 		menu.exited.connect(to_start_menu.bind(menu))
 		
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	G.playerAlive[1] = false
-	G.playerAlive[0] = true
 	
 	animation_player.play("start")
 	fader.fade_in()
@@ -54,8 +53,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func start_tween(final_position: Vector2) -> void:
+	if tween and tween.is_running():
+		tween.kill()
 	nothing_button.grab_focus()
-	var tween: Tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(camera, "global_position", final_position, 0.4)
 	await tween.finished
 

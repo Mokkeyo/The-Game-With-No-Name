@@ -1,5 +1,5 @@
 extends Resource
-class_name saveStatInf
+class_name SaveStatInf
 
 @export var deaths: Array[int] = [0, 0, 0, 0]
 @export var vsync: bool = false

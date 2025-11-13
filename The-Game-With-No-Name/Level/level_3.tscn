@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dyhayvn7ewld0"]
+[gd_scene load_steps=27 format=4 uid="uid://dyhayvn7ewld0"]
 
 [ext_resource type="PackedScene" uid="uid://hpx56o8uob8o" path="res://Scenes/stone.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1i18eje8y7v2" path="res://TileMaps/Scenes/background.tscn" id="1_s7b5n"]
@@ -23,7 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://bt3eqg3885775" path="res://Scenes/checkpoint.tscn" id="23"]
 [ext_resource type="PackedScene" uid="uid://834mkf0t3knb" path="res://Enemys/Scenes/bat.tscn" id="24"]
 [ext_resource type="PackedScene" uid="uid://csm2v3r8snq0n" path="res://Enemys/Scenes/speer_fish.tscn" id="25"]
+[ext_resource type="PackedScene" uid="uid://baf36j2ma3cg4" path="res://button.tscn" id="25_17bxe"]
 [ext_resource type="PackedScene" uid="uid://cjnvdx5bao0kg" path="res://Scenes/falling_spike_trap_with_rope.tscn" id="25_p038q"]
+[ext_resource type="PackedScene" uid="uid://dboay8ax0qubo" path="res://Scenes/key.tscn" id="26_wwwxv"]
 
 [node name="Level3" type="Node2D"]
 
@@ -124,30 +126,29 @@ position = Vector2(849, -94)
 
 [node name="moving Plattform" parent="Objects" instance=ExtResource("15")]
 position = Vector2(110, 293)
-move_speed = 1.0
-move_direction = Vector2(0, 2)
+move_speed = 0.75
+move_direction = Vector2(0, 1)
 
 [node name="moving Plattform2" parent="Objects" instance=ExtResource("15")]
 position = Vector2(43, 184)
-move_direction = Vector2(0, 3)
+move_direction = Vector2(0, 1)
 
 [node name="moving Plattform3" parent="Objects" instance=ExtResource("15")]
 position = Vector2(113, 89)
-move_speed = 1.0
-move_direction = Vector2(0, 2)
+move_direction = Vector2(0, 1)
 
 [node name="moving Plattform4" parent="Objects" instance=ExtResource("15")]
 position = Vector2(41, 16)
-move_direction = Vector2(0, 2)
+move_direction = Vector2(0, 1)
 
 [node name="moving Plattform5" parent="Objects" instance=ExtResource("15")]
 position = Vector2(122, -49)
-move_speed = 1.0
-move_direction = Vector2(0, 2)
+move_speed = 0.75
+move_direction = Vector2(0, 1)
 
 [node name="moving Plattform6" parent="Objects" instance=ExtResource("15")]
 position = Vector2(43, -147)
-move_direction = Vector2(0, 2)
+move_direction = Vector2(0, 1)
 
 [node name="Checkpoint2" parent="Objects" instance=ExtResource("23")]
 position = Vector2(623, -84)
@@ -167,26 +168,16 @@ position = Vector2(294, 742)
 [node name="Bubble Launcher5" parent="Objects" instance=ExtResource("21")]
 position = Vector2(252, 483)
 
-[node name="DoorWithKey" parent="Objects" instance=ExtResource("11")]
+[node name="DoorWithKey" parent="Objects" node_paths=PackedStringArray("keys") instance=ExtResource("11")]
 position = Vector2(1142, 546)
 level_number = 7
-
-[node name="Schlüssel" parent="Objects/DoorWithKey" index="2"]
-position = Vector2(-279, -110)
-
-[node name="Schlüssel2" parent="Objects/DoorWithKey" index="3"]
-position = Vector2(2, -9)
-
-[node name="Schlüssel3" parent="Objects/DoorWithKey" index="4"]
-position = Vector2(200, 361)
+keys = [NodePath("../../Schlüssel"), NodePath("../../Schlüssel2"), NodePath("../../Schlüssel3")]
 
 [node name="swing_trap" parent="Objects" instance=ExtResource("8")]
 position = Vector2(235, 289)
-ANIMATION_SPEED = 2
 
 [node name="swing_trap2" parent="Objects" instance=ExtResource("8")]
 position = Vector2(359, 225)
-ANIMATION_SPEED = 2
 
 [node name="swingable Rope2" parent="Objects" instance=ExtResource("7")]
 position = Vector2(303, -342)
@@ -200,17 +191,11 @@ position = Vector2(252, 904)
 
 [node name="DoorAndButton" parent="Objects" instance=ExtResource("4")]
 position = Vector2(1009, 126)
-recuired_input = 1
-
-[node name="AnimatedSprite2D" parent="Objects/DoorAndButton" index="0"]
-position = Vector2(-128, 40)
+door_color = "Stone"
 
 [node name="DoorAndButton2" parent="Objects" instance=ExtResource("4")]
 position = Vector2(900, 434)
 Door_Nr = 5
-
-[node name="AnimatedSprite2D" parent="Objects/DoorAndButton2" index="0"]
-position = Vector2(-874, 208)
 
 [node name="FallingSpikeTrapWithRope" parent="Objects" instance=ExtResource("25_p038q")]
 position = Vector2(633, 850)
@@ -753,6 +738,20 @@ position = Vector2(336, 140)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2
 
-[editable path="Objects/DoorWithKey"]
-[editable path="Objects/DoorAndButton"]
-[editable path="Objects/DoorAndButton2"]
+[node name="Button" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_17bxe")]
+position = Vector2(881, 168)
+door = NodePath("../Objects/DoorAndButton")
+required_input = "Stone"
+
+[node name="Button2" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_17bxe")]
+position = Vector2(92, 644)
+door = NodePath("../Objects/DoorAndButton2")
+
+[node name="Schlüssel" parent="." instance=ExtResource("26_wwwxv")]
+position = Vector2(871, 436)
+
+[node name="Schlüssel2" parent="." instance=ExtResource("26_wwwxv")]
+position = Vector2(1143, 536)
+
+[node name="Schlüssel3" parent="." instance=ExtResource("26_wwwxv")]
+position = Vector2(1339, 910)

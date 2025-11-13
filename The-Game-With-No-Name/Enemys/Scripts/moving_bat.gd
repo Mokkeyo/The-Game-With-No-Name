@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 var is_alive: bool = true
 
@@ -9,22 +10,34 @@ var time_since_init: float = 0.0
 @onready var healthComp: healthComponent = $healthComponent
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 
-@export var move_direction: Vector2 = Vector2(1, 1)
+@export var move_direction: Vector2 = Vector2(0, 0)
 var origin: Vector2 = Vector2(0, 0)
 
+
 func _ready() -> void:
-	time_since_init = 0.0
-	origin = position
+	if Engine.is_editor_hint():
+		return
+	
 	healthComp.died.connect(on_stomp)
 	resetComp.resetting_stats.connect(respawn)
 	animatedSprite.play("default")
+	
+	set_variables()
 
 
-func _physics_process(delta: float) -> void:
-	time_since_init = time_since_init + delta
-	var position_on_curve: float = sin(time_since_init * PI * move_speed)
-	var offset: Vector2 = move_distance * position_on_curve * move_direction
-	position = origin + offset
+func _process(_delta: float) -> void:
+	if not Engine.is_editor_hint():
+		set_process(false)
+		return
+	
+	set_variables()
+
+
+func set_variables() -> void:
+	var move_comp: MoverComponent = $MoverComponent
+	move_comp.move_speed = move_speed
+	move_comp.move_distance = move_distance
+	move_comp.move_direction = move_direction
 
 
 func respawn() -> void:

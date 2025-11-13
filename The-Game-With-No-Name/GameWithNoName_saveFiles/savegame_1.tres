@@ -1,16 +1,11 @@
-[gd_resource type="Resource" script_class="saveStat" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SaveStat" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://saveStat.gd" id="1_k3q2r"]
 
 [resource]
 script = ExtResource("1_k3q2r")
-levelNumber = 2
-playerHp = Array[float]([100.0, 100.0])
-playerMana = Array[int]([99, 99])
-kristallCount = 0
-kristallCollected = Array[bool]([false, false, false, false, false, false, false, false])
-checkpointPosition = Vector2(178, 70)
-checkpointActive = false
-finished = Array[bool]([false, false, false])
-door = Array[int]([])
-enemysDefeated = Array[String]([])
+levelNumber = 4
+playerHp = Array[float]([80.0, 100.0])
+kristallCount = 2
+kristallCollected = Array[bool]([true, true, false, false, false, false, false, false])
+checkpointPosition = Vector2(40, 112)

@@ -3,8 +3,8 @@ class_name TextBox
 
 @onready var control: Control = $Control
 @onready var speaker: RichTextLabel = $Control/Speaker
-@onready var normal_box: Control = $Control/Panel
-@onready var black_box: Control = $Control/Panel2
+@onready var normal_box: Sprite2D = $Control/TextboxNpc
+@onready var blackBox: Sprite2D = $Control/TextboxPlayer
 @onready var text_box: RichTextLabel = $Control/RichTextLabel
 @onready var ping: Ping = $Control/Ping
 @onready var timer: Timer = $Control/Timer
@@ -15,22 +15,26 @@ enum State {READING, FINISHED}
 var dialog: Array = []
 var speaker_name: String = ""
 var text_length: int = 0
+var npc: Npc
 
 var dialog_index: int = 0
 var state: State = State.FINISHED
 var tween: Tween = null
 
+var options: bool
+var black_box: bool
 
 func _ready() -> void:
 	set_process_unhandled_input(false)
-
+	control.visible = false
 
 func start() -> void:
+	decide_box.npc = npc
 	dialog_index = 0
 	control.visible = true
 	speaker.visible = true
-	normal_box.visible = not G.black_box
-	black_box.visible = G.black_box
+	normal_box.visible = not black_box
+	blackBox.visible = black_box
 	text_box.visible = true
 	_load_dialog()
 	set_process_unhandled_input(true)
@@ -50,7 +54,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 					_load_dialog()
 				else:
 					set_process_unhandled_input(false)
-					if not G.options:
+					if options:
 						decide_box.enter()
 					else:
 						control.visible = false
@@ -78,5 +82,6 @@ func _on_tween_completed() -> void:
 
 
 func _on_timer_timeout() -> void:
-	G.npc.end_dialog()
-	G.npc = null
+	npc.end_dialog()
+	npc = null
+	decide_box.npc = null

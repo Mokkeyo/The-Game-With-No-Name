@@ -30,24 +30,24 @@ func _ready() -> void:
 
 
 func initialize_ui() -> void:
-	file_exists = FileAccess.file_exists(G.save_path + G.save_file_name[saveState])
-	G.path =  saveState
+	file_exists = FileAccess.file_exists(str(G.SAVE_PATH + G.SAVE_FILES["slots"][saveState]))
+	G.active_slot = saveState
 	if file_exists:
 		G.load_data()
-	show_ui(saveState - 1)
+	show_ui(saveState)
 
 
 func show_ui(file: int) -> void:
 	stats.visible = file_exists
 	new_game_label.visible = not file_exists
-	name_label.text = G.SaveStatInf.playerName[file]
-	star.visible = G.SaveStat.finished[0]
-	death_count.text = "Deaths: " + (str(G.SaveStatInf.deaths[file]) if G.SaveStatInf.deaths[file] < 1000 else "999+ :(")
+	name_label.text = G.save_stat_inf.playerName[file]
+	star.visible = G.save_stat.finished[0]
+	death_count.text = "Deaths: " + (str(G.save_stat_inf.deaths[file]) if G.save_stat_inf.deaths[file] < 1000 else "999+ :(")
 	set_kristall_visibility()
 
 
 func initialize_copied_ui() -> void:
-	show_ui(menu.copy_data_from_save - 1)
+	show_ui(menu.copy_data_from_save)
 
 
 func set_kristall_visibility() -> void:
@@ -56,15 +56,15 @@ func set_kristall_visibility() -> void:
 		$Stats/HC/Kristall5, $Stats/HC/Kristall6, $Stats/HC/Kristall7, $Stats/HC/Kristall8]
 		
 	for i: int in stateKristall.size():
-		stateKristall[i].visible = G.SaveStat.kristallCollected[i]
+		stateKristall[i].visible = G.save_stat.kristallCollected[i]
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("erease") and file_exists:
-		G.path = saveState
+		G.active_slot = saveState
 		erease_data()
 	elif Input.is_action_just_pressed("copy"):
-		G.path = saveState
+		G.active_slot = saveState
 		copy_data()
 	if not state == States.Nothing and Input.is_action_just_pressed("back"):
 		hide_delete_copy_conformation()
@@ -124,9 +124,9 @@ func _on_No_pressed() -> void:
 
 func _on_Yes_pressed() -> void:
 	if state == States.Copying:
-		G.path = saveState
+		G.active_slot = saveState
 		file_exists = true
-		G.SaveStatInf.playerName[saveState - 1] = G.SaveStatInf.playerName[menu.copy_data_from_save - 1]
+		G.save_stat_inf.playerName[saveState] = G.save_stat_inf.playerName[menu.copy_data_from_save]
 		G.save_options()
 		G.save_data()
 		initialize_copied_ui()
@@ -138,8 +138,8 @@ func _on_Yes_pressed() -> void:
 
 
 func _on_focus_entered() -> void:
-	if not G.path == saveState:
-		G.path = saveState
+	if not G.active_slot == saveState:
+		G.active_slot = saveState
 
 	if state == States.Nothing:
 		set_process_unhandled_input(true)
@@ -152,7 +152,7 @@ func _on_focus_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and state == States.Nothing:
-		G.path = saveState
+		G.active_slot = saveState
 		
 		if not file_exists:
 			return

@@ -6,9 +6,9 @@ func _ready() -> void:
 
 
 func start() -> void:
-	button_pressed = G.SaveStatInf.printFps
+	button_pressed = G.save_stat_inf.printFps
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	G.SaveStatInf.printFps = toggled_on
+	G.save_stat_inf.printFps = toggled_on
 	G.save_options()

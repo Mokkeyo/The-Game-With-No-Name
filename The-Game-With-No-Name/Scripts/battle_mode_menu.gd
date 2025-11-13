@@ -17,7 +17,7 @@ func _ready() -> void:
 	camera.global_position = Vector2(0, 0)
 	var animation_player: AnimationPlayer = fader.fade_in()
 	await  animation_player.animation_finished
-	if not G.battleReady[0] and not G.battleReady[1]:
+	if not G.battle_ready[0] and not G.battle_ready[1]:
 		battle_button.grab_focus()
 
 	var menus: Array[Menu] = [controlls, options, explanation, arena_choose]

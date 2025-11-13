@@ -7,6 +7,12 @@ class_name KInputButton
 @export var action: String = "ui_up"
 @export var controlls_menu: Controlls
 
+var mouse_sprites: Dictionary = {
+	MouseButton.MOUSE_BUTTON_LEFT: preload("res://Button/Left Mouse Button.png"),
+	MouseButton.MOUSE_BUTTON_RIGHT: preload("res://Button/Right Mouse Button.png"),
+	MouseButton.MOUSE_BUTTON_MIDDLE: preload("res://Button/Middle Mouse Button.png")
+} 
+
 func _init() -> void:
 	toggle_mode = true
 	theme_type_variation = "RemapButton"
@@ -14,7 +20,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	set_process_input(false)
-	if FileAccess.file_exists(G.save_path + G.save_file_name[5]):
+	if FileAccess.file_exists(G.SAVE_PATH + G.SAVE_FILES["controls"]):
 		display_key()
  
 
@@ -37,16 +43,24 @@ func _input(event: InputEvent) -> void:
 		timer.start()
 		return
 	
-	if event.is_pressed() and (event is InputEventMouseButton or event is InputEventKey):
+	if (event is InputEventMouseButton or event is InputEventKey) and event.is_pressed():
 		remap_key(event)
-		G.SavedInputMap.inputMap[action] = event
+		G.saved_input_map.inputMap[action][0] = event
 		G.save_inputs()
 		timer.start()
 
 
 func remap_key(event: InputEvent) -> void:
+	var events: Array[InputEvent] = InputMap.action_get_events(action)
+	
+	events[0] = event
+	
 	InputMap.action_erase_events(action)
-	InputMap.action_add_event(action, event)
+	
+	for ev: InputEvent in events:
+		if ev:
+			InputMap.action_add_event(action, ev)
+	
 	display_key()
 
 
@@ -57,15 +71,26 @@ func display_key() -> void:
 		text = ""
 		return
 	
-	var input_name:String = events[0].as_text()
+	var ev: InputEvent = events[0]
+	var key_input: InputEventKey = ev as InputEventKey
 	
-	if events[0] is InputEventKey:
+	if key_input:
 		sprite.visible = false
-		text = input_name
-	else:
-		sprite.texture = load("res://Button/%s.png" % input_name)
-		sprite.visible = true
-		text = ""
+		text = ev.as_text()
+		return
+	
+	var mouse_input: InputEventMouse = ev as InputEventMouseButton
+	
+	if mouse_input:
+		var mouse_ev: InputEventMouseButton = ev as InputEventMouseButton
+		var tex: Texture2D = mouse_sprites.get(mouse_ev.button_index)
+		if tex:
+			sprite.texture = tex
+			sprite.visible = true
+			text = ""
+		else:
+			sprite.visible = false
+			text = mouse_ev.as_text()
 
 
 func _on_timer_timeout() -> void:

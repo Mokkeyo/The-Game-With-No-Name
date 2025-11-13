@@ -1798,6 +1798,7 @@ tile_set = SubResource("TileSet_3e3su")
 anchor_mode = 0
 
 [node name="lightmap" parent="Camera2D" instance=ExtResource("10_qh4yw")]
+visible = true
 
 [node name="Main" type="Control" parent="."]
 anchors_preset = 0
@@ -1812,7 +1813,6 @@ offset_right = 650.0
 offset_bottom = 132.0
 
 [node name="Label" type="Label" parent="Main/Creator Name"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -1835,11 +1835,11 @@ focus_neighbor_bottom = NodePath(".")
 text = "nothing button"
 
 [node name="Label" type="Label" parent="Main"]
-layout_mode = 2
-offset_left = -2.0
-offset_top = 150.0
-offset_right = 1022.0
-offset_bottom = 221.0
+z_index = 2
+layout_mode = 0
+offset_top = 152.0
+offset_right = 1024.0
+offset_bottom = 223.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("58")
@@ -1853,6 +1853,7 @@ offset_left = 192.0
 offset_top = 340.0
 offset_right = 832.0
 offset_bottom = 410.0
+focus_neighbor_bottom = NodePath("../ControllButton")
 text = "Battle Mode"
 
 [node name="ControllButton" parent="Main" instance=ExtResource("22_68w0m")]
@@ -1861,6 +1862,7 @@ offset_left = 192.0
 offset_top = 412.0
 offset_right = 511.0
 offset_bottom = 482.0
+focus_neighbor_right = NodePath("../OptionButton")
 text = "Controlls"
 
 [node name="StartButton" parent="Main" instance=ExtResource("22_68w0m")]
@@ -1916,25 +1918,30 @@ texture = ExtResource("14_bvqy3")
 metadata/_edit_lock_ = true
 
 [node name="SaveStats" parent="." node_paths=PackedStringArray("fader") instance=ExtResource("16_ry84y")]
+layout_mode = 0
 offset_top = -576.0
 offset_bottom = 0.0
 fader = NodePath("../Fader")
 
 [node name="Control" parent="." instance=ExtResource("17_mpf4w")]
+layout_mode = 0
 offset_left = -1024.0
 offset_right = 0.0
 
 [node name="Options" parent="." instance=ExtResource("18_f3gas")]
+layout_mode = 0
 offset_left = 1024.0
 offset_right = 2048.0
 group = SubResource("61")
 
 [node name="Achievments" parent="." instance=ExtResource("22_l2mxp")]
+layout_mode = 0
 offset_top = 576.0
 offset_bottom = 1152.0
 
 [node name="2PlayerMode" parent="." instance=ExtResource("23_bsnmt")]
 visible = false
+layout_mode = 0
 offset_top = 576.0
 offset_bottom = 1152.0
 

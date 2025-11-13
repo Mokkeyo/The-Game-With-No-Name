@@ -21,19 +21,19 @@ func _ready() -> void:
 		button.pressed.connect(change_text.bind(button))
 		
 		var icon: Sprite2D = button.get_child(0)
-		icon.visible = G.SaveStatInf.achievments.has(icon.name)
+		icon.visible = G.save_stat_inf.achievments.has(icon.name)
 
 
 func change_text(button: AchInfoButton) -> void:
 	ach_name_label.text = " " + button.achievment_name
 	description_label.text = (
 		" Congrats. you got that achievement"
-		if G.SaveStatInf.achievments.has(button.achievment_name)
+		if G.save_stat_inf.achievments.has(button.achievment_name)
 		else " " + button.achievment_description
 		)
 	
 	count_label.text = (
-		str(G.SaveStatInf.textboxCount, " / ", G.max_text)
+		str(G.save_stat_inf.textboxCount, " / ", G.max_text)
 		if button == chatter_ach_button
 		else ""
 	)

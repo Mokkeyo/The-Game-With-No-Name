@@ -13,11 +13,13 @@ var stay: bool = true
 
 
 func _on_Area2D_body_entered(body: Player) -> void:
-	if stay:
-		if body.is_on_floor() or body.buffered_jump:
-			stay = false
-			timer.start()
-			animationPlayer.play("Warning")
+	if not stay:
+		return
+	
+	if body.is_on_floor() or body.buffered_jump:
+		stay = false
+		timer.start()
+		animationPlayer.play("Warning")
 
 func _on_Timer_timeout() -> void:
 	staticBody.disabled = true

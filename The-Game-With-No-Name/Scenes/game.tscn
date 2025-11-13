@@ -101,7 +101,9 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="InGame" parent="." instance=ExtResource("2_5u1uf")]
+[node name="InGame" parent="." node_paths=PackedStringArray("game") instance=ExtResource("2_5u1uf")]
+layout_mode = 0
+game = NodePath("..")
 
 [node name="Fader" parent="." instance=ExtResource("6")]
 layout_mode = 0
@@ -134,7 +136,6 @@ text = "Player 1 can respawn"
 
 [node name="Boss" type="Control" parent="."]
 visible = false
-layout_mode = 3
 anchors_preset = 0
 
 [node name="BossHP" parent="Boss" instance=ExtResource("11")]
@@ -158,8 +159,10 @@ theme_override_font_sizes/font_size = 20
 text = "Boss Galaga"
 
 [node name="TextBox" parent="." instance=ExtResource("12_k2rrv")]
+layout_mode = 0
 
 [node name="pause" parent="." instance=ExtResource("1")]
+layout_mode = 0
 
 [node name="respawnTimer" type="Timer" parent="."]
 wait_time = 5.0

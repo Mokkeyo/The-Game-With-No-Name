@@ -27,7 +27,7 @@ const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 @onready var rayCastRight: RayCast2D = $RayCastRight
 @onready var Hitbox: HitBox = $Hitbox
 
-@export var resetComp: EnemyResetComponent
+@onready var resetComp: EnemyResetComponent = $ResetComponent
 
 const PUSH: int = 60
 const GRAVITY: int = 600
@@ -37,11 +37,9 @@ const WATER_SPEED: int = 80
 const JUMP_POWER: int = 210
 const WATER_JUMP: int = 100
 const WATER_FLOOR_JUMP: int = 70
-const UP_VECTOR: Vector2 = Vector2(0, -1)
 const WATER_GRAVITY: int = 200
 
 @export var currentPlayer: int = 0
-var otherPlayer: int
 
 var can_doublejump: bool = false
 var is_alive: bool = true
@@ -54,14 +52,44 @@ var islaunching: bool = false
 
 var on_floor: bool
 var on_ceiling: bool
+var on_wall: bool
+var in_water: bool
 
+var player_strings: Dictionary[String, String] = {}
+
+var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
+	set_player_strings()
+	set_player_inputs()
 	connect_signals()
 	instantiate_pet()
 	configure_floor_settings()
-	otherPlayer = 1 if (currentPlayer == 0) else 0
-	HealthComponent.health = G.SaveStat.playerHp[currentPlayer]
+	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
+
+func set_player_strings() -> void:
+	player_strings = {
+		"airship" : "airship_%d" % currentPlayer,
+		"idle" : "idle_%d" % currentPlayer,
+		"fall": "fall_%d" % currentPlayer,
+		"door": "door_%d" % currentPlayer,
+		"jump": "jump_%d" % currentPlayer,
+		"walk": "walk_%d" % currentPlayer,
+	}
+
+
+func set_player_inputs() -> void:
+	inputs = {
+		"up": "player%d_up" % int(currentPlayer + 1),
+		"down": "player%d_down" % int(currentPlayer + 1),
+		"left": "player%d_left" % int(currentPlayer + 1),
+		"right": "player%d_right" % int(currentPlayer + 1),
+		"jump": "player%d_jump" % int(currentPlayer + 1),
+		"interact": "player%d_interact" % int(currentPlayer + 1),
+		"attack": "player%d_attack" % int(currentPlayer + 1),
+		"wand": "player%d_wand" % int(currentPlayer + 1)
+	}
+
 
 func instantiate_pet() -> void:
 	var pe: pet = Pet.instantiate()
@@ -82,13 +110,13 @@ func configure_floor_settings() -> void:
 func connect_signals() -> void:
 	HealthComponent.value_changed.connect(on_value_changed)
 	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jump.bind(JUMP_POWER))
+	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
 
 func _physics_process(delta: float) -> void:
-	if not is_alive or G.playerInAirship[currentPlayer]:
+	if not is_alive:
 		return
 	
 	handle_launch()
@@ -98,12 +126,14 @@ func _physics_process(delta: float) -> void:
 	
 	on_floor = is_on_floor()
 	on_ceiling = is_on_ceiling()
+	on_wall = is_on_wall()
+	in_water = lavaWaterDetector.inWater
 	
 	if lavaWaterDetector.inWaterElevator:
 		velocity.y = -200
 	   
 	
-	velocity.y = min(velocity.y, 250 if lavaWaterDetector.inWater else 600)
+	velocity.y = min(velocity.y, 250 if in_water else 600)
 	
 	if sword.slow_down:
 		velocity.x = 0
@@ -114,15 +144,13 @@ func _physics_process(delta: float) -> void:
 	elif not islaunching and not on_floor:
 		apply_gravity(delta)
 	
-	if (on_ceiling or is_on_wall()) and knockback_on:
+	if (on_ceiling or on_wall) and knockback_on:
 		knockback_on = false
 	
 	if on_floor and not can_doublejump:
 		can_doublejump = true
 	
-	floor_snap_length = 4 if on_floor else 0
-	
-	if G.SaveStat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
+	if G.save_stat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
 	
 	set_animation()
@@ -132,9 +160,22 @@ func _physics_process(delta: float) -> void:
 	handle_airship_entry()
 	handle_collision()
 	
+	var first_pos: float = global_position.y
+	
+	floor_snap_length = 15 if on_floor else 0
+	
 	move_and_slide()
 	
-	var just_left_ground: bool = on_floor and not is_on_floor() and velocity.y >= 0
+	var last_pos: float = global_position.y
+	
+	on_floor = is_on_floor()
+	
+	var floor_normal: Vector2 = get_floor_normal()
+	
+	if on_floor and first_pos == last_pos and rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90 == 0:
+		position.y = round(position.y)
+	
+	var just_left_ground: bool = on_floor and not on_floor and velocity.y >= 0
 	if just_left_ground:
 		coyoteTimer.start(0.15)
 
@@ -143,7 +184,7 @@ func handle_launch() -> void:
 	if not islaunching:
 		return
 	
-	if on_floor or on_ceiling or is_on_wall():
+	if on_floor or on_ceiling or on_wall:
 		islaunching = false
 		freeze = false
 		can_doublejump = true
@@ -153,13 +194,13 @@ func handle_launch() -> void:
 
 
 func handle_airship_entry() -> void:
-	if not G.player_get_in:
-		return
+#	if not G.player_get_in:
+#		return
 	
 	for object: Airship in hurtBox.get_overlapping_bodies():
-		if object.is_in_group("airship(Player%d)" % currentPlayer):
+		if object.is_in_group(player_strings["airship"]) and Input.is_action_just_pressed(inputs["interact"]):
 			enter_airship(object)
-			G.player_get_in = false
+#			G.player_get_in = false
 			break
 
 
@@ -173,9 +214,9 @@ func enter_airship(object: Airship) -> void:
 func handle_collision() -> void:
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(i)
-		if collision.get_collider() is MovableBlock:
-			var rigid_collision: MovableBlock = collision.get_collider()
-			rigid_collision.apply_central_impulse(-collision.get_normal() * PUSH)
+		var block: MovableBlock = collision.get_collider() as MovableBlock
+		if block:
+			block.apply_central_impulse(-collision.get_normal() * PUSH)
 
 
 func handle_knockback(delta: float) -> void:
@@ -185,21 +226,20 @@ func handle_knockback(delta: float) -> void:
 		return
 	
 	set_velocity(velocity)
-	set_up_direction(UP_VECTOR)
 
 
 func apply_gravity(delta: float) -> void:
-	velocity.y += (WATER_GRAVITY if lavaWaterDetector.inWater else GRAVITY) * delta
+	velocity.y += (WATER_GRAVITY if in_water else GRAVITY) * delta
 
 
 func check_key_input() -> void:
 	check_for_horizontal_movement()
 	check_for_jumping()
 	
-	if C.just_pressed(C.interact, currentPlayer) and on_floor:
+	if Input.is_action_just_pressed(inputs["interact"]) and on_floor:
 		handle_airship_entry()
 	
-	if C.just_pressed(C.wand, currentPlayer) and wand.can_swing and G.SaveStat.playerMana[currentPlayer] > 29:
+	if Input.is_action_just_pressed(inputs["wand"]) and wand.can_swing and G.save_stat.playerMana[currentPlayer] > 29:
 		var w: SpiritBall = bullet.instantiate()
 		w.left = wand.sprite.flip_h
 		w.global_position = wand.marker.global_position
@@ -208,7 +248,7 @@ func check_key_input() -> void:
 		get_parent().add_child(w)
 		change_mana_value()
 	
-	if C.just_pressed(C.attack, currentPlayer) and sword.can_swing:
+	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
 		sword.attack()
 
 
@@ -216,13 +256,13 @@ func check_for_horizontal_movement() -> void:
 	if islaunching:
 		return
 	
-	var speed_limit: float = WATER_SPEED if lavaWaterDetector.inWater else SPEED
-	var direction: int = (int(C.pressed(C.right, currentPlayer)) - int(C.pressed(C.left, currentPlayer)))
+	var speed_limit: float = WATER_SPEED if in_water else SPEED
+	var direction: int = (int(Input.is_action_pressed(inputs["right"])) - int(Input.is_action_pressed(inputs["left"])))
 	
 	if direction == 0:
 		velocity.x = lerp(velocity.x, 0.0, 0.5)
-		if on_floor and not animatedSprite.animation == "nothing":
-			animatedSprite.play("nothing")
+		if on_floor and not animatedSprite.animation == player_strings["idle"]:
+			animatedSprite.play(player_strings["idle"])
 		return
 	
 	velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
@@ -244,15 +284,15 @@ func check_for_jumping() -> void:
 		jump(JUMP_POWER)
 		return
 	
-	if C.released(C.jump, currentPlayer) and not lavaWaterDetector.inWater:
+	if Input.is_action_just_released(inputs["jump"]) and not in_water:
 		jump_cut()
 		return
 	
-	if C.just_pressed(C.jump, currentPlayer):
+	if Input.is_action_just_pressed(inputs["jump"]):
 		buffered_jump = true
 		jumpBufferTimer.start(0.15)
 		
-		if lavaWaterDetector.inWater:
+		if in_water:
 			jump(WATER_JUMP if not on_floor else WATER_FLOOR_JUMP)
 			return
 		
@@ -271,7 +311,7 @@ func check_for_jumping() -> void:
 			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
 			return
 		
-		if can_doublejump and coyoteTimer.is_stopped() and not is_on_floor():
+		if can_doublejump and coyoteTimer.is_stopped() and not on_floor:
 			can_doublejump = false
 			jump(JUMP_POWER)
 
@@ -281,7 +321,7 @@ func jump(jump_power: float) -> void:
 	velocity.y -= jump_power
 	buffered_jump = false
 	coyoteTimer.stop()
-	SoundMusic.play_sound_effect("water" if lavaWaterDetector.inWater else "jump")
+	SoundMusic.play_sound_effect("water" if in_water else "jump")
 
 func jump_cut() -> void:
 	if knockback_on:
@@ -306,8 +346,14 @@ func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void
 
 
 func on_value_changed() -> void:
-	G.SaveStat.playerHp[currentPlayer] = HealthComponent.health
+	G.save_stat.playerHp[currentPlayer] = HealthComponent.health
 	G.emit_signal("health_value_changed", currentPlayer, HealthComponent.health)
+
+
+func jump_on_enemy(jump_power: float) -> void:
+	jump(jump_power)
+	if not can_doublejump:
+		can_doublejump = true
 
 
 func set_animation() -> void:
@@ -317,17 +363,17 @@ func set_animation() -> void:
 	if knockback_on:
 		return
 	
-	if (islaunching or jumping) and not animatedSprite.animation == "jump":
-		animatedSprite.play("jump")
+	if (islaunching or jumping) and not animatedSprite.animation == player_strings["jump"]:
+		animatedSprite.play(player_strings["jump"])
 	
-	elif falling and not animatedSprite.animation == "air":
-		animatedSprite.play("air")
+	elif falling and not animatedSprite.animation == player_strings["fall"]:
+		animatedSprite.play(player_strings["fall"])
 	
 	if velocity.x == 0:
 		return
 	
-	if on_floor and not animatedSprite.animation == "walk": 
-		animatedSprite.play("walk")
+	if on_floor and not animatedSprite.animation == player_strings["walk"]: 
+		animatedSprite.play(player_strings["walk"])
 	
 	var flip_sprite: bool = (false if velocity.x > 0 else true)
 	var sword_position: int = (-9 if sword.sword_left else 7)
@@ -346,29 +392,20 @@ func next_to_left_wall() -> bool: return rayCastLeft.is_colliding()
 
 
 func change_mana_value() -> void:
-	G.SaveStat.playerMana[currentPlayer] -=33
-	G.emit_signal("mana_value_changed", currentPlayer, G.SaveStat.playerMana[currentPlayer])
+	G.save_stat.playerMana[currentPlayer] -=33
+	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
 
 
 func respawn() -> void:
 	is_alive = false
-	G.SaveStatInf.deaths[G.path - 1] += 1
-	G.save_options()
-	G.SaveStat.playerHp[currentPlayer] = 0
 	animatedSprite.play("game_over")
 
-
 func enable_player() -> void:
-	print("enabling Player")
 	is_alive = true
 	islaunching = false
 	grabZone.rope_part = null
 	grabZone.can_grab = true
 	velocity = Vector2(0, 0)
-	G.playerAlive[currentPlayer] = true
-	G.playerInAirship[currentPlayer] = false
-	G.SaveStat.playerHp[currentPlayer] = 100
-	G.SaveStat.playerMana[currentPlayer] = 99
 	HealthComponent.health = 100
 	G.emit_signal("health_value_changed", currentPlayer, 100)
 	G.emit_signal("mana_value_changed", currentPlayer, 100)
@@ -376,7 +413,6 @@ func enable_player() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
-		G.playerAlive[currentPlayer] = false
 		resetComp.set_stats()
 		G.emit_signal("player_died", currentPlayer)
 
@@ -386,5 +422,5 @@ func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
 
 
 func _on_ManaTimer_timeout() -> void:
-	G.SaveStat.playerMana[currentPlayer] += 11
-	G.emit_signal("mana_value_changed", currentPlayer, G.SaveStat.playerMana[currentPlayer])
+	G.save_stat.playerMana[currentPlayer] += 11
+	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])

@@ -6,6 +6,6 @@
 [node name="PointLight2D" type="PointLight2D" groups=["Light"]]
 process_mode = 3
 show_behind_parent = true
-color = Color(1, 1, 1, 0.705882)
+color = Color(1, 0.78431374, 0.78431374, 0.7058824)
 texture = ExtResource("2")
 script = ExtResource("1")

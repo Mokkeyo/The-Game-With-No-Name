@@ -28,9 +28,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func end_dialog() -> void:
-	if not G.SaveStat.kristallCollected[kristall - 1]:
-		G.SaveStat.kristallCollected[kristall - 1] = true
-		G.SaveStat.kristallCount += 1
+	if not G.save_stat.kristallCollected[kristall - 1]:
+		G.save_stat.kristallCollected[kristall - 1] = true
+		G.save_stat.kristallCount += 1
 	
 	dialogLoader.finish_dialogue()
 	dialogLoader.check_for_dialog_collected_no_check()

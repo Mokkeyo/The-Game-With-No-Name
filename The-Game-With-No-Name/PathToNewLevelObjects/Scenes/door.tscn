@@ -34,7 +34,7 @@ marker = NodePath("../Marker2D")
 area = NodePath("../Area2D")
 
 [node name="Ping" parent="." instance=ExtResource("6")]
-position = Vector2(0, -33)
+position = Vector2(0, -44)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

@@ -22,17 +22,33 @@ var is_alive: bool = true
 var player_node: Player = null
 
 @export var hitpoints: int = 100
-const SPEED: int = 160
-const BACKWARD: int = 10
+const SPEED: int = 180
+const ACCELERATION: int = 40
+const DECELERATION: int = 40
 
+var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
+	set_inputs()
+	sprite.play(str("default_", currentPlayer))
 	respawn_position = global_position
 	otherPlayer = 1 if (currentPlayer == 0) else 0
 	healthComp.died.connect(die)
 	healthComp.value_changed.connect(on_value_changed)
 	reset_comp.resetting_stats.connect(respawn)
 	reset_comp.setting_stats.connect(die)
+
+func set_inputs() -> void:
+	inputs = {
+		"up": "player%d_up" % int(currentPlayer + 1),
+		"down": "player%d_down" % int(currentPlayer + 1),
+		"left": "player%d_left" % int(currentPlayer + 1),
+		"right": "player%d_right" % int(currentPlayer + 1),
+		"jump": "player%d_jump" % int(currentPlayer + 1),
+		"interact": "player%d_interact" % int(currentPlayer + 1),
+		"attack": "player%d_attack" % int(currentPlayer + 1),
+		"wand": "player%d_wand" % int(currentPlayer + 1)
+	}
 
 func _physics_process(_delta: float) -> void:
 	if not is_alive:
@@ -47,14 +63,28 @@ func _physics_process(_delta: float) -> void:
 
 
 func on_value_changed() -> void:
-	G.airshipHeal[currentPlayer] = healthComp.health
-	G.emit_signal("health_value_changed", currentPlayer, G.airshipHeal[currentPlayer])
+	G.emit_signal("health_value_changed", currentPlayer, hitpoints)
 
 
 func check_key_input() -> void:
-	velocity.x = (int(C.pressed(C.right, currentPlayer)) - int(C.pressed(C.left, currentPlayer))) * SPEED + (int(C.pressed(C.left, currentPlayer)) * + BACKWARD)
-	velocity.y = (int(C.pressed(C.down, currentPlayer)) - int(C.pressed(C.up, currentPlayer))) * SPEED
-	if C.pressed(C.attack, currentPlayer) and wait_timer.is_stopped():
+	var input_vector: Vector2 = Vector2.ZERO
+
+	if Input.is_action_pressed(inputs["up"]):
+		input_vector.y -= 1
+	if Input.is_action_pressed(inputs["down"]):
+		input_vector.y += 1
+	if Input.is_action_pressed(inputs["left"]):
+		input_vector.x -= 1
+	if Input.is_action_pressed(inputs["right"]):
+		input_vector.x += 1
+
+	if not input_vector == Vector2.ZERO:
+		input_vector = input_vector.normalized()
+		velocity = velocity.move_toward(input_vector * SPEED, ACCELERATION)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, DECELERATION)
+
+	if Input.is_action_pressed(inputs["attack"]) and wait_timer.is_stopped():
 		wait_timer.start(0.5)
 		shootComp.shoot_bullet()
 	
@@ -76,15 +106,13 @@ func set_player() -> void:
 
 
 func respawn() -> void:
-	sprite.play("default")
+	sprite.play(str("default_", currentPlayer))
 	is_alive = true
 	global_position = respawn_position
 
 
 func go_in(playerNode: Player) -> void:
 	on_value_changed()
-	G.airshipHeal[currentPlayer] = 100
-	G.playerInAirship[currentPlayer] = true
 	playerNode.get_parent().remove_child(playerNode)
 	add_child(playerNode)
 	playerNode.visible = false
@@ -105,25 +133,25 @@ func _respawn_player_and_airship() -> void:
 	p.global_position = pos
 	a.global_position = pos
 
-	G.playerAlive[otherPlayer] = true
-	G.player_get_in = true
-	G.playerInAirship[otherPlayer] = true
+#	G.playerAlive[otherPlayer] = true
+#	G.player_get_in = true
+#	G.playerInAirship[otherPlayer] = true
 
 
-func _on_airship_animation_finished() -> void:
-	if sprite.animation == "die":
-		set_player()
-		G.airshipHeal[currentPlayer] = 100
-		if G.playerAlive[otherPlayer]:
+#func _on_airship_animation_finished() -> void:
+#	if sprite.animation == "die":
+#		set_player()
+#		G.airshipHeal[currentPlayer] = 100
+#		if G.playerAlive[otherPlayer]:
 #			G.start_respawn_timer = true
-			G.playerAlive[currentPlayer] = false
+#			G.playerAlive[currentPlayer] = false
 #			G.player_can_respawn = false
-			G.playerInAirship[currentPlayer] = false
-			reset_comp.set_stats()
-			player_node.resetComp.set_stats()
-			G.emit_signal("player_count_changed")
-		else:
-			G.playerInAirship[currentPlayer] = false
-			G.emit_signal("game_over")
-		player_node = null
-		G.emit_signal("player_died")
+#			G.playerInAirship[currentPlayer] = false
+#			reset_comp.set_stats()
+#			player_node.resetComp.set_stats()
+#			G.emit_signal("player_count_changed")
+#		else:
+#			G.playerInAirship[currentPlayer] = false
+#			G.emit_signal("game_over")
+#		player_node = null
+#		G.emit_signal("player_died")

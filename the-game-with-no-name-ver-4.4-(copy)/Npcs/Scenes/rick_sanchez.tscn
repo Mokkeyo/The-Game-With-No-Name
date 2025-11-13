@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://qy2bb0ykwih5"]
+
+[ext_resource type="Script" uid="uid://beqoig44g8sjb" path="res://Npcs/Scripts/rick_sanchez.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="5_odlst"]
+[ext_resource type="Texture2D" uid="uid://bkb65txl1jf0f" path="res://Npcs/Textures/npc.tres" id="5_xv46x"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="6_4t8cm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xat4m"]
+size = Vector2(24, 30)
+
+[node name="NPC_2" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["NPC"]]
+z_index = 1
+script = ExtResource("1")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="NpcCanvas" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("5_xv46x")
+
+[node name="Ping" parent="." instance=ExtResource("5")]
+position = Vector2(-1, -35)
+
+[node name="DialogueLoader" parent="." instance=ExtResource("5_odlst")]
+npc = "rick"
+
+[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("6_4t8cm")]
+visible = false
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+shape = SubResource("RectangleShape2D_xat4m")

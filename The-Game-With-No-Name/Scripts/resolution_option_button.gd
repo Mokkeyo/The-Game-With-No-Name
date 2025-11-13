@@ -16,16 +16,16 @@ func _ready() -> void:
 func start() -> void:
 	for r: String in Resolution:
 		add_item(r)
-	select(G.SaveStatInf.resolutionIndex)
+	select(G.save_stat_inf.resolutionIndex)
 
 
 func _on_item_selected(index: int) -> void:
 	var value: Vector2i = Resolution.values()[index]
-	G.SaveStatInf.resolution = value
-	G.SaveStatInf.resolutionIndex = index
+	G.save_stat_inf.resolution = value
+	G.save_stat_inf.resolutionIndex = index
 	G.save_options()
 	
-	if not G.SaveStatInf.fullscreen:
+	if not G.save_stat_inf.fullscreen:
 		get_window().set_size(value)
 		center_window()
 

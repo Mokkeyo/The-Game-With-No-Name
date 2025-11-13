@@ -9,22 +9,22 @@
 [node name="ControllerInputButton" type="Button"]
 offset_right = 92.0
 offset_bottom = 40.0
-theme_override_colors/font_disabled_color = Color(0.592157, 0.160784, 0.0745098, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
-theme_override_colors/font_hover_color = Color(0.592157, 0.160784, 0.0745098, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_focus_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_disabled_color = Color(0.592157, 0.160784, 0.0745098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("1_khey2")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = ExtResource("2_mwmym")
-theme_override_styles/disabled = ExtResource("3_jfqcl")
-theme_override_styles/hover_pressed = ExtResource("3_jfqcl")
-theme_override_styles/hover = ExtResource("3_jfqcl")
-theme_override_styles/pressed = ExtResource("3_jfqcl")
 theme_override_styles/normal = ExtResource("3_jfqcl")
+theme_override_styles/pressed = ExtResource("3_jfqcl")
+theme_override_styles/hover = ExtResource("3_jfqcl")
+theme_override_styles/hover_pressed = ExtResource("3_jfqcl")
+theme_override_styles/disabled = ExtResource("3_jfqcl")
+theme_override_styles/focus = ExtResource("2_mwmym")
 text = "
 "
 clip_text = true

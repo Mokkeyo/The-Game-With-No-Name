@@ -1,26 +1,28 @@
 extends Node2D
+class_name PlayerSpawner
 
-func _ready() -> void:
-	var player: Array[Player] =  [$Player1, $Player2]
+@export var airship_spawner: AirshipSpawner
+@onready var player: Array[Player] =  [$Player_1, $Player_2]
+
+func spawn_player(player_alive: Array[bool]) -> void:
 	var player_position: Array[Marker2D] = [$Player_1_Position, $Player_2_Position]
 	
-	if not G.SaveStat.checkpointActive and not G.SaveStat.checkpointPosition == global_position:
-		G.SaveStat.checkpointPosition = player[0].global_position
+	if not G.save_stat.checkpointActive and not G.save_stat.checkpointPosition == global_position:
+		G.save_stat.checkpointPosition = player[0].global_position
 		G.save_data()
 	
 	for i: int in player.size():
-#		var other_p: int = 0 if i == 1 else 1
-#		player[i].player = player[other_p]
-		if not G.playerAlive[i]:
+		player[i].currentPlayer = i
+		if player_alive[i- 1]:
 			player[i].resetComp.set_stats()
 		call_deferred("add_player", player[i], player_position[i].global_position)
 	visible = false
+	
+	if airship_spawner:
+		airship_spawner.spawn_airship(player_alive)
 
 
-func add_player(player: Player, p_position: Vector2) -> void:
-	remove_child(player)
-	get_parent().add_child(player)
-	if not G.checkpoint_activated:
-		player.global_position = p_position
-	else:
-		player.global_position = G.SaveStat.checkpointPosition
+func add_player(player_i: Player, p_position: Vector2) -> void:
+	remove_child(player_i)
+	get_parent().add_child(player_i)
+	player_i.global_position = G.save_stat.checkpointPosition if G.checkpoint_activated else p_position

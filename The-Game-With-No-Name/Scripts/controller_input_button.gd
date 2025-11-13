@@ -10,6 +10,9 @@ var player: int = 1
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var timer: Timer = $Timer
 
+var deadzone: float = 0.8
+var pattern: RegEx = RegEx.new()
+
 func _init() -> void:
 	toggle_mode = true
 	theme_type_variation = "RemapButton"
@@ -17,7 +20,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	set_process_unhandled_input(false)
-	if FileAccess.file_exists(G.save_path + G.save_file_name[5]):
+	pattern.compile(r"\d+")
+	if FileAccess.file_exists(G.SAVE_PATH + G.SAVE_FILES["controls"]):
 		display_key()
  
 
@@ -42,52 +46,58 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	var input_event: InputEvent = check_for_input_event(event)
+	
 	if input_event:
 		remap_key(input_event)
-		G.SavedInputMap.inputMap[action] = input_event
+		G.saved_input_map.inputMap[action][1] = input_event
 		G.save_inputs()
 		timer.start()
 
 
 func check_for_input_event(event: InputEvent) -> InputEvent:
-	if not event:
+	if not event: 
 		return null
 	
 	var current_player: int = controlls_menu.player
-	var device_id: int = G.SavedInputMap.device[current_player]
+	var device_id: int = G.saved_input_map.device[current_player]
 	
-	if event is InputEventJoypadMotion:
-		var motion: InputEventJoypadMotion = event
-		if abs(motion.axis_value) > 0.8 and motion.device == device_id:
-			motion.axis_value = 1 * sign(motion.axis_value)
-			return motion
-	
-	elif event is InputEventJoypadButton:
-		var button_event: InputEventJoypadButton = event
-		if button_event.is_pressed() and button_event.device == device_id:
-			return button_event
+	match event:
+		InputEventJoypadMotion:
+			var motion: InputEventJoypadMotion = event as InputEventJoypadMotion
+			if motion.device == device_id and abs(motion.axis_value) > deadzone:
+				var e: InputEventJoypadMotion = motion.duplicate() as InputEventJoypadMotion
+				e.axis_value = sign(motion.axis_value)
+				return e
+		InputEventJoypadButton:
+			if event.device == device_id and event.is_pressed():
+				return event
 	
 	return null
 
 
 func remap_key(event: InputEvent) -> void:
+	var events: Array[InputEvent] = InputMap.action_get_events(action)
+	
+	events[1] = event
+	
 	InputMap.action_erase_events(action)
-	InputMap.action_add_event(action, event)
+	
+	for ev: InputEvent in events:
+		if ev:
+			InputMap.action_add_event(action, ev)
+	
 	display_key()
 
 
 func display_key() -> void:
-	text = ""
-	
 	var events : Array[InputEvent] = InputMap.action_get_events(action)
 	if events.is_empty():
 		sprite.visible = false
+		text = ""
 		return
 	
-	var input_name :String = events[0].as_text()
 	
-	var pattern: RegEx = RegEx.new()
-	pattern.compile(r"\d+")
+	var input_name :String = events[1].as_text()
 	var result: RegExMatch = pattern.search(input_name)
 	
 	var number: int = -1

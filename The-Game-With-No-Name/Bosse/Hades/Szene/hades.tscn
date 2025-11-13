@@ -1,12 +1,12 @@
 [gd_scene load_steps=33 format=3 uid="uid://5d3xlx361g6c"]
 
 [ext_resource type="Script" uid="uid://dba26t7derh3w" path="res://Bosse/Hades/Scripts/hades.gd" id="1_5kxri"]
-[ext_resource type="Texture2D" uid="uid://m05j01cmkh2s" path="res://Bosse/Hades/Grafik/axt.png" id="2_kh5kw"]
-[ext_resource type="Texture2D" uid="uid://d2o4heti5ut7q" path="res://NormalMap/axt_normal.png" id="3_abapv"]
-[ext_resource type="Texture2D" uid="uid://c0g5j0uruttvg" path="res://Bosse/Hades/Grafik/speer.png" id="4_nhafs"]
-[ext_resource type="Texture2D" uid="uid://bj1na1jgq2c45" path="res://NormalMap/speer_normal.png" id="5_18qu1"]
-[ext_resource type="Texture2D" uid="uid://d13efywbyuvwr" path="res://Bosse/Hades/Grafik/hades.png" id="6_5f76a"]
-[ext_resource type="Texture2D" uid="uid://6ncocctvetp2" path="res://NormalMap/hades_normal.png" id="7_j11hg"]
+[ext_resource type="Texture2D" uid="uid://c7s20abo51cmu" path="res://Bosse/Hades/Grafik/axt.png" id="2_kh5kw"]
+[ext_resource type="Texture2D" uid="uid://c864wm2pd6d6" path="res://NormalMap/axt_normal.png" id="3_abapv"]
+[ext_resource type="Texture2D" uid="uid://bfxhx74cvkwlh" path="res://Bosse/Hades/Grafik/speer.png" id="4_nhafs"]
+[ext_resource type="Texture2D" uid="uid://ekrjuh3jpovs" path="res://NormalMap/speer_normal.png" id="5_18qu1"]
+[ext_resource type="Texture2D" uid="uid://boeir3k62t7pe" path="res://Bosse/Hades/Grafik/hades.png" id="6_5f76a"]
+[ext_resource type="Texture2D" uid="uid://1o5jml6rl5lo" path="res://NormalMap/hades_normal.png" id="7_j11hg"]
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="8_uvsdk"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="9_8pv0u"]
 [ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="10_qyngm"]
@@ -631,7 +631,6 @@ _data = {
 }
 
 [node name="Hades" type="CharacterBody2D"]
-position = Vector2(1, 0)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_5kxri")
@@ -709,7 +708,7 @@ invisibiltyFrames = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_a7q1w")
+&"": SubResource("AnimationLibrary_a7q1w")
 }
 
 [node name="MarkerLeft" type="Marker2D" parent="."]

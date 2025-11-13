@@ -6,6 +6,7 @@ class_name DecideBox
 @onready var buttons: Array[Button] = [$Control/ButtonNo, $Control/ButtonYes]
 @onready var timer: Timer = $Timer
 
+var npc: Npc
 
 func enter() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -22,19 +23,18 @@ func finished(choice: int) -> void:
 		btn.release_focus()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	G.options = false
 	text_box.control.visible = false
 	visible = false
 	
 	timer.start()
 	await timer.timeout
 	
-	G.npc.end_dialog()
+	npc.end_dialog()
 	if choice == 1:
-		G.npc.on_yes_pressed()
+		npc.on_yes_pressed()
 	else:
-		G.npc.on_no_pressed()
-	G.npc = null
+		npc.on_no_pressed()
+	npc = null
 
 
 func _on_button_yes_focus_entered() -> void: moved(1)

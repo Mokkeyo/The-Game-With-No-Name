@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func start() -> void:
-	button_pressed = G.SaveStatInf.vsync
+	button_pressed = G.save_stat_inf.vsync
 
 
 func _on_toggled(toggled_on: bool) -> void:
@@ -14,5 +14,5 @@ func _on_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	G.SaveStatInf.vsync = button_pressed
+	G.save_stat_inf.vsync = button_pressed
 	G.save_options()
