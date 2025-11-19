@@ -15,7 +15,6 @@ func _ready() -> void:
 
 
 func attack() -> void:
-	visible = true
 	can_swing = false
 	timer.start()
 	animationPlayer.play("swing_left" if sprite.flip_h else "swing_right")
@@ -28,3 +27,7 @@ func flip(direction: int) -> void:
 
 func _on_timer_timeout() -> void:
 	can_swing = true
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	sprite.visible = false

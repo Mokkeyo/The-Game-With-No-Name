@@ -1,16 +1,16 @@
 extends CharacterBody2D
-class_name Player
+class_name Player_Online
 
 signal flip_value_changed
 
 const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
-const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 
 @onready var hurtboxCollision: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var HitboxCollision: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var lavaWaterDetectorCollision: CollisionShape2D = $LavaWater_Detector/CollisionShape2D
 @onready var HealthComponent: healthComponent = $healthComponent
 @onready var rotaterComponent: FloorRotaterComponent = $FloorRotaterComponent
+@onready var camera: Camera2D = $Camera2D
 
 @onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
 @onready var sword: Sword = $Sword
@@ -59,11 +59,21 @@ var player_strings: Dictionary[String, String] = {}
 
 var inputs: Dictionary[String, String] = {}
 
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(str(name)))
+
 func _ready() -> void:
+	if not multiplayer.multiplayer_peer:
+		return
+	
 	set_player_strings()
 	set_player_inputs()
+#	if not is_multiplayer_authority():
+#		animatedSprite.modulate = Color.RED
+	if is_multiplayer_authority():
+		camera.make_current()
 	connect_signals()
-	instantiate_pet()
 	configure_floor_settings()
 	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
 
@@ -91,14 +101,6 @@ func set_player_inputs() -> void:
 	}
 
 
-func instantiate_pet() -> void:
-	var pe: pet = Pet.instantiate()
-	pe.player = currentPlayer
-	pe.playerNode = self
-	get_parent().call_deferred("add_child", pe)
-	pe.global_position = global_position + Vector2(-20, 0)
-
-
 func configure_floor_settings() -> void:
 	set_floor_stop_on_slope_enabled(true)
 	set_max_slides(4)
@@ -116,6 +118,12 @@ func connect_signals() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.multiplayer_peer:
+		return
+	
+	if not is_multiplayer_authority():
+		return
+	
 	if not is_alive:
 		return
 	
@@ -163,6 +171,7 @@ func _physics_process(delta: float) -> void:
 	var first_pos: float = global_position.y
 	
 	floor_snap_length = 15 if on_floor else 0
+	
 	move_and_slide()
 	
 	var last_pos: float = global_position.y
@@ -172,7 +181,8 @@ func _physics_process(delta: float) -> void:
 	var floor_normal: Vector2 = get_floor_normal()
 	
 	if on_floor and first_pos == last_pos and rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90 == 0:
-		position.y = round(position.y)
+		if not position.y == round(position.y):
+			position.y = round(position.y)
 	
 	var just_left_ground: bool = on_floor and not on_floor and velocity.y >= 0
 	if just_left_ground:
@@ -203,10 +213,10 @@ func handle_airship_entry() -> void:
 			break
 
 
-func enter_airship(object: Airship) -> void:
+func enter_airship(_object: Airship) -> void:
 	HitboxCollision.disabled = true
 	hurtboxCollision.disabled = true
-	object.go_in(self)
+#	object.go_in(self)
 	visible = false
 
 
@@ -261,6 +271,7 @@ func check_for_horizontal_movement() -> void:
 	if direction == 0:
 		velocity.x = lerp(velocity.x, 0.0, 0.5)
 		if on_floor and not animatedSprite.animation == player_strings["idle"]:
+			print(player_strings["idle"])
 			animatedSprite.play(player_strings["idle"])
 		return
 	

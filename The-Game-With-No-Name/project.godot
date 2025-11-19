@@ -22,6 +22,9 @@ G="*res://AutoLoads/Scripts/Globals.gd"
 SoundMusic="*res://AutoLoads/Scripts/SoundMusic.gd"
 D="*res://AutoLoads/Scripts/Dialogue.gd"
 AI="*res://AutoLoads/Scenes/achievment_informer.tscn"
+Noray="*res://addons/netfox.noray/noray.gd"
+PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+Multiplayer="res://multiplayer.gd"
 
 [debug]
 
@@ -76,6 +79,10 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://GuiElements/Textures/mouse.png"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [filesystem]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d032eljn7mggn"]
+[gd_scene load_steps=10 format=3 uid="uid://d032eljn7mggn"]
 
 [ext_resource type="Script" uid="uid://cds7cpv3e3g3j" path="res://Scripts/spirit_ball.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://wgf4amtg8m0x" path="res://Player/CanvasTextures/spirit_ball.tres" id="2_1avbx"]
@@ -40,6 +40,17 @@ animations = [{
 radius = 5.0
 height = 10.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kvu5x"]
+properties/0/path = NodePath("AnimatedSprite2D:flip_h")
+properties/0/spawn = false
+properties/0/replication_mode = 2
+properties/1/path = NodePath("AnimatedSprite2D:frame")
+properties/1/spawn = false
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:position")
+properties/2/spawn = false
+properties/2/replication_mode = 2
+
 [node name="Kamehameha" type="Node2D" groups=["Spiritball"]]
 z_index = 3
 script = ExtResource("1")
@@ -57,3 +68,6 @@ position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hkmie")
 debug_color = Color(0.67426, 0, 0.220701, 0.42)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_kvu5x")

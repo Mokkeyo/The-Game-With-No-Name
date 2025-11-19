@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_k3q2r")
-levelNumber = 4
+levelNumber = 2
 playerHp = Array[float]([80.0, 100.0])
-kristallCount = 2
-kristallCollected = Array[bool]([true, true, false, false, false, false, false, false])
-checkpointPosition = Vector2(40, 112)
+checkpointPosition = Vector2(124, 882)
+checkpointActive = true
+door = Array[int]([1, 2])
