@@ -1,10 +1,9 @@
-[gd_scene load_steps=48 format=3 uid="uid://da7p34a4g111f"]
+[gd_scene load_steps=47 format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Textures_P1/player_1_texture.tres" id="3_f5fds"]
 [ext_resource type="Texture2D" uid="uid://cjbqwd1yi2nwt" path="res://Player/Textures_P2/player_2_texture.tres" id="4_kmpdc"]
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="5_g0fuf"]
-[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://c2aeevkukhjb3" path="res://Scenes/wand.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="9_6q2fa"]
@@ -274,22 +273,16 @@ size = Vector2(12, 2)
 size = Vector2(9, 17)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-light_mask = 2
 collision_layer = 2
 collision_mask = 17
 floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
 
-[node name="PointLight2D" parent="." instance=ExtResource("7")]
-visible = false
-position = Vector2(0, -10)
-shadow_enabled = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("1")
-animation = &"door_0"
+animation = &"idle_0"
 offset = Vector2(0, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

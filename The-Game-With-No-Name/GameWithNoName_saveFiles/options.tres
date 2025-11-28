@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="SaveStatInf" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://saveStatInf.gd" id="1_v703a"]
+[ext_resource type="Script" path="res://saveStatInf.gd" id="1_vr82n"]
 
 [resource]
-script = ExtResource("1_v703a")
-deaths = Array[int]([1, 0, 0, 20])
+script = ExtResource("1_vr82n")
 sfxVolume = inf_neg
+maxVolume = 0.0
 printFps = true
-darknessValue = 150
-textboxCount = 14
-textboxCollected = Array[String](["kristall", "buschi0", "shild0", "shild1", "buschi1", "kratos0", "rick0", "kratos1", "rick1", "bossDoor", "kratos2", "rick2", "houseDoor1", "shild2"])
-achievments = Array[String](["Does Someone Need A Tutorial?"])
-playerName = Array[String](["test", "", "", "test"])
+fullscreen = true
+darknessOn = false
+playerName = Array[String](["test", "", "", ""])

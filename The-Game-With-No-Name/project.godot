@@ -96,6 +96,7 @@ Light=""
 Rope=""
 SwingableRope=""
 Player_Spawner=""
+lava_areas=""
 
 [gui]
 

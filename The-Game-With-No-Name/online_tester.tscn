@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://p2xclath3emn"]
+[gd_scene load_steps=3 format=4 uid="uid://p2xclath3emn"]
 
 [ext_resource type="Script" uid="uid://4djf0w8wkawb" path="res://online_tester.gd" id="1_xd0jv"]
 [ext_resource type="PackedScene" uid="uid://5si55om8l0w7" path="res://TileMaps/Scenes/level.tscn" id="2_yswck"]
-[ext_resource type="PackedScene" uid="uid://dt2x60hqbfqua" path="res://Scenes/player_spawner.tscn" id="3_kabq8"]
 
 [node name="Online_Tester" type="Node"]
 script = ExtResource("1_xd0jv")
@@ -39,6 +38,7 @@ theme_override_font_sizes/font_size = 32
 text = "JOIN GAME"
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -65,9 +65,6 @@ spawn_path = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(411, 184)
-
-[node name="Player_Spawner" parent="." instance=ExtResource("3_kabq8")]
-position = Vector2(32, 424)
 
 [connection signal="pressed" from="CanvasLayer/HostJoin/VBoxContainer/Host Button" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HostJoin/VBoxContainer/Join Button" to="." method="_on_join_button_pressed"]

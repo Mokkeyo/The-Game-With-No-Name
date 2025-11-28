@@ -27,6 +27,7 @@ const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 @onready var rayCastRight: RayCast2D = $RayCastRight
 @onready var Hitbox: HitBox = $Hitbox
 
+
 @onready var resetComp: EnemyResetComponent = $ResetComponent
 
 const PUSH: int = 60

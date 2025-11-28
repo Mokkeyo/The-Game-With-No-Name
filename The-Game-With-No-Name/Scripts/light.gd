@@ -2,7 +2,7 @@ extends PointLight2D
 class_name Light
 
 func _ready() -> void:
-	visible = true
+#	visible = true
 	change_darkness()
 
 func change_darkness() -> void:

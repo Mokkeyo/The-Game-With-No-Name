@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player_Online
 
 signal flip_value_changed
-
+var initialized: bool = false
 const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 
 @onready var hurtboxCollision: CollisionShape2D = $Hurtbox/CollisionShape2D
@@ -16,7 +16,7 @@ const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
 @onready var grabZone: GrabZone = $GrabZone
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var manaTimer: Timer = $Timer/ManaTimer
 @onready var coyoteTimer: Timer = $Timer/CoyoteTimer
 @onready var jumpBufferTimer: Timer = $Timer/JumpBufferTimer
@@ -67,12 +67,6 @@ func _ready() -> void:
 	if not multiplayer.multiplayer_peer:
 		return
 	
-	set_player_strings()
-	set_player_inputs()
-#	if not is_multiplayer_authority():
-#		animatedSprite.modulate = Color.RED
-	if is_multiplayer_authority():
-		camera.make_current()
 	connect_signals()
 	configure_floor_settings()
 	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
@@ -85,6 +79,7 @@ func set_player_strings() -> void:
 		"door": "door_%d" % currentPlayer,
 		"jump": "jump_%d" % currentPlayer,
 		"walk": "walk_%d" % currentPlayer,
+		"game_over": "game_over"
 	}
 
 
@@ -122,6 +117,9 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if not is_multiplayer_authority():
+		return
+	
+	if not initialized:
 		return
 	
 	if not is_alive:
@@ -270,9 +268,8 @@ func check_for_horizontal_movement() -> void:
 	
 	if direction == 0:
 		velocity.x = lerp(velocity.x, 0.0, 0.5)
-		if on_floor and not animatedSprite.animation == player_strings["idle"]:
-			print(player_strings["idle"])
-			animatedSprite.play(player_strings["idle"])
+		if on_floor:
+			rpc("play_animation", "idle")
 		return
 	
 	velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
@@ -344,9 +341,7 @@ func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vecto
 	can_doublejump = true
 	SoundMusic.play_sound_effect("jump")
 	do_knockback(knockbackDuration, knockbackDirection)
-	if not animatedSprite.flip_h == left:
-		animatedSprite.flip_h = left
-		emit_signal("flip_value_changed")
+	rpc("flip_sprite", left)
 
 
 func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void:
@@ -373,27 +368,24 @@ func set_animation() -> void:
 	if knockback_on:
 		return
 	
-	if (islaunching or jumping) and not animatedSprite.animation == player_strings["jump"]:
-		animatedSprite.play(player_strings["jump"])
+	if (islaunching or jumping):
+		rpc("play_animation", "jump")
 	
-	elif falling and not animatedSprite.animation == player_strings["fall"]:
-		animatedSprite.play(player_strings["fall"])
+	elif falling:
+		rpc("play_animation", "fall")
 	
 	if velocity.x == 0:
 		return
 	
-	if on_floor and not animatedSprite.animation == player_strings["walk"]: 
-		animatedSprite.play(player_strings["walk"])
+	if on_floor: 
+		rpc("play_animation", "walk")
 	
-	var flip_sprite: bool = (false if velocity.x > 0 else true)
+	var flip_h: bool = (false if velocity.x > 0 else true)
 	var sword_position: int = (-9 if sword.sword_left else 7)
 	
 	if not sword.position.x == sword_position:
 		sword.position.x = sword_position
-	
-	if not animatedSprite.flip_h == flip_sprite:
-		animatedSprite.flip_h = flip_sprite
-		emit_signal("flip_value_changed")
+		rpc("flip_sprite", flip_h)
 
 
 func next_to_wall() -> bool:return next_to_right_wall() or next_to_left_wall()
@@ -408,7 +400,7 @@ func change_mana_value() -> void:
 
 func respawn() -> void:
 	is_alive = false
-	animatedSprite.play("game_over")
+	rpc("play_animation", "game_over")
 
 func enable_player() -> void:
 	is_alive = true
@@ -422,7 +414,7 @@ func enable_player() -> void:
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	if animatedSprite.animation == "game_over":
+	if animated_sprite.animation == "game_over":
 		resetComp.set_stats()
 		G.emit_signal("player_died", currentPlayer)
 
@@ -434,3 +426,36 @@ func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
 func _on_ManaTimer_timeout() -> void:
 	G.save_stat.playerMana[currentPlayer] += 11
 	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
+
+
+@rpc("call_local", "any_peer", "reliable")
+func play_animation(anim: String) -> void:
+	if not initialized:
+		return
+	
+	if not animated_sprite.animation == anim:
+		animated_sprite.play(player_strings[anim])
+
+
+@rpc("call_local", "any_peer", "unreliable")
+func flip_sprite(left: bool) -> void:
+	if not initialized:
+		return
+	
+	if not animated_sprite.flip_h == left:
+		animated_sprite.flip_h = left
+		emit_signal("flip_value_changed")
+
+
+@rpc("call_remote", "any_peer", "unreliable")
+func remote_init(pos: Vector2, cp: int) -> void:
+	global_position = pos
+	currentPlayer = cp
+	
+	set_player_strings()
+	set_player_inputs()
+	
+	initialized = true
+	
+	if is_multiplayer_authority():
+		camera.make_current()

@@ -184,7 +184,7 @@ sources/0 = SubResource("TileSetAtlasSource_3tct6")
 sources/8 = SubResource("TileSetAtlasSource_8bbmy")
 
 [node name="Lava" type="TileMapLayer" groups=["Lava"]]
-modulate = Color(100, 3, 3, 1)
+modulate = Color(1.8247963, 1.6578984, 1.6578984, 1)
 light_mask = 0
 visibility_layer = 2
 z_index = 1
