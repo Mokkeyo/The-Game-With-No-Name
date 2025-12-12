@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bt3eqg3885775"]
+[gd_scene load_steps=12 format=3 uid="uid://bt3eqg3885775"]
 
 [ext_resource type="Script" uid="uid://cr31yfbj4ejv5" path="res://Scripts/checkpoint.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://drwrrl3atnl63" path="res://Objects/CanvasTexture/checkpoint.tres" id="2_xe6tj"]
+[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="3_e75gc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnu7p"]
 atlas = ExtResource("2_xe6tj")
@@ -81,5 +82,8 @@ animation = &"deactivated"
 visible = false
 position = Vector2(0, -9)
 shape = SubResource("1")
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_e75gc")]
+position = Vector2(0, -16)
 
 [connection signal="body_entered" from="." to="." method="_on_Checkpoint_body_entered"]

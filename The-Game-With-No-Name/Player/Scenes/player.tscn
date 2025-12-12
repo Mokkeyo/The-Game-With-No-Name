@@ -282,7 +282,7 @@ script = ExtResource("1_y8o1x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("1")
-animation = &"idle_0"
+animation = &"walk_0"
 offset = Vector2(0, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -382,6 +382,7 @@ visible = false
 position = Vector2(-1, -6)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="Timer/KnockbackTimer" to="." method="_on_damage_knockback_timeout"]
 [connection signal="timeout" from="Timer/JumpBufferTimer" to="." method="_on_JumpBufferTimer_timeout"]
 [connection signal="timeout" from="Timer/ManaTimer" to="." method="_on_ManaTimer_timeout"]

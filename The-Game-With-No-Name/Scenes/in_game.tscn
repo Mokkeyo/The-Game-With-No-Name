@@ -42,6 +42,7 @@ size_flags_horizontal = 0
 handle_input_locally = false
 use_hdr_2d = true
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 
@@ -64,6 +65,7 @@ layout_mode = 2
 handle_input_locally = false
 use_hdr_2d = true
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 

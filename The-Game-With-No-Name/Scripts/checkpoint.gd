@@ -3,6 +3,8 @@ extends Area2D
 @onready var animationPlayer: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+#	var sound_player: SoundPlayer = $SoundPlayer
+#	sound_player.play()
 	animationPlayer.play("activated" if global_position == G.save_stat.checkpointPosition else "deactivated")
 	G.checkpoint_activated.connect(check_if_checkpoint_active)
 

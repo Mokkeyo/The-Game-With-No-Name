@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://2qfpcf84sism"]
+
+[ext_resource type="Script" uid="uid://c7o1t6xqokerv" path="res://sound_player.gd" id="1_j71by"]
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D"]
+max_distance = 500.0
+script = ExtResource("1_j71by")

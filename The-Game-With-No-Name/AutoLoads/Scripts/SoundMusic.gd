@@ -2,14 +2,15 @@ extends Node
 
 @onready var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
-var music_tracks: Dictionary = {
+const music_tracks: Dictionary = {
 "Underground": "res://Sounds/06 - Underground.mp3",
 "Boss": "res://Sounds/Dark Souls III Soundtrack OST - Vordt of the Boreal Valley.mp3",
 "Wind": "res://Sounds/WhistlingWindStead PE033401.wav",
-"Battle": "res://Sounds/Epic-battle-music-grzegorz-majcherczyk-heroica.mp3"
+"Battle": "res://Sounds/Epic-battle-music-grzegorz-majcherczyk-heroica.mp3",
+"Cave": "res://Sounds/cave-wind-10-76283.mp3"
 }
 
-var sound_effects: Dictionary = {
+const sound_effects: Dictionary = {
 "Coin": "res://Sounds/mixkit-game-treasure-coin-2038.wav",
 "shoot": "res://Sounds/mixkit-game-whip-shot-1512.wav",
 "jump": "res://Sounds/mixkit-player-jumping-in-a-video-game-2043.wav",
@@ -35,15 +36,15 @@ func chance_sound_volume(value: float) -> void:
 
 
 func _ready() -> void:
-	process_mode = PROCESS_MODE_ALWAYS
+#	process_mode = PROCESS_MODE_ALWAYS
 #	max_db = G.SaveStatInf.maxVolume
 #	music_db = G.SaveStatInf.musicVolume
 #	sound_db = G.SaveStatInf.sfxVolume
 #	if G.boss == null:
-#		music_player.stream = load(music_tracks["Underground"])
-#		add_child(music_player)
-#		music_player.play()
-
+#	music_player.stream = load(music_tracks["Cave"])
+#	add_child(music_player)
+#	music_player.play()
+	pass
 
 func play_boss() -> void:
 #	music_player.stream = load(music_tracks["Boss"])

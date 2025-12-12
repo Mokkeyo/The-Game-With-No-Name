@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_k3q2r")
 levelNumber = 2
-checkpointPosition = Vector2(183, 70)
+playerHp = Array[float]([40.0, 100.0])
+checkpointPosition = Vector2(124, 882)
+checkpointActive = true
+door = Array[int]([1, 2])

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name Airship
 
-signal playerCountChanged
-signal playerDied
-signal gameOver
+#signal playerCountChanged
+#signal playerDied
+#signal gameOver
 
 @onready var marker: Marker2D = $Marker2D
 @onready var sprite: AnimatedSprite2D = $airship

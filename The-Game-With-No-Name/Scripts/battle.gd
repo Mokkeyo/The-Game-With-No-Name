@@ -22,19 +22,20 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if showVictory:
-		if not G.playerAlive[0] and not G.playerAlive[1] :
-			declareVictor(2, true)
-		elif not G.playerAlive[0] and G.playerAlive[1]:
-			declareVictor(1, true)
-		else:
-			declareVictor(0, true)
+#		if not G.playerAlive[0] and not G.playerAlive[1] :
+#			declareVictor(2, true)
+#		elif not G.playerAlive[0] and G.playerAlive[1]:
+#			declareVictor(1, true)
+#		else:
+#			declareVictor(0, true)
+		pass
 	
 	if time == 0 and pause_game and timer:
 		pause_game = false
 		
-		if G.battlePlayerHeal[0] == G.battlePlayerHeal[1]:
+		if G.battle_player_heal[0] == G.battle_player_heal[1]:
 			declareVictor(2, false)
-		elif G.battlePlayerHeal[0] > G.battlePlayerHeal[1]:
+		elif G.battle_player_heal[0] > G.battle_player_heal[1]:
 			declareVictor(1, false)
 		else:
 			declareVictor(0, false)
@@ -65,8 +66,8 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 
 func _on_FadeIn_animation_finished(_anim_name: String) -> void:
 	G.battle_damage = false
-	G.playerAlive[0] = true
-	G.playerAlive[1] = true
+#	G.playerAlive[0] = true
+#	G.playerAlive[1] = true
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Szenen/BattleMode.tscn")
 

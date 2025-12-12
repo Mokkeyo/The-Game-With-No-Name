@@ -27,7 +27,6 @@ const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 @onready var rayCastRight: RayCast2D = $RayCastRight
 @onready var Hitbox: HitBox = $Hitbox
 
-
 @onready var resetComp: EnemyResetComponent = $ResetComponent
 
 const PUSH: int = 60
@@ -60,6 +59,7 @@ var player_strings: Dictionary[String, String] = {}
 
 var inputs: Dictionary[String, String] = {}
 
+
 func _ready() -> void:
 	set_player_strings()
 	set_player_inputs()
@@ -67,6 +67,7 @@ func _ready() -> void:
 	instantiate_pet()
 	configure_floor_settings()
 	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
+
 
 func set_player_strings() -> void:
 	player_strings = {
@@ -114,7 +115,8 @@ func connect_signals() -> void:
 	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
 	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
-
+	lavaWaterDetector.water_entered.connect(play_water_sound)
+	lavaWaterDetector.water_exited.connect(play_water_sound)
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
@@ -163,7 +165,15 @@ func _physics_process(delta: float) -> void:
 	
 	var first_pos: float = global_position.y
 	
+	var was_in_air: bool = not is_on_floor()
+	
 	floor_snap_length = 15 if on_floor else 0
+	
+	var volume: float
+	
+	if was_in_air and velocity.y > 400:
+		volume = clamp(velocity.y / 600, 0.0, 1.0)
+	
 	move_and_slide()
 	
 	var last_pos: float = global_position.y
@@ -172,8 +182,11 @@ func _physics_process(delta: float) -> void:
 	
 	var floor_normal: Vector2 = get_floor_normal()
 	
-	if on_floor and first_pos == last_pos and rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90 == 0:
-		position.y = round(position.y)
+	if on_floor:
+		if first_pos == last_pos and rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90 == 0:
+			position.y = round(position.y)
+		if was_in_air and volume > 0:
+			SoundComp.player_audio_start(global_position, SoundComp.sound_effect["landing"], volume / 4)
 	
 	var just_left_ground: bool = on_floor and not on_floor and velocity.y >= 0
 	if just_left_ground:
@@ -261,8 +274,8 @@ func check_for_horizontal_movement() -> void:
 	
 	if direction == 0:
 		velocity.x = lerp(velocity.x, 0.0, 0.5)
-		if on_floor and not animatedSprite.animation == player_strings["idle"]:
-			animatedSprite.play(player_strings["idle"])
+		if on_floor:
+			play_animation("idle")
 		return
 	
 	velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
@@ -334,9 +347,7 @@ func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vecto
 	can_doublejump = true
 	SoundMusic.play_sound_effect("jump")
 	do_knockback(knockbackDuration, knockbackDirection)
-	if not animatedSprite.flip_h == left:
-		animatedSprite.flip_h = left
-		emit_signal("flip_value_changed")
+	flip_sprite(left)
 
 
 func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void:
@@ -347,7 +358,7 @@ func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void
 
 func on_value_changed() -> void:
 	G.save_stat.playerHp[currentPlayer] = HealthComponent.health
-	G.emit_signal("health_value_changed", currentPlayer, HealthComponent.health)
+	G.health_value_changed.emit(currentPlayer, HealthComponent.health)
 
 
 func jump_on_enemy(jump_power: float) -> void:
@@ -363,28 +374,25 @@ func set_animation() -> void:
 	if knockback_on:
 		return
 	
-	if (islaunching or jumping) and not animatedSprite.animation == player_strings["jump"]:
-		animatedSprite.play(player_strings["jump"])
+	if (islaunching or jumping):
+		play_animation("jump")
 	
-	elif falling and not animatedSprite.animation == player_strings["fall"]:
-		animatedSprite.play(player_strings["fall"])
+	elif falling:
+		play_animation("fall")
 	
 	if velocity.x == 0:
 		return
 	
-	if on_floor and not animatedSprite.animation == player_strings["walk"]: 
-		animatedSprite.play(player_strings["walk"])
+	if on_floor:
+		play_animation("walk")
 	
-	var flip_sprite: bool = (false if velocity.x > 0 else true)
+	var flip_h: bool = (false if velocity.x > 0 else true)
 	var sword_position: int = (-9 if sword.sword_left else 7)
 	
 	if not sword.position.x == sword_position:
 		sword.position.x = sword_position
 	
-	if not animatedSprite.flip_h == flip_sprite:
-		animatedSprite.flip_h = flip_sprite
-		emit_signal("flip_value_changed")
-
+	flip_sprite(flip_h)
 
 func next_to_wall() -> bool:return next_to_right_wall() or next_to_left_wall()
 func next_to_right_wall() -> bool:return rayCastRight.is_colliding()
@@ -393,12 +401,23 @@ func next_to_left_wall() -> bool: return rayCastLeft.is_colliding()
 
 func change_mana_value() -> void:
 	G.save_stat.playerMana[currentPlayer] -=33
-	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
+	G.mana_value_changed.emit(currentPlayer, G.save_stat.playerMana[currentPlayer])
 
 
 func respawn() -> void:
 	is_alive = false
 	animatedSprite.play("game_over")
+
+
+func play_animation(anim: String) -> void:
+	if not animatedSprite.animation == player_strings[anim]:
+		animatedSprite.play(player_strings[anim])
+
+
+func flip_sprite(flip_h: bool) -> void:
+	if not animatedSprite.flip_h == flip_h:
+		animatedSprite.flip_h = flip_h
+		flip_value_changed.emit()
 
 func enable_player() -> void:
 	is_alive = true
@@ -407,14 +426,14 @@ func enable_player() -> void:
 	grabZone.can_grab = true
 	velocity = Vector2(0, 0)
 	HealthComponent.health = 100
-	G.emit_signal("health_value_changed", currentPlayer, 100)
-	G.emit_signal("mana_value_changed", currentPlayer, 100)
+	G.health_value_changed.emit(currentPlayer, 100)
+	G.mana_value_changed.emit(currentPlayer, 100)
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
 		resetComp.set_stats()
-		G.emit_signal("player_died", currentPlayer)
+		G.player_died.emit(currentPlayer)
 
 
 func _on_damage_knockback_timeout() -> void: knockback_on = false
@@ -423,4 +442,16 @@ func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
 
 func _on_ManaTimer_timeout() -> void:
 	G.save_stat.playerMana[currentPlayer] += 11
-	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
+	G.mana_value_changed.emit(currentPlayer, G.save_stat.playerMana[currentPlayer])
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if not animatedSprite.animation == player_strings["walk"]:
+		return
+	
+	if animatedSprite.frame == 2 or animatedSprite.frame == 4 or animatedSprite.frame == 6:
+		SoundComp.play_footstep(global_position)
+
+
+func play_water_sound() -> void:
+	SoundComp.audio_player_start(global_position, SoundComp.sound_effect["enter_water"], 0.5)

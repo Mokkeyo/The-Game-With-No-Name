@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_vr82n")
+deaths = Array[int]([11, 0, 0, 0])
 sfxVolume = inf_neg
 maxVolume = 0.0
 printFps = true
-fullscreen = true
 darknessOn = false
-playerName = Array[String](["test", "", "", ""])
+playerName = Array[String](["Level 1", "", "", ""])

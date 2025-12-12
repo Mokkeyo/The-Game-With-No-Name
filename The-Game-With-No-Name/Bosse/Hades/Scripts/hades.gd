@@ -29,9 +29,9 @@ var is_dashing: bool = false
 func _ready() -> void:
 	animationPlayer.play("Warning")
 	attack_cooldown_timer.start()
-	G.bossLabel = "Hades"
-	G.maxBossHp = HealthComponent.max_health
-	G.bossHp = HealthComponent.health
+#	G.bossLabel = "Hades"
+#	G.maxBossHp = HealthComponent.max_health
+#	G.bossHp = HealthComponent.health
 	attack_cooldown_timer.start()
 	HealthComponent.died.connect(die)
 
@@ -67,12 +67,12 @@ func jump() -> void:
 
 
 func die() -> void:
-	G.next_level_door = door_name
-	G.SaveStat.levelNumber = level_number
+#	G.next_level_door = door_name
+#	G.SaveStat.levelNumber = level_number
 	G.emit_signal("enter_door")
 	G.save_data()
-	if G.SaveStatInf.deaths[G.path] == 0:
-		achievmentComponent.add_achievment()
+#	if G.SaveStatInf.deaths[G.path] == 0:
+#		achievmentComponent.add_achievment()
 
 func Warning_finished() -> void:
 	var choosed_weapon: String = "Axt" #default

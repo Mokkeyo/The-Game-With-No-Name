@@ -3,6 +3,7 @@ class_name LavaWaterDetector
 
 signal water_exited
 signal lava_entered
+signal water_entered
 
 var inLava: bool = false
 var inWater: bool = false
@@ -14,6 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		inLava = true
 	if body.is_in_group("Water"):
 		inWater = true
+		emit_signal("water_entered")
 	if body.is_in_group("WaterElevator"):
 		inWaterElevator = true
 

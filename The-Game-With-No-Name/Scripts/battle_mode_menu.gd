@@ -52,8 +52,7 @@ func _on_options_pressed() -> void: change_menu(options)
 
 
 func _on_back_to_normal_mode_pressed() -> void:
-	for i: int in range(G.battleReady.size()):
-		G.battleReady[i] = false
+	G.battle_ready.fill(false)
 	SoundMusic.play_underground()
 	G.battle_mode = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

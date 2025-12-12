@@ -25,6 +25,7 @@ AI="*res://AutoLoads/Scenes/achievment_informer.tscn"
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 Multiplayer="res://multiplayer.gd"
+SoundComp="*res://footstep_sound_component.gd"
 
 [debug]
 

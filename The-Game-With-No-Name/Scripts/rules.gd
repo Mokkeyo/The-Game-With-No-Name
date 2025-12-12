@@ -13,7 +13,7 @@ func _ready() -> void:
 	super._ready()
 	var hitpoints: Label = $Hitpoints/Number
 	var time: Label = $Time/Number
-	hitpoints.text = str(G.battlePlayerHeal[0])
+	hitpoints.text = str(G.battle_player_heal[0])
 	time.text = str(G.battle_time)
 	weapons.exited.connect(Callable(self, "weapons_exited"))
 
@@ -27,9 +27,9 @@ func _input(_event: InputEvent) -> void:
 	
 	match state:
 		State.change_hitpoints:
-			if (G.battlePlayerHeal[0] > 1 and direction == -1) or (G.battlePlayerHeal[0] < 50 and direction == 1):
-				G.battlePlayerHeal[0] += direction 
-				hitpoints_number.text = str(G.battlePlayerHeal[0])
+			if (G.battle_player_heal[0] > 1 and direction == -1) or (G.battle_player_heal[0] < 50 and direction == 1):
+				G.battle_player_heal[0] += direction 
+				hitpoints_number.text = str(G.battle_player_heal[0])
 		
 		State.change_time:
 			if (G.battle_time > 0 and direction == -1) or (G.battle_time < 300 and direction == 1):

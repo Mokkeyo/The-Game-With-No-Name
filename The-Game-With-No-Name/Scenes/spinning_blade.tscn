@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c63xsde6mme8y"]
+[gd_scene load_steps=13 format=3 uid="uid://c63xsde6mme8y"]
 
 [ext_resource type="Texture2D" uid="uid://dwjmoek7glkle" path="res://Objects/Textures/spinning_blade.png" id="1"]
 [ext_resource type="Script" uid="uid://cw42uhc8nhprm" path="res://Scripts/spinning_blade.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://desaq7rosii1c" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_wl07d"]
 [ext_resource type="PackedScene" uid="uid://d0n5n0m16idmh" path="res://Scenes/path_follow_component.tscn" id="5_oms2q"]
+[ext_resource type="PackedScene" uid="uid://2qfpcf84sism" path="res://sound_player.tscn" id="6_vmj2r"]
+[ext_resource type="AudioStream" uid="uid://bfr8q2yhvxnnp" path="res://Sounds/flying-blade-103343.mp3" id="7_i0k1l"]
 
 [sub_resource type="Animation" id="Animation_gc0oq"]
 length = 0.001
@@ -75,3 +77,8 @@ shape = SubResource("CircleShape2D_8y8ah")
 path = NodePath("..")
 target_node = NodePath("../Blade")
 speed = 150.0
+
+[node name="SoundPlayer" parent="." instance=ExtResource("6_vmj2r")]
+stream = ExtResource("7_i0k1l")
+volume_db = 1.0
+max_distance = 200.0

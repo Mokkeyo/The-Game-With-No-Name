@@ -1,79 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://baf36j2ma3cg4"]
+[gd_scene load_steps=5 format=3 uid="uid://baf36j2ma3cg4"]
 
 [ext_resource type="Script" uid="uid://cbwwyidbmqhur" path="res://button.gd" id="1_r04n3"]
 [ext_resource type="Texture2D" uid="uid://cke05b1hpq5ji" path="res://Objects/Textures/button.png" id="2_n4tde"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="3_vxja4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxja4"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(22, 0, 10, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lt4la"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(22, 5, 10, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4amfo"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(11, 0, 10, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2kp8h"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(11, 5, 10, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lj86r"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(33, 0, 10, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7rpu"]
-atlas = ExtResource("2_n4tde")
-region = Rect2(33, 5, 10, 4)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m64rv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxja4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lt4la")
-}],
-"loop": false,
-"name": &"Player",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4amfo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2kp8h")
-}],
-"loop": false,
-"name": &"Spiritball",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lj86r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d7rpu")
-}],
-"loop": false,
-"name": &"Stone",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxja4"]
 size = Vector2(6, 3)
 
 [node name="Button" type="Node2D"]
 script = ExtResource("1_r04n3")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_m64rv")
-animation = &"Player"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -86,6 +21,12 @@ shape = SubResource("RectangleShape2D_vxja4")
 [node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions") instance=ExtResource("3_vxja4")]
 collisions = [NodePath("../Area2D/CollisionShape2D")]
 setStartPosition = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_n4tde")
+hframes = 4
+vframes = 2
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

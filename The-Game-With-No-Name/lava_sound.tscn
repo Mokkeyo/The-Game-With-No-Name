@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck712c8f08u8l"]
+
+[ext_resource type="AudioStream" uid="uid://rojr1vcq3cbh" path="res://Sounds/lava-loop-3-28887(1).mp3" id="1_pr8sx"]
+
+[node name="LavaSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_pr8sx")
+volume_db = 0.5
+autoplay = true
+max_distance = 500.0

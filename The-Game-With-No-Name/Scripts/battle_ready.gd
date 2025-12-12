@@ -17,14 +17,14 @@ func _input(_event: InputEvent) -> void:
 
 
 func button_pressed(player: int) -> void:
-	if G.battleReady[player]:
+	if G.battle_ready[player]:
 		return
 	var ReadyLabel: Array[Label] = [$Ready1, $Ready2]
 	ReadyLabel[player - 1].visible = true
-	G.battleReady[player] = true
+	G.battle_ready[player] = true
 	player_ready_count += 1
 	if player_ready_count > 1:
 		super.exit()
-		G.battleReady[0] = true
+		G.battle_ready[0] = true
 		visible = false
 		arena_choose.enter()

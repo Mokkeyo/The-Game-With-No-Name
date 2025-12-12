@@ -327,6 +327,7 @@ polygon = PackedVector2Array(10, -14, 10, 14, 0, 14, 0, 2, -1, 2, -1, -2, 0, -2,
 
 [node name="DoorWithObj" type="Node2D"]
 script = ExtResource("5")
+door_color = "Dummy"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -336,8 +337,8 @@ libraries = {
 [node name="Door" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, 0)
 sprite_frames = SubResource("9")
-animation = &"Player"
-frame_progress = 0.29669675
+animation = &"Dummy"
+frame_progress = 0.80151516
 offset = Vector2(-2.5, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Door"]

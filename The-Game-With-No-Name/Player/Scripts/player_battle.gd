@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 signal healthValueChanged
 signal manaValueChanged
-signal playerCountChanged
-signal playerDied
 
 var bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 var Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
@@ -70,16 +68,16 @@ func _ready() -> void:
 	HealthComponent.connect("setKnockback", Callable(self,"damage_knockback"))
 	lavaWaterDetector.connect("lava_entred", Callable(HealthComponent,"die"))
 	
-	HealthComponent.health = G.SaveStat.playerHp[currentPlayer - 1]
+	HealthComponent.health = G.save_stat.playerHp[currentPlayer - 1]
 	
 	player = load("res://Player/Scenes/player_%d.tscn" % otherPlayer)
 	
-	if G.SaveStat.checkpointActive:
-		global_position = G.SaveStat.checkpointPosition
+	if G.save_stat.checkpointActive:
+		global_position = G.save_stat.checkpointPosition
 	
 	if HealthComponent.health <= 0:
 		HealthComponent.health = 100
-		G.SaveStat.playerHp[currentPlayer - 1] = 100
+		G.save_stat.playerHp[currentPlayer - 1] = 100
 
 func set_inputs() -> void:
 	inputs = {
@@ -98,9 +96,6 @@ func _physics_process(delta: float) -> void:
 	if !is_alive:
 		return
 	
-	if G.playerAlive[currentPlayer - 1] == false:
-		queue_free()
-
 	if islaunching:
 		if is_on_floor() or is_on_ceiling() or is_on_wall():
 			islaunching = false
@@ -131,7 +126,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		can_doublejump = true
 	
-	if G.SaveStat.playerMana[currentPlayer -1] < 99 and manaTimer.is_stopped():
+	if G.save_stat.playerMana[currentPlayer -1] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
 	
 	if grabZone.rope_part == null and lavaWaterDetector.inWater == false:
@@ -227,7 +222,7 @@ func check_key_input() -> void:
 			jump_cut()
 		
 	if Input.is_action_just_pressed(inputs["wand"]):
-		if wand.can_swing and G.SaveStat.playerMana[currentPlayer -1] >= 30:
+		if wand.can_swing and G.save_stat.playerMana[currentPlayer -1] >= 30:
 			wand.attack()
 			SoundMusic.play_sound_effect("magic")
 			var w: Node2D = bullet.instantiate()
@@ -239,9 +234,10 @@ func check_key_input() -> void:
 		sword.attack()
 
 func on_value_changed() -> void:
-	G.SaveStat.playerHp[currentPlayer - 1] = HealthComponent.health
+	G.save_stat.playerHp[currentPlayer - 1] = HealthComponent.health
 	animationPlayer.play("invisible_frames")
-	emit_signal("healthValueChanged")
+	healthValueChanged.emit()
+
 
 func set_animation() -> void:
 	if !is_alive:
@@ -311,15 +307,16 @@ func next_to_left_wall() -> bool:
 	return rayCastLeft.is_colliding()
 
 func change_mana_value() -> void:
-	G.SaveStat.playerMana[currentPlayer -1] -=33
-	emit_signal("manaValueChanged")
+	G.save_stat.playerMana[currentPlayer -1] -=33
+	manaValueChanged.emit()
+
 
 func respawn() -> void:
 	is_alive = false
-	G.SaveStatInf.deaths[G.path - 1] += 1
+#	G.save_stat_inf.deaths[G.path - 1] += 1
 	G.save_options()
-	G.SaveStat.playerHp[currentPlayer - 1] = 100
-	G.SaveStat.playerMana[currentPlayer - 1] = 99
+#	G.SaveStat.playerHp[currentPlayer - 1] = 100
+#	G.SaveStat.playerMana[currentPlayer - 1] = 99
 	animatedSprite.play("game_over")
 
 func damage_knockback() -> void:
@@ -331,9 +328,9 @@ func damage_knockback() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
-		G.SaveStat.playerMana[currentPlayer - 1] = 99
+		G.save_stat.playerMana[currentPlayer - 1] = 99
 		queue_free()
-		G.playerAlive[currentPlayer - 1] = false
+
 
 func _on_damage_knockback_timeout() -> void:
 	knockback_on = false
@@ -342,5 +339,5 @@ func _on_JumpBufferTimer_timeout() -> void:
 	buffered_jump = false
 
 func _on_ManaTimer_timeout() -> void:
-	G.SaveStat.playerMana[currentPlayer -1] += 11
-	emit_signal("manaValueChanged")
+	G.save_stat.playerMana[currentPlayer -1] += 11
+	manaValueChanged.emit()

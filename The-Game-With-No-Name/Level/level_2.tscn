@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dyb3vn6ag1llx"]
+[gd_scene load_steps=36 format=4 uid="uid://dyb3vn6ag1llx"]
 
 [ext_resource type="PackedScene" uid="uid://c1i18eje8y7v2" path="res://TileMaps/Scenes/background.tscn" id="1_ky6ly"]
 [ext_resource type="PackedScene" uid="uid://b2cggka1ix7ys" path="res://TileMaps/Scenes/background_element.tscn" id="2_arbco"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://baf36j2ma3cg4" path="res://button.tscn" id="25_hf0r0"]
 [ext_resource type="PackedScene" uid="uid://bke8bjmxy6hq6" path="res://lava_light_horizontal.tscn" id="26_umonj"]
 [ext_resource type="PackedScene" uid="uid://desee8s7epoi2" path="res://lava_light_vertikal.tscn" id="27_4pyl2"]
+[ext_resource type="PackedScene" uid="uid://ck712c8f08u8l" path="res://lava_sound.tscn" id="28_a0yxw"]
 
 [sub_resource type="Curve2D" id="Curve2D_upyy3"]
 _data = {
@@ -174,10 +175,12 @@ Door_Nr = 2
 
 [node name="DoorAndButton3" parent="Objects" instance=ExtResource("21_nkyoy")]
 position = Vector2(70, 840)
+door_color = "Player"
 Door_Nr = 3
 
 [node name="DoorAndButton" parent="Objects" instance=ExtResource("21_nkyoy")]
 position = Vector2(-700, -140)
+door_color = "Player"
 
 [node name="Player_Spawner" parent="." instance=ExtResource("23_1rg0k")]
 position = Vector2(191, 70)
@@ -502,7 +505,7 @@ door = NodePath("../Objects/DoorAndButton")
 [node name="Button2" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_hf0r0")]
 position = Vector2(1287, 280)
 door = NodePath("../Objects/DoorAndButton2")
-required_input = "Stone"
+required_input = 1
 
 [node name="Button3" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_hf0r0")]
 position = Vector2(1106, 770)
@@ -567,3 +570,20 @@ scale = Vector2(1.750001, 1.7500005)
 [node name="lava_light_horizontal10" parent="." instance=ExtResource("26_umonj")]
 position = Vector2(1106, 875)
 scale = Vector2(1.7499996, 5.46875)
+
+[node name="SoundEffects" type="Node" parent="."]
+
+[node name="LavaSound" parent="SoundEffects" instance=ExtResource("28_a0yxw")]
+position = Vector2(812, 154)
+
+[node name="LavaSound2" parent="SoundEffects" instance=ExtResource("28_a0yxw")]
+position = Vector2(1050, 98)
+
+[node name="LavaSound3" parent="SoundEffects" instance=ExtResource("28_a0yxw")]
+position = Vector2(462, 406)
+
+[node name="LavaSound4" parent="SoundEffects" instance=ExtResource("28_a0yxw")]
+position = Vector2(252, 742)
+
+[node name="LavaSound" parent="." instance=ExtResource("28_a0yxw")]
+position = Vector2(266, 1050)

@@ -18,17 +18,17 @@ func _ready() -> void:
 	super._ready()
 	arrow_left.visible = (not G.arena == 1)
 	rules.exited.connect(Callable(main, "change_menu").bind(self))
-	battle_ready.visible = not G.battleReady[0]
+	battle_ready.visible = not G.battle_ready[0]
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	random_arena = rng.randi_range(1, 6)
 	G.last_number = random_arena
-	if G.battleReady[0] and G.battleReady[1]:
+	if G.battle_ready[0] and G.battle_ready[1]:
 		arena_button.grab_focus()
 
 
 func enter() -> void:
-	if G.battleReady[0] and G.battleReady[1]:
+	if G.battle_ready[0] and G.battle_ready[1]:
 		super.enter()    
 		return
 	battle_ready.visible = true

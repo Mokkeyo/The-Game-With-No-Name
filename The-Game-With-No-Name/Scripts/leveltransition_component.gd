@@ -26,3 +26,4 @@ func transition() -> void:
 #	G.playerInAirship.fill(false)
 	G.save_data()
 	G.emit_signal("enter_door")
+	SoundComp.tilemaps = []
