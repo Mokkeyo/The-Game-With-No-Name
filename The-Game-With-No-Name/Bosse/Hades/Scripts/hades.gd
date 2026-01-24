@@ -110,9 +110,6 @@ func _on_AxtTimer_timeout()-> void:
 	wave_component_right.shoot_wave()
 
 
-
-
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Warning":
 		Warning_finished()

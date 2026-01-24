@@ -19,6 +19,12 @@ func activate_airship(i: int) -> void:
 	airship_i.global_position = marker[i].global_position
 
 
+func set_airship_respawn_position(i: int, a_position: Vector2) -> void:
+	var airship_i: Airship = airship[i]
+	airship_i.reset_comp.reset_stats()
+	airship_i.global_position = a_position
+
+
 func add_airship(airship_i: Airship, p_position: Vector2) -> void:
 	remove_child(airship_i)
 	get_parent().add_child(airship_i)

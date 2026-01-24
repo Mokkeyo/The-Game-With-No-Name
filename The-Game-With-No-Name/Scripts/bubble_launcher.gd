@@ -15,13 +15,11 @@ func _ready() -> void:
 	player_position = global_position + Vector2(0, 11)
 	arrow_count = arrow.size()
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for i: int in range(arrow_count):
 		var player: Player = player_bodies[i]
 		if player == null:
 			continue
-		
-		player.global_position = player_position
 		
 		var dir: Vector2 = Vector2.ZERO
 		
@@ -59,7 +57,8 @@ func shoot_bubble(i: int) -> void:
 			arrow[i].visible = false
 			player_bodies[i] = null
 			body.freeze = false
-			body.velocity.y = 0
+			body.velocity = Vector2.ZERO
+			print(direction[i])
 			if not direction[i] == Vector2.ZERO:
 				body.islaunching = true
 				body.bubble_direction = direction[i]
@@ -70,10 +69,11 @@ func shoot_bubble(i: int) -> void:
 func _on_Area2D_body_entered(body: Player) -> void:
 	for i: int in range(arrow_count):
 		if body.is_in_group("Player_%d" %i):
-			body.global_position = player_position
 			player_bodies[i] = body
-			body.velocity.y = 0
+			body.velocity = Vector2.ZERO
 			body.bubble_direction = Vector2.ZERO
 			body.islaunching = false
+			body.freeze = true
 			body.animatedSprite.play(str("jump_", i))
+			body.global_position = player_position
 			break

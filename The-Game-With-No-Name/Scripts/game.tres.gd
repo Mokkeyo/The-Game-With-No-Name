@@ -168,13 +168,16 @@ func on_player_count_changed(player: int) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	for i: int in player_size:
 		if Input.is_action_just_pressed("player%d_spawn" % int(i + 1)) and not player_alive[i]:
+			var player_position: Vector2 = in_game.player[1 - i].global_position
 			player_alive[i] = true
 			player_label[i].visible = false
-			in_game.player[i].resetComp.reset_stats()
-			in_game.player[i].global_position = in_game.player[1 - i].global_position
-			if player_spawner.airship_spawner:
-				player_spawner.airship_spawner.activate_airship(i)
+			var player: Player = in_game.player[i]
+			player.resetComp.reset_stats()
+			player.global_position = player_position
 			
+			if player_spawner.airship_spawner:
+				player_spawner.airship_spawner.set_airship_respawn_position(i, player_position)
+				player.enter_airship(player_spawner.airship_spawner.airship[i])
 			
 			set_process_unhandled_input(false)
 			in_game.set_viewport_size()

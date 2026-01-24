@@ -55,15 +55,14 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if is_in:
-		if player_node.freeze:
-			return
 		check_key_input()
 	
 	move_and_slide()
 
 
 func on_value_changed() -> void:
-	G.emit_signal("health_value_changed", currentPlayer, hitpoints)
+	print("value changed")
+	G.health_value_changed.emit(currentPlayer, healthComp.health)
 
 
 func check_key_input() -> void:
@@ -96,12 +95,13 @@ func die() -> void:
 	sprite.play("die")
 	is_alive = false
 
-
 func set_player() -> void:
 	remove_child(player_node)
 	get_parent().add_child(player_node)
 	player_node.global_position = global_position
-	is_in = false
+	is_in = false 
+	player_node.freeze = false
+	player_node.HitboxCollision.disabled = false
 	velocity = Vector2(0, 0)
 
 
@@ -115,8 +115,9 @@ func go_in(playerNode: Player) -> void:
 	on_value_changed()
 	playerNode.get_parent().remove_child(playerNode)
 	add_child(playerNode)
-	playerNode.visible = false
+# 	playerNode.visible = false
 	is_in = true
+	playerNode.freeze = true
 	playerNode.position = Vector2(2,-5)
 	player_node = playerNode
 	sprite.z_index = 1
@@ -133,25 +134,11 @@ func _respawn_player_and_airship() -> void:
 	p.global_position = pos
 	a.global_position = pos
 
-#	G.playerAlive[otherPlayer] = true
-#	G.player_get_in = true
-#	G.playerInAirship[otherPlayer] = true
 
 
-#func _on_airship_animation_finished() -> void:
-#	if sprite.animation == "die":
-#		set_player()
-#		G.airshipHeal[currentPlayer] = 100
-#		if G.playerAlive[otherPlayer]:
-#			G.start_respawn_timer = true
-#			G.playerAlive[currentPlayer] = false
-#			G.player_can_respawn = false
-#			G.playerInAirship[currentPlayer] = false
-#			reset_comp.set_stats()
-#			player_node.resetComp.set_stats()
-#			G.emit_signal("player_count_changed")
-#		else:
-#			G.playerInAirship[currentPlayer] = false
-#			G.emit_signal("game_over")
-#		player_node = null
-#		G.emit_signal("player_died")
+func _on_airship_animation_finished() -> void:
+	if sprite.animation == "die" and is_in:
+		G.player_died.emit(currentPlayer)
+		set_player()
+		is_in = false
+		reset_comp.set_stats()

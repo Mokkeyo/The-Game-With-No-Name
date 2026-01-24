@@ -636,15 +636,15 @@ collision_mask = 5
 script = ExtResource("1_5kxri")
 
 [node name="EndBoss(ver2)" type="Sprite2D" parent="."]
-position = Vector2(0, -44)
+position = Vector2(0, -45)
 texture = SubResource("CanvasTexture_5thi0")
 
 [node name="Axt(Boss)" type="Sprite2D" parent="."]
+z_index = 1
 z_as_relative = false
-position = Vector2(6, -17)
+position = Vector2(-6, -17)
 texture = SubResource("CanvasTexture_7gjy1")
-offset = Vector2(4, -26)
-flip_h = true
+offset = Vector2(-4, -26)
 
 [node name="hitbox" parent="Axt(Boss)" instance=ExtResource("9_8pv0u")]
 position = Vector2(-39.1447, 8.22755)

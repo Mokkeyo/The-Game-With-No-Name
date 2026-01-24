@@ -14,10 +14,10 @@ func _ready() -> void:
 	hitbox.damage_dealth.connect(died)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	print(visible)
 	velocity = Vector2( moveSPEED, 0).rotated(dir)
 	global_position += velocity * delta
-
 
 func deactivate_hibox(boolean: bool) -> void:
 	var hitbox_collision: CollisionShape2D = $Hitbox/CollisionShape2D
@@ -27,12 +27,12 @@ func deactivate_hibox(boolean: bool) -> void:
 func propertys(bulletRotation: float, player: int, time: float, SPEED: int) -> void:
 	var sprite: Sprite2D = $bullet
 	var hitbox: HitBox = $Hitbox
-	
 	moveSPEED = SPEED
 	global_rotation = bulletRotation
 	dir = bulletRotation
 	
 	sprite.frame = player
+	
 	sprite.flip_h = player == 0
 	hitbox.set_collision_mask_value(1, true)
 	if player == 0:
@@ -40,7 +40,6 @@ func propertys(bulletRotation: float, player: int, time: float, SPEED: int) -> v
 		hitbox.set_collision_mask_value(2, true)
 	else:
 		hitbox.set_collision_mask_value(3, true)
-	
 	timer.stop()
 	timer.wait_time = time
 	timer.start()

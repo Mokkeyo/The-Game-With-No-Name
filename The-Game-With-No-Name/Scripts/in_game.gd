@@ -69,6 +69,7 @@ func connet_camera_to_player() -> void:
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:
+	print("health value changed Player: ", player_number, " ", health_value)
 	var bar: progressBar = hp_bar[player_number]
 	if health_value == 100:
 		bar.set_value_int(health_value)

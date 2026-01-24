@@ -51,7 +51,6 @@ var freeze: bool = false
 var islaunching: bool = false
 
 var on_floor: bool
-var on_ceiling: bool
 var on_wall: bool
 var in_water: bool
 
@@ -119,23 +118,20 @@ func connect_signals() -> void:
 	lavaWaterDetector.water_exited.connect(play_water_sound)
 
 func _physics_process(delta: float) -> void:
-	if not is_alive:
+	if not is_alive or freeze:
 		return
-	
-	handle_launch()
-	
-	if freeze:
+		
+	if islaunching:
+		handle_launch()
 		return
 	
 	on_floor = is_on_floor()
-	on_ceiling = is_on_ceiling()
 	on_wall = is_on_wall()
 	in_water = lavaWaterDetector.inWater
 	
 	if lavaWaterDetector.inWaterElevator:
 		velocity.y = -200
-	   
-	
+	  
 	velocity.y = min(velocity.y, 250 if in_water else 600)
 	
 	if sword.slow_down:
@@ -147,7 +143,7 @@ func _physics_process(delta: float) -> void:
 	elif not islaunching and not on_floor:
 		apply_gravity(delta)
 	
-	if (on_ceiling or on_wall) and knockback_on:
+	if (is_on_ceiling() or on_wall) and knockback_on:
 		knockback_on = false
 	
 	if on_floor and not can_doublejump:
@@ -156,25 +152,24 @@ func _physics_process(delta: float) -> void:
 	if G.save_stat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
 	
+	var first_pos: float = global_position.y
+	
+	var was_in_air: bool = not on_floor
+	
+	floor_snap_length = 15 if on_floor else 0
+	
 	set_animation()
 	check_key_input()
 	rotaterComponent.update_rotation()
 	handle_knockback(delta)
-	handle_airship_entry()
 	handle_collision()
 	
-	var first_pos: float = global_position.y
-	
-	var was_in_air: bool = not is_on_floor()
-	
-	floor_snap_length = 15 if on_floor else 0
+	move_and_slide()
 	
 	var volume: float
 	
 	if was_in_air and velocity.y > 400:
 		volume = clamp(velocity.y / 600, 0.0, 1.0)
-	
-	move_and_slide()
 	
 	var last_pos: float = global_position.y
 	
@@ -188,32 +183,26 @@ func _physics_process(delta: float) -> void:
 		if was_in_air and volume > 0:
 			SoundComp.player_audio_start(global_position, SoundComp.sound_effect["landing"], volume / 4)
 	
-	var just_left_ground: bool = on_floor and not on_floor and velocity.y >= 0
+	var just_left_ground: bool = not was_in_air and not on_floor and velocity.y >= 0
 	if just_left_ground:
 		coyoteTimer.start(0.15)
 
 
 func handle_launch() -> void:
-	if not islaunching:
-		return
-	
-	if on_floor or on_ceiling or on_wall:
-		islaunching = false
-		freeze = false
-		can_doublejump = true
-		return
-	
 	velocity = bubble_direction * SPEED * 2
+	
+	move_and_slide()
+	
+	if get_slide_collision_count() > 0:
+		islaunching = false
+		can_doublejump = true
+		print("objekt hit")
 
 
 func handle_airship_entry() -> void:
-#	if not G.player_get_in:
-#		return
-	
 	for object: Airship in hurtBox.get_overlapping_bodies():
-		if object.is_in_group(player_strings["airship"]) and Input.is_action_just_pressed(inputs["interact"]):
+		if object.is_in_group(player_strings["airship"]):
 			enter_airship(object)
-#			G.player_get_in = false
 			break
 
 
@@ -302,11 +291,18 @@ func check_for_jumping() -> void:
 		return
 	
 	if Input.is_action_just_pressed(inputs["jump"]):
-		buffered_jump = true
-		jumpBufferTimer.start(0.15)
+		
+		if on_floor or not coyoteTimer.is_stopped():
+			jump(JUMP_POWER)
+			return
 		
 		if in_water:
 			jump(WATER_JUMP if not on_floor else WATER_FLOOR_JUMP)
+			return
+		
+		if next_to_wall():
+			var direction: int = (int(next_to_left_wall()) - int(next_to_right_wall()))
+			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
 			return
 		
 		if grabZone.rope_part:
@@ -315,19 +311,16 @@ func check_for_jumping() -> void:
 			jump(JUMP_POWER)
 			return
 		
-		if on_floor or not coyoteTimer.is_stopped():
-			jump(JUMP_POWER)
+		if on_floor:
 			return
 		
-		if next_to_wall():
-			var direction: int = (int(next_to_left_wall()) - int(next_to_right_wall()))
-			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
-			return
-		
-		if can_doublejump and coyoteTimer.is_stopped() and not on_floor:
+		if can_doublejump:
 			can_doublejump = false
 			jump(JUMP_POWER)
-
+			return
+		
+		buffered_jump = true
+		jumpBufferTimer.start(0.15)
 
 func jump(jump_power: float) -> void:
 	velocity.y = 0
@@ -438,6 +431,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 func _on_damage_knockback_timeout() -> void: knockback_on = false
 func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
+
 
 
 func _on_ManaTimer_timeout() -> void:

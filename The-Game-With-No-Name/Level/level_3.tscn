@@ -195,6 +195,7 @@ door_color = "Stone"
 
 [node name="DoorAndButton2" parent="Objects" instance=ExtResource("4")]
 position = Vector2(900, 434)
+door_color = "Player"
 Door_Nr = 5
 
 [node name="FallingSpikeTrapWithRope" parent="Objects" instance=ExtResource("25_p038q")]
@@ -741,7 +742,7 @@ energy = 0.2
 [node name="Button" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_17bxe")]
 position = Vector2(881, 168)
 door = NodePath("../Objects/DoorAndButton")
-required_input = "Stone"
+required_input = 1
 
 [node name="Button2" parent="." node_paths=PackedStringArray("door") instance=ExtResource("25_17bxe")]
 position = Vector2(92, 644)

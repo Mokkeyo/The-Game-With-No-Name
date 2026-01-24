@@ -106,6 +106,7 @@ offset_left = 416.0
 offset_top = 520.0
 offset_right = 608.0
 offset_bottom = 568.0
+focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
 [node name="NameEnterer" type="Control" parent="."]

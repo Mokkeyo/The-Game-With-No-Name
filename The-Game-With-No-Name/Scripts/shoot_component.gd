@@ -1,5 +1,3 @@
-
-
 extends Node2D
 class_name ShootComponent
 
@@ -34,17 +32,6 @@ func _ready() -> void:
 	if not rotation_point:
 		rotation_point = get_parent()
 	
-#	match projectileType:
-#		ProjectileType.BULLET:
-#			initialize_bullet()
-#		ProjectileType.SPIRIT_BALL:
-#			initialize_spirit_ball()
-#		ProjectileType.LASER:
-#			initialize_laser()
-#		ProjectileType.WARNING:
-#			initialize_laser()
-	
-	# Initialize the bullet pool
 	for i: int in range(pool_size):
 		var bullet_instance: Bullet = bullet_scene.instantiate()
 		bullet_instance.timeout.connect(_on_bullet_timeout)
@@ -80,7 +67,6 @@ func shoot_bullet() -> void:
 
 
 func _on_bullet_timeout(bullet: Bullet) -> void:
-	# Called when a bullet's lifetime expires
 	if bullet in bullet_pool:
 		deactivate_bulet(bullet)
 

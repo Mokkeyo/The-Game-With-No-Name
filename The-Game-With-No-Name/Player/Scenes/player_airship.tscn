@@ -63,8 +63,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5dh6"]
-radius = 8.5
-height = 27.0
+radius = 8.0
+height = 24.0
 
 [sub_resource type="Animation" id="Animation_cfvkl"]
 length = 0.001
@@ -169,9 +169,9 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyywu"]
 radius = 8.0
-height = 22.0
+height = 17.999992
 
-[node name="airshipPlayer1" type="CharacterBody2D" groups=["airship"]]
+[node name="airshipPlayer" type="CharacterBody2D" groups=["airship"]]
 collision_layer = 8
 script = ExtResource("6")
 currentPlayer = 0
@@ -199,7 +199,6 @@ libraries = {
 [node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_xbjoc")]
 shootingPoint = NodePath("../Marker2D")
 parent = NodePath("..")
-bulletSpeed = 400
 player = 1
 lifeTime = 0.7
 
@@ -211,7 +210,6 @@ collision_layer = 2
 health = NodePath("../healthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cyywu")
 
