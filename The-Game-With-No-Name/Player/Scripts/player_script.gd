@@ -29,6 +29,15 @@ const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 
 @onready var resetComp: EnemyResetComponent = $ResetComponent
 
+@onready var States: Dictionary = {
+	"ground": null,
+	"air": null,
+	"jump": null,
+	"knockback": null,
+	"launch":null,
+}
+var current_state: PlayerState
+
 const PUSH: int = 60
 const GRAVITY: int = 600
 const SPEED: int = 120
@@ -66,6 +75,12 @@ func _ready() -> void:
 	instantiate_pet()
 	configure_floor_settings()
 	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
+
+func change_state(state_name: String) -> void:
+	if current_state:
+		current_state.exit()
+	current_state = States[state_name]
+	current_state.enter()
 
 
 func set_player_strings() -> void:
