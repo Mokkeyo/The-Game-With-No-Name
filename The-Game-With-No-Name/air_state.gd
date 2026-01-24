@@ -1,37 +1,66 @@
 extends PlayerState
-var coyote: float = 0.12
-var buffer: float = 0.0
 
 func enter() -> void:
-	coyote = 0.12
-	player.play_animation(player.player_strings["fall"])
+	player.play_animation("fall")
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed(player.inputs["jump"]):
-		buffer = 0.14
+	var dir: int = int(Input.is_action_pressed(player.inputs["right"])) \
+				- int(Input.is_action_pressed(player.inputs["left"]))
+	
+	player.move_horizontal(dir)
+	if not dir == 0:
+		player.flip_sprite(dir < 0)
+	
+	if Input.is_action_just_pressed(player.inputs["attack"]):
+		player.sword.attack()
+	
+	if Input.is_action_just_pressed(player.inputs["wand"]):
+		player.wand.attack()
+	
+	if Input.is_action_just_released(player.inputs["jump"]):
+		if player.velocity.y < -100:
+			player.velocity.y = -100
+
+	if not Input.is_action_just_pressed(player.inputs["jump"]):
+		return
+	
+	player.velocity.y = 0
+	player.play_animation("jump")
+	
+	if player.lavaWaterDetector.inWater:
+		player.jump(player.WATER_JUMP)
+		return
+	
+	if not player.coyoteTimer.is_stopped():
+		player.jump(player.JUMP_POWER)
+		player.coyoteTimer.stop()
+		return
+	
+	if player.next_to_wall():
+		player.do_walljump()
+		return
+	
+	if player.can_doublejump:
+		player.can_doublejump = false
+		player.jump(player.JUMP_POWER)
+		return
+	
+	player.buffered_jump = true
+	player.jumpBufferTimer.start(0.15)
 
 func physics_update(delta: float) -> void:
-	coyote = max(coyote - delta, 0.0)
-	buffer = max(buffer - delta, 0.0)
-	
-	var dir: int = int(Input.is_action_pressed(player.inputs["left"])) \
-				- int(Input.is_action_pressed(player.inputs["right"]))
-	
-	player.velocity.x += dir * player.ACCELERATION * 0.5
-	player.velocity.x = clamp(player.velocity.x, -player.SPEED, player.SPEED)
-	
 	player.apply_gravity(delta)
-	player.move_and_slide()
 	
-	if player.is_on_wall() and player.velocity.y > 0:
-		player.change_state("wall")
-		return
+	if player.velocity.y > 0:
+		player.play_animation("fall")
 	
-	if buffer > 0 and (coyote > 0 or player.can_doublejump):
-		if coyote <= 0:
-			player.can_doublejump = false
-		player.change_state("jump")
-		return
-	
-	if player.on_floor:
+	if player.is_on_floor():
+		if player.buffered_jump:
+			player.buffered_jump = false
+			player.jump(player.JUMP_POWER)
+			return
 		player.change_state("ground")
+		return
+	
+	if player.grabZone.rope_part:
+		player.change_state("rope")

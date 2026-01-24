@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://da7p34a4g111f"]
+[gd_scene load_steps=52 format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Textures_P1/player_1_texture.tres" id="3_f5fds"]
@@ -11,9 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="13_kmpdc"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="15_2ei6y"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_kprxa"]
+[ext_resource type="Script" uid="uid://bg0k53lq7f1fd" path="res://air_state.gd" id="15_miu1y"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="16_g5r0a"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="16_lq3ic"]
 [ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="16_mxlaw"]
+[ext_resource type="Script" uid="uid://cn5os7apj0a1c" path="res://ground_state.gd" id="16_vkrb1"]
+[ext_resource type="Script" uid="uid://v83ys1og6rmy" path="res://knockback_state.gd" id="17_1yy2w"]
+[ext_resource type="Script" uid="uid://bsllrrqs5yck2" path="res://launch_state.gd" id="18_bf386"]
+[ext_resource type="Script" uid="uid://cm1e5cscajchi" path="res://rope_state.gd" id="19_17k2o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -363,13 +368,11 @@ wait_time = 4.0
 one_shot = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(-6, -11)
 rotation = 1.5708
 target_position = Vector2(0, 2)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-visible = false
 position = Vector2(6, -11)
 rotation = -1.5708
 target_position = Vector2(0, 2)
@@ -382,6 +385,21 @@ visible = false
 position = Vector2(-1, -6)
 
 [node name="States" type="Node" parent="."]
+
+[node name="air_state" type="Node" parent="States"]
+script = ExtResource("15_miu1y")
+
+[node name="ground_state" type="Node" parent="States"]
+script = ExtResource("16_vkrb1")
+
+[node name="knockback_state" type="Node" parent="States"]
+script = ExtResource("17_1yy2w")
+
+[node name="launch_state" type="Node" parent="States"]
+script = ExtResource("18_bf386")
+
+[node name="rope_state" type="Node" parent="States"]
+script = ExtResource("19_17k2o")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
