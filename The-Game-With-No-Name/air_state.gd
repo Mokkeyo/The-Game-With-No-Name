@@ -21,6 +21,7 @@ func handle_input() -> void:
 		if player.velocity.y < -100:
 			player.velocity.y = -100
 
+
 	if not Input.is_action_just_pressed(player.inputs["jump"]):
 		return
 	

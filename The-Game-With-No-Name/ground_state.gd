@@ -34,6 +34,7 @@ func handle_input() -> void:
 		player.handle_airship_entry()
 
 func physics_update(_delta: float) -> void:
+	player.rotaterComponent.update_rotation()
 	
 	if not player.is_on_floor():
 		player.coyoteTimer.start(0.15)
