@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://drwrrl3atnl63"]
+
+[ext_resource type="Texture2D" uid="uid://bdjs00sl01ti7" path="res://Objects/Textures/checkpoint.png" id="1_wwhjm"]
+[ext_resource type="Texture2D" uid="uid://q5vaon664cbk" path="res://NormalMap/checkpoint_normal.png" id="2_suc7t"]
+
+[resource]
+diffuse_texture = ExtResource("1_wwhjm")
+normal_texture = ExtResource("2_suc7t")

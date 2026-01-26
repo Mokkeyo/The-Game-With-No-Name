@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="The Game With No Name Ver4.4"
 run/main_scene="res://Scenes/game_loader.tscn"
-config/features=PackedStringArray("4.5")
+config/features=PackedStringArray("4.6")
 boot_splash/show_image=false
 config/windows_native_icon="res://dog_icon(new).ico"
 
@@ -22,8 +26,6 @@ G="*res://AutoLoads/Scripts/Globals.gd"
 SoundMusic="*res://AutoLoads/Scripts/SoundMusic.gd"
 D="*res://AutoLoads/Scripts/Dialogue.gd"
 AI="*res://AutoLoads/Scenes/achievment_informer.tscn"
-Noray="*res://addons/netfox.noray/noray.gd"
-PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 Multiplayer="res://multiplayer.gd"
 SoundComp="*res://footstep_sound_component.gd"
 
@@ -80,10 +82,6 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://GuiElements/Textures/mouse.png"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [filesystem]
 

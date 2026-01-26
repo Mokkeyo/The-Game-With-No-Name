@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkxvjvaobawtr"]
+
+[ext_resource type="Texture2D" uid="uid://d0ari8on310jx" path="res://Objects/Textures/swingable_rope.png" id="1_g5ccl"]
+[ext_resource type="Script" uid="uid://bnh6bmqlletg4" path="res://Scenes/swingable_rope_part.gd" id="1_vk7bw"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 3.0
+
+[node name="swingable_rope_part" type="Area2D" groups=["Rope"]]
+position = Vector2(0, 3)
+script = ExtResource("1_vk7bw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g5ccl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("1")

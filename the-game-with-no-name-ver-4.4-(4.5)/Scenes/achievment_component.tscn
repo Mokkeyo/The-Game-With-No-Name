@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mo43aiilsn42"]
+
+[ext_resource type="Script" uid="uid://cnx0istiibkrx" path="res://Scripts/achievment_component.gd" id="1_oy1y5"]
+
+[node name="achievmentComponent" type="Node2D"]
+script = ExtResource("1_oy1y5")

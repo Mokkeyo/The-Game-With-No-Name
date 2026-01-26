@@ -22,7 +22,7 @@ signal flip_value_changed
 @onready var rayCastLeft: RayCast2D = $RayCastLeft
 @onready var rayCastRight: RayCast2D = $RayCastRight
 @onready var Hitbox: HitBox = $Hitbox
-
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var resetComp: EnemyResetComponent = $ResetComponent
 
 @onready var States: Dictionary = {

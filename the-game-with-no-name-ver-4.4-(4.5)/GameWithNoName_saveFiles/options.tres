@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SaveStatInf" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://saveStatInf.gd" id="1_vr82n"]
+
+[resource]
+script = ExtResource("1_vr82n")
+deaths = Array[int]([1, 0, 0, 0])
+vsync = true
+sfxVolume = inf_neg
+maxVolume = 0.0
+printFps = true
+darknessOn = false
+textboxCount = 1
+textboxCollected = Array[String](["kristall"])
+playerName = Array[String](["test", "", "", ""])

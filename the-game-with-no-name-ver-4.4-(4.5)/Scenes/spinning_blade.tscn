@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://c63xsde6mme8y"]
+
+[ext_resource type="Texture2D" uid="uid://dwjmoek7glkle" path="res://Objects/Textures/spinning_blade.png" id="1"]
+[ext_resource type="Script" uid="uid://cw42uhc8nhprm" path="res://Scripts/spinning_blade.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://desaq7rosii1c" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_wl07d"]
+[ext_resource type="PackedScene" uid="uid://d0n5n0m16idmh" path="res://Scenes/path_follow_component.tscn" id="5_oms2q"]
+[ext_resource type="PackedScene" uid="uid://2qfpcf84sism" path="res://sound_player.tscn" id="6_vmj2r"]
+[ext_resource type="AudioStream" uid="uid://bfr8q2yhvxnnp" path="res://Sounds/flying-blade-103343.mp3" id="7_i0k1l"]
+
+[sub_resource type="Animation" id="Animation_gc0oq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blade:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="1"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blade:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tb3x2"]
+_data = {
+&"RESET": SubResource("Animation_gc0oq"),
+&"default": SubResource("1")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dom6i"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_rvdcg")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8y8ah"]
+radius = 15.0
+
+[node name="Spinning_Blade" type="Path2D"]
+script = ExtResource("2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tb3x2")
+}
+
+[node name="Blade" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_dom6i")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" parent="Blade" instance=ExtResource("3_wl07d")]
+visible = false
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blade/Hitbox"]
+shape = SubResource("CircleShape2D_8y8ah")
+
+[node name="PathFollowComponent" parent="." node_paths=PackedStringArray("path", "target_node") instance=ExtResource("5_oms2q")]
+path = NodePath("..")
+target_node = NodePath("../Blade")
+speed = 150.0
+
+[node name="SoundPlayer" parent="." instance=ExtResource("6_vmj2r")]
+stream = ExtResource("7_i0k1l")
+volume_db = 1.0
+max_distance = 200.0

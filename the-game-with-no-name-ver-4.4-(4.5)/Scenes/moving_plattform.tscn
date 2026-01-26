@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://wq7jtfjnavmo"]
+
+[ext_resource type="Texture2D" uid="uid://bn8mfwaas3dwn" path="res://Objects/Textures/moving_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c2fa73py015h3" path="res://NormalMap/moving_plattform_normal.png" id="2_b5tou"]
+[ext_resource type="PackedScene" uid="uid://c67wcimjdut0r" path="res://Scenes/mover_component.tscn" id="3_equn7"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "@tool
+extends AnimatableBody2D
+class_name MovingPlattform
+
+var last_position: Vector2
+
+@export var move_speed: float = 0.5
+@export var move_distance: float = 50.0
+@export var move_direction: Vector2 = Vector2(0, 0)
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	set_variables()
+
+
+func _process(_delta: float) -> void:
+	if not Engine.is_editor_hint():
+		set_process(false)
+		return
+	
+	set_variables()
+
+
+func set_variables() -> void:
+	var move_comp: MoverComponent = $MoverComponent
+	move_comp.move_speed = move_speed
+	move_comp.move_distance = move_distance
+	move_comp.move_direction = move_direction
+"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ljeir"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("2_b5tou")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj2s0"]
+size = Vector2(40, 8)
+
+[node name="moving Plattform" type="AnimatableBody2D" groups=["moving_plattform"]]
+collision_mask = 0
+script = SubResource("1")
+
+[node name="moving plattform" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_ljeir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xj2s0")
+one_way_collision = true
+
+[node name="MoverComponent" parent="." node_paths=PackedStringArray("static_object") instance=ExtResource("3_equn7")]
+move_speed = 0.5
+do_process = true
+static_object = NodePath("..")

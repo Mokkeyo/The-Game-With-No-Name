@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://baf36j2ma3cg4"]
+
+[ext_resource type="Script" uid="uid://cbwwyidbmqhur" path="res://button.gd" id="1_r04n3"]
+[ext_resource type="Texture2D" uid="uid://cke05b1hpq5ji" path="res://Objects/Textures/button.png" id="2_n4tde"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="3_vxja4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxja4"]
+size = Vector2(6, 3)
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_r04n3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_vxja4")
+
+[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions") instance=ExtResource("3_vxja4")]
+collisions = [NodePath("../Area2D/CollisionShape2D")]
+setStartPosition = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_n4tde")
+hframes = 4
+vframes = 2
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

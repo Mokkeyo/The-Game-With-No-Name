@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd44bc5ro42ae"]
+
+[ext_resource type="Script" uid="uid://cqve8wkefjyd4" path="res://Scripts/health_component.gd" id="1_lmnla"]
+
+[node name="healthComponent" type="Node"]
+script = ExtResource("1_lmnla")
+
+[node name="invisibilityTimer" type="Timer" parent="."]
+one_shot = true

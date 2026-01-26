@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvbhirfwanijc"]
+[gd_scene format=3 uid="uid://cvbhirfwanijc"]
 
 [ext_resource type="Script" uid="uid://nyh3xv5dqgqa" path="res://Scripts/weapon_choose_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bulntp8jnbh1w" path="res://Player/Textures/wand.png" id="2"]
@@ -13,7 +13,7 @@
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.494118, 0.219608, 0, 1)
 
-[node name="Weapons" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+[node name="Weapons" type="Control" unique_id=1713430448 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,14 +24,14 @@ script = ExtResource("1")
 startButton = NodePath("WandButton")
 exitButton = NodePath("Back")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=923774311]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 1016.0
 offset_bottom = 568.0
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="." unique_id=1902178395]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -39,7 +39,7 @@ offset_right = 1008.0
 offset_bottom = 560.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="WandButton" type="Button" parent="."]
+[node name="WandButton" type="Button" parent="." unique_id=356217742]
 layout_mode = 0
 offset_left = 73.0
 offset_top = 153.0
@@ -49,28 +49,28 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../SwordButton")
 focus_neighbor_bottom = NodePath("../Back")
-theme_override_styles/focus = ExtResource("2_0i1sg")
-theme_override_styles/disabled = ExtResource("3_c2srf")
-theme_override_styles/hover_pressed = ExtResource("3_c2srf")
-theme_override_styles/hover = ExtResource("3_c2srf")
-theme_override_styles/pressed = ExtResource("3_c2srf")
 theme_override_styles/normal = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/focus = ExtResource("2_0i1sg")
 toggle_mode = true
 
-[node name="Wand" type="Node2D" parent="."]
+[node name="Wand" type="Node2D" parent="." unique_id=28128492]
 
-[node name="Wand" type="Sprite2D" parent="Wand"]
+[node name="Wand" type="Sprite2D" parent="Wand" unique_id=1728048549]
 position = Vector2(208, 288)
 rotation = 0.785398
 scale = Vector2(14, 14)
 texture = ExtResource("2")
 
-[node name="No" type="Sprite2D" parent="Wand"]
+[node name="No" type="Sprite2D" parent="Wand" unique_id=266631848]
 position = Vector2(208, 288)
 scale = Vector2(8, 8)
 texture = ExtResource("6")
 
-[node name="SwordButton" type="Button" parent="."]
+[node name="SwordButton" type="Button" parent="." unique_id=1136542941]
 layout_mode = 0
 offset_left = 377.0
 offset_top = 153.0
@@ -80,28 +80,28 @@ focus_neighbor_left = NodePath("../WandButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../JumpButton")
 focus_neighbor_bottom = NodePath("../Back")
-theme_override_styles/focus = ExtResource("2_0i1sg")
-theme_override_styles/disabled = ExtResource("3_c2srf")
-theme_override_styles/hover_pressed = ExtResource("3_c2srf")
-theme_override_styles/hover = ExtResource("3_c2srf")
-theme_override_styles/pressed = ExtResource("3_c2srf")
 theme_override_styles/normal = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/focus = ExtResource("2_0i1sg")
 toggle_mode = true
 
-[node name="Sword" type="Node2D" parent="."]
+[node name="Sword" type="Node2D" parent="." unique_id=1611346421]
 
-[node name="Sword" type="Sprite2D" parent="Sword"]
+[node name="Sword" type="Sprite2D" parent="Sword" unique_id=1402093090]
 position = Vector2(512, 288)
 rotation = 0.785398
 scale = Vector2(14, 14)
 texture = ExtResource("3")
 
-[node name="No" type="Sprite2D" parent="Sword"]
+[node name="No" type="Sprite2D" parent="Sword" unique_id=1132973130]
 position = Vector2(512, 288)
 scale = Vector2(8, 8)
 texture = ExtResource("6")
 
-[node name="JumpButton" type="Button" parent="."]
+[node name="JumpButton" type="Button" parent="." unique_id=726589840]
 layout_mode = 0
 offset_left = 681.0
 offset_top = 153.0
@@ -111,27 +111,27 @@ focus_neighbor_left = NodePath("../SwordButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Back")
-theme_override_styles/focus = ExtResource("2_0i1sg")
-theme_override_styles/disabled = ExtResource("3_c2srf")
-theme_override_styles/hover_pressed = ExtResource("3_c2srf")
-theme_override_styles/hover = ExtResource("3_c2srf")
-theme_override_styles/pressed = ExtResource("3_c2srf")
 theme_override_styles/normal = ExtResource("3_c2srf")
+theme_override_styles/pressed = ExtResource("3_c2srf")
+theme_override_styles/hover = ExtResource("3_c2srf")
+theme_override_styles/hover_pressed = ExtResource("3_c2srf")
+theme_override_styles/disabled = ExtResource("3_c2srf")
+theme_override_styles/focus = ExtResource("2_0i1sg")
 toggle_mode = true
 
-[node name="Jump" type="Node2D" parent="."]
+[node name="Jump" type="Node2D" parent="." unique_id=1734502599]
 
-[node name="jump" type="Sprite2D" parent="Jump"]
+[node name="jump" type="Sprite2D" parent="Jump" unique_id=1332651262]
 position = Vector2(819, 284)
 scale = Vector2(12.4, 12.4)
 texture = ExtResource("11")
 
-[node name="No" type="Sprite2D" parent="Jump"]
+[node name="No" type="Sprite2D" parent="Jump" unique_id=2028119349]
 position = Vector2(816, 288)
 scale = Vector2(8, 8)
 texture = ExtResource("6")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1596961906]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 38.0
@@ -144,7 +144,7 @@ theme_override_font_sizes/font_size = 48
 text = "Activate / Deactivate Weapons"
 horizontal_alignment = 1
 
-[node name="Back" parent="." instance=ExtResource("9_hrseb")]
+[node name="Back" parent="." unique_id=276195653 instance=ExtResource("9_hrseb")]
 layout_mode = 0
 offset_left = 376.0
 offset_top = 432.0

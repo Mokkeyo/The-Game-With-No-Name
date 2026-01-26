@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbokg7m3bstbv"]
+
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="1"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvbb0yptdmf57" path="res://GuiElements/Textures/Textbox_npc.png" id="2_unva0"]
+[ext_resource type="Script" uid="uid://cso0q86vwskb7" path="res://Npcs/Scripts/textbox.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://c1ahop4qxfcok" path="res://GuiElements/Textures/Textbox_player.png" id="3_1xict"]
+[ext_resource type="PackedScene" uid="uid://c0gb8q2p05ie5" path="res://Scenes/decide_box.tscn" id="4_ul3rc"]
+
+[sub_resource type="FontFile" id="6"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="7"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+
+[node name="TextBox" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextboxNpc" type="Sprite2D" parent="Control"]
+position = Vector2(512, 456)
+texture = ExtResource("2_unva0")
+
+[node name="TextboxPlayer" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(512, 456)
+texture = ExtResource("3_1xict")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 393.0
+offset_right = 944.0
+offset_bottom = 545.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = SubResource("6")
+theme_override_font_sizes/normal_font_size = 20
+text = "Place Holder Text"
+
+[node name="Speaker" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 364.0
+offset_right = 976.0
+offset_bottom = 396.0
+theme_override_colors/font_outline_color = Color(0, 0, 0.74902, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = SubResource("7")
+theme_override_font_sizes/normal_font_size = 20
+text = "Name"
+
+[node name="Ping" parent="Control" instance=ExtResource("1")]
+position = Vector2(960, 508)
+scale = Vector2(2, 2)
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 0.05
+one_shot = true
+
+[node name="DecideBox" parent="." node_paths=PackedStringArray("text_box") instance=ExtResource("4_ul3rc")]
+visible = false
+layout_mode = 0
+offset_top = -4.0
+offset_bottom = -4.0
+text_box = NodePath("..")
+
+[connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

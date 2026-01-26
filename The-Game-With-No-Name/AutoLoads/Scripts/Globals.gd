@@ -109,9 +109,9 @@ func apply_display_settings() -> void:
 
 
 func center_window() -> void:
-	var center_screen: Vector2i = DisplayServer.screen_get_position() + DisplayServer.screen_get_size()/2
+	var center_screen: Vector2i = DisplayServer.screen_get_position() + Vector2i(DisplayServer.screen_get_size()/2.0)
 	var window_size: Vector2i = get_window().get_size_with_decorations()
-	get_window().set_position(center_screen - window_size/2)
+	get_window().set_position(center_screen - Vector2i(window_size/2.0))
 
 
 

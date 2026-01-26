@@ -60,7 +60,6 @@ func shoot_bubble(i: int) -> void:
 			body.velocity = Vector2.ZERO
 			print(direction[i])
 			if not direction[i] == Vector2.ZERO:
-				body.islaunching = true
 				body.bubble_direction = direction[i]
 			direction[i] = Vector2.ZERO
 			break
@@ -72,8 +71,7 @@ func _on_Area2D_body_entered(body: Player) -> void:
 			player_bodies[i] = body
 			body.velocity = Vector2.ZERO
 			body.bubble_direction = Vector2.ZERO
-			body.islaunching = false
 			body.freeze = true
-			body.animatedSprite.play(str("jump_", i))
+			body.play_animation("jump")
 			body.global_position = player_position
 			break
