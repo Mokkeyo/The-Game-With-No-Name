@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://5hggmjcb8585"]
+
+[ext_resource type="Script" uid="uid://cinsfmi6q4b4s" path="res://damage_receiver.gd" id="1_ykm2m"]
+
+[node name="DamageReceiver" type="Node" unique_id=1012230853]
+script = ExtResource("1_ykm2m")

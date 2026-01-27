@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name RobotEnemy
 
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $healthComponent
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var hpBar: progressBar = $"HPbar(enemy)"

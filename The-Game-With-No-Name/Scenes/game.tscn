@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://pph4ndujwtbk"]
+[gd_scene format=3 uid="uid://pph4ndujwtbk"]
 
 [ext_resource type="PackedScene" uid="uid://bowcmya00mvsq" path="res://Scenes/pause_menu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cj63f0dlucbmw" path="res://Scenes/in_game.tscn" id="2_5u1uf"]
@@ -11,6 +11,15 @@
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("5")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -28,6 +37,15 @@ cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("5")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -45,6 +63,15 @@ cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("15")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -96,19 +123,19 @@ _data = {
 &"RESET": SubResource("Animation_7cw4a")
 }
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" unique_id=1483139879]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="InGame" parent="." node_paths=PackedStringArray("game") instance=ExtResource("2_5u1uf")]
+[node name="InGame" parent="." unique_id=1326667773 node_paths=PackedStringArray("game") instance=ExtResource("2_5u1uf")]
 layout_mode = 0
 game = NodePath("..")
 
-[node name="Fader" parent="." instance=ExtResource("6")]
+[node name="Fader" parent="." unique_id=801074544 instance=ExtResource("6")]
 layout_mode = 0
 
-[node name="Player2Label" type="Label" parent="."]
+[node name="Player2Label" type="Label" parent="." unique_id=1819212087]
 visible = false
 layout_mode = 0
 offset_left = 748.0
@@ -121,7 +148,7 @@ theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 25
 text = "Player 2 can respawn"
 
-[node name="Player1Label" type="Label" parent="."]
+[node name="Player1Label" type="Label" parent="." unique_id=1678620062]
 visible = false
 layout_mode = 0
 offset_left = 8.0
@@ -134,11 +161,11 @@ theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 25
 text = "Player 1 can respawn"
 
-[node name="Boss" type="Control" parent="."]
+[node name="Boss" type="Control" parent="." unique_id=941655952]
 visible = false
 anchors_preset = 0
 
-[node name="BossHP" parent="Boss" instance=ExtResource("11")]
+[node name="BossHP" parent="Boss" unique_id=484502697 instance=ExtResource("11")]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 536.0
@@ -146,7 +173,7 @@ offset_right = 132.0
 offset_bottom = 540.0
 scale = Vector2(40, 3)
 
-[node name="Label" type="Label" parent="Boss"]
+[node name="Label" type="Label" parent="Boss" unique_id=1691675711]
 layout_mode = 0
 offset_left = 152.0
 offset_top = 507.0
@@ -158,19 +185,17 @@ theme_override_fonts/font = SubResource("7")
 theme_override_font_sizes/font_size = 20
 text = "Boss Galaga"
 
-[node name="TextBox" parent="." instance=ExtResource("12_k2rrv")]
+[node name="TextBox" parent="." unique_id=2019246429 instance=ExtResource("12_k2rrv")]
 layout_mode = 0
 
-[node name="pause" parent="." instance=ExtResource("1")]
+[node name="pause" parent="." unique_id=983784240 instance=ExtResource("1")]
 layout_mode = 0
 
-[node name="respawnTimer" type="Timer" parent="."]
+[node name="respawnTimer" type="Timer" parent="." unique_id=858446790]
 wait_time = 5.0
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_h5g3y")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1327217130]
+libraries/ = SubResource("AnimationLibrary_h5g3y")
 
 [connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]

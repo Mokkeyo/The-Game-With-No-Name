@@ -5,7 +5,7 @@ var is_alive: bool = true
 @onready var animatedSprite: AnimatedSprite2D = $bat
 @onready var detectPlayer: PlayerDetector = $PlayerDetector
 @onready var hpBar: progressBar = $HPBar
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $healthComponent
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 
 @export var hitoints: float = 20

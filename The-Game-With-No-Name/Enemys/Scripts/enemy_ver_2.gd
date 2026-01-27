@@ -1,11 +1,12 @@
 extends CharacterBody2D
+class_name EnemyRobotTwo
 
 const UP_VECTOR: Vector2 =  Vector2(0, -1)
 var move: Vector2 = Vector2(SPEED, 0)
 
 @onready var RayCast: RayCast2D = $RayCast
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $healthComponent
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 @onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent

@@ -3,7 +3,9 @@ class_name Game
 
 @onready var in_game: InGame = $InGame
 @onready var fader: Fader = $Fader
+
 @onready var player_label: Array[Label] = [$Player1Label, $Player2Label]
+
 @onready var respawn_timer: Timer = $respawnTimer
 @onready var boss_node: Control = $Boss
 @onready var pause: PauseMenu = $pause
@@ -13,13 +15,14 @@ var level: Node2D = null
 var current_level_number: int
 var player_spawner: PlayerSpawner
 
-var temp_door: Array[int]
+var temp_door: Array[int] = []
 
 var player_alive: Array[bool] = [true, false]
 var player_in_airship: Array[bool] = [false, false]
 var next_level_door: String
 
 var player_size: int
+
 
 func _ready() -> void:
 	player_size = player_alive.size()
@@ -35,7 +38,7 @@ func _ready() -> void:
 	G.darkness_changed.connect(_on_darkness_changed)
 	print("Ready duration: ", Time.get_ticks_msec() - start_time, "ms")
 
-
+#--------------------alter COde----------------------------
 func setup_level() -> void:
 	add_level()
 	get_respawnable_objects()
@@ -86,14 +89,7 @@ func restart_level(player: int) -> void:
 	initialize_variables()
 	respawn_timer.stop()
 	for obj: EnemyResetComponent in respawnable_obj:
-		var parent: Node2D = obj.get_parent()
-		 
-		if not parent.is_in_group("Player"):
-			obj.reset_stats()
-			continue
-		
-		if parent. is_in_group("Player_" + str(player)):
-			obj.reset_stats()
+		obj.reset_stats()
 		
 	player_alive[player] = true
 	set_player_positions()
@@ -172,7 +168,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			player_alive[i] = true
 			player_label[i].visible = false
 			var player: Player = in_game.player[i]
-			player.resetComp.reset_stats()
+			player.reset_comp.reset_stats()
 			player.global_position = player_position
 			
 			if player_spawner.airship_spawner:

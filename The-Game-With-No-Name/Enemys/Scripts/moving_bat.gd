@@ -7,7 +7,7 @@ var is_alive: bool = true
 var time_since_init: float = 0.0
 
 @onready var animatedSprite: AnimatedSprite2D = $bat
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $healthComponent
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 
 @export var move_direction: Vector2 = Vector2(0, 0)

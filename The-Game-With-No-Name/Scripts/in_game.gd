@@ -37,10 +37,17 @@ func _ready() -> void:
 		viewport[i].render_target_update_mode = SubViewport.UPDATE_WHEN_PARENT_VISIBLE
 
 
-func add_level(currentLevel: Node2D) -> void:
-	level = currentLevel
+func add_level(level_node: Node2D) -> void:
+	unload_level()
+	level = level_node
 	viewport[0].add_child(level)
 	viewport[1].world_2d = viewport[0].world_2d
+
+
+func unload_level() -> void:
+	if level:
+		level.queue_free()
+		level = null
 
 
 func set_viewport_size() -> void:

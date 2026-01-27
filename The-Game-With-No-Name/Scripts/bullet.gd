@@ -11,7 +11,7 @@ var dir: float
 
 func _ready() -> void:
 	var hitbox: HitBox = $Hitbox
-	hitbox.damage_dealth.connect(died)
+	hitbox.hit.connect(died)
 
 
 func _physics_process(delta: float) -> void:

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpskafuab3c07" path="res://Scenes/sword.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bupf61wjcvaho" path="res://Scenes/grab_zone_component.tscn" id="9_6q2fa"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="12_7suj3"]
+[ext_resource type="PackedScene" uid="uid://5hggmjcb8585" path="res://damage_receiver.tscn" id="13_e0sep"]
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="13_kmpdc"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="15_2ei6y"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="15_kprxa"]
@@ -19,6 +20,10 @@
 [ext_resource type="Script" uid="uid://v83ys1og6rmy" path="res://knockback_state.gd" id="17_1yy2w"]
 [ext_resource type="Script" uid="uid://bsllrrqs5yck2" path="res://launch_state.gd" id="18_bf386"]
 [ext_resource type="Script" uid="uid://cm1e5cscajchi" path="res://rope_state.gd" id="19_17k2o"]
+[ext_resource type="PackedScene" uid="uid://b7eopuwngiqrr" path="res://player_animation.tscn" id="20_17k2o"]
+[ext_resource type="PackedScene" uid="uid://bu7vf60kutvqn" path="res://player_combat.tscn" id="21_e0sep"]
+[ext_resource type="PackedScene" uid="uid://bwfod75guayxe" path="res://player_input.tscn" id="22_ut808"]
+[ext_resource type="PackedScene" uid="uid://bk2rek160thsd" path="res://player_movement.tscn" id="23_aytf0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -294,30 +299,28 @@ offset = Vector2(0, -2)
 position = Vector2(0, -10.5)
 shape = SubResource("2")
 
-[node name="GrabZone" parent="." unique_id=2022534743 node_paths=PackedStringArray("player") instance=ExtResource("9_6q2fa")]
+[node name="GrabZone" parent="." unique_id=2022534743 instance=ExtResource("9_6q2fa")]
 position = Vector2(0, -10)
-player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone" unique_id=1601303505]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_0k8br")
 
-[node name="Hurtbox" parent="." unique_id=153847304 node_paths=PackedStringArray("health") instance=ExtResource("16_g5r0a")]
+[node name="Hurtbox" parent="." unique_id=153847304 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("16_g5r0a")]
 visible = false
 position = Vector2(0, -10)
 collision_layer = 2
 collision_mask = 8
-health = NodePath("../healthComponent")
+damage_receiver = NodePath("../DamageReceiver")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1530490771]
 position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_yajsf")
 
-[node name="Hitbox" parent="." unique_id=179432488 node_paths=PackedStringArray("health") instance=ExtResource("15_kprxa")]
+[node name="Hitbox" parent="." unique_id=179432488 instance=ExtResource("15_kprxa")]
 visible = false
 position = Vector2(0, 1)
 collision_mask = 4
-health = NodePath("../healthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1338094172]
 shape = SubResource("RectangleShape2D_3bitc")
@@ -348,6 +351,10 @@ physics_process = true
 [node name="FloorRotaterComponent" parent="." unique_id=763279034 node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="DamageReceiver" parent="." unique_id=1012230853 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("13_e0sep")]
+health = NodePath("../healthComponent")
+invincibility = NodePath("../InvisibleFramesComp")
 
 [node name="Timer" type="Node" parent="." unique_id=423634889]
 
@@ -400,6 +407,14 @@ script = ExtResource("18_bf386")
 
 [node name="rope_state" type="Node" parent="States" unique_id=155008659]
 script = ExtResource("19_17k2o")
+
+[node name="PlayerAnimation" parent="." unique_id=2058203618 instance=ExtResource("20_17k2o")]
+
+[node name="PlayerCombat" parent="." unique_id=1122574311 instance=ExtResource("21_e0sep")]
+
+[node name="PlayerInput" parent="." unique_id=1743018715 instance=ExtResource("22_ut808")]
+
+[node name="PlayerMovement" parent="." unique_id=1268619773 instance=ExtResource("23_aytf0")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -17,6 +17,13 @@ signal boss_finished
 signal boss_value_changed
 signal boss_label_changed
 
+enum DamageType {
+	NORMAL,
+	LAVA,
+	DOT,
+	ENVIRONMENT
+}
+
 #turn the .tres to .res befor export do decrypt the saveFile
 const SAVE_FILES: Dictionary = {
 	"options": "/options.tres", 

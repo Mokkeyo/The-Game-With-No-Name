@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhflrsdg72bef"]
+[gd_scene format=3 uid="uid://bhflrsdg72bef"]
 
 [ext_resource type="Texture2D" uid="uid://bebhyynl0fv3c" path="res://Enemys/CanvasTextures/enemy.tres" id="2_nooeg"]
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_rtllk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="10_crpyg"]
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="11_cbi0q"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="11_qgys3"]
+[ext_resource type="PackedScene" uid="uid://5hggmjcb8585" path="res://damage_receiver.tscn" id="12_70vpd"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="12_ycax0"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="13_ckrvk"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="14_lb0cv"]
@@ -99,70 +100,72 @@ size = Vector2(10.2306, 13.86)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t33p0"]
 size = Vector2(10, 14)
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemy", "kill"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=17007335 groups=["enemy", "kill"]]
 collision_layer = 4
 collision_mask = 529
 platform_floor_layers = 1
 script = ExtResource("6")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["coin"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1383487192 groups=["coin"]]
 sprite_frames = SubResource("1")
 animation = &"walk"
 
-[node name="RayCast" type="RayCast2D" parent="."]
+[node name="RayCast" type="RayCast2D" parent="." unique_id=1283948522]
 position = Vector2(3, 6)
 target_position = Vector2(-0.01, 11)
 collision_mask = 513
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=797803955]
 position = Vector2(2.01166e-07, -0.000325203)
 shape = SubResource("CapsuleShape2D_rr1vs")
 
-[node name="HPbar(enemy)" parent="." instance=ExtResource("9")]
+[node name="HPbar(enemy)" parent="." unique_id=457101109 instance=ExtResource("9")]
 offset_left = -7.0
 offset_top = -12.0
 offset_right = 7.0
 offset_bottom = -8.0
 
-[node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar", "invisibilityComp") instance=ExtResource("11_qgys3")]
-hpBar = NodePath("../HPbar(enemy)")
+[node name="healthComponent" parent="." unique_id=494317993 node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("11_qgys3")]
 invisibilityComp = NodePath("../InvisibleFramesComp")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("12_ycax0")]
+[node name="Hurtbox" parent="." unique_id=1024192773 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("12_ycax0")]
 visible = false
 collision_layer = 4
-health = NodePath("../healthComponent")
+damage_receiver = NodePath("../DamageReceiver")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1077061798]
 shape = SubResource("RectangleShape2D_bi8kd")
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_ckrvk")]
+[node name="Hitbox" parent="." unique_id=1300720364 instance=ExtResource("13_ckrvk")]
 visible = false
 collision_mask = 2
-health = NodePath("../healthComponent")
 knockback = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=454763674]
 position = Vector2(-0.00838614, 0.070004)
 shape = SubResource("RectangleShape2D_epjvo")
 
-[node name="LavaWater_Detector" parent="." instance=ExtResource("14_lb0cv")]
+[node name="LavaWater_Detector" parent="." unique_id=528665948 instance=ExtResource("14_lb0cv")]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector" unique_id=1508162678]
 shape = SubResource("RectangleShape2D_t33p0")
 
-[node name="EnemyResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_pcxjl")]
+[node name="EnemyResetComponent" parent="." unique_id=1086128168 node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_pcxjl")]
 collisions = [NodePath("../CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
 hpBar = NodePath("../HPbar(enemy)")
 healthComp = NodePath("../healthComponent")
 physics_process = true
 
-[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("10_crpyg")]
+[node name="InvisibleFramesComp" parent="." unique_id=1023739404 node_paths=PackedStringArray("parent") instance=ExtResource("10_crpyg")]
 parent = NodePath("../AnimatedSprite2D")
 
-[node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("11_cbi0q")]
+[node name="FloorRotaterComponent" parent="." unique_id=534696258 node_paths=PackedStringArray("body", "sprite") instance=ExtResource("11_cbi0q")]
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="DamageReceiver" parent="." unique_id=1012230853 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("12_70vpd")]
+health = NodePath("../healthComponent")
+invincibility = NodePath("../InvisibleFramesComp")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

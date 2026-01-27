@@ -10,7 +10,7 @@ class_name Airship
 @onready var animationPlayer: AnimationPlayer = $DamagePlayer
 @onready var shootComp: ShootComponent = $Shoot
 @onready var hurtbox: HurtBox = $Hurtbox
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $healthComponent
 @onready var wait_timer: Timer = $wait_timer
 @onready var reset_comp: EnemyResetComponent = $ResetComponent
 
@@ -101,7 +101,7 @@ func set_player() -> void:
 	player_node.global_position = global_position
 	is_in = false 
 	player_node.freeze = false
-	player_node.HitboxCollision.disabled = false
+	player_node.hitbox_collision.disabled = false
 	velocity = Vector2(0, 0)
 
 

@@ -1,11 +1,9 @@
 extends Node
-class_name healthComponent
+class_name HealthComponent
 
 signal value_changed
 signal died
-signal setKnockback
-
-@onready var invisibilityTimer: Timer = $invisibilityTimer
+signal setKnockback(strength: int)
 
 @export_group("Stats")
 @export var health: float = 20
@@ -14,7 +12,6 @@ signal setKnockback
 @export var knockbackDuration: float = 0.1
 
 @export_group("Components")
-@export var hpBar: progressBar
 @export var invisibilityComp: InvisibleFramesComp
 @export var lavaDetector: LavaWaterDetector
 
@@ -28,37 +25,22 @@ func _ready() -> void:
 
 
 func damage(dmg: int, knockback: float) -> void:
-	if not invisibilityTimer.is_stopped() or health <= 0:
+	if health <= 0:
 		return
 	
 	health -= dmg
-	emit_signal("value_changed")
-	
-	if hpBar:
-		hpBar.set_percent_value_int(float(health/max_health * 100))
+	value_changed.emit()
 	
 	if health <=  0:
-		emit_signal("died")
+		died.emit()
 		return
 	
-	invisibilityTimer.start(invisibiltyFrames)
-	
-	if invisibilityComp:
-		invisibilityComp.play_invible_frames(invisibiltyFrames)
-	
 	if not knockback == 0:
-		knockbackDirection = Vector2(knockback, 3) * 90
-		emit_signal("setKnockback")
+		setKnockback.emit(knockback)
 
 
 func die() -> void:
 	health = 0
 	
-	if invisibilityComp:
-		invisibilityComp.reset_invisible_frames()
-	
-	
-	if hpBar:
-		hpBar.set_value_int(float(health/max_health * 100))
-	
-	emit_signal("died")
+	value_changed.emit()
+	died.emit()

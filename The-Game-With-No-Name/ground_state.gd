@@ -1,43 +1,44 @@
 extends PlayerState
+class_name GroundState
 
-var dir: float
 
 func enter() -> void:
 	player.can_doublejump = true
-	player.play_animation("idle")
+	player.animation.play(player.animation.Anim.IDLE)
 
 func handle_input() -> void:
-	dir = int(Input.is_action_pressed(player.inputs["right"])) \
-		- int(Input.is_action_pressed(player.inputs["left"]))
+	var dir: int = player.input.move_dir()
 	
-	player.move_horizontal(dir)
+	player.movement.move_horizontal(
+		dir, 
+		not player.combat.can_attack()
+		)
+		
 	if not dir == 0:
-		player.flip_sprite(dir < 0)
-	
-	if dir != 0:
-		player.play_animation("walk")
+		player.animation.flip(dir < 0)
+		player.animation.play(player.animation.Anim.WALK)
 	else:
-		player.play_animation("idle")
+		player.animation.play(player.animation.Anim.IDLE)
 	
-	if Input.is_action_just_pressed(player.inputs["jump"]):
-		player.jump(player.JUMP_POWER)
+	if player.input.jump_pressed():
+		player.movement.jump()
 		player.change_state("air")
 		return
 	
-	if Input.is_action_just_pressed(player.inputs["attack"]):
-		player.sword.attack()
+	if player.input.attack_pressed() and player.combat.can_attack():
+		player.combat.attack(dir)
 	
-	if Input.is_action_just_pressed(player.inputs["wand"]):
-		player.wand.attack()
+	if player.input.wand_pressed() and player.combat.can_cast():
+		player.combat.cast(dir)
 	
 	if Input.is_action_just_pressed(player.inputs["interact"]):
 		player.handle_airship_entry()
 
 func physics_update(_delta: float) -> void:
-	player.rotaterComponent.update_rotation()
+	player.rotater_component.update_rotation()
 	
 	player.floor_snap_length = 15 if player.is_on_floor() else 0
 	
 	if not player.is_on_floor():
-		player.coyoteTimer.start(0.15)
+		player.coyote_timer.start(0.15)
 		player.change_state("air")
