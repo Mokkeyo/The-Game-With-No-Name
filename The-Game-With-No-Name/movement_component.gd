@@ -1,26 +1,34 @@
 extends Node
-class_name PlayerMovement
+class_name MovementComponent
 
-const SPEED: int = 120
-const WATER_SPEED: int = 80
-const ACCELERATION: int = 20
+signal walljumped(direction: float)
+signal moved_horizontal(direction: float)
+signal jumped
+signal knockbacked(force: Vector2)
 
-const GRAVITY: int = 600
-const WATER_GRAVITY: int = 200
+@export_category("X Velocity")
+@export var SPEED: int = 120
+@export var WATER_SPEED: int = 80
+@export var ACCELERATION: int = 20
 
-const JUMP_POWER: int = 210
-const WATER_JUMP_POWER: int = 100
-const WALL_JUMP_FORCE: float = 2.5
-const KNOCKBACK_DAMPENING: int = 900
+@export_category("Gravity")
+@export var GRAVITY: int = 600
+@export var WATER_GRAVITY: int = 200
 
-var player: Player
+@export_category("Y Velocity")
+@export var JUMP_POWER: int = 210
+@export var WATER_JUMP_POWER: int = 100
+@export var WALL_JUMP_FORCE: float = 2.5
+@export var KNOCKBACK_DAMPENING: int = 900
+
+var body: CharacterBody2D
 var water_detector: LavaWaterDetector
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var in_knockback: bool = false
 
 func setup(p: CharacterBody2D, water: LavaWaterDetector) -> void:
-	player = p
+	body = p
 	water_detector = water
 
 func move_horizontal(dir: float, slowed: bool = false) -> void:
@@ -28,42 +36,44 @@ func move_horizontal(dir: float, slowed: bool = false) -> void:
 	if slowed:
 		target_speed *= 0.5
 	
-	player.velocity.x = move_toward(
-		player.velocity.x,
+	body.velocity.x = move_toward(
+		body.velocity.x,
 		dir * target_speed,
 		ACCELERATION
 	)
+	moved_horizontal.emit(dir)
+
 
 func apply_gravity(delta: float) -> void:
 	var g: float = WATER_GRAVITY if water_detector.inWater else GRAVITY
-	player.velocity.y += g * delta
+	body.velocity.y += g * delta
 
 
 func jump() -> void:
-	player.velocity.y = 0
-	player.velocity.y -= (
+	body.velocity.y = 0
+	body.velocity.y -= (
 			WATER_JUMP_POWER if water_detector.inWater else JUMP_POWER
 		)
-
+	jumped.emit()
 
 func wall_jump(direction: float) -> void:
 	# direction: -1 = rechts, +1 = links
-	player.can_doublejump = true
-	player.velocity.y = 0
-	player.velocity =Vector2(
+	body.velocity.y = 0
+	body.velocity =Vector2(
 		direction * SPEED * WALL_JUMP_FORCE, - JUMP_POWER
 		)
+	walljumped.emit(direction)
 
 func start_knockback(force: Vector2) -> void:
 	knockback_velocity = force
 	in_knockback = true
-
+	knockbacked.emit(force)
 
 func update_knockback(delta: float) -> void:
 	if not in_knockback:
 		return
 	
-	player.velocity = knockback_velocity
+	body.velocity = knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(
 		Vector2.ZERO,
 		KNOCKBACK_DAMPENING * delta

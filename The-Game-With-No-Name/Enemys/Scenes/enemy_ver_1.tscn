@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="11_qgys3"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="12_70vpd"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="12_ycax0"]
+[ext_resource type="PackedScene" uid="uid://dsd5p6l7j427r" path="res://movement_component.tscn" id="13_0joxm"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="13_ckrvk"]
+[ext_resource type="PackedScene" uid="uid://cjm6adsgwin5v" path="res://abyss_checker_component.tscn" id="14_cc33w"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="14_lb0cv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxnv8"]
@@ -103,6 +105,8 @@ size = Vector2(10, 14)
 [node name="Enemy" type="CharacterBody2D" unique_id=1518533852 groups=["enemy", "kill"]]
 collision_layer = 4
 collision_mask = 529
+slide_on_ceiling = false
+floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("6")
 
@@ -136,11 +140,10 @@ damage_receiver = NodePath("../DamageReceiver")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=46622548]
 shape = SubResource("RectangleShape2D_bi8kd")
 
-[node name="Hitbox" parent="." unique_id=1160487587 node_paths=PackedStringArray("health") instance=ExtResource("13_ckrvk")]
+[node name="Hitbox" parent="." unique_id=1160487587 instance=ExtResource("13_ckrvk")]
 visible = false
 collision_mask = 2
 knockback = 1.0
-health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2107993197]
 position = Vector2(-0.00838614, 0.070004)
@@ -168,5 +171,14 @@ sprite = NodePath("../AnimatedSprite2D")
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("12_70vpd")]
 health = NodePath("../HealthComponent")
 invincibility = NodePath("../InvisibleFramesComp")
+
+[node name="MovementComponent" parent="." unique_id=85911161 instance=ExtResource("13_0joxm")]
+SPEED = 80
+GRAVITY = 100
+WATER_GRAVITY = 80
+JUMP_POWER = 80
+
+[node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("14_cc33w")]
+raycast = NodePath("../RayCast")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

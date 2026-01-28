@@ -9,6 +9,8 @@ signal flip_value_changed
 @onready var health_component: HealthComponent = $healthComponent
 @onready var rotater_component: FloorRotaterComponent = $FloorRotaterComponent
 
+@onready var rope_state: RopeState = $States/RopeState
+
 @onready var lava_water_detector: LavaWaterDetector = $LavaWaterDetector
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
@@ -24,7 +26,7 @@ signal flip_value_changed
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var reset_comp: EnemyResetComponent = $ResetComponent
 
-@onready var movement: PlayerMovement = $PlayerMovement
+@onready var movement: MovementComponent = $PlayerMovement
 @onready var animation: PlayerAnimation = $PlayerAnimation
 @onready var combat: PlayerCombat = $PlayerCombat
 @onready var input: PlayerInput = $PlayerInput
@@ -106,6 +108,12 @@ func _connect_signals() -> void:
 	lava_water_detector.water_entered.connect(play_water_sound)
 	lava_water_detector.water_exited.connect(play_water_sound)
 	hitbox.damaged_enemy.connect(jump.bind(movement.JUMP_POWER))
+	movement.walljumped.connect(set_doublejump)
+	rope_state.exited_rope.connect(set_doublejump)
+
+func set_doublejump(val: bool = true) -> void:
+	can_doublejump = val
+
 
 func _physics_process(delta: float) -> void:
 	if not is_alive or freeze:

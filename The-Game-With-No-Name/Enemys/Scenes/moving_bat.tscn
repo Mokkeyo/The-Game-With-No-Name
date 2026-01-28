@@ -99,10 +99,9 @@ shape = SubResource("1")
 sprite_frames = SubResource("2")
 frame_progress = 0.49765
 
-[node name="Hitbox" parent="." unique_id=1244952728 node_paths=PackedStringArray("health") instance=ExtResource("5_g3xa8")]
+[node name="Hitbox" parent="." unique_id=1244952728 instance=ExtResource("5_g3xa8")]
 visible = false
 collision_mask = 2
-health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=990793576]
 position = Vector2(0, 2)

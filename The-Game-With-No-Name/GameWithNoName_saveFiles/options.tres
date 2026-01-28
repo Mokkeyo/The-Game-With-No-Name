@@ -12,4 +12,4 @@ printFps = true
 darknessOn = false
 textboxCount = 1
 textboxCollected = Array[String](["kristall"])
-playerName = Array[String](["test", "", "", ""])
+playerName = Array[String](["test", "test", "", ""])

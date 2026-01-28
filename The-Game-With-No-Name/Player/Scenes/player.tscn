@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://cm1e5cscajchi" path="res://rope_state.gd" id="19_ut808"]
 [ext_resource type="Script" uid="uid://bn5j4fjsv1keo" path="res://player_animation.gd" id="20_aytf0"]
 [ext_resource type="Script" uid="uid://dhuemeqh0icyx" path="res://player_input.gd" id="21_p0l7e"]
-[ext_resource type="Script" uid="uid://dav4w6647w5l2" path="res://player_movement.gd" id="22_17k2o"]
+[ext_resource type="Script" uid="uid://dav4w6647w5l2" path="res://movement_component.gd" id="22_17k2o"]
 [ext_resource type="Script" uid="uid://b4bpfmt4j5jbn" path="res://player_combat.gd" id="23_e0sep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
@@ -317,13 +317,11 @@ damage_receiver = NodePath("../DamageReceiver")
 position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_yajsf")
 
-[node name="Hitbox" parent="." unique_id=1032672602 node_paths=PackedStringArray("health") instance=ExtResource("15_kprxa")]
+[node name="Hitbox" parent="." unique_id=1032672602 instance=ExtResource("15_kprxa")]
 visible = false
 position = Vector2(0, 1)
 collision_mask = 4
-dmg_count = null
 knockback = null
-health = NodePath("../healthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1813998796]
 shape = SubResource("RectangleShape2D_3bitc")
