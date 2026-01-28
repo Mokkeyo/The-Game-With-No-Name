@@ -1,0 +1,14 @@
+Node
+AudioStreamPlayer2D      - Matches the "sound" keyword.
+AudioStreamPlayer2D
+Node2D
+Sprite2D
+WorldEnvironment
+Light
+CollisionShape2D
+Area2D
+MeshInstance2D
+Button
+Control
+MultiplayerSynchronizer
+Camera2D

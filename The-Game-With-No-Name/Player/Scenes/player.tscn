@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://da7p34a4g111f"]
+[gd_scene format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Textures_P1/player_1_texture.tres" id="3_f5fds"]
@@ -272,116 +272,116 @@ size = Vector2(12, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w1dl"]
 size = Vector2(9, 17)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1056553489 groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=741402192]
 position = Vector2(0, -10)
 sprite_frames = SubResource("1")
 animation = &"walk_0"
 offset = Vector2(0, -2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1705399276]
 position = Vector2(0, -10.5)
 shape = SubResource("2")
 
-[node name="GrabZone" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_6q2fa")]
+[node name="GrabZone" parent="." unique_id=122145047 node_paths=PackedStringArray("player") instance=ExtResource("9_6q2fa")]
 position = Vector2(0, -10)
 player = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone" unique_id=657324894]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_0k8br")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("16_g5r0a")]
+[node name="Hurtbox" parent="." unique_id=1637853140 node_paths=PackedStringArray("health") instance=ExtResource("16_g5r0a")]
 visible = false
 position = Vector2(0, -10)
 collision_layer = 2
 collision_mask = 8
 health = NodePath("../healthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=942665954]
 position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_yajsf")
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_kprxa")]
+[node name="Hitbox" parent="." unique_id=1032672602 node_paths=PackedStringArray("health") instance=ExtResource("15_kprxa")]
 visible = false
 position = Vector2(0, 1)
 collision_mask = 4
 health = NodePath("../healthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1813998796]
 shape = SubResource("RectangleShape2D_3bitc")
 
-[node name="LavaWater_Detector" parent="." instance=ExtResource("12_7suj3")]
+[node name="LavaWater_Detector" parent="." unique_id=582761171 instance=ExtResource("12_7suj3")]
 visible = false
 position = Vector2(0, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector" unique_id=1273219005]
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_4w1dl")
 
-[node name="healthComponent" parent="." node_paths=PackedStringArray("invisibilityComp", "lavaDetector") instance=ExtResource("15_2ei6y")]
+[node name="healthComponent" parent="." unique_id=266553016 node_paths=PackedStringArray("invisibilityComp", "lavaDetector") instance=ExtResource("15_2ei6y")]
 health = 100.0
 invisibiltyFrames = 2.0
 invisibilityComp = NodePath("../InvisibleFramesComp")
 lavaDetector = NodePath("../LavaWater_Detector")
 
-[node name="InvisibleFramesComp" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
+[node name="InvisibleFramesComp" parent="." unique_id=1899888523 node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
 parent = NodePath("../AnimatedSprite2D")
 
-[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
+[node name="ResetComponent" parent="." unique_id=62998091 node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
 collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWater_Detector/CollisionShape2D")]
 healthComp = NodePath("../healthComponent")
 setStartPosition = false
 physics_process = true
 
-[node name="FloorRotaterComponent" parent="." node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
+[node name="FloorRotaterComponent" parent="." unique_id=1693650648 node_paths=PackedStringArray("body", "sprite") instance=ExtResource("13_kmpdc")]
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="Timer" type="Node" parent="."]
+[node name="Timer" type="Node" parent="." unique_id=442859597]
 
-[node name="KnockbackTimer" type="Timer" parent="Timer"]
+[node name="KnockbackTimer" type="Timer" parent="Timer" unique_id=214539385]
 wait_time = 0.4
 one_shot = true
 
-[node name="CoyoteTimer" type="Timer" parent="Timer"]
+[node name="CoyoteTimer" type="Timer" parent="Timer" unique_id=754235286]
 wait_time = 0.14
 one_shot = true
 
-[node name="JumpBufferTimer" type="Timer" parent="Timer"]
+[node name="JumpBufferTimer" type="Timer" parent="Timer" unique_id=1580695446]
 wait_time = 0.15
 one_shot = true
 
-[node name="ManaTimer" type="Timer" parent="Timer"]
+[node name="ManaTimer" type="Timer" parent="Timer" unique_id=1631981843]
 wait_time = 4.0
 one_shot = true
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=792709323]
 visible = false
 position = Vector2(-6, -11)
 rotation = 1.5708
 target_position = Vector2(0, 2)
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2077532107]
 visible = false
 position = Vector2(6, -11)
 rotation = -1.5708
 target_position = Vector2(0, 2)
 
-[node name="Sword" parent="." instance=ExtResource("9")]
+[node name="Sword" parent="." unique_id=1619429573 instance=ExtResource("9")]
 position = Vector2(7, -7)
 
-[node name="Wand" parent="." instance=ExtResource("8")]
+[node name="Wand" parent="." unique_id=888359733 instance=ExtResource("8")]
 visible = false
 position = Vector2(-1, -6)
 
-[node name="States" type="Node" parent="."]
+[node name="States" type="Node" parent="." unique_id=1379711675]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
