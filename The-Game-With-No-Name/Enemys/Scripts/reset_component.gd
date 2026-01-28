@@ -8,7 +8,7 @@ signal resetting_stats
 @export var collisions: Array[CollisionShape2D]
 @export var visible_nodes: Array[Node2D]
 @export var hpBar: progressBar
-@export var healthComp: healthComponent
+@export var healthComp: HealthComponent
 @export var setStartPosition: bool = true
 @export var physics_process: bool = false
 @export var process: bool = false

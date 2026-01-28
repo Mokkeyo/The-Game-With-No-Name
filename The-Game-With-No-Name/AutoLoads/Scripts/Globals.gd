@@ -23,6 +23,13 @@ const SAVE_FILES: Dictionary = {
 	"slots": ["/savegame_1.tres", "/savegame_2.tres", "/savegame_3.tres", "/savegame_4.tres"],
 	"controls": "/controlls.tres"}
 
+enum DamageType {
+	NORMAL,
+	LAVA,
+	DOT,
+	ENVIRONMENT
+}
+
 const SAVE_PATH: String = "res://GameWithNoName_saveFiles"
 
 var save_stat_inf: SaveStatInf  = SaveStatInf.new()

@@ -172,7 +172,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			player_alive[i] = true
 			player_label[i].visible = false
 			var player: Player = in_game.player[i]
-			player.resetComp.reset_stats()
+			player.reset_comp.reset_stats()
 			player.global_position = player_position
 			
 			if player_spawner.airship_spawner:

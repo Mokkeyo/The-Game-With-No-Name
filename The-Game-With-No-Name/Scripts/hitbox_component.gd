@@ -1,15 +1,16 @@
 extends Area2D
 class_name HitBox
 
-signal damage_dealth
-@export var health: healthComponent
-@export var dmg_count: int = 20
-@export var knockback: float = 0
+signal hit(target: HurtBox, damage: int, knockback: float)
+signal damaged_enemy
 
-func _on_area_entered(area: HurtBox) -> void:
-	if not health or health and health.health > 0:
-		emit_signal("damage_dealth")
-		if area.global_position.x > global_position.x:
-			area.damage(dmg_count, knockback)
-		else:
-			area.damage(dmg_count, -knockback)
+@export var dmg: int = 20
+@export var knockback: float = 0
+@export var damage_type: G.DamageType = G.DamageType.NORMAL
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is HurtBox:
+		hit.emit(dmg, knockback)
+		damaged_enemy.emit()
+		var hurtbox: HurtBox = area as HurtBox
+		hurtbox.receive_hit(dmg, knockback, damage_type)

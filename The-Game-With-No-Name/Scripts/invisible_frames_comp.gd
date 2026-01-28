@@ -29,6 +29,10 @@ func play() -> void:
 	timer.start(blink_speed)
 
 
+func Iframes_active() -> bool:
+	return is_active
+
+
 func _on_timer_timeout() -> void:
 	if counter >= blink_count:
 		reset_invisible_frames()

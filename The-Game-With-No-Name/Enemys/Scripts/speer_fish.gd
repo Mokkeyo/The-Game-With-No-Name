@@ -8,7 +8,7 @@ var is_alive: bool = true
 @onready var wait_timer: Timer = $wait_timer
 @onready var move_dur_timer: Timer = $move_dur_timer
 @onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $HealthComponent
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 
 const SPEED: int = 400

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $HealthComponent
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var hpBar: progressBar = $"HPbar(enemy)"

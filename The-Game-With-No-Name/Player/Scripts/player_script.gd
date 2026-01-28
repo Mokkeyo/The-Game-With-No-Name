@@ -3,78 +3,72 @@ class_name Player
 
 signal flip_value_changed
 
-const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
-const Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
+@onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var hitbox_collision: CollisionShape2D = $Hitbox/CollisionShape2D
+@onready var lava_water_detectorCollision: CollisionShape2D = $LavaWaterDetector/CollisionShape2D
+@onready var health_component: HealthComponent = $healthComponent
+@onready var rotater_component: FloorRotaterComponent = $FloorRotaterComponent
 
-@onready var hurtboxCollision: CollisionShape2D = $Hurtbox/CollisionShape2D
-@onready var HitboxCollision: CollisionShape2D = $Hitbox/CollisionShape2D
-@onready var lavaWaterDetectorCollision: CollisionShape2D = $LavaWater_Detector/CollisionShape2D
-@onready var HealthComponent: healthComponent = $healthComponent
-@onready var rotaterComponent: FloorRotaterComponent = $FloorRotaterComponent
-
-@onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
+@onready var lava_water_detector: LavaWaterDetector = $LavaWaterDetector
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
-@onready var grabZone: GrabZone = $GrabZone
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var manaTimer: Timer = $Timer/ManaTimer
-@onready var coyoteTimer: Timer = $Timer/CoyoteTimer
-@onready var jumpBufferTimer: Timer = $Timer/JumpBufferTimer
-@onready var knockbackTimer: Timer = $Timer/KnockbackTimer
-@onready var hurtBox: HurtBox = $Hurtbox
-@onready var grabZoneTimer: Timer = $GrabZone/Timer
-@onready var rayCastLeft: RayCast2D = $RayCastLeft
-@onready var rayCastRight: RayCast2D = $RayCastRight
-@onready var Hitbox: HitBox = $Hitbox
+@onready var grab_zone: GrabZone = $GrabZone
+@onready var mana_timer: Timer = $Timer/ManaTimer
+@onready var coyote_timer: Timer = $Timer/CoyoteTimer
+@onready var jump_buffer_timer: Timer = $Timer/JumpBufferTimer
+@onready var knockback_timer: Timer = $Timer/KnockbackTimer
+@onready var hurtbox: HurtBox = $Hurtbox
+@onready var raycast_left: RayCast2D = $RayCastLeft
+@onready var raycast_right: RayCast2D = $RayCastRight
+@onready var hitbox: HitBox = $Hitbox
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var reset_comp: EnemyResetComponent = $ResetComponent
 
-@onready var resetComp: EnemyResetComponent = $ResetComponent
+@onready var movement: PlayerMovement = $PlayerMovement
+@onready var animation: PlayerAnimation = $PlayerAnimation
+@onready var combat: PlayerCombat = $PlayerCombat
+@onready var input: PlayerInput = $PlayerInput
 
-@onready var States: Dictionary = {
-	"ground": null,
-	"air": null,
-	"jump": null,
-	"knockback": null,
-	"launch":null,
+@onready var States: Dictionary[String, PlayerState] = {
+	"ground": $States/GroundState,
+	"air": $States/AirState,
+	"rope": $States/RopeState,
+	"knockback": $States/KnockbackState,
+	"launch": $States/LaunchState,
 }
 var current_state: PlayerState
+var can_doublejump: bool = true
 
+const MANA_COST: int = 33
+const FOOTSTEP_FRAMES: Array[int] = [2, 4, 6]
 const PUSH: int = 60
-const GRAVITY: int = 600
-const SPEED: int = 120
-const ACCELERATION: int = 20
-const WATER_SPEED: int = 80
-const JUMP_POWER: int = 210
-const WATER_JUMP: int = 100
-const WATER_FLOOR_JUMP: int = 70
-const WATER_GRAVITY: int = 200
 
-@export var currentPlayer: int = 0
+@export var current_player: int = 0
 
-var can_doublejump: bool = false
 var is_alive: bool = true
-var knockback_on: bool = false
 var knockback: Vector2 = Vector2.ZERO
-var buffered_jump: bool = false
 var bubble_direction: Vector2 = Vector2()
 var freeze: bool = false
-var islaunching: bool = false
-
-var on_floor: bool
-var on_wall: bool
-var in_water: bool
-
-var player_strings: Dictionary[String, String] = {}
+var buffered_jump: bool = false
 
 var inputs: Dictionary[String, String] = {}
 
 
 func _ready() -> void:
-	set_player_strings()
-	set_player_inputs()
-	connect_signals()
-	instantiate_pet()
-	configure_floor_settings()
-	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
+	_set_player_inputs()
+	movement.setup(self, lava_water_detector)
+	animation.setup(self, animated_sprite)
+	combat.setup(sword, wand)
+	input.setup(inputs)
+	combat.enemy_hit.connect(_on_enemy_hit)
+	_connect_signals()
+	_configure_floor_settings()
+	health_component.health = G.save_stat.playerHp[current_player]
+	
+	for s: PlayerState in States.values():
+		s.player = self
+	
+	change_state("ground")
 
 func change_state(state_name: String) -> void:
 	if current_state:
@@ -83,39 +77,20 @@ func change_state(state_name: String) -> void:
 	current_state.enter()
 
 
-func set_player_strings() -> void:
-	player_strings = {
-		"airship" : "airship_%d" % currentPlayer,
-		"idle" : "idle_%d" % currentPlayer,
-		"fall": "fall_%d" % currentPlayer,
-		"door": "door_%d" % currentPlayer,
-		"jump": "jump_%d" % currentPlayer,
-		"walk": "walk_%d" % currentPlayer,
-	}
-
-
-func set_player_inputs() -> void:
+func _set_player_inputs() -> void:
 	inputs = {
-		"up": "player%d_up" % int(currentPlayer + 1),
-		"down": "player%d_down" % int(currentPlayer + 1),
-		"left": "player%d_left" % int(currentPlayer + 1),
-		"right": "player%d_right" % int(currentPlayer + 1),
-		"jump": "player%d_jump" % int(currentPlayer + 1),
-		"interact": "player%d_interact" % int(currentPlayer + 1),
-		"attack": "player%d_attack" % int(currentPlayer + 1),
-		"wand": "player%d_wand" % int(currentPlayer + 1)
+		"up": "player%d_up" % int(current_player + 1),
+		"down": "player%d_down" % int(current_player + 1),
+		"left": "player%d_left" % int(current_player + 1),
+		"right": "player%d_right" % int(current_player + 1),
+		"jump": "player%d_jump" % int(current_player + 1),
+		"interact": "player%d_interact" % int(current_player + 1),
+		"attack": "player%d_attack" % int(current_player + 1),
+		"wand": "player%d_wand" % int(current_player + 1)
 	}
 
 
-func instantiate_pet() -> void:
-	var pe: pet = Pet.instantiate()
-	pe.player = currentPlayer
-	pe.playerNode = self
-	get_parent().call_deferred("add_child", pe)
-	pe.global_position = global_position + Vector2(-20, 0)
-
-
-func configure_floor_settings() -> void:
+func _configure_floor_settings() -> void:
 	set_floor_stop_on_slope_enabled(true)
 	set_max_slides(4)
 	set_floor_max_angle(0.785398)
@@ -123,107 +98,40 @@ func configure_floor_settings() -> void:
 	slide_on_ceiling = false
 
 
-func connect_signals() -> void:
-	HealthComponent.value_changed.connect(on_value_changed)
-	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
-	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
-	resetComp.resetting_stats.connect(enable_player)
-	lavaWaterDetector.water_entered.connect(play_water_sound)
-	lavaWaterDetector.water_exited.connect(play_water_sound)
+func _connect_signals() -> void:
+	health_component.value_changed.connect(_on_value_changed)
+	health_component.died.connect(respawn)
+	health_component.setKnockback.connect(do_knockback.bind(health_component.knockbackDuration, health_component.knockbackDirection))
+	reset_comp.resetting_stats.connect(enable_player)
+	lava_water_detector.water_entered.connect(play_water_sound)
+	lava_water_detector.water_exited.connect(play_water_sound)
+	hitbox.damaged_enemy.connect(jump.bind(movement.JUMP_POWER))
 
 func _physics_process(delta: float) -> void:
 	if not is_alive or freeze:
 		return
-		
-	if islaunching:
-		handle_launch()
-		return
 	
-	on_floor = is_on_floor()
-	on_wall = is_on_wall()
-	in_water = lavaWaterDetector.inWater
-	
-	if lavaWaterDetector.inWaterElevator:
-		velocity.y = -200
-	  
-	velocity.y = min(velocity.y, 250 if in_water else 600)
-	
-	if sword.slow_down:
-		velocity.x = 0
-	
-	
-	if grabZone.rope_part:
-		global_position = grabZone.rope_part.global_position - Vector2(0, -4)
-	elif not islaunching and not on_floor:
-		apply_gravity(delta)
-	
-	if (is_on_ceiling() or on_wall) and knockback_on:
-		knockback_on = false
-	
-	if on_floor and not can_doublejump:
-		can_doublejump = true
-	
-	if G.save_stat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
-		manaTimer.start(4.0)
-	
-	var first_pos: float = global_position.y
-	
-	var was_in_air: bool = not on_floor
-	
-	floor_snap_length = 15 if on_floor else 0
-	
-	set_animation()
-	check_key_input()
-	rotaterComponent.update_rotation()
-	handle_knockback(delta)
-	handle_collision()
-	
+	current_state.handle_input()
+	current_state.physics_update(delta)
 	move_and_slide()
-	
-	var volume: float
-	
-	if was_in_air and velocity.y > 400:
-		volume = clamp(velocity.y / 600, 0.0, 1.0)
-	
-	var last_pos: float = global_position.y
-	
-	on_floor = is_on_floor()
-	
-	var floor_normal: Vector2 = get_floor_normal()
-	
-	if on_floor:
-		if first_pos == last_pos and rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90 == 0:
-			position.y = round(position.y)
-		if was_in_air and volume > 0:
-			SoundComp.player_audio_start(global_position, SoundComp.sound_effect["landing"], volume / 4)
-	
-	var just_left_ground: bool = not was_in_air and not on_floor and velocity.y >= 0
-	if just_left_ground:
-		coyoteTimer.start(0.15)
 
 
-func handle_launch() -> void:
-	velocity = bubble_direction * SPEED * 2
-	
-	move_and_slide()
-	
-	if get_slide_collision_count() > 0:
-		islaunching = false
-		can_doublejump = true
-		print("objekt hit")
+func jump(power: float) -> void:
+	velocity.y = 0
+	velocity.y = -power
+	SoundMusic.play_sound_effect("water" if lava_water_detector.inWater else "jump")
 
 
 func handle_airship_entry() -> void:
-	for object: Airship in hurtBox.get_overlapping_bodies():
-		if object.is_in_group(player_strings["airship"]):
+	for object: Airship in hurtbox.get_overlapping_bodies():
+		if object.is_in_group(str("airship_", current_player)):
 			enter_airship(object)
 			break
 
 
 func enter_airship(object: Airship) -> void:
-	HitboxCollision.disabled = true
-	hurtboxCollision.disabled = true
+	hitbox_collision.disabled = true
+	hurtbox_collision.disabled = true
 	object.go_in(self)
 	visible = false
 
@@ -236,231 +144,68 @@ func handle_collision() -> void:
 			block.apply_central_impulse(-collision.get_normal() * PUSH)
 
 
-func handle_knockback(delta: float) -> void:
-	if knockback_on:
-		knockback = knockback.move_toward(Vector2.ZERO, -20 * delta)
-		set_velocity(knockback)
-		return
-	
-	set_velocity(velocity)
+func do_knockback(dir: Vector2) -> void:
+	knockback = dir
+	change_state("knockback")
 
 
-func apply_gravity(delta: float) -> void:
-	velocity.y += (WATER_GRAVITY if in_water else GRAVITY) * delta
+func _on_value_changed() -> void:
+	G.save_stat.playerHp[current_player] = health_component.health
+	G.health_value_changed.emit(current_player, health_component.health)
 
 
-func check_key_input() -> void:
-	check_for_horizontal_movement()
-	check_for_jumping()
-	
-	if Input.is_action_just_pressed(inputs["interact"]) and on_floor:
-		handle_airship_entry()
-	
-	if Input.is_action_just_pressed(inputs["wand"]) and wand.can_swing and G.save_stat.playerMana[currentPlayer] > 29:
-		var w: SpiritBall = bullet.instantiate()
-		w.left = wand.sprite.flip_h
-		w.global_position = wand.marker.global_position
-		wand.attack()
-		SoundMusic.play_sound_effect("magic")
-		get_parent().add_child(w)
-		change_mana_value()
-	
-	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
-		sword.attack()
-
-
-func check_for_horizontal_movement() -> void:
-	if islaunching:
-		return
-	
-	var speed_limit: float = WATER_SPEED if in_water else SPEED
-	var direction: int = (int(Input.is_action_pressed(inputs["right"])) - int(Input.is_action_pressed(inputs["left"])))
-	
-	if direction == 0:
-		velocity.x = lerp(velocity.x, 0.0, 0.5)
-		if on_floor:
-			play_animation("idle")
-		return
-	
-	velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
-	
-	var facing_left: bool = direction > 0
-	
-	if wand.sprite.flip_h == facing_left:
-		wand.flip(direction) 
-		
-	if sword.sword_left == facing_left and sword.can_flip:
-		sword.flip(direction)
-
-
-func check_for_jumping() -> void:
-	if islaunching:
-		return
-	
-	if buffered_jump and on_floor:
-		jump(JUMP_POWER)
-		return
-	
-	if Input.is_action_just_released(inputs["jump"]) and not in_water:
-		jump_cut()
-		return
-	
-	if Input.is_action_just_pressed(inputs["jump"]):
-		
-		if on_floor or not coyoteTimer.is_stopped():
-			jump(JUMP_POWER)
-			return
-		
-		if in_water:
-			jump(WATER_JUMP if not on_floor else WATER_FLOOR_JUMP)
-			return
-		
-		if next_to_wall():
-			var direction: int = (int(next_to_left_wall()) - int(next_to_right_wall()))
-			do_walljump(false if direction == 1 else true, 0.25, Vector2(direction * 2.5,-3) * 65)
-			return
-		
-		if grabZone.rope_part:
-			grabZone.rope_part = null
-			grabZone.timer.start()
-			jump(JUMP_POWER)
-			return
-		
-		if on_floor:
-			return
-		
-		if can_doublejump:
-			can_doublejump = false
-			jump(JUMP_POWER)
-			return
-		
-		buffered_jump = true
-		jumpBufferTimer.start(0.15)
-
-func jump(jump_power: float) -> void:
-	velocity.y = 0
-	velocity.y -= jump_power
-	buffered_jump = false
-	coyoteTimer.stop()
-	SoundMusic.play_sound_effect("water" if in_water else "jump")
-
-func jump_cut() -> void:
-	if knockback_on:
-		knockback_on = false
-		return
-	if velocity.y < -100:
-		velocity.y = -100
-
-func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vector2) -> void:
+func _on_enemy_hit() -> void:
+	movement.jump()
 	can_doublejump = true
-	SoundMusic.play_sound_effect("jump")
-	do_knockback(knockbackDuration, knockbackDirection)
-	flip_sprite(left)
 
 
-func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void:
-	knockback = knockbackDirection
-	knockback_on = true
-	knockbackTimer.start(knockbackDuration)
-
-
-func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer] = HealthComponent.health
-	G.health_value_changed.emit(currentPlayer, HealthComponent.health)
-
-
-func jump_on_enemy(jump_power: float) -> void:
-	jump(jump_power)
-	if not can_doublejump:
-		can_doublejump = true
-
-
-func set_animation() -> void:
-	var falling: bool = velocity.y > 0 and not on_floor
-	var jumping: bool = velocity.y < 0 and not on_floor
-	
-	if knockback_on:
-		return
-	
-	if (islaunching or jumping):
-		play_animation("jump")
-	
-	elif falling:
-		play_animation("fall")
-	
-	if velocity.x == 0:
-		return
-	
-	if on_floor:
-		play_animation("walk")
-	
-	var flip_h: bool = (false if velocity.x > 0 else true)
-	var sword_position: int = (-9 if sword.sword_left else 7)
-	
-	if not sword.position.x == sword_position:
-		sword.position.x = sword_position
-	
-	flip_sprite(flip_h)
-
-func next_to_wall() -> bool:return next_to_right_wall() or next_to_left_wall()
-func next_to_right_wall() -> bool:return rayCastRight.is_colliding()
-func next_to_left_wall() -> bool: return rayCastLeft.is_colliding()
+func next_to_wall() -> bool:return next_to_right_wall() or next_to_left_wall() or is_on_wall()
+func next_to_right_wall() -> bool:return raycast_right.is_colliding()
+func next_to_left_wall() -> bool: return raycast_left.is_colliding()
 
 
 func change_mana_value() -> void:
-	G.save_stat.playerMana[currentPlayer] -=33
-	G.mana_value_changed.emit(currentPlayer, G.save_stat.playerMana[currentPlayer])
+	G.save_stat.playerMana[current_player] -=33
+	G.mana_value_changed.emit(current_player, G.save_stat.playerMana[current_player])
 
 
 func respawn() -> void:
 	is_alive = false
-	animatedSprite.play("game_over")
+	animated_sprite.play("game_over")
 
-
-func play_animation(anim: String) -> void:
-	if not animatedSprite.animation == player_strings[anim]:
-		animatedSprite.play(player_strings[anim])
-
-
-func flip_sprite(flip_h: bool) -> void:
-	if not animatedSprite.flip_h == flip_h:
-		animatedSprite.flip_h = flip_h
-		flip_value_changed.emit()
 
 func enable_player() -> void:
 	is_alive = true
-	islaunching = false
-	grabZone.rope_part = null
-	grabZone.can_grab = true
+	grab_zone.rope_part = null
+	grab_zone.can_grab = true
 	velocity = Vector2(0, 0)
-	HealthComponent.health = 100
-	G.health_value_changed.emit(currentPlayer, 100)
-	G.mana_value_changed.emit(currentPlayer, 100)
+	health_component.health = 100
+	G.health_value_changed.emit(current_player, 100)
+	G.mana_value_changed.emit(current_player, 100)
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	if animatedSprite.animation == "game_over":
-		resetComp.set_stats()
-		G.player_died.emit(currentPlayer)
-
-
-func _on_damage_knockback_timeout() -> void: knockback_on = false
-func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
-
+	if animated_sprite.animation == "game_over":
+		reset_comp.set_stats()
+		G.player_died.emit(current_player)
 
 
 func _on_ManaTimer_timeout() -> void:
-	G.save_stat.playerMana[currentPlayer] += 11
-	G.mana_value_changed.emit(currentPlayer, G.save_stat.playerMana[currentPlayer])
+	G.save_stat.playerMana[current_player] += 11
+	G.mana_value_changed.emit(current_player, G.save_stat.playerMana[current_player])
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if not animatedSprite.animation == player_strings["walk"]:
+	if not animated_sprite.animation == animation.MAP[animation.Anim.WALK]:
 		return
 	
-	if animatedSprite.frame == 2 or animatedSprite.frame == 4 or animatedSprite.frame == 6:
+	if animated_sprite.frame in FOOTSTEP_FRAMES:
 		SoundComp.play_footstep(global_position)
 
 
 func play_water_sound() -> void:
 	SoundComp.audio_player_start(global_position, SoundComp.sound_effect["enter_water"], 0.5)
+
+
+func _on_JumpBufferTimer_timeout() -> void:
+	buffered_jump = false

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_vr82n")
-deaths = Array[int]([18, 0, 0, 0])
+deaths = Array[int]([21, 0, 0, 0])
 vsync = true
 sfxVolume = inf_neg
 maxVolume = 0.0

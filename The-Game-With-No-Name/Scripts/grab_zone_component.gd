@@ -1,23 +1,42 @@
 extends Area2D
 class_name GrabZone
 
-@export var player: Player = null
+signal grabbed_rope(rope: Area2D)
+signal release_rope
+
 var can_grab: bool = true
 var rope_part: Area2D = null
 var memorized_rope: Node2D
-@onready var forget_rope_timer:  Timer = $Timer2
-@onready var timer: Timer = $Timer
+
+@onready var forget_timer:  Timer = $ForgetTimer
+@onready var cool_down_timer: Timer = $CooldownTimer
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Rope") and can_grab and not area.get_parent() == memorized_rope:
-		rope_part = area
-		memorized_rope = area.get_parent()
-		can_grab = false
+	if not can_grab:
+		return
+	
+	if not area.is_in_group("Rope"):
+		return
+		
+	if area.get_parent() == memorized_rope:
+		return
+		
+	rope_part = area
+	memorized_rope = area.get_parent()
+	can_grab = false
+	grabbed_rope.emit(area)
 
-func _on_timer_timeout() -> void:
+
+func release() -> void:
+	rope_part = null
+	cool_down_timer.start()
+	release_rope.emit()
+
+
+func _on_cooldown_timer_timeout() -> void:
 	can_grab = true
-	player.can_doublejump = true
-	forget_rope_timer.start()
+	forget_timer.start()
 
-func _on_timer_2_timeout() -> void:
+
+func _on_forget_timer_timeout() -> void:
 	memorized_rope = null

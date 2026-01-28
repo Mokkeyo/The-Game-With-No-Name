@@ -23,7 +23,7 @@ func start_dialogue(index: int) -> void:
 
 func start() -> void:
 	player.velocity.x = 0
-	player.animatedSprite.play("door_0")
+	player.animation.play(player.animation.Anim.DOOR)
 	player.freeze = true
 	if npc_node == null:
 		npc_node = get_parent()

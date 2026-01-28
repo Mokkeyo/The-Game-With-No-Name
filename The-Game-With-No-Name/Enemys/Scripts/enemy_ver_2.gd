@@ -5,7 +5,7 @@ var move: Vector2 = Vector2(SPEED, 0)
 
 @onready var RayCast: RayCast2D = $RayCast
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var healthComp: healthComponent = $healthComponent
+@onready var healthComp: HealthComponent = $HealthComponent
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 @onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent
