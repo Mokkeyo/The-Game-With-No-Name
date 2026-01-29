@@ -6,6 +6,10 @@ signal moved_horizontal(direction: float)
 signal jumped
 signal knockbacked(force: Vector2)
 
+@export_category("Nodes")
+@export var water_detector: LavaWaterDetector
+@export var body: CharacterBody2D
+
 @export_category("X Velocity")
 @export var SPEED: int = 120
 @export var WATER_SPEED: int = 80
@@ -21,8 +25,6 @@ signal knockbacked(force: Vector2)
 @export var WALL_JUMP_FORCE: float = 2.5
 @export var KNOCKBACK_DAMPENING: int = 900
 
-var body: CharacterBody2D
-var water_detector: LavaWaterDetector
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var in_knockback: bool = false

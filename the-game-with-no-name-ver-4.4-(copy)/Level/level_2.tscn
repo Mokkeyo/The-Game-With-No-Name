@@ -206,7 +206,6 @@ ANIMATION_SPEED = 2
 
 [node name="swingable Rope2" parent="Area1" instance=ExtResource("19_mkmc5")]
 position = Vector2(353, -106)
-scale = Vector2(1, 1)
 swing_direction = "Right"
 
 [node name="swingable Rope" parent="Area1" instance=ExtResource("19_mkmc5")]

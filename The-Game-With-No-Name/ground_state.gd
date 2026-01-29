@@ -5,6 +5,13 @@ class_name GroundState
 func enter() -> void:
 	player.can_doublejump = true
 	player.animation.play(player.animation.Anim.IDLE)
+	player.floor_snap_length = 15
+	player.position.y = roundi(player.position.y)
+
+func exit() -> void:
+	player.rotater_component.rotate_sprite(0)
+	player.floor_snap_length = 0
+
 
 func handle_input() -> void:
 	var dir: int = player.input.move_dir()
@@ -37,7 +44,13 @@ func handle_input() -> void:
 func physics_update(_delta: float) -> void:
 	player.rotater_component.update_rotation()
 	
-	player.floor_snap_length = 15 if player.is_on_floor() else 0
+	var on_moving_plattform: bool = player.get_platform_velocity().length() > 0.01
+	var is_flat: bool = player.get_floor_angle() == 0
+	
+	if not on_moving_plattform and is_flat:
+		player.position.y = roundi(player.position.y)
+	
+	player.move_and_slide()
 	
 	if not player.is_on_floor():
 		player.coyote_timer.start(0.15)

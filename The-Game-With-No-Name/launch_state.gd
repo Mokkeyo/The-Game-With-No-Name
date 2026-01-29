@@ -8,8 +8,9 @@ func enter() -> void:
 
 
 func physics_update(_delta: float) -> void:
-	player.velocity = player.bubble_direction * player.movement.SPEED * launch_speed_multiplier
-
-	# Kollision → Launch endet
+	player.velocity = player.launch_direction * player.movement.SPEED * launch_speed_multiplier
+	
+	player.move_and_slide()
+	
 	if player.get_slide_collision_count() > 0:
 		player.change_state("air")

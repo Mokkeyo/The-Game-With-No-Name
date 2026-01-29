@@ -37,6 +37,7 @@ signal flip_value_changed
 	"rope": $States/RopeState,
 	"knockback": $States/KnockbackState,
 	"launch": $States/LaunchState,
+	"elevator": $States/WaterElevatorState
 }
 var current_state: PlayerState
 var can_doublejump: bool = true
@@ -49,7 +50,7 @@ const PUSH: int = 60
 
 var is_alive: bool = true
 var knockback: Vector2 = Vector2.ZERO
-var bubble_direction: Vector2 = Vector2()
+var launch_direction: Vector2 = Vector2()
 var freeze: bool = false
 var buffered_jump: bool = false
 
@@ -107,13 +108,16 @@ func _connect_signals() -> void:
 	reset_comp.resetting_stats.connect(enable_player)
 	lava_water_detector.water_entered.connect(play_water_sound)
 	lava_water_detector.water_exited.connect(play_water_sound)
-	hitbox.damaged_enemy.connect(jump.bind(movement.JUMP_POWER))
+	lava_water_detector.elevator_entered.connect(enter_water_elevator)
+	hitbox.damaged_enemy.connect(_on_enemy_hit)
 	movement.walljumped.connect(set_doublejump)
 	rope_state.exited_rope.connect(set_doublejump)
 
 func set_doublejump(val: bool = true) -> void:
 	can_doublejump = val
 
+func enter_water_elevator() -> void:
+	change_state("elevator")
 
 func _physics_process(delta: float) -> void:
 	if not is_alive or freeze:
@@ -121,7 +125,7 @@ func _physics_process(delta: float) -> void:
 	
 	current_state.handle_input()
 	current_state.physics_update(delta)
-	move_and_slide()
+	handle_collision()
 
 
 func jump(power: float) -> void:

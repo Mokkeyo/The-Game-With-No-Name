@@ -13,7 +13,7 @@ func update_rotation() -> void:
 		return
 		
 	var floor_normal: Vector2 = body.get_floor_normal()
-		
+	
 	var target_rotation: float = rad_to_deg(atan2(floor_normal.y, floor_normal.x)) + 90
 	if not int(sprite.rotation_degrees) == int(target_rotation):
 		rotate_sprite(target_rotation)

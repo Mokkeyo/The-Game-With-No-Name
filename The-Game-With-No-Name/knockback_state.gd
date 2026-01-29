@@ -7,5 +7,6 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	player.movement.update_knockback(delta)
+	player.move_and_slide()
 	if not player.movement.in_knockback:
 		player.change_state("air")

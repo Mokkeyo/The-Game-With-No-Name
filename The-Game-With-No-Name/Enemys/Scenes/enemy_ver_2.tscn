@@ -175,11 +175,14 @@ invisibilityComp = NodePath("../InvisibleFramesComp")
 health = NodePath("../HealthComponent")
 invincibility = NodePath("../InvisibleFramesComp")
 
-[node name="MovementComponent" parent="." unique_id=85911161 instance=ExtResource("12_wp81j")]
+[node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("12_wp81j")]
+water_detector = NodePath("../LavaWater_Detector")
+body = NodePath("..")
 SPEED = 80
 GRAVITY = 100
 JUMP_POWER = 80
 
-[node name="AbyssCheckerComponent" parent="." unique_id=1079487560 instance=ExtResource("13_kvwxm")]
+[node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("13_kvwxm")]
+raycast = NodePath("../RayCast")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

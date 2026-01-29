@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource("1_vr82n")
-deaths = Array[int]([21, 0, 0, 0])
-vsync = true
+deaths = Array[int]([28, 0, 0, 0])
 sfxVolume = inf_neg
 maxVolume = 0.0
 printFps = true
+maxFps = 6
 darknessOn = false
-textboxCount = 1
-textboxCollected = Array[String](["kristall"])
+textboxCount = 4
+textboxCollected = Array[String](["kristall", "kratos1", "buschi0", "buschi1"])
 playerName = Array[String](["test", "test", "", ""])

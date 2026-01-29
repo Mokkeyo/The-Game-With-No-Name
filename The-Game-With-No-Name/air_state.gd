@@ -56,6 +56,8 @@ func physics_update(delta: float) -> void:
 	if player.velocity.y > 0:
 		player.animation.play(player.animation.Anim.FALL)
 	
+	player.move_and_slide()
+	
 	if player.is_on_floor():
 		if player.buffered_jump:
 			player.buffered_jump = false

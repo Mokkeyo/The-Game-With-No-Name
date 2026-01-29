@@ -18,7 +18,6 @@ func _ready() -> void:
 	healthComp.died.connect(die)
 	resetComp.resetting_stats.connect(respawn)
 
-
 func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return
