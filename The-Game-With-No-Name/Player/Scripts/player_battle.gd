@@ -8,7 +8,7 @@ var Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 var player: PackedScene
 var tween: Tween
 
-@onready var HealthComponent: healthComponent = $healthComponent
+@onready var healthComponent: HealthComponent = $healthComponent
 @onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
@@ -62,21 +62,21 @@ func _ready() -> void:
 	floor_constant_speed = true
 	slide_on_ceiling = false
 	
-	HealthComponent.connect("value_changed", Callable(self, "on_value_changed"))
-	HealthComponent.connect("died", Callable(self, "respawn"))
+	healthComponent.connect("value_changed", Callable(self, "on_value_changed"))
+	healthComponent.connect("died", Callable(self, "respawn"))
 	Hitbox.connect("damage_dealth", Callable(self, "on_stomp"))
-	HealthComponent.connect("setKnockback", Callable(self,"damage_knockback"))
+	healthComponent.connect("setKnockback", Callable(self,"damage_knockback"))
 	lavaWaterDetector.connect("lava_entred", Callable(HealthComponent,"die"))
 	
-	HealthComponent.health = G.save_stat.playerHp[currentPlayer - 1]
+	healthComponent.health = G.save_stat.playerHp[currentPlayer - 1]
 	
 	player = load("res://Player/Scenes/player_%d.tscn" % otherPlayer)
 	
 	if G.save_stat.checkpointActive:
 		global_position = G.save_stat.checkpointPosition
 	
-	if HealthComponent.health <= 0:
-		HealthComponent.health = 100
+	if healthComponent.health <= 0:
+		healthComponent.health = 100
 		G.save_stat.playerHp[currentPlayer - 1] = 100
 
 func set_inputs() -> void:
@@ -115,8 +115,8 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 250:
 			velocity.y = 250
 
-	if sword.slow_down:
-		velocity.x = 0
+#	if sword.slow_down:
+#		velocity.x = 0
 
 	if grabZone.rope_part != null:
 		global_position = grabZone.rope_part.global_position
@@ -186,8 +186,8 @@ func check_key_input() -> void:
 	else:
 		if wand.sprite.flip_h == bool(direction > 0):
 			wand.flip(direction) 
-		if sword.sword_left == bool(direction > 0) and sword.can_flip:
-			sword.flip(direction)
+#		if sword.sword_left == bool(direction > 0) and sword.can_flip:
+#			sword.flip(direction)
 		velocity.x = min(velocity.x + ACCELERATION, speed_limit) if direction > 0 else max(velocity.x - ACCELERATION, -speed_limit)
 
 	if Input.is_action_just_pressed(inputs["jump"]):
@@ -230,11 +230,11 @@ func check_key_input() -> void:
 			w.global_position = wand.marker.global_position
 			change_mana_value()
 	
-	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
+	if Input.is_action_just_pressed(inputs["attack"]) and sword.state == sword.SwordState.IDLE:
 		sword.attack()
 
 func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer - 1] = HealthComponent.health
+	G.save_stat.playerHp[currentPlayer - 1] = healthComponent.health
 	animationPlayer.play("invisible_frames")
 	healthValueChanged.emit()
 

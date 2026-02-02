@@ -3,11 +3,11 @@ class_name Boss
 
 @onready var marker: Array[Marker2D] = [$LaserPosition, $LaserPosition2]
 @onready var bullet_marker: Array[Marker2D] = [$bullet_position, $bullet_position2]
-@onready var shootComp: Array[ShootComponent] = [$Shoot, $Shoot2]
+@onready var shoot_comp: Array[ShootComponent] = [$Shoot, $Shoot2]
 
-@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var healthComp: healthComponent = $healthComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health_comp: HealthComponent = $healthComponent
 @onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
 var laser: PackedScene = preload("res://Bosse/Galaga/Szene/laser.tscn")
 var l: Node2D
@@ -20,7 +20,7 @@ var is_alive: bool = true
 
 func _ready() -> void:
 	hurtbox_collision.disabled = true
-	healthComp.died.connect(play_die)
+	health_comp.died.connect(play_die)
 
 
 func process(delta: float, airship: Airship) -> void:
@@ -40,8 +40,8 @@ func Laser() -> void:
 
 func play_die() -> void:
 	is_alive = false
-	animatedSprite.scale = Vector2(4, 4)
-	animatedSprite.play("die")
+	animated_sprite.scale = Vector2(4, 4)
+	animated_sprite.play("die")
 
 
 func Warning() -> void:
@@ -53,10 +53,10 @@ func Warning() -> void:
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	if animatedSprite.animation == "die":
+	if animated_sprite.animation == "die":
 		var lightOccluder: LightOccluder2D = $LightOccluder2D
 		var collision: CollisionShape2D = $CollisionShape2D
 		hurtbox_collision.disabled = true
 		collision.disabled = true
 		lightOccluder.queue_free()
-		animatedSprite.visible = false
+		animated_sprite.visible = false

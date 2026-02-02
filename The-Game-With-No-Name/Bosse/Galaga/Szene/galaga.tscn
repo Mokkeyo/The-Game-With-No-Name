@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cebshykj68nr3"]
+[gd_scene format=3 uid="uid://cebshykj68nr3"]
 
 [ext_resource type="PackedScene" uid="uid://cab2fkmqr87y7" path="res://Bosse/Galaga/Szene/galaga_head.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://l78bge7xekwn" path="res://Bosse/Galaga/Szene/galaga_arm.tscn" id="2"]
@@ -8,51 +8,51 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vspnw"]
 size = Vector2(386, 170)
 
-[node name="Boss Galaga" type="Node2D"]
+[node name="Boss Galaga" type="Node2D" unique_id=1197561045]
 script = ExtResource("3")
 
-[node name="BossArm(left)" parent="." instance=ExtResource("2")]
+[node name="BossArm(left)" parent="." unique_id=2058355907 instance=ExtResource("2")]
 position = Vector2(5, 15)
 collision_layer = 1
 collision_mask = 0
 
-[node name="Shoot" parent="BossArm(left)" index="5" node_paths=PackedStringArray("parent")]
+[node name="Shoot" parent="BossArm(left)" index="5" unique_id=92945316 node_paths=PackedStringArray("parent")]
 parent = NodePath("../..")
 
-[node name="BossArm(right)" parent="." instance=ExtResource("2")]
+[node name="BossArm(right)" parent="." unique_id=1703800516 instance=ExtResource("2")]
 position = Vector2(5, -99)
 collision_layer = 1
 collision_mask = 0
 
-[node name="Shoot" parent="BossArm(right)" index="5" node_paths=PackedStringArray("parent")]
+[node name="Shoot" parent="BossArm(right)" index="5" unique_id=92945316 node_paths=PackedStringArray("parent")]
 parent = NodePath("../..")
 
-[node name="Boss" parent="." instance=ExtResource("1")]
+[node name="Boss" parent="." unique_id=259518583 instance=ExtResource("1")]
 position = Vector2(9, -42)
 collision_layer = 1
 collision_mask = 0
 
-[node name="Shoot" parent="Boss" index="10" node_paths=PackedStringArray("parent")]
+[node name="Shoot" parent="Boss" index="10" unique_id=306980763 node_paths=PackedStringArray("parent")]
 parent = NodePath("../..")
 
-[node name="Shoot2" parent="Boss" index="11" node_paths=PackedStringArray("parent")]
+[node name="Shoot2" parent="Boss" index="11" unique_id=494958570 node_paths=PackedStringArray("parent")]
 parent = NodePath("../..")
 
-[node name="airshipDetector" parent="." instance=ExtResource("4_qg4ys")]
+[node name="airshipDetector" parent="." unique_id=741414323 instance=ExtResource("4_qg4ys")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector" unique_id=888377993]
 position = Vector2(-183, -42)
 shape = SubResource("RectangleShape2D_vspnw")
 
-[node name="shoot_cooldown" type="Timer" parent="."]
+[node name="shoot_cooldown" type="Timer" parent="." unique_id=84488714]
 wait_time = 3.0
 one_shot = true
 
-[node name="laser_cooldown" type="Timer" parent="."]
+[node name="laser_cooldown" type="Timer" parent="." unique_id=1854954345]
 wait_time = 10.0
 one_shot = true
 
-[node name="laser_duration" type="Timer" parent="."]
+[node name="laser_duration" type="Timer" parent="." unique_id=1841563883]
 wait_time = 4.0
 one_shot = true
 

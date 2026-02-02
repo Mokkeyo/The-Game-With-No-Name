@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l78bge7xekwn"]
+[gd_scene format=3 uid="uid://l78bge7xekwn"]
 
 [ext_resource type="Script" uid="uid://bdbscbgljoden" path="res://Bosse/Galaga/Scripts/galaga_arm.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://ch2r0ux3lvl0i" path="res://Bosse/Galaga/Grafik/galaga_arm.tres" id="2_mgbnf"]
@@ -161,45 +161,42 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwoa8"]
 radius = 28.0
 
-[node name="Boss(arm)" type="StaticBody2D"]
+[node name="Boss(arm)" type="StaticBody2D" unique_id=449463280]
 z_index = 1
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("2")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=224510454]
 occluder = SubResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=153466632]
 sprite_frames = SubResource("2")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129526836]
 visible = false
 rotation = 1.5708
 shape = SubResource("3")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1972365102]
 position = Vector2(23, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qunio")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=67298454]
+libraries/ = SubResource("AnimationLibrary_qunio")
 
-[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("4_28q4f")]
+[node name="Shoot" parent="." unique_id=92945316 node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("4_28q4f")]
 shootingPoint = NodePath("../Marker2D")
 rotation_point = NodePath("..")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_4kbcy")]
+[node name="Hurtbox" parent="." unique_id=159587445 instance=ExtResource("5_4kbcy")]
 collision_layer = 4
-health = NodePath("../healthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=437222011]
 position = Vector2(-8, 0)
 shape = SubResource("CircleShape2D_vwoa8")
 
-[node name="healthComponent" parent="." instance=ExtResource("6_ghwev")]
+[node name="healthComponent" parent="." unique_id=1970802215 instance=ExtResource("6_ghwev")]
 health = 400.0
 invisibiltyFrames = 0.1
 

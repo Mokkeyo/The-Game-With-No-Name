@@ -14,19 +14,19 @@ var shooting_laser: bool = false
 
 func _ready() -> void:
 	set_process(false)
-	armLeft.healthComp.died.connect(part_died)
-	armRight.healthComp.died.connect(part_died)
-	boss.healthComp.died.connect(part_died)
-	armLeft.healthComp.value_changed.connect(change_arm_health)
-	armRight.healthComp.value_changed.connect(change_arm_health)
+	armLeft.health_comp.died.connect(part_died)
+	armRight.health_comp.died.connect(part_died)
+	boss.health_comp.died.connect(part_died)
+	armLeft.health_comp.value_changed.connect(change_arm_health)
+	armRight.health_comp.value_changed.connect(change_arm_health)
 	change_arm_health()
 
 
 func shoot() -> void:
 	if armLeft.is_alive:
-		armLeft.shootComp.shoot_bullet()
+		armLeft.shoot_comp.shoot_bullet()
 	if armRight.is_alive:
-		armRight.shootComp.shoot_bullet()
+		armRight.shoot_comp.shoot_bullet()
 	airshipDetector.changeTarget()
 
 
@@ -40,16 +40,16 @@ func rotate_parts(delta: float, focused_airship: Airship) -> void:
 
 
 func part_died() -> void:
-	alive -= 1 
+	alive -= 1
 	if alive == 2:
 		waitTimer.wait_time = 1.5
 		return
 	
 	if alive == 1:
 		boss.hurtbox_collision.set_deferred("disabled", false)
-		boss.healthComp.value_changed.connect(change_boss_health)
-		G.emit_signal("boss_label_changed", "Galaga")
-		G.emit_signal("boss_value_changed",boss.healthComp.max_health)
+		boss.health_comp.value_changed.connect(change_boss_health)
+		G.boss_label_changed.emit("Galaga")
+		G.boss_label_changed.emit(boss.health_comp.max_health)
 		change_boss_health()
 		return
 		
@@ -89,24 +89,22 @@ func _process(delta: float) -> void:
 
 func boss_shoot() -> void:
 	if boss.is_alive and alive == 1:
-		boss.shootComp[0].shoot_bullet()
-		boss.shootComp[1].shoot_bullet()
+		boss.shoot_comp[0].shoot_bullet()
+		boss.shoot_comp[1].shoot_bullet()
 
 
-func change_arm_health() -> void: 
-	G.emit_signal("boss_value_changed", float(armLeft.healthComp.health + armRight.healthComp.health))
-
+func change_arm_health() -> void:
+	G.boss_label_changed.emit(float(armLeft.health_comp.health + armRight.health_comp.health))
 
 func change_boss_health() -> void:
-	G.emit_signal("boss_value_changed", boss.healthComp.health)
-
+	G.boss_value_changed.emit(boss.health_comp.health)
 
 func _on_airship_detector_body_entered(body: Node2D) -> void:
 	if activated:
 		return
 		
 	if body.is_in_group("airship"):
-		var boss_health: float = float(armLeft.healthComp.max_health + armRight.healthComp.max_health)
+		var boss_health: float = float(armLeft.health_comp.max_health + armRight.health_comp.max_health)
 		G.emit_signal("boss_begin", "Arm Bottom + Arm Top", boss_health)
 		set_process(true)
 		activated = true

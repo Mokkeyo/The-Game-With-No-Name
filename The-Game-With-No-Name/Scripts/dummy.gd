@@ -4,7 +4,7 @@ class_name Dummy
 
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var animationPlayer: AnimationPlayer = $DamagePlayer
-@onready var HealthComponent: healthComponent = $healthComponent
+@onready var health_comp: HealthComponent = $healthComponent
 
 @export var door: DoorWithObj = null
 
@@ -13,13 +13,13 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	HealthComponent.connect("value_changed", Callable(self, "damage"))
+	health_comp.connect("value_changed", Callable(self, "damage"))
 	collision.disabled = bool(visible != true)
 
 
 func damage() -> void:
 	animationPlayer.play("Damage")
-	if HealthComponent.health <= 0:
+	if health_comp.health <= 0:
 		call_deferred("disable_collision")
 		if door:
 			door.open()

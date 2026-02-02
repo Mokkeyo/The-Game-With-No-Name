@@ -34,12 +34,12 @@ func _process(_delta: float) -> void:
 func flip() -> void:
 	var tween: Tween
 	tween = create_tween()
-	var x_position: float = 23 if playerNode.animatedSprite.flip_h else -23
+	var x_position: float = 23 if playerNode.animated_sprite.flip_h else -23
 	tween.finished.connect(Callable(self, "on_tween_finished"))
 	tween.tween_property(animatedSprite, "position", Vector2(x_position, 0) , 0.5)
 
 func on_tween_finished() -> void:
-	animatedSprite.flip_h = playerNode.animatedSprite.flip_h
+	animatedSprite.flip_h = playerNode.animated_sprite.flip_h
 
 func _on_radius_area_body_exited(body: Player) -> void:
 	if body == playerNode:

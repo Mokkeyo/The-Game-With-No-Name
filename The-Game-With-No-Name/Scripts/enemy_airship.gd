@@ -1,34 +1,34 @@
 extends CharacterBody2D
 
-@onready var DetectPlayer: PlayerDetector = $PlayerDetector
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var detect_player: PlayerDetector = $PlayerDetector
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
-@onready var shootComp: ShootComponent = $Shoot
-@onready var resetComp: EnemyResetComponent = $ResetComponent
+@onready var shoot_comp: ShootComponent = $Shoot
+@onready var reset_comp: EnemyResetComponent = $ResetComponent
 
 const SPEED: int = 100
 
 var is_alive: bool = true
 
 func _ready() -> void:
-	var healthComp: healthComponent = $healthComponent
-	healthComp.died.connect(die)
-	resetComp.resetting_stats.connect(die)
-	resetComp.setting_stats.connect(respawn)
+	var health_comp: HealthComponent = $healthComponent
+	health_comp.died.connect(die)
+	reset_comp.resetting_stats.connect(die)
+	reset_comp.setting_stats.connect(respawn)
 
 
 func _physics_process(_delta: float) -> void:
-	if not DetectPlayer.focus_player or not is_alive:
+	if not detect_player.focus_player or not is_alive:
 		velocity = Vector2.ZERO
 		return
 		
-	elif DetectPlayer.focus_player:
+	elif detect_player.focus_player:
 		if timer.is_stopped():
 			timer.start(0.5)
-			shootComp.shoot_bullet()
-		velocity.y = (DetectPlayer.focus_player.global_position.x - global_position.x)
+			shoot_comp.shoot_bullet()
+		velocity.y = (detect_player.focus_player.global_position.x - global_position.x)
 		if not is_on_wall():
-			velocity.x = (DetectPlayer.focus_player.global_position.x + global_position.x)
+			velocity.x = (detect_player.focus_player.global_position.x + global_position.x)
 		else:
 			velocity.x = 0
 	
@@ -39,14 +39,14 @@ func _physics_process(_delta: float) -> void:
 
 func die() -> void:
 	is_alive = false
-	animatedSprite.play("die")
+	animated_sprite.play("die")
 
 
 func respawn() -> void:
 	is_alive = true
-	animatedSprite.play("default")
+	animated_sprite.play("default")
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+	if animated_sprite.animation == "die":
+		reset_comp.set_stats()

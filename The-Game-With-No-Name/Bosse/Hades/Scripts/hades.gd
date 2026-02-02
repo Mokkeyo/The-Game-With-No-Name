@@ -3,12 +3,12 @@ class_name Hades
 
 signal fall
 
-@onready var playerDetector: PlayerDetector = $PlayerDetector
+@onready var player_detector: PlayerDetector = $PlayerDetector
 @onready var sprite: Sprite2D = $"EndBoss(ver2)"
-@onready var HealthComponent: healthComponent = $healthComponent
-@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var health_comp: HealthComponent = $healthComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_cooldown_timer: Timer = $attack_cooldown_timer
-@onready var achievmentComponent: AchievmentComponent = $achievmentComponent
+@onready var achievment_comp: AchievmentComponent = $achievmentComponent
 
 @export var door_name: String
 @export var damage_count: int = 20
@@ -27,13 +27,13 @@ var is_dashing: bool = false
 
 
 func _ready() -> void:
-	animationPlayer.play("Warning")
+	animation_player.play("Warning")
 	attack_cooldown_timer.start()
 #	G.bossLabel = "Hades"
 #	G.maxBossHp = HealthComponent.max_health
 #	G.bossHp = HealthComponent.health
 	attack_cooldown_timer.start()
-	HealthComponent.died.connect(die)
+	health_comp.died.connect(die)
 
 
 func _physics_process(delta: float) -> void:
@@ -58,12 +58,12 @@ func _physics_process(delta: float) -> void:
 	velocity.x = 0
 	
 	if not is_attacking:
-		sprite.flip_h = playerDetector.focus_player.global_position.x > global_position.x
+		sprite.flip_h = player_detector.focus_player.global_position.x > global_position.x
 
 
 func jump() -> void:
-	velocity = Vector2(playerDetector.focus_player.global_position.x - global_position.x, -JUMP_POWER)
-	global_position.x = playerDetector.focus_player.global_position.x
+	velocity = Vector2(player_detector.focus_player.global_position.x - global_position.x, -JUMP_POWER)
+	global_position.x = player_detector.focus_player.global_position.x
 
 
 func die() -> void:
@@ -81,7 +81,7 @@ func Warning_finished() -> void:
 	choosed_weapon = "Axt" if weapon == Attacks.AXT else "Spear"
 	
 	if weapon == Attacks.AXT:
-		var close: bool = abs(playerDetector.focus_player.global_position.x - global_position.x) < 40
+		var close: bool = abs(player_detector.focus_player.global_position.x - global_position.x) < 40
 		distance_to_player = "Close" if close else "Far"
 	
 	weapon = Attacks.SPEAR if weapon == Attacks.AXT else Attacks.AXT
@@ -91,7 +91,7 @@ func Warning_finished() -> void:
 	is_dashing = animation_name.begins_with("Spear_Close")
 	if distance_to_player == "Far" and choosed_weapon == "Axt":
 		jump()
-	animationPlayer.play(choosed_weapon + "_" + distance_to_player + "_" + direction)
+	animation_player.play(choosed_weapon + "_" + distance_to_player + "_" + direction)
 
 
 
@@ -120,8 +120,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func reset_attack_state() -> void:
 	attack_cooldown_timer.start()
 	is_attacking = false
-	playerDetector.changeTarget()
+	player_detector.changeTarget()
 
 
 func _on_attack_cooldown_timer_timeout() -> void:
-	animationPlayer.play("Warning")
+	animation_player.play("Warning")

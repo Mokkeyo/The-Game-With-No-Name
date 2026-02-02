@@ -1,4 +1,6 @@
 extends Control
+class_name MainMenu
+
 @onready var main: Control = $Main
 @onready var save_stats: SaveStatMenu = $SaveStats
 @onready var options: Options = $Options

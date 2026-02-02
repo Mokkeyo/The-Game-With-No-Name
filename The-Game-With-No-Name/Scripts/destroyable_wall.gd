@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 func _ready() -> void:
-	var health_comp: healthComponent = $healthComponent
+	var health_comp: HealthComponent = $healthComponent
 	health_comp.died.connect(die)
 
 func die() -> void:

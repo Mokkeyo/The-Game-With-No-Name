@@ -15,7 +15,7 @@ var dir: float
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	hit_box.damage_dealth.connect(died)
+	hit_box.damaged_enemy.connect(died)
 
 
 func propertys() -> void:

@@ -8,7 +8,7 @@ const bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 @onready var hurtboxCollision: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var HitboxCollision: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var lavaWaterDetectorCollision: CollisionShape2D = $LavaWater_Detector/CollisionShape2D
-@onready var HealthComponent: healthComponent = $healthComponent
+@onready var healthComponent: HealthComponent = $healthComponent
 @onready var rotaterComponent: FloorRotaterComponent = $FloorRotaterComponent
 @onready var camera: Camera2D = $Camera2D
 
@@ -69,7 +69,7 @@ func _ready() -> void:
 	
 	connect_signals()
 	configure_floor_settings()
-	HealthComponent.health = G.save_stat.playerHp[currentPlayer]
+	healthComponent.health = G.save_stat.playerHp[currentPlayer]
 
 func set_player_strings() -> void:
 	player_strings = {
@@ -105,10 +105,10 @@ func configure_floor_settings() -> void:
 
 
 func connect_signals() -> void:
-	HealthComponent.value_changed.connect(on_value_changed)
-	HealthComponent.died.connect(respawn)
-	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
-	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
+	healthComponent.value_changed.connect(on_value_changed)
+	healthComponent.died.connect(respawn)
+#	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
+#	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
 	resetComp.resetting_stats.connect(enable_player)
 
 
@@ -141,8 +141,8 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y = min(velocity.y, 250 if in_water else 600)
 	
-	if sword.slow_down:
-		velocity.x = 0
+#	if sword.slow_down:
+#		velocity.x = 0
 	
 	
 	if grabZone.rope_part:
@@ -255,8 +255,8 @@ func check_key_input() -> void:
 		get_parent().add_child(w)
 		change_mana_value()
 	
-	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
-		sword.attack()
+#	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
+#		sword.attack()
 
 
 func check_for_horizontal_movement() -> void:
@@ -279,8 +279,8 @@ func check_for_horizontal_movement() -> void:
 	if wand.sprite.flip_h == facing_left:
 		wand.flip(direction) 
 		
-	if sword.sword_left == facing_left and sword.can_flip:
-		sword.flip(direction)
+#	if sword.sword_left == facing_left and sword.can_flip:
+#		sword.flip(direction)
 
 
 func check_for_jumping() -> void:
@@ -305,7 +305,7 @@ func check_for_jumping() -> void:
 		
 		if grabZone.rope_part:
 			grabZone.rope_part = null
-			grabZone.timer.start()
+#			grabZone.timer.start()
 			jump(JUMP_POWER)
 			return
 		
@@ -351,8 +351,8 @@ func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void
 
 
 func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer] = HealthComponent.health
-	G.emit_signal("health_value_changed", currentPlayer, HealthComponent.health)
+	G.save_stat.playerHp[currentPlayer] = healthComponent.health
+	G.emit_signal("health_value_changed", currentPlayer, healthComponent.health)
 
 
 func jump_on_enemy(jump_power: float) -> void:
@@ -408,7 +408,7 @@ func enable_player() -> void:
 	grabZone.rope_part = null
 	grabZone.can_grab = true
 	velocity = Vector2(0, 0)
-	HealthComponent.health = 100
+	healthComponent.health = 100
 	G.emit_signal("health_value_changed", currentPlayer, 100)
 	G.emit_signal("mana_value_changed", currentPlayer, 100)
 
