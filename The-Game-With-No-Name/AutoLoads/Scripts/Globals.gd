@@ -8,7 +8,7 @@ signal achievment_collected
 signal start_dialog
 signal player_died
 signal door_opend
-
+signal respawn_allowed
 signal health_value_changed
 signal mana_value_changed
 

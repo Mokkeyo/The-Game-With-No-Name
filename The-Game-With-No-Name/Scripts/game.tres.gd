@@ -16,6 +16,14 @@ var player_spawner: PlayerSpawner
 var temp_door: Array[int]
 
 var player_alive: Array[bool] = [true, false]
+
+enum PlayerState {ALIVE, DEAD, RESPAWNING}
+
+var playe_state: Array[Game.PlayerState] = [
+	PlayerState.ALIVE,
+	PlayerState.DEAD
+]
+
 var player_in_airship: Array[bool] = [false, false]
 var next_level_door: String
 

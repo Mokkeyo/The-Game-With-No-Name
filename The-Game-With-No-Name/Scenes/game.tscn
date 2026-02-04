@@ -5,6 +5,9 @@
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="5"]
 [ext_resource type="PackedScene" uid="uid://dmbwnii5hqwja" path="res://Scenes/fader.tscn" id="6"]
 [ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
+[ext_resource type="Script" uid="uid://bahv4n1s5jyii" path="res://Scenes/player_manager.gd" id="9_ldgsr"]
+[ext_resource type="Script" uid="uid://tsa5m2bcpfek" path="res://Scenes/level_manager.gd" id="9_o5yvi"]
+[ext_resource type="Script" uid="uid://cwr5p0r3hv55q" path="res://Scenes/respawn_manager.gd" id="10_o5yvi"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
@@ -197,5 +200,16 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1105948417]
 libraries/ = SubResource("AnimationLibrary_h5g3y")
+
+[node name="LevelManager" type="Node" parent="." unique_id=1385383485]
+script = ExtResource("9_o5yvi")
+
+[node name="PlayerManager" type="Node" parent="." unique_id=1700253788]
+script = ExtResource("9_ldgsr")
+
+[node name="RespawnManager" type="Node" parent="." unique_id=105748351]
+script = ExtResource("10_o5yvi")
+
+[node name="UIManager" type="Node" parent="." unique_id=840368142]
 
 [connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]
