@@ -2,7 +2,7 @@ extends Resource
 class_name SaveStat
 
 @export var levelNumber: int  = 1
-@export var playerHp: Array[float] = [100, 100]
+@export var playerHp: Array[int] = [100, 100]
 @export var playerMana: Array[int] = [99, 99]
 @export var kristallCount: int = 0
 @export var kristallCollected: Array[bool] = [false, false, false, false, false, false, false, false]

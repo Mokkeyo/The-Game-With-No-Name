@@ -6,16 +6,17 @@ signal fullscreen_changed
 signal enter_door
 signal achievment_collected
 signal start_dialog
-signal player_died
+signal player_died(player: int)
 signal door_opend
-signal respawn_allowed
-signal health_value_changed
-signal mana_value_changed
 
-signal boss_begin
+signal health_value_changed(value: int)
+signal mana_value_changed(value: int)
+
+signal boss_begin(label: String, value: int)
+signal boss_label_changed(label: String)
+signal boss_value_changed(value: int)
 signal boss_finished
-signal boss_value_changed
-signal boss_label_changed
+
 
 #turn the .tres to .res befor export do decrypt the saveFile
 const SAVE_FILES: Dictionary = {

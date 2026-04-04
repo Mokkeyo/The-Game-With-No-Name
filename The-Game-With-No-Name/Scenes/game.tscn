@@ -10,7 +10,12 @@
 [ext_resource type="Script" uid="uid://cwr5p0r3hv55q" path="res://Scenes/respawn_manager.gd" id="10_o5yvi"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
+[ext_resource type="Script" uid="uid://cpjgkint61754" path="res://Scenes/ui_manager.gd" id="12_rku1e"]
+[ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="13_nnt18"]
+[ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="14_ewbju"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
+[ext_resource type="PackedScene" uid="uid://bgjgn30nuvrb3" path="res://Scenes/hp_bar_player_2.tscn" id="15_85qyi"]
+[ext_resource type="PackedScene" uid="uid://f35a2dk8xal2" path="res://Scenes/mana_player_2.tscn" id="16_iivbl"]
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("5")])
@@ -131,9 +136,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="InGame" parent="." unique_id=470547863 node_paths=PackedStringArray("game") instance=ExtResource("2_5u1uf")]
+[node name="InGame" parent="." unique_id=470547863 instance=ExtResource("2_5u1uf")]
 layout_mode = 0
-game = NodePath("..")
 
 [node name="Fader" parent="." unique_id=2046222908 instance=ExtResource("6")]
 layout_mode = 0
@@ -209,7 +213,49 @@ script = ExtResource("9_ldgsr")
 
 [node name="RespawnManager" type="Node" parent="." unique_id=105748351]
 script = ExtResource("10_o5yvi")
+respawn_time = null
 
 [node name="UIManager" type="Node" parent="." unique_id=840368142]
+script = ExtResource("12_rku1e")
+
+[node name="Player1" type="Control" parent="." unique_id=288747863]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" parent="Player1" unique_id=142167265 instance=ExtResource("13_nnt18")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="Player1" unique_id=41587353 instance=ExtResource("14_ewbju")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 50.0
+offset_right = 42.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+
+[node name="Player2" type="Control" parent="." unique_id=996489495]
+anchors_preset = 0
+
+[node name="HPBar" parent="Player2" unique_id=929384322 instance=ExtResource("15_85qyi")]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 4.0
+offset_right = 904.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="Player2" unique_id=697133325 instance=ExtResource("16_iivbl")]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 50.0
+offset_right = 944.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
 
 [connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]

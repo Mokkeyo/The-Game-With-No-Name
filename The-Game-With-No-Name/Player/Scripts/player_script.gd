@@ -365,7 +365,7 @@ func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void
 
 
 func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer] = HealthComponent.health
+	G.save_stat.playerHp[currentPlayer] = int(HealthComponent.health)
 	G.health_value_changed.emit(currentPlayer, HealthComponent.health)
 
 
