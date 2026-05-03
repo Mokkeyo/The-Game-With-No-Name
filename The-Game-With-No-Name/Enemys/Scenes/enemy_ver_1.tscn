@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dfl7cto4e7noh" path="res://Enemys/Scripts/enemy_ver_1.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_pcxjl"]
-[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="10_crpyg"]
 [ext_resource type="PackedScene" uid="uid://3qv8do6eeqsj" path="res://Scenes/floor_rotater_component.tscn" id="11_cbi0q"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="11_qgys3"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="12_70vpd"]
@@ -115,8 +114,8 @@ sprite_frames = SubResource("1")
 animation = &"walk"
 
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1009363116]
-position = Vector2(3, 6)
-target_position = Vector2(-0.01, 11)
+position = Vector2(3, 3)
+target_position = Vector2(0, 14)
 collision_mask = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1486658363]
@@ -129,8 +128,9 @@ offset_top = -12.0
 offset_right = 7.0
 offset_bottom = -8.0
 
-[node name="HealthComponent" parent="." unique_id=962214869 node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("11_qgys3")]
-invisibilityComp = NodePath("../InvisibleFramesComp")
+[node name="HealthComponent" parent="." unique_id=962214869 node_paths=PackedStringArray("invisibilityComp", "health_bar") instance=ExtResource("11_qgys3")]
+invisibilityComp = NodePath("")
+health_bar = NodePath("../HPbar(enemy)")
 
 [node name="Hurtbox" parent="." unique_id=2000364008 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("12_ycax0")]
 visible = false
@@ -161,16 +161,13 @@ hpBar = NodePath("../HPbar(enemy)")
 healthComp = NodePath("../HealthComponent")
 physics_process = true
 
-[node name="InvisibleFramesComp" parent="." unique_id=2041774609 node_paths=PackedStringArray("parent") instance=ExtResource("10_crpyg")]
-parent = NodePath("../AnimatedSprite2D")
-
 [node name="FloorRotaterComponent" parent="." unique_id=384670563 node_paths=PackedStringArray("body", "sprite") instance=ExtResource("11_cbi0q")]
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("12_70vpd")]
 health = NodePath("../HealthComponent")
-invincibility = NodePath("../InvisibleFramesComp")
+invincibility = NodePath("")
 
 [node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("13_0joxm")]
 water_detector = NodePath("../LavaWater_Detector")

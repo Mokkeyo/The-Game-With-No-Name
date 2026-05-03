@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://da7p34a4g111f"]
 
 [ext_resource type="Script" uid="uid://2rta1noougk" path="res://Player/Scripts/player_script.gd" id="1_y8o1x"]
+[ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="2_aytf0"]
 [ext_resource type="Texture2D" uid="uid://l2fj86e4h8dk" path="res://Player/Textures_P1/player_1_texture.tres" id="3_f5fds"]
 [ext_resource type="Texture2D" uid="uid://cjbqwd1yi2nwt" path="res://Player/Textures_P2/player_2_texture.tres" id="4_kmpdc"]
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="5_g0fuf"]
@@ -290,6 +291,10 @@ floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
 
+[node name="PointLight2D" parent="." unique_id=1962813979 instance=ExtResource("2_aytf0")]
+position = Vector2(0, -10)
+shadow_enabled = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=741402192]
 position = Vector2(0, -10)
 sprite_frames = SubResource("1")
@@ -377,13 +382,11 @@ wait_time = 4.0
 one_shot = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=792709323]
-visible = false
 position = Vector2(-6, -11)
 rotation = 1.5708
 target_position = Vector2(0, 2)
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=2077532107]
-visible = false
 position = Vector2(6, -11)
 rotation = -1.5708
 target_position = Vector2(0, 2)
@@ -425,6 +428,8 @@ script = ExtResource("22_17k2o")
 
 [node name="PlayerCombat" type="Node" parent="." unique_id=51226752]
 script = ExtResource("23_e0sep")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=90872901]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

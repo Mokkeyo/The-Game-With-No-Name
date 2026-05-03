@@ -17,6 +17,9 @@ func setup(s: Sword, w: Wand) -> void:
 func can_attack() -> bool:
 	return sword.state == sword.SwordState.IDLE
 
+func is_attacking() -> bool:
+	return sword.state == sword.SwordState.ATTACKING
+
 func attack(direction: int) -> void:
 	sword.flip(direction)
 	sword.try_attack()

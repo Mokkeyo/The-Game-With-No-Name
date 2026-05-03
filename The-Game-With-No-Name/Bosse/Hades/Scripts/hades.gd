@@ -3,125 +3,130 @@ class_name Hades
 
 signal fall
 
+@onready var movement: MovementComponent = $MovementComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player_detector: PlayerDetector = $PlayerDetector
 @onready var sprite: Sprite2D = $"EndBoss(ver2)"
+@onready var water_detector: LavaWaterDetector = $LavaWater_Detector
+@onready var cooldown_timer: Timer = $cooldown_timer
 @onready var health_comp: HealthComponent = $healthComponent
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var attack_cooldown_timer: Timer = $attack_cooldown_timer
-@onready var achievment_comp: AchievmentComponent = $achievmentComponent
 
-@export var door_name: String
-@export var damage_count: int = 20
-@export var knockbackStrength: int = 60
-const level_number: int = 5
+@onready var wave_component: Array[WaveComponent] = [$wave_component_left, $wave_component_right]
 
-const SPEED: int = 10
-const GRAVITY: int = 280
-const JUMP_POWER: int = 300
+enum Attack {SPEAR, AXT}
+var attack: Attack = Attack.AXT
 
-enum Attacks {AXT, SPEAR}
-var weapon: Attacks = Attacks.AXT
 
-var is_attacking: bool = true
-var is_dashing: bool = false
+enum State {IDLE, DASHING, FALLING, AIR, FINISH_ANIMATION}
+var state: State = State.IDLE
 
+var distance: String = ""
 
 func _ready() -> void:
+	G.boss_begin.emit("Hades", 100)
+	health_comp.value_changed.connect(set_health_bar)
+#	died()
+	movement.setup(self, water_detector)
 	animation_player.play("Warning")
-	attack_cooldown_timer.start()
-#	G.bossLabel = "Hades"
-#	G.maxBossHp = HealthComponent.max_health
-#	G.bossHp = HealthComponent.health
-	attack_cooldown_timer.start()
-	health_comp.died.connect(die)
+	health_comp.died.connect(died)
 
+func set_health_bar() -> void:
+	G.boss_value_changed.emit(health_comp.health / health_comp.max_health * 100)
+	animation_player.play("Damage")
 
 func _physics_process(delta: float) -> void:
-	set_velocity(velocity)
-	set_up_direction(Vector2(0, -1))
+	match state:
+		State.FINISH_ANIMATION:
+			return
+		
+		State.IDLE:
+			if player_detector.focus_player == null:
+				return
+			
+			sprite.flip_h = player_detector.focus_player.global_position.x > global_position.x
+		
+		State.DASHING:
+			movement.move_horizontal(1 if sprite.flip_h else -1)
+			if is_on_wall():
+				state = State.FINISH_ANIMATION
+				fall.emit()
+	
+		State.FALLING:
+			if is_on_floor():
+				state = State.FINISH_ANIMATION
+				for wave: WaveComponent in wave_component:
+					wave.shoot_wave()
+				return
+			
+			movement.apply_gravity(delta)
+		
+		State.AIR:
+			movement.apply_gravity(delta)
+			if not state == State.FALLING and velocity.y > 0:
+					velocity.y = 0
+	
 	move_and_slide()
-	
-	velocity.y += GRAVITY * delta
-	
-	if is_on_wall() and is_dashing:
-		is_dashing = false
-		emit_signal("fall")
-		reset_attack_state()
-		
-	if is_dashing:
-		if sprite.flip_h:
-			velocity.x += SPEED 
-		else:
-			velocity.x -= SPEED
+
+func _on_cooldown_timer_timeout() -> void:
+	animation_player.play("Warning")
+
+
+func choose_attack() -> void:
+	if player_detector.focus_player == null:
+		push_warning("No Player inside player_detector. doing far attack")
+		do_attack(false)
 		return
-		
-	velocity.x = 0
 	
-	if not is_attacking:
-		sprite.flip_h = player_detector.focus_player.global_position.x > global_position.x
+	var distance_value: float = player_detector.focus_player.global_position.distance_to(global_position)
+	do_attack(distance_value < 50)
 
 
 func jump() -> void:
-	velocity = Vector2(player_detector.focus_player.global_position.x - global_position.x, -JUMP_POWER)
+	state = State.AIR
+	movement.jump()
+
+
+func falling() -> void:
+	state = State.FALLING
 	global_position.x = player_detector.focus_player.global_position.x
 
 
-func die() -> void:
-#	G.next_level_door = door_name
-#	G.SaveStat.levelNumber = level_number
-	G.emit_signal("enter_door")
-	G.save_data()
-#	if G.SaveStatInf.deaths[G.path] == 0:
-#		achievmentComponent.add_achievment()
+func dash() -> void:
+	if distance == "Far":
+		state = State.DASHING
 
-func Warning_finished() -> void:
-	var choosed_weapon: String = "Axt" #default
-	var distance_to_player: String = "Close" #default
+
+func do_attack(close: bool) -> void:
+	distance = "Close" if close else "Far"
+	var side: String = "Right" if sprite.flip_h else "Left"
 	
-	choosed_weapon = "Axt" if weapon == Attacks.AXT else "Spear"
-	
-	if weapon == Attacks.AXT:
-		var close: bool = abs(player_detector.focus_player.global_position.x - global_position.x) < 40
-		distance_to_player = "Close" if close else "Far"
-	
-	weapon = Attacks.SPEAR if weapon == Attacks.AXT else Attacks.AXT
-	
-	var direction: String = "Right" if sprite.flip_h else "Left"
-	var animation_name: String = choosed_weapon + "_" + distance_to_player + "_" + direction
-	is_dashing = animation_name.begins_with("Spear_Close")
-	if distance_to_player == "Far" and choosed_weapon == "Axt":
-		jump()
-	animation_player.play(choosed_weapon + "_" + distance_to_player + "_" + direction)
+	match attack:
+		Attack.AXT:
+			animation_player.play("Axt_"+ distance + "_" + side)
+			attack = Attack.SPEAR
+			
+		Attack.SPEAR:
+			animation_player.play("Spear_Close_" + side)
+			attack = Attack.AXT
 
 
 
-func _on_AxtTimer_timeout()-> void:
-	var wave_component_left: WaveComponent = $wave_component_left
-	var wave_component_right: WaveComponent = $wave_component_right
-	var markerLeft: Marker2D = $MarkerLeft
-	var markerRight: Marker2D = $MarkerRight
+func died() -> void:
+	if G.save_stat_inf.deaths[G.active_slot] == 0:
+		var achievment_comp: AchievmentComponent = $achievmentComponent
+		achievment_comp.add_achievment()
 	
-	var flip: bool = sprite.flip_h
 	
-	wave_component_left.wave_point = markerRight if flip else markerLeft
-	wave_component_right.wave_point = markerRight if flip else markerLeft
-	
-	wave_component_left.shoot_wave()
-	wave_component_right.shoot_wave()
+	var transition_comp: LevelTransition = $LeveltransitionComponent
+	transition_comp.transition()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if not anim_name == "Warning" or anim_name == "Damage":
+		state = State.IDLE
+		player_detector.changeTarget()
+		cooldown_timer.start(randi_range(2, 4))
+		return
+	
 	if anim_name == "Warning":
-		Warning_finished()
-	elif not is_dashing:
-		reset_attack_state()
-
-
-func reset_attack_state() -> void:
-	attack_cooldown_timer.start()
-	is_attacking = false
-	player_detector.changeTarget()
-
-
-func _on_attack_cooldown_timer_timeout() -> void:
-	animation_player.play("Warning")
+		choose_attack()

@@ -1,11 +1,13 @@
 extends Sprite2D
 
 var fall: bool = false
-var spawn: Vector2 = global_position
+var spawn: Vector2
 
 func _ready() -> void:
-	var hades: Node = get_node("../Objects/Door")
-	hades.connect("fall", Callable(self, "setFall"))
+	spawn = global_position
+	var hades: Hades = get_parent().find_child("Hades")
+	hades.fall.connect(setFall)
+
 
 func _process(delta: float) -> void:
 	if !fall:

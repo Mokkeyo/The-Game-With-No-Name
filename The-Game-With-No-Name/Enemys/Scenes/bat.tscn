@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="10_5kiuv"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="11_7eflq"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="11_t5flo"]
+[ext_resource type="PackedScene" uid="uid://dlqeh10u6vr34" path="res://navigation_component.tscn" id="12_0uu4l"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="12_ek4ux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b08is"]
@@ -67,8 +68,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="6"]
-size = Vector2(28, 13)
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5flo"]
+radius = 8.5
 
 [sub_resource type="Animation" id="Animation_i3i0h"]
 resource_name = "Damage"
@@ -137,40 +138,38 @@ height = 28.0517
 [node name="bat" type="CharacterBody2D" unique_id=527539556]
 z_index = 3
 collision_layer = 4
-collision_mask = 0
+motion_mode = 1
 platform_floor_layers = 0
 script = ExtResource("3")
-SPEED = 10
+SPEED = 60
 
 [node name="bat" type="AnimatedSprite2D" parent="." unique_id=1150175710]
+position = Vector2(0, -1)
 sprite_frames = SubResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=275794807]
-visible = false
 light_mask = 16384
-position = Vector2(0, 1.5)
-shape = SubResource("6")
-disabled = true
+position = Vector2(0, 0.5)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_t5flo")
 
 [node name="HPBar" parent="." unique_id=379434488 instance=ExtResource("9")]
 offset_left = -7.0
-offset_top = -12.0
+offset_top = -13.0
 offset_right = 7.0
-offset_bottom = -8.0
+offset_bottom = -9.0
+metadata/_edit_use_anchors_ = true
 
 [node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=1799193503]
 libraries/ = SubResource("AnimationLibrary_pf10q")
 
 [node name="PlayerDetector" parent="." unique_id=1047898143 instance=ExtResource("9_p1qei")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1839884933]
 shape = SubResource("CircleShape2D_uw242")
 
-[node name="Hitbox" parent="." unique_id=863446880 node_paths=PackedStringArray("health") instance=ExtResource("10_5kiuv")]
-visible = false
+[node name="Hitbox" parent="." unique_id=863446880 instance=ExtResource("10_5kiuv")]
 collision_mask = 2
-health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=750777086]
 position = Vector2(0, 2)
@@ -178,7 +177,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_00unu")
 
 [node name="Hurtbox" parent="." unique_id=570993747 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("11_7eflq")]
-visible = false
 collision_layer = 4
 damage_receiver = NodePath("../DamageReceiver")
 
@@ -203,5 +201,21 @@ parent = NodePath("../bat")
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("11_t5flo")]
 health = NodePath("../HealthComponent")
 invincibility = NodePath("../InvisibleFramesComp")
+
+[node name="NavigationComponent" parent="." unique_id=1018032031 node_paths=PackedStringArray("agent", "parent") instance=ExtResource("12_0uu4l")]
+agent = NodePath("../NavigationAgent2D")
+parent = NodePath("..")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1012244171]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_max_distance = 20.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." unique_id=587020877]
+wait_time = 0.2
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1336323145]
 
 [connection signal="animation_finished" from="bat" to="." method="_on_bat_animation_finished"]

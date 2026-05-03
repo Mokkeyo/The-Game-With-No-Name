@@ -4,7 +4,6 @@ class_name EnemyRobot
 @onready var healthComp: HealthComponent = $HealthComponent
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
-@onready var hpBar: progressBar = $"HPbar(enemy)"
 @onready var RayCast: RayCast2D = $RayCast
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
 @onready var floorComp: FloorRotaterComponent = $FloorRotaterComponent
@@ -43,6 +42,7 @@ func _physics_process(delta: float) -> void:
 			if is_on_wall() or abyss_checker_component.is_over_abyss():
 				animatedSprite.play("air")
 				jump_position = floor(position.x)
+				RayCast.enabled = false
 				movement.jump()
 	
 	var snap_value: int = 4 if on_floor else 0
@@ -61,6 +61,7 @@ func die() -> void:
 
 func on_landing() -> void:
 	animatedSprite.play("walk")
+	RayCast.enabled = true
 	if floor(position.x) == jump_position:
 		turn()
 

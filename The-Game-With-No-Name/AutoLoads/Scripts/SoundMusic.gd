@@ -1,50 +1,37 @@
 extends Node
+class_name SoundManager
 
 @onready var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
+@onready var lava_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
-const music_tracks: Dictionary = {
-"Underground": "res://Sounds/06 - Underground.mp3",
-"Boss": "res://Sounds/Dark Souls III Soundtrack OST - Vordt of the Boreal Valley.mp3",
-"Wind": "res://Sounds/WhistlingWindStead PE033401.wav",
-"Battle": "res://Sounds/Epic-battle-music-grzegorz-majcherczyk-heroica.mp3",
-"Cave": "res://Sounds/cave-wind-10-76283.mp3"
-}
-
-const sound_effects: Dictionary = {
-"Coin": "res://Sounds/mixkit-game-treasure-coin-2038.wav",
-"shoot": "res://Sounds/mixkit-game-whip-shot-1512.wav",
-"jump": "res://Sounds/mixkit-player-jumping-in-a-video-game-2043.wav",
-"magic": "res://Sounds/mixkit-wind-magic-whoosh-2610.wav",
-"sword": "res://Sounds/mixkit-sword-blade-attack-in-medieval-battle-2762.wav",
-"explosion": "res://Sounds/mixkit-sea-mine-explosion-1184.wav",
-"water": "res://Sounds/mixkit-deep-water-bubbles-1321.wav"
-}
-
-func chance_musice_volume(value: float) -> void:
-	G.save_stat_inf.musicVolume = linear_to_db(value * G.save_stat_inf.maxVolume)
-	music_player.volume_db = G.save_stat_inf.musicVolume
+var instance: SoundManagerInstance = null
+var listeners: Array[Node2D] = []
 
 
-func chance_max_volume(value: float) -> void:
-	G.save_stat_inf.maxVolume = value
-	chance_musice_volume(G.save_stat_inf.musicVolume)
-	chance_sound_volume(G.save_stat_inf.sfxVolume)
+func play_sound(sound_name: String, node: Node2D) -> void:
+	if instance == null:
+		push_warning("Keine Sound Manager Instance Gefunden")
+		return
+	
+	instance.play_sound(sound_name, node)
 
 
-func chance_sound_volume(value: float) -> void:
-	G.save_stat_inf.sfxVolume = linear_to_db(value * G.save_stat_inf.maxVolume)
 
 
-func _ready() -> void:
-#	process_mode = PROCESS_MODE_ALWAYS
-#	max_db = G.SaveStatInf.maxVolume
-#	music_db = G.SaveStatInf.musicVolume
-#	sound_db = G.SaveStatInf.sfxVolume
-#	if G.boss == null:
-#	music_player.stream = load(music_tracks["Cave"])
-#	add_child(music_player)
-#	music_player.play()
-	pass
+#func play_attached(sound_name: String, parent: Node2D) -> AudioStreamPlayer2D:
+#	if not sounds.has(sound_name):
+#		push_warning("Sound nicht gefunden: " + sound_name)
+#		return
+#		
+#	var player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+#	player.pitch_scale = randf_range(0.9, 1.1)
+#	player.bus = "SFX"
+#	parent.add_child(player)
+#	player.position = Vector2.ZERO
+#	player.play()
+	
+#	return player
+
 
 func play_boss() -> void:
 #	music_player.stream = load(music_tracks["Boss"])
@@ -68,12 +55,12 @@ func play_battle() -> void:
 	music_player.play()
 
 
-func play_sound_effect(effect: String) -> void:
-	var sound: AudioStreamPlayer = AudioStreamPlayer.new()
-	sound.volume_db = G.save_stat_inf.sfxVolume
-	var soundEffects: String = sound_effects[effect]
-	sound.stream = load(soundEffects)
-	add_child(sound)
-	sound.play()
-	await sound.finished
-	sound.queue_free()
+#func play_sound_effect(effect: String) -> void:
+#	var sound: AudioStreamPlayer = AudioStreamPlayer.new()
+#	sound.volume_db = G.save_stat_inf.sfxVolume
+#	var soundEffects: String = sounds[effect]
+#	sound.stream = load(soundEffects)
+#	add_child(sound)
+#	sound.play()
+#	await sound.finished
+#	sound.queue_free()

@@ -16,7 +16,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	var path: int = G.active_slot
 	var save_stat: SaveStateButton = save_stats[path]
 	if save_stat.state == save_stat.States.Nothing:
-		print("state_nothing")
 		super._unhandled_input(event)
 		
 	if Input.is_action_just_pressed("back") and name_enterer.visible:

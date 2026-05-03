@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SavedInputmap" load_steps=38 format=3]
+[gd_resource type="Resource" script_class="SavedInputmap" format=3]
 
 [ext_resource type="Script" path="res://savedInputmap.gd" id="1_14s00"]
 
@@ -40,7 +40,7 @@ keycode = 68
 axis_value = 1.0
 
 [sub_resource type="InputEventKey" id="InputEventKey_ir1v1"]
-keycode = 69
+keycode = 81
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_8qmsb"]
 button_index = 3

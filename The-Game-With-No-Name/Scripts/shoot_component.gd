@@ -63,7 +63,7 @@ func shoot_bullet() -> void:
 		b.visible = true
 		b.call_deferred("deactivate_hibox", false)
 		b.set_physics_process(true)
-		SoundMusic.play_sound_effect("shoot")
+#		SoundMusic.play_sound_effect("shoot")
 
 
 func _on_bullet_timeout(bullet: Bullet) -> void:

@@ -32,6 +32,7 @@ func _ready() -> void:
 	
 	await animation_player.animation_finished
 	animation_player.play("creator_title")
+	fader.z_index = 3
 	start_button.grab_focus()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy1fgoh5bt2i6"]
+[gd_scene format=3 uid="uid://dy1fgoh5bt2i6"]
 
 [ext_resource type="Texture2D" uid="uid://bjoqdh0a0s6af" path="res://GuiElements/Textures/slider_focused_button.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dvd1ivnrm35gr" path="res://GuiElements/Textures/slider_unfocused_button.png" id="5"]
@@ -27,7 +27,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_xe16v"]
 
-[node name="Options" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+[node name="Options" type="Control" unique_id=205874480 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
@@ -37,7 +37,7 @@ group = ExtResource("12")
 startButton = NodePath("GrafikOptions/BrightnessButton")
 exitButton = NodePath("BackButton")
 
-[node name="BackButton" parent="." instance=ExtResource("6_e8upl")]
+[node name="BackButton" parent="." unique_id=1265080537 instance=ExtResource("6_e8upl")]
 layout_mode = 0
 offset_left = 560.0
 offset_top = 444.0
@@ -48,7 +48,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "<---"
 
-[node name="BackLabel" parent="." instance=ExtResource("5_aimb4")]
+[node name="BackLabel" parent="." unique_id=2129588054 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 414.0
 offset_top = 464.0
@@ -57,14 +57,14 @@ offset_bottom = 512.0
 theme_override_font_sizes/font_size = 48
 text = "Back"
 
-[node name="Panel" type="Control" parent="."]
+[node name="Panel" type="Control" parent="." unique_id=1352658825]
 anchors_preset = 0
 offset_left = -935.0
 offset_top = 70.0
 offset_right = -895.0
 offset_bottom = 110.0
 
-[node name="Panel" type="Panel" parent="Panel"]
+[node name="Panel" type="Panel" parent="Panel" unique_id=1315150184]
 layout_mode = 0
 offset_left = 1047.0
 offset_top = 51.0
@@ -72,7 +72,7 @@ offset_right = 1847.0
 offset_bottom = 58.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_isntc")
 
-[node name="GrafikButton" parent="Panel" instance=ExtResource("6_e8upl")]
+[node name="GrafikButton" parent="Panel" unique_id=66390055 instance=ExtResource("6_e8upl")]
 layout_mode = 0
 offset_left = 1191.0
 offset_top = -22.0
@@ -85,7 +85,7 @@ button_pressed = true
 button_group = SubResource("ButtonGroup_gesnm")
 text = "Video"
 
-[node name="SoundButton" parent="Panel" instance=ExtResource("6_e8upl")]
+[node name="SoundButton" parent="Panel" unique_id=1151111201 instance=ExtResource("6_e8upl")]
 layout_mode = 0
 offset_left = 1367.0
 offset_top = -22.0
@@ -96,7 +96,7 @@ button_group = SubResource("ButtonGroup_bopkt")
 text = "Sound
 "
 
-[node name="EtcButton" parent="Panel" instance=ExtResource("6_e8upl")]
+[node name="EtcButton" parent="Panel" unique_id=361362287 instance=ExtResource("6_e8upl")]
 layout_mode = 0
 offset_left = 1543.0
 offset_top = -22.0
@@ -108,24 +108,24 @@ button_group = SubResource("ButtonGroup_xe16v")
 text = "etc
 "
 
-[node name="JoypadButton10(rightShoulder,SonyR1,XboxRb)" type="Sprite2D" parent="Panel"]
+[node name="JoypadButton10(rightShoulder,SonyR1,XboxRb)" type="Sprite2D" parent="Panel" unique_id=399221138]
 position = Vector2(1751, 10)
 scale = Vector2(2, 2)
 texture = ExtResource("16_38e0f")
 
-[node name="JoypadButton9(leftShoulder,SonyL1,XboxLb)" type="Sprite2D" parent="Panel"]
+[node name="JoypadButton9(leftShoulder,SonyL1,XboxLb)" type="Sprite2D" parent="Panel" unique_id=225595870]
 position = Vector2(1143, 10)
 scale = Vector2(2, 2)
 texture = ExtResource("17_npo1y")
 
-[node name="GrafikOptions" type="Control" parent="."]
+[node name="GrafikOptions" type="Control" parent="." unique_id=294304852]
 anchors_preset = 0
 offset_left = 32.0
 offset_top = 70.0
 offset_right = 72.0
 offset_bottom = 110.0
 
-[node name="BrightnessLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+[node name="BrightnessLabel" parent="GrafikOptions" unique_id=1590487176 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 219.0
 offset_top = 102.0
@@ -134,7 +134,7 @@ offset_bottom = 150.0
 theme_override_font_sizes/font_size = 48
 text = "Brigthness"
 
-[node name="BrightnessButton" parent="GrafikOptions" instance=ExtResource("6_e8upl")]
+[node name="BrightnessButton" parent="GrafikOptions" unique_id=1195175142 instance=ExtResource("6_e8upl")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 82.0
@@ -142,7 +142,7 @@ offset_right = 720.0
 offset_bottom = 158.0
 text = "<---"
 
-[node name="FullscreenLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+[node name="FullscreenLabel" parent="GrafikOptions" unique_id=139157998 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 214.0
 offset_top = 198.0
@@ -151,7 +151,7 @@ offset_bottom = 246.0
 theme_override_font_sizes/font_size = 48
 text = "Fullscreen"
 
-[node name="FullscreenButton" parent="GrafikOptions" instance=ExtResource("14_1g7v3")]
+[node name="FullscreenButton" parent="GrafikOptions" unique_id=1232625938 instance=ExtResource("14_1g7v3")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 178.0
@@ -159,7 +159,7 @@ offset_right = 720.0
 offset_bottom = 254.0
 script = ExtResource("10_uwmkc")
 
-[node name="ResolutionLabel" parent="GrafikOptions" instance=ExtResource("5_aimb4")]
+[node name="ResolutionLabel" parent="GrafikOptions" unique_id=2000130222 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 217.0
 offset_top = 294.0
@@ -168,16 +168,17 @@ offset_bottom = 342.0
 theme_override_font_sizes/font_size = 48
 text = "Resolution"
 
-[node name="ResolutionButton" parent="GrafikOptions" instance=ExtResource("5_2iq7d")]
+[node name="ResolutionButton" parent="GrafikOptions" unique_id=1923026307 instance=ExtResource("5_2iq7d")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 274.0
 offset_right = 720.0
 offset_bottom = 350.0
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 24
+clip_text = true
 script = ExtResource("11_2lnsa")
 
-[node name="SoundOptions" type="Control" parent="."]
+[node name="SoundOptions" type="Control" parent="." unique_id=74529492]
 visible = false
 anchors_preset = 0
 offset_left = 9.0
@@ -185,7 +186,7 @@ offset_top = 31.0
 offset_right = 49.0
 offset_bottom = 71.0
 
-[node name="MaxLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+[node name="MaxLabel" parent="SoundOptions" unique_id=1212433877 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 203.0
 offset_top = 137.0
@@ -194,7 +195,7 @@ offset_bottom = 201.0
 theme_override_font_sizes/font_size = 48
 text = "Max"
 
-[node name="MaxSlider" type="HSlider" parent="SoundOptions"]
+[node name="MaxSlider" type="HSlider" parent="SoundOptions" unique_id=2045609107]
 layout_mode = 0
 offset_left = 358.0
 offset_top = 146.0
@@ -211,7 +212,7 @@ value = 0.5
 script = ExtResource("14_eatxe")
 volume = 2
 
-[node name="SFXLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+[node name="SFXLabel" parent="SoundOptions" unique_id=1968181231 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 215.0
 offset_top = 232.0
@@ -220,7 +221,7 @@ offset_bottom = 296.0
 theme_override_font_sizes/font_size = 48
 text = "SFX"
 
-[node name="SFXSlider" type="HSlider" parent="SoundOptions"]
+[node name="SFXSlider" type="HSlider" parent="SoundOptions" unique_id=1880458890]
 layout_mode = 0
 offset_left = 357.0
 offset_top = 234.0
@@ -235,7 +236,7 @@ value = 0.1
 script = ExtResource("14_eatxe")
 volume = 1
 
-[node name="MusicLabel" parent="SoundOptions" instance=ExtResource("5_aimb4")]
+[node name="MusicLabel" parent="SoundOptions" unique_id=720118036 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 143.0
 offset_top = 326.0
@@ -244,7 +245,7 @@ offset_bottom = 390.0
 theme_override_font_sizes/font_size = 48
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="SoundOptions"]
+[node name="MusicSlider" type="HSlider" parent="SoundOptions" unique_id=167525646]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.032
@@ -262,7 +263,7 @@ value = 1.0
 ticks_on_borders = true
 script = ExtResource("14_eatxe")
 
-[node name="EtcOptions" type="Control" parent="."]
+[node name="EtcOptions" type="Control" parent="." unique_id=2120327960]
 visible = false
 anchors_preset = 0
 offset_left = 32.0
@@ -270,7 +271,7 @@ offset_top = 70.0
 offset_right = 72.0
 offset_bottom = 110.0
 
-[node name="VsyncLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+[node name="VsyncLabel" parent="EtcOptions" unique_id=198699778 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 334.0
 offset_top = 102.0
@@ -279,7 +280,7 @@ offset_bottom = 150.0
 theme_override_font_sizes/font_size = 48
 text = "V-sync"
 
-[node name="VsyncButton" parent="EtcOptions" instance=ExtResource("14_1g7v3")]
+[node name="VsyncButton" parent="EtcOptions" unique_id=123545437 instance=ExtResource("14_1g7v3")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 82.0
@@ -287,7 +288,7 @@ offset_right = 720.0
 offset_bottom = 158.0
 script = ExtResource("17_etax8")
 
-[node name="MaxFpsLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+[node name="MaxFpsLabel" parent="EtcOptions" unique_id=1510599765 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 308.0
 offset_top = 198.0
@@ -296,15 +297,17 @@ offset_bottom = 246.0
 theme_override_font_sizes/font_size = 48
 text = "Max Fps"
 
-[node name="MaxFpsButton" parent="EtcOptions" instance=ExtResource("5_2iq7d")]
+[node name="MaxFpsButton" parent="EtcOptions" unique_id=1307118516 instance=ExtResource("5_2iq7d")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 178.0
 offset_right = 720.0
 offset_bottom = 254.0
+alignment = 0
+clip_text = true
 script = ExtResource("12_1fbch")
 
-[node name="PrintFpsLabel" parent="EtcOptions" instance=ExtResource("5_aimb4")]
+[node name="PrintFpsLabel" parent="EtcOptions" unique_id=1537249418 instance=ExtResource("5_aimb4")]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 294.0
@@ -313,7 +316,7 @@ offset_bottom = 342.0
 theme_override_font_sizes/font_size = 48
 text = "Print Fps"
 
-[node name="PrintFpsButton" parent="EtcOptions" instance=ExtResource("14_1g7v3")]
+[node name="PrintFpsButton" parent="EtcOptions" unique_id=393072896 instance=ExtResource("14_1g7v3")]
 layout_mode = 0
 offset_left = 528.0
 offset_top = 274.0
@@ -321,14 +324,15 @@ offset_right = 720.0
 offset_bottom = 350.0
 script = ExtResource("18_motc5")
 
-[node name="Brightness" parent="." instance=ExtResource("9")]
+[node name="Brightness" parent="." unique_id=1735941984 instance=ExtResource("9")]
 visible = false
+layout_mode = 0
 offset_left = -1020.0
 offset_top = -12.0
 offset_right = -980.0
 offset_bottom = 28.0
 
-[node name="WaitTimer" type="Timer" parent="."]
+[node name="WaitTimer" type="Timer" parent="." unique_id=1589477246]
 wait_time = 0.5
 one_shot = true
 

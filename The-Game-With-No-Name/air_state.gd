@@ -1,14 +1,20 @@
 extends PlayerState
 class_name AirState
 
+var is_walljumping: bool = false
+
 func enter() -> void:
 	player.animation.play(player.animation.Anim.JUMP)
+	is_walljumping = false
+
+func exit() -> void:
+	is_walljumping = false
 
 func handle_input() -> void:
 	var dir: int = player.input.move_dir()
 	player.movement.move_horizontal(
 		dir, 
-		not player.combat.can_attack()
+		player.combat.is_attacking()
 		)
 	if not dir == 0:
 		player.animation.flip(dir < 0)
@@ -20,7 +26,7 @@ func handle_input() -> void:
 		player.combat.cast(dir)
 	
 	if player.input.jump_released() and player.velocity.y < -100:
-		player.velocity.y = -100
+		cut_jump()
 	
 	if not player.input.jump_pressed():
 		return
@@ -28,35 +34,50 @@ func handle_input() -> void:
 	player.animation.play(player.animation.Anim.JUMP)
 	
 	if player.lava_water_detector.inWater:
-		player.movement.jump()
+		jump()
 		return
 	
 	if not player.coyote_timer.is_stopped():
-		player.movement.jump()
+		jump()
 		player.coyote_timer.stop()
 		return
 	
 	if player.next_to_wall():
 		var wall_dir: int = 1 if player.next_to_left_wall() else -1
 		player.movement.wall_jump(wall_dir)
+		is_walljumping = true
 		return
 	
 	if player.can_doublejump:
 		player.can_doublejump = false
-		player.movement.jump()
+		jump()
 		return
 	
 	player.buffered_jump = true
 	player.jump_buffer_timer.start(0.15)
 
 
+func cut_jump() -> void:
+	player.velocity.y = -100
+	if is_walljumping:
+		player.velocity.x = 0
+		is_walljumping = false
+
+func jump() -> void:
+	player.movement.jump()
+	is_walljumping = false
+
 func physics_update(delta: float) -> void:
 	player.movement.apply_gravity(delta)
 	
 	if player.velocity.y > 0:
 		player.animation.play(player.animation.Anim.FALL)
+		is_walljumping = false
 	
 	player.move_and_slide()
+	
+	if is_walljumping and player.is_on_wall():
+		cut_jump()
 	
 	if player.is_on_floor():
 		if player.buffered_jump:

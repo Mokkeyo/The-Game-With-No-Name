@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemyVer2
 
 @onready var RayCast: RayCast2D = $RayCast
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -9,36 +10,40 @@ extends CharacterBody2D
 @onready var movement_comp: MovementComponent = $MovementComponent
 @onready var abyss_checker_component: AbyssCheckerComponent = $AbyssCheckerComponent
 
+enum State {DEAD, ON_FLOOR, IN_AIR}
+var state: State = State.ON_FLOOR
+
 var jump_x: int = 0
 var direction: int = 1
-var is_alive: bool = true
+
 
 func _ready() -> void:
+	floor_snap_length = 8
 	animatedSprite.play("walk")
 	healthComp.died.connect(die)
 	resetComp.resetting_stats.connect(respawn)
 
 func _physics_process(delta: float) -> void:
-	if not is_alive:
-		return
+	match state:
+		State.DEAD:
+			return
 	
-	floorComp.update_rotation()
-	var on_floor: bool = is_on_floor()
-	
-	if not on_floor:
-		movement_comp.apply_gravity(delta)
-	
-	if on_floor:
-		if animatedSprite.animation == "air":
-			on_landing()
-		else:
-			if is_on_wall() or abyss_checker_component.is_over_abyss():
-				turn()
-	
-	var snap_value: int = 4 if is_on_floor() else 0
-	
-	if not floor_snap_length == snap_value:
-		floor_snap_length = snap_value
+		State.ON_FLOOR:
+			if not is_on_floor():
+				state = State.IN_AIR
+				return
+			
+			floorComp.update_rotation()
+			
+			check_for_abyss()
+		
+		State.IN_AIR:
+			if is_on_floor():
+				state = State.ON_FLOOR
+				on_landing()
+				return
+			
+			movement_comp.apply_gravity(delta)
 	
 	movement_comp.move_horizontal(direction, false)
 	move_and_slide()
@@ -46,9 +51,12 @@ func _physics_process(delta: float) -> void:
 
 func on_landing() -> void:
 	animatedSprite.play("walk")
-	if floor(position.x) == jump_x:
-		turn()
+	RayCast.enabled = true
 
+
+func check_for_abyss() -> void:
+	if is_on_wall() or abyss_checker_component.is_over_abyss():
+		turn()
 
 func turn() -> void:
 	direction *= -1
@@ -57,12 +65,12 @@ func turn() -> void:
 
 
 func die() -> void:
-	is_alive = false
+	state = State.DEAD
 	animatedSprite.play("die")
 
 
 func respawn() -> void:
-	is_alive = true
+	state = State.ON_FLOOR
 	animatedSprite.play("walk")
 
 

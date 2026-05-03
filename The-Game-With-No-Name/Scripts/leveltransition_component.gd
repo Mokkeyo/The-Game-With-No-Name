@@ -3,8 +3,8 @@ class_name LevelTransition
 
 @export var marker: Marker2D
 @export var area: Area2D
-var level_number: int
-var door_name: String
+@export var level_number: int
+@export var door_name: String
 
 
 func check_for_transition() -> bool:
@@ -19,11 +19,5 @@ func check_for_transition() -> bool:
 
 
 func transition() -> void:
-#	G.next_level_door = door_name
-	G.save_stat.levelNumber = level_number
-	G.save_stat.checkpointActive = false
-	G.save_stat.door.clear()
-#	G.playerInAirship.fill(false)
-	G.save_data()
-	G.emit_signal("enter_door")
-	SoundComp.tilemaps = []
+	print("transtioning to level")
+	G.enter_door.emit(level_number, door_name)

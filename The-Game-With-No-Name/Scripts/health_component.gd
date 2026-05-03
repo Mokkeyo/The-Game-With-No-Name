@@ -3,7 +3,7 @@ class_name HealthComponent
 
 signal value_changed
 signal died
-signal setKnockback(strength: int)
+signal setKnockback(strength: float)
 
 @export_group("Stats")
 @export var health: float = 20
@@ -14,6 +14,7 @@ signal setKnockback(strength: int)
 @export_group("Components")
 @export var invisibilityComp: InvisibleFramesComp
 @export var lavaDetector: LavaWaterDetector
+@export var health_bar: HealthBar
 
 var max_health: float
 
@@ -27,6 +28,9 @@ func _ready() -> void:
 func damage(dmg: int, knockback: float) -> void:
 	if health <= 0:
 		return
+	
+	if health_bar:
+		health_bar.set_percent_value_int(health)
 	
 	health -= dmg
 	value_changed.emit()

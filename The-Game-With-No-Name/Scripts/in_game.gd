@@ -3,6 +3,8 @@ class_name InGame
 
 @export var game: Game
 
+@onready var sound_manager: Node = $HBoxContainer/ViewportContainerP1/SubViewport/SoundManager
+
 @onready var viewport_container: Array[SubViewportContainer] = [
 	$HBoxContainer/ViewportContainerP1,
 	$HBoxContainer/ViewportContainerP2
@@ -18,8 +20,8 @@ class_name InGame
 	$HBoxContainer/ViewportContainerP2/SubViewport/Camera2D
 ]
 
-@onready var hp_bar: Array[progressBar] = [$Player1/HPBar, $Player2/HPBar]
-@onready var mana_bar: Array[progressBar] = [$Player1/Mana, $Player2/Mana]
+@onready var hp_bar: Array[HealthBar] = [$Player1/HPBar, $Player2/HPBar]
+@onready var mana_bar: Array[HealthBar] = [$Player1/Mana, $Player2/Mana]
 @onready var player_bar: Array[Control] = [$Player1, $Player2]
 @onready var panel: Panel = $Panel
 
@@ -57,20 +59,22 @@ func set_viewport_size() -> void:
 
 func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 	viewport[index].size.x = width
-	player_bar[index].visible = view_visible
+	show_player_bar(index, view_visible)
 	viewport_container[index].visible = view_visible
 
+func show_player_bar(index: int, show_bar: bool) -> void:
+	player_bar[index].visible = show_bar
 
-func connet_camera_to_player() -> void:
+
+func connect_camera_to_player() -> void:
 	for i: int in player.size():
-		var remote_transform: RemoteTransform2D = RemoteTransform2D.new()
-		remote_transform.remote_path = camera[i].get_path()
-		player[i].add_child(remote_transform)
+		print("Player" , player)
+		player[i].connect_camera(camera[i])
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:
 	print("health value changed Player: ", player_number, " ", health_value)
-	var bar: progressBar = hp_bar[player_number]
+	var bar: HealthBar = hp_bar[player_number]
 	if health_value == 100:
 		bar.set_value_int(health_value)
 	else:
@@ -78,7 +82,7 @@ func on_health_value_changed(player_number: int, health_value: float) -> void:
 
 
 func on_mana_value_changed(player_number: int, mana_value: float) -> void:
-	var bar: progressBar = mana_bar[player_number]
+	var bar: HealthBar = mana_bar[player_number]
 	if mana_value >= 99:
 		bar.set_value_int(mana_value)
 	else:

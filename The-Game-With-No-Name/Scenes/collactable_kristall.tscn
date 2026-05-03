@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3rfkjntxnk5o"]
+[gd_scene format=3 uid="uid://b3rfkjntxnk5o"]
 
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="1"]
 [ext_resource type="Script" uid="uid://c6yd1ti1jfc1l" path="res://Scripts/collactable_kristall.gd" id="2"]
@@ -25,38 +25,37 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
 size = Vector2(22, 24)
 
-[node name="Kristall_1" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["Door"]]
+[node name="Kristall_1" type="Node2D" unique_id=17957230 node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["Door"]]
 script = ExtResource("2")
 npcArea = NodePath("NPCArea")
 dialogLoader = NodePath("DialogueLoader")
 
-[node name="Ping" parent="." instance=ExtResource("1")]
+[node name="Ping" parent="." unique_id=900391210 instance=ExtResource("1")]
 position = Vector2(0, -30)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gpnhf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=77167457]
+libraries/ = SubResource("AnimationLibrary_gpnhf")
 
-[node name="DialogueLoader" parent="." instance=ExtResource("9_un3nd")]
+[node name="DialogueLoader" parent="." unique_id=1504707778 instance=ExtResource("9_un3nd")]
 visible = false
 npc = "kristall"
 blackBox = true
 
-[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("10_2vjcu")]
+[node name="NPCArea" parent="." unique_id=529331466 node_paths=PackedStringArray("ping") instance=ExtResource("10_2vjcu")]
 visible = false
 collision_mask = 10
 ping = NodePath("../Ping")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=708208110]
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_8rjsi")
 
-[node name="Kristall" type="Sprite2D" parent="."]
+[node name="Kristall" type="Sprite2D" parent="." unique_id=146202927]
 texture = ExtResource("5_t1rro")
 hframes = 4
 vframes = 2
 
-[node name="KristallParticle" parent="." instance=ExtResource("7")]
+[node name="KristallParticle" parent="." unique_id=358879524 instance=ExtResource("7")]
+visible = false
 
-[node name="LeveltransitionComponent" parent="." instance=ExtResource("7_4q6mx")]
+[node name="LeveltransitionComponent" parent="." unique_id=1475213713 instance=ExtResource("7_4q6mx")]

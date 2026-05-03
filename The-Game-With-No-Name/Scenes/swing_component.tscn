@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cushvdfasdhwd"]
+[gd_scene format=3 uid="uid://cushvdfasdhwd"]
 
 [ext_resource type="Script" uid="uid://bk07yh07nt0ot" path="res://Scenes/swing_component.gd" id="1_tkii7"]
 [ext_resource type="PackedScene" uid="uid://2qfpcf84sism" path="res://sound_player.tscn" id="2_mk71v"]
 [ext_resource type="AudioStream" uid="uid://b372t0y3o5jy6" path="res://Sounds/swing-whoosh-110410.mp3" id="3_fln32"]
 
-[node name="swing_component" type="Node2D"]
+[node name="swing_component" type="Node2D" unique_id=606613189]
 script = ExtResource("1_tkii7")
 length = 1
 
-[node name="SoundPlayer" parent="." instance=ExtResource("2_mk71v")]
+[node name="SoundPlayer" parent="." unique_id=313812358 instance=ExtResource("2_mk71v")]
 stream = ExtResource("3_fln32")
 volume_db = 0.5
+sound = "swing"

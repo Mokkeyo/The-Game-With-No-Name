@@ -12,17 +12,24 @@ var mouse_position: Vector2
 
 var player_inputs: Array[String] = ["_up", "_down", "_left", "_right", "_jump", "_attack", "_wand", "_interact", "_spawn"]
 
-@onready var controller_inputs: Array[CInputButton] = [
-		$ControllerButtons/UpButton, $ControllerButtons/DownButton, $ControllerButtons/LeftButton, $ControllerButtons/RightButton, $ControllerButtons/JumpButton,
-		$ControllerButtons/AttackButton, $ControllerButtons/WandButton, $ControllerButtons/InteractButton,
-		$ControllerButtons/SpawnButton
-		]
+var controller_inputs: Array[CInputButton] = []
+var keyboard_inputs: Array[KInputButton] = []
 
-@onready var keyboard_inputs: Array[KInputButton] = [
-		$KeyButtons/UpButton, $KeyButtons/DownButton, $KeyButtons/LeftButton, $KeyButtons/RightButton, 
-		$KeyButtons/JumpButton, $KeyButtons/AttackButton, $KeyButtons/WandButton, $KeyButtons/InteractButton,
-		$KeyButtons/SpawnButton
-		]
+
+func _ready() -> void:
+	super._ready()
+	var key_buttons: Control = $KeyButtons
+	var controller_buttons: Control = $ControllerButtons
+	for Ki: KInputButton in key_buttons.get_children():
+		Ki.rebinding_started.connect(disable_all_buttons)
+		Ki.remap_key.connect(remap_key)
+		keyboard_inputs.append(Ki)
+	for Ci: CInputButton in controller_buttons.get_children():
+		Ci.rebinding_started.connect(disable_all_buttons)
+		Ci.remap_key.connect(remap_key)
+		controller_inputs.append(Ci)
+
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not waiting_for_input:
@@ -79,32 +86,35 @@ func changePlayer(current_player: int) -> void:
 	backgrounds[current_player].visible = true
 	backgrounds[other_player].visible = false
 	player_controlls_label.text = "Player %d Controlls" % (current_player + 1)
+	for i: int in controller_inputs.size():
+		controller_inputs[i].player = current_player
 	display_key()
 
 
-func display_key() -> void:
-	var player_prefix: String = "player%d" % (player + 1)
-	for i: int in player_inputs.size():
-		var action: String = str(player_prefix, player_inputs[i])
-		controller_inputs[i].action = action
-		controller_inputs[i].display_key()
-		keyboard_inputs[i].action = action
-		keyboard_inputs[i].display_key()
+func remap_key(action: String, device_index: int, event: InputEvent, save: bool = true) -> void:
+	if not G.saved_input_map.inputMap.has(action):
+		G.saved_input_map.inputMap[action] = [null, null]
+	if G.saved_input_map.inputMap[action].size() < 2:
+		G.saved_input_map.inputMap[action].resize(2)
+	G.saved_input_map.inputMap[action][device_index] = event
+	
+	var arr: Array = G.saved_input_map.inputMap[action]
+	
+	InputMap.action_erase_events(action)
+	for ev:  InputEvent in arr:
+		if ev:
+			InputMap.action_add_event(action, ev)
+	if save:
+		G.save_inputs()
 
 
 func disable_all_buttons(disable: bool) -> void:
+	waiting_for_input = disable
 	if disable:
 		mouse_position = get_viewport().get_mouse_position()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if disable else Input.MOUSE_MODE_VISIBLE
 	if not disable:
 		Input.warp_mouse(mouse_position)
-
-
-func add_event(event: InputEvent, index: int, player_i: int) -> void:
-	var action_name: StringName = "player%d%s" % [player + 1, player_inputs[index]]
-	InputMap.action_erase_events(action_name)
-	InputMap.action_add_event(action_name, event)
-	G.saved_input_map.inputMap[action_name][player_i] = event
 
 
 func restore_default_bindings() -> void:
@@ -118,15 +128,24 @@ func restore_default_bindings() -> void:
 			var ev: InputEventMouseButton
 			ev = InputEventMouseButton.new()
 			ev.button_index = defaults[player][i]
-			add_event(ev, i, player)
+			remap_key("player%d%s" % [player + 1, player_inputs[i]], 0, ev, false)
 		else:
 			var ev: InputEventKey
 			ev = InputEventKey.new()
 			ev.keycode = defaults[player][i]
-			add_event(ev, i, player)
-	
+			remap_key("player%d%s" % [player + 1, player_inputs[i]], 0, ev, false)
 	display_key()
 	G.save_inputs()
+
+
+func display_key() -> void:
+	var player_prefix: String = "player%d" % (player + 1)
+	for i: int in player_inputs.size():
+		var action: String = str(player_prefix, player_inputs[i])
+		controller_inputs[i].action = action
+		controller_inputs[i].display_key()
+		keyboard_inputs[i].action = action
+		keyboard_inputs[i].display_key()
 
 
 func _on_assign_controller_pressed() -> void:

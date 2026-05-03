@@ -53,16 +53,20 @@ var knockback: Vector2 = Vector2.ZERO
 var launch_direction: Vector2 = Vector2()
 var freeze: bool = false
 var buffered_jump: bool = false
+var once: bool = true
 
-var inputs: Dictionary[String, String] = {}
 
+func connect_camera(camera: Camera2D) -> void:
+	var remote_transform: RemoteTransform2D = $RemoteTransform2D
+	remote_transform.remote_path = camera.get_path()
+	if remote_transform.remote_path == null:
+		push_warning("Camera not connected")
 
 func _ready() -> void:
-	_set_player_inputs()
+	SoundMusic.listeners.append(self)
 	movement.setup(self, lava_water_detector)
 	animation.setup(self, animated_sprite)
 	combat.setup(sword, wand)
-	input.setup(inputs)
 	combat.enemy_hit.connect(_on_enemy_hit)
 	_connect_signals()
 	_configure_floor_settings()
@@ -81,7 +85,7 @@ func change_state(state_name: String) -> void:
 
 
 func _set_player_inputs() -> void:
-	inputs = {
+	input.inputs = {
 		"up": "player%d_up" % int(current_player + 1),
 		"down": "player%d_down" % int(current_player + 1),
 		"left": "player%d_left" % int(current_player + 1),
@@ -104,7 +108,7 @@ func _configure_floor_settings() -> void:
 func _connect_signals() -> void:
 	health_component.value_changed.connect(_on_value_changed)
 	health_component.died.connect(respawn)
-	health_component.setKnockback.connect(do_knockback.bind(health_component.knockbackDuration, health_component.knockbackDirection))
+#	health_component.setKnockback.connect(do_knockback.bind(health_component.knockbackDuration, health_component.knockbackDirection))
 	reset_comp.resetting_stats.connect(enable_player)
 	lava_water_detector.water_entered.connect(play_water_sound)
 	lava_water_detector.water_exited.connect(play_water_sound)
@@ -120,18 +124,16 @@ func enter_water_elevator() -> void:
 	change_state("elevator")
 
 func _physics_process(delta: float) -> void:
+	if once:
+		_set_player_inputs()
+		once = false
 	if not is_alive or freeze:
 		return
 	
-	current_state.handle_input()
 	current_state.physics_update(delta)
+	current_state.handle_input()
 	handle_collision()
 
-
-func jump(power: float) -> void:
-	velocity.y = 0
-	velocity.y = -power
-	SoundMusic.play_sound_effect("water" if lava_water_detector.inWater else "jump")
 
 
 func handle_airship_entry() -> void:
@@ -155,8 +157,8 @@ func handle_collision() -> void:
 		if block:
 			block.apply_central_impulse(-collision.get_normal() * PUSH)
 
-
-func do_knockback(dir: Vector2) -> void:
+#fix knokback-system
+func do_knockback(_duration: float, dir: Vector2) -> void:
 	knockback = dir
 	change_state("knockback")
 
@@ -187,6 +189,7 @@ func respawn() -> void:
 
 
 func enable_player() -> void:
+	SoundMusic.listeners.append(self)
 	is_alive = true
 	grab_zone.rope_part = null
 	grab_zone.can_grab = true
@@ -199,6 +202,7 @@ func enable_player() -> void:
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animated_sprite.animation == "game_over":
 		reset_comp.set_stats()
+		SoundMusic.listeners.erase(self)
 		G.player_died.emit(current_player)
 
 

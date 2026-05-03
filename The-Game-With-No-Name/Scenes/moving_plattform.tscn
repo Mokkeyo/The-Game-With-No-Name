@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wq7jtfjnavmo"]
+[gd_scene format=3 uid="uid://wq7jtfjnavmo"]
 
 [ext_resource type="Texture2D" uid="uid://bn8mfwaas3dwn" path="res://Objects/Textures/moving_plattform.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://c2fa73py015h3" path="res://NormalMap/moving_plattform_normal.png" id="2_b5tou"]
@@ -8,8 +8,6 @@
 script/source = "@tool
 extends AnimatableBody2D
 class_name MovingPlattform
-
-var last_position: Vector2
 
 @export var move_speed: float = 0.5
 @export var move_distance: float = 50.0
@@ -42,20 +40,21 @@ diffuse_texture = ExtResource("2")
 normal_texture = ExtResource("2_b5tou")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj2s0"]
-size = Vector2(40, 8)
+size = Vector2(40, 1)
 
-[node name="moving Plattform" type="AnimatableBody2D" groups=["moving_plattform"]]
+[node name="moving Plattform" type="AnimatableBody2D" unique_id=749741137 groups=["moving_plattform"]]
 collision_mask = 0
 script = SubResource("1")
 
-[node name="moving plattform" type="Sprite2D" parent="."]
+[node name="moving plattform" type="Sprite2D" parent="." unique_id=451292778]
 texture = SubResource("CanvasTexture_ljeir")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1564883773]
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_xj2s0")
 one_way_collision = true
 
-[node name="MoverComponent" parent="." node_paths=PackedStringArray("static_object") instance=ExtResource("3_equn7")]
+[node name="MoverComponent" parent="." unique_id=225387512 node_paths=PackedStringArray("static_object") instance=ExtResource("3_equn7")]
 move_speed = 0.5
 do_process = true
 static_object = NodePath("..")

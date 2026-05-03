@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://duqwa532kjkgf"]
+[gd_scene format=3 uid="uid://duqwa532kjkgf"]
 
-[ext_resource type="Script" uid="uid://licmk3k5m56w" path="res://Scripts/input_button.gd" id="1"]
+[ext_resource type="Script" uid="uid://licmk3k5m56w" path="res://Scripts/keyboard_input_button.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="2"]
 [ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_xjqet"]
 [ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_uqw7h"]
@@ -11,6 +11,15 @@ fallbacks = Array[Font]([ExtResource("2")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -48,7 +57,7 @@ cache/0/20/0/kerning_overrides/25/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/167/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 
-[node name="InputButton" type="Button"]
+[node name="InputButton" type="Button" unique_id=85666872]
 offset_right = 92.0
 offset_bottom = 40.0
 scale = Vector2(0.997825, 1)
@@ -74,14 +83,13 @@ clip_text = true
 expand_icon = true
 script = ExtResource("1")
 action = "jump"
+device_index = null
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1139060203]
 visible = false
 position = Vector2(46, 20)
 texture = ExtResource("5_0wacc")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=504941750]
 wait_time = 0.05
 one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

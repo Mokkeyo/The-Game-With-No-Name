@@ -2,6 +2,10 @@ extends Node
 class_name PlayerInput
 
 var inputs: Dictionary[String, String]
+var is_walljumping: bool = false
+
+func set_walljumping() -> void:
+	is_walljumping = true
 
 func setup(input_map: Dictionary) -> void:
 	inputs = input_map

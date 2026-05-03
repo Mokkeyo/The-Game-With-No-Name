@@ -18,7 +18,7 @@ func handle_input() -> void:
 	
 	player.movement.move_horizontal(
 		dir, 
-		not player.combat.can_attack()
+		player.combat.is_attacking()
 		)
 		
 	if not dir == 0:
@@ -38,7 +38,7 @@ func handle_input() -> void:
 	if player.input.wand_pressed() and player.combat.can_cast():
 		player.combat.cast(dir)
 	
-	if Input.is_action_just_pressed(player.inputs["interact"]):
+	if player.input.interact_pressed():
 		player.handle_airship_entry()
 
 func physics_update(_delta: float) -> void:

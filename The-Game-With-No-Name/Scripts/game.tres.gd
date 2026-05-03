@@ -14,44 +14,55 @@ var current_level_number: int
 var player_spawner: PlayerSpawner
 
 var temp_door: Array[int]
+var door_name: String = ""
 
 var player_alive: Array[bool] = [true, false]
 var player_in_airship: Array[bool] = [false, false]
-var next_level_door: String
 
 var player_size: int
 
 func _ready() -> void:
 	player_size = player_alive.size()
-	
+	tree_exited.connect(func() -> void: SoundMusic.listeners = [])
 	fader.visible = true
 	var start_time: float = Time.get_ticks_msec()
 	connect_to_signals()
-	setup_level()
+	setup_level(G.save_stat.levelNumber)
 	initialize_variables()
-	check_for_door()
 	set_player_positions()
 	on_player_count_changed(-1) 
 	G.darkness_changed.connect(_on_darkness_changed)
 	print("Ready duration: ", Time.get_ticks_msec() - start_time, "ms")
 
 
-func setup_level() -> void:
-	add_level()
+func setup_level(level_number: int) -> void:
+	add_level(level_number)
 	get_respawnable_objects()
 	player_spawner = level.get_node_or_null("Player_Spawner")
 	if not player_spawner:
 		push_warning("Kein Player_Spawner Gefunden")
 		return
-	
 	player_spawner.spawn_player(player_alive)
-	in_game.player = player_spawner.player.duplicate()
-	in_game.connet_camera_to_player()
+	in_game.player = player_spawner.player
+	
+	await get_tree().process_frame
+	
+	if not level_has_camera():
+		print("conneting camera to player")
+		in_game.connect_camera_to_player()
+#		in_game.set_viewport_size()
+	else:
+		print("not conneting camera to player")
+		in_game._set_player_viewport(0, 1024, true)
+		in_game._set_player_viewport(1, 0, false)
+		
+	await get_tree().process_frame
 	fader.fade_in()
-
-
-func add_level() -> void:
-	var currentLevel: PackedScene = load("res://Level/level_%d.tscn" % G.save_stat.levelNumber)
+	set_player_position_to(door_name)
+	
+func add_level(level_number: int) -> void:
+	var currentLevel: PackedScene = load("res://Level/level_%d.tscn" % level_number)
+	current_level_number = level_number
 	level = currentLevel.instantiate()
 	in_game.add_level(level)
 	player_in_airship.fill(false)
@@ -72,7 +83,7 @@ func initialize_variables() -> void:
 
 
 func connect_to_signals() -> void:
-	G.enter_door.connect(reload)
+	G.enter_door.connect(change_level)
 	G.start_dialog.connect(check_for_dialog)
 	G.player_died.connect(on_player_count_changed)
 	G.door_opend.connect(on_door_opend)
@@ -101,6 +112,19 @@ func restart_level(player: int) -> void:
 	pause.can_pause = true
 
 
+func set_player_position_to(d_name: String) -> void:
+	if not d_name == "":
+		var door: Node2D = level.find_child(d_name)
+		if not door:
+			push_warning(d_name+ " not found")
+			return
+		
+		for player: Player in in_game.player:
+			player.global_position = door.global_position
+			door_name = ""
+
+#Penis
+
 func on_checkpoint_activated() -> void:
 	for door_nr: int in temp_door:
 		if door_nr not in G.save_stat.door:
@@ -125,26 +149,32 @@ func game_over(player: int) -> void:
 	restart_level(player)
 
 
-func reload() -> void:
-	G.save_stat.door.clear()
-	temp_door.clear()
+func change_level(level_number: int, d_name: String) -> void:
+	door_name = d_name
 	var start_time: float = Time.get_ticks_msec()
 	await fader.fade_out().animation_finished
 	
-	get_tree().paused = false
+#	get_tree().paused = false
 	
-	in_game.viewport[0].remove_child(level)
-	setup_level()
+	if not level_number == current_level_number:
+		in_game.viewport[0].remove_child(level)
+		level.queue_free()
+		G.save_stat.levelNumber = level_number
+		G.save_stat.checkpointActive = false
+		G.save_stat.door.clear()
+		SoundComp.tilemaps = []
+		G.save_data()
+		temp_door.clear()
+		setup_level(level_number)
+	else:
+		print("same level setting up")
+		set_player_position_to(d_name)
+#		await get_tree().process_frame
+		fader.fade_in()
+	
 	
 	print("Reload duration: ", Time.get_ticks_msec() - start_time, "ms")
 
-func check_for_door() -> void:
-	next_level_door = ""
-
-
-func on_enter_kristall() -> void:
-	fader.kristall_text = current_level_number
-	reload()
 
 
 func on_player_count_changed(player: int) -> void:
@@ -162,7 +192,15 @@ func on_player_count_changed(player: int) -> void:
 		return
 	if player > -1:
 		respawn_timer.start()
-	in_game.set_viewport_size()
+	if not level_has_camera():
+		in_game.set_viewport_size()
+
+
+func level_has_camera() -> bool:
+	if current_level_number == 5:
+		return true
+	
+	return false
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -180,7 +218,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 				player.enter_airship(player_spawner.airship_spawner.airship[i])
 			
 			set_process_unhandled_input(false)
-			in_game.set_viewport_size()
+			if not level_has_camera():
+				in_game.set_viewport_size()
 			break
 
 
@@ -204,7 +243,7 @@ func hide_boss_hp() -> void:
 	boss_node.visible = false
 
 func change_boss_hp(boss_hp: float) -> void: 
-	var boss_hp_bar: progressBar = $Boss/BossHP
+	var boss_hp_bar: HealthBar = $Boss/BossHP
 	boss_hp_bar.set_percent_value_int(boss_hp)
 
 func change_boss_label(label: String) -> void: 

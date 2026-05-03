@@ -57,7 +57,7 @@ func attack() -> void:
 	combo_reset_timer.start(COMBO_RESET_TIME)
 	visible_timer.start()
 	cooldown_timer.start(COMBO_COOLDOWN if combo >= MAX_COMBO else NORMAL_COOLDOWN)
-	SoundMusic.play_sound_effect("sword")
+#	SoundMusic.play_sound_effect("sword")
 	
 	play_swing_animation()
 	swing_down = not swing_down

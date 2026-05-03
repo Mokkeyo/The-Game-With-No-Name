@@ -5,4 +5,4 @@ extends Path2D
 
 func _ready() -> void:
 	animationPlayer.play("default")
-	soundPlayer.play_sound()
+#	soundPlayer.play_sound()

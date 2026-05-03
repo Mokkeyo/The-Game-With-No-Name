@@ -1,34 +1,49 @@
 extends Node2D
 
-var vanished: bool = false
-var stay: bool = true
+enum State {ACTIVE, WARNING, VANISHED}
+var state: State = State.ACTIVE
 
-@onready var staticBody: CollisionShape2D = $StaticBody2D/CollisionShape2D
+@export var cooldown: float = 0.7
+@export var respawn_time: float = 4
+
+@onready var static_body: CollisionShape2D = $StaticBody2D/CollisionShape2D
+@onready var area_body: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var sprite: Sprite2D = $falling_plattform
-@onready var vanishedSprite: Sprite2D = $"falling_plattform(vanished)"
+@onready var vanished_sprite: Sprite2D = $"falling_plattform(vanished)"
 @onready var area: Area2D = $Area2D
-@onready var timer: Timer = $Timer
-@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-@onready var repearTimer: Timer = $RepearTimer
+@onready var respawn_timer: Timer = $RespawnTimer
+@onready var invisible_frames: InvisibleFramesComp = $InvisibleFramesComp
+
+
+func _ready() -> void:
+	invisible_frames.invisibility_stopped.connect(deactivate)
 
 
 func _on_Area2D_body_entered(body: Player) -> void:
-	if not stay:
+	if not state == State.ACTIVE:
 		return
 	
-	if body.is_on_floor() or body.buffered_jump:
-		stay = false
-		timer.start()
-		animationPlayer.play("Warning")
+	if body.velocity.y >= 0 \
+	and body.global_position.y < global_position.y + 10 \
+	and (body.is_on_floor() or body.buffered_jump):
+		state = State.WARNING
+		invisible_frames.play_invible_frames(cooldown)
 
-func _on_Timer_timeout() -> void:
-	staticBody.disabled = true
-	sprite.visible = false
-	vanishedSprite.visible = true
-	repearTimer.start()
 
-func _on_RepearTimer_timeout() -> void:
-	staticBody.disabled = false
-	sprite.visible = true
-	vanishedSprite.visible = false
-	stay = true
+func deactivate() -> void:
+	state = State.VANISHED
+	change_sprite()
+	respawn_timer.start(respawn_time)
+
+
+func _on_respawn_timer_timeout() -> void:
+	state = State.ACTIVE
+	change_sprite()
+
+
+func change_sprite() -> void:
+	var is_active: bool = state == State.ACTIVE
+	static_body.disabled = not is_active
+	area_body.disabled = not is_active
+	sprite.visible = is_active
+	vanished_sprite.visible = not is_active

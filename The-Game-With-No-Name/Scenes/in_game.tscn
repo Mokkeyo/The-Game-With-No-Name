@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj63f0dlucbmw"]
+[gd_scene format=3 uid="uid://cj63f0dlucbmw"]
 
 [ext_resource type="Script" uid="uid://bqlfus07w3dpx" path="res://Scripts/in_game.gd" id="1_sbfge"]
+[ext_resource type="PackedScene" uid="uid://dmjjrssxkjy7w" path="res://Scenes/sound_manager.tscn" id="2_rl3tg"]
 [ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="3_x4u0x"]
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="4_u5pl2"]
 [ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
@@ -16,6 +17,15 @@ fallbacks = Array[Font]([ExtResource("4_u5pl2")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -23,22 +33,22 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[node name="InGame" type="Control"]
+[node name="InGame" type="Control" unique_id=2144169476]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sbfge")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=871056449]
 layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 576.0
 theme_override_constants/separation = 0
 
-[node name="ViewportContainerP1" type="SubViewportContainer" parent="HBoxContainer"]
+[node name="ViewportContainerP1" type="SubViewportContainer" parent="HBoxContainer" unique_id=1297312061]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP1"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP1" unique_id=566082581]
 handle_input_locally = false
 use_hdr_2d = true
 canvas_item_default_texture_filter = 0
@@ -46,7 +56,7 @@ audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1804773222]
 texture_filter = 1
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -58,10 +68,12 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 
-[node name="ViewportContainerP2" type="SubViewportContainer" parent="HBoxContainer"]
+[node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
+
+[node name="ViewportContainerP2" type="SubViewportContainer" parent="HBoxContainer" unique_id=586782730]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP2"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/ViewportContainerP2" unique_id=294606867]
 handle_input_locally = false
 use_hdr_2d = true
 canvas_item_default_texture_filter = 0
@@ -69,7 +81,7 @@ audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP2/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP2/SubViewport" unique_id=1411808482]
 texture_filter = 1
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -81,10 +93,10 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 
-[node name="lightmap" parent="." instance=ExtResource("3_x4u0x")]
+[node name="lightmap" parent="." unique_id=939714629 instance=ExtResource("3_x4u0x")]
 layout_mode = 0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1671001183]
 visible = false
 layout_mode = 0
 offset_left = 508.0
@@ -92,7 +104,7 @@ offset_right = 516.0
 offset_bottom = 576.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="Coin_Label" type="Label" parent="."]
+[node name="Coin_Label" type="Label" parent="." unique_id=57352793]
 visible = false
 layout_mode = 0
 offset_left = 388.0
@@ -104,12 +116,12 @@ theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("2")
 text = "Coins: 0"
 
-[node name="Player1" type="Control" parent="."]
+[node name="Player1" type="Control" parent="." unique_id=2022923343]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HPBar" parent="Player1" instance=ExtResource("5_uw4fe")]
+[node name="HPBar" parent="Player1" unique_id=1409778473 instance=ExtResource("5_uw4fe")]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
@@ -117,7 +129,7 @@ offset_right = 62.0
 offset_bottom = 18.0
 scale = Vector2(3, 3)
 
-[node name="Mana" parent="Player1" instance=ExtResource("6_m0r43")]
+[node name="Mana" parent="Player1" unique_id=877659643 instance=ExtResource("6_m0r43")]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 50.0
@@ -125,10 +137,10 @@ offset_right = 42.0
 offset_bottom = 64.0
 scale = Vector2(3, 3)
 
-[node name="Player2" type="Control" parent="."]
+[node name="Player2" type="Control" parent="." unique_id=1006836678]
 anchors_preset = 0
 
-[node name="HPBar" parent="Player2" instance=ExtResource("7_pi7ch")]
+[node name="HPBar" parent="Player2" unique_id=62888086 instance=ExtResource("7_pi7ch")]
 layout_mode = 0
 offset_left = 846.0
 offset_top = 4.0
@@ -136,7 +148,7 @@ offset_right = 904.0
 offset_bottom = 18.0
 scale = Vector2(3, 3)
 
-[node name="Mana" parent="Player2" instance=ExtResource("8_rlmnr")]
+[node name="Mana" parent="Player2" unique_id=282196992 instance=ExtResource("8_rlmnr")]
 layout_mode = 0
 offset_left = 906.0
 offset_top = 50.0

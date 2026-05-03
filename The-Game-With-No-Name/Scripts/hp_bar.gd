@@ -1,5 +1,5 @@
 extends TextureRect
-class_name progressBar
+class_name HealthBar
 
 @onready var progress: TextureProgressBar = $TextureProgressBar
 

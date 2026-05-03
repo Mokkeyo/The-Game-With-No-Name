@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bob0eucjbifmb"]
+[gd_scene format=3 uid="uid://bob0eucjbifmb"]
 
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1_khey2"]
 [ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_mwmym"]
@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_jfqcl"]
 [ext_resource type="Texture2D" uid="uid://dmx1h0of4roar" path="res://Button/Playstation/Joypad Button 0 (Bottom Action, Sony Cross, Xbox A, Nintendo B).png" id="5_cp2a7"]
 
-[node name="ControllerInputButton" type="Button"]
+[node name="ControllerInputButton" type="Button" unique_id=110806582]
 offset_right = 92.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
@@ -31,12 +31,10 @@ clip_text = true
 expand_icon = true
 script = ExtResource("3_f66l4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1505586069]
 position = Vector2(46, 20)
 texture = ExtResource("5_cp2a7")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1528011619]
 wait_time = 0.05
 one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

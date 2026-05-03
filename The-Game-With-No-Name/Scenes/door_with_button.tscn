@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dffqqqfuq47wm"]
+[gd_scene format=3 uid="uid://dffqqqfuq47wm"]
 
 [ext_resource type="Script" uid="uid://jr6cxtkcj3t4" path="res://Scripts/door_with_button.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="6_sd8rr"]
@@ -325,38 +325,35 @@ size = Vector2(10, 28)
 [sub_resource type="OccluderPolygon2D" id="8"]
 polygon = PackedVector2Array(10, -14, 10, 14, 0, 14, 0, 2, -1, 2, -1, -2, 0, -2, 0, -11, 1, -11, 1, -12, 2, -12, 2, -13, 3, -13, 3, -14)
 
-[node name="DoorWithObj" type="Node2D"]
+[node name="DoorWithObj" type="Node2D" unique_id=987173387]
 script = ExtResource("5")
 door_color = "Dummy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qmnpr")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1099571933]
+libraries/ = SubResource("AnimationLibrary_qmnpr")
 
-[node name="Door" type="AnimatedSprite2D" parent="."]
+[node name="Door" type="AnimatedSprite2D" parent="." unique_id=599551357]
 position = Vector2(7, 0)
 sprite_frames = SubResource("9")
 animation = &"Dummy"
-frame_progress = 0.80151516
+frame_progress = 0.4095615
 offset = Vector2(-2.5, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Door"]
-visible = false
+[node name="StaticBody2D" type="StaticBody2D" parent="Door" unique_id=1913563286]
 collision_mask = 0
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/StaticBody2D" unique_id=991672466]
 position = Vector2(-2, 0)
 shape = SubResource("10")
 metadata/_edit_lock_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Door"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Door" unique_id=1400766654]
 position = Vector2(-7, 0)
 occluder = SubResource("8")
 metadata/_edit_lock_ = true
 
-[node name="particle" type="Sprite2D" parent="."]
+[node name="particle" type="Sprite2D" parent="." unique_id=1632318377]
 visible = false
 position = Vector2(5, 10)
 texture = ExtResource("8")
@@ -364,5 +361,5 @@ hframes = 3
 frame = 1
 metadata/_edit_lock_ = true
 
-[node name="EnemyResetComponent" parent="." instance=ExtResource("6_sd8rr")]
+[node name="EnemyResetComponent" parent="." unique_id=1063329291 instance=ExtResource("6_sd8rr")]
 metadata/_edit_lock_ = true

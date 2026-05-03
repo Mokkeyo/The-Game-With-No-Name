@@ -94,7 +94,7 @@ func boss_shoot() -> void:
 
 
 func change_arm_health() -> void:
-	G.boss_label_changed.emit(float(armLeft.health_comp.health + armRight.health_comp.health))
+	G.boss_value_changed.emit(float(armLeft.health_comp.health + armRight.health_comp.health))
 
 func change_boss_health() -> void:
 	G.boss_value_changed.emit(boss.health_comp.health)

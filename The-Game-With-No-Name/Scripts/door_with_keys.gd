@@ -23,7 +23,7 @@ func _ready() -> void:
 	label.text = str(array_size)
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
-	set_process_unhandled_input(false)
+	set_process_unhandled_input(keys.size() == 0)
 
 
 func _unhandled_input(_event: InputEvent) -> void:

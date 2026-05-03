@@ -4,7 +4,6 @@ class_name NpcArea
 var parent: Node2D
 var player: Player = null
 @export var ping: Ping
-@export var npc: Npc
 
 func _ready() -> void:
 	parent = get_parent()
@@ -13,7 +12,6 @@ func _ready() -> void:
 func check_for_player() -> bool:
 	if player:
 		if not player.freeze and Input.is_action_just_pressed("player1_interact") and player.is_on_floor():
-			npc = get_parent()
 			return true
 	return false
 

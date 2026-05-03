@@ -74,7 +74,7 @@ radius = 185.779
 
 [node name="SpeerFish" type="CharacterBody2D" unique_id=2121655178]
 collision_layer = 4
-collision_mask = 0
+motion_mode = 1
 script = ExtResource("1")
 
 [node name="SpeerFish" type="AnimatedSprite2D" parent="." unique_id=223566938]
@@ -115,10 +115,9 @@ position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_868ff")
 
-[node name="Hitbox" parent="." unique_id=467697135 node_paths=PackedStringArray("health") instance=ExtResource("10_7mhxu")]
+[node name="Hitbox" parent="." unique_id=467697135 instance=ExtResource("10_7mhxu")]
 visible = false
 collision_mask = 2
-health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1618251236]
 shape = SubResource("CircleShape2D_8ft63")

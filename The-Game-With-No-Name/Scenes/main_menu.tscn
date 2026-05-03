@@ -1818,6 +1818,11 @@ anchor_mode = 0
 [node name="lightmap" parent="Camera2D" unique_id=335586309 instance=ExtResource("10_qh4yw")]
 visible = true
 
+[node name="Fader" parent="." unique_id=1699671938 instance=ExtResource("21_bjkxx")]
+z_index = 2
+layout_mode = 0
+offset_top = -588.0
+
 [node name="Main" type="Control" parent="." unique_id=830582742]
 anchors_preset = 0
 offset_right = 1024.0
@@ -1869,7 +1874,7 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_left = 192.0
 offset_top = 340.0
-offset_right = 832.0
+offset_right = 831.99976
 offset_bottom = 410.0
 focus_neighbor_bottom = NodePath("../ControllButton")
 text = "Battle Mode"
@@ -1896,7 +1901,7 @@ clip_text = true
 layout_mode = 0
 offset_left = 513.0
 offset_top = 412.0
-offset_right = 832.0
+offset_right = 832.0001
 offset_bottom = 482.0
 text = "Options"
 
@@ -1962,10 +1967,6 @@ visible = false
 layout_mode = 0
 offset_top = 576.0
 offset_bottom = 1152.0
-
-[node name="Fader" parent="." unique_id=1699671938 instance=ExtResource("21_bjkxx")]
-layout_mode = 0
-offset_top = -588.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1859925855]
 libraries/ = SubResource("AnimationLibrary_kbkax")

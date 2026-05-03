@@ -10,7 +10,7 @@ signal damaged_enemy
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtBox:
-		hit.emit(dmg, knockback)
+#		hit.emit(dmg, knockback)
 		damaged_enemy.emit()
 		var hurtbox: HurtBox = area as HurtBox
 		hurtbox.receive_hit(dmg, knockback, damage_type)

@@ -25,5 +25,5 @@ func spawn_player(player_alive: Array[bool]) -> void:
 func add_player(player_i: Player, p_position: Vector2) -> void:
 	remove_child(player_i)
 	get_parent().add_child(player_i)
-	player_i.set_multiplayer_authority(player_i.current_player + 1)
+#	player_i.set_multiplayer_authority(player_i.current_player + 1)
 	player_i.global_position = G.save_stat.checkpointPosition if G.checkpoint_activated else p_position

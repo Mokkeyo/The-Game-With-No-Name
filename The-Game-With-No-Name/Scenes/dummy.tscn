@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn81k5liigxdu"]
+[gd_scene format=3 uid="uid://bn81k5liigxdu"]
 
 [ext_resource type="Texture2D" uid="uid://bgc4bqqcw3wpd" path="res://Objects/Textures/dummy.png" id="1"]
 [ext_resource type="Script" uid="uid://dfpf6jtokqxoi" path="res://Scripts/dummy.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="3_ain4w"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="4_15iif"]
+[ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="5_5uy75"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="6_cnweq"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 6.0
@@ -114,27 +116,31 @@ _data = {
 radius = 6.0
 height = 22.0
 
-[node name="Dummy" type="StaticBody2D" groups=["dummy"]]
+[node name="Dummy" type="StaticBody2D" unique_id=1629415394 groups=["dummy"]]
 collision_mask = 0
 script = ExtResource("2")
 
-[node name="Dummy" type="Sprite2D" parent="."]
+[node name="Dummy" type="Sprite2D" parent="." unique_id=1819386175]
 texture = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=139558790]
 shape = SubResource("1")
 
-[node name="DamagePlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_p2ynv")
-}
+[node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=2027233203]
+libraries/ = SubResource("AnimationLibrary_p2ynv")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_ain4w")]
+[node name="Hurtbox" parent="." unique_id=547997914 instance=ExtResource("3_ain4w")]
 collision_layer = 4
-health = NodePath("../healthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=734155010]
 shape = SubResource("CapsuleShape2D_5vosa")
 
-[node name="healthComponent" parent="." instance=ExtResource("4_15iif")]
+[node name="healthComponent" parent="." unique_id=1210266205 instance=ExtResource("4_15iif")]
 invisibiltyFrames = 0.1
+
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("5_5uy75")]
+health = NodePath("../healthComponent")
+invincibility = NodePath("../InvisibleFramesComp")
+
+[node name="InvisibleFramesComp" parent="." unique_id=1702039042 node_paths=PackedStringArray("parent") instance=ExtResource("6_cnweq")]
+parent = NodePath("../Dummy")

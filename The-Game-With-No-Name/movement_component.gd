@@ -22,7 +22,7 @@ signal knockbacked(force: Vector2)
 @export_category("Y Velocity")
 @export var JUMP_POWER: int = 210
 @export var WATER_JUMP_POWER: int = 100
-@export var WALL_JUMP_FORCE: float = 2.5
+@export var WALL_JUMP_FORCE: float = 2.6
 @export var KNOCKBACK_DAMPENING: int = 900
 
 
@@ -33,10 +33,11 @@ func setup(p: CharacterBody2D, water: LavaWaterDetector) -> void:
 	body = p
 	water_detector = water
 
-func move_horizontal(dir: float, slowed: bool = false) -> void:
+func move_horizontal(dir: float, _slowed: bool = false) -> void:
 	var target_speed: float = WATER_SPEED if water_detector.inWater else SPEED
-	if slowed:
-		target_speed *= 0.5
+#	if slowed:
+#		print("slowed")
+#		target_speed *= 0.5
 	
 	body.velocity.x = move_toward(
 		body.velocity.x,
@@ -62,7 +63,7 @@ func wall_jump(direction: float) -> void:
 	# direction: -1 = rechts, +1 = links
 	body.velocity.y = 0
 	body.velocity =Vector2(
-		direction * SPEED * WALL_JUMP_FORCE, - JUMP_POWER
+		direction * SPEED * WALL_JUMP_FORCE, - JUMP_POWER * 1.2
 		)
 	walljumped.emit(direction)
 

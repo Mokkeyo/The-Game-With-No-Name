@@ -1,65 +1,34 @@
-extends Button
+extends InputButton
 class_name CInputButton
 
-@export var action: String = "ui_up"
-@export var controlls_menu: Controlls
+const CONTROLLER: int = 1
 
 var input_device: String = "Playstation"
 var player: int = 1
-
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var timer: Timer = $Timer
-
 var deadzone: float = 0.8
 var pattern: RegEx = RegEx.new()
 
-func _init() -> void:
-	toggle_mode = true
-	theme_type_variation = "RemapButton"
-
+static var texture_cache: Dictionary = {}
 
 func _ready() -> void:
+	device_index = CONTROLLER
 	set_process_unhandled_input(false)
 	pattern.compile(r"\d+")
-	if FileAccess.file_exists(G.SAVE_PATH + G.SAVE_FILES["controls"]):
-		display_key()
+	super._ready()
  
 
 func _toggled(toggled_on: bool) -> void:
+	super._toggled(toggled_on)
 	set_process_unhandled_input(toggled_on)
-	controlls_menu.disable_all_buttons(toggled_on)
-	
-	if toggled_on:
-		text = ". . ."
-		release_focus()
-	else: 
-		grab_focus()
-		
-	sprite.visible = not toggled_on
-	controlls_menu.waiting_for_input = toggled_on
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("esc"):
-		display_key()
-		timer.start()
-		return
-	
-	var input_event: InputEvent = check_for_input_event(event)
-	
-	if input_event:
-		remap_key(input_event)
-		G.saved_input_map.inputMap[action][1] = input_event
-		G.save_inputs()
-		timer.start()
+	process_event(event)
 
 
-func check_for_input_event(event: InputEvent) -> InputEvent:
-	if not event: 
-		return null
+func handle_input(event: InputEvent) -> InputEvent:
 	
-	var current_player: int = controlls_menu.player
-	var device_id: int = G.saved_input_map.device[current_player]
+	var device_id: int = G.saved_input_map.device[player]
 	
 	match event:
 		InputEventJoypadMotion:
@@ -75,29 +44,23 @@ func check_for_input_event(event: InputEvent) -> InputEvent:
 	return null
 
 
-func remap_key(event: InputEvent) -> void:
-	var events: Array[InputEvent] = InputMap.action_get_events(action)
-	
-	events[1] = event
-	
-	InputMap.action_erase_events(action)
-	
-	for ev: InputEvent in events:
-		if ev:
-			InputMap.action_add_event(action, ev)
-	
-	display_key()
+
+func get_tex(path: String) -> Texture2D:
+	if not texture_cache.has(path):
+		texture_cache[path] = load(path)
+	return texture_cache[path]
 
 
 func display_key() -> void:
-	var events : Array[InputEvent] = InputMap.action_get_events(action)
-	if events.is_empty():
+	var events : Array[InputEvent] = get_key()
+	var ev: InputEvent = events[device_index]
+	if not ev:
 		sprite.visible = false
 		text = ""
 		return
 	
 	
-	var input_name :String = events[1].as_text()
+	var input_name :String = ev.as_text()
 	var result: RegExMatch = pattern.search(input_name)
 	
 	var number: int = -1
@@ -106,14 +69,9 @@ func display_key() -> void:
 	
 	var special_button: bool = input_name.begins_with("Joypad Button") and (number < 4 or (number > 8 and number < 11))
 	var special_motion: bool = input_name.begins_with("Joypad Motion") and (number > 3)
-	
 	if special_button or special_motion:
-		sprite.texture = load("res://Button/%s/%s.png" % [input_device, input_name])
+		sprite.texture = get_tex("res://Button/%s/%s.png" % [input_device, input_name])
 	else:
-		sprite.texture = load("res://Button/%s.png" % [input_name])
+		sprite.texture = get_tex("res://Button/%s.png" % [input_name])
 		
 	sprite.visible = true
-
-
-func _on_timer_timeout() -> void:
-	button_pressed = false

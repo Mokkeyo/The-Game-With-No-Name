@@ -189,14 +189,6 @@ _data = {
 &"SwingRight(Up)": SubResource("9")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kb2vl"]
-properties/0/path = NodePath("Sprite2D:rotation")
-properties/0/spawn = false
-properties/0/replication_mode = 2
-properties/1/path = NodePath("Sprite2D:visible")
-properties/1/spawn = false
-properties/1/replication_mode = 2
-
 [node name="Sword" type="Node2D" unique_id=844629985]
 z_index = 3
 script = ExtResource("1")
@@ -208,7 +200,6 @@ offset = Vector2(0, -9)
 
 [node name="Hitbox" parent="Sprite2D" unique_id=1800519912 instance=ExtResource("3_idk6c")]
 collision_mask = 4
-dmg_count = null
 knockback = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox" unique_id=1186965782]
@@ -229,9 +220,6 @@ one_shot = true
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1957543503]
 one_shot = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1523425003]
-replication_config = SubResource("SceneReplicationConfig_kb2vl")
 
 [node name="InputBufferTimer" type="Timer" parent="." unique_id=1116187354]
 

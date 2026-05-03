@@ -52,6 +52,7 @@ func _on_options_pressed() -> void: change_menu(options)
 
 
 func _on_back_to_normal_mode_pressed() -> void:
+	await fader.fade_out().animation_finished
 	G.battle_ready.fill(false)
 	SoundMusic.play_underground()
 	G.battle_mode = false

@@ -1,13 +1,15 @@
 extends Node
 class_name InvisibleFramesComp
 
+signal invisibility_stopped
+
 @onready var timer: Timer = $Timer
 @export var parent: Node2D
 
 var is_active: bool = false
 var duration: float
 var counter: int
-var blink_speed: float = 0.1
+@export var blink_speed: float = 0.1
 var blink_count: int = 0
 
 func _ready() -> void:
@@ -36,6 +38,7 @@ func Iframes_active() -> bool:
 func _on_timer_timeout() -> void:
 	if counter >= blink_count:
 		reset_invisible_frames()
+		invisibility_stopped.emit()
 		return
 	
 	parent.visible = false if parent.visible else true

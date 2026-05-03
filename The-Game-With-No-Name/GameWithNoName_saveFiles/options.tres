@@ -4,12 +4,13 @@
 
 [resource]
 script = ExtResource("1_vr82n")
-deaths = Array[int]([28, 0, 0, 0])
-sfxVolume = inf_neg
-maxVolume = 0.0
+deaths = Array[int]([0, 2, 0, 0])
+musicVolume = 0.5
+sfxVolume = 0.0
 printFps = true
-maxFps = 6
+darknessValue = 150
 darknessOn = false
-textboxCount = 4
-textboxCollected = Array[String](["kristall", "kratos1", "buschi0", "buschi1"])
-playerName = Array[String](["test", "test", "", ""])
+textboxCount = 5
+textboxCollected = Array[String](["kristall", "kratos1", "buschi0", "buschi1", "shild0"])
+achievments = Array[String](["Unkillable"])
+playerName = Array[String](["level 1", "level 2", "test", ""])

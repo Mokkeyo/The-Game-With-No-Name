@@ -3,7 +3,7 @@ extends Node
 signal darkness_changed
 signal checkpoint_activated
 signal fullscreen_changed
-signal enter_door
+signal enter_door(level_number: int, door_name: String)
 signal achievment_collected
 signal start_dialog
 signal player_died
@@ -12,10 +12,12 @@ signal door_opend
 signal health_value_changed
 signal mana_value_changed
 
-signal boss_begin
+signal boss_begin(label: String, hp: float)
 signal boss_finished
-signal boss_value_changed
-signal boss_label_changed
+signal boss_value_changed(hp: float)
+signal boss_label_changed(label: String)
+
+var listeners: Array[Node2D] = []
 
 #turn the .tres to .res befor export do decrypt the saveFile
 const SAVE_FILES: Dictionary = {

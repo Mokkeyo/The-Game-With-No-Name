@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c63xsde6mme8y"]
+[gd_scene format=3 uid="uid://c63xsde6mme8y"]
 
 [ext_resource type="Texture2D" uid="uid://dwjmoek7glkle" path="res://Objects/Textures/spinning_blade.png" id="1"]
 [ext_resource type="Script" uid="uid://cw42uhc8nhprm" path="res://Scripts/spinning_blade.gd" id="2"]
@@ -53,32 +53,30 @@ normal_texture = ExtResource("3_rvdcg")
 [sub_resource type="CircleShape2D" id="CircleShape2D_8y8ah"]
 radius = 15.0
 
-[node name="Spinning_Blade" type="Path2D"]
+[node name="Spinning_Blade" type="Path2D" unique_id=316421233]
 script = ExtResource("2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tb3x2")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=799879756]
+libraries/ = SubResource("AnimationLibrary_tb3x2")
 
-[node name="Blade" type="Sprite2D" parent="."]
+[node name="Blade" type="Sprite2D" parent="." unique_id=950553881]
 texture = SubResource("CanvasTexture_dom6i")
 metadata/_edit_lock_ = true
 
-[node name="Hitbox" parent="Blade" instance=ExtResource("3_wl07d")]
+[node name="Hitbox" parent="Blade" unique_id=1416526053 instance=ExtResource("3_wl07d")]
 visible = false
 collision_mask = 2
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blade/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blade/Hitbox" unique_id=570438517]
 shape = SubResource("CircleShape2D_8y8ah")
 
-[node name="PathFollowComponent" parent="." node_paths=PackedStringArray("path", "target_node") instance=ExtResource("5_oms2q")]
+[node name="PathFollowComponent" parent="." unique_id=447170998 node_paths=PackedStringArray("path", "target_node") instance=ExtResource("5_oms2q")]
 path = NodePath("..")
 target_node = NodePath("../Blade")
 speed = 150.0
 
-[node name="SoundPlayer" parent="." instance=ExtResource("6_vmj2r")]
+[node name="SoundPlayer" parent="." unique_id=1404896464 instance=ExtResource("6_vmj2r")]
 stream = ExtResource("7_i0k1l")
 volume_db = 1.0
 max_distance = 200.0

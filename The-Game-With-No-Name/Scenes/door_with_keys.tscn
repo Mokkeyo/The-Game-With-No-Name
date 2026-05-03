@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dphwcm2lteg07"]
+[gd_scene format=3 uid="uid://dphwcm2lteg07"]
 
 [ext_resource type="Texture2D" uid="uid://ilrs2h7d08dd" path="res://PathToNewLevelObjects/Textures/door_with_keys.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://c2cixjinep6w" path="res://NormalMap/door_with_keys_normal.png" id="3_j6bfr"]
@@ -15,37 +15,38 @@ normal_texture = ExtResource("3_j6bfr")
 [sub_resource type="RectangleShape2D" id="5"]
 size = Vector2(6, 38)
 
-[node name="DoorWithKey" type="Node2D" groups=["Door"]]
+[node name="DoorWithKey" type="Node2D" unique_id=1922657109 groups=["Door"]]
 script = ExtResource("4")
 
-[node name="Door_With_Keys" type="Sprite2D" parent="."]
-position = Vector2(0, -22)
+[node name="Door_With_Keys" type="Sprite2D" parent="." unique_id=719938069]
+position = Vector2(0, -23)
 texture = SubResource("CanvasTexture_28mx3")
+offset = Vector2(0, 0.5)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1845137089]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=212460113]
 position = Vector2(0, -19)
 shape = SubResource("5")
 
-[node name="Ping" parent="." instance=ExtResource("5")]
+[node name="Ping" parent="." unique_id=2146525745 instance=ExtResource("5")]
 position = Vector2(0.5, -45)
 metadata/_edit_lock_ = true
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1692606399]
 metadata/_edit_lock_ = true
 
-[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("7_0hl4c")]
+[node name="LeveltransitionComponent" parent="." unique_id=626914331 node_paths=PackedStringArray("marker", "area") instance=ExtResource("7_0hl4c")]
 marker = NodePath("../Marker2D")
 area = NodePath("../Area2D")
 
-[node name="ResetComponent" parent="." instance=ExtResource("6_dy30t")]
+[node name="ResetComponent" parent="." unique_id=2031016032 instance=ExtResource("6_dy30t")]
 setStartPosition = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=257549826]
 offset_left = -20.0
 offset_top = -45.0
 offset_right = 20.0
