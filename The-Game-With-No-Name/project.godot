@@ -30,6 +30,7 @@ Noray="*uid://gu4bv4tgms3x"
 PacketHandshake="*uid://tt3j25a05n7c"
 Multiplayer="res://multiplayer.gd"
 SoundComp="*res://footstep_sound_component.gd"
+Save="*uid://cnum2flxsbpme"
 
 [debug]
 

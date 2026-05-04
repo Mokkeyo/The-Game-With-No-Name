@@ -79,16 +79,6 @@ func ensure_save_path() -> void:
 		DirAccess.make_dir_absolute(SAVE_PATH)
 
 
-func load_or_save(default_res: Resource, file_path: String) -> Resource:
-	if ResourceLoader.exists(file_path):
-		var loaded: Resource = ResourceLoader.load(file_path)
-		if loaded:
-			return loaded.duplicate(true)
-	
-	ResourceSaver.save(default_res, file_path)
-	return default_res
-
-
 func calculate_max_text() -> void:
 	max_text = 0
 	for i: int in range(D.allText.size()):
@@ -123,7 +113,6 @@ func center_window() -> void:
 	get_window().set_position(center_screen - Vector2i(window_size/2.0))
 
 
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if save_stat_inf.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
@@ -139,6 +128,16 @@ func check_if_chatter_unlocked() -> void:
 	if save_stat_inf.textboxCount == max_text and not save_stat_inf.achievments.has("Chatter"):
 		save_stat_inf.achievments.append("Chatter")
 		save_options()
+
+
+func load_or_save(default_res: Resource, file_path: String) -> Resource:
+	if ResourceLoader.exists(file_path):
+		var loaded: Resource = ResourceLoader.load(file_path)
+		if loaded:
+			return loaded.duplicate(true)
+	
+	ResourceSaver.save(default_res, file_path)
+	return default_res
 
 
 func save_inputs() -> void:
@@ -195,7 +194,7 @@ func save_options() -> void:
 
 func load_options() -> void:
 	var file_path: String = SAVE_PATH + SAVE_FILES["options"]
-	save_stat_inf = load_or_save(save_stat, file_path)
+	save_stat_inf = load_or_save(save_stat_inf, file_path)
 	apply_display_settings()
 
 func change_resolution() -> void:
@@ -207,10 +206,10 @@ func start_new_game() -> void:
 	for i: int in save_stat.kristallCollected.size():
 		save_stat.kristallCollected[i] = false
 		
-		if i < save_stat.playerHp.size():
-			save_stat.playerHp[i] = 100
-		if i < save_stat.playerMana.size():
-			save_stat.playerMana[i] = 99
+		if i < save_stat.hp.size():
+			save_stat.hp[i] = 100
+		if i < save_stat.mana.size():
+			save_stat.mana[i] = 99
 		if i < save_stat.finished.size():
 			save_stat.finished[i] = false
 	

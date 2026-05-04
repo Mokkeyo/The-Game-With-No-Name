@@ -26,8 +26,9 @@ func _ready() -> void:
 	tree_exited.connect(func() -> void: SoundMusic.listeners = [])
 	fader.visible = true
 	var start_time: float = Time.get_ticks_msec()
+	in_game.connect_camera_to_player()
 	connect_to_signals()
-	setup_level(G.save_stat.levelNumber)
+	setup_level(Save.player.levelNumber)
 	initialize_variables()
 	set_player_positions()
 	on_player_count_changed(-1) 
@@ -39,19 +40,24 @@ func setup_level(level_number: int) -> void:
 	add_level(level_number)
 	get_respawnable_objects()
 	player_spawner = level.get_node_or_null("Player_Spawner")
-	if not player_spawner:
+	if player_spawner == null:
 		push_warning("Kein Player_Spawner Gefunden")
 		return
-	player_spawner.spawn_player(player_alive)
-	in_game.player = player_spawner.player
 	
 	await get_tree().process_frame
 	
-	if not level_has_camera():
-		print("conneting camera to player")
-		in_game.connect_camera_to_player()
-#		in_game.set_viewport_size()
-	else:
+	for i: int in in_game.player.size():
+		if Save.player.checkpointActive:
+			set_player_positions()
+		else:
+			in_game.player[i].global_position = player_spawner.global_position
+			if player_alive[i]:
+				print(in_game.player[i].global_position, player_spawner.global_position)
+				continue
+			
+			in_game.player[i].reset_comp.set_stats()
+	
+	if level_has_camera():
 		print("not conneting camera to player")
 		in_game._set_player_viewport(0, 1024, true)
 		in_game._set_player_viewport(1, 0, false)
@@ -127,9 +133,9 @@ func set_player_position_to(d_name: String) -> void:
 
 func on_checkpoint_activated() -> void:
 	for door_nr: int in temp_door:
-		if door_nr not in G.save_stat.door:
-			G.save_stat.door.append(door_nr)
-	G.save_data()
+		if door_nr not in Save.player.door:
+			Save.player.door.append(door_nr)
+	Save.save_data()
 
 
 func on_door_opend(door_nr: int) -> void:
@@ -139,7 +145,10 @@ func on_door_opend(door_nr: int) -> void:
 func set_player_positions() -> void:
 	for i: int in player_size:
 		if player_alive[i] and in_game.player[i]:
-			in_game.player[i].global_position = G.save_stat.checkpointPosition 
+			if Save.player.checkpointActive:
+				in_game.player[i].global_position = Save.player.checkpointPosition 
+			else:
+				in_game.player[i].global_position = player_spawner.global_position
 
 
 func game_over(player: int) -> void:
@@ -159,11 +168,10 @@ func change_level(level_number: int, d_name: String) -> void:
 	if not level_number == current_level_number:
 		in_game.viewport[0].remove_child(level)
 		level.queue_free()
-		G.save_stat.levelNumber = level_number
-		G.save_stat.checkpointActive = false
-		G.save_stat.door.clear()
+		Save.player.levelNumber = level_number
+		Save.player.checkpointActive = false
+		Save.player.door.clear()
 		SoundComp.tilemaps = []
-		G.save_data()
 		temp_door.clear()
 		setup_level(level_number)
 	else:
@@ -181,8 +189,8 @@ func on_player_count_changed(player: int) -> void:
 	if player > -1:
 		player_alive[player] = not player_alive[player]
 		if not player_alive[player]:
-			G.save_stat_inf.deaths[G.active_slot] += 1
-			G.save_options()
+			Save.options.deaths[Save.active_slot] += 1
+			Save.save_options()
 		
 		
 	var both_death: bool = not player_alive[0] and not player_alive[1]

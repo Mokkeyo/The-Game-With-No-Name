@@ -63,6 +63,7 @@ func connect_camera(camera: Camera2D) -> void:
 		push_warning("Camera not connected")
 
 func _ready() -> void:
+	print(Save.player.hp)
 	SoundMusic.listeners.append(self)
 	movement.setup(self, lava_water_detector)
 	animation.setup(self, animated_sprite)
@@ -70,7 +71,7 @@ func _ready() -> void:
 	combat.enemy_hit.connect(_on_enemy_hit)
 	_connect_signals()
 	_configure_floor_settings()
-	health_component.health = G.save_stat.playerHp[current_player]
+	health_component.health = Save.player.hp[current_player]
 	
 	for s: PlayerState in States.values():
 		s.player = self
@@ -164,7 +165,7 @@ func do_knockback(_duration: float, dir: Vector2) -> void:
 
 
 func _on_value_changed() -> void:
-	G.save_stat.playerHp[current_player] = health_component.health
+	Save.player.hp[current_player] = health_component.health
 	G.health_value_changed.emit(current_player, health_component.health)
 
 
@@ -179,11 +180,12 @@ func next_to_left_wall() -> bool: return raycast_left.is_colliding()
 
 
 func change_mana_value() -> void:
-	G.save_stat.playerMana[current_player] -=33
-	G.mana_value_changed.emit(current_player, G.save_stat.playerMana[current_player])
+	Save.player.mana[current_player] -=33
+	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
 
 
 func respawn() -> void:
+	print("respawning")
 	is_alive = false
 	animated_sprite.play("game_over")
 
@@ -207,8 +209,8 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 
 func _on_ManaTimer_timeout() -> void:
-	G.save_stat.playerMana[current_player] += 11
-	G.mana_value_changed.emit(current_player, G.save_stat.playerMana[current_player])
+	Save.player.mana[current_player] += 11
+	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:

@@ -36,14 +36,14 @@ func check_for_dialog_collected_no_check() -> void:
 	check(npc)
 
 func check(string: String) -> void:
-	if not G.save_stat_inf.textboxCollected.has(string):
-		G.save_stat_inf.textboxCollected.append(string)
-		G.save_stat_inf.textboxCount += 1
-		G.save_options()
+	if not Save.options.textboxCollected.has(string):
+		Save.options.textboxCollected.append(string)
+		Save.options.textboxCount += 1
+		Save.save_options()
 		G.check_if_chatter_unlocked()
 
 func has_dialog(npcing:String, index: int) -> bool:
-	if G.save_stat_inf.textboxCollected.has("%s%d" % [npcing, index]):
+	if Save.options.textboxCollected.has("%s%d" % [npcing, index]):
 		return true
 	return false
 

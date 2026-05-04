@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqlfus07w3dpx" path="res://Scripts/in_game.gd" id="1_sbfge"]
 [ext_resource type="PackedScene" uid="uid://dmjjrssxkjy7w" path="res://Scenes/sound_manager.tscn" id="2_rl3tg"]
+[ext_resource type="PackedScene" uid="uid://da7p34a4g111f" path="res://Player/Scenes/player.tscn" id="3_2fron"]
 [ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="3_x4u0x"]
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="4_u5pl2"]
 [ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
@@ -69,6 +70,13 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 
 [node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
+
+[node name="Player1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1056553489 groups=["Player_0"] instance=ExtResource("3_2fron")]
+z_index = 1
+
+[node name="Player2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1874813584 groups=["Player_1"] instance=ExtResource("3_2fron")]
+z_index = 1
+current_player = 1
 
 [node name="ViewportContainerP2" type="SubViewportContainer" parent="HBoxContainer" unique_id=586782730]
 layout_mode = 2

@@ -19,12 +19,12 @@ func _ready() -> void:
 
 
 func start() -> void:
-	var value: int = G.save_stat_inf.maxFps
+	var value: int = Save.options.maxFps
 	select(value)
-	Engine.max_fps = Fps.values()[G.save_stat_inf.maxFps]
+	Engine.max_fps = Fps.values()[Save.options.maxFps]
 
 
 func _on_item_selected(index: int) -> void:
 	Engine.max_fps = Fps.values()[index]
-	G.save_stat_inf.maxFps = index
-	G.save_options()
+	Save.options.maxFps = index
+	Save.save_options()

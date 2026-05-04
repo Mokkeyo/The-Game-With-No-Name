@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cm52vo05lveer"]
+[gd_scene format=3 uid="uid://cm52vo05lveer"]
 
 [ext_resource type="Script" uid="uid://b8kaeoys45tw8" path="res://Scripts/game_loader.gd" id="1_1ebmc"]
 [ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="2_futd4"]
@@ -8,6 +8,15 @@
 
 [sub_resource type="FontFile" id="FontFile_qw3b0"]
 fallbacks = Array[Font]([ExtResource("2_futd4")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -25,6 +34,15 @@ cache/0/70/0/kerning_overrides/70/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="FontFile_4yg7e"]
 fallbacks = Array[Font]([ExtResource("5_7lqga")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -42,6 +60,15 @@ cache/0/55/0/kerning_overrides/55/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="FontFile_anios"]
 fallbacks = Array[Font]([ExtResource("5_7lqga")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -471,17 +498,17 @@ _data = {
 &"start": SubResource("55")
 }
 
-[node name="LoadGame" type="Node2D"]
+[node name="LoadGame" type="Node2D" unique_id=2090225125]
 script = ExtResource("1_1ebmc")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=761285342]
 offset_right = 1024.0
 offset_bottom = 576.0
 color = Color(0.105882, 0.105882, 0.105882, 1)
 
-[node name="Instruction" type="Node2D" parent="."]
+[node name="Instruction" type="Node2D" parent="." unique_id=249835040]
 
-[node name="GameTitle" type="Label" parent="Instruction"]
+[node name="GameTitle" type="Label" parent="Instruction" unique_id=1610653755]
 visible = false
 offset_left = -1.0
 offset_top = -70.0
@@ -494,19 +521,19 @@ theme_override_font_sizes/font_size = 70
 text = "The Game With no Name"
 horizontal_alignment = 1
 
-[node name="RumbleGames" type="Sprite2D" parent="Instruction"]
+[node name="RumbleGames" type="Sprite2D" parent="Instruction" unique_id=388628265]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(490, 370)
 scale = Vector2(4.59, 4.59)
 texture = ExtResource("3_8def6")
 
-[node name="controll_button" type="Sprite2D" parent="Instruction"]
+[node name="controll_button" type="Sprite2D" parent="Instruction" unique_id=987632439]
 modulate = Color(0, 0, 0, 0)
 position = Vector2(512, 224)
 scale = Vector2(12.6, 12.6)
 texture = ExtResource("4_iabun")
 
-[node name="ControllerLabel" type="Label" parent="Instruction"]
+[node name="ControllerLabel" type="Label" parent="Instruction" unique_id=932648049]
 modulate = Color(0, 0, 0, 0)
 offset_left = -2.0
 offset_top = 446.0
@@ -519,7 +546,7 @@ theme_override_font_sizes/font_size = 55
 text = "We recommend to play this game with a controller"
 horizontal_alignment = 1
 
-[node name="A_Game_Produced_BY" type="Label" parent="Instruction"]
+[node name="A_Game_Produced_BY" type="Label" parent="Instruction" unique_id=1664294375]
 modulate = Color(0, 0, 0, 0)
 offset_left = 17.0
 offset_top = 460.0
@@ -532,15 +559,11 @@ theme_override_font_sizes/font_size = 65
 text = "A Game Produced by the Rumble Games Studio"
 horizontal_alignment = 1
 
-[node name="ControllerPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vkryu")
-}
+[node name="ControllerPlayer" type="AnimationPlayer" parent="." unique_id=1429109609]
+libraries/ = SubResource("AnimationLibrary_vkryu")
 
-[node name="StartPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_mo2k2")
-}
+[node name="StartPlayer" type="AnimationPlayer" parent="." unique_id=1218655233]
+libraries/ = SubResource("AnimationLibrary_mo2k2")
 
 [connection signal="animation_finished" from="ControllerPlayer" to="." method="_on_controller_player_animation_finished"]
 [connection signal="animation_finished" from="StartPlayer" to="." method="_on_start_player_animation_finished"]

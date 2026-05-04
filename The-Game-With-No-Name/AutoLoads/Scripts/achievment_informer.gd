@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 
 func update_fps_label() -> void:
-	if G.save_stat_inf.printFps:
+	if Save.options.printFps:
 		var current_fps: int= int(Engine.get_frames_per_second())
 		if not current_fps == last_fps:
 			label.text = "Fps: %d" % current_fps

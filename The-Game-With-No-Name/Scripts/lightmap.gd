@@ -6,4 +6,4 @@ func _ready() -> void:
 	G.darkness_changed.connect(change_darkness)
 
 func change_darkness() -> void:
-	modulate.a8 = (G.save_stat_inf.darknessValue) if G.save_stat_inf.darknessOn else int(G.save_stat_inf.darknessValue / 2.0)
+	modulate.a8 = (Save.options.darknessValue) if Save.options.darknessOn else int(Save.options.darknessValue / 2.0)

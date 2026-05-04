@@ -59,7 +59,7 @@ func handle_controller_assignment(device: int) -> void:
 	if G.saved_input_map.device[other_player] == device:
 		G.saved_input_map.device[other_player] = previous
 
-	G.save_inputs()
+	Save.save_inputs()
 	reset_controller_assignment()
 
 

@@ -1,0 +1,31 @@
+{
+	"achievments": [],
+	"darknessOn": true,
+	"darknessValue": 200,
+	"deaths": [
+		0.0,
+		0.0,
+		0.0,
+		0.0
+	],
+	"fullscreen": false,
+	"maxFps": 0,
+	"maxVolume": 0.5,
+	"musicVolume": 1.0,
+	"playerName": [
+		"test",
+		"",
+		"",
+		""
+	],
+	"printFps": false,
+	"resolution": {
+		"x": 1024,
+		"y": 576
+	},
+	"sfxVolume": 0.1,
+	"textboxCollected": [],
+	"textboxCount": 0,
+	"version": 1,
+	"vsync": false
+}

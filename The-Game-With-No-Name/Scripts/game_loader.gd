@@ -5,8 +5,10 @@ extends Node2D
 var main_menu: String = "res://Scenes/main_menu.tscn"
 
 func _ready() -> void:
-	G.load_options()
-	G.load_inputs()
+	Save.load_options()
+	Save.load_inputs()
+#	G.load_options()
+#	G.load_inputs()
 	controllerPlayer.play("Controller")
 
 func _process(_delta: float) -> void:

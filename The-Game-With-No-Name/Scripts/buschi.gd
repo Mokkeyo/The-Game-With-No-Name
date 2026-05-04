@@ -26,8 +26,8 @@ func start_tween(y_position: float) -> void:
 
 
 func on_yes_pressed() -> void:
-	G.save_stat.levelNumber = 0
-	G.emit_signal("enter_door")
+	Save.player.levelNumber = 0
+	G.enter_door.emit()
 
 
 

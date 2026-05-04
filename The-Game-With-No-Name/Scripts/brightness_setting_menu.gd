@@ -14,8 +14,8 @@ func _ready() -> void:
 	super._ready()
 	exited.connect(set_visibility)
 
-	brightness_slider.value = G.save_stat_inf.darknessValue
-	check_button.button_pressed = G.save_stat_inf.darknessOn
+	brightness_slider.value = Save.options.darknessValue
+	check_button.button_pressed = Save.options.darknessOn
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,16 +36,16 @@ func exit_darkness_disabler() -> void:
 
 
 func _on_TurnOn_pressed() -> void:
-	G.save_stat_inf.darknessOn = true
+	Save.options.darknessOn = true
 	G.emit_signal("darkness_changed")
-	G.save_options()
+	Save.save_options()
 	exit_darkness_disabler()
 
 
 func _on_TurnOff_pressed() -> void:
-	G.save_stat_inf.darknessOn = false
-	G.emit_signal("darkness_changed")
-	G.save_options()
+	Save.options.darknessOn = false
+	G.darkness_changed.emit()
+	Save.save_options()
 	
 	wait = true
 	timer.start()
@@ -56,9 +56,9 @@ func _on_TurnOff_pressed() -> void:
 func _on_CheckButton_toggled(button_pressed: bool) -> void:
 	if button_pressed:
 		if not wait:
-			G.save_stat_inf.darknessOn = true
-			G.emit_signal("darkness_changed")
-			G.save_options()
+			Save.options.darknessOn = true
+			G.darkness_changed.emit()
+			Save.save_options()
 	else:
 		change_brightness = false
 		darkness_warning.visible = true
@@ -69,9 +69,9 @@ func _on_CheckButton_toggled(button_pressed: bool) -> void:
 
 
 func _on_bright_value_changed(value: int) -> void:
-	G.save_stat_inf.darknessValue = value
+	Save.options.darknessValue = value
 	G.emit_signal("darkness_changed")
-	G.save_options()
+	Save.save_options()
 
 
 func _on_Timer_timeout() -> void:

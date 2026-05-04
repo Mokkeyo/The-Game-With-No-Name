@@ -13,7 +13,7 @@ class_name SaveStatMenu
 var copy_data_from_save: int
 
 func _unhandled_input(event: InputEvent) -> void:
-	var path: int = G.active_slot
+	var path: int = Save.active_slot
 	var save_stat: SaveStateButton = save_stats[path]
 	if save_stat.state == save_stat.States.Nothing:
 		super._unhandled_input(event)
@@ -54,8 +54,8 @@ func start_new_game() -> void:
 
 
 func start_game() -> void:
-	if save_stats[G.active_slot].file_exists:
-		G.load_data()
+	if save_stats[Save.active_slot].file_exists:
+		Save.load_data()
 		start_fader()
 	else:
 		name_enterer.visible = true
@@ -68,7 +68,7 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
-	G.save_stat_inf.playerName[G.active_slot] = line_edit.text
+	Save.options.playerName[Save.active_slot] = line_edit.text
 	line_edit.release_focus()
-	G.save_options() 
+	Save.save_options() 
 	start_new_game()

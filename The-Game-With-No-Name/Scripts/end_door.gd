@@ -13,7 +13,7 @@ var open: bool
 func _ready() -> void:
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
-	open = G.save_stat.kristallCollected[0] and G.save_stat.kristallCollected[1] and G.save_stat.kristallCollected[2]
+	open = Save.player.kristallCollected[0] and Save.player.kristallCollected[1] and Save.player.kristallCollected[2]
 	set_process_unhandled_input(open)
 	visible = open
 

@@ -10,27 +10,27 @@ func _ready() -> void:
 
 func start() -> void:
 	if volume == 0:
-		value = G.save_stat_inf.musicVolume
+		value = Save.options.musicVolume
 		set_bus_volume("Music", value)
 	elif volume == 1:
-		value = G.save_stat_inf.sfxVolume
+		value = Save.options.sfxVolume
 		set_bus_volume("SFX", value)
 	else:
-		value = G.save_stat_inf.maxVolume
+		value = Save.options.maxVolume
 		set_bus_volume("Master", value)
 
 func _on_value_changed(_value: float) -> void:
 	if volume == 0:
-		G.save_stat_inf.musicVolume = value
+		Save.options.musicVolume = value
 		set_bus_volume("Music", value)
 	elif volume == 1:
-		G.save_stat_inf.sfxVolume = value
+		Save.options.sfxVolume = value
 		set_bus_volume("SFX", value)
 	else:
-		G.save_stat_inf.maxVolume = value
+		Save.options.maxVolume = value
 		set_bus_volume("Master", value)
 	
-	G.save_options()
+	Save.save_options()
 
 
 func set_bus_volume(_bus_name: String, _s_value: float) -> void:

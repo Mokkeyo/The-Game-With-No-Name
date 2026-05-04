@@ -36,6 +36,7 @@ func damage(dmg: int, knockback: float) -> void:
 	value_changed.emit()
 	
 	if health <=  0:
+		print("health dropped to zero")
 		died.emit()
 		return
 	
@@ -44,6 +45,7 @@ func damage(dmg: int, knockback: float) -> void:
 
 
 func die() -> void:
+	print("health dropped to zero")
 	health = 0
 	
 	value_changed.emit()

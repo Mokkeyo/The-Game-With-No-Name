@@ -25,7 +25,7 @@ class_name InGame
 @onready var player_bar: Array[Control] = [$Player1, $Player2]
 @onready var panel: Panel = $Panel
 
-var player: Array[Player] = [null, null]
+@onready var player: Array[Player] = [$HBoxContainer/ViewportContainerP1/SubViewport/Player1, $HBoxContainer/ViewportContainerP1/SubViewport/Player2]
 var level: Node2D = null
 
 
@@ -33,9 +33,9 @@ func _ready() -> void:
 	G.health_value_changed.connect(on_health_value_changed)
 	G.mana_value_changed.connect(on_mana_value_changed)
 	
-	for i: int in G.save_stat.playerHp.size():
-		on_health_value_changed(i, G.save_stat.playerHp[i])
-		on_mana_value_changed(i, G.save_stat.playerMana[i])
+	for i: int in Save.player.hp.size():
+		on_health_value_changed(i, Save.player.hp[i])
+		on_mana_value_changed(i, Save.player.mana[i])
 		viewport[i].render_target_update_mode = SubViewport.UPDATE_WHEN_PARENT_VISIBLE
 
 

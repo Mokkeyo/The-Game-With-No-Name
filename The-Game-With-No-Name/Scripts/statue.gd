@@ -6,7 +6,7 @@ func _ready() -> void:
 	var allKristall:  Sprite2D = $KristallAll
 
 	for i: int in range(kristalls.size()):
-		if G.save_stat.kristallCollected[i]:
+		if Save.player.kristallCollected[i]:
 			kristalls[i].visible = true
 
-	allKristall.visible = G.save_stat.kristallCount == 3
+	allKristall.visible = Save.player.kristallCount == 3

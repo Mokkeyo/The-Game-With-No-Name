@@ -197,7 +197,7 @@ position = Vector2(-700, -140)
 door_color = "Player"
 
 [node name="Player_Spawner" parent="." unique_id=835550469 instance=ExtResource("23_1rg0k")]
-position = Vector2(191, 70)
+position = Vector2(196, 70)
 
 [node name="Area1" type="Node2D" parent="." unique_id=378622971]
 

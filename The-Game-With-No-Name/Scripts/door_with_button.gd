@@ -17,7 +17,7 @@ func _ready() -> void:
 		return
 	
 	resetComp.resetting_stats.connect(reset)
-	if G.save_stat.door.has(Door_Nr):
+	if Save.player.door.has(Door_Nr):
 		animationPlayer.play("Open")
 		door_open = true
 	else:
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func reset() -> void:
-	if not G.save_stat.door.has(Door_Nr):
+	if not Save.player.door.has(Door_Nr):
 		door_open = false
 		animationPlayer.play("RESET")
 

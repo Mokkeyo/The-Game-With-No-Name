@@ -60,7 +60,7 @@ func reset() -> void:
 	if not door:
 		return
 	
-	var door_open: bool = G.save_stat.door.has(door.Door_Nr)
+	var door_open: bool = Save.player.door.has(door.Door_Nr)
 	if door_open:
 		disable_collision()
 	

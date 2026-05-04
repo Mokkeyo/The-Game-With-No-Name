@@ -112,7 +112,7 @@ func do_attack(close: bool) -> void:
 
 
 func died() -> void:
-	if G.save_stat_inf.deaths[G.active_slot] == 0:
+	if Save.player.deaths[G.active_slot] == 0:
 		var achievment_comp: AchievmentComponent = $achievmentComponent
 		achievment_comp.add_achievment()
 	

@@ -19,11 +19,11 @@ func _ready() -> void:
 	parent = get_parent()
 	parent.set_process_unhandled_input(false)
 	
-	current_level = G.save_stat.levelNumber
+	current_level = Save.player.levelNumber
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
 	
-	if G.save_stat.kristallCollected[level_number-2]:
+	if Save.player.kristallCollected[level_number-2]:
 		state = category.DESTROYED
 	
 	door.frame = 1 if state == category.DESTROYED else 0

@@ -12,10 +12,10 @@ var state: category = category.CLOSED
 
 
 func _ready() -> void:
-	if G.save_stat.kristallCollected[level_number-2]:
+	if Save.player.kristallCollected[level_number-2]:
 		state = category.DESTROYED
 		sprite.frame = 2
-	elif G.save_stat.kristallCount == 2:
+	elif Save.player.kristallCount == 2:
 		state = category.OPEN
 		sprite.frame = 0
 	else:

@@ -753,7 +753,7 @@ position = Vector2(2261, 665)
 rotation = 1.5708
 
 [node name="Player_Spawner" parent="." unique_id=1815184127 instance=ExtResource("12")]
-position = Vector2(336, 140)
+position = Vector2(326, 140)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=706951834]
 energy = 0.2
