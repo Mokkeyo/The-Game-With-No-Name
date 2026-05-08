@@ -10,6 +10,7 @@ signal flip_value_changed
 @onready var rotater_component: FloorRotaterComponent = $FloorRotaterComponent
 
 @onready var rope_state: RopeState = $States/RopeState
+@onready var sound_player: SoundPlayer = $SoundPlayer
 
 @onready var lava_water_detector: LavaWaterDetector = $LavaWaterDetector
 @onready var sword: Sword = $Sword
@@ -61,7 +62,6 @@ func connect_camera(camera: Camera2D) -> void:
 		push_warning("Camera not connected")
 
 func _ready() -> void:
-	print(Save.player.hp)
 	combat.current_player =  current_player
 	SoundMusic.listeners.append(self)
 	movement.setup(self, lava_water_detector)
@@ -110,12 +110,18 @@ func _connect_signals() -> void:
 	health_component.died.connect(respawn)
 #	health_component.setKnockback.connect(do_knockback.bind(health_component.knockbackDuration, health_component.knockbackDirection))
 	reset_comp.resetting_stats.connect(enable_player)
+	reset_comp.setting_stats.connect(disable_player)
 	lava_water_detector.water_entered.connect(play_water_sound)
 	lava_water_detector.water_exited.connect(play_water_sound)
 	lava_water_detector.elevator_entered.connect(enter_water_elevator)
 	hitbox.damaged_enemy.connect(_on_enemy_hit)
 	movement.walljumped.connect(set_doublejump)
 	rope_state.exited_rope.connect(set_doublejump)
+
+
+func disable_player() -> void:
+	SoundMusic.listeners.erase(self)
+
 
 func set_doublejump(val: bool = true) -> void:
 	can_doublejump = val
@@ -179,7 +185,6 @@ func next_to_left_wall() -> bool: return raycast_left.is_colliding()
 
 
 func respawn() -> void:
-	print("respawning")
 	is_alive = false
 	animated_sprite.play("game_over")
 
@@ -198,12 +203,11 @@ func enable_player() -> void:
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animated_sprite.animation == "game_over":
 		reset_comp.set_stats()
-		SoundMusic.listeners.erase(self)
 		G.player_died.emit(current_player)
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if not animated_sprite.animation == animation.MAP[animation.Anim.WALK]:
+	if not animated_sprite.animation == "walk_%d" % current_player:
 		return
 	
 	if animated_sprite.frame in FOOTSTEP_FRAMES:

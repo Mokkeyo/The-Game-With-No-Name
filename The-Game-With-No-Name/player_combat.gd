@@ -5,6 +5,8 @@ signal enemy_hit(jump_power: float)
 
 @export var enemy_jump_power: int = 210
 @export var mana_timer: Timer
+@export var sound_player: SoundPlayer
+
 const MANA_COST: int = 33
 
 var spirit_ball_scene: PackedScene = preload("res://Scenes/spirit_ball.tscn")
@@ -92,6 +94,8 @@ func can_cast() -> bool:
 func cast() -> void:
 #	wand.flip(direction)
 	if Save.player.mana[current_player] >= MANA_COST and can_cast():
+		sound_player.sound = "magic"
+		sound_player.play_sound()
 		change_mana_value()
 		wand.attack()
 		activate_ball()

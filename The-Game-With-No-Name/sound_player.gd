@@ -7,4 +7,4 @@ func _ready() -> void:
 	randomize()
 
 func play_sound() -> void:
-	SoundMusic.play_sound(sound, get_parent().get_parent() as Node2D)
+	SoundMusic.play_sound(sound, get_parent() as Node2D)

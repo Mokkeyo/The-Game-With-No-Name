@@ -49,6 +49,8 @@ func handle_input() -> void:
 		return
 	
 	if player.next_to_wall():
+		player.sound_player.sound = "jump"
+		player.sound_player.play_sound()
 		var wall_dir: int = 1 if player.next_to_left_wall() else -1
 		player.movement.wall_jump(wall_dir)
 		is_walljumping = true
@@ -70,6 +72,8 @@ func cut_jump() -> void:
 		is_walljumping = false
 
 func jump() -> void:
+	player.sound_player.sound = "jump"
+	player.sound_player.play_sound()
 	player.movement.jump()
 	is_walljumping = false
 

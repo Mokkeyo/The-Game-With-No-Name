@@ -3,32 +3,43 @@ class_name VolumeSlider
 
 var start_time: float = 1
 var time_left: float = start_time
-@export_enum("musicVolume", "SfxVolume", "MaxVolume") var volume: int
+enum Sound {MASTER, MUSIC, SFX, AMBIENT}
+
+@export var sound: Sound
 
 func _ready() -> void:
 	start()
 
 func start() -> void:
-	if volume == 0:
-		value = Save.options.musicVolume
-		set_bus_volume("Music", value)
-	elif volume == 1:
-		value = Save.options.sfxVolume
-		set_bus_volume("SFX", value)
-	else:
-		value = Save.options.maxVolume
-		set_bus_volume("Master", value)
+	
+	match sound:
+		Sound.MUSIC:
+			value = Save.options.musicVolume
+			set_bus_volume("Music", value)
+		Sound.SFX:
+			value = Save.options.sfxVolume
+			set_bus_volume("SFX", value)
+		Sound.AMBIENT:
+			value = Save.options.ambientVolume
+			set_bus_volume("Ambient", value)
+		Sound.MASTER:
+			value = Save.options.maxVolume
+			set_bus_volume("Master", value)
 
 func _on_value_changed(_value: float) -> void:
-	if volume == 0:
-		Save.options.musicVolume = value
-		set_bus_volume("Music", value)
-	elif volume == 1:
-		Save.options.sfxVolume = value
-		set_bus_volume("SFX", value)
-	else:
-		Save.options.maxVolume = value
-		set_bus_volume("Master", value)
+	match sound:
+		Sound.MASTER:
+			Save.options.maxVolume = value
+			set_bus_volume("Master", value)
+		Sound.MUSIC:
+			Save.options.musicVolume = value
+			set_bus_volume("Music", value)
+		Sound.SFX:
+			Save.options.sfxVolume = value
+			set_bus_volume("SFX", value)
+		Sound.AMBIENT:
+			Save.options.ambientVolume = value
+			set_bus_volume("Ambient", value)
 	
 	Save.save_options()
 

@@ -32,7 +32,12 @@ func handle_input() -> void:
 	if player.input.attack_pressed():
 		player.combat.attack()
 	
+	if player.input.wand_pressed():
+		player.combat.cast()
+	
 	if player.input.jump_pressed():
+		player.sound_player.sound = "jump"
+		player.sound_player.play_sound()
 		player.velocity.y = 0
 		player.grab_zone.rope_part = null
 		player.grab_zone.cool_down_timer.start()

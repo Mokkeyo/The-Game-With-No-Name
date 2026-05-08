@@ -33,6 +33,8 @@ func handle_input() -> void:
 		player.animation.play(player.animation.Anim.IDLE)
 	
 	if player.input.jump_pressed():
+		player.sound_player.sound = "jump"
+		player.sound_player.play_sound()
 		player.movement.jump()
 		player.change_state("air")
 		return

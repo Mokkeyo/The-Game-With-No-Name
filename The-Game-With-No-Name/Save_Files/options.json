@@ -1,9 +1,10 @@
 {
 	"achievments": [],
+	"ambientVolume": 0.5,
 	"darknessOn": false,
 	"darknessValue": 200,
 	"deaths": [
-		5,
+		11,
 		3,
 		0,
 		0
@@ -23,11 +24,13 @@
 		"x": 1024,
 		"y": 576
 	},
-	"sfxVolume": 1.0,
+	"sfxVolume": 0.0,
 	"textboxCollected": [
-		"buschi0"
+		"buschi0",
+		"kristall",
+		"rick1"
 	],
-	"textboxCount": 1,
+	"textboxCount": 3,
 	"version": 1,
 	"vsync": false
 }

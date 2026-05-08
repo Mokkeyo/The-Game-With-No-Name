@@ -24,7 +24,7 @@ var end_rotation: float
 
 @export var combo_window: float = 0.5
 @export var cooldown: float = 0.5
-
+@export var soundPlayer: SoundPlayer
 @export var player: int = 1
 @export var max_combo: int = 3
 
@@ -56,7 +56,9 @@ func _start_attack() -> void:
 	buffered_attack = false
 	
 	state = State.ATTACKING
-	
+	if soundPlayer:
+		soundPlayer.sound = "sword"
+		soundPlayer.play_sound()
 	combo_count += 1
 	
 	match combo_count:

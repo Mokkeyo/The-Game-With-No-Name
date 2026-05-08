@@ -12,7 +12,7 @@ var active_sound: bool = false
 @export var auto_play: bool = true
 
 func _ready() -> void:
-	bus = "SFX"
+	bus = "Ambient"
 	
 	AmbientManager.instance.register(self)
 	
