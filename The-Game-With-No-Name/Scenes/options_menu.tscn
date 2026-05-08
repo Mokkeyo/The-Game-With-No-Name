@@ -230,9 +230,9 @@ offset_bottom = 271.0
 theme_override_icons/grabber = ExtResource("5")
 theme_override_icons/grabber_highlight = ExtResource("2")
 theme_override_icons/grabber_disabled = ExtResource("5")
-max_value = 0.1
-step = 0.01
-value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
 script = ExtResource("14_eatxe")
 volume = 1
 

@@ -1,7 +1,7 @@
 extends OptionButton
 class_name MaxFpsButton
 
-var Fps: Dictionary = {"0":0,
+const Fps: Dictionary = {"0":0,
 						"60":60,
 						"90":90,
 						"120":120,
@@ -25,6 +25,7 @@ func start() -> void:
 
 
 func _on_item_selected(index: int) -> void:
+	print("item selected")
 	Engine.max_fps = Fps.values()[index]
 	Save.options.maxFps = index
 	Save.save_options()

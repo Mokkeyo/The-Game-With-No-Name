@@ -5,8 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://desaq7rosii1c" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_wl07d"]
 [ext_resource type="PackedScene" uid="uid://d0n5n0m16idmh" path="res://Scenes/path_follow_component.tscn" id="5_oms2q"]
-[ext_resource type="PackedScene" uid="uid://2qfpcf84sism" path="res://sound_player.tscn" id="6_vmj2r"]
-[ext_resource type="AudioStream" uid="uid://bfr8q2yhvxnnp" path="res://Sounds/flying-blade-103343.mp3" id="7_i0k1l"]
+[ext_resource type="PackedScene" uid="uid://gnrecg4fh4ys" path="res://ambient_sound.tscn" id="6_qt216"]
 
 [sub_resource type="Animation" id="Animation_gc0oq"]
 length = 0.001
@@ -76,7 +75,5 @@ path = NodePath("..")
 target_node = NodePath("../Blade")
 speed = 150.0
 
-[node name="SoundPlayer" parent="." unique_id=1404896464 instance=ExtResource("6_vmj2r")]
-stream = ExtResource("7_i0k1l")
-volume_db = 1.0
-max_distance = 200.0
+[node name="AmbientSound" parent="." unique_id=2019004485 instance=ExtResource("6_qt216")]
+sound_id = "spin"

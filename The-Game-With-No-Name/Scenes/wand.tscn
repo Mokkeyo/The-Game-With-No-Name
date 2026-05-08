@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2aeevkukhjb3"]
+[gd_scene format=3 uid="uid://c2aeevkukhjb3"]
 
 [ext_resource type="Texture2D" uid="uid://bulntp8jnbh1w" path="res://Player/Textures/wand.png" id="1"]
 [ext_resource type="Script" uid="uid://c1so3y0bw4if7" path="res://Scripts/wand.gd" id="2"]
@@ -22,10 +22,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.39626, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="4"]
 resource_name = "swing_left"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,14 +67,13 @@ tracks/2/path = NodePath("Wand:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.261799, -0.25, 0, 0.25, 0, -0.261799, -0.25, 0, 0.25, 0, -1.39626, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.3)
+"handle_modes": PackedInt32Array(0, 0, 0, 2, 2),
+"points": PackedFloat32Array(-0.261799, -0.25, 0, 0.25, 0, -0.261799, -0.25, 0, 0.25, 0, -1.39626, -0.25, 0, 0.25, 0, -1.39626, -0.083333336, 0, 0, 0, -0.2617994, -0.03333333, -0.18907678, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.8, 1)
 }
 
 [sub_resource type="Animation" id="1"]
 resource_name = "swing_right"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -75,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,9 +105,9 @@ tracks/2/path = NodePath("Wand:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.261799, -0.25, 0, 0.25, 0, 1.39626, -0.25, 0, 0.25, 0, 1.39626, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5)
+"handle_modes": PackedInt32Array(0, 0, 0, 2, 2),
+"points": PackedFloat32Array(0.261799, -0.25, 0, 0.25, 0, 1.39626, -0.25, 0, 0.25, 0, 1.39626, -0.25, 0, 0.25, 0, 1.39626, -0.050000004, 0, 0, 0, 0.2617994, -0.03333333, 0.18907678, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yrsj2"]
@@ -119,29 +128,23 @@ properties/2/path = NodePath("Wand:visible")
 properties/2/spawn = false
 properties/2/replication_mode = 2
 
-[node name="Wand" type="Node2D"]
+[node name="Wand" type="Node2D" unique_id=486694431]
 z_index = 3
 script = ExtResource("2")
 
-[node name="Wand" type="Sprite2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1826694977]
+position = Vector2(17, 0)
+
+[node name="Wand" type="Sprite2D" parent="." unique_id=1116287827]
 position = Vector2(4.76837e-07, 1.90735e-06)
-rotation = -0.261799
+rotation = 1.39626
 texture = SubResource("CanvasTexture_ue6iv")
 offset = Vector2(0, -8)
 
-[node name="Marker2D" type="Marker2D" parent="Wand"]
-position = Vector2(0.277395, -16.4901)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1036108809]
+libraries/ = SubResource("AnimationLibrary_yrsj2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_yrsj2")
-}
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=610161869]
 replication_config = SubResource("SceneReplicationConfig_spax2")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

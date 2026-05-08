@@ -15,7 +15,6 @@ signal flip_value_changed
 @onready var sword: Sword = $Sword
 @onready var wand: Wand = $Wand
 @onready var grab_zone: GrabZone = $GrabZone
-@onready var mana_timer: Timer = $Timer/ManaTimer
 @onready var coyote_timer: Timer = $Timer/CoyoteTimer
 @onready var jump_buffer_timer: Timer = $Timer/JumpBufferTimer
 @onready var knockback_timer: Timer = $Timer/KnockbackTimer
@@ -42,7 +41,6 @@ signal flip_value_changed
 var current_state: PlayerState
 var can_doublejump: bool = true
 
-const MANA_COST: int = 33
 const FOOTSTEP_FRAMES: Array[int] = [2, 4, 6]
 const PUSH: int = 60
 
@@ -64,6 +62,7 @@ func connect_camera(camera: Camera2D) -> void:
 
 func _ready() -> void:
 	print(Save.player.hp)
+	combat.current_player =  current_player
 	SoundMusic.listeners.append(self)
 	movement.setup(self, lava_water_detector)
 	animation.setup(self, animated_sprite)
@@ -179,11 +178,6 @@ func next_to_right_wall() -> bool:return raycast_right.is_colliding()
 func next_to_left_wall() -> bool: return raycast_left.is_colliding()
 
 
-func change_mana_value() -> void:
-	Save.player.mana[current_player] -=33
-	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
-
-
 func respawn() -> void:
 	print("respawning")
 	is_alive = false
@@ -206,11 +200,6 @@ func _on_AnimatedSprite_animation_finished() -> void:
 		reset_comp.set_stats()
 		SoundMusic.listeners.erase(self)
 		G.player_died.emit(current_player)
-
-
-func _on_ManaTimer_timeout() -> void:
-	Save.player.mana[current_player] += 11
-	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:

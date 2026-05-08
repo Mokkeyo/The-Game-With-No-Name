@@ -3,7 +3,7 @@ class_name SaveStatInf
 
 @export var version: int = 1
 
-@export var deaths: Array = [0, 0, 0, 0]
+@export var deaths: Array[int] = [0, 0, 0, 0]
 @export var vsync: bool = false
 @export var musicVolume: float = 1
 @export var sfxVolume: float = 0.1
@@ -16,9 +16,9 @@ class_name SaveStatInf
 @export var darknessValue: int = 200
 @export var darknessOn: bool = true
 @export var textboxCount: int = 0
-@export var textboxCollected: Array = []
-@export var achievments: Array = []
-@export var playerName: Array = ["", "", "", ""]
+@export var textboxCollected: Array[String] = []
+@export var achievments: Array[String] = []
+@export var playerName: Array[String] = ["", "", "", ""]
 
 func to_dict() -> Dictionary:
 	return {
@@ -44,23 +44,51 @@ func to_dict() -> Dictionary:
 	}
 
 func from_dict(data: Dictionary) -> void:
-	deaths = data.get("deaths", [0,0,0,0])
+	var arr: Array = data.get("deaths", [0,0,0,0])
+	deaths.clear()
+	for v: Variant in arr:
+		if v is float:
+			deaths.append(v)
+		else:
+			push_warning("couldnt convert to int -> deaths")
+	
 	vsync = data.get("vsync", false)
 	musicVolume = data.get("musicVolume", 1.0)
 	sfxVolume = data.get("sfxVolume", 0.1)
 	maxVolume = data.get("maxVolume", 0.5)
 	printFps = data.get("printFps", false)
 	
-	var res: Dictionary = data.get("resolution", {"x":1024,"y":576})
-	if res is Dictionary[String, int]:
-		var new_res: Dictionary[String, int] = res as Dictionary[String, int]
-		resolution = Vector2i(new_res["x"], new_res["y"])
+	var res: Dictionary = data.get("resolution", {})
+	var x: int = (res.get("x", 1024))
+	var y: int = (res.get("y", 576))
+	resolution = Vector2i(x, y)
 	
 	maxFps = data.get("maxFps", 0)
 	fullscreen = data.get("fullscreen", false)
 	darknessValue = data.get("darknessValue", 200)
 	darknessOn = data.get("darknessOn", true)
 	textboxCount = data.get("textboxCount", 0)
-	textboxCollected = data.get("textboxCollected", [])
-	achievments = data.get("achievments", [])
-	playerName = data.get("playerName", ["", "", "", ""])
+	
+	arr = data.get("textboxCollected", [])
+	textboxCollected.clear()
+	for v: Variant in arr:
+		if v is String:
+			textboxCollected.append(v)
+		else:
+			push_warning("couldnt convert to string -> textboxCollected")
+	
+	achievments.clear()
+	arr = data.get("achievments", [])
+	for v: Variant in arr:
+		if v is String:
+			achievments.append(v)
+		else:
+			push_warning("couldnt convert to string -> achievments")
+	
+	playerName.clear()
+	arr = data.get("playerName", ["", "", "", ""])
+	for v: Variant in arr:
+		if v is String:
+			playerName.append(v)
+		else:
+			push_warning("couldnt convert to string -> playerName")

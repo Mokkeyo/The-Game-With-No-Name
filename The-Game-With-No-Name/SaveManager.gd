@@ -1,15 +1,55 @@
 extends Node
 class_name SaveManager
 
-const SAVE_DIR: String = "res://Save_Files"
+const SAVE_DIR: String = "res://Save_Files/"
 
 var active_slot: int = 0
 
 var player: SaveStat = SaveStat.new()
 var options: SaveStatInf = SaveStatInf.new()
+var inputs: Dictionary = {}
 
 func _ready() -> void:
 	ensure_dir()
+
+
+func delete_data() -> void:
+	var file_path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
+	if FileAccess.file_exists(file_path):
+		var err: Error = DirAccess.remove_absolute(file_path)
+		if not err == OK:
+			push_error("Could not delete save files %s" % file_path)
+	
+	var temp_index: int = active_slot
+	
+	if temp_index < 0:
+		return
+	
+	if temp_index < options.deaths.size():
+		options.deaths[temp_index] = 0
+	if temp_index < options.playerName.size():
+		options.playerName[temp_index] = ""
+	save_options()
+
+
+func start_new_game() -> void:
+	for i: int in player.kristallCollected.size():
+		player.kristallCollected[i] = false
+		
+		if i < player.hp.size():
+			player.hp[i] = 100
+		if i < player.mana.size():
+			player.mana[i] = 99
+		if i < player.finished.size():
+			player.finished[i] = false
+	
+	player.levelNumber = 1
+	player.checkpointActive = false
+	player.checkpointPosition = Vector2(0, 0)
+	player.kristallCount = 0
+	if player.door:
+		player.door.clear() 
+	save_data()
 
 #-------------------
 #SAVE
@@ -30,7 +70,7 @@ func save_options() -> void:
 
 func save_inputs() -> void:
 	var path: String = SAVE_DIR  +  "inputs.json"
-	var i_data: Dictionary = InputSerializer.inputmap_to_dict(InputMap.get_actions())
+	var i_data: Dictionary = inputs
 	save_json(path, i_data)
 
 #-------------------
@@ -41,6 +81,7 @@ func load_all() -> void:
 	load_data()
 	load_options()
 	load_inputs()
+
 
 func load_data() -> void:
 	var path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
@@ -53,6 +94,7 @@ func load_data() -> void:
 	
 	player.from_dict(a_data)
 
+
 func load_options() -> void:
 	var path: String = SAVE_DIR + "options.json"
 	var o_data: Dictionary = load_json(path)
@@ -61,8 +103,9 @@ func load_options() -> void:
 		push_warning("Options missing -> fallback to defaults")
 		save_options()
 		return
-
+	
 	options.from_dict(o_data)
+
 
 func load_inputs() -> void:
 	var path: String = SAVE_DIR + "inputs.json"
@@ -71,6 +114,8 @@ func load_inputs() -> void:
 	if i_data.is_empty():
 		push_warning("Inputs missing -> fallback to defaults")
 		apply_default_inputs()
+		
+		inputs = InputSerializer.inputmap_to_dict(InputMap.get_actions())
 		save_inputs()
 		return
 	
@@ -78,9 +123,13 @@ func load_inputs() -> void:
 		push_warning("Invalid inputdata -> fallback")
 		apply_default_inputs()
 		DirAccess.copy_absolute(path, path + ".bak")
+		
+		inputs = i_data
 		return
 	
+	inputs = i_data
 	InputSerializer.apply_inputmap_from_dict(i_data)
+
 
 func apply_default_inputs() -> void:
 	InputMap.load_from_project_settings()
@@ -110,7 +159,6 @@ func validate_input_data(i_data: Dictionary) -> bool:
 #-------------------
 
 func save_json(path: String, j_data: Dictionary) -> void:
-	print("SAVING FILE: ", path)
 	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if not file:
 		push_error("Save failed: " + path)
@@ -118,6 +166,7 @@ func save_json(path: String, j_data: Dictionary) -> void:
 	
 	file.store_string(JSON.stringify(j_data, "\t"))
 	file.close()
+
 
 func load_json(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
@@ -138,6 +187,7 @@ func load_json(path: String) -> Dictionary:
 		return {}
 	
 	return result
+
 
 func ensure_dir() -> void:
 	if not DirAccess.dir_exists_absolute(SAVE_DIR):

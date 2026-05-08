@@ -1,8 +1,8 @@
 extends Path2D
 
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-@onready var soundPlayer: SoundPlayer = $SoundPlayer
 
 func _ready() -> void:
 	animationPlayer.play("default")
+#	SoundMusic.play
 #	soundPlayer.play_sound()

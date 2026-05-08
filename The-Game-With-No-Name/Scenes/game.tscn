@@ -128,9 +128,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("7")
 
-[node name="InGame" parent="." unique_id=470547863 node_paths=PackedStringArray("game") instance=ExtResource("2_5u1uf")]
+[node name="InGame" parent="." unique_id=470547863 instance=ExtResource("2_5u1uf")]
 layout_mode = 0
-game = NodePath("..")
 
 [node name="Fader" parent="." unique_id=2046222908 instance=ExtResource("6")]
 layout_mode = 0
@@ -189,6 +188,7 @@ text = "Boss Galaga"
 layout_mode = 0
 
 [node name="pause" parent="." unique_id=1356872677 instance=ExtResource("1")]
+visible = false
 layout_mode = 0
 
 [node name="respawnTimer" type="Timer" parent="." unique_id=829841168]

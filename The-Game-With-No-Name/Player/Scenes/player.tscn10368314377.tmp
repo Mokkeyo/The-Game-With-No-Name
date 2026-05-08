@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://c5jeoieamn26c" path="res://water_elevator_state.tscn" id="21_ut808"]
 [ext_resource type="Script" uid="uid://dav4w6647w5l2" path="res://movement_component.gd" id="22_17k2o"]
 [ext_resource type="Script" uid="uid://b4bpfmt4j5jbn" path="res://player_combat.gd" id="23_e0sep"]
-[ext_resource type="Script" uid="uid://cklu2hoktc5qs" path="res://footstep_sound_component.gd" id="27_p0l7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -380,7 +379,7 @@ one_shot = true
 
 [node name="ManaTimer" type="Timer" parent="Timer" unique_id=1631981843]
 wait_time = 4.0
-autostart = true
+one_shot = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=792709323]
 position = Vector2(-6, -11)
@@ -393,16 +392,15 @@ rotation = -1.5708
 target_position = Vector2(0, 2)
 
 [node name="Wand" parent="." unique_id=888359733 instance=ExtResource("8")]
-position = Vector2(1, -9)
+position = Vector2(-1, -6)
 
 [node name="States" type="Node" parent="." unique_id=1379711675]
 
 [node name="AirState" type="Node" parent="States" unique_id=1218908159]
 script = ExtResource("15_1yy2w")
 
-[node name="GroundState" type="Node" parent="States" unique_id=1094023002 node_paths=PackedStringArray("footstep_sound")]
+[node name="GroundState" type="Node" parent="States" unique_id=1094023002]
 script = ExtResource("16_bf386")
-footstep_sound = NodePath("../../Footstep_comp")
 
 [node name="LaunchState" type="Node" parent="States" unique_id=289280729]
 script = ExtResource("17_17k2o")
@@ -424,20 +422,14 @@ script = ExtResource("21_p0l7e")
 [node name="PlayerMovement" type="Node" parent="." unique_id=598592374]
 script = ExtResource("22_17k2o")
 
-[node name="PlayerCombat" type="Node" parent="." unique_id=51226752 node_paths=PackedStringArray("mana_timer")]
+[node name="PlayerCombat" type="Node" parent="." unique_id=51226752]
 script = ExtResource("23_e0sep")
-mana_timer = NodePath("../Timer/ManaTimer")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=90872901]
 
 [node name="Sword" parent="." unique_id=1619429573 instance=ExtResource("9")]
 position = Vector2(-4.0000005, -10)
 rotation = -2.5307274
-
-[node name="SoundEffects" type="Node" parent="." unique_id=528319393]
-
-[node name="Footstep_comp" type="Node" parent="." unique_id=1806095580]
-script = ExtResource("27_p0l7e")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

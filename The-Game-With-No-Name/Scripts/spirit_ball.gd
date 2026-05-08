@@ -1,14 +1,16 @@
 extends Node2D
 class_name  SpiritBall
 
+signal died(value: SpiritBall)
+
+var life_time: float = 0.58
+
 var left: bool = false
-var time: float = 0.58
+var time: float = life_time
 
-@onready var hitBox: HitBox = $Hitbox
+@onready var hit_box: HitBox = $Hitbox
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-func _ready() -> void:
-	var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-	animatedSprite.flip_h = left
 
 func _process(delta: float) -> void:
 	time -= delta
@@ -17,4 +19,4 @@ func _process(delta: float) -> void:
 	global_position += move * 300 * delta
 	
 	if time < 0:
-		queue_free()
+		died.emit(self)

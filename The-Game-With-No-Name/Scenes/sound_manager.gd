@@ -3,6 +3,7 @@ class_name SoundManagerInstance
 
 var sfx_pool: Array[AudioStreamPlayer2D] = []
 const POOL_SIZE:int = 20
+
 const MAX_HEARING_DISTANCE: int = 150
 
 var last_frame_played : Dictionary = {}

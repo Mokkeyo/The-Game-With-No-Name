@@ -3,12 +3,14 @@ class_name Controlls
 
 var player: int = 0
 var previous_device: String
-var waiting_for_input: bool = false
 var mouse_position: Vector2
 
-@onready var canvas_layer: Control = $CanvasLayer
+enum State {IDLE, CONTROLLER_ASSIGN, INPUT_MAPPING}
+var state: State = State.IDLE
+
+@onready var assign_ui: Control = $UI/AssignUI
 @onready var assign_controller_btn: Button = $ControllButtons/AssignController
-@onready var player_controlls_label: Label = $PlayerControlls/PlayerLabel
+@onready var player_controlls_label: Label = $UI/PlayerControlls/PlayerLabel
 
 var player_inputs: Array[String] = ["_up", "_down", "_left", "_right", "_jump", "_attack", "_wand", "_interact", "_spawn"]
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 		Ki.rebinding_started.connect(disable_all_buttons)
 		Ki.remap_key.connect(remap_key)
 		keyboard_inputs.append(Ki)
+		
 	for Ci: CInputButton in controller_buttons.get_children():
 		Ci.rebinding_started.connect(disable_all_buttons)
 		Ci.remap_key.connect(remap_key)
@@ -32,39 +35,35 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not waiting_for_input:
-		super._unhandled_input(event)
-		
-	if Input.is_action_just_pressed("escape"):
-		reset_controller_assignment()
-		var timer: Timer = Timer.new()
-		add_child(timer)
-		timer.start(0.1)
-		await timer.timeout
-		waiting_for_input = false
-		timer.queue_free()
-		return
+	match state:
+		State.IDLE:
+			super._unhandled_input(event)
+		State.CONTROLLER_ASSIGN:
+			if not Input.is_action_just_pressed("escape"):
+				return
+			
+			reset_controller_assignment()
+			var timer: Timer = Timer.new()
+			add_child(timer)
+			timer.start(0.1)
+			await timer.timeout
+			state = State.IDLE
+			timer.queue_free()
+			return
 		
 	if event.is_pressed() and event is InputEventJoypadButton:
-		handle_controller_assignment(event.device)
+		handle_device_assignment(event.device)
 
 
-func handle_controller_assignment(device: int) -> void:
-	var temp_player: int = player
-	var previous: int = G.saved_input_map.device[player]
-	var other_player: int = 1 - temp_player
-	
-	G.saved_input_map.device[temp_player] = device
-	
-	if G.saved_input_map.device[other_player] == device:
-		G.saved_input_map.device[other_player] = previous
-
+func handle_device_assignment(device: int) -> void:
+	InputSerializer.change_device_for_player(Save.inputs, player, device)
+	InputSerializer.apply_inputmap_from_dict(Save.inputs)
 	Save.save_inputs()
 	reset_controller_assignment()
 
 
 func reset_controller_assignment() -> void:
-	canvas_layer.visible = false
+	assign_ui.visible = false
 
 
 func change_input_device(device_name: String) -> void:
@@ -73,6 +72,37 @@ func change_input_device(device_name: String) -> void:
 		for input_btn: CInputButton in controller_inputs:
 			input_btn.input_device = device_name
 			input_btn.display_key()
+
+
+func restore_default_bindings() -> void:
+	var defaults: Array[Array] = [
+		[KEY_W, KEY_S, KEY_A, KEY_D, KEY_SPACE, MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT, KEY_SHIFT, KEY_Q],
+		[KEY_T, KEY_G, KEY_F, KEY_H, KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_DOWN, KEY_R]
+	]
+	
+	for i: int in defaults[player].size():
+		if i >= 5 and i <= 6 and player == 0:
+			var ev: InputEventMouseButton
+			ev = InputEventMouseButton.new()
+			ev.button_index = defaults[player][i]
+			remap_key("player%d%s" % [player + 1, player_inputs[i]], ev, false)
+		else:
+			var ev: InputEventKey
+			ev = InputEventKey.new()
+			ev.keycode = defaults[player][i]
+			remap_key("player%d%s" % [player + 1, player_inputs[i]], ev, false)
+	display_key()
+	Save.save_inputs()
+
+
+
+func remap_key(action: String, event: InputEvent, save: bool = true) -> void:
+	InputSerializer.set_inputs(Save.inputs, action, event)
+	
+	InputSerializer.apply_action_from_dict(Save.inputs, action)
+	
+	if save:
+		Save.save_inputs()
 
 
 func changePlayer(current_player: int) -> void:
@@ -91,51 +121,13 @@ func changePlayer(current_player: int) -> void:
 	display_key()
 
 
-func remap_key(action: String, device_index: int, event: InputEvent, save: bool = true) -> void:
-	if not G.saved_input_map.inputMap.has(action):
-		G.saved_input_map.inputMap[action] = [null, null]
-	if G.saved_input_map.inputMap[action].size() < 2:
-		G.saved_input_map.inputMap[action].resize(2)
-	G.saved_input_map.inputMap[action][device_index] = event
-	
-	var arr: Array = G.saved_input_map.inputMap[action]
-	
-	InputMap.action_erase_events(action)
-	for ev:  InputEvent in arr:
-		if ev:
-			InputMap.action_add_event(action, ev)
-	if save:
-		G.save_inputs()
-
-
 func disable_all_buttons(disable: bool) -> void:
-	waiting_for_input = disable
+	state = State.INPUT_MAPPING if disable else State.IDLE
 	if disable:
 		mouse_position = get_viewport().get_mouse_position()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if disable else Input.MOUSE_MODE_VISIBLE
 	if not disable:
 		Input.warp_mouse(mouse_position)
-
-
-func restore_default_bindings() -> void:
-	var defaults: Array[Array] = [
-		[KEY_W, KEY_S, KEY_A, KEY_D, KEY_SPACE, MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT, KEY_SHIFT, KEY_Q],
-		[KEY_T, KEY_G, KEY_F, KEY_H, KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_DOWN, KEY_R]
-	]
-	
-	for i: int in defaults[player].size():
-		if i >= 5 and i <= 6 and player == 0:
-			var ev: InputEventMouseButton
-			ev = InputEventMouseButton.new()
-			ev.button_index = defaults[player][i]
-			remap_key("player%d%s" % [player + 1, player_inputs[i]], 0, ev, false)
-		else:
-			var ev: InputEventKey
-			ev = InputEventKey.new()
-			ev.keycode = defaults[player][i]
-			remap_key("player%d%s" % [player + 1, player_inputs[i]], 0, ev, false)
-	display_key()
-	G.save_inputs()
 
 
 func display_key() -> void:
@@ -149,7 +141,7 @@ func display_key() -> void:
 
 
 func _on_assign_controller_pressed() -> void:
-	canvas_layer.visible = true
+	assign_ui.visible = true
 	assign_controller_btn.disabled = true
 	assign_controller_btn.grab_focus()
 

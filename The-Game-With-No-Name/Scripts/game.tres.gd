@@ -51,6 +51,7 @@ func setup_level(level_number: int) -> void:
 			set_player_positions()
 		else:
 			in_game.player[i].global_position = player_spawner.global_position
+			in_game.pet[i].global_position = player_spawner.global_position
 			if player_alive[i]:
 				print(in_game.player[i].global_position, player_spawner.global_position)
 				continue
@@ -59,14 +60,19 @@ func setup_level(level_number: int) -> void:
 	
 	if level_has_camera():
 		print("not conneting camera to player")
+		in_game.camera[0].enabled = false
+		in_game.camera[1].enabled = false
 		in_game._set_player_viewport(0, 1024, true)
 		in_game._set_player_viewport(1, 0, false)
 		
 	await get_tree().process_frame
 	fader.fade_in()
 	set_player_position_to(door_name)
-	
+
+
 func add_level(level_number: int) -> void:
+	for player: Player in in_game.player:
+		player.reset_comp.set_stats()
 	var currentLevel: PackedScene = load("res://Level/level_%d.tscn" % level_number)
 	current_level_number = level_number
 	level = currentLevel.instantiate()
@@ -125,8 +131,13 @@ func set_player_position_to(d_name: String) -> void:
 			push_warning(d_name+ " not found")
 			return
 		
-		for player: Player in in_game.player:
-			player.global_position = door.global_position
+		for i: int in in_game.player.size():
+			if player_alive[i]:
+				in_game.player[i].reset_comp.reset_stats()
+				in_game.player[i].global_position = door.global_position
+				in_game.pet[i].global_position = door.global_position
+			else:
+				in_game.player[i].reset_comp.set_stats()
 			door_name = ""
 
 #Penis
@@ -146,8 +157,10 @@ func set_player_positions() -> void:
 	for i: int in player_size:
 		if player_alive[i] and in_game.player[i]:
 			if Save.player.checkpointActive:
+				in_game.player[i].reset_comp.reset_stats()
 				in_game.player[i].global_position = Save.player.checkpointPosition 
 			else:
+				in_game.player[i].reset_comp.reset_stats()
 				in_game.player[i].global_position = player_spawner.global_position
 
 
@@ -180,7 +193,7 @@ func change_level(level_number: int, d_name: String) -> void:
 #		await get_tree().process_frame
 		fader.fade_in()
 	
-	
+	Save.save_data()
 	print("Reload duration: ", Time.get_ticks_msec() - start_time, "ms")
 
 
@@ -201,7 +214,7 @@ func on_player_count_changed(player: int) -> void:
 	if player > -1:
 		respawn_timer.start()
 	if not level_has_camera():
-		in_game.set_viewport_size()
+		in_game.set_viewport_size(player_alive)
 
 
 func level_has_camera() -> bool:
@@ -220,6 +233,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			var player: Player = in_game.player[i]
 			player.reset_comp.reset_stats()
 			player.global_position = player_position
+			in_game.pet[i].global_position = player_position
 			
 			if player_spawner.airship_spawner:
 				player_spawner.airship_spawner.set_airship_respawn_position(i, player_position)
@@ -227,7 +241,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			
 			set_process_unhandled_input(false)
 			if not level_has_camera():
-				in_game.set_viewport_size()
+				in_game.set_viewport_size(player_alive)
 			break
 
 

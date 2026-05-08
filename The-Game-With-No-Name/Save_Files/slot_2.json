@@ -1,0 +1,35 @@
+{
+	"checkpointActive": false,
+	"checkpointPosition": {
+		"x": 0.0,
+		"y": 0.0
+	},
+	"door": [],
+	"enemysDefeated": [],
+	"finished": [
+		false,
+		false,
+		false
+	],
+	"hp": [
+		100.0,
+		100.0
+	],
+	"kristallCollected": [
+		true,
+		true,
+		true,
+		false,
+		false,
+		false,
+		false,
+		false
+	],
+	"kristallCount": 3,
+	"levelNumber": 6,
+	"mana": [
+		99.0,
+		99.0
+	],
+	"version": 1
+}

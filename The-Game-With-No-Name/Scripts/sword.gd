@@ -1,110 +1,201 @@
 extends Node2D
 class_name Sword
 
-enum SwordState {IDLE, ATTACKING, COOLDOWN}
+enum State {IDLE, ATTACKING, COMBO_WINDOW, COOLDOWN}
+var state: State = State.IDLE
+
+var facing_direction: Vector2 = Vector2.RIGHT
+
+var tween: Tween
+
+var buffered_attack: bool = false
+var combo_count: int = 0
+
+var default_rotation: float
+var default_position: Vector2
+
+var end_position: Vector2
+var end_rotation: float
+
+@onready var hit_box: HitBox = %Hitbox
+@onready var buffer_timer: Timer = $BufferTimer
+@onready var cooldown_timer: Timer = $CooldownTimer
+@onready var combo_timer: Timer = $ComboTimer
+
+@export var combo_window: float = 0.5
+@export var cooldown: float = 0.5
 
 @export var player: int = 1
-@export var sword_left: bool = false
+@export var max_combo: int = 3
 
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var hit_box: HitBox = $Sprite2D/Hitbox
-@onready var visible_timer: Timer = $VisibleTimer
-@onready var cooldown_timer: Timer = $AttackTimer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var combo_reset_timer: Timer = $ComboTimer
-@onready var input_buffer_timer: Timer = $InputBufferTimer
-
-const ROTATION_UP: int = 40
-const ROTATION_DOWN: int = 140
-
-var state: SwordState = SwordState.IDLE
-var swing_down: bool = true
-
-const MAX_COMBO: int = 3
-const NORMAL_COOLDOWN: float = 0.2
-const COMBO_COOLDOWN: float = 1
-const COMBO_RESET_TIME:float =  0.6
-const INPUT_BUFFER_TIME: float = 0.15
-
-var attack_buffered: bool = false
-
-var combo: int = 0
 
 func _ready() -> void:
-	visible = G.battle_mode and G.sword
+	default_rotation = rotation_degrees
+	default_position = position
+	
+	hit_box.monitoring = false
 
 
 func try_attack() -> void:
-	if state == SwordState.IDLE:
-		attack()
-	else:
-		buffer_attack()
+	match state:
+		State.IDLE:
+			_start_attack()
+		State.ATTACKING:
+			_buffer_attack()
+		State.COMBO_WINDOW:
+			_start_attack()
+		State.COOLDOWN:
+			pass
+
+func _buffer_attack() -> void:
+	buffered_attack = true
+	buffer_timer.start()
 
 
-func buffer_attack() -> void:
-	attack_buffered = true
-	input_buffer_timer.start(INPUT_BUFFER_TIME)
+func _start_attack() -> void:
+	buffered_attack = false
+	
+	state = State.ATTACKING
+	
+	combo_count += 1
+	
+	match combo_count:
+		1:
+			attack_downslash()
+		2:
+			attack_risingslash()
+		3:
+			attack_thrust()
+	
+	
+	combo_timer.stop()
 
 
-func attack() -> void:
-	if not state == SwordState.IDLE:
+func _finish_attack() -> void:
+	if combo_count >= max_combo:
+		enter_cooldown()
 		return
 	
-	state = SwordState.ATTACKING
-	combo += 1
-	visible = true
+	state = State.COMBO_WINDOW
+	combo_timer.start(combo_window)
 	
-	combo_reset_timer.start(COMBO_RESET_TIME)
-	visible_timer.start()
-	cooldown_timer.start(COMBO_COOLDOWN if combo >= MAX_COMBO else NORMAL_COOLDOWN)
-#	SoundMusic.play_sound_effect("sword")
+	if buffered_attack:
+		buffered_attack = false
+		
+		combo_timer.stop()
+		
+		_start_attack()
+
+
+func reset_stats() -> void:
+	rotation_degrees = end_rotation
+	position = end_position
+	combo_count = 0
+
+
+func enter_cooldown() -> void:
+	state = State.COOLDOWN
+	cooldown_timer.start(cooldown)
+	reset_stats()
+
+
+func reset_combo() -> void:
+	state = State.IDLE
+	buffered_attack = false
+	reset_stats()
+
+
+func attack_slash(start_angle: float, end_angle: float, slash_duration: float = 0.1, recovery_duration: float = 0.12) -> void:
+	stop_attack_tween()
 	
-	play_swing_animation()
-	swing_down = not swing_down
-
-
-func play_swing_animation() -> void:
-	var side: String = "Left" if sword_left else "Right"
-	var dir: String = "Down" if swing_down else "Up"
-	animation_player.play("Swing%s(%s)" % [side, dir])
-
-
-func flip(direction: int) -> void:
-	if not state == SwordState.IDLE:
-		return
-	hit_box.knockback = 10 * direction
-	sword_left = direction < 0
-	sprite.rotation = direction * ROTATION_UP if swing_down else direction * ROTATION_DOWN
-
-
-func _on_AttackTimer_timeout() -> void:
-	state = SwordState.IDLE
+	position = default_position
 	
-	if combo >= MAX_COMBO:
-		combo = 0
+	var base_angle: float = rad_to_deg(facing_direction.angle())
 	
-	if attack_buffered:
-		attack_buffered = false
-		attack()
+	if facing_direction.x < 0:
+		var temp: float = start_angle
+		start_angle = end_angle
+		end_angle = temp
+	
+	start_angle += base_angle
+	end_angle += base_angle
+	
+	rotation_degrees = start_angle
+	
+	tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(self, "rotation_degrees", start_angle, 0.04)
+	tween.tween_callback(enable_hitbox)
+	
+	tween.tween_property(self, "rotation_degrees", end_angle, slash_duration)
+	tween.tween_callback(disable_hitbox)
+	
+	tween.tween_property(self, "rotation_degrees", end_angle, recovery_duration)
+	tween.finished.connect(_finish_attack)
 
 
-func _on_VisibleTimer_timeout() -> void:
-	sprite.visible = false
+func attack_downslash() -> void:
+	attack_slash(0, 180, 0.10)
 
+
+func attack_risingslash() -> void:
+	attack_slash(180, 0, 0.12)
+
+
+func attack_thrust() -> void:
+	stop_attack_tween()
+	
+	position = default_position
+	
+	var thrust_target: Vector2 = default_position + facing_direction * 8
+	var pullback_target: Vector2 = default_position - facing_direction * 4
+	
+	var base_angle: float = rad_to_deg(facing_direction.angle())
+	
+	rotation_degrees = base_angle + 90
+	
+	tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.parallel().tween_property(self, "position", pullback_target, 0.04)
+	tween.tween_callback(enable_hitbox)
+	
+	tween.tween_property(self, "position", thrust_target, 0.08)
+	tween.tween_callback(disable_hitbox)
+	
+	tween.tween_property(self, "position", default_position, 0.12)
+	tween.parallel().tween_property(self, "rotation_degrees", base_angle, 0.12)
+	
+	tween.finished.connect(_finish_attack)
+
+
+func enable_hitbox() -> void:
+	hit_box.monitoring = true
+
+
+func disable_hitbox() -> void:
+	hit_box.monitoring = false
+
+
+func stop_attack_tween() -> void:
+	if tween:
+		tween.kill()
+
+func _on_cooldown_timer_timeout() -> void:
+	state = State.IDLE
 
 func _on_combo_timer_timeout() -> void:
-	if state == SwordState.IDLE:
-		combo = 0
+	reset_combo()
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	if state == SwordState.ATTACKING:
-		state = SwordState.COOLDOWN
+	_finish_attack()
 
 
-func _on_input_buffer_timer_timeout() -> void:
-	attack_buffered = false
-
-
-func _on_attack_timer_timeout() -> void:
-	pass # Replace with function body.
+func _on_buffer_timer_timeout() -> void:
+	buffered_attack = false

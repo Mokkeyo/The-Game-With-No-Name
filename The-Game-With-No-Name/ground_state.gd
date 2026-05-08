@@ -1,6 +1,8 @@
 extends PlayerState
 class_name GroundState
 
+var dir: Vector2
+@export var footstep_sound: FootStepComp
 
 func enter() -> void:
 	player.can_doublejump = true
@@ -11,19 +13,22 @@ func enter() -> void:
 func exit() -> void:
 	player.rotater_component.rotate_sprite(0)
 	player.floor_snap_length = 0
-
+	dir = Vector2.ZERO
 
 func handle_input() -> void:
-	var dir: int = player.input.move_dir()
+	dir = Vector2(player.input.move_dir(), player.input.y_dir())
+	
+	player.combat.flip_wand(dir)
 	
 	player.movement.move_horizontal(
-		dir, 
+		dir.x, 
 		player.combat.is_attacking()
-		)
-		
-	if not dir == 0:
-		player.animation.flip(dir < 0)
+	)
+	
+	if not dir.x == 0:
+		player.animation.flip(dir.x < 0)
 		player.animation.play(player.animation.Anim.WALK)
+		
 	else:
 		player.animation.play(player.animation.Anim.IDLE)
 	
@@ -32,17 +37,18 @@ func handle_input() -> void:
 		player.change_state("air")
 		return
 	
-	if player.input.attack_pressed() and player.combat.can_attack():
-		player.combat.attack(dir)
+	if player.input.attack_pressed():
+		player.combat.attack()
 	
-	if player.input.wand_pressed() and player.combat.can_cast():
-		player.combat.cast(dir)
+	if player.input.wand_pressed():
+		player.combat.cast()
 	
 	if player.input.interact_pressed():
 		player.handle_airship_entry()
 
 func physics_update(_delta: float) -> void:
 	player.rotater_component.update_rotation()
+	player.combat.change_sword_direction(dir, player.animated_sprite.rotation_degrees)
 	
 	var on_moving_plattform: bool = player.get_platform_velocity().length() > 0.01
 	var is_flat: bool = player.get_floor_angle() == 0

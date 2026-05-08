@@ -33,7 +33,7 @@ func _on_value_changed(_value: float) -> void:
 	Save.save_options()
 
 
-func set_bus_volume(_bus_name: String, _s_value: float) -> void:
-	pass
-#	var bus_index: int = AudioServer.get_bus_index(bus_name)
-#	AudioServer.set_bus_volume_db(bus_index, linear_to_db(s_value))
+func set_bus_volume(bus_name: String, s_value: float) -> void:
+	var bus_index: int = AudioServer.get_bus_index(bus_name)
+	var s_volume: float = max(s_value, 0.001)
+	AudioServer.set_bus_volume_db(bus_index,linear_to_db(s_volume))

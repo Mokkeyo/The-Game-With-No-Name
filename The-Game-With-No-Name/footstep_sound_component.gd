@@ -1,4 +1,5 @@
 extends Node
+class_name FootStepComp
 
 var tilemaps: Array[TileMapLayer] = []
 

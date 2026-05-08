@@ -83,7 +83,6 @@ clip_text = true
 expand_icon = true
 script = ExtResource("1")
 action = "jump"
-device_index = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1139060203]
 visible = false

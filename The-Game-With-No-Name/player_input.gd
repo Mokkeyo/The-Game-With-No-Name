@@ -10,6 +10,11 @@ func set_walljumping() -> void:
 func setup(input_map: Dictionary) -> void:
 	inputs = input_map
 
+
+func y_dir() -> int:
+	return int(Input.is_action_pressed(inputs["down"])) \
+		 - int(Input.is_action_pressed(inputs["up"]))
+
 func move_dir() -> int:
 	return int(Input.is_action_pressed(inputs["right"])) \
 		 - int(Input.is_action_pressed(inputs["left"]))

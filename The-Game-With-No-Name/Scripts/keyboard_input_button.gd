@@ -32,19 +32,19 @@ func handle_input(event: InputEvent) -> InputEvent:
 
 
 func display_key() -> void:
-	var events: Array[InputEvent] = get_key()
-	var ev: InputEvent = events[device_index]
+	var event: InputEvent = InputSerializer.get_event_from_action(Save.inputs, action, device_index)
 	
-	if not ev:
+	if not event:
 		sprite.visible = false
 		text = ""
 		return
 	
-	if ev is InputEventKey:
+	if event is InputEventKey:
 		sprite.visible = false
-		text = ev.as_text()
-	elif ev is InputEventMouseButton:
-		var mouse_ev: InputEventMouseButton = ev as InputEventMouseButton
+		var temp_text: String = event.as_text().replace(" - Physical", "")
+		text = temp_text
+	elif event is InputEventMouseButton:
+		var mouse_ev: InputEventMouseButton = event as InputEventMouseButton
 		var tex: Texture2D = mouse_sprites.get(mouse_ev.button_index)
 		if tex:
 			sprite.texture = tex

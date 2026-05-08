@@ -8,24 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bob0eucjbifmb" path="res://Scenes/controller_input_button.tscn" id="10_4wto1"]
 [ext_resource type="Texture2D" uid="uid://damabjs4xy6pq" path="res://GuiElements/Textures/circle.png" id="11_kr0n2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugkq1"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6oirf"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4wo5"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drumt"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ona7q"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_764cp"]
-bg_color = Color(0, 0, 0, 1)
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_57f8v"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_p7i4s"]
@@ -172,6 +154,24 @@ cache/0/65/0/kerning_overrides/32/0 = Vector2(0, 0)
 cache/0/65/0/kerning_overrides/40/0 = Vector2(0, 0)
 cache/0/65/0/kerning_overrides/65/0 = Vector2(0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugkq1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6oirf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4wo5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drumt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ona7q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_764cp"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqwue"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -186,87 +186,6 @@ offset_bottom = 576.0
 script = ExtResource("2")
 startButton = NodePath("ControllButtons/Back")
 exitButton = NodePath("ControllButtons/Back")
-
-[node name="Rahmen" type="Control" parent="." unique_id=192733560]
-anchors_preset = 0
-offset_left = 12.0
-offset_top = 33.0
-offset_right = 1010.0
-offset_bottom = 543.0
-
-[node name="Panel" type="Panel" parent="Rahmen" unique_id=418132632]
-layout_mode = 0
-offset_left = 992.0
-offset_right = 998.0
-offset_bottom = 510.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ugkq1")
-
-[node name="Panel2" type="Panel" parent="Rahmen" unique_id=1195538524]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 504.0
-offset_right = 992.0
-offset_bottom = 510.0
-pivot_offset = Vector2(356, 2)
-theme_override_styles/panel = SubResource("StyleBoxFlat_6oirf")
-
-[node name="Panel3" type="Panel" parent="Rahmen" unique_id=895420178]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 6.0
-offset_right = 336.0
-offset_bottom = 504.0
-pivot_offset = Vector2(-244, 168)
-theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
-
-[node name="Panel10" type="Panel" parent="Rahmen" unique_id=1068506919]
-layout_mode = 0
-offset_left = 578.0
-offset_top = 52.0
-offset_right = 584.0
-offset_bottom = 506.0
-pivot_offset = Vector2(-244, 168)
-theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
-
-[node name="Panel11" type="Panel" parent="Rahmen" unique_id=16641399]
-layout_mode = 0
-offset_left = 784.0
-offset_top = 52.0
-offset_right = 790.0
-offset_bottom = 504.0
-pivot_offset = Vector2(-244, 168)
-theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
-
-[node name="Panel4" type="Panel" parent="Rahmen" unique_id=1147742916]
-layout_mode = 0
-offset_right = 6.0
-offset_bottom = 510.0
-pivot_offset = Vector2(-244, 168)
-theme_override_styles/panel = SubResource("StyleBoxFlat_drumt")
-
-[node name="Panel5" type="Panel" parent="Rahmen" unique_id=1859663235]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 52.0
-offset_right = 992.0
-offset_bottom = 58.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
-
-[node name="Panel9" type="Panel" parent="Rahmen" unique_id=298775163]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 90.0
-offset_right = 994.0
-offset_bottom = 96.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
-
-[node name="Panel8" type="Panel" parent="Rahmen" unique_id=2127637862]
-layout_mode = 0
-offset_left = 6.0
-offset_right = 992.0
-offset_bottom = 6.0
-pivot_offset = Vector2(356, 2)
-theme_override_styles/panel = SubResource("StyleBoxFlat_764cp")
 
 [node name="ControllButtons" type="Control" parent="." unique_id=78734557]
 anchors_preset = 0
@@ -320,6 +239,7 @@ theme_override_fonts/normal_font = ExtResource("3_rlqrm")
 theme_override_font_sizes/normal_font_size = 20
 text = "    Assign
  Controller"
+metadata/_edit_lock_ = true
 
 [node name="Player1Button" parent="ControllButtons" unique_id=1923246423 instance=ExtResource("7_7ov7i")]
 layout_mode = 0
@@ -343,18 +263,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_p7i4s")
 text = "Player 2"
 
-[node name="Controlls" type="Label" parent="ControllButtons" unique_id=918872659]
-layout_mode = 0
-offset_top = 10.0
-offset_right = 324.0
-offset_bottom = 58.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("23")
-theme_override_font_sizes/font_size = 48
-text = "Controlls"
-horizontal_alignment = 1
-
 [node name="Back" parent="ControllButtons" unique_id=1059582130 instance=ExtResource("7_7ov7i")]
 layout_mode = 0
 offset_left = 36.0
@@ -362,93 +270,6 @@ offset_top = 376.0
 offset_right = 278.0
 offset_bottom = 452.0
 text = "Back"
-
-[node name="PlayerControlls" type="Control" parent="." unique_id=633598552]
-anchors_preset = 0
-offset_left = 348.0
-offset_top = 39.0
-offset_right = 1004.0
-offset_bottom = 123.0
-
-[node name="KeyboardePanel" type="Panel" parent="PlayerControlls" unique_id=1605617041]
-layout_mode = 0
-offset_left = 248.0
-offset_top = 52.0
-offset_right = 448.0
-offset_bottom = 84.0
-theme_override_styles/panel = SubResource("12")
-
-[node name="ControllerPanel" type="Panel" parent="PlayerControlls" unique_id=522282502]
-layout_mode = 0
-offset_left = 454.0
-offset_top = 52.0
-offset_right = 656.0
-offset_bottom = 84.0
-theme_override_styles/panel = SubResource("12")
-
-[node name="Player2Background" type="Panel" parent="PlayerControlls" unique_id=1639049854]
-visible = false
-layout_mode = 0
-offset_right = 656.0
-offset_bottom = 46.0
-theme_override_styles/panel = SubResource("5")
-
-[node name="Player1Background" type="Panel" parent="PlayerControlls" unique_id=319086021]
-layout_mode = 0
-offset_right = 656.0
-offset_bottom = 46.0
-theme_override_styles/panel = SubResource("6")
-
-[node name="PlayerLabel" type="Label" parent="PlayerControlls" unique_id=1868732527]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 5.0
-offset_right = 654.0
-offset_bottom = 53.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("15")
-theme_override_font_sizes/font_size = 48
-text = "Player 1 Controlls"
-horizontal_alignment = 1
-
-[node name="Keyboard" type="Label" parent="PlayerControlls" unique_id=1147314848]
-layout_mode = 0
-offset_left = 274.0
-offset_top = 56.0
-offset_right = 428.0
-offset_bottom = 88.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("14")
-theme_override_font_sizes/font_size = 32
-text = "Keyboard"
-horizontal_alignment = 1
-
-[node name="Actions" type="Label" parent="PlayerControlls" unique_id=1197916001]
-layout_mode = 0
-offset_top = 56.0
-offset_right = 242.0
-offset_bottom = 88.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("14")
-theme_override_font_sizes/font_size = 32
-text = "Actions"
-horizontal_alignment = 1
-
-[node name="Controller" type="Label" parent="PlayerControlls" unique_id=1969695172]
-layout_mode = 0
-offset_left = 460.0
-offset_top = 56.0
-offset_right = 656.0
-offset_bottom = 88.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("14")
-theme_override_font_sizes/font_size = 32
-text = "Controller"
-horizontal_alignment = 2
 
 [node name="KeyButtons" type="Control" parent="." unique_id=2049802663]
 anchors_preset = 0
@@ -465,7 +286,6 @@ offset_right = 139.0
 offset_bottom = 42.0
 focus_neighbor_top = NodePath(".")
 action = "player1_up"
-device_index = 0
 
 [node name="DownButton" parent="KeyButtons" unique_id=1671641546 instance=ExtResource("1")]
 layout_mode = 0
@@ -474,7 +294,6 @@ offset_top = 44.0
 offset_right = 139.0
 offset_bottom = 84.0
 action = "player1_down"
-device_index = 0
 
 [node name="LeftButton" parent="KeyButtons" unique_id=327127744 instance=ExtResource("1")]
 layout_mode = 0
@@ -483,7 +302,6 @@ offset_top = 86.0
 offset_right = 139.0
 offset_bottom = 126.0
 action = "player1_left"
-device_index = 0
 
 [node name="RightButton" parent="KeyButtons" unique_id=1989257862 instance=ExtResource("1")]
 layout_mode = 0
@@ -492,7 +310,6 @@ offset_top = 128.0
 offset_right = 139.0
 offset_bottom = 168.0
 action = "player1_right"
-device_index = 0
 
 [node name="JumpButton" parent="KeyButtons" unique_id=704699949 instance=ExtResource("1")]
 layout_mode = 0
@@ -501,7 +318,6 @@ offset_top = 170.0
 offset_right = 139.0
 offset_bottom = 210.0
 action = "player1_jump"
-device_index = 0
 
 [node name="AttackButton" parent="KeyButtons" unique_id=1398475081 instance=ExtResource("1")]
 layout_mode = 0
@@ -510,7 +326,6 @@ offset_top = 212.0
 offset_right = 139.0
 offset_bottom = 252.0
 action = "player1_attack"
-device_index = 0
 
 [node name="WandButton" parent="KeyButtons" unique_id=1744131895 instance=ExtResource("1")]
 layout_mode = 0
@@ -519,7 +334,6 @@ offset_top = 254.0
 offset_right = 139.0
 offset_bottom = 294.0
 action = "player1_wand"
-device_index = 0
 
 [node name="InteractButton" parent="KeyButtons" unique_id=1144646193 instance=ExtResource("1")]
 layout_mode = 0
@@ -528,7 +342,6 @@ offset_top = 296.0
 offset_right = 139.0
 offset_bottom = 336.0
 action = "player1_interact"
-device_index = 0
 
 [node name="SpawnButton" parent="KeyButtons" unique_id=41293508 instance=ExtResource("1")]
 layout_mode = 0
@@ -538,7 +351,6 @@ offset_right = 139.0
 offset_bottom = 405.0
 focus_neighbor_bottom = NodePath(".")
 action = "player1_spawn"
-device_index = 0
 
 [node name="ControllerButtons" type="Control" parent="." unique_id=1778630160]
 anchors_preset = 0
@@ -630,14 +442,119 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 action = "player1_spawn"
 
-[node name="inputLabel" type="Control" parent="." unique_id=1450211432]
+[node name="UI" type="Control" parent="." unique_id=1701284180]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Controlls" type="Label" parent="UI" unique_id=918872659]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 49.0
+offset_right = 342.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("23")
+theme_override_font_sizes/font_size = 48
+text = "Controlls"
+horizontal_alignment = 1
+
+[node name="PlayerControlls" type="Control" parent="UI" unique_id=633598552]
+anchors_preset = 0
+offset_left = 348.0
+offset_top = 39.0
+offset_right = 1004.0
+offset_bottom = 123.0
+
+[node name="KeyboardePanel" type="Panel" parent="UI/PlayerControlls" unique_id=1605617041]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 52.0
+offset_right = 448.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="ControllerPanel" type="Panel" parent="UI/PlayerControlls" unique_id=522282502]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 52.0
+offset_right = 656.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("12")
+
+[node name="Player2Background" type="Panel" parent="UI/PlayerControlls" unique_id=1639049854]
+visible = false
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("5")
+
+[node name="Player1Background" type="Panel" parent="UI/PlayerControlls" unique_id=319086021]
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("6")
+
+[node name="PlayerLabel" type="Label" parent="UI/PlayerControlls" unique_id=1868732527]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 5.0
+offset_right = 654.0
+offset_bottom = 53.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("15")
+theme_override_font_sizes/font_size = 48
+text = "Player 1 Controlls"
+horizontal_alignment = 1
+
+[node name="Keyboard" type="Label" parent="UI/PlayerControlls" unique_id=1147314848]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 56.0
+offset_right = 428.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Keyboard"
+horizontal_alignment = 1
+
+[node name="Actions" type="Label" parent="UI/PlayerControlls" unique_id=1197916001]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 242.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="Controller" type="Label" parent="UI/PlayerControlls" unique_id=1969695172]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 56.0
+offset_right = 656.0
+offset_bottom = 88.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("14")
+theme_override_font_sizes/font_size = 32
+text = "Controller"
+horizontal_alignment = 2
+
+[node name="InputNames" type="Control" parent="UI" unique_id=1450211432]
 anchors_preset = 0
 offset_left = 348.0
 offset_top = 129.0
 offset_right = 590.0
 offset_bottom = 537.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="inputLabel" unique_id=1730304574]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InputNames" unique_id=1730304574]
 layout_mode = 0
 offset_left = 100.0
 offset_right = 242.0
@@ -645,7 +562,7 @@ offset_bottom = 347.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Up" type="Label" parent="inputLabel/VBoxContainer" unique_id=164193492]
+[node name="Up" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=164193492]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -654,7 +571,7 @@ theme_override_font_sizes/font_size = 32
 text = "Up"
 horizontal_alignment = 2
 
-[node name="Down" type="Label" parent="inputLabel/VBoxContainer" unique_id=281468494]
+[node name="Down" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=281468494]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -663,7 +580,7 @@ theme_override_font_sizes/font_size = 32
 text = "Down"
 horizontal_alignment = 2
 
-[node name="Left" type="Label" parent="inputLabel/VBoxContainer" unique_id=159956594]
+[node name="Left" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=159956594]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -672,7 +589,7 @@ theme_override_font_sizes/font_size = 32
 text = "Left"
 horizontal_alignment = 2
 
-[node name="Right" type="Label" parent="inputLabel/VBoxContainer" unique_id=1642424206]
+[node name="Right" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=1642424206]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -681,7 +598,7 @@ theme_override_font_sizes/font_size = 32
 text = "Right"
 horizontal_alignment = 2
 
-[node name="Jump" type="Label" parent="inputLabel/VBoxContainer" unique_id=649244939]
+[node name="Jump" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=649244939]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -690,7 +607,7 @@ theme_override_font_sizes/font_size = 32
 text = "Jump"
 horizontal_alignment = 2
 
-[node name="Sword" type="Label" parent="inputLabel/VBoxContainer" unique_id=1641416305]
+[node name="Sword" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=1641416305]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -699,7 +616,7 @@ theme_override_font_sizes/font_size = 32
 text = "Sword"
 horizontal_alignment = 2
 
-[node name="Wand" type="Label" parent="inputLabel/VBoxContainer" unique_id=1272739652]
+[node name="Wand" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=1272739652]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -708,7 +625,7 @@ theme_override_font_sizes/font_size = 32
 text = "Wand"
 horizontal_alignment = 2
 
-[node name="Interact" type="Label" parent="inputLabel/VBoxContainer" unique_id=595105260]
+[node name="Interact" type="Label" parent="UI/InputNames/VBoxContainer" unique_id=595105260]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -717,7 +634,7 @@ theme_override_font_sizes/font_size = 32
 text = "Interact"
 horizontal_alignment = 2
 
-[node name="Spawn" type="Label" parent="inputLabel" unique_id=248049830]
+[node name="Spawn" type="Label" parent="UI/InputNames" unique_id=248049830]
 layout_mode = 0
 offset_left = 140.0
 offset_top = 372.0
@@ -730,13 +647,94 @@ theme_override_font_sizes/font_size = 32
 text = "Spawn"
 horizontal_alignment = 2
 
-[node name="CanvasLayer" type="Control" parent="." unique_id=1760248546]
+[node name="Rahmen" type="Control" parent="UI" unique_id=192733560]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 33.0
+offset_right = 1010.0
+offset_bottom = 543.0
+
+[node name="Panel" type="Panel" parent="UI/Rahmen" unique_id=418132632]
+layout_mode = 0
+offset_left = 992.0
+offset_right = 998.0
+offset_bottom = 510.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugkq1")
+
+[node name="Panel2" type="Panel" parent="UI/Rahmen" unique_id=1195538524]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 504.0
+offset_right = 992.0
+offset_bottom = 510.0
+pivot_offset = Vector2(356, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6oirf")
+
+[node name="Panel3" type="Panel" parent="UI/Rahmen" unique_id=895420178]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 504.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel10" type="Panel" parent="UI/Rahmen" unique_id=1068506919]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 52.0
+offset_right = 584.0
+offset_bottom = 506.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel11" type="Panel" parent="UI/Rahmen" unique_id=16641399]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 52.0
+offset_right = 790.0
+offset_bottom = 504.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4wo5")
+
+[node name="Panel4" type="Panel" parent="UI/Rahmen" unique_id=1147742916]
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 510.0
+pivot_offset = Vector2(-244, 168)
+theme_override_styles/panel = SubResource("StyleBoxFlat_drumt")
+
+[node name="Panel5" type="Panel" parent="UI/Rahmen" unique_id=1859663235]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 52.0
+offset_right = 992.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
+
+[node name="Panel9" type="Panel" parent="UI/Rahmen" unique_id=298775163]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 90.0
+offset_right = 994.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ona7q")
+
+[node name="Panel8" type="Panel" parent="UI/Rahmen" unique_id=2127637862]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 992.0
+offset_bottom = 6.0
+pivot_offset = Vector2(356, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_764cp")
+
+[node name="AssignUI" type="Control" parent="UI" unique_id=1760248546]
 visible = false
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
 
-[node name="Panel2" type="Panel" parent="CanvasLayer" unique_id=1241849325]
+[node name="Panel2" type="Panel" parent="UI/AssignUI" unique_id=1241849325]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 12.0
@@ -744,7 +742,7 @@ offset_right = 1012.0
 offset_bottom = 564.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_xqwue")
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=779060445]
+[node name="Panel" type="Panel" parent="UI/AssignUI" unique_id=779060445]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -752,7 +750,7 @@ offset_right = 1008.0
 offset_bottom = 560.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_84mke")
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=820154197]
+[node name="Label" type="Label" parent="UI/AssignUI" unique_id=820154197]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 51.0
@@ -764,13 +762,13 @@ theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 36
 text = "Press Any Input on the Controller you wanna use"
 
-[node name="Circle" type="Sprite2D" parent="CanvasLayer" unique_id=914153149]
+[node name="Circle" type="Sprite2D" parent="UI/AssignUI" unique_id=914153149]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(514, 310)
 scale = Vector2(18.9333, 18.9333)
 texture = ExtResource("11_kr0n2")
 
-[node name="Label2" type="Label" parent="CanvasLayer" unique_id=1046027143]
+[node name="Label2" type="Label" parent="UI/AssignUI" unique_id=1046027143]
 layout_mode = 0
 offset_left = 676.0
 offset_top = 516.0

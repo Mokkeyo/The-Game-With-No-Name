@@ -755,9 +755,6 @@ rotation = 1.5708
 [node name="Player_Spawner" parent="." unique_id=1815184127 instance=ExtResource("12")]
 position = Vector2(326, 140)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=706951834]
-energy = 0.2
-
 [node name="Button" parent="." unique_id=2062858592 node_paths=PackedStringArray("door") instance=ExtResource("25_17bxe")]
 position = Vector2(881, 168)
 door = NodePath("../Objects/DoorAndButton")

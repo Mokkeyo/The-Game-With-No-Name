@@ -1,6 +1,8 @@
 extends Node
 class_name PlayerAnimation
 
+signal flip_changed(value: bool)
+
 var player: Player
 var sprite: AnimatedSprite2D
 
@@ -27,4 +29,5 @@ func play(anim: Anim) -> void:
 
 
 func flip(left: bool) -> void:
+	flip_changed.emit(left)
 	sprite.flip_h = left

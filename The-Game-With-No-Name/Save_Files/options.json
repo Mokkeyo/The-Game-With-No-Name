@@ -1,12 +1,12 @@
 {
 	"achievments": [],
-	"darknessOn": true,
+	"darknessOn": false,
 	"darknessValue": 200,
 	"deaths": [
-		0.0,
-		0.0,
-		0.0,
-		0.0
+		5,
+		3,
+		0,
+		0
 	],
 	"fullscreen": false,
 	"maxFps": 0,
@@ -14,18 +14,20 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"",
-		"",
+		"test 2",
+		"test 3",
 		""
 	],
-	"printFps": false,
+	"printFps": true,
 	"resolution": {
 		"x": 1024,
 		"y": 576
 	},
-	"sfxVolume": 0.1,
-	"textboxCollected": [],
-	"textboxCount": 0,
+	"sfxVolume": 1.0,
+	"textboxCollected": [
+		"buschi0"
+	],
+	"textboxCount": 1,
 	"version": 1,
 	"vsync": false
 }

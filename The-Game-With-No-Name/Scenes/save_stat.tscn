@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://btywad8nch0tx"]
+[gd_scene format=3 uid="uid://btywad8nch0tx"]
 
 [ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="1_agvbu"]
 [ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_bwyf3"]
@@ -36,6 +36,15 @@ fallbacks = Array[Font]([ExtResource("15_14434")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -80,6 +89,15 @@ fallbacks = Array[Font]([ExtResource("4_1qphd")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -95,7 +113,7 @@ cache/0/48/0/scale = 1.0
 cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
 
-[node name="SaveStat" type="Button"]
+[node name="SaveStat" type="Button" unique_id=1534233320]
 offset_right = 436.0
 offset_bottom = 217.0
 theme_override_styles/normal = ExtResource("2_bwyf3")
@@ -106,7 +124,7 @@ theme_override_styles/disabled = ExtResource("2_bwyf3")
 theme_override_styles/focus = ExtResource("1_agvbu")
 script = ExtResource("3_m86f8")
 
-[node name="CopyPanel" type="Panel" parent="."]
+[node name="CopyPanel" type="Panel" parent="." unique_id=1560761703]
 visible = false
 layout_mode = 0
 offset_left = 16.0
@@ -116,7 +134,7 @@ offset_bottom = 205.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u2uwf")
 
-[node name="CopyPanel" type="Panel" parent="CopyPanel"]
+[node name="CopyPanel" type="Panel" parent="CopyPanel" unique_id=255080441]
 layout_mode = 0
 offset_left = -4.0
 offset_top = 4.0
@@ -125,13 +143,13 @@ offset_bottom = 189.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u2uwf")
 
-[node name="Stats" type="Control" parent="."]
+[node name="Stats" type="Control" parent="." unique_id=1527156649]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="Panel3" type="Panel" parent="Stats"]
+[node name="Panel3" type="Panel" parent="Stats" unique_id=1890641177]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 167.0
@@ -140,7 +158,7 @@ offset_bottom = 171.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v84dd")
 
-[node name="Panel2" type="Panel" parent="Stats"]
+[node name="Panel2" type="Panel" parent="Stats" unique_id=47741067]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 171.0
@@ -149,7 +167,7 @@ offset_bottom = 201.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d0dk7")
 
-[node name="Panel" type="Panel" parent="Stats"]
+[node name="Panel" type="Panel" parent="Stats" unique_id=1870847194]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 176.0
@@ -158,7 +176,7 @@ offset_bottom = 205.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d0dk7")
 
-[node name="DeleteData" type="Label" parent="Stats"]
+[node name="DeleteData" type="Label" parent="Stats" unique_id=1338942658]
 layout_mode = 0
 offset_left = 216.0
 offset_top = 176.0
@@ -170,7 +188,7 @@ theme_override_fonts/font = ExtResource("15_14434")
 theme_override_font_sizes/font_size = 20
 text = "erease Data"
 
-[node name="Copy Data" type="Label" parent="Stats"]
+[node name="Copy Data" type="Label" parent="Stats" unique_id=448105128]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 176.0
@@ -182,13 +200,13 @@ theme_override_fonts/font = ExtResource("15_14434")
 theme_override_font_sizes/font_size = 20
 text = "Copy Data"
 
-[node name="Star" type="Sprite2D" parent="Stats"]
+[node name="Star" type="Sprite2D" parent="Stats" unique_id=1797715610]
 visible = false
 position = Vector2(48, 38)
 scale = Vector2(3, 3)
 texture = ExtResource("8_qurgd")
 
-[node name="DeathCount" type="Label" parent="Stats"]
+[node name="DeathCount" type="Label" parent="Stats" unique_id=1428888759]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 125.0
@@ -200,31 +218,31 @@ theme_override_fonts/font = ExtResource("15_14434")
 theme_override_font_sizes/font_size = 24
 text = "Deaths: 0"
 
-[node name="Viereck Knopf" type="Sprite2D" parent="Stats"]
+[node name="Viereck Knopf" type="Sprite2D" parent="Stats" unique_id=1650424641]
 position = Vector2(134, 188)
 texture = ExtResource("9_pa12a")
 
-[node name="C-button" type="Sprite2D" parent="Stats/Viereck Knopf"]
+[node name="C-button" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=2126026157]
 position = Vector2(28, 0)
 texture = ExtResource("10_icqlx")
 
-[node name="E-button" type="Sprite2D" parent="Stats/Viereck Knopf"]
+[node name="E-button" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=291338045]
 position = Vector2(203.615, 0)
 texture = ExtResource("11_b5ocm")
 
-[node name="MiddleMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf"]
+[node name="MiddleMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=1371969105]
 position = Vector2(50.5385, -1.52588e-05)
 texture = ExtResource("12_r4flr")
 
-[node name="RightMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf"]
+[node name="RightMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=1855859189]
 position = Vector2(228.231, 0)
 texture = ExtResource("13_gkvjy")
 
-[node name="Dreieck Knopf" type="Sprite2D" parent="Stats"]
+[node name="Dreieck Knopf" type="Sprite2D" parent="Stats" unique_id=736348309]
 position = Vector2(397, 188)
 texture = ExtResource("14_5bdh8")
 
-[node name="PlayerNameLabel" type="Label" parent="Stats"]
+[node name="PlayerNameLabel" type="Label" parent="Stats" unique_id=1385306739]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 436.0
@@ -236,7 +254,7 @@ theme_override_font_sizes/font_size = 32
 text = "Player Name"
 horizontal_alignment = 1
 
-[node name="HC" type="HBoxContainer" parent="Stats"]
+[node name="HC" type="HBoxContainer" parent="Stats" unique_id=2040568632]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 71.0
@@ -245,47 +263,47 @@ offset_bottom = 93.0
 scale = Vector2(1.8, 1.8)
 alignment = 1
 
-[node name="Kristall1" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall1" type="TextureRect" parent="Stats/HC" unique_id=1227201905]
 layout_mode = 2
 texture = ExtResource("5_3wqpg")
 stretch_mode = 4
 
-[node name="Kristall2" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall2" type="TextureRect" parent="Stats/HC" unique_id=1165456356]
 layout_mode = 2
 texture = ExtResource("6_3mjvc")
 stretch_mode = 4
 
-[node name="Kristall3" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall3" type="TextureRect" parent="Stats/HC" unique_id=240968021]
 layout_mode = 2
 texture = ExtResource("7_mnhxc")
 stretch_mode = 4
 
-[node name="Kristall4" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall4" type="TextureRect" parent="Stats/HC" unique_id=1316670930]
 layout_mode = 2
 texture = ExtResource("17_je6wy")
 stretch_mode = 4
 
-[node name="Kristall5" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall5" type="TextureRect" parent="Stats/HC" unique_id=1709603730]
 layout_mode = 2
 texture = ExtResource("18_rcgpo")
 stretch_mode = 4
 
-[node name="Kristall6" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall6" type="TextureRect" parent="Stats/HC" unique_id=135153207]
 layout_mode = 2
 texture = ExtResource("19_uip58")
 stretch_mode = 4
 
-[node name="Kristall7" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall7" type="TextureRect" parent="Stats/HC" unique_id=2126025775]
 layout_mode = 2
 texture = ExtResource("20_icw56")
 stretch_mode = 4
 
-[node name="Kristall8" type="TextureRect" parent="Stats/HC"]
+[node name="Kristall8" type="TextureRect" parent="Stats/HC" unique_id=445264036]
 layout_mode = 2
 texture = ExtResource("21_p628u")
 stretch_mode = 4
 
-[node name="NewGameLabel" type="Label" parent="."]
+[node name="NewGameLabel" type="Label" parent="." unique_id=1348813186]
 visible = false
 layout_mode = 0
 offset_top = 12.0
@@ -299,13 +317,13 @@ text = "New Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Delete" type="Control" parent="."]
+[node name="Delete" type="Control" parent="." unique_id=1694498747]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel2" type="Panel" parent="Delete"]
+[node name="Panel2" type="Panel" parent="Delete" unique_id=999610551]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 12.0
@@ -313,7 +331,7 @@ offset_right = 420.0
 offset_bottom = 205.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7pl5v")
 
-[node name="Panel" type="Panel" parent="Delete"]
+[node name="Panel" type="Panel" parent="Delete" unique_id=305391429]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 16.0
@@ -321,7 +339,7 @@ offset_right = 424.0
 offset_bottom = 201.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7pl5v")
 
-[node name="Panel3" type="Panel" parent="Delete"]
+[node name="Panel3" type="Panel" parent="Delete" unique_id=451060782]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 124.0
@@ -329,7 +347,7 @@ offset_right = 188.0
 offset_bottom = 181.0
 theme_override_styles/panel = SubResource("12")
 
-[node name="Panel2" type="Panel" parent="Delete/Panel3"]
+[node name="Panel2" type="Panel" parent="Delete/Panel3" unique_id=114187693]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -337,7 +355,7 @@ offset_right = 106.0
 offset_bottom = 55.0
 theme_override_styles/panel = SubResource("13")
 
-[node name="Yes" type="Button" parent="Delete/Panel3/Panel2"]
+[node name="Yes" type="Button" parent="Delete/Panel3/Panel2" unique_id=1791417918]
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
@@ -358,14 +376,14 @@ theme_override_styles/disabled = SubResource("17")
 theme_override_styles/focus = SubResource("16")
 text = "YES"
 
-[node name="PingYes" type="Sprite2D" parent="Delete/Panel3"]
+[node name="PingYes" type="Sprite2D" parent="Delete/Panel3" unique_id=1360250193]
 visible = false
 position = Vector2(-22, 28)
 rotation = -1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("16_mcsbl")
 
-[node name="Panel4" type="Panel" parent="Delete"]
+[node name="Panel4" type="Panel" parent="Delete" unique_id=471829503]
 layout_mode = 0
 offset_left = 248.0
 offset_top = 124.0
@@ -373,7 +391,7 @@ offset_right = 356.0
 offset_bottom = 181.0
 theme_override_styles/panel = SubResource("12")
 
-[node name="Panel2" type="Panel" parent="Delete/Panel4"]
+[node name="Panel2" type="Panel" parent="Delete/Panel4" unique_id=823448271]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -381,7 +399,7 @@ offset_right = 106.0
 offset_bottom = 55.0
 theme_override_styles/panel = SubResource("13")
 
-[node name="No" type="Button" parent="Delete/Panel4/Panel2"]
+[node name="No" type="Button" parent="Delete/Panel4/Panel2" unique_id=1023460750]
 layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
@@ -402,13 +420,13 @@ theme_override_styles/disabled = SubResource("17")
 theme_override_styles/focus = SubResource("16")
 text = "NO"
 
-[node name="PingNo" type="Sprite2D" parent="Delete/Panel4"]
+[node name="PingNo" type="Sprite2D" parent="Delete/Panel4" unique_id=224015229]
 position = Vector2(-22, 28)
 rotation = -1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("16_mcsbl")
 
-[node name="Delete?" type="Label" parent="Delete"]
+[node name="Delete?" type="Label" parent="Delete" unique_id=1016957686]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 48.0

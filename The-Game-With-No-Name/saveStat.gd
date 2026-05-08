@@ -5,7 +5,7 @@ class_name SaveStat
 
 @export var levelNumber: int  = 1
 @export var hp: Array[float] = [100, 100]
-@export var mana: Array[int] = [99, 99]
+@export var mana: Array[float] = [99, 99]
 @export var kristallCount: int = 0
 @export var kristallCollected: Array[bool] = [false, false, false, false, false, false, false, false]
 @export var checkpointPosition: Vector2 = Vector2(0, 0)
@@ -34,13 +34,70 @@ func to_dict() -> Dictionary:
 
 func from_dict(data: Dictionary) -> void:
 	levelNumber = data.get("levelNumber", 1)
-	hp = data.get("hp", [100, 100])
-	mana = data.get("mana", [99, 99])
+	
+	var arr: Array = data.get("hp", [100, 100])
+	
+	hp.clear()
+	for v: Variant in arr:
+		if v is float:
+			hp.append(v)
+		else:
+			push_warning("couldnt convert to float -> hp")
+	
+	arr = data.get("mana", [100, 100])
+	mana.clear()
+	for v: Variant in arr:
+		if v is float:
+			mana.append(v)
+		else:
+			push_warning("couldnt convert to float -> mana")
+	
 	kristallCount = data.get("kristallCount", 0)
-	kristallCollected = data.get("kristallCollected", [])
-	var pos: Dictionary[String, float] = data.get("checkpointPosition", {"x": 0, "y": 0})
-	checkpointPosition = Vector2(pos["x"], pos["y"])
+	
+	
+	arr = data.get("kristallCollected", [false, false, false, false, false, false, false])
+	kristallCollected.clear()
+	for v: Variant in arr:
+		if v is bool:
+			kristallCollected.append(v)
+		else:
+			push_warning("couldnt convert to bool -> kristallCollected")
+	
+	var pos: Dictionary = data.get("checkpointPosition", {"x": 0.0, "y": 0.0})
+	checkpointPosition = Vector2(
+		safe_float(pos.get("x")),
+		safe_float(pos.get("y"))
+	)
 	checkpointActive = data.get("checkpointActive", false)
-	finished = data.get("finished", [])
-	door = data.get("door", [])
-	enemysDefeated = data.get("enemysDefeated", [])
+	
+	arr = data.get("finished", [false, false, false])
+	finished.clear()
+	for v: Variant in arr:
+		if v is bool:
+			finished.append(v)
+		else:
+			push_warning("couldnt convert to bool -> finished")
+	
+	arr = data.get("door", [])
+	door.clear()
+	for v: Variant in arr:
+		print(v)
+		if v is float:
+			door.append(v)
+		else:
+			push_warning("couldnt convert to float -> door")
+	
+	arr = data.get("enemysDefeated", [])
+	enemysDefeated.clear()
+	for v: Variant in arr:
+		if v is String:
+			enemysDefeated.append(v)
+		else:
+			push_warning("couldnt convert to String -> enemysDefeated")
+
+
+func safe_float(value: Variant, default: float = 0.0) -> float:
+	if value is float or value is int:
+		return value
+	push_warning("couldnt convert to float or int -> checkpointPosition")
+	return default

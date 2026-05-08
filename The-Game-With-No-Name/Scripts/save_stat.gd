@@ -30,11 +30,10 @@ func _ready() -> void:
 
 
 func initialize_ui() -> void:
-	file_exists = FileAccess.file_exists(Save.SAVE_DIR + "slot_" + str(Save.active_slot) + ".json")
 	Save.active_slot = saveState
+	file_exists = FileAccess.file_exists(Save.SAVE_DIR + "slot_" + str(Save.active_slot) + ".json")
 	if file_exists:
 		Save.load_data()
-#		G.load_data()
 	show_ui(saveState)
 
 
@@ -103,7 +102,6 @@ func copy_data() -> void:
 	menu.copy_data_from_save = saveState
 	menu.show_copy_data_text()
 	Save.load_data()
-#	G.load_data()
 	state = States.Copying
 
 
@@ -129,12 +127,12 @@ func _on_Yes_pressed() -> void:
 		Save.active_slot = saveState
 		file_exists = true
 		Save.options.playerName[saveState] = Save.options.playerName[menu.copy_data_from_save]
-#		Save.save_options()
+		Save.save_options()
 		Save.save_data()
 		initialize_copied_ui()
 	elif state == States.Ereasing:
 		file_exists = false
-		G.delete_data()
+		Save.delete_data()
 		initialize_ui()
 	hide_delete_copy_conformation()
 

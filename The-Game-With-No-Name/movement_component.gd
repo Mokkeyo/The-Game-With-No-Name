@@ -33,11 +33,10 @@ func setup(p: CharacterBody2D, water: LavaWaterDetector) -> void:
 	body = p
 	water_detector = water
 
-func move_horizontal(dir: float, _slowed: bool = false) -> void:
+func move_horizontal(dir: float, slowed: bool = false) -> void:
 	var target_speed: float = WATER_SPEED if water_detector.inWater else SPEED
-#	if slowed:
-#		print("slowed")
-#		target_speed *= 0.5
+	if slowed:
+		target_speed *= 0.05
 	
 	body.velocity.x = move_toward(
 		body.velocity.x,
@@ -47,8 +46,12 @@ func move_horizontal(dir: float, _slowed: bool = false) -> void:
 	moved_horizontal.emit(dir)
 
 
-func apply_gravity(delta: float) -> void:
+func apply_gravity(delta: float, slowed: bool = false) -> void:
 	var g: float = WATER_GRAVITY if water_detector.inWater else GRAVITY
+	if slowed and body.velocity.y > 0:
+		body.velocity.y = 0
+#ddddddddddddd		g *= 0.05
+	
 	body.velocity.y += g * delta
 
 

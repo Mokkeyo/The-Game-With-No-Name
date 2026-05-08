@@ -34,6 +34,7 @@ func set_health_bar() -> void:
 	G.boss_value_changed.emit(health_comp.health / health_comp.max_health * 100)
 	animation_player.play("Damage")
 
+
 func _physics_process(delta: float) -> void:
 	match state:
 		State.FINISH_ANIMATION:
@@ -88,6 +89,11 @@ func jump() -> void:
 
 func falling() -> void:
 	state = State.FALLING
+	
+	if not player_detector.focus_player:
+		push_warning("no player found to jump on")
+		return
+	
 	global_position.x = player_detector.focus_player.global_position.x
 
 
@@ -112,7 +118,7 @@ func do_attack(close: bool) -> void:
 
 
 func died() -> void:
-	if Save.player.deaths[G.active_slot] == 0:
+	if Save.options.deaths[Save.active_slot] == 0:
 		var achievment_comp: AchievmentComponent = $achievmentComponent
 		achievment_comp.add_achievment()
 	

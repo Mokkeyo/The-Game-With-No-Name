@@ -12,7 +12,7 @@ func handle_input() -> void:
 	
 	player.movement.move_horizontal(
 		dir, 
-		not player.combat.can_attack()
+		not player.combat.is_attacking()
 		)
 	
 	if not dir == 0:

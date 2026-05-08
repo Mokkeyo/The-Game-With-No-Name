@@ -17,7 +17,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	if FileAccess.file_exists(G.SAVE_PATH + G.SAVE_FILES["controls"]):
+	if FileAccess.file_exists(Save.SAVE_DIR + "inputs.json"):
 		display_key()
 
 
@@ -33,17 +33,24 @@ func _toggled(toggled_on: bool) -> void:
 
 
 func get_key() -> Array:
-	if not G.saved_input_map.inputMap.has(action):
-		G.saved_input_map.inputMap[action] = [null, null]
-	var arr: Array = G.saved_input_map.inputMap[action]
-	if arr.size() < 2:
-		arr.resize(2)
+	if not Save.inputs.has(action):
+		return [null, null]
 	
+	var arr: Array = Save.inputs[action]
+	
+	if typeof(arr) != TYPE_ARRAY:
+		return [null, null]
+	
+	if arr.size() < 2:
+		arr = arr.duplicate()
+		arr.resize(2)
+	print(arr)
 	return arr
 
 
 func handle_input(_event: InputEvent) -> InputEvent:
 	return null
+
 
 func process_event(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("esc"):
@@ -54,13 +61,14 @@ func process_event(event: InputEvent) -> void:
 	var valid_event: InputEvent = handle_input(event)
 	
 	if valid_event:
-		remap_key.emit(action, device_index, valid_event)
+#		action: String, event: InputEvent, save: bool = true
+		remap_key.emit(action, valid_event, true)
 		display_key()
 		timer.start()
 
 
 func display_key() -> void:
-	pass  # wird überschrieben
+	pass
 
 func _on_timer_timeout() -> void:
 	button_pressed = false

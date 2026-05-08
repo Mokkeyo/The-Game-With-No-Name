@@ -5,7 +5,7 @@ static func event_to_dict(event: InputEvent) -> Dictionary:
 		var key_event: InputEventKey = event as InputEventKey
 		return {
 			"type": "key",
-			"keycode": key_event.physical_keycode
+			"keycode": key_event.keycode
 		}
 	
 	elif event is InputEventMouseButton:
@@ -67,6 +67,10 @@ static func inputmap_to_dict(actions: Array) -> Dictionary:
 	var result: Dictionary = {}
 	
 	for action: StringName in actions:
+		
+		if not action.begins_with("player"):
+			continue
+		
 		var events: Array[InputEvent] = InputMap.action_get_events(action)
 		var list: Array[Dictionary] = []
 		
@@ -98,3 +102,94 @@ static func apply_inputmap_from_dict(data: Dictionary) -> void:
 			var ev: InputEvent = dict_to_event(ev_data)
 			if ev:
 				InputMap.action_add_event(action, ev)
+
+
+static func set_inputs(data: Dictionary, action: String, event: InputEvent) -> void:
+	print(event)
+	if not data.has(action):
+		push_warning("data doesnt have action: " + action)
+		data[action] = [null, null]
+	
+	var arr: Array = data[action]
+	
+	if arr.size() < 2:
+		arr.resize(2)
+	
+	var serialized: Dictionary = event_to_dict(event)
+	if event is InputEventKey or event is InputEventMouseButton:
+		print(serialized)
+		data[action][0] = serialized
+		return
+	
+	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		data[action][1] = serialized
+
+
+static func apply_action_from_dict(data: Dictionary, action: String) -> void:
+	if not data.has(action):
+		push_warning("Action not fund: " + action)
+		return
+	
+	var events: Array = data[action]
+	if typeof(events) != TYPE_ARRAY:
+		push_warning("Invalid event array for: " + action)
+		return
+	
+	if not InputMap.has_action(action):
+		push_warning("couldnt find action -> added it")
+		InputMap.add_action(action)
+	
+	InputMap.action_erase_events(action)
+	
+	for ev_data: Dictionary in events:
+		if typeof(ev_data) != TYPE_DICTIONARY:
+			continue
+		
+		var ev: InputEvent = dict_to_event(ev_data)
+		if ev:
+			InputMap.action_add_event(action, ev)
+
+
+static func get_event_from_action(data: Dictionary, action: String, index: int) -> InputEvent:
+	if not data.has(action):
+		push_warning("Action not found: " + action)
+		return null
+	
+	var arr: Array = data[action]
+	if typeof(arr) != TYPE_ARRAY:
+		push_warning("Invalid arrar for: " + action)
+		return null
+	
+	if index < 0 or index >= arr.size():
+		push_warning("Index out of bounds for: " + action)
+		return null
+	
+	var ev_data: Dictionary = arr[index]
+	
+	if typeof(ev_data) != TYPE_DICTIONARY:
+		return null
+	
+	return dict_to_event(ev_data)
+
+
+ 
+static func change_device_for_player(data: Dictionary, player_index: int, new_device: int) -> void:
+	var prefix: String = "player%d_" % (player_index + 1)
+	
+	for action: StringName in data.keys():
+		if not action.begins_with(prefix):
+			continue
+		
+		var events: Array = data[action]
+		if typeof(events) != TYPE_ARRAY:
+			continue
+		
+		for ev: Dictionary in events:
+			if typeof(ev) != TYPE_DICTIONARY:
+				continue
+			
+			var type: String = ev.get("type", "")
+			
+			if type == "joy_button" or type == "joy_motion":
+				ev["device"] = new_device
+				print("assinged controller")

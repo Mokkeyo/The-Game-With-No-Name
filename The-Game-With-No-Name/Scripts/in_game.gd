@@ -1,7 +1,7 @@
 extends Control
 class_name InGame
 
-@export var game: Game
+#@export var game: Game
 
 @onready var sound_manager: Node = $HBoxContainer/ViewportContainerP1/SubViewport/SoundManager
 
@@ -26,10 +26,13 @@ class_name InGame
 @onready var panel: Panel = $Panel
 
 @onready var player: Array[Player] = [$HBoxContainer/ViewportContainerP1/SubViewport/Player1, $HBoxContainer/ViewportContainerP1/SubViewport/Player2]
+@onready var pet: Array[Pet] = [$HBoxContainer/ViewportContainerP1/SubViewport/ghost_pet, $HBoxContainer/ViewportContainerP1/SubViewport/ghost_pet2]
 var level: Node2D = null
 
 
+
 func _ready() -> void:
+	G.level_viewport = $HBoxContainer/ViewportContainerP1/SubViewport
 	G.health_value_changed.connect(on_health_value_changed)
 	G.mana_value_changed.connect(on_mana_value_changed)
 	
@@ -45,14 +48,14 @@ func add_level(currentLevel: Node2D) -> void:
 	viewport[1].world_2d = viewport[0].world_2d
 
 
-func set_viewport_size() -> void:
-	panel.visible = game.player_alive[0] and game.player_alive[1]
+func set_viewport_size(player_alive: Array[bool]) -> void:
+	panel.visible = player_alive[0] and player_alive[1]
 	
 	if panel.visible:
-		for i: int in game.player_alive.size():
+		for i: int in player_alive.size():
 			_set_player_viewport(i, 512, true)
 	else:
-		var active: int = 0 if game.player_alive[0] else 1
+		var active: int = 0 if player_alive[0] else 1
 		_set_player_viewport(active, 1024, true)
 		_set_player_viewport(1 - active, 0, false)
 
@@ -68,12 +71,10 @@ func show_player_bar(index: int, show_bar: bool) -> void:
 
 func connect_camera_to_player() -> void:
 	for i: int in player.size():
-		print("Player" , player)
 		player[i].connect_camera(camera[i])
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:
-	print("health value changed Player: ", player_number, " ", health_value)
 	var bar: HealthBar = hp_bar[player_number]
 	if health_value == 100:
 		bar.set_value_int(health_value)

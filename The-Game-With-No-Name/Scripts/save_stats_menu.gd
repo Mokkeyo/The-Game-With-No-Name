@@ -49,7 +49,7 @@ func start_fader() -> void:
 
 
 func start_new_game() -> void:
-	G.start_new_game()
+	Save.start_new_game()
 	start_fader()
 
 

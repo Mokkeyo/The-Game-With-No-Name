@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d032eljn7mggn"]
+[gd_scene format=3 uid="uid://d032eljn7mggn"]
 
 [ext_resource type="Script" uid="uid://cds7cpv3e3g3j" path="res://Scripts/spirit_ball.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://wgf4amtg8m0x" path="res://Player/CanvasTextures/spirit_ball.tres" id="2_1avbx"]
@@ -40,19 +40,19 @@ animations = [{
 radius = 5.0
 height = 10.0
 
-[node name="Kamehameha" type="Node2D" groups=["Spiritball"]]
-z_index = 3
+[node name="Kamehameha" type="Node2D" unique_id=1027732331 groups=["Spiritball"]]
+z_index = 5
 script = ExtResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438909330]
 sprite_frames = SubResource("1")
 frame_progress = 0.862224
 
-[node name="Hitbox" parent="." groups=["Spiritball"] instance=ExtResource("3_snana")]
+[node name="Hitbox" parent="." unique_id=1879883263 groups=["Spiritball"] instance=ExtResource("3_snana")]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=976656607]
 position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hkmie")

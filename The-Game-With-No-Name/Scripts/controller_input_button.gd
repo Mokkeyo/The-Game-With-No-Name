@@ -28,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func handle_input(event: InputEvent) -> InputEvent:
 	
-	var device_id: int = G.saved_input_map.device[player]
+	var device_id: int = Save.inputs[action][1]["device"]
 	
 	match event:
 		InputEventJoypadMotion:
@@ -52,15 +52,14 @@ func get_tex(path: String) -> Texture2D:
 
 
 func display_key() -> void:
-	var events : Array[InputEvent] = get_key()
-	var ev: InputEvent = events[device_index]
-	if not ev:
+	var event: InputEvent = InputSerializer.get_event_from_action(Save.inputs, action, CONTROLLER)
+	if not event:
 		sprite.visible = false
 		text = ""
 		return
 	
 	
-	var input_name :String = ev.as_text()
+	var input_name :String = event.as_text()
 	var result: RegExMatch = pattern.search(input_name)
 	
 	var number: int = -1

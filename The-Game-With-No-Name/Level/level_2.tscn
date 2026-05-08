@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://baf36j2ma3cg4" path="res://button.tscn" id="25_hf0r0"]
 [ext_resource type="PackedScene" uid="uid://bke8bjmxy6hq6" path="res://lava_light_horizontal.tscn" id="26_umonj"]
 [ext_resource type="PackedScene" uid="uid://desee8s7epoi2" path="res://lava_light_vertikal.tscn" id="27_4pyl2"]
-[ext_resource type="PackedScene" uid="uid://ck712c8f08u8l" path="res://lava_sound.tscn" id="28_a0yxw"]
+[ext_resource type="PackedScene" uid="uid://gnrecg4fh4ys" path="res://ambient_sound.tscn" id="29_lu1xx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a0yxw"]
 vertices = PackedVector2Array(1138, 1045.8594, 1129.8594, 1054, 74.140625, 1054, 402, 1004, 732, 990, 990, 990, 1138, 1026, 682, 990, 564, 990, 290, 620, 172, 620, 192, 584, 312, 416, 312, 751.8594, 290, 696, 88, 584, 192, 508, 186, 416, 150, 508, 150, 424, 598, 388, 598, 326, 634, 382, 634, 401.85938, 625.8594, 410, 318, 410, 494, 388, 402, 388, 340, 388, 318, 340, 340, 270, 1004, 864, 1004, 816, 1138, 844, 1138, 892, 564, 928, 402, 914, 438, 878, 486, 878, 1572, 933.8594, 1572, 1012.1406, 1438, 1004, 1438, 928, 1536, 892, 130, -326, 130, -290, 88, -290, 52, -326, 598, -144, 598, -214, 779.8594, -214, 788, -205.85938, 738, -136, 850, -122, 836, -122, 836, -144, 850, -144, 1180, -93.859375, 1180, -52, 1040, -52, 1166, -107.859375, 1423.8594, 206, 1432, 214.14063, 1432, 228, 1418, 228, 1376.1406, 206, 1418, 312, 1390, 312, 1368, 228, 1390, 374, 1418, 374, 1418, 410, 1040, 410, 424.14063, 564, 402, 564, 402, 444, 424, 528, 676, 312, 676, 382, 494, 326, 402, 270, 192, 830, 172, 808, 438, 808, 270, 914, 486, 808, 620, 808, 620, 906, 682, 906, 682, 808, 760, 808, 760, 920, 1340, 836, 1340, 808, 1404, 808, 1404, 844, 1264, 844, 1292, 836, 1536, 844, 1480, 844, 1480, 830, 1466, 830, 1466, 822, 1480, 822, 1480, 808, 1508, 808, 1255.8594, 760, 1102, 760, 1102, 724, 1110.1406, 724, 1278, 737.8594, 1152.1406, 682, 1208.1406, 682, 1278, 690, 1222.1406, 668, 1376, 668, 1326, 690, 1376, 724, 1326, 760, 1508, 760, 1424, 724, 1424, 668, 1572, 668, 1572, 676.1406, 1591.8594, 696, 1600, 914, 1591.8594, 914, 1600, 696, 1256, 928, 1200, 928, 1200, 892, 1228, 892, 732, 928, 682, 928, 990, 864, 1152, 1026, 1152, 892, 66, 1045.8594, 66, 948, 192, 948, 270, 1004, 144, 830, 144, 872, 66, 872, 88, 424, 66, 242.14063, 74.140625, 234, 200, 234, 200, 304, 186, 340, 850, 346, 850, 276, 928, 276, 892, 382, 1018, 410, 1004, 410, 1004, 374, 1012.1406, 374, 1228, 374, 1228, 346, 1311.8594, 346, 1325.8594, 360, 1292, 261.85938, 1292, 270, 1284, 270, 1284, 247.85938, 1325.8594, 228, 1292, 220, 1298, 46, 1200, 46, 1200, 24, 1228, 24, 1129.8594, 102, 956.1406, 102, 948, 93.859375, 948, -46, 1018, -46, 1040, -18, 1018, -94, 948, -94, 948, -150, 998, -158, 886, -74, 900, -74, 900, -38, 886, -38, 886, 122, 900, 122, 900, 130, 886, 130, 541.8594, -74, 550, -65.859375, 550, -24, 457.85938, -24, 527.8594, -74, 499.85938, -102, 483.3203, -102, 231.32031, 52, 326, 52, 326, 60, 178, 60, 226.20313, 39.648438, 275.85938, -10, 237.92969, 27.929688, 178, -116, 354, -116, 354, -102, 382.14063, -10, 402, -102, 66, -290, 52, -290, 88, -200, 66, -164, 402, -164, 499.85938, -200, 1264, 892, 1390, 928, 1292, 808, 1228, 844, 1390, 1004, 1256, 976, 262, 304, 1228, -10, 1390, -18, 522, -177.85938, 522, -144, 499.85938, -136, 172, 696, 303.85938, 760, 206, 718, 1166, -149.85938, 1138, -177.85938, 429.85938, 4, 396.14063, 4, 478.20313, -114.35156, 1040.1406, 346, 1171.8594, 346, 1180, 354.14063, 1180, 374, 1046, -205.85938, 1054.1406, -214, 1101.8594, -214, 1115.8594, -200, 1046, -158, 1390, 23.859375, 1292, 121.859375, 1298, 94, 942.1406, 528, 956, 569.8594, 956, 597.8594, 919.8594, 634, 830, 634, 640, 634, 494.14063, 634, 1600, 1040.1406, 1600, 1045.8594, 1591.8594, 1054, 1208.1406, 1054, 1200, 1045.8594, 1200, 984.1406, 1208.1406, 976, 975.8594, 550, 956.1406, 514, 984.1406, 514, 1040, 550, 1186, 149.85938, 1186, 102.140625, 1194.1406, 94, 1185.8594, -10, 1171.8594, 4, 1157.8594, 4, 850, -233.85938, 858.1406, -242, 989.8594, -242, 998, -233.85938, 886, -150, 1129.8594, -200, 1138, -191.85938, 830, 667.8594, 821.8594, 676, 648.1406, 676, 640, 667.8594, 214.14063, 760, 206, 751.8594, 172, 718, 262, 234, 485.85938, 234, 494, 242.14063, 494, 276, 1138, 23.859375, 1138, 93.859375, 886, 149.85938, 877.8594, 158, 746.1406, 158, 850, 10, 788, 10, 738, 149.85938, 489.9297, -126.07031, 1362.1406, 220, 1368, 360, 1018, 480.14063, 424, 499.85938, 471.85938, 452, 892, 444, 928, 452, 738, 382, 788, 346, 738, 312, 788, 276, 942, 928, 920, 920, 942, 864, 920, 872, 830, 864, 808, 872, 808, 808, 830, 816)
@@ -525,79 +525,138 @@ required_input = 1
 position = Vector2(1106, 770)
 door = NodePath("../Objects/DoorAndButton3")
 
-[node name="lava_light_horizontal" parent="." unique_id=1015139483 instance=ExtResource("26_umonj")]
+[node name="Lights" type="Node" parent="." unique_id=1333358515]
+
+[node name="lava_light_horizontal" parent="Lights" unique_id=1015139483 instance=ExtResource("26_umonj")]
 position = Vector2(91, 637)
 scale = Vector2(0.65625, 12.906251)
 
-[node name="lava_light_horizontal2" parent="." unique_id=673611252 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal2" parent="Lights" unique_id=673611252 instance=ExtResource("26_umonj")]
 position = Vector2(287, 574)
 scale = Vector2(0.65625, 5.25)
 
-[node name="lava_light_vertikal" parent="." unique_id=1646364208 instance=ExtResource("27_4pyl2")]
+[node name="lava_light_vertikal" parent="Lights" unique_id=1646364208 instance=ExtResource("27_4pyl2")]
 position = Vector2(476.00003, 385)
 scale = Vector2(5.25, 0.6562501)
 
-[node name="lava_light_vertikal2" parent="." unique_id=690601002 instance=ExtResource("27_4pyl2")]
+[node name="lava_light_vertikal2" parent="Lights" unique_id=690601002 instance=ExtResource("27_4pyl2")]
 position = Vector2(735, 637)
 scale = Vector2(3.28125, 0.65624964)
 
-[node name="lava_light_vertikal3" parent="." unique_id=843244184 instance=ExtResource("27_4pyl2")]
+[node name="lava_light_vertikal3" parent="Lights" unique_id=843244184 instance=ExtResource("27_4pyl2")]
 position = Vector2(840, 1029)
 scale = Vector2(24.0625, 0.6562489)
 
-[node name="lava_light_vertikal4" parent="." unique_id=1041341456 instance=ExtResource("27_4pyl2")]
+[node name="lava_light_vertikal4" parent="Lights" unique_id=1041341456 instance=ExtResource("27_4pyl2")]
 position = Vector2(812, 133)
 scale = Vector2(2.625, 0.65625006)
 
-[node name="lava_light_vertikal5" parent="." unique_id=1077195657 instance=ExtResource("27_4pyl2")]
+[node name="lava_light_vertikal5" parent="Lights" unique_id=1077195657 instance=ExtResource("27_4pyl2")]
 position = Vector2(1043, 77)
 scale = Vector2(3.28125, 0.65624994)
 
-[node name="lava_light_horizontal3" parent="." unique_id=1965110218 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal3" parent="Lights" unique_id=1965110218 instance=ExtResource("26_umonj")]
 position = Vector2(406, -98)
 scale = Vector2(1.7499996, 3.5)
 
-[node name="lava_light_horizontal4" parent="." unique_id=540215027 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal4" parent="Lights" unique_id=540215027 instance=ExtResource("26_umonj")]
 position = Vector2(812, 77)
 scale = Vector2(1.750001, 2.4062498)
 
-[node name="lava_light_horizontal5" parent="." unique_id=1237793030 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal5" parent="Lights" unique_id=1237793030 instance=ExtResource("26_umonj")]
 position = Vector2(952, 21)
 scale = Vector2(1.7499996, 2.40625)
 
-[node name="lava_light_horizontal6" parent="." unique_id=1434386307 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal6" parent="Lights" unique_id=1434386307 instance=ExtResource("26_umonj")]
 position = Vector2(1106, 35)
 scale = Vector2(1.7499996, 1.96875)
 
-[node name="lava_light_horizontal7" parent="." unique_id=1347691780 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal7" parent="Lights" unique_id=1347691780 instance=ExtResource("26_umonj")]
 position = Vector2(1127, -133)
 scale = Vector2(1.9687504, 2.8437498)
 
-[node name="lava_light_horizontal8" parent="." unique_id=947580564 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal8" parent="Lights" unique_id=947580564 instance=ExtResource("26_umonj")]
 position = Vector2(812, 691)
 scale = Vector2(1.750001, 11.21875)
 
-[node name="lava_light_horizontal9" parent="." unique_id=1316100768 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal9" parent="Lights" unique_id=1316100768 instance=ExtResource("26_umonj")]
 position = Vector2(966, 560)
 scale = Vector2(1.750001, 1.7500005)
 
-[node name="lava_light_horizontal10" parent="." unique_id=399686119 instance=ExtResource("26_umonj")]
+[node name="lava_light_horizontal10" parent="Lights" unique_id=399686119 instance=ExtResource("26_umonj")]
 position = Vector2(1106, 875)
 scale = Vector2(1.7499996, 5.46875)
 
 [node name="SoundEffects" type="Node" parent="." unique_id=549876608]
 
-[node name="LavaSound" parent="SoundEffects" unique_id=768406939 instance=ExtResource("28_a0yxw")]
-position = Vector2(812, 154)
+[node name="AmbientSound" parent="SoundEffects" unique_id=2019004485 instance=ExtResource("29_lu1xx")]
+position = Vector2(952, 98)
+sound_id = "lava"
 
-[node name="LavaSound2" parent="SoundEffects" unique_id=75858716 instance=ExtResource("28_a0yxw")]
-position = Vector2(1050, 98)
+[node name="AmbientSound4" parent="SoundEffects" unique_id=1292696575 instance=ExtResource("29_lu1xx")]
+position = Vector2(882, 154)
+sound_id = "lava"
 
-[node name="LavaSound3" parent="SoundEffects" unique_id=816067100 instance=ExtResource("28_a0yxw")]
-position = Vector2(462, 406)
+[node name="AmbientSound2" parent="SoundEffects" unique_id=903875899 instance=ExtResource("29_lu1xx")]
+position = Vector2(742, 154)
+sound_id = "lava"
 
-[node name="LavaSound4" parent="SoundEffects" unique_id=1856658562 instance=ExtResource("28_a0yxw")]
-position = Vector2(252, 742)
+[node name="AmbientSound3" parent="SoundEffects" unique_id=107526189 instance=ExtResource("29_lu1xx")]
+position = Vector2(1134, 98)
+sound_id = "lava"
 
-[node name="LavaSound" parent="." unique_id=1590034037 instance=ExtResource("28_a0yxw")]
-position = Vector2(266, 1050)
+[node name="AmbientSound5" parent="SoundEffects" unique_id=27440682 instance=ExtResource("29_lu1xx")]
+position = Vector2(630, 406)
+sound_id = "lava"
+
+[node name="AmbientSound6" parent="SoundEffects" unique_id=1566663271 instance=ExtResource("29_lu1xx")]
+position = Vector2(308, 406)
+sound_id = "lava"
+
+[node name="AmbientSound7" parent="SoundEffects" unique_id=775710921 instance=ExtResource("29_lu1xx")]
+position = Vector2(308, 742)
+sound_id = "lava"
+
+[node name="AmbientSound8" parent="SoundEffects" unique_id=2075079587 instance=ExtResource("29_lu1xx")]
+position = Vector2(644, 658)
+sound_id = "lava"
+
+[node name="AmbientSound9" parent="SoundEffects" unique_id=1428383907 instance=ExtResource("29_lu1xx")]
+position = Vector2(826, 658)
+sound_id = "lava"
+
+[node name="AmbientSound10" parent="SoundEffects" unique_id=1358994395 instance=ExtResource("29_lu1xx")]
+position = Vector2(70, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound11" parent="SoundEffects" unique_id=1874102327 instance=ExtResource("29_lu1xx")]
+position = Vector2(70, 238)
+sound_id = "lava"
+
+[node name="AmbientSound12" parent="SoundEffects" unique_id=566554764 instance=ExtResource("29_lu1xx")]
+position = Vector2(70, 868)
+sound_id = "lava"
+
+[node name="AmbientSound13" parent="SoundEffects" unique_id=2030066760 instance=ExtResource("29_lu1xx")]
+position = Vector2(1134, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound14" parent="SoundEffects" unique_id=1414327644 instance=ExtResource("29_lu1xx")]
+position = Vector2(1204, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound15" parent="SoundEffects" unique_id=1867863257 instance=ExtResource("29_lu1xx")]
+position = Vector2(1596, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound16" parent="SoundEffects" unique_id=2070982455 instance=ExtResource("29_lu1xx")]
+position = Vector2(840, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound17" parent="SoundEffects" unique_id=1221472173 instance=ExtResource("29_lu1xx")]
+position = Vector2(434, 1050)
+sound_id = "lava"
+
+[node name="AmbientSound18" parent="SoundEffects" unique_id=83755173 instance=ExtResource("29_lu1xx")]
+position = Vector2(84, -210)
+sound_id = "water"
