@@ -12,12 +12,12 @@
 		false
 	],
 	"hp": [
-		100.0,
+		20.0,
 		100.0
 	],
 	"kristallCollected": [
 		false,
-		false,
+		true,
 		false,
 		false,
 		false,
@@ -25,8 +25,8 @@
 		false,
 		false
 	],
-	"kristallCount": 0,
-	"levelNumber": 2,
+	"kristallCount": 1,
+	"levelNumber": 1,
 	"mana": [
 		99.0,
 		99.0

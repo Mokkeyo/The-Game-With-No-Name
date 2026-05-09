@@ -7,6 +7,7 @@ class_name Game
 @onready var respawn_timer: Timer = $respawnTimer
 @onready var boss_node: Control = $Boss
 @onready var pause: PauseMenu = $pause
+@onready var textbox: TextBox = $TextBox
 
 var respawnable_obj: Array[EnemyResetComponent]
 var level: Node2D = null
@@ -139,6 +140,14 @@ func set_player_position_to(d_name: String) -> void:
 			else:
 				in_game.player[i].reset_comp.set_stats()
 			door_name = ""
+	else:
+		for i: int in in_game.player.size():
+			if player_alive[i]:
+				in_game.player[i].reset_comp.reset_stats()
+				in_game.player[i].global_position = player_spawner.global_position
+				in_game.pet[i].global_position = player_spawner.global_position
+			else:
+				in_game.player[i].reset_comp.set_stats()
 
 #Penis
 
@@ -173,6 +182,9 @@ func game_over(player: int) -> void:
 
 func change_level(level_number: int, d_name: String) -> void:
 	door_name = d_name
+	for player: Player in in_game.player:
+		player.freeze = false
+	textbox.end_dialog()
 	var start_time: float = Time.get_ticks_msec()
 	await fader.fade_out().animation_finished
 	

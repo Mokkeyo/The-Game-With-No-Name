@@ -61,6 +61,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 						timer.start()
 
 
+func end_dialog() -> void:
+	set_process_unhandled_input(false)
+	control.visible = false
+
+
 func _load_dialog() -> void:
 	var current_line: String = dialog[dialog_index]
 	text_length = current_line.length()

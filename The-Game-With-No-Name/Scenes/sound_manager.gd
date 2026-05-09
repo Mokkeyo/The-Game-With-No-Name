@@ -2,7 +2,7 @@ extends Node
 class_name SoundManagerInstance
 
 var sfx_pool: Array[AudioStreamPlayer2D] = []
-const POOL_SIZE:int = 20
+const POOL_SIZE:int = 50
 
 const MAX_HEARING_DISTANCE: int = 150
 
@@ -67,7 +67,7 @@ func play_sound(sound_name: String, node: Node2D) -> void:
 		
 	played_this_frame[sound_name] = true
 	var player: AudioStreamPlayer2D = _get_player()
-	player.pitch_scale = randf_range(0.9, 1.2)
+	player.pitch_scale = randf_range(0.8, 0.9)
 	player.stream = sounds[sound_name]
 	player.global_position = node.global_position
 #	print(player.global_position)

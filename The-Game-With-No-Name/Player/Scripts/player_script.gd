@@ -39,6 +39,7 @@ signal flip_value_changed
 	"launch": $States/LaunchState,
 	"elevator": $States/WaterElevatorState
 }
+
 var current_state: PlayerState
 var can_doublejump: bool = true
 

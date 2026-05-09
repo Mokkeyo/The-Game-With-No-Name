@@ -4,7 +4,7 @@ class_name LevelTransition
 @export var marker: Marker2D
 @export var area: Area2D
 @export var level_number: int
-@export var door_name: String
+@export var door_name: String = ""
 
 
 func check_for_transition() -> bool:
