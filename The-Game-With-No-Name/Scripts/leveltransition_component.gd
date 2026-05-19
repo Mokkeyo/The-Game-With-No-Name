@@ -19,5 +19,5 @@ func check_for_transition() -> bool:
 
 
 func transition() -> void:
-	print("transtioning to level")
+	Save.player.checkpointActive = false
 	G.enter_door.emit(level_number, door_name)

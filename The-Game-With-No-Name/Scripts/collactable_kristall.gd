@@ -29,6 +29,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func end_dialog() -> void:
 	if not Save.player.kristallCollected[kristall - 1]:
+		Save.player.checkpointActive = false
 		Save.player.kristallCollected[kristall - 1] = true
 		Save.player.kristallCount += 1
 	

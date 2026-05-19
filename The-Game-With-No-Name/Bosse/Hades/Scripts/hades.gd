@@ -106,6 +106,9 @@ func do_attack(close: bool) -> void:
 	distance = "Close" if close else "Far"
 	var side: String = "Right" if sprite.flip_h else "Left"
 	
+	if animation_player.is_playing():
+		return
+	
 	match attack:
 		Attack.AXT:
 			animation_player.play("Axt_"+ distance + "_" + side)
@@ -118,6 +121,7 @@ func do_attack(close: bool) -> void:
 
 
 func died() -> void:
+	G.boss_finished.emit()
 	if Save.options.deaths[Save.active_slot] == 0:
 		var achievment_comp: AchievmentComponent = $achievmentComponent
 		achievment_comp.add_achievment()

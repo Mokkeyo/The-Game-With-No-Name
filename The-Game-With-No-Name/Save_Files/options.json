@@ -1,21 +1,26 @@
 {
-	"achievments": [],
+	"achievments": [
+		"Its Just The Beginning",
+		"Unkillable",
+		"Secret With No Name",
+		"Does Someone Need A Tutorial?"
+	],
 	"ambientVolume": 0.5,
-	"darknessOn": false,
-	"darknessValue": 200,
+	"darknessOn": true,
+	"darknessValue": 150,
 	"deaths": [
-		12,
 		0,
 		0,
-		0
+		5,
+		3
 	],
 	"fullscreen": false,
-	"maxFps": 0,
+	"maxFps": 7,
 	"maxVolume": 0.0,
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"test 2",
+		"",
 		"test 3",
 		""
 	],
@@ -28,9 +33,20 @@
 	"textboxCollected": [
 		"buschi0",
 		"kristall",
-		"rick1"
+		"rick1",
+		"kratos1",
+		"houseDoor0",
+		"graveStone",
+		"buschi1",
+		"shild0",
+		"shild4",
+		"shild5",
+		"rick2",
+		"houseDoor1",
+		"kratos2",
+		"kratos0"
 	],
-	"textboxCount": 3,
+	"textboxCount": 14,
 	"version": 1,
 	"vsync": false
 }

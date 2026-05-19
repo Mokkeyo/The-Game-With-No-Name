@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5d3xlx361g6c" path="res://Bosse/Hades/Szene/hades.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://5si55om8l0w7" path="res://TileMaps/Scenes/level.tscn" id="2_pkavi"]
 [ext_resource type="PackedScene" uid="uid://cp800xwxb321l" path="res://Scenes/falling_spikes.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://co8ixcon7auhw" path="res://level_camera.tscn" id="6_bbx1g"]
 
 [node name="Level6" type="Node2D" unique_id=1480005335]
 
@@ -38,7 +39,6 @@ position = Vector2(385, 0)
 [node name="FallingSpikes6" parent="." unique_id=1034856762 instance=ExtResource("5")]
 position = Vector2(443, 0)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1609622444]
-z_index = 2
+[node name="LevelCamera" parent="." unique_id=1396914036 instance=ExtResource("6_bbx1g")]
 position = Vector2(294, 98)
-zoom = Vector2(2, 2)
+activate_on_ready = true

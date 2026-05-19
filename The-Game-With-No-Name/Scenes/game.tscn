@@ -2,8 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bowcmya00mvsq" path="res://Scenes/pause_menu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cj63f0dlucbmw" path="res://Scenes/in_game.tscn" id="2_5u1uf"]
+[ext_resource type="Script" uid="uid://bahv4n1s5jyii" path="res://Scenes/player_manager.gd" id="3_rku1e"]
+[ext_resource type="Script" uid="uid://tsa5m2bcpfek" path="res://Scenes/level_manager.gd" id="4_rfjv2"]
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="5"]
+[ext_resource type="Script" uid="uid://c224ayp2t6h4m" path="res://Scenes/dialogue_manager.gd" id="5_1phco"]
 [ext_resource type="PackedScene" uid="uid://dmbwnii5hqwja" path="res://Scenes/fader.tscn" id="6"]
+[ext_resource type="Script" uid="uid://bhrmfij84jval" path="res://Scenes/boss_ui_manager.gd" id="6_nb51f"]
 [ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
@@ -61,6 +65,42 @@ cache/0/25/0/scale = 1.0
 cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 
+[sub_resource type="Animation" id="8"]
+length = 4.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/Player2Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/Player1Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7cw4a"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h5g3y"]
+_data = {
+&"PlayerCanRespawn": SubResource("8"),
+&"RESET": SubResource("Animation_7cw4a")
+}
+
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("15")])
 cache/0/variation_coordinates = {}
@@ -87,42 +127,6 @@ cache/0/20/0/scale = 1.0
 cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 
-[sub_resource type="Animation" id="8"]
-length = 4.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player2Label:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(4.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player1Label:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(4.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_7cw4a"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_h5g3y"]
-_data = {
-&"PlayerCanRespawn": SubResource("8"),
-&"RESET": SubResource("Animation_7cw4a")
-}
-
 [node name="Game" type="Control" unique_id=120643031]
 layout_mode = 3
 anchors_preset = 0
@@ -131,12 +135,14 @@ script = ExtResource("7")
 [node name="InGame" parent="." unique_id=470547863 instance=ExtResource("2_5u1uf")]
 layout_mode = 0
 
-[node name="Fader" parent="." unique_id=2046222908 instance=ExtResource("6")]
+[node name="Fader" parent="." unique_id=517439101 instance=ExtResource("6")]
 layout_mode = 0
 
-[node name="Player2Label" type="Label" parent="." unique_id=1284848523]
+[node name="PlayerManager" type="Node" parent="." unique_id=1512251564]
+script = ExtResource("3_rku1e")
+
+[node name="Player2Label" type="Label" parent="PlayerManager" unique_id=1284848523]
 visible = false
-layout_mode = 0
 offset_left = 748.0
 offset_top = 8.0
 offset_right = 1010.0
@@ -147,9 +153,8 @@ theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 25
 text = "Player 2 can respawn"
 
-[node name="Player1Label" type="Label" parent="." unique_id=721011760]
+[node name="Player1Label" type="Label" parent="PlayerManager" unique_id=721011760]
 visible = false
-layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 270.0
@@ -160,11 +165,25 @@ theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 25
 text = "Player 1 can respawn"
 
-[node name="Boss" type="Control" parent="." unique_id=290950282]
-visible = false
-anchors_preset = 0
+[node name="respawnTimer" type="Timer" parent="PlayerManager" unique_id=829841168]
+wait_time = 5.0
+one_shot = true
 
-[node name="BossHP" parent="Boss" unique_id=285235706 instance=ExtResource("11")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerManager" unique_id=1105948417]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_h5g3y")
+
+[node name="LevelManager" type="Node" parent="." unique_id=2042275682]
+script = ExtResource("4_rfjv2")
+
+[node name="DialogueManager" type="Node" parent="." unique_id=1903935424]
+script = ExtResource("5_1phco")
+
+[node name="BossUIManager" type="Control" parent="." unique_id=1706865187]
+anchors_preset = 0
+script = ExtResource("6_nb51f")
+
+[node name="BossHP" parent="BossUIManager" unique_id=285235706 instance=ExtResource("11")]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 536.0
@@ -172,7 +191,7 @@ offset_right = 132.0
 offset_bottom = 540.0
 scale = Vector2(40, 3)
 
-[node name="Label" type="Label" parent="Boss" unique_id=334307819]
+[node name="Label" type="Label" parent="BossUIManager" unique_id=334307819]
 layout_mode = 0
 offset_left = 152.0
 offset_top = 507.0
@@ -184,6 +203,10 @@ theme_override_fonts/font = SubResource("7")
 theme_override_font_sizes/font_size = 20
 text = "Boss Galaga"
 
+[node name="Boss" type="Control" parent="." unique_id=290950282]
+visible = false
+anchors_preset = 0
+
 [node name="TextBox" parent="." unique_id=634832495 instance=ExtResource("12_k2rrv")]
 layout_mode = 0
 
@@ -191,11 +214,4 @@ layout_mode = 0
 visible = false
 layout_mode = 0
 
-[node name="respawnTimer" type="Timer" parent="." unique_id=829841168]
-wait_time = 5.0
-one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1105948417]
-libraries/ = SubResource("AnimationLibrary_h5g3y")
-
-[connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]
+[connection signal="timeout" from="PlayerManager/respawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

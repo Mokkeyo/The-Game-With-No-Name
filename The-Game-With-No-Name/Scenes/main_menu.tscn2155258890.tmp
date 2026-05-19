@@ -1940,11 +1940,10 @@ scale = Vector2(2, 2)
 texture = ExtResource("14_bvqy3")
 metadata/_edit_lock_ = true
 
-[node name="SaveStats" parent="." unique_id=20983596 node_paths=PackedStringArray("fader") instance=ExtResource("16_ry84y")]
+[node name="SaveStats" parent="." unique_id=20983596 instance=ExtResource("16_ry84y")]
 layout_mode = 0
 offset_top = -576.0
 offset_bottom = 0.0
-fader = NodePath("../Fader")
 
 [node name="Control" parent="." unique_id=258429624 instance=ExtResource("17_mpf4w")]
 layout_mode = 0

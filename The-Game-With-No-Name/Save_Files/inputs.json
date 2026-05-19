@@ -13,7 +13,7 @@
 	],
 	"player1_down": [
 		{
-			"keycode": 83.0,
+			"keycode": 83,
 			"type": "key"
 		},
 		{
@@ -25,7 +25,7 @@
 	],
 	"player1_interact": [
 		{
-			"keycode": 4194325.0,
+			"keycode": 4194325,
 			"type": "key"
 		},
 		{
@@ -47,7 +47,7 @@
 	],
 	"player1_left": [
 		{
-			"keycode": 65.0,
+			"keycode": 65,
 			"type": "key"
 		},
 		{
@@ -71,7 +71,7 @@
 	],
 	"player1_spawn": [
 		{
-			"keycode": 69.0,
+			"keycode": 81,
 			"type": "key"
 		},
 		{
@@ -82,7 +82,7 @@
 	],
 	"player1_up": [
 		{
-			"keycode": 87.0,
+			"keycode": 87,
 			"type": "key"
 		},
 		{
@@ -94,7 +94,7 @@
 	],
 	"player1_wand": [
 		{
-			"button": 2.0,
+			"button": 2,
 			"type": "mouse"
 		},
 		{

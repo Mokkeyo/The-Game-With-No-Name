@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="3_yt6r5"]
 [ext_resource type="Script" uid="uid://dykafd5spvrkr" path="res://Scripts/gravestone.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="4_lb0m4"]
-[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5_2r6j3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6b255"]
 size = Vector2(10, 22)
@@ -23,12 +22,8 @@ npc = "enemyGraveStone"
 blackBox = true
 npc_node = NodePath("..")
 
-[node name="NPCArea" parent="." unique_id=93268374 node_paths=PackedStringArray("ping") instance=ExtResource("4_lb0m4")]
-ping = NodePath("../Ping")
+[node name="NPCArea" parent="." unique_id=93268374 instance=ExtResource("4_lb0m4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=1245485780]
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_6b255")
-
-[node name="Ping" parent="." unique_id=1546135845 instance=ExtResource("5_2r6j3")]
-position = Vector2(0, -42)

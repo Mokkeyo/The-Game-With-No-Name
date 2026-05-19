@@ -43,7 +43,8 @@ func update_save_state_visibility(is_copy: bool) -> void:
 
 func start_fader() -> void:
 	get_tree().paused = true
-	await  fader.fade_out().animation_finished
+	await fader.fade_out().animation_finished
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c32irumryilnl"]
+[gd_scene format=3 uid="uid://c32irumryilnl"]
 
 [ext_resource type="PackedScene" uid="uid://xs4mgs21ekcp" path="res://Scenes/adv_button.tscn" id="2_u2yt6"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="5"]
@@ -38,6 +38,15 @@ fallbacks = Array[Font]([ExtResource("5")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -61,6 +70,15 @@ fallbacks = Array[Font]([ExtResource("13")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -81,6 +99,15 @@ fallbacks = Array[Font]([ExtResource("14")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -96,7 +123,7 @@ cache/0/40/0/scale = 1.0
 cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
 
-[node name="Achievments" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+[node name="Achievments" type="Control" unique_id=2007439904 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
@@ -105,13 +132,13 @@ script = ExtResource("7")
 startButton = NodePath("BackButton")
 exitButton = NodePath("BackButton")
 
-[node name="Background" type="Control" parent="."]
+[node name="Background" type="Control" parent="." unique_id=472686353]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="Background"]
+[node name="Panel" type="Panel" parent="Background" unique_id=2131600692]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 11.0
@@ -119,7 +146,7 @@ offset_right = 1023.0
 offset_bottom = 590.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="Panel3" type="Panel" parent="Background"]
+[node name="Panel3" type="Panel" parent="Background" unique_id=541064716]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 16.0
@@ -127,7 +154,7 @@ offset_right = 1020.0
 offset_bottom = 586.0
 theme_override_styles/panel = SubResource("2")
 
-[node name="Panel2" type="Panel" parent="Background"]
+[node name="Panel2" type="Panel" parent="Background" unique_id=399278890]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 21.0
@@ -135,26 +162,26 @@ offset_right = 1015.0
 offset_bottom = 581.0
 theme_override_styles/panel = SubResource("3")
 
-[node name="Panel4" type="Panel" parent="Background"]
+[node name="Panel4" type="Panel" parent="Background" unique_id=1209633664]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 24.0
 offset_right = 1012.0
 offset_bottom = 578.0
 
-[node name="Pfad" type="Control" parent="."]
+[node name="Pfad" type="Control" parent="." unique_id=1862176403]
 anchors_preset = 0
 offset_top = -30.0
 offset_right = 40.0
 offset_bottom = 10.0
 pivot_offset = Vector2(592, 404)
 
-[node name="Background" type="Control" parent="Pfad"]
+[node name="Background" type="Control" parent="Pfad" unique_id=1580519371]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="Pfad/Background"]
+[node name="Panel" type="Panel" parent="Pfad/Background" unique_id=926120521]
 layout_mode = 0
 offset_left = 94.0
 offset_top = 286.0
@@ -162,7 +189,7 @@ offset_right = 130.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel3" type="Panel" parent="Pfad/Background"]
+[node name="Panel3" type="Panel" parent="Pfad/Background" unique_id=867299147]
 layout_mode = 0
 offset_left = 254.0
 offset_top = 318.0
@@ -170,7 +197,7 @@ offset_right = 290.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel5" type="Panel" parent="Pfad/Background"]
+[node name="Panel5" type="Panel" parent="Pfad/Background" unique_id=1299347354]
 layout_mode = 0
 offset_left = 94.0
 offset_top = 414.0
@@ -178,7 +205,7 @@ offset_right = 930.0
 offset_bottom = 450.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel6" type="Panel" parent="Pfad/Background"]
+[node name="Panel6" type="Panel" parent="Pfad/Background" unique_id=678064561]
 layout_mode = 0
 offset_left = 582.0
 offset_top = 352.0
@@ -186,7 +213,7 @@ offset_right = 618.0
 offset_bottom = 450.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel7" type="Panel" parent="Pfad/Background"]
+[node name="Panel7" type="Panel" parent="Pfad/Background" unique_id=797222958]
 layout_mode = 0
 offset_left = 734.0
 offset_top = 318.0
@@ -194,7 +221,7 @@ offset_right = 770.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel8" type="Panel" parent="Pfad/Background"]
+[node name="Panel8" type="Panel" parent="Pfad/Background" unique_id=1827852121]
 layout_mode = 0
 offset_left = 894.0
 offset_top = 278.0
@@ -202,7 +229,7 @@ offset_right = 930.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Panel9" type="Panel" parent="Pfad/Background"]
+[node name="Panel9" type="Panel" parent="Pfad/Background" unique_id=1039929560]
 layout_mode = 0
 offset_left = 406.0
 offset_top = 352.0
@@ -210,12 +237,12 @@ offset_right = 442.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("4")
 
-[node name="Pfad" type="Control" parent="Pfad"]
+[node name="Pfad" type="Control" parent="Pfad" unique_id=352568128]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel6" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel6" type="Panel" parent="Pfad/Pfad" unique_id=1504338341]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 416.0
@@ -223,7 +250,7 @@ offset_right = 896.0
 offset_bottom = 448.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel" type="Panel" parent="Pfad/Pfad" unique_id=324127399]
 layout_mode = 0
 offset_left = 408.0
 offset_top = 350.0
@@ -231,7 +258,7 @@ offset_right = 440.0
 offset_bottom = 436.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel2" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel2" type="Panel" parent="Pfad/Pfad" unique_id=1640677709]
 layout_mode = 0
 offset_left = 896.0
 offset_top = 278.0
@@ -239,7 +266,7 @@ offset_right = 928.0
 offset_bottom = 448.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel3" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel3" type="Panel" parent="Pfad/Pfad" unique_id=1555740971]
 layout_mode = 0
 offset_left = 584.0
 offset_top = 350.0
@@ -247,7 +274,7 @@ offset_right = 616.0
 offset_bottom = 422.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel4" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel4" type="Panel" parent="Pfad/Pfad" unique_id=1740887366]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 286.0
@@ -255,7 +282,7 @@ offset_right = 128.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel5" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel5" type="Panel" parent="Pfad/Pfad" unique_id=1528406391]
 layout_mode = 0
 offset_left = 256.0
 offset_top = 318.0
@@ -263,7 +290,7 @@ offset_right = 288.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Panel8" type="Panel" parent="Pfad/Pfad"]
+[node name="Panel8" type="Panel" parent="Pfad/Pfad" unique_id=1288142344]
 layout_mode = 0
 offset_left = 736.0
 offset_top = 318.0
@@ -271,13 +298,13 @@ offset_right = 768.0
 offset_bottom = 416.0
 theme_override_styles/panel = SubResource("5")
 
-[node name="Advantments" type="Control" parent="."]
+[node name="Advantments" type="Control" parent="." unique_id=1754855798]
 anchors_preset = 0
 offset_top = -2.0
 offset_right = 40.0
 offset_bottom = 38.0
 
-[node name="AdvButton1" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="AdvButton1" parent="Advantments" unique_id=814350686 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 35.0
 offset_top = 104.0
@@ -287,13 +314,12 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../AdvButton2")
 focus_neighbor_bottom = NodePath("../../BackButton")
+icon_alignment = 1
+expand_icon = true
+unlocked_icon = ExtResource("12")
+show_progress = true
 
-[node name="Chatter" type="Sprite2D" parent="Advantments/AdvButton1"]
-position = Vector2(77, 77)
-scale = Vector2(4, 4)
-texture = ExtResource("12")
-
-[node name="AdvButton2" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="AdvButton2" parent="Advantments" unique_id=284113486 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 195.0
 offset_top = 136.0
@@ -303,15 +329,13 @@ focus_neighbor_left = NodePath("../AdvButton1")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../AdvChatter3")
 focus_neighbor_bottom = NodePath("../../BackButton")
+icon_alignment = 1
+expand_icon = true
 achievment_name = "Its Just The Beginning"
+unlocked_icon = ExtResource("11")
 achievment_description = "finish the game"
 
-[node name="ItsJustTheBeginning" type="Sprite2D" parent="Advantments/AdvButton2"]
-position = Vector2(77, 78)
-scale = Vector2(5, 5)
-texture = ExtResource("11")
-
-[node name="AdvChatter3" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="AdvChatter3" parent="Advantments" unique_id=1896144108 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 355.0
 offset_top = 170.0
@@ -321,15 +345,13 @@ focus_neighbor_left = NodePath("../AdvButton2")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../Adv_Button4")
 focus_neighbor_bottom = NodePath("../../BackButton")
-achievment_name = "Does Someone Need A Tutorial"
+icon_alignment = 1
+expand_icon = true
+achievment_name = "Does Someone Need A Tutorial?"
+unlocked_icon = ExtResource("8")
 achievment_description = "finish the tutorial"
 
-[node name="Noob" type="Sprite2D" parent="Advantments/AdvChatter3"]
-position = Vector2(77, 80)
-scale = Vector2(4, 4)
-texture = ExtResource("8")
-
-[node name="Adv_Button4" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="Adv_Button4" parent="Advantments" unique_id=603072945 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 515.0
 offset_top = 170.0
@@ -339,15 +361,13 @@ focus_neighbor_left = NodePath("../AdvChatter3")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../Adv_Button5")
 focus_neighbor_bottom = NodePath("../../BackButton")
+icon_alignment = 1
+expand_icon = true
 achievment_name = "Unkillable"
+unlocked_icon = ExtResource("9")
 achievment_description = "beat the game without dying"
 
-[node name="Unkillable" type="Sprite2D" parent="Advantments/Adv_Button4"]
-position = Vector2(77, 77)
-scale = Vector2(4, 4)
-texture = ExtResource("9")
-
-[node name="Adv_Button5" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="Adv_Button5" parent="Advantments" unique_id=533309017 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 675.0
 offset_top = 136.0
@@ -357,15 +377,13 @@ focus_neighbor_left = NodePath("../Adv_Button4")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../Adv_Button6")
 focus_neighbor_bottom = NodePath("../../BackButton")
+icon_alignment = 1
+expand_icon = true
 achievment_name = "You Got A Friend In Me"
+unlocked_icon = ExtResource("10")
 achievment_description = "finish the game with a friend"
 
-[node name="YouGotAFriendInMe" type="Sprite2D" parent="Advantments/Adv_Button5"]
-position = Vector2(77, 77)
-scale = Vector2(4, 4)
-texture = ExtResource("10")
-
-[node name="Adv_Button6" parent="Advantments" instance=ExtResource("2_u2yt6")]
+[node name="Adv_Button6" parent="Advantments" unique_id=688433143 instance=ExtResource("2_u2yt6")]
 layout_mode = 0
 offset_left = 835.0
 offset_top = 96.0
@@ -375,21 +393,19 @@ focus_neighbor_left = NodePath("../Adv_Button5")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../BackButton")
+icon_alignment = 1
+expand_icon = true
 achievment_name = "Secret With No Name"
+unlocked_icon = ExtResource("15")
 achievment_description = "???"
 
-[node name="Questionmark" type="Sprite2D" parent="Advantments/Adv_Button6"]
-position = Vector2(79.0001, 75)
-scale = Vector2(6, 6)
-texture = ExtResource("15")
-
-[node name="TextBox" type="Control" parent="."]
+[node name="TextBox" type="Control" parent="." unique_id=1945882570]
 anchors_preset = 0
 offset_top = -2.0
 offset_right = 40.0
 offset_bottom = 38.0
 
-[node name="Panel" type="Panel" parent="TextBox"]
+[node name="Panel" type="Panel" parent="TextBox" unique_id=443689014]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 440.0
@@ -397,7 +413,7 @@ offset_right = 1002.0
 offset_bottom = 568.0
 theme_override_styles/panel = SubResource("11")
 
-[node name="Panel2" type="Panel" parent="TextBox"]
+[node name="Panel2" type="Panel" parent="TextBox" unique_id=116625761]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 444.0
@@ -405,7 +421,7 @@ offset_right = 998.0
 offset_bottom = 564.0
 theme_override_styles/panel = SubResource("12")
 
-[node name="Name" type="RichTextLabel" parent="TextBox"]
+[node name="Name" type="RichTextLabel" parent="TextBox" unique_id=264208439]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 444.0
@@ -416,7 +432,7 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = SubResource("13")
 theme_override_font_sizes/normal_font_size = 28
 
-[node name="Panel3" type="Panel" parent="TextBox"]
+[node name="Panel3" type="Panel" parent="TextBox" unique_id=1240962210]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 480.0
@@ -424,7 +440,7 @@ offset_right = 994.0
 offset_bottom = 560.0
 theme_override_styles/panel = SubResource("14")
 
-[node name="Description" type="RichTextLabel" parent="TextBox"]
+[node name="Description" type="RichTextLabel" parent="TextBox" unique_id=1668906207]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 498.0
@@ -435,7 +451,7 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = SubResource("13")
 theme_override_font_sizes/normal_font_size = 28
 
-[node name="HeadLine" type="Label" parent="."]
+[node name="HeadLine" type="Label" parent="." unique_id=1860356259]
 layout_mode = 0
 offset_left = 307.0
 offset_top = -3.0
@@ -447,9 +463,9 @@ theme_override_fonts/font = SubResource("21")
 theme_override_font_sizes/font_size = 100
 text = "Achievments"
 
-[node name="Count" type="Label" parent="."]
+[node name="Count" type="Label" parent="." unique_id=1876273359]
 layout_mode = 0
-offset_left = 872.0
+offset_left = 745.0
 offset_top = 444.0
 offset_right = 994.0
 offset_bottom = 500.0
@@ -459,11 +475,11 @@ theme_override_fonts/font = SubResource("22")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 2
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1807707105]
 wait_time = 0.5
 one_shot = true
 
-[node name="BackButton" parent="." instance=ExtResource("13_xpth3")]
+[node name="BackButton" parent="." unique_id=2061201920 instance=ExtResource("13_xpth3")]
 layout_mode = 0
 offset_left = 431.0
 offset_top = 326.0

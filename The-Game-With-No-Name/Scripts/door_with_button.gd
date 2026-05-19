@@ -10,7 +10,7 @@ class_name DoorWithObj
 var door_open: bool = false
 @export var Door_Nr: int = 1
 @onready var resetComp: EnemyResetComponent = $EnemyResetComponent
-#static var temp_door: Array[int] = []
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -33,7 +33,7 @@ func reset() -> void:
 func open() -> void:
 	animationPlayer.play("DoorOpen")
 	door_open = true
-	G.emit_signal("door_opend", Door_Nr)
+	G.door_opend.emit(Door_Nr)
 
 
 func _process(_delta: float) -> void:

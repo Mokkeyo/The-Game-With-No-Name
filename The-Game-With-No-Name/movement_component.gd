@@ -50,7 +50,7 @@ func apply_gravity(delta: float, slowed: bool = false) -> void:
 	var g: float = WATER_GRAVITY if water_detector.inWater else GRAVITY
 	if slowed and body.velocity.y > 0:
 		body.velocity.y = 0
-#ddddddddddddd		g *= 0.05
+#		g *= 0.05
 	
 	body.velocity.y += g * delta
 

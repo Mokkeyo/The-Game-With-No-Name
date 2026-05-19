@@ -52,7 +52,6 @@ func _physics_process(_delta: float) -> void:
 				state = State.CHASE
 			
 			if global_position.distance_to(start_position) < 1:
-				print("returned to start")
 				timer.stop()
 				state = State.IDLE
 				return

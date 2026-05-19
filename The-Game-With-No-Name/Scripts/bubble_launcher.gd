@@ -58,7 +58,6 @@ func shoot_bubble(i: int) -> void:
 			player_bodies[i] = null
 			body.freeze = false
 			body.velocity = Vector2.ZERO
-			print(direction[i])
 			if not direction[i] == Vector2.ZERO:
 				body.change_state("launch")
 				body.launch_direction = direction[i]

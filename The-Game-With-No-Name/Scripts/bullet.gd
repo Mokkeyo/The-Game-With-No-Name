@@ -15,7 +15,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(visible)
 	velocity = Vector2( moveSPEED, 0).rotated(dir)
 	global_position += velocity * delta
 

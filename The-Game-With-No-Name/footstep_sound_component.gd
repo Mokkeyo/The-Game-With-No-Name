@@ -46,7 +46,6 @@ func play_footstep(position: Vector2) -> void:
 			audio_player.play()
 			await  audio_player.finished
 			audio_player.queue_free()
-			print("sound played")
 
 
 func player_audio_start(position: Vector2, sound: AudioStream, volume: float) -> void:
@@ -73,7 +72,7 @@ func audio_player_start_on_node(node: Node2D, sound: AudioStream, volume: float)
 func audio_player_start(position: Vector2, sound: AudioStream, volume: float) -> void:
 	var audio_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 	audio_player.stream = sound
-	get_tree().root.add_child(audio_player)
+	get_tree().root.add_child.call_deferred(audio_player)
 	audio_player.global_position = position
 	audio_player.volume_db = volume
 	audio_player.max_distance = 700

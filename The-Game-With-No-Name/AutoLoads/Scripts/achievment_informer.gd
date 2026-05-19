@@ -5,6 +5,8 @@ class_name AchievmentInformer
 @onready var label2: Label = $CanvasLayer/Control/Label2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var fader: Fader = null
+
 var last_fps: int = 0
 var queued_achievements: Array[String] = []
 var is_playing: bool = false
@@ -45,7 +47,6 @@ func _process_next_achievement() -> void:
 	var achievement_name:String = queued_achievements.pop_front()
 
 	label2.text = achievement_name
-	print(achievement_name)
 
 	var sprite_path: String= "CanvasLayer/Control/" + achievement_name
 	var sprite: Sprite2D = get_node_or_null(sprite_path)

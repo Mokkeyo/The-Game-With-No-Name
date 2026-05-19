@@ -353,7 +353,7 @@ lavaDetector = NodePath("../LavaWaterDetector")
 [node name="InvisibleFramesComp" parent="." unique_id=1899888523 node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
 parent = NodePath("../AnimatedSprite2D")
 
-[node name="ResetComponent" parent="." unique_id=62998091 node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("16_lq3ic")]
+[node name="ResetComponent" parent="." unique_id=62998091 node_paths=PackedStringArray("collisions", "healthComp") groups=["Player"] instance=ExtResource("16_lq3ic")]
 collisions = [NodePath("../CollisionShape2D"), NodePath("../GrabZone/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../LavaWaterDetector/CollisionShape2D")]
 healthComp = NodePath("../healthComponent")
 setStartPosition = false

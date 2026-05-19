@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ccs7k64ikvuep" path="res://Scenes/enemy_airship.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dwr7q5blpqwhd" path="res://Scenes/lava_wall.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cebshykj68nr3" path="res://Bosse/Galaga/Szene/galaga.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://be7kuqteg4ioi" path="res://transition_area.tscn" id="14_pj26l"]
 [ext_resource type="PackedScene" uid="uid://4aouv1eodo1n" path="res://Scenes/turret.tscn" id="15"]
 [ext_resource type="PackedScene" uid="uid://834mkf0t3knb" path="res://Enemys/Scenes/bat.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://b3rfkjntxnk5o" path="res://Scenes/collactable_kristall.tscn" id="17"]
@@ -18,6 +19,9 @@
 vertices = PackedVector2Array(32, 172, 23.796875, 172, 24.242188, 136, 32, 136, 102, 136, 102, 172, 80, 172, 94, 144.14063, 94, 136, 80, 158.14063, 248, 102, 24.648438, 102, 24.921875, 80, 38, 80, 1600.1406, 24, 2398, 24, 2398, 32.140625, 1544.1406, 80, 2712, 32.140625, 2712, 24, 3182, 24, 3182, 32.140625, 3328, 32.140625, 3328, 24, 3691.8594, 24, 3700, 32.140625, 3700, 94, 3700, 163.85938, 3691.8594, 172, 3328, 172, 3328, 163.85938, 3700, 102, 3182, 163.85938, 3182, 172, 3048, 172, 3048, 163.85938, 2818, 163.85938, 2818, 172, 1936.1406, 172, 1894.1406, 130, 681.8594, 172, 150, 172, 150, 158.14063, 158.14063, 150, 228.14063, 150, 248, 130.14063, 38, 24, 429.85938, 24, 443.85938, 38, 471.85938, 52, 3280.1406, 116, 3280.1406, 80, 1544.1406, 116, 2445.8594, 80, 1717.8594, 130, 2664.1406, 80, 2851.8594, 130, 457.85938, 38, 564.1406, 52, 709.8594, 144, 578.1406, 38, 592.1406, 38, 830.1406, 144, 606.1406, 24, 919.8594, 24, 933.8594, 38, 858.1406, 172, 947.8594, 38, 961.8594, 52, 1423.8594, 172, 1068.1406, 52, 1082.1406, 38, 1096.1406, 38, 1110.1406, 24, 1423.8594, 24, 1479.8594, 80, 1479.8594, 116, 3229.8594, 80, 3229.8594, 116, 3014.1406, 130, 3770.1406, 94, 3784.1406, 80, 3798.1406, 80, 3798.1406, 116, 3784.1406, 116, 3770.1406, 102, 3812.1406, 66, 3887.8594, 66, 3896, 74.140625, 3896, 121.859375, 3887.8594, 130, 3812.1406, 130, 1600.1406, 172, 1675.8594, 172)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 8, 4), PackedInt32Array(7, 6, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 23, 24, 25, 26), PackedInt32Array(27, 28, 29, 30, 31), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43, 44), PackedInt32Array(40, 44, 45), PackedInt32Array(10, 13, 46, 47, 48), PackedInt32Array(40, 45, 10, 48, 49), PackedInt32Array(50, 51, 22, 26, 31, 30), PackedInt32Array(52, 17, 16, 53, 39, 54), PackedInt32Array(55, 56, 36, 39, 53), PackedInt32Array(48, 57, 49), PackedInt32Array(40, 49, 58, 59), PackedInt32Array(59, 58, 60, 61), PackedInt32Array(62, 59, 61, 63, 64, 65), PackedInt32Array(66, 62, 65, 67, 68), PackedInt32Array(69, 66, 68, 70), PackedInt32Array(69, 70, 71, 72), PackedInt32Array(69, 72, 73, 74, 75, 76), PackedInt32Array(76, 75, 17, 52), PackedInt32Array(55, 18, 21, 77, 78, 79, 56), PackedInt32Array(80, 81, 82, 83, 84, 85), PackedInt32Array(82, 86, 87, 88, 89, 90, 91, 83), PackedInt32Array(26, 80, 85, 31), PackedInt32Array(77, 51, 50, 78), PackedInt32Array(78, 32, 35, 79), PackedInt32Array(92, 52, 54, 93)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3923, -34, 3919, 217, 13, 238, 17, -92)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxrqi"]
+size = Vector2(1, 42)
 
 [node name="Level4" type="Node2D" unique_id=1118564919]
 
@@ -39,32 +43,26 @@ navigation_polygon = SubResource("NavigationPolygon_hloeb")
 
 [node name="bat" parent="Enemys" unique_id=1701657894 instance=ExtResource("16")]
 position = Vector2(2929, 82)
-hitoints = 40
 SPEED = 120
 
 [node name="bat2" parent="Enemys" unique_id=282271844 instance=ExtResource("16")]
 position = Vector2(2327, 162)
-hitoints = 40
 SPEED = 120
 
 [node name="bat3" parent="Enemys" unique_id=1287184221 instance=ExtResource("16")]
 position = Vector2(2327, 59)
-hitoints = 40
 SPEED = 120
 
 [node name="bat4" parent="Enemys" unique_id=597341107 instance=ExtResource("16")]
 position = Vector2(922, 144)
-hitoints = 40
 SPEED = 120
 
 [node name="bat5" parent="Enemys" unique_id=1705325396 instance=ExtResource("16")]
 position = Vector2(562, 131)
-hitoints = 40
 SPEED = 120
 
 [node name="bat6" parent="Enemys" unique_id=638495550 instance=ExtResource("16")]
 position = Vector2(730, 74)
-hitoints = 40
 SPEED = 120
 
 [node name="airship(enemy)" parent="Enemys" unique_id=708060559 instance=ExtResource("12")]
@@ -386,3 +384,13 @@ position = Vector2(150, 112)
 [node name="Player_Spawner" parent="." unique_id=925094754 node_paths=PackedStringArray("airship_spawner") instance=ExtResource("1")]
 position = Vector2(48, 112)
 airship_spawner = NodePath("../Airship_spawner")
+
+[node name="transition_area" parent="." unique_id=2020205868 instance=ExtResource("14_pj26l")]
+position = Vector2(48, 112)
+collision_layer = 0
+collision_mask = 2
+door_name = "BossDoor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="transition_area" unique_id=43390013]
+position = Vector2(-103.5, -21)
+shape = SubResource("RectangleShape2D_gxrqi")

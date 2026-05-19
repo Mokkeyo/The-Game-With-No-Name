@@ -4,6 +4,7 @@ signal enter_door
 @export var door_name: String
 @export var level_number: int
 @export var keys: Array[Key]
+@export var door_nr: int
 
 @onready var ping: Ping = $Ping
 @onready var level_transition: LevelTransition = $LeveltransitionComponent
@@ -24,7 +25,11 @@ func _ready() -> void:
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
 	set_process_unhandled_input(keys.size() == 0)
-
+	
+	if Save.player.door.has(door_nr):
+		for key: Key in keys:
+			key.disable_collision()
+		open_door()
 
 func _unhandled_input(_event: InputEvent) -> void:
 	level_transition.check_for_transition()
@@ -39,6 +44,9 @@ func update_key_count() -> void:
 
 
 func reset_door() -> void:
+	if Save.player.door.has(door_nr):
+		return
+	
 	key_count = 0
 	label.text = str(array_size)
 	set_process_unhandled_input(false)
@@ -46,5 +54,7 @@ func reset_door() -> void:
 
 
 func open_door() -> void:
+	label.text = str(0)
 	set_process_unhandled_input(true)
 	ping.visible = true
+	G.door_opend.emit(door_nr)

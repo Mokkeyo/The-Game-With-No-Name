@@ -185,16 +185,16 @@ position = Vector2(139, 828)
 [node name="DoorAndButton2" parent="Objects" unique_id=207365434 instance=ExtResource("21_nkyoy")]
 position = Vector2(97, 224)
 door_color = "Stone"
-Door_Nr = 2
 
 [node name="DoorAndButton3" parent="Objects" unique_id=1152650103 instance=ExtResource("21_nkyoy")]
 position = Vector2(70, 840)
 door_color = "Player"
-Door_Nr = 3
+Door_Nr = 2
 
 [node name="DoorAndButton" parent="Objects" unique_id=212666949 instance=ExtResource("21_nkyoy")]
 position = Vector2(-700, -140)
 door_color = "Player"
+Door_Nr = 0
 
 [node name="Player_Spawner" parent="." unique_id=835550469 instance=ExtResource("23_1rg0k")]
 position = Vector2(196, 70)

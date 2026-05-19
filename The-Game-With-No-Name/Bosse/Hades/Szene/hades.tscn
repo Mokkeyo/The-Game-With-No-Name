@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="14_gq7e4"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="15_swoep"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="17_2t75w"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="18_4wqrg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5thi0"]
 diffuse_texture = ExtResource("6_5f76a")
@@ -901,7 +902,6 @@ texture = SubResource("CanvasTexture_5thi0")
 
 [node name="Axt(Boss)" type="Sprite2D" parent="." unique_id=1862787337]
 visible = false
-z_index = 1
 z_as_relative = false
 position = Vector2(-6, -17)
 texture = SubResource("CanvasTexture_7gjy1")
@@ -1010,6 +1010,9 @@ move_direction = 1
 
 [node name="LeveltransitionComponent" parent="." unique_id=2046710372 instance=ExtResource("14_gq7e4")]
 level_number = 6
+
+[node name="ResetComponent" parent="." unique_id=338572743 node_paths=PackedStringArray("healthComp") instance=ExtResource("18_4wqrg")]
+healthComp = NodePath("../healthComponent")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="cooldown_timer" to="." method="_on_cooldown_timer_timeout"]

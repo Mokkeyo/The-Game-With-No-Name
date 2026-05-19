@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brxvni4brw46f"]
+[gd_scene format=3 uid="uid://brxvni4brw46f"]
 
 [ext_resource type="Texture2D" uid="uid://dp70j37quyjs2" path="res://TileMaps/CanvasTextures/torch.tres" id="1_wiysb"]
 [ext_resource type="Script" uid="uid://buyqrjfv67671" path="res://TileMaps/torch.gd" id="2_fch0p"]
@@ -40,10 +40,10 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Sprite2D" type="AnimatedSprite2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" unique_id=982099954]
 sprite_frames = SubResource("SpriteFrames_ehxj2")
 frame_progress = 0.202318
 script = ExtResource("2_fch0p")
 
-[node name="PointLight2D" parent="." instance=ExtResource("3_dnv1b")]
+[node name="PointLight2D" parent="." unique_id=1739295884 instance=ExtResource("3_dnv1b")]
 position = Vector2(0, -5)

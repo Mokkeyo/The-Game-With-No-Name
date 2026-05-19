@@ -61,7 +61,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func on_value_changed() -> void:
-	print("value changed")
 	G.health_value_changed.emit(currentPlayer, healthComp.health)
 
 

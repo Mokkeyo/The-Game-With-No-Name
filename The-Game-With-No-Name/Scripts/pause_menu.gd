@@ -7,26 +7,23 @@ class_name PauseMenu
 
 @export var menus: Array[Menu]
 
-var can_pause: bool = true
-
 func _ready() -> void:
 	visible = false
 	for i: int in menus.size():
 		menus[i].visible = false
-		menus[i].exited.connect(Callable(self, "to_start_menu").bind(i))
+		menus[i].exited.connect(to_start_menu.bind(i))
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if can_pause:
-		if Input.is_action_just_pressed("start") and not get_tree().paused:
-			get_tree().paused = true
-			visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			continueButton.grab_focus()
-			return
-			
-		elif Input.is_action_just_pressed("escape"):
-			exit_pause()
+	if Input.is_action_just_pressed("start") and not get_tree().paused:
+		get_tree().paused = true
+		visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		continueButton.grab_focus()
+		return
+		
+	if Input.is_action_just_pressed("escape"):
+		exit_pause()
 
 
 func to_start_menu(index: int) -> void:

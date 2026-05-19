@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chcsx10qtt6m8"]
+[gd_scene format=3 uid="uid://chcsx10qtt6m8"]
 
 [ext_resource type="Texture2D" uid="uid://bbolua41465ap" path="res://PathToNewLevelObjects/Textures/door.png" id="1"]
 [ext_resource type="Script" uid="uid://6e1c2vkqhtqq" path="res://PathToNewLevelObjects/Scripts/door.gd" id="2"]
@@ -14,33 +14,33 @@ normal_texture = ExtResource("3_5y01b")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqsjr"]
 size = Vector2(2, 25)
 
-[node name="Door" type="Node2D" groups=["Door"]]
+[node name="Door" type="Node2D" unique_id=49897850 groups=["Door"]]
 script = ExtResource("2")
 level_number = 1
 
-[node name="Door" type="Sprite2D" parent="."]
+[node name="Door" type="Sprite2D" parent="." unique_id=1976113074]
 position = Vector2(-1, -12.5)
 texture = SubResource("CanvasTexture_semyr")
 offset = Vector2(1, 0)
 hframes = 2
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1511294640]
 
-[node name="achievmentComponent" parent="." instance=ExtResource("13_lftvb")]
+[node name="achievmentComponent" parent="." unique_id=1237216921 instance=ExtResource("13_lftvb")]
 achievment_list = "Does Someone Need A Tutorial?"
 
-[node name="LeveltransitionComponent" parent="." node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_uxktu")]
+[node name="LeveltransitionComponent" parent="." unique_id=172493408 node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_uxktu")]
 marker = NodePath("../Marker2D")
 area = NodePath("../Area2D")
 
-[node name="Ping" parent="." instance=ExtResource("6")]
+[node name="Ping" parent="." unique_id=1272557851 instance=ExtResource("6")]
 position = Vector2(0, -44)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1121555961]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=833729078]
 position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_yqsjr")
 

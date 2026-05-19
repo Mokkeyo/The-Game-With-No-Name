@@ -10,10 +10,17 @@ func end_dialog() -> void:
 	if not dialogLoader.player:
 		return
 	
+	#await AI.fader.fade_out().animation_finished
+	
 	dialogLoader.finish_dialogue()
 	dialogLoader.check_for_dialog_collected_no_check()
 	
 	var achievmentComponent: AchievmentComponent = $achievmentComponent
 	
 	achievmentComponent.add_achievment()
-	get_tree().change_scene_to_file("res://Szenen/Credits.tscn")
+	
+	Save.player.finished[0] = true
+	Save.save_options()
+	
+	
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")

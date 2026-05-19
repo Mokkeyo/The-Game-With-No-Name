@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dboay8ax0qubo"]
+[gd_scene format=3 uid="uid://dboay8ax0qubo"]
 
 [ext_resource type="Texture2D" uid="uid://dpteyww7hppkc" path="res://PathToNewLevelObjects/Textures/key.png" id="1_ut0wq"]
 [ext_resource type="Script" uid="uid://cw55i1ur3txsr" path="res://Scenes/key.gd" id="2_udxw8"]
@@ -8,20 +8,20 @@
 radius = 3.0
 height = 9.0
 
-[node name="Schlüssel" type="Sprite2D"]
+[node name="Schlüssel" type="Sprite2D" unique_id=492655153]
 texture = ExtResource("1_ut0wq")
 script = ExtResource("2_udxw8")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=249220486]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1223535688]
 position = Vector2(-1.5, -2.5)
 shape = SubResource("2")
 
-[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "visible_nodes") instance=ExtResource("3_brn0f")]
+[node name="ResetComponent" parent="." unique_id=439596073 node_paths=PackedStringArray("collisions", "visible_nodes") instance=ExtResource("3_brn0f")]
 collisions = [NodePath("../Area2D/CollisionShape2D")]
 visible_nodes = [NodePath("..")]
 setStartPosition = false

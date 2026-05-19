@@ -71,11 +71,13 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 
-[node name="ghost_pet" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1903566082 node_paths=PackedStringArray("playerNode") instance=ExtResource("2_tikr8")]
+[node name="GhostPet1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1903566082 node_paths=PackedStringArray("playerNode") instance=ExtResource("2_tikr8")]
+unique_name_in_owner = true
 playerNode = NodePath("../Player1")
 player = 0
 
-[node name="ghost_pet2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=2116320355 node_paths=PackedStringArray("playerNode") instance=ExtResource("2_tikr8")]
+[node name="GhostPet2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=2116320355 node_paths=PackedStringArray("playerNode") instance=ExtResource("2_tikr8")]
+unique_name_in_owner = true
 playerNode = NodePath("../Player2")
 
 [node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
@@ -83,9 +85,11 @@ playerNode = NodePath("../Player2")
 [node name="AmbientManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=340586383 instance=ExtResource("4_r382v")]
 
 [node name="Player1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1056553489 groups=["Player_0"] instance=ExtResource("3_2fron")]
+unique_name_in_owner = true
 z_index = 1
 
 [node name="Player2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1874813584 groups=["Player_1"] instance=ExtResource("3_2fron")]
+unique_name_in_owner = true
 z_index = 1
 current_player = 1
 
@@ -112,7 +116,7 @@ drag_top_margin = 0.05
 drag_right_margin = 0.05
 drag_bottom_margin = 0.05
 
-[node name="lightmap" parent="." unique_id=939714629 instance=ExtResource("3_x4u0x")]
+[node name="lightmap" parent="." unique_id=1554568311 instance=ExtResource("3_x4u0x")]
 layout_mode = 0
 
 [node name="Panel" type="Panel" parent="." unique_id=1671001183]

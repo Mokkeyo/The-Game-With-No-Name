@@ -1,14 +1,13 @@
 extends Menu
 class_name Achievments
 
-var achievent_comp:AchievmentComponent = AchievmentComponent.new() 
-
 @onready var timer: Timer = $Timer
+
 @onready var achievements_panel: Control = $Advantments
+
 @onready var ach_name_label: RichTextLabel = $TextBox/Name
 @onready var description_label: RichTextLabel = $TextBox/Description
 @onready var count_label: Label = $Count
-@onready var chatter_ach_button: AchInfoButton = $Advantments/AdvButton1
 
 
 func _ready() -> void:
@@ -16,15 +15,17 @@ func _ready() -> void:
 	exited.connect(timer.start)
 	exited.connect(clear_text)
 	
-	for button: Button in achievements_panel.get_children():
+	for button: AchievmentButton in achievements_panel.get_children():
 		button.focus_entered.connect(change_text.bind(button))
 		button.pressed.connect(change_text.bind(button))
 		
-		var icon: Sprite2D = button.get_child(0)
-		icon.visible = Save.options.achievments.has(icon.name)
+		if Save.options.achievments.has(button.achievment_name):
+			button.icon = button.unlocked_icon
+		else:
+			button.icon = null
 
 
-func change_text(button: AchInfoButton) -> void:
+func change_text(button: AchievmentButton) -> void:
 	ach_name_label.text = " " + button.achievment_name
 	description_label.text = (
 		" Congrats. you got that achievement"
@@ -34,7 +35,7 @@ func change_text(button: AchInfoButton) -> void:
 	
 	count_label.text = (
 		str(Save.options.textboxCount, " / ", G.max_text)
-		if button == chatter_ach_button
+		if button.show_progress
 		else ""
 	)
 

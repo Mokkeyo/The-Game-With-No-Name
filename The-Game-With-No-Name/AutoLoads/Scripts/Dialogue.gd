@@ -58,11 +58,11 @@ const dialogue: Dictionary[String, Dictionary] = {
 				["do you want to do the tutorial? just come into this bush."]]
 	},
 	graveStone:{
-		speaker = [""],
+		speaker = "",
 		dialog = ["every gravestone i walked passed by, had a name written on it. Its from the living creatures i killed, but this one doesn't hava a name written on it, it's just empty. Everyone had a Name, except me. maybe thats my gravestone...", "eveything found his end in her. Maybe i should find my end her too..."]
 	},
 	enemyGraveStone:{
 		speaker = [""],
-		dialog = [""]
+		dialog = ["This Seems to be the gravestone from an enemy i killed"]
 	}
 }
