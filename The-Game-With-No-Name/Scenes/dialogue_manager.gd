@@ -1,31 +1,23 @@
 extends Node
-class_name DialogueManager
+class_name TextboxManager
 
-static var instance: DialogueManager
+static var instance: TextboxManager
 
 var textbox: TextBox
+var new_textbox: NewTextBox
 
 var is_dialog_active: bool = false
+var npc: Npc = null
 
 func _ready() -> void:
 	instance = self
 
 
-func setup(tb: TextBox) -> void:
+func setup(tb: TextBox, ntb: NewTextBox) -> void:
 	textbox = tb
+	new_textbox = ntb
 
-func start_dialog(black_box: bool, options: bool, speaker: String, dialog: Array, npc: Npc) -> void:
+func start_new_dialog(n: Npc, dialogue_resource: DialogueResource, dialogue_start: String) -> void:
+	npc = n
 	is_dialog_active = true
-	
-	textbox.black_box = black_box
-	textbox.options = options
-	textbox.speaker_name = speaker
-	textbox.dialog = dialog
-	textbox.npc = npc
-	
-	textbox.start()
-
-
-func end_dialog() -> void:
-	is_dialog_active = false
-	textbox.end_dialog()
+	new_textbox.start(dialogue_resource, dialogue_start)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxh0yhfdpn6js"]
+[gd_scene format=3 uid="uid://bxh0yhfdpn6js"]
 
 [ext_resource type="Script" uid="uid://c5ekibaj81ccx" path="res://Npcs/Scripts/kratos.gd" id="1_0thu1"]
 [ext_resource type="Texture2D" uid="uid://bkb65txl1jf0f" path="res://Npcs/Textures/npc.tres" id="2_iaoiw"]
@@ -9,29 +9,26 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibrec"]
 size = Vector2(24, 26)
 
-[node name="NPC" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["NPC"]]
+[node name="NPC" type="Node2D" unique_id=1282476814 groups=["NPC"]]
 z_index = 1
 script = ExtResource("1_0thu1")
-npcArea = NodePath("NPCArea")
-dialogLoader = NodePath("DialogueLoader")
 
-[node name="NpcCanvas" type="Sprite2D" parent="."]
+[node name="NpcCanvas" type="Sprite2D" parent="." unique_id=398315135]
 z_index = -1
 texture = ExtResource("2_iaoiw")
 flip_h = true
 
-[node name="Ping" parent="." instance=ExtResource("3_v6ntj")]
+[node name="Ping" parent="." unique_id=968708780 instance=ExtResource("3_v6ntj")]
 z_as_relative = false
 position = Vector2(2, -35)
 
-[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("5_jwgrn")]
+[node name="NPCArea" parent="." unique_id=1802617004 node_paths=PackedStringArray("ping") instance=ExtResource("5_jwgrn")]
 visible = false
 ping = NodePath("../Ping")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=243722370]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_ibrec")
 
-[node name="DialogueLoader" parent="." instance=ExtResource("5_55wam")]
-visible = false
-npc = "kratos"
+[node name="DialogueLoader" parent="." unique_id=1787922394 node_paths=PackedStringArray("npc_area") instance=ExtResource("5_55wam")]
+npc_area = NodePath("../NPCArea")

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Door
 
 @onready var door: Sprite2D = $Door
 @onready var achievmentComponent: AchievmentComponent = $achievmentComponent
@@ -9,15 +10,13 @@ extends Node2D
 @export var door_name: String = ""
 @export var state: category
 
-var parent: Node2D
 var current_level: int
 var body_count: int
 enum category{OPEN, DESTROYED}
 
 
 func _ready() -> void:
-	parent = get_parent()
-	parent.set_process_unhandled_input(false)
+	set_process_unhandled_input(false)
 	
 	current_level = Save.player.levelNumber
 	level_transition.level_number = level_number
@@ -43,7 +42,7 @@ func check_for_player_in_area(body: Node2D, entered: bool) -> void:
 		
 		if (not entered and body_count == 0) or entered:
 			ping.visible = entered
-			parent.set_process_unhandled_input(entered)
+			set_process_unhandled_input(entered)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:check_for_player_in_area(body, true)

@@ -3,121 +3,167 @@ class_name Hades
 
 signal fall
 
-@onready var movement: MovementComponent = $MovementComponent
+enum State {IDLE, WARNING, ATTACKING, STUNNED, DEAD}
+enum Phase {Phase_1, Phase_2, ENRAGED}
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player_detector: PlayerDetector = $PlayerDetector
-@onready var sprite: Sprite2D = $"EndBoss(ver2)"
-@onready var water_detector: LavaWaterDetector = $LavaWater_Detector
-@onready var cooldown_timer: Timer = $cooldown_timer
 @onready var health_comp: HealthComponent = $healthComponent
-
+@onready var sprite: Sprite2D = $"EndBoss(ver2)"
 @onready var wave_component: Array[WaveComponent] = [$wave_component_left, $wave_component_right]
+@onready var marker: Array[Marker2D] = [$MarkerLeft, $MarkerRight] 
+@onready var move_comp: MovementComponent = $MovementComponent
+@onready var reset_comp: EnemyResetComponent = $ResetComponent
 
-enum Attack {SPEAR, AXT}
-var attack: Attack = Attack.AXT
-
-
-enum State {IDLE, DASHING, FALLING, AIR, FINISH_ANIMATION}
 var state: State = State.IDLE
+var phase: Phase = Phase.Phase_1
+var queued_attack: BossAttack
+var current_attack: BossAttack
 
-var distance: String = ""
+var attacks: Array[BossAttack] = []
+
+var last_attack: BossAttack
 
 func _ready() -> void:
+	setup()
+	reset_comp.enabling_stats.connect(reset_stats)
+	await get_tree().create_timer(1).timeout
+	start_warning()
+
+
+func reset_stats() -> void:
+	last_attack = null
+	queued_attack = null
+	current_attack = null
+	state = State.IDLE
+	phase = Phase.Phase_1
+	animation_player.play("RESET")
+	G.boss_value_changed.emit(health_comp.health / health_comp.max_health * 100)
+	await get_tree().create_timer(1).timeout
+	start_warning()
+
+
+func setup() -> void:
 	G.boss_begin.emit("Hades", 100)
 	health_comp.value_changed.connect(set_health_bar)
-#	died()
-	movement.setup(self, water_detector)
-	animation_player.play("Warning")
 	health_comp.died.connect(died)
+	
+	attacks = [
+		DashAttack.new(self),
+		SlamAttack.new(self),
+		ShockwaveAttack.new(self),
+		AxtAttack.new(self)
+	]
+
+
+func start_warning() -> void:
+	state = State.WARNING
+	animation_player.play("Warning")
+
+
+
 
 func set_health_bar() -> void:
+	update_phase()
 	G.boss_value_changed.emit(health_comp.health / health_comp.max_health * 100)
-	animation_player.play("Damage")
-
-
-func _physics_process(delta: float) -> void:
-	match state:
-		State.FINISH_ANIMATION:
-			return
-		
-		State.IDLE:
-			if player_detector.focus_player == null:
-				return
-			
-			sprite.flip_h = player_detector.focus_player.global_position.x > global_position.x
-		
-		State.DASHING:
-			movement.move_horizontal(1 if sprite.flip_h else -1)
-			if is_on_wall():
-				state = State.FINISH_ANIMATION
-				fall.emit()
-	
-		State.FALLING:
-			if is_on_floor():
-				state = State.FINISH_ANIMATION
-				for wave: WaveComponent in wave_component:
-					wave.shoot_wave()
-				return
-			
-			movement.apply_gravity(delta)
-		
-		State.AIR:
-			movement.apply_gravity(delta)
-			if not state == State.FALLING and velocity.y > 0:
-					velocity.y = 0
-	
-	move_and_slide()
-
-func _on_cooldown_timer_timeout() -> void:
-	animation_player.play("Warning")
+#	animation_player.play("Damage")
 
 
 func choose_attack() -> void:
-	if player_detector.focus_player == null:
-		push_warning("No Player inside player_detector. doing far attack")
-		do_attack(false)
+	if state == State.DEAD:
 		return
 	
-	var distance_value: float = player_detector.focus_player.global_position.distance_to(global_position)
-	do_attack(distance_value < 50)
-
-
-func jump() -> void:
-	state = State.AIR
-	movement.jump()
-
-
-func falling() -> void:
-	state = State.FALLING
+	var possible: Array[BossAttack] = []
 	
-	if not player_detector.focus_player:
-		push_warning("no player found to jump on")
+	for attack: BossAttack in attacks:
+		if attack.can_use():
+			if attack == last_attack:
+				continue
+			possible.append(attack)
+	
+	if possible.is_empty():
+		possible = attacks.duplicate()
+	
+	current_attack = possible.pick_random()
+	
+	start_attack()
+
+
+func queue_attack(attack: BossAttack) -> void:
+	queued_attack = attack
+
+
+func start_attack() -> void:
+	state = State.ATTACKING
+	animation_player.play("RESET")
+	current_attack.start()
+
+
+func finish_attack() -> void:
+	state = State.IDLE
+	player_detector.changeTarget()
+	last_attack = current_attack
+	current_attack = null
+	
+	if queued_attack:
+		current_attack = queued_attack
+		queued_attack = null
+		
+		start_attack()
 		return
 	
-	global_position.x = player_detector.focus_player.global_position.x
+	start_cooldown()
 
 
-func dash() -> void:
-	if distance == "Far":
-		state = State.DASHING
-
-
-func do_attack(close: bool) -> void:
-	distance = "Close" if close else "Far"
-	var side: String = "Right" if sprite.flip_h else "Left"
+func start_cooldown() -> void:
+	var time: float = get_cooldown()
 	
-	if animation_player.is_playing():
+	await get_tree().create_timer(time).timeout
+	
+	start_warning()
+
+
+func get_cooldown() -> float:
+	match phase:
+		Phase.Phase_1:
+			return randf_range(2.0, 4.0)
+		Phase.Phase_2:
+			return randf_range(1.0, 2.5)
+		Phase.ENRAGED:
+			return randf_range(0.5, 1.5)
+	
+	return 2.0
+
+
+func update_phase() -> void:
+	var hp_percent: float = health_comp.health / health_comp.max_health
+	
+	if hp_percent <= 0.4:
+		phase = Phase.ENRAGED
+	elif hp_percent <= 0.7:
+		phase = Phase.Phase_2
+
+
+func _physics_process(delta: float) -> void:
+	if state == State.ATTACKING:
+		if current_attack:
+			current_attack.update(delta)
+	
+	move_comp.apply_gravity(delta)
+	
+	if state == State.IDLE:
+		update_facing()
+		move_and_slide()
+
+
+func update_facing() -> void:
+
+	var player: Player = player_detector.focus_player
+
+	if player == null:
 		return
-	
-	match attack:
-		Attack.AXT:
-			animation_player.play("Axt_"+ distance + "_" + side)
-			attack = Attack.SPEAR
-			
-		Attack.SPEAR:
-			animation_player.play("Spear_Close_" + side)
-			attack = Attack.AXT
 
+	sprite.flip_h = player.global_position.x > global_position.x
 
 
 func died() -> void:
@@ -132,11 +178,5 @@ func died() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if not anim_name == "Warning" or anim_name == "Damage":
-		state = State.IDLE
-		player_detector.changeTarget()
-		cooldown_timer.start(randi_range(2, 4))
-		return
-	
 	if anim_name == "Warning":
 		choose_attack()

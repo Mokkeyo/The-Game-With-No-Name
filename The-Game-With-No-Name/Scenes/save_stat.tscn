@@ -180,7 +180,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_d0dk7")
 layout_mode = 0
 offset_left = 217.0
 offset_top = 176.0
-offset_right = 339.0
+offset_right = 335.0
 offset_bottom = 205.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -192,7 +192,7 @@ text = "erease Data"
 layout_mode = 0
 offset_left = 15.0
 offset_top = 176.0
-offset_right = 117.0
+offset_right = 116.0
 offset_bottom = 205.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -227,7 +227,7 @@ position = Vector2(29, 0)
 texture = ExtResource("10_icqlx")
 
 [node name="E-button" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=291338045]
-position = Vector2(237.00002, 0)
+position = Vector2(248.00002, 0)
 texture = ExtResource("11_b5ocm")
 
 [node name="MiddleMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=1371969105]
@@ -235,11 +235,11 @@ position = Vector2(52.000004, -1.0913936e-11)
 texture = ExtResource("12_r4flr")
 
 [node name="RightMouseButton" type="Sprite2D" parent="Stats/Viereck Knopf" unique_id=1855859189]
-position = Vector2(212.99998, 0)
+position = Vector2(271, 0)
 texture = ExtResource("13_gkvjy")
 
 [node name="Dreieck Knopf" type="Sprite2D" parent="Stats" unique_id=736348309]
-position = Vector2(401, 188)
+position = Vector2(354, 188)
 texture = ExtResource("14_5bdh8")
 
 [node name="PlayerNameLabel" type="Label" parent="Stats" unique_id=1385306739]

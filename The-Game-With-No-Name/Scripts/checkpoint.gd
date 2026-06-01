@@ -7,9 +7,10 @@ func _ready() -> void:
 	G.checkpoint_activated.connect(check_if_checkpoint_active)
 
 
-func _on_Checkpoint_body_entered(_body: Node2D) -> void:
+func _on_Checkpoint_body_entered(body: Player) -> void:
 	if not global_position == Save.player.checkpointPosition or not Save.player.checkpointActive:
 		update_checkpoint()
+		body.health_component.refill_health(40)
 
 
 func check_if_checkpoint_active() -> void:

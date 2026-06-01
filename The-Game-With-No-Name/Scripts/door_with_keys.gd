@@ -15,7 +15,7 @@ var array_size: int
 
 func _ready() -> void:
 	var reset_comp: EnemyResetComponent = $ResetComponent
-	reset_comp.resetting_stats.connect(reset_door)
+	reset_comp.enabling_stats.connect(reset_door)
 	
 	for i: int in keys.size():
 		keys[i].key_collected.connect(update_key_count)

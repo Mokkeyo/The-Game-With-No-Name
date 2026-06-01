@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qy2bb0ykwih5"]
+[gd_scene format=3 uid="uid://qy2bb0ykwih5"]
 
 [ext_resource type="Script" uid="uid://beqoig44g8sjb" path="res://Npcs/Scripts/rick_sanchez.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5"]
@@ -9,25 +9,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xat4m"]
 size = Vector2(24, 30)
 
-[node name="NPC_2" type="Node2D" node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["NPC"]]
+[node name="NPC_2" type="Node2D" unique_id=118557144 groups=["NPC"]]
 z_index = 1
 script = ExtResource("1")
-npcArea = NodePath("NPCArea")
-dialogLoader = NodePath("DialogueLoader")
 
-[node name="NpcCanvas" type="Sprite2D" parent="."]
+[node name="NpcCanvas" type="Sprite2D" parent="." unique_id=774005660]
 z_index = -1
 texture = ExtResource("5_xv46x")
 
-[node name="Ping" parent="." instance=ExtResource("5")]
+[node name="Ping" parent="." unique_id=88589339 instance=ExtResource("5")]
 position = Vector2(-1, -35)
 
-[node name="DialogueLoader" parent="." instance=ExtResource("5_odlst")]
-npc = "rick"
+[node name="DialogueLoader" parent="." unique_id=2077140972 node_paths=PackedStringArray("npc_area") instance=ExtResource("5_odlst")]
+npc_area = NodePath("../NPCArea")
+dialogue_start = "rick"
 
-[node name="NPCArea" parent="." node_paths=PackedStringArray("ping") instance=ExtResource("6_4t8cm")]
+[node name="NPCArea" parent="." unique_id=1631335125 node_paths=PackedStringArray("ping") instance=ExtResource("6_4t8cm")]
 visible = false
 ping = NodePath("../Ping")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=968858451]
 shape = SubResource("RectangleShape2D_xat4m")

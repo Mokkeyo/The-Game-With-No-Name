@@ -24,7 +24,7 @@ func _ready() -> void:
 	reset()
 	if not Engine.is_editor_hint():
 		var reset_comp: EnemyResetComponent = $ResetComponent
-		reset_comp.resetting_stats.connect(reset)
+		reset_comp.enabling_stats.connect(reset)
 
 
 func is_door_open() -> bool:

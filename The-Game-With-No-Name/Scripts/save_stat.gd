@@ -166,7 +166,5 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _on_pressed() -> void:
-	print("button pressed")
 	if state == States.Nothing:
-		print("starting")
 		start_game_or_copy()

@@ -22,7 +22,7 @@ func _ready() -> void:
 	healthComp.died.connect(die)
 	healthComp.health = health
 	healthComp.max_health = health
-	resetComp.resetting_stats.connect(respawn)
+	resetComp.enabling_stats.connect(respawn)
 	movement.setup(self, lava_water_detector)
 
 
@@ -79,4 +79,4 @@ func respawn() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+		resetComp.disable_stats()

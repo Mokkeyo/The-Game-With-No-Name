@@ -28,7 +28,7 @@ var bullet_pool: Array[Bullet] = []
 
 func _ready() -> void:
 	var reset_comp: EnemyResetComponent = $ResetComponent
-	reset_comp.resetting_stats.connect(reset)
+	reset_comp.disabling_stats.connect(reset)
 	if not rotation_point:
 		rotation_point = get_parent()
 	

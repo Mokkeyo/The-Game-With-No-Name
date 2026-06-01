@@ -39,20 +39,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		State.IDLE:
 			super._unhandled_input(event)
 		State.CONTROLLER_ASSIGN:
+			if event.is_pressed() and event is InputEventJoypadButton:
+				handle_device_assignment(event.device)
+			
 			if not Input.is_action_just_pressed("escape"):
 				return
 			
 			reset_controller_assignment()
-			var timer: Timer = Timer.new()
-			add_child(timer)
-			timer.start(0.1)
-			await timer.timeout
+			await get_tree().create_timer(0.1).timeout
 			state = State.IDLE
-			timer.queue_free()
 			return
-		
-	if event.is_pressed() and event is InputEventJoypadButton:
-		handle_device_assignment(event.device)
 
 
 func handle_device_assignment(device: int) -> void:

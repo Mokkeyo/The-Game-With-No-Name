@@ -26,7 +26,7 @@ func _ready() -> void:
 	healthComp.health = hitoints
 	healthComp.max_health = hitoints
 	healthComp.died.connect(die)
-	resetComp.resetting_stats.connect(respawn)
+	resetComp.enabling_stats.connect(respawn)
 
 
 func _physics_process(_delta: float) -> void:
@@ -57,14 +57,12 @@ func _physics_process(_delta: float) -> void:
 				return
 			
 			nav.move_to(start_position)
-
+	
 	move_and_slide()
 
 
 func move_to_point(point: Vector2) -> void:
 	velocity = (point - global_position).normalized() * SPEED
-
-
 
 
 func die() -> void:
@@ -81,4 +79,4 @@ func respawn() -> void:
 
 func _on_bat_animation_finished() -> void:
 	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+		resetComp.disable_stats()

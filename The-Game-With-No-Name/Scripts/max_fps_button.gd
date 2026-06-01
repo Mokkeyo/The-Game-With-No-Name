@@ -25,7 +25,6 @@ func start() -> void:
 
 
 func _on_item_selected(index: int) -> void:
-	print("item selected")
 	Engine.max_fps = Fps.values()[index]
 	Save.options.maxFps = index
 	Save.save_options()

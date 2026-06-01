@@ -11,17 +11,17 @@ enum Mode {
 
 var mode: Mode = Mode.CAMERA
 
-func change_menu(owner_n: Node, target_menu: Menu, focus_node: Control) -> void:
+func change_menu(_owner_n: Node, target_menu: Menu, focus_node: Control) -> void:
 	if is_transitioning:
 		return
 	
 	is_transitioning = true
 	target_menu.visible = true
-	match mode:
-		Mode.CAMERA:
-			await tween_node2d(owner_n, target_menu)
-		Mode.UI:
-			await tween_control(owner_n, target_menu)
+#	match mode:
+#		Mode.CAMERA:
+#			await tween_node2d(owner_n, target_menu)
+#		Mode.UI:
+#			await tween_control(owner_n, target_menu)
 	
 	current_menu = target_menu
 	target_menu.enter()
@@ -32,17 +32,17 @@ func change_menu(owner_n: Node, target_menu: Menu, focus_node: Control) -> void:
 	is_transitioning = false
 
 
-func to_start_menu(owner_n: Node, start_node: Control, old_menu: Menu, focus_node: Control) -> void:
+func to_start_menu(_owner_n: Node, _start_node: Control, old_menu: Menu, focus_node: Control) -> void:
 	if is_transitioning:
 		return
 	
 	is_transitioning = true
 	
-	match mode:
-		Mode.CAMERA:
-			await tween_node2d(owner_n, start_node)
-		Mode.UI:
-			await tween_control(owner_n, start_node)
+#	match mode:
+#		Mode.CAMERA:
+#			await tween_node2d(owner_n, start_node)
+#		Mode.UI:
+#			await tween_control(owner_n, start_node)
 	
 	
 	old_menu.visible = false

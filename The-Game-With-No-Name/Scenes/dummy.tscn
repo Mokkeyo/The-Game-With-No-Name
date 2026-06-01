@@ -129,13 +129,15 @@ shape = SubResource("1")
 [node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=2027233203]
 libraries/ = SubResource("AnimationLibrary_p2ynv")
 
-[node name="Hurtbox" parent="." unique_id=547997914 instance=ExtResource("3_ain4w")]
+[node name="Hurtbox" parent="." unique_id=547997914 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("3_ain4w")]
 collision_layer = 4
+damage_receiver = NodePath("../DamageReceiver")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=734155010]
 shape = SubResource("CapsuleShape2D_5vosa")
 
 [node name="healthComponent" parent="." unique_id=1210266205 instance=ExtResource("4_15iif")]
+health = 100.0
 invisibiltyFrames = 0.1
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("5_5uy75")]

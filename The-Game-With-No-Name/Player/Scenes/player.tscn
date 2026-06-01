@@ -286,8 +286,8 @@ size = Vector2(12, 2)
 size = Vector2(9, 17)
 
 [node name="Player" type="CharacterBody2D" unique_id=1056553489 groups=["Player"]]
-collision_layer = 2
-collision_mask = 17
+collision_layer = 4098
+collision_mask = 2065
 floor_constant_speed = true
 platform_floor_layers = 1
 script = ExtResource("1_y8o1x")
@@ -328,6 +328,7 @@ shape = SubResource("CapsuleShape2D_yajsf")
 visible = false
 position = Vector2(0, 1)
 collision_mask = 4
+damage_type = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1813998796]
 shape = SubResource("RectangleShape2D_3bitc")

@@ -3,11 +3,13 @@ class_name Game
 
 @onready var level_manager: LevelManager = $LevelManager
 @onready var player_manager: PlayerManager = $PlayerManager
-@onready var dialogue_manager: DialogueManager = $DialogueManager
+@onready var dialogue_manager: TextboxManager = $DialogueManager
 @onready var boss_ui: BossUIManager = $BossUIManager
 @onready var in_game: InGame = $InGame
 @onready var fader: Fader = $Fader
 @onready var textbox: TextBox = $TextBox
+@onready var new_textbox: NewTextBox = $textbox
+
 @onready var pause: PauseMenu = $pause
 
 var temp_door: Array[int]
@@ -22,7 +24,7 @@ func _ready() -> void:
 	var level: Node2D = level_manager.load_level(Save.player.levelNumber)
 	in_game.add_level(level)
 	
-	player_manager.respawn_player(0, level_manager.get_spawn_position())
+	player_manager.set_player_position(0, level_manager.get_spawn_position())
 	fader.fade_in()
 
 
@@ -37,7 +39,7 @@ func setup_systems() -> void:
 	
 	tree_exited.connect(exit)
 	
-	dialogue_manager.setup(textbox)
+	dialogue_manager.setup(textbox, new_textbox)
 	
 	boss_ui.setup()
 	
@@ -49,18 +51,20 @@ func setup_systems() -> void:
 
 
 func exit() -> void:
-	AI.fader =null
+	AI.fader = null
 	SoundMusic.listeners = []
 
 
 func connect_to_signals() -> void:
 	G.enter_door.connect(change_level)
 	G.darkness_changed.connect(_on_darkness_changed)
-	G.start_dialog.connect(dialogue_manager.start_dialog)
-	
+#	G.start_dialog.connect(dialogue_manager.start_dialog)
+	G.start_new_dialog.connect(dialogue_manager.start_new_dialog)
 	G.player_died.connect(player_manager.on_player_died)
 	
 	G.camera_active.connect(disable_cameras)
+	
+	new_textbox.dialog_ended.connect(end_dialog)
 	
 	G.door_opend.connect(on_door_opend)
 	G.boss_begin.connect(boss_ui.show_boss)
@@ -68,22 +72,31 @@ func connect_to_signals() -> void:
 	G.boss_value_changed.connect(boss_ui.set_hp)
 	G.boss_label_changed.connect(boss_ui.set_label)
 	G.checkpoint_activated.connect(on_checkpoint_activated)
+
+	player_manager.player_respawned.connect(respawn_player)
 	player_manager.all_player_died.connect(game_over)
 	player_manager.player_count_changed.connect(resize_viewport.bind(player_manager.player_alive))
 
 #Penis
 
+
 func disable_cameras() -> void:
-	for camera: Camera2D in in_game.cameras:
-		camera.enabled = false
+	in_game.disable_cameras()
+
+func respawn_player(i: int) -> void:
+	var spawn_position: Vector2 = Vector2.ZERO
 	
-	var p: Array[bool] = [true, false]
-	resize_viewport(p)
+	if player_manager.players[1 - i].remote_transform.remote_path.is_empty():
+		push_warning("player_inside airship spawn position changed")
+		spawn_position = level_manager.get_spawn_position()
+	else:
+		spawn_position = player_manager.players[1 - i].global_position
+	
+	player_manager.respawn_player(i, spawn_position)
 
 
 func enable_cameras() -> void:
-	for camera: Camera2D in in_game.cameras:
-		camera.enabled = true
+	in_game.enable_cameras()
 
 
 func resize_viewport(value: Array[bool]) -> void:
@@ -93,12 +106,13 @@ func resize_viewport(value: Array[bool]) -> void:
 	in_game.set_viewport_size(value)
 
 
-func change_level(level_number: int, door_name: String) -> void:
+func change_level(level_number: int, door_name: String = "") -> void:
 	player_manager.clear_footsteps_tilemap()
-	dialogue_manager.end_dialog()
+	end_dialog()
+	
+	Save.player.checkpointActive = false
 	
 	await fader.fade_out().animation_finished
-	
 	enable_cameras()
 	resize_viewport(player_manager.player_alive)
 	
@@ -110,11 +124,12 @@ func change_level(level_number: int, door_name: String) -> void:
 	
 	await get_tree().process_frame
 	
-	var players: Array[Player] = player_manager.get_alive_players()
-	
 	var d_position: Vector2 = level_manager.get_door_position(door_name)
 	
-	for player: Player in players:
+	for player: int in player_manager.players.size():
+		if not player_manager.player_alive[player] == true:
+			continue
+		
 		player_manager.set_player_position(player, d_position)
 	
 	fader.fade_in()
@@ -150,3 +165,9 @@ func game_over(player: int) -> void:
 func _on_darkness_changed() -> void:
 	for light: Light in get_tree().get_nodes_in_group("Light"):
 		light.change_darkness()
+
+
+func end_dialog() -> void:
+	await get_tree().create_timer(0.05).timeout
+	dialogue_manager.is_dialog_active = false
+	player_manager.players[0].freeze = false

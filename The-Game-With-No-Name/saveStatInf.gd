@@ -17,7 +17,7 @@ class_name SaveStatInf
 @export var darknessValue: int = 200
 @export var darknessOn: bool = true
 @export var textboxCount: int = 0
-@export var textboxCollected: Array[String] = []
+@export var dialog_flags: Dictionary = {}
 @export var achievments: Array[String] = []
 @export var playerName: Array[String] = ["", "", "", ""]
 
@@ -40,7 +40,7 @@ func to_dict() -> Dictionary:
 		"darknessValue": darknessValue,
 		"darknessOn": darknessOn,
 		"textboxCount": textboxCount,
-		"textboxCollected": textboxCollected,
+		"dialog_flags": dialog_flags,
 		"achievments": achievments,
 		"playerName": playerName
 	}
@@ -73,12 +73,7 @@ func from_dict(data: Dictionary) -> void:
 	textboxCount = data.get("textboxCount", 0)
 	
 	arr = data.get("textboxCollected", [])
-	textboxCollected.clear()
-	for v: Variant in arr:
-		if v is String:
-			textboxCollected.append(v)
-		else:
-			push_warning("couldnt convert to string -> textboxCollected")
+	dialog_flags = data.get("dialog_flags", {})
 	
 	achievments.clear()
 	arr = data.get("achievments", [])

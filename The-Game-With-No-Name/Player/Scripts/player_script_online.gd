@@ -69,7 +69,7 @@ func _ready() -> void:
 	
 	connect_signals()
 	configure_floor_settings()
-	healthComponent.health = G.save_stat.playerHp[currentPlayer]
+#	healthComponent.health = G.save_stat.playerHp[currentPlayer]
 
 func set_player_strings() -> void:
 	player_strings = {
@@ -109,7 +109,7 @@ func connect_signals() -> void:
 	healthComponent.died.connect(respawn)
 #	Hitbox.damage_dealth.connect(jump_on_enemy.bind(JUMP_POWER))
 #	HealthComponent.setKnockback.connect(do_knockback.bind(HealthComponent.knockbackDuration, HealthComponent.knockbackDirection))
-	resetComp.resetting_stats.connect(enable_player)
+#	resetComp.resetting_stats.connect(enable_player)
 
 
 func _physics_process(delta: float) -> void:
@@ -156,8 +156,8 @@ func _physics_process(delta: float) -> void:
 	if on_floor and not can_doublejump:
 		can_doublejump = true
 	
-	if G.save_stat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
-		manaTimer.start(4.0)
+#	if G.save_stat.playerMana[currentPlayer] < 99 and manaTimer.is_stopped():
+#		manaTimer.start(4.0)
 	
 	set_animation()
 	check_key_input()
@@ -246,14 +246,14 @@ func check_key_input() -> void:
 	if Input.is_action_just_pressed(inputs["interact"]) and on_floor:
 		handle_airship_entry()
 	
-	if Input.is_action_just_pressed(inputs["wand"]) and wand.can_swing and G.save_stat.playerMana[currentPlayer] > 29:
-		var w: SpiritBall = bullet.instantiate()
-		w.left = wand.sprite.flip_h
-		w.global_position = wand.marker.global_position
-		wand.attack()
-		SoundMusic.play_sound_effect("magic")
-		get_parent().add_child(w)
-		change_mana_value()
+#	if Input.is_action_just_pressed(inputs["wand"]) and wand.can_swing and G.save_stat.playerMana[currentPlayer] > 29:
+#		var w: SpiritBall = bullet.instantiate()
+#		w.left = wand.sprite.flip_h
+#		w.global_position = wand.marker.global_position
+#		wand.attack()
+#		SoundMusic.play_sound_effect("magic")
+#		get_parent().add_child(w)
+#		change_mana_value()
 	
 #	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
 #		sword.attack()
@@ -328,7 +328,7 @@ func jump(jump_power: float) -> void:
 	velocity.y -= jump_power
 	buffered_jump = false
 	coyoteTimer.stop()
-	SoundMusic.play_sound_effect("water" if in_water else "jump")
+#	SoundMusic.play_sound_effect("water" if in_water else "jump")
 
 func jump_cut() -> void:
 	if knockback_on:
@@ -339,7 +339,7 @@ func jump_cut() -> void:
 
 func do_walljump(left: bool, knockbackDuration: float, knockbackDirection: Vector2) -> void:
 	can_doublejump = true
-	SoundMusic.play_sound_effect("jump")
+#	SoundMusic.play_sound_effect("jump")
 	do_knockback(knockbackDuration, knockbackDirection)
 	rpc("flip_sprite", left)
 
@@ -351,7 +351,7 @@ func do_knockback(knockbackDuration: float, knockbackDirection: Vector2) -> void
 
 
 func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer] = healthComponent.health
+#	G.save_stat.playerHp[currentPlayer] = healthComponent.health
 	G.emit_signal("health_value_changed", currentPlayer, healthComponent.health)
 
 
@@ -380,12 +380,12 @@ func set_animation() -> void:
 	if on_floor: 
 		rpc("play_animation", "walk")
 	
-	var flip_h: bool = (false if velocity.x > 0 else true)
-	var sword_position: int = (-9 if sword.sword_left else 7)
+#	var flip_h: bool = (false if velocity.x > 0 else true)
+#	var sword_position: int = (-9 if sword.sword_left else 7)
 	
-	if not sword.position.x == sword_position:
-		sword.position.x = sword_position
-		rpc("flip_sprite", flip_h)
+#	if not sword.position.x == sword_position:
+#		sword.position.x = sword_position
+#		rpc("flip_sprite", flip_h)
 
 
 func next_to_wall() -> bool:return next_to_right_wall() or next_to_left_wall()
@@ -393,9 +393,9 @@ func next_to_right_wall() -> bool:return rayCastRight.is_colliding()
 func next_to_left_wall() -> bool: return rayCastLeft.is_colliding()
 
 
-func change_mana_value() -> void:
-	G.save_stat.playerMana[currentPlayer] -=33
-	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
+#func change_mana_value() -> void:
+#	G.save_stat.playerMana[currentPlayer] -=33
+#	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
 
 
 func respawn() -> void:
@@ -415,7 +415,7 @@ func enable_player() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animated_sprite.animation == "game_over":
-		resetComp.set_stats()
+#		resetComp.set_stats()
 		G.emit_signal("player_died", currentPlayer)
 
 
@@ -423,9 +423,9 @@ func _on_damage_knockback_timeout() -> void: knockback_on = false
 func _on_JumpBufferTimer_timeout() -> void: buffered_jump = false
 
 
-func _on_ManaTimer_timeout() -> void:
-	G.save_stat.playerMana[currentPlayer] += 11
-	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
+#func _on_ManaTimer_timeout() -> void:
+#	G.save_stat.playerMana[currentPlayer] += 11
+#	G.emit_signal("mana_value_changed", currentPlayer, G.save_stat.playerMana[currentPlayer])
 
 
 @rpc("call_local", "any_peer", "reliable")

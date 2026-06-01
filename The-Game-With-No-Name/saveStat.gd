@@ -14,6 +14,8 @@ class_name SaveStat
 @export var door: Array[int] = []
 @export var enemysDefeated: Array[String] = []
 
+@export var dialog_flags: Dictionary = {}
+
 func to_dict() -> Dictionary:
 	return {
 		"version": version,
@@ -29,11 +31,13 @@ func to_dict() -> Dictionary:
 		"checkpointActive": checkpointActive,
 		"finished": finished,
 		"door": door,
-		"enemysDefeated": enemysDefeated
+		"enemysDefeated": enemysDefeated,
+		"dialog_flags": dialog_flags
 	}
 
 func from_dict(data: Dictionary) -> void:
 	levelNumber = data.get("levelNumber", 1)
+	dialog_flags = data.get("dialog_flags", {})
 	
 	var arr: Array = data.get("hp", [100, 100])
 	
@@ -81,7 +85,6 @@ func from_dict(data: Dictionary) -> void:
 	arr = data.get("door", [])
 	door.clear()
 	for v: Variant in arr:
-		print(v)
 		if v is float:
 			door.append(v)
 		else:
@@ -94,7 +97,6 @@ func from_dict(data: Dictionary) -> void:
 			enemysDefeated.append(v)
 		else:
 			push_warning("couldnt convert to String -> enemysDefeated")
-
 
 func safe_float(value: Variant, default: float = 0.0) -> float:
 	if value is float or value is int:

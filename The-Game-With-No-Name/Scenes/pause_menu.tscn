@@ -72,6 +72,7 @@ offset_left = 192.0
 offset_top = 340.0
 offset_right = 832.0
 offset_bottom = 410.0
+focus_neighbor_top = NodePath(".")
 text = "Continue"
 
 [node name="Controlls" parent="Paused" unique_id=762817226 instance=ExtResource("3_jlidi")]
@@ -96,6 +97,10 @@ offset_left = 192.0
 offset_top = 484.0
 offset_right = 832.0
 offset_bottom = 554.0
+focus_neighbor_left = NodePath("../Pokal")
+focus_neighbor_top = NodePath("../Controlls")
+focus_neighbor_right = NodePath("../2Player")
+focus_neighbor_bottom = NodePath(".")
 text = "Return To Main Menu"
 
 [node name="2Player" parent="Paused" unique_id=2048182235 instance=ExtResource("3_jlidi")]
@@ -104,6 +109,10 @@ offset_left = 848.0
 offset_top = 403.0
 offset_right = 936.0
 offset_bottom = 491.0
+focus_neighbor_left = NodePath("../Options")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
 
 [node name="Multiplayer" type="Sprite2D" parent="Paused/2Player" unique_id=1790463324]
 position = Vector2(44, 44)
@@ -117,6 +126,10 @@ offset_left = 88.0
 offset_top = 403.0
 offset_right = 176.0
 offset_bottom = 491.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Controlls")
+focus_neighbor_bottom = NodePath("../ReturnToMainMenu")
 
 [node name="Pokal" type="Sprite2D" parent="Paused/Pokal" unique_id=910866507]
 position = Vector2(44, 44)

@@ -49,7 +49,6 @@ func part_died() -> void:
 		boss.hurtbox_collision.set_deferred("disabled", false)
 		boss.health_comp.value_changed.connect(change_boss_health)
 		G.boss_label_changed.emit("Galaga")
-		G.boss_label_changed.emit(boss.health_comp.max_health)
 		change_boss_health()
 		return
 		
@@ -94,17 +93,21 @@ func boss_shoot() -> void:
 
 
 func change_arm_health() -> void:
-	G.boss_value_changed.emit(float(armLeft.health_comp.health + armRight.health_comp.health))
+	var health: float = armLeft.health_comp.health + armRight.health_comp.health
+	var max_health: float = armLeft.health_comp.max_health + armRight.health_comp.max_health
+	
+	G.boss_value_changed.emit(health / max_health * 100)
+
 
 func change_boss_health() -> void:
-	G.boss_value_changed.emit(boss.health_comp.health)
+	G.boss_value_changed.emit(boss.health_comp.health / boss.health_comp.max_health * 100)
+
 
 func _on_airship_detector_body_entered(body: Node2D) -> void:
 	if activated:
 		return
 		
 	if body.is_in_group("airship"):
-		var boss_health: float = float(armLeft.health_comp.max_health + armRight.health_comp.max_health)
-		G.emit_signal("boss_begin", "Arm Bottom + Arm Top", boss_health)
+		G.boss_begin.emit("Arm Bottom + Arm Top", 100)
 		set_process(true)
 		activated = true

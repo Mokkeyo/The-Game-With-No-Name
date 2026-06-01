@@ -18,7 +18,7 @@ const SPEED: int = 400
 
 func _ready() -> void:
 	lavaWaterDetector.water_exited.connect(on_stomp)
-	resetComp.resetting_stats.connect(resseting)
+	resetComp.enabling_stats.connect(resseting)
 
 func _physics_process(delta: float) -> void:
 	
@@ -92,7 +92,7 @@ func on_stomp() -> void:
 
 func _on_SpeerFish_animation_finished() -> void:
 	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+		resetComp.disable_stats()
 
 func resseting() -> void:
 	state = State.IDLE

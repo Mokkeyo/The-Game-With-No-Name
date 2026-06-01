@@ -1,6 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://kpxhfavi37wo"]
+[gd_scene format=3 uid="uid://kpxhfavi37wo"]
 
+[ext_resource type="Texture2D" uid="uid://slnx7qng8drh" path="res://TileMaps/Textures/safezone_player.png" id="1_te8sd"]
 [ext_resource type="Texture2D" uid="uid://cpkfmb7a47nfh" path="res://TileMaps/Textures/safezone.png" id="4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_te8sd"]
+texture = ExtResource("1_te8sd")
+separation = Vector2i(1, 0)
+texture_region_size = Vector2i(14, 14)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+2:0/0 = 0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
+3:0/0 = 0
+3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-7, -7, 7, -7, 7, 7, -7, 7)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yb7km"]
 texture = ExtResource("4")
@@ -46,7 +60,10 @@ texture_region_size = Vector2i(14, 14)
 tile_size = Vector2i(14, 14)
 physics_layer_0/collision_layer = 512
 physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 2048
+physics_layer_1/collision_mask = 0
 sources/6 = SubResource("TileSetAtlasSource_yb7km")
+sources/2 = SubResource("TileSetAtlasSource_te8sd")
 
-[node name="SafeZone" type="TileMapLayer"]
+[node name="SafeZone" type="TileMapLayer" unique_id=1094312209]
 tile_set = SubResource("10")

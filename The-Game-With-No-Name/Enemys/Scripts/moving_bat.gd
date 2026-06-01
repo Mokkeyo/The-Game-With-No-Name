@@ -19,7 +19,7 @@ func _ready() -> void:
 		return
 	
 	healthComp.died.connect(on_stomp)
-	resetComp.resetting_stats.connect(respawn)
+	resetComp.enabling_stats.connect(respawn)
 	animatedSprite.play("default")
 	
 	set_variables()
@@ -52,4 +52,4 @@ func on_stomp() -> void:
 
 func _on_bat_animation_finished() -> void:
 	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+		resetComp.disable_stats()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://qabv4vag8xq4"]
+[gd_scene format=3 uid="uid://qabv4vag8xq4"]
 
 [ext_resource type="PackedScene" uid="uid://bhysqodvgtrok" path="res://Scenes/light.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://hiof1owmn7nq" path="res://Player/CanvasTextures/airship_player_1.tres" id="2_ttgib"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="7_kq3h5"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_eqdrp"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_vmje8"]
+[ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="10_1os2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2gr4"]
 atlas = ExtResource("3_hn1h1")
@@ -171,57 +172,62 @@ _data = {
 radius = 8.0
 height = 17.999992
 
-[node name="airshipPlayer" type="CharacterBody2D" groups=["airship"]]
+[node name="AirshipPlayer" type="CharacterBody2D" unique_id=1590504782 groups=["airship"]]
 collision_layer = 8
 script = ExtResource("6")
 currentPlayer = 0
 
-[node name="PointLight2D" parent="." instance=ExtResource("1")]
+[node name="PointLight2D" parent="." unique_id=373763981 instance=ExtResource("1")]
 visible = false
 shadow_enabled = true
 
-[node name="airship" type="AnimatedSprite2D" parent="."]
+[node name="airship" type="AnimatedSprite2D" parent="." unique_id=1903911050]
 sprite_frames = SubResource("5")
 animation = &"default_0"
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=1915484667]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n5dh6")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=508889054]
 position = Vector2(13, 5)
 
-[node name="DamagePlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_n0bj1")
-}
+[node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=960581153]
+libraries/ = SubResource("AnimationLibrary_n0bj1")
 
-[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_xbjoc")]
+[node name="Shoot" parent="." unique_id=1726789944 node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_xbjoc")]
 shootingPoint = NodePath("../Marker2D")
 parent = NodePath("..")
 player = 1
 lifeTime = 0.7
 
-[node name="healthComponent" parent="." instance=ExtResource("7_kq3h5")]
+[node name="healthComponent" parent="." unique_id=1602271427 instance=ExtResource("7_kq3h5")]
 health = 100.0
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_vmje8")]
+[node name="Hurtbox" parent="." unique_id=525312584 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("8_vmje8")]
 collision_layer = 2
-health = NodePath("../healthComponent")
+collision_mask = 8
+damage_receiver = NodePath("../DamageReceiver")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=270781655]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cyywu")
 
-[node name="wait_timer" type="Timer" parent="."]
+[node name="wait_timer" type="Timer" parent="." unique_id=2073108764]
 wait_time = 0.5
 one_shot = true
 
-[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "visible_nodes", "healthComp") instance=ExtResource("8_eqdrp")]
+[node name="ResetComponent" parent="." unique_id=213301967 node_paths=PackedStringArray("collisions", "visible_nodes") instance=ExtResource("8_eqdrp")]
 collisions = [NodePath("../Hurtbox/CollisionShape2D"), NodePath("../CollisionPolygon2D")]
 visible_nodes = [NodePath("..")]
-healthComp = NodePath("../healthComponent")
 setStartPosition = false
 physics_process = true
 
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("10_1os2m")]
+health = NodePath("../healthComponent")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=912091956]
+
 [connection signal="animation_finished" from="airship" to="." method="_on_airship_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

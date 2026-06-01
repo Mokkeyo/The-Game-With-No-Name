@@ -13,18 +13,16 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	health_comp.connect("value_changed", Callable(self, "damage"))
+	health_comp.died.connect(die)
 	collision.disabled = bool(visible != true)
 
 
-func damage() -> void:
-	animationPlayer.play("Damage")
-	if health_comp.health <= 0:
-		call_deferred("disable_collision")
-		if door:
-			door.open()
-		else:
-			push_warning("No Door Connected")
+func die() -> void:
+	call_deferred("disable_collision")
+	if door:
+		door.open()
+	else:
+		push_warning("No Door Connected")
 
 
 func disable_collision() -> void:

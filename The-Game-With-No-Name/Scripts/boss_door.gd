@@ -28,16 +28,10 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if npcArea.check_for_player() and state == category.CLOSED:
-		dialogLoader.player = npcArea.player
-		dialogLoader.start_dialogue_no_check()
+		dialogLoader.action(npcArea.player, self)
 	
 	if not state == category.OPEN:
 		return
 		
 	level_transition.check_for_transition()
-
-
-func end_dialog() -> void:
-	if dialogLoader.player:
-		dialogLoader.finish_dialogue()
-		dialogLoader.check_for_dialog_collected_no_check()
+	

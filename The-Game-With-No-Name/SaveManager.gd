@@ -47,6 +47,7 @@ func start_new_game() -> void:
 	player.checkpointActive = false
 	player.checkpointPosition = Vector2(0, 0)
 	player.kristallCount = 0
+	player.dialog_flags = {}
 	if player.door:
 		player.door.clear() 
 	save_data()
@@ -192,3 +193,29 @@ func load_json(path: String) -> Dictionary:
 func ensure_dir() -> void:
 	if not DirAccess.dir_exists_absolute(SAVE_DIR):
 		DirAccess.make_dir_recursive_absolute(SAVE_DIR)
+
+#-------------
+#DIALOG MANAGING
+#-------------
+
+func has_dialog_flag(flag: String) -> bool:
+	return player.dialog_flags.get(flag, false)
+
+func set_dialog_flag(flag: String) -> void:
+	player.dialog_flags[flag] = true
+	
+	if not options.dialog_flags.has(flag):
+		options.textboxCount += 1
+	
+		options.dialog_flags[flag] = true
+	
+	save_dialog_flags()
+
+func save_dialog_flags() -> void:
+	var path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
+	var data: Dictionary = load_json(path)
+	
+	data["dialog_flags"] = player.dialog_flags
+	
+	save_json(path, data)
+	save_options()

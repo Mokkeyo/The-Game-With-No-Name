@@ -70,9 +70,7 @@ func play_sound(sound_name: String, node: Node2D) -> void:
 	player.pitch_scale = randf_range(0.8, 0.9)
 	player.stream = sounds[sound_name]
 	player.global_position = node.global_position
-#	print(player.global_position)
 	player.play()
-#	print(sound_name + " wurde gespielt")
 
 
 func _get_closest_listener(position: Vector2) -> Node2D:

@@ -59,8 +59,10 @@ func reload_level() -> void:
 
 func reset_respawnable_obj() -> void:
 	for obj: EnemyResetComponent in respawnable_obj:
-		if not obj.is_in_group("Player"):
-			obj.reset_stats()
+		if obj.is_in_group("Player") or obj.is_in_group("airship"):
+			continue
+			
+		obj.enable_stats()
 
 
 func get_spawn_position() -> Vector2:

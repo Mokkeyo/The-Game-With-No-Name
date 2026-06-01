@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccs7k64ikvuep"]
+[gd_scene format=3 uid="uid://ccs7k64ikvuep"]
 
 [ext_resource type="Script" uid="uid://fo101wee8p4x" path="res://Scripts/enemy_airship.gd" id="1_siygl"]
 [ext_resource type="Texture2D" uid="uid://jbx86cbqto5d" path="res://Enemys/CanvasTextures/enemy_airship.tres" id="2_10gvk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="8_hpl2s"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_mklbp"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_ms50j"]
+[ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="10_6k4sf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inxlx"]
 atlas = ExtResource("3_fttxn")
@@ -166,67 +167,68 @@ size = Vector2(352, 256)
 radius = 8.0
 height = 22.0
 
-[node name="airship(enemy)" type="CharacterBody2D" groups=["enemy"]]
+[node name="airship(enemy)" type="CharacterBody2D" unique_id=1995630860 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 32769
 script = ExtResource("1_siygl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=185365658]
 sprite_frames = SubResource("1")
 flip_h = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1645800824]
 visible = false
 position = Vector2(0, 3)
 rotation = 1.5708
 shape = SubResource("8")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1018464188]
 visible = false
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=544911109]
 one_shot = true
 
-[node name="HPbar" parent="." instance=ExtResource("4_gylce")]
+[node name="HPbar" parent="." unique_id=1584253897 instance=ExtResource("4_gylce")]
 offset_left = -6.0
 offset_top = -14.0
 offset_right = 8.0
 offset_bottom = -10.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_e7f1u")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=252585730]
+libraries/ = SubResource("AnimationLibrary_e7f1u")
 
-[node name="PlayerDetector" parent="." instance=ExtResource("5_skqmn")]
+[node name="PlayerDetector" parent="." unique_id=1617919071 instance=ExtResource("5_skqmn")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1594435291]
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_jbunf")
 
-[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_f2h7g")]
+[node name="Shoot" parent="." unique_id=1641969374 node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_f2h7g")]
 shootingPoint = NodePath("../Marker2D")
 parent = NodePath("..")
 bulletSpeed = -250
 
-[node name="healthComponent" parent="." node_paths=PackedStringArray("hpBar") instance=ExtResource("8_hpl2s")]
+[node name="healthComponent" parent="." unique_id=378003970 node_paths=PackedStringArray("health_bar") instance=ExtResource("8_hpl2s")]
 health = 100.0
 invisibiltyFrames = 0.1
-hpBar = NodePath("../HPbar")
+health_bar = NodePath("../HPbar")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_mklbp")]
+[node name="Hurtbox" parent="." unique_id=91461651 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("8_mklbp")]
 collision_layer = 4
-health = NodePath("../healthComponent")
+damage_receiver = NodePath("../DamageReceiver")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1101545633]
 position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aqaaj")
 
-[node name="ResetComponent" parent="." node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_ms50j")]
+[node name="ResetComponent" parent="." unique_id=1337191585 node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_ms50j")]
 collisions = [NodePath("../CollisionShape2D2"), NodePath("../PlayerDetector/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D")]
 hpBar = NodePath("../HPbar")
 healthComp = NodePath("../healthComponent")
 physics_process = true
+
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("10_6k4sf")]
+health = NodePath("../healthComponent")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

@@ -5,7 +5,12 @@ class_name DamageReciever
 @export var invincibility: InvisibleFramesComp = null
 @export var invincibility_time: float = 0.5
 
-func receive_damage(dmg: int, knockback: float, damage_type: int) -> void:
+@export var ignore_damage: Array[G.DamageType]
+
+func receive_damage(dmg: int, knockback: float, damage_type: G.DamageType) -> void:
+	if ignore_damage.has(damage_type):
+		return
+	
 	match damage_type:
 		G.DamageType.NORMAL:
 			if invincibility and invincibility.Iframes_active():

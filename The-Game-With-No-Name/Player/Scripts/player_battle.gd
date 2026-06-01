@@ -4,7 +4,7 @@ signal healthValueChanged
 signal manaValueChanged
 
 var bullet: PackedScene = preload("res://Scenes/spirit_ball.tscn")
-var Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
+#var Pet: PackedScene = preload("res://Player/Scenes/ghost_pet.tscn")
 var player: PackedScene
 var tween: Tween
 
@@ -68,16 +68,16 @@ func _ready() -> void:
 	healthComponent.connect("setKnockback", Callable(self,"damage_knockback"))
 	lavaWaterDetector.connect("lava_entred", Callable(HealthComponent,"die"))
 	
-	healthComponent.health = G.save_stat.playerHp[currentPlayer - 1]
+#	healthComponent.health = G.save_stat.playerHp[currentPlayer - 1]
 	
 	player = load("res://Player/Scenes/player_%d.tscn" % otherPlayer)
 	
-	if G.save_stat.checkpointActive:
-		global_position = G.save_stat.checkpointPosition
+#	if G.save_stat.checkpointActive:
+#		global_position = G.save_stat.checkpointPosition
 	
 	if healthComponent.health <= 0:
 		healthComponent.health = 100
-		G.save_stat.playerHp[currentPlayer - 1] = 100
+#		G.save_stat.playerHp[currentPlayer - 1] = 100
 
 func set_inputs() -> void:
 	inputs = {
@@ -126,7 +126,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		can_doublejump = true
 	
-	if G.save_stat.playerMana[currentPlayer -1] < 99 and manaTimer.is_stopped():
+#	if G.save_stat.playerMana[currentPlayer -1] < 99 and manaTimer.is_stopped():
 		manaTimer.start(4.0)
 	
 	if grabZone.rope_part == null and lavaWaterDetector.inWater == false:
@@ -171,7 +171,7 @@ func check_key_input() -> void:
 	if grabZone.rope_part != null:
 		if Input.is_action_just_pressed(inputs["jump"]):
 			velocity.y = -JUMP_POWER
-			SoundMusic.play_sound_effect("jump")
+#			SoundMusic.play_sound_effect("jump")
 			is_jumping = true
 			grabZone.rope_part = null
 			grabZoneTimer.start()
@@ -198,7 +198,7 @@ func check_key_input() -> void:
 			if !is_on_floor():
 				is_jumping = true
 				velocity.y = -WATER_JUMP
-				SoundMusic.play_sound_effect("water")
+#				SoundMusic.play_sound_effect("water")
 
 		if next_to_left_wall() and !is_on_floor() and lavaWaterDetector.inWater == false:
 			knockback = Vector2(2.5,-3) * 65
@@ -211,7 +211,7 @@ func check_key_input() -> void:
 		if can_doublejump and lavaWaterDetector.inWater == false and !next_to_right_wall() and !next_to_left_wall():
 			if !is_on_floor() and coyoteTimer.is_stopped():
 				velocity.y = -DOUBLE_JUMP
-				SoundMusic.play_sound_effect("jump")
+#				SoundMusic.play_sound_effect("jump")
 				can_doublejump = false
 
 	if Input.is_action_just_pressed(inputs["jump"]) or buffered_jump:
@@ -222,19 +222,19 @@ func check_key_input() -> void:
 			jump_cut()
 		
 	if Input.is_action_just_pressed(inputs["wand"]):
-		if wand.can_swing and G.save_stat.playerMana[currentPlayer -1] >= 30:
+#		if wand.can_swing and G.save_stat.playerMana[currentPlayer -1] >= 30:
 			wand.attack()
-			SoundMusic.play_sound_effect("magic")
+#			SoundMusic.play_sound_effect("magic")
 			var w: Node2D = bullet.instantiate()
 			get_parent().add_child(w)
 			w.global_position = wand.marker.global_position
 			change_mana_value()
 	
-	if Input.is_action_just_pressed(inputs["attack"]) and sword.state == sword.SwordState.IDLE:
-		sword.attack()
+#	if Input.is_action_just_pressed(inputs["attack"]) and sword.state == sword.SwordState.IDLE:
+#		sword.attack()
 
 func on_value_changed() -> void:
-	G.save_stat.playerHp[currentPlayer - 1] = healthComponent.health
+#	G.save_stat.playerHp[currentPlayer - 1] = healthComponent.health
 	animationPlayer.play("invisible_frames")
 	healthValueChanged.emit()
 
@@ -243,8 +243,8 @@ func set_animation() -> void:
 	if !is_alive:
 		return
 	
-	if !sword.sword_left:
-		sword.position.x = 7
+#	if !sword.sword_left:
+#		sword.position.x = 7
 	else:
 		sword.position.x = -9
 
@@ -267,15 +267,15 @@ func on_stomp() -> void:
 	is_jumping = true
 	if lavaWaterDetector.inWater == false:
 		velocity.y = -JUMP_POWER
-		SoundMusic.play_sound_effect("jump")
+#		SoundMusic.play_sound_effect("jump")
 	else:
 		velocity.y = -WATER_JUMP
-		SoundMusic.play_sound_effect("water")
+#		SoundMusic.play_sound_effect("water")
 
 func do_walljump(left: bool) -> void:
 	can_doublejump = true
 	is_jumping = true
-	SoundMusic.play_sound_effect("jump")
+#	SoundMusic.play_sound_effect("jump")
 	knockback_on = true
 	knockbackTimer.start(0.25)
 	animatedSprite.flip_h = left
@@ -288,10 +288,10 @@ func jump() -> void:
 		coyoteTimer.stop()
 		if lavaWaterDetector.inWater == false:
 			velocity.y = -JUMP_POWER
-			SoundMusic.play_sound_effect("jump")
+#			SoundMusic.play_sound_effect("jump")
 		else:
 			velocity.y = -WATER_JUMP
-			SoundMusic.play_sound_effect("water")
+#			SoundMusic.play_sound_effect("water")
 
 func jump_cut() -> void:
 	if velocity.y < -100:
@@ -307,14 +307,14 @@ func next_to_left_wall() -> bool:
 	return rayCastLeft.is_colliding()
 
 func change_mana_value() -> void:
-	G.save_stat.playerMana[currentPlayer -1] -=33
+#	G.save_stat.playerMana[currentPlayer -1] -=33
 	manaValueChanged.emit()
 
 
 func respawn() -> void:
 	is_alive = false
 #	G.save_stat_inf.deaths[G.path - 1] += 1
-	G.save_options()
+#	G.save_options()
 #	G.SaveStat.playerHp[currentPlayer - 1] = 100
 #	G.SaveStat.playerMana[currentPlayer - 1] = 99
 	animatedSprite.play("game_over")
@@ -328,7 +328,7 @@ func damage_knockback() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "game_over":
-		G.save_stat.playerMana[currentPlayer - 1] = 99
+#		G.save_stat.playerMana[currentPlayer - 1] = 99
 		queue_free()
 
 
@@ -339,5 +339,5 @@ func _on_JumpBufferTimer_timeout() -> void:
 	buffered_jump = false
 
 func _on_ManaTimer_timeout() -> void:
-	G.save_stat.playerMana[currentPlayer -1] += 11
+#	G.save_stat.playerMana[currentPlayer -1] += 11
 	manaValueChanged.emit()

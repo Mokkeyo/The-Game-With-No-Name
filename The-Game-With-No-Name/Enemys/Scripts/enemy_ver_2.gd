@@ -21,7 +21,7 @@ func _ready() -> void:
 	floor_snap_length = 8
 	animatedSprite.play("walk")
 	healthComp.died.connect(die)
-	resetComp.resetting_stats.connect(respawn)
+	resetComp.enabling_stats.connect(respawn)
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -77,4 +77,4 @@ func respawn() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animatedSprite.animation == "die":
-		resetComp.set_stats()
+		resetComp.disable_stats()

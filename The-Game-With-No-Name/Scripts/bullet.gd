@@ -32,20 +32,24 @@ func propertys(bulletRotation: float, player: int, time: float, SPEED: int) -> v
 	
 	sprite.frame = player
 	
+	var life_time: float = 1
+	
 	sprite.flip_h = player == 0
 	hitbox.set_collision_mask_value(1, true)
 	if player == 0:
 		sprite.flip_h = true
 		hitbox.set_collision_mask_value(2, true)
 	else:
+		moveSPEED = SPEED * 2
+		life_time = 0.5
 		hitbox.set_collision_mask_value(3, true)
 	timer.stop()
 	timer.wait_time = time
-	timer.start()
+	timer.start(life_time)
 
 
 func died() -> void:
-	emit_signal("timeout", self)
+	timeout.emit(self)
 
 
 func _on_timer_timeout() -> void:

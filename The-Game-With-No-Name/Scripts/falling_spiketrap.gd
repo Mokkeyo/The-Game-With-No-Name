@@ -8,7 +8,7 @@ const SPEED: int = 5
 
 
 func _ready() -> void:
-	resetComp.resetting_stats.connect(reset)
+	resetComp.enabling_stats.connect(reset)
 
 func _physics_process(_delta: float) -> void:
 	velocity.x = 0

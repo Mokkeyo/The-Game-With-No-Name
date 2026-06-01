@@ -24,8 +24,6 @@ visible = true
 position = Vector2(0.5, -61)
 
 [node name="DialogueLoader" parent="." unique_id=589493201 instance=ExtResource("4_wer5r")]
-npc = "graveStone"
-blackBox = true
 
 [node name="NPCArea" parent="." unique_id=65990929 instance=ExtResource("5_8qfce")]
 

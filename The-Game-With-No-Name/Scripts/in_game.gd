@@ -25,11 +25,12 @@ class_name InGame
 
 var old_level: Node2D = null
 
-func get_players() -> Array[Player] :
+func get_players() -> Array[Player]:
 	return [%Player1, %Player2]
 
 func get_pets() -> Array[Pet]:
 	return [%GhostPet1, %GhostPet2]
+
 
 func _ready() -> void:
 	G.level_viewport = $HBoxContainer/ViewportContainerP1/SubViewport
@@ -56,11 +57,14 @@ func set_viewport_size(player_alive: Array[bool]) -> void:
 	
 	if panel.visible:
 		for i: int in player_alive.size():
+			show_player_bar(i, true)
 			_set_player_viewport(i, 512, true)
 	else:
 		var active: int = 0 if player_alive[0] else 1
 		_set_player_viewport(active, 1024, true)
+		show_player_bar(active, true)
 		_set_player_viewport(1 - active, 0, false)
+		show_player_bar(1- active, false)
 
 
 func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
@@ -68,13 +72,27 @@ func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 	show_player_bar(index, view_visible)
 	viewport_containers[index].visible = view_visible
 
+
 func show_player_bar(index: int, show_bar: bool) -> void:
 	player_bars[index].visible = show_bar
 
 
+func disable_cameras() -> void:
+	for camera: Camera2D in cameras:
+		camera.enabled = false
+	
+	var p: Array[bool] = [true, false]
+	set_viewport_size(p)
+
+
+func enable_cameras() -> void:
+	for camera: Camera2D in cameras:
+		camera.enabled = true
+
+
 func connect_camera_to_players(players: Array[Player]) -> void:
 	for i: int in players.size():
-		players[i].connect_camera(cameras[i])
+		players[i].connect_camera(cameras[i].get_path())
 
 
 func on_health_value_changed(player_number: int, health_value: float) -> void:
@@ -83,7 +101,7 @@ func on_health_value_changed(player_number: int, health_value: float) -> void:
 		bar.set_value_int(health_value)
 	else:
 		bar.set_percent_value_int(health_value)
-
+	Save.player.hp[player_number] = health_value
 
 func on_mana_value_changed(player_number: int, mana_value: float) -> void:
 	var bar: HealthBar = mana_bars[player_number]

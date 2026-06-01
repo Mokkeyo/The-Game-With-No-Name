@@ -74,6 +74,7 @@ radius = 185.779
 
 [node name="SpeerFish" type="CharacterBody2D" unique_id=2121655178]
 collision_layer = 4
+collision_mask = 513
 motion_mode = 1
 script = ExtResource("1")
 
@@ -83,7 +84,6 @@ sprite_frames = SubResource("1")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=843421419]
-visible = false
 position = Vector2(0, -0.5)
 rotation = 1.5708
 shape = SubResource("2")

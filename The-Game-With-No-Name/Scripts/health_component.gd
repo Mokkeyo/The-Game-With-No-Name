@@ -12,7 +12,6 @@ signal setKnockback(strength: float)
 @export var knockbackDuration: float = 0.1
 
 @export_group("Components")
-@export var invisibilityComp: InvisibleFramesComp
 @export var lavaDetector: LavaWaterDetector
 @export var health_bar: HealthBar
 
@@ -28,11 +27,11 @@ func _ready() -> void:
 func damage(dmg: int, knockback: float) -> void:
 	if health <= 0:
 		return
-	
-	if health_bar:
-		health_bar.set_percent_value_int(health)
+	print("old health: ",health)
+	update_hpbar(int(health))
 	
 	health -= dmg
+	print("new health: ", health)
 	value_changed.emit()
 	
 	if health <=  0:
@@ -41,6 +40,20 @@ func damage(dmg: int, knockback: float) -> void:
 	
 	if not knockback == 0:
 		setKnockback.emit(knockback)
+
+
+func refill_health(value: int) -> void:
+	health = value
+	
+	if health > max_health:
+		health = max_health
+
+	update_hpbar(int(health))
+
+
+func update_hpbar(value: int) -> void:
+	if health_bar:
+		health_bar.set_percent_value_int(value)
 
 
 func die() -> void:

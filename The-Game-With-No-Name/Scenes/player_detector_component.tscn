@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdxpuixmp63w0"]
+[gd_scene format=3 uid="uid://bdxpuixmp63w0"]
 
 [ext_resource type="Script" uid="uid://e4d0ps4iosa4" path="res://Scripts/player_detector_component.gd" id="1_hepyu"]
 
-[node name="PlayerDetector" type="Area2D"]
+[node name="PlayerDetector" type="Area2D" unique_id=1395062901]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4096
 script = ExtResource("1_hepyu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

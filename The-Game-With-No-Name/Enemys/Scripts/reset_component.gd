@@ -1,8 +1,8 @@
 extends Node
 class_name EnemyResetComponent
 
-signal setting_stats
-signal resetting_stats
+signal disabling_stats
+signal enabling_stats
 
 @export_group("reset_stats")
 @export var collisions: Array[CollisionShape2D]
@@ -21,7 +21,7 @@ func _ready() -> void:
 		start_position = parent.global_position
 
 
-func reset_stats() -> void:
+func enable_stats() -> void:
 	var parent: Node2D = get_parent()
 	
 	if setStartPosition:
@@ -53,10 +53,10 @@ func reset_stats() -> void:
 	for visibles: Node2D in visible_nodes:
 		visibles.visible = true
 	
-	emit_signal("resetting_stats")
+	enabling_stats.emit()
 
 
-func set_stats() -> void:
+func disable_stats() -> void:
 	var parent: Node2D = get_parent()
 	if setStartPosition:
 		parent.global_position = Vector2(-1000, -1000)
@@ -78,4 +78,4 @@ func set_stats() -> void:
 	for visibles: Node2D in visible_nodes:
 		visibles.visible = false
 	
-	emit_signal("setting_stats")
+	disabling_stats.emit()

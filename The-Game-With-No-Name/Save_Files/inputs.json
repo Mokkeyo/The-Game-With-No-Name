@@ -1,7 +1,7 @@
 {
 	"player1_attack": [
 		{
-			"button": 1,
+			"button": 1.0,
 			"type": "mouse"
 		},
 		{
@@ -13,7 +13,7 @@
 	],
 	"player1_down": [
 		{
-			"keycode": 83,
+			"keycode": 83.0,
 			"type": "key"
 		},
 		{
@@ -25,7 +25,7 @@
 	],
 	"player1_interact": [
 		{
-			"keycode": 4194325,
+			"keycode": 4194325.0,
 			"type": "key"
 		},
 		{
@@ -36,7 +36,7 @@
 	],
 	"player1_jump": [
 		{
-			"keycode": 32,
+			"keycode": 32.0,
 			"type": "key"
 		},
 		{
@@ -47,7 +47,7 @@
 	],
 	"player1_left": [
 		{
-			"keycode": 65,
+			"keycode": 65.0,
 			"type": "key"
 		},
 		{
@@ -59,7 +59,7 @@
 	],
 	"player1_right": [
 		{
-			"keycode": 68,
+			"keycode": 68.0,
 			"type": "key"
 		},
 		{
@@ -71,7 +71,7 @@
 	],
 	"player1_spawn": [
 		{
-			"keycode": 81,
+			"keycode": 81.0,
 			"type": "key"
 		},
 		{
@@ -94,7 +94,7 @@
 	],
 	"player1_wand": [
 		{
-			"button": 2,
+			"button": 2.0,
 			"type": "mouse"
 		},
 		{

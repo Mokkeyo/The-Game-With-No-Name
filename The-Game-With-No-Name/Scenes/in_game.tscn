@@ -59,6 +59,10 @@ audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 
+[node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
+
+[node name="AmbientManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=340586383 instance=ExtResource("4_r382v")]
+
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1804773222]
 texture_filter = 1
 zoom = Vector2(2, 2)
@@ -79,10 +83,6 @@ player = 0
 [node name="GhostPet2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=2116320355 node_paths=PackedStringArray("playerNode") instance=ExtResource("2_tikr8")]
 unique_name_in_owner = true
 playerNode = NodePath("../Player2")
-
-[node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
-
-[node name="AmbientManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=340586383 instance=ExtResource("4_r382v")]
 
 [node name="Player1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1056553489 groups=["Player_0"] instance=ExtResource("3_2fron")]
 unique_name_in_owner = true

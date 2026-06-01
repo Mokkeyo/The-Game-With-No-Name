@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Airship
 
-#signal playerCountChanged
-#signal playerDied
-#signal gameOver
 
 @onready var marker: Marker2D = $Marker2D
 @onready var sprite: AnimatedSprite2D = $airship
@@ -13,13 +10,13 @@ class_name Airship
 @onready var healthComp: HealthComponent = $healthComponent
 @onready var wait_timer: Timer = $wait_timer
 @onready var reset_comp: EnemyResetComponent = $ResetComponent
+@onready var remote_transform: RemoteTransform2D = $RemoteTransform2D
 
 @export var currentPlayer: int = 1
-var otherPlayer: int
-var respawn_position: Vector2
+var can_exit: bool = false
+var player_node: Player = null
 var is_in: bool = false 
 var is_alive: bool = true
-var player_node: Player = null
 
 @export var hitpoints: int = 100
 const SPEED: int = 180
@@ -30,13 +27,12 @@ var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
 	set_inputs()
+	tree_exited.connect(enable_player)
 	sprite.play(str("default_", currentPlayer))
-	respawn_position = global_position
-	otherPlayer = 1 if (currentPlayer == 0) else 0
 	healthComp.died.connect(die)
 	healthComp.value_changed.connect(on_value_changed)
-	reset_comp.resetting_stats.connect(respawn)
-	reset_comp.setting_stats.connect(die)
+	reset_comp.enabling_stats.connect(respawn)
+	reset_comp.disabling_stats.connect(die)
 
 func set_inputs() -> void:
 	inputs = {
@@ -50,12 +46,15 @@ func set_inputs() -> void:
 		"wand": "player%d_wand" % int(currentPlayer + 1)
 	}
 
-func _physics_process(_delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return
-
+	
 	if is_in:
 		check_key_input()
+	elif not is_on_floor():
+		velocity.y += 200 * delta
 	
 	move_and_slide()
 
@@ -86,58 +85,68 @@ func check_key_input() -> void:
 		wait_timer.start(0.5)
 		shootComp.shoot_bullet()
 	
-#	if C.just_pressed(C.spawn, otherPlayer) and G.player_can_respawn:
-#		_respawn_player_and_airship()
-
+	if Input.is_action_just_pressed(inputs["interact"]) and can_exit:
+		player_node.global_position = global_position
+		enable_player()
 
 func die() -> void:
 	sprite.play("die")
 	is_alive = false
 
+
+func enable_player() -> void:
+	if not player_node:
+		return
+	
+	player_node.reset_comp.enable_stats()
+	set_player()
+
+
 func set_player() -> void:
-	remove_child(player_node)
-	get_parent().add_child(player_node)
-	player_node.global_position = global_position
-	is_in = false 
-	player_node.freeze = false
-	player_node.hitbox_collision.disabled = false
-	velocity = Vector2(0, 0)
+	if not player_node or remote_transform.remote_path.is_empty() or not is_in:
+		return
+	set_collision_layer_value(13, false)
+	velocity = Vector2.ZERO
+	G.health_value_changed.emit(currentPlayer, Save.player.hp[currentPlayer])
+	is_in = false
+	var temp_p: NodePath = remote_transform.remote_path
+	remote_transform.remote_path = ""
+	player_node.connect_camera(temp_p)
+	sprite.z_index = 0
+	player_node = null
 
 
 func respawn() -> void:
 	sprite.play(str("default_", currentPlayer))
 	is_alive = true
-	global_position = respawn_position
 
 
 func go_in(playerNode: Player) -> void:
 	on_value_changed()
-	playerNode.get_parent().remove_child(playerNode)
-	add_child(playerNode)
-# 	playerNode.visible = false
-	is_in = true
-	playerNode.freeze = true
-	playerNode.position = Vector2(2,-5)
+	set_collision_layer_value(13, true)
 	player_node = playerNode
+	playerNode.reset_comp.disable_stats()
+	remote_transform.remote_path = playerNode.disconnect_camera()
+	
+	is_in = true
 	sprite.z_index = 1
-
-
-func _respawn_player_and_airship() -> void:
-	var player: PackedScene = load("res://Player/Scene/player_%d.tscn" % (otherPlayer + 1))
-	var p: Player = player.instantiate()
-	var airship: PackedScene = load("res://Player/Scenes/airship_player_%d.tscn" % (otherPlayer + 1))
-	var a: Airship = airship.instantiate()
-	get_parent().add_child(p)
-	get_parent().add_child(a)
-	var pos: Vector2 = marker.global_position + Vector2(0, -3)
-	p.global_position = pos
-	a.global_position = pos
-
 
 
 func _on_airship_animation_finished() -> void:
 	if sprite.animation == "die" and is_in:
 		G.player_died.emit(currentPlayer)
+		player_node.reset_comp.disable_stats()
 		set_player()
 		is_in = false
-		reset_comp.set_stats()
+		reset_comp.disable_stats()
+		healthComp.health = healthComp.max_health
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("airship"):
+		can_exit = true
+
+
+func _on_hurtbox_area_exited(area: Area2D) -> void:
+	if area.is_in_group("airship"):
+		can_exit = false

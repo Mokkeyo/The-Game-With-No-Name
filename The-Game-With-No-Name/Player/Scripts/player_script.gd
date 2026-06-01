@@ -9,6 +9,8 @@ signal flip_value_changed
 @onready var health_component: HealthComponent = $healthComponent
 @onready var rotater_component: FloorRotaterComponent = $FloorRotaterComponent
 
+@onready var remote_transform: RemoteTransform2D = $RemoteTransform2D
+
 @onready var rope_state: RopeState = $States/RopeState
 @onready var sound_player: SoundPlayer = $SoundPlayer
 
@@ -56,11 +58,17 @@ var buffered_jump: bool = false
 var once: bool = true
 
 
-func connect_camera(camera: Camera2D) -> void:
-	var remote_transform: RemoteTransform2D = $RemoteTransform2D
-	remote_transform.remote_path = camera.get_path()
-	if remote_transform.remote_path == null:
+func connect_camera(camera: NodePath) -> void:
+	remote_transform.remote_path = camera
+	if remote_transform.remote_path.is_empty():
 		push_warning("Camera not connected")
+
+
+func disconnect_camera() -> NodePath:
+	var camera: NodePath = remote_transform.remote_path
+	remote_transform.remote_path = ""
+	
+	return camera
 
 func _ready() -> void:
 	combat.current_player =  current_player
@@ -71,8 +79,6 @@ func _ready() -> void:
 	combat.enemy_hit.connect(_on_enemy_hit)
 	_connect_signals()
 	_configure_floor_settings()
-	health_component.health = Save.player.hp[current_player]
-	
 	for s: PlayerState in States.values():
 		s.player = self
 	
@@ -110,8 +116,8 @@ func _connect_signals() -> void:
 	health_component.value_changed.connect(_on_value_changed)
 	health_component.died.connect(respawn)
 #	health_component.setKnockback.connect(do_knockback.bind(health_component.knockbackDuration, health_component.knockbackDirection))
-	reset_comp.resetting_stats.connect(enable_player)
-	reset_comp.setting_stats.connect(disable_player)
+	reset_comp.enabling_stats.connect(enable_player)
+	reset_comp.disabling_stats.connect(disable_player)
 	lava_water_detector.water_entered.connect(play_water_sound)
 	lava_water_detector.water_exited.connect(play_water_sound)
 	lava_water_detector.elevator_entered.connect(enter_water_elevator)
@@ -146,6 +152,7 @@ func _physics_process(delta: float) -> void:
 func handle_airship_entry() -> void:
 	for object: Airship in hurtbox.get_overlapping_bodies():
 		if object.is_in_group(str("airship_", current_player)):
+			await get_tree().process_frame
 			enter_airship(object)
 			break
 
@@ -171,7 +178,6 @@ func do_knockback(_duration: float, dir: Vector2) -> void:
 
 
 func _on_value_changed() -> void:
-	Save.player.hp[current_player] = health_component.health
 	G.health_value_changed.emit(current_player, health_component.health)
 
 
@@ -191,6 +197,7 @@ func respawn() -> void:
 
 
 func enable_player() -> void:
+	push_warning("enabling player: ", current_player)
 	SoundMusic.listeners.append(self)
 	is_alive = true
 	grab_zone.rope_part = null
@@ -203,7 +210,7 @@ func enable_player() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animated_sprite.animation == "game_over":
-		reset_comp.set_stats()
+		reset_comp.disable_stats()
 		G.player_died.emit(current_player)
 
 

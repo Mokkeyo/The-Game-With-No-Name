@@ -13,7 +13,7 @@ var knockback: Vector2 = Vector2.ZERO
 var is_alive: bool = true
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hpBar: progressBar = $"HPbar(enemy)"
+#@onready var hpBar: progressBar = $"HPbar(enemy)"
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var rayCastLeft: RayCast2D = $RayCastLeft
 @onready var rayCastRight: RayCast2D = $RayCastRight
@@ -30,7 +30,7 @@ var max_hitpoints: int = hitpoints
 func _physics_process(delta: float) -> void:
 	if is_alive == false:
 		collision.disabled = true
-		hpBar.visible = false
+#		hpBar.visible = false
 		return
 
 	if knockback_on == true:
@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 func on_stomp() -> void:
 	if knockbackTimer.is_stopped():
 		hitpoints -= 50
-		hpBar.set_percent_value_int(float(hitpoints)/max_hitpoints * 100)
+#		hpBar.set_percent_value_int(float(hitpoints)/max_hitpoints * 100)
 		if hitpoints <= 0:
 			animatedSprite.play("die")
 			is_alive = false

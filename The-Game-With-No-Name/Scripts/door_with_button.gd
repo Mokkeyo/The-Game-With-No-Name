@@ -16,7 +16,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	resetComp.resetting_stats.connect(reset)
+	resetComp.enabling_stats.connect(reset)
 	if Save.player.door.has(Door_Nr):
 		animationPlayer.play("Open")
 		door_open = true

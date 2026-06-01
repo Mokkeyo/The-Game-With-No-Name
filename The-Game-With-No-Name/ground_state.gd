@@ -51,7 +51,6 @@ func handle_input() -> void:
 func physics_update(_delta: float) -> void:
 	player.rotater_component.update_rotation()
 	player.combat.change_sword_direction(dir, player.animated_sprite.rotation_degrees)
-	
 	var on_moving_plattform: bool = player.get_platform_velocity().length() > 0.01
 	var is_flat: bool = player.get_floor_angle() == 0
 	

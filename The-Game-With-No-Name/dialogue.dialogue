@@ -1,0 +1,100 @@
+~ kratos
+match Save.player.kristallCount
+	when 0
+		???: Who are you? What shall you portray, hollow Knight? So be it. I can't tell you very much. However. Why are you here, What is your task? 
+		You don't know? Oh well. How about collecting the three crystals? This also helps me to get my memory back. Then maybe I can tell you more. To get to a crystal, go through either the door at the top left or at the top right.
+		do Save.set_dialog_flag("met_kratos_0")
+	when 1
+		Kratos: Wow. You got your first crystal. I didn't think you could do that. Can I tell you more now?  What I can tell you is that I can remember my name again. My name is Kratos. What is your name?... You don't have one? But everyone has a name. Why wouldn't you have one?
+		do Save.set_dialog_flag("met_kratos_1")
+	when 2
+		Kratos: So you did it. 2 of 3 crystals. Now the last gate should be open. Defeat Boss galaga and you will hopefully have reached your goal. The door to Boss Galaga is below us. Just go left or right down the stairs. this guy is so arrogant!
+		do Save.set_dialog_flag("met_kratos_2")
+	when 3
+		Kratos: You have found All Crystals. Congratulations... But what's in it for you? You want to reach the end? Well, do what you want.
+		do Save.set_dialog_flag("met_kratos_3")
+=> END
+
+~ rick
+match Save.player.kristallCount
+	when 0
+		???: Hello stranger! I've never seen you here. You're not from here, aren't you? At least it doesn't look like it. I'm sorry. unfortunately I can't introduce myself, but what's your name? You don't know it? Now... Unfortunately, I feel the same way.
+		do Save.set_dialog_flag("met_rick_0")
+	when 1
+		???: you brought back a crystal. If you're wondering why there are only three of us here, that's because... When the crystals disappeared, all the inhabitants lost their names. Including me, and without a name they have no existence.
+		???: Names are something associated with us. You can even tell twins apart with names. But you can't live in this world without a name.
+		do Save.set_dialog_flag("met_rick_1")
+	when 2
+		rick sanchez: Thank you for bringing back two crystals. This makes me remember my name again. That means I can introduce myself to you now. I'm Rick Sanchez. The person on the left is my twin brother. 
+		rick sanchez: If you are wondering why many doors are not accessible, it is because the houses have collapsed. Without a crystal, caves like to collapse. This must have happened when you removed the crystals in the caves. 
+		rick sanchez: There is only one crystal left to be found. But what I'm wondering, why did you collect the crystals? You didn't know about our situation. Neither do we. What was the point. Did anyone tell you to come here and collect the crystals?
+		do Save.set_dialog_flag("met_rick_2")
+	when 3
+		rick sanchez: Now all crystals have been collected. But what I've been wondering all the time. Without a name... How could you go on living? you didn't know your name. not even now. Without a name, you die after a short time if you are deprived of it.
+		rick sanchez: The crystals prevent anyone from losing their name and even now that all the crystals have been collected... You still don't know your name. Are you somehow special?
+		do Save.set_dialog_flag("met_rick_3")
+=> END
+
+~ shild
+match G.dialog_index
+	when 0
+		shild: In this game you can jump  (What a suprise). but you can jump higher or lower, depending on how long you hold the jump button (look controlls)
+		do Save.set_dialog_flag("met_shild_0")
+	when 1
+		shild: If you are on a wall and not on the floor, you can use a wall jump, with that you can either climb up walls or jump from wall to wall. To use it. Go next to a wall and press the Jump button.(look controlls)
+		do Save.set_dialog_flag("met_shild_1")
+	when 2
+		shild: Because one Jump would be boring, you have a jump in the air. So use it to jump over the pit. Tipp: The air Jump resets, if you are on floor or if you used a walljump, so you can use it again.
+		do Save.set_dialog_flag("met_shild_2")
+	when 3
+		shild: Because this is a brutal killer game, you have a Sword, with which you can atack up to 3 times in a row by pressing the sword button (look controlls), after that you need to wait about 1 sec to attack with it again. go ahead and try it out on the dummy.
+		do Save.set_dialog_flag("met_shild_3")
+	when 4
+		shild: Now you learned how to use your Sword. But what about your Wand? You can use a Wand by pressing the wand button (look controlls). with the attack coming out of it, you can also harm enemys. the attack even goes trough walls. use it to press the button inside the wall.", "But be aware. the use of a wand is limited. limited by your mana. its the blue bar thats under your Hpbar (The green bar). so always keep that in mind. but dont worry the mana refills it self over the time.
+		do Save.set_dialog_flag("met_shild_4")
+	when 5
+		shild: Something you need to know if your are playing with a friends is, that there is a split screen. You can respawn after 5sec by pressing the (Spawn) Button, if the other player is alive. If you both, died, you can respan instantly", "If you want to know how the 2 Player mode works. go either to the pause menu by pressing the start button on the controller. or go to the main menu. there is a button on the side with two characters on it. just click on it and get a little explanation.
+		do Save.set_dialog_flag("met_shild_5")
+=> END
+
+~ kristall
+This seems to be crystal {{Save.player.kristallCount + 1}}. Maybe I should collect it
+do Save.set_dialog_flag("met_kristall_0")
+do G.enter_door.emit(1, "")
+=> END
+
+~ bossDoor
+This door cannot be opened. Maybe it will work if I come back another time", "But this image looks familiar to me. maybe that's a well-known figure
+do Save.set_dialog_flag("met_bossDoor_0")
+=> END
+
+~ houseDoor
+if Save.has_dialog_flag("met_rick_2") == false
+	This door does not seem to open. there doesn't seem to be anyone in it either...Why is that?
+	do Save.set_dialog_flag("met_houseDoor_0 ")
+else
+	Its a shame, that the houses collapsed. I hope that the people survived
+	do Save.set_dialog_flag("met_houseDoor_1")
+=> END
+
+~ buschi
+if Save.has_dialog_flag("met_bushi_0") == false
+	Buschi: Hi. I'm Bushie! I came from the garden of souls to visit a friend. If you want to know, why I'm in this Bush. I just like it that way. Its comfortable.
+	Buschi: Oh. and dont worry i'm not a pedophile. If you want i can give you a tutorial about the controlls and your movement. You just have to come into this bush.
+	do Save.set_dialog_flag("met_buschi_0")
+Wanna Come in?
+- No
+	=> END
+- Yes
+	do G.enter_door.emit(0, "")
+=> END
+
+~ gravestone
+Gravestone: every gravestone i walked passed by, had a name written on it. Its from the living creatures i killed, but this one doesn't hava a name written on it, it's just empty. Everyone had a Name, except me. maybe thats my gravestone...", "eveything found his end in her. Maybe i should find my end her too...
+do Save.set_dialog_flag("met_gravestone_0")
+=> END
+
+~ enemyGravestone
+This Seems to be the gravestone from an enemy i killed
+do Save.set_dialog_flag("met_enemyGravestone_0")
+=> END

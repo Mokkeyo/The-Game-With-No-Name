@@ -26,11 +26,10 @@ G="*res://AutoLoads/Scripts/Globals.gd"
 SoundMusic="*res://AutoLoads/Scripts/SoundMusic.gd"
 D="*res://AutoLoads/Scripts/Dialogue.gd"
 AI="*res://AutoLoads/Scenes/achievment_informer.tscn"
-Noray="*uid://gu4bv4tgms3x"
-PacketHandshake="*uid://tt3j25a05n7c"
 Multiplayer="res://multiplayer.gd"
 SoundComp="*res://footstep_sound_component.gd"
 Save="*uid://cnum2flxsbpme"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [debug]
 
@@ -77,6 +76,10 @@ gdscript/warnings/property_used_as_function=2
 gdscript/warnings/constant_used_as_function=2
 gdscript/warnings/function_used_as_property=2
 
+[dialogue_manager]
+
+runtime/balloon_path="res:///balloon.tscn"
+
 [display]
 
 window/size/viewport_width=1024
@@ -88,7 +91,7 @@ mouse_cursor/custom_image="res://GuiElements/Textures/mouse.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [filesystem]
 
@@ -378,6 +381,10 @@ esc={
 ]
 }
 
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue.dialogue", "res://shild.dialogue")
+
 [layer_names]
 
 2d_physics/layer_1="Level"
@@ -391,6 +398,8 @@ esc={
 2d_physics/layer_9="Lava"
 2d_physics/layer_10="SaveZone"
 2d_physics/layer_11="NPC"
+2d_physics/layer_12="PlayerSafeZone"
+2d_physics/layer_13="PlayerDetector"
 
 [physics]
 

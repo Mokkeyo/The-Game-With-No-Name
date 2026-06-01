@@ -13,8 +13,8 @@ var is_alive: bool = true
 func _ready() -> void:
 	var health_comp: HealthComponent = $healthComponent
 	health_comp.died.connect(die)
-	reset_comp.resetting_stats.connect(die)
-	reset_comp.setting_stats.connect(respawn)
+	reset_comp.disabling_stats.connect(die)
+	reset_comp.enabling_stats.connect(respawn)
 
 
 func _physics_process(_delta: float) -> void:
@@ -49,4 +49,4 @@ func respawn() -> void:
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	if animated_sprite.animation == "die":
-		reset_comp.set_stats()
+		reset_comp.disable_stats()

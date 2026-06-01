@@ -6,22 +6,26 @@
 		"Does Someone Need A Tutorial?"
 	],
 	"ambientVolume": 0.5,
-	"darknessOn": true,
+	"darknessOn": false,
 	"darknessValue": 150,
 	"deaths": [
 		0,
 		0,
-		5,
+		1,
 		3
 	],
+	"dialog_flags": {
+		"met_houseDoor_0 ": true,
+		"met_kratos_0": true
+	},
 	"fullscreen": false,
-	"maxFps": 7,
+	"maxFps": 0,
 	"maxVolume": 0.0,
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
 		"",
-		"test 3",
+		"",
 		""
 	],
 	"printFps": true,
@@ -30,23 +34,7 @@
 		"y": 576
 	},
 	"sfxVolume": 1.0,
-	"textboxCollected": [
-		"buschi0",
-		"kristall",
-		"rick1",
-		"kratos1",
-		"houseDoor0",
-		"graveStone",
-		"buschi1",
-		"shild0",
-		"shild4",
-		"shild5",
-		"rick2",
-		"houseDoor1",
-		"kratos2",
-		"kratos0"
-	],
-	"textboxCount": 14,
+	"textboxCount": 2,
 	"version": 1,
 	"vsync": false
 }

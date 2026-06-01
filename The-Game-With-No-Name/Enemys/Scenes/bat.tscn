@@ -185,9 +185,10 @@ position = Vector2(0.0258508, 2.10697)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k3pgo")
 
-[node name="HealthComponent" parent="." unique_id=1001707844 node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("12_ek4ux")]
+[node name="HealthComponent" parent="." unique_id=1001707844 node_paths=PackedStringArray("invisibilityComp", "health_bar") instance=ExtResource("12_ek4ux")]
 invisibiltyFrames = 0.1
 invisibilityComp = NodePath("../InvisibleFramesComp")
+health_bar = NodePath("../HPBar")
 
 [node name="EnemyResetComponent" parent="." unique_id=1735672738 node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_cvypo")]
 collisions = [NodePath("../CollisionShape2D"), NodePath("../PlayerDetector/CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D"), NodePath("../Hurtbox/CollisionShape2D")]

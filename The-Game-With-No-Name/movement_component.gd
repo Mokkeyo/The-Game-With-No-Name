@@ -29,12 +29,15 @@ signal knockbacked(force: Vector2)
 var knockback_velocity: Vector2 = Vector2.ZERO
 var in_knockback: bool = false
 
-func setup(p: CharacterBody2D, water: LavaWaterDetector) -> void:
+func setup(p: CharacterBody2D, water: LavaWaterDetector = null) -> void:
 	body = p
 	water_detector = water
 
 func move_horizontal(dir: float, slowed: bool = false) -> void:
-	var target_speed: float = WATER_SPEED if water_detector.inWater else SPEED
+	var target_speed: float = SPEED
+	if in_water():
+		target_speed = WATER_SPEED
+	
 	if slowed:
 		target_speed *= 0.05
 	
@@ -47,7 +50,9 @@ func move_horizontal(dir: float, slowed: bool = false) -> void:
 
 
 func apply_gravity(delta: float, slowed: bool = false) -> void:
-	var g: float = WATER_GRAVITY if water_detector.inWater else GRAVITY
+	var g: float = GRAVITY
+	if in_water():
+		g = WATER_GRAVITY
 	if slowed and body.velocity.y > 0:
 		body.velocity.y = 0
 #		g *= 0.05
@@ -57,9 +62,12 @@ func apply_gravity(delta: float, slowed: bool = false) -> void:
 
 func jump() -> void:
 	body.velocity.y = 0
-	body.velocity.y -= (
-			WATER_JUMP_POWER if water_detector.inWater else JUMP_POWER
-		)
+	
+	var vel_y: float = JUMP_POWER
+	if in_water():
+		vel_y = WATER_JUMP_POWER
+	
+	body.velocity.y -= vel_y
 	jumped.emit()
 
 func wall_jump(direction: float) -> void:
@@ -74,6 +82,17 @@ func start_knockback(force: Vector2) -> void:
 	knockback_velocity = force
 	in_knockback = true
 	knockbacked.emit(force)
+
+
+func in_water() -> bool:
+	if not water_detector:
+		return false
+	
+	if water_detector.inWater:
+		return true
+		
+	return false
+
 
 func update_knockback(delta: float) -> void:
 	if not in_knockback:

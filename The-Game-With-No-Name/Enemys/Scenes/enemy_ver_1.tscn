@@ -128,8 +128,7 @@ offset_top = -12.0
 offset_right = 7.0
 offset_bottom = -8.0
 
-[node name="HealthComponent" parent="." unique_id=962214869 node_paths=PackedStringArray("invisibilityComp", "health_bar") instance=ExtResource("11_qgys3")]
-invisibilityComp = NodePath("")
+[node name="HealthComponent" parent="." unique_id=962214869 node_paths=PackedStringArray("health_bar") instance=ExtResource("11_qgys3")]
 health_bar = NodePath("../HPbar(enemy)")
 
 [node name="Hurtbox" parent="." unique_id=2000364008 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("12_ycax0")]
@@ -165,9 +164,8 @@ physics_process = true
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("12_70vpd")]
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("12_70vpd")]
 health = NodePath("../HealthComponent")
-invincibility = NodePath("")
 
 [node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("13_0joxm")]
 water_detector = NodePath("../LavaWater_Detector")

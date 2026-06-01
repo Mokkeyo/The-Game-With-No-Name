@@ -4,14 +4,11 @@
 		"x": 1029.0,
 		"y": 392.0
 	},
-	"door": [
-		0,
-		1,
-		2,
-		3,
-		4,
-		5
-	],
+	"dialog_flags": {
+		"met_houseDoor_0 ": true,
+		"met_kratos_0": true
+	},
+	"door": [],
 	"enemysDefeated": [],
 	"finished": [
 		false,
@@ -19,12 +16,12 @@
 		false
 	],
 	"hp": [
-		20.0,
+		100.0,
 		100.0
 	],
 	"kristallCollected": [
-		true,
-		true,
+		false,
+		false,
 		false,
 		false,
 		false,
@@ -32,11 +29,11 @@
 		false,
 		false
 	],
-	"kristallCount": 2,
-	"levelNumber": 1,
+	"kristallCount": 0.0,
+	"levelNumber": 1.0,
 	"mana": [
 		99.0,
 		99.0
 	],
-	"version": 1
+	"version": 1.0
 }
