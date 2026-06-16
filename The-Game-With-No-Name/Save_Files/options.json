@@ -7,16 +7,22 @@
 	],
 	"ambientVolume": 0.5,
 	"darknessOn": false,
-	"darknessValue": 150,
+	"darknessValue": 170,
 	"deaths": [
 		0,
 		0,
-		1,
+		4,
 		3
 	],
 	"dialog_flags": {
+		"met_buschi_0": true,
 		"met_houseDoor_0 ": true,
-		"met_kratos_0": true
+		"met_houseDoor_1": true,
+		"met_kratos_0": true,
+		"met_kratos_2": true,
+		"met_kristall_0": true,
+		"met_rick_0": true,
+		"met_rick_2": true
 	},
 	"fullscreen": false,
 	"maxFps": 0,
@@ -24,8 +30,8 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"",
-		"",
+		"test",
+		"test2#",
 		""
 	],
 	"printFps": true,
@@ -34,7 +40,7 @@
 		"y": 576
 	},
 	"sfxVolume": 1.0,
-	"textboxCount": 2,
+	"textboxCount": 8,
 	"version": 1,
 	"vsync": false
 }

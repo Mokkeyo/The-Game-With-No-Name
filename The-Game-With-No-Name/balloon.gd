@@ -55,6 +55,7 @@ var dialogue_line: DialogueLine:
 			if owner == null:
 				queue_free()
 			else:
+				set_process_unhandled_input(false)
 				dialog_ended.emit()
 				hide()
 	get:
@@ -102,10 +103,26 @@ func _process(_delta: float) -> void:
 		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	# Only the balloon is allowed to handle input while it's showing
-	if will_block_other_input:
-		get_viewport().set_input_as_handled()
+func _unhandled_input(event: InputEvent) -> void:
+	if dialogue_label.is_typing:
+		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
+		if skip_button_was_pressed:
+			get_viewport().set_input_as_handled()
+			dialogue_label.skip_typing()
+			return
+
+	if not is_waiting_for_input: return
+	if dialogue_line.responses.size() > 0: return
+
+	# When there are no response options the balloon itself is the clickable thing
+	get_viewport().set_input_as_handled()
+
+#	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+#		next(dialogue_line.next_id)
+	if event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
+		next(dialogue_line.next_id)
+#	if will_block_other_input:
+#		get_viewport().set_input_as_handled()
 
 
 func _notification(what: int) -> void:
@@ -120,6 +137,7 @@ func _notification(what: int) -> void:
 
 ## Start some dialogue
 func start(with_dialogue_resource: DialogueResource = null, title: String = "", extra_game_states: Array = []) -> void:
+	set_process_unhandled_input(true)
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	if is_instance_valid(with_dialogue_resource):
@@ -200,26 +218,28 @@ func _on_mutated(mutation: Dictionary) -> void:
 		will_hide_balloon = true
 		mutation_cooldown.start(0.1)
 
-
-func _on_balloon_gui_input(event: InputEvent) -> void:
+ 
+func _on_balloon_gui_input(_event: InputEvent) -> void:
+	pass
+#	print("can press")
 	# See if we need to skip typing of the dialogue
-	if dialogue_label.is_typing:
-		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
-		if skip_button_was_pressed:
-			get_viewport().set_input_as_handled()
-			dialogue_label.skip_typing()
-			return
+#	if dialogue_label.is_typing:
+#		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
+#		if skip_button_was_pressed:
+#			get_viewport().set_input_as_handled()
+#			dialogue_label.skip_typing()
+#			return
 
-	if not is_waiting_for_input: return
-	if dialogue_line.responses.size() > 0: return
+#	if not is_waiting_for_input: return
+#	if dialogue_line.responses.size() > 0: return
 
 	# When there are no response options the balloon itself is the clickable thing
 #	get_viewport().set_input_as_handled()
 
 #	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 #		next(dialogue_line.next_id)
-	if event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
-		next(dialogue_line.next_id)
+#	if event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
+#		next(dialogue_line.next_id)
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:

@@ -37,7 +37,10 @@ func setup(s: Sword, w: Wand) -> void:
 func create_spirit_ball() -> SpiritBall:
 	var ball: SpiritBall = spirit_ball_scene.instantiate()
 	
-	G.level_viewport.add_child(ball)
+	if G.level_viewport:
+		G.level_viewport.add_child(ball)
+	else:
+		push_warning("no level viewport found")
 	
 	ball.died.connect(disable_ball)
 	

@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="3_rrp8u"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="5_rvps8"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="5_sp5xw"]
-[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_8msrq"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="7_lyv3g"]
+[ext_resource type="PackedScene" uid="uid://cyu85obj33ig7" path="res://Bosse/Galaga/Szene/warning.tscn" id="7_toha3"]
+[ext_resource type="PackedScene" uid="uid://bksaw43m67sj5" path="res://Bosse/Galaga/Szene/laser.tscn" id="8_toha3"]
 
 [sub_resource type="OccluderPolygon2D" id="1"]
 polygon = PackedVector2Array(40, 3, 40, 20, 30, 20, 30, 21, 28, 21, 28, 22, 26, 22, 26, 23, 24, 23, 24, 24, 22, 24, 22, 25, 20, 25, 20, 26, 18, 26, 18, 27, 16, 27, 16, 28, 14, 28, 14, 29, 12, 29, 12, 30, 10, 30, 10, 31, 8, 31, 8, 32, -24, 32, -24, 31, -26, 31, -26, 30, -28, 30, -28, 29, -30, 29, -30, 28, -32, 28, -32, 27, -33, 27, -33, 26, -34, 26, -34, 25, -35, 25, -35, 24, -36, 24, -36, 22, -37, 22, -37, 20, -38, 20, -38, 18, -39, 18, -39, 16, -40, 16, -40, -16, -39, -16, -39, -18, -38, -18, -38, -20, -37, -20, -37, -22, -36, -22, -36, -24, -35, -24, -35, -25, -34, -25, -34, -26, -33, -26, -33, -27, -32, -27, -32, -28, -30, -28, -30, -29, -28, -29, -28, -30, -26, -30, -26, -31, -24, -31, -24, -32, 8, -32, 8, -31, 10, -31, 10, -30, 12, -30, 12, -29, 14, -29, 14, -28, 16, -28, 16, -27, 18, -27, 18, -26, 20, -26, 20, -25, 22, -25, 22, -24, 24, -24, 24, -23, 26, -23, 26, -22, 28, -22, 28, -21, 30, -21, 30, -20, 40, -20, 40, -3, 24, -3, 24, 3)
@@ -189,12 +190,6 @@ position = Vector2(40, 11.5)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=211191173]
 libraries/ = SubResource("AnimationLibrary_x1d82")
 
-[node name="LaserPosition" type="Marker2D" parent="." unique_id=1073327376]
-position = Vector2(23, 11.5)
-
-[node name="LaserPosition2" type="Marker2D" parent="." unique_id=148538778]
-position = Vector2(23, -11.5)
-
 [node name="healthComponent" parent="." unique_id=300402297 instance=ExtResource("5_sp5xw")]
 health = 400.0
 invisibiltyFrames = 0.1
@@ -207,15 +202,19 @@ damage_receiver = NodePath("../DamageReceiver")
 position = Vector2(-8, -3.5731e-05)
 shape = SubResource("CircleShape2D_cu624")
 
-[node name="Shoot" parent="." unique_id=306980763 node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("6_8msrq")]
-shootingPoint = NodePath("../bullet_position")
-rotation_point = NodePath("..")
-
-[node name="Shoot2" parent="." unique_id=494958570 node_paths=PackedStringArray("shootingPoint", "rotation_point") instance=ExtResource("6_8msrq")]
-shootingPoint = NodePath("../bullet_position2")
-rotation_point = NodePath("..")
-
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("7_lyv3g")]
 health = NodePath("../healthComponent")
+
+[node name="warning" parent="." unique_id=554903689 instance=ExtResource("7_toha3")]
+position = Vector2(39.999947, 12.000178)
+
+[node name="warning2" parent="." unique_id=495565695 instance=ExtResource("7_toha3")]
+position = Vector2(40.000053, -11.999822)
+
+[node name="laser" parent="." unique_id=682531220 instance=ExtResource("8_toha3")]
+position = Vector2(39.999947, 12.000177)
+
+[node name="laser2" parent="." unique_id=942909717 instance=ExtResource("8_toha3")]
+position = Vector2(40.000053, -11.999822)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

@@ -5,23 +5,9 @@
 		"y": 392.0
 	},
 	"dialog_flags": {
-		"met_buschi_0": true,
-		"met_houseDoor_0 ": true,
-		"met_houseDoor_1": true,
-		"met_kratos_0": true,
-		"met_kratos_2": true,
-		"met_kristall_0": true,
-		"met_rick_0": true,
-		"met_rick_2": true
+
 	},
-	"door": [
-		3,
-		0,
-		1,
-		2,
-		4,
-		5
-	],
+	"door": [],
 	"enemysDefeated": [],
 	"finished": [
 		false,
@@ -33,8 +19,8 @@
 		100.0
 	],
 	"kristallCollected": [
-		true,
-		true,
+		false,
+		false,
 		false,
 		false,
 		false,
@@ -42,7 +28,7 @@
 		false,
 		false
 	],
-	"kristallCount": 2,
+	"kristallCount": 0,
 	"levelNumber": 1,
 	"mana": [
 		99.0,

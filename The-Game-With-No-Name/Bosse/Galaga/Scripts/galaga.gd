@@ -1,106 +1,223 @@
 extends Node2D
+class_name Galaga
 
-@onready var boss: Boss = $Boss
-@onready var armRight: bossArm = $"BossArm(right)"
-@onready var armLeft: bossArm = $"BossArm(left)"
+@onready var galaga_head: GalagaHead = $Boss
+@onready var galaga_right: GalagaArm = $"BossArm(right)"
+@onready var galaga_left: GalagaArm = $"BossArm(left)"
 @onready var airshipDetector: AirshipDetector = $airshipDetector
 @onready var waitTimer: Timer = $shoot_cooldown
 @onready var laser_cooldown: Timer = $laser_cooldown
 @onready var laser_duration: Timer = $laser_duration
+@onready var shoot_comp: ShootComponent = $ShootComponent
 
+var target_switch_timer: float = 0
 var alive: int = 3
 var activated: bool = false
 var shooting_laser: bool = false
 
+enum HeadState {
+	LASER,
+	WARNING,
+	SHOOTING
+}
+
+var head_state: HeadState = HeadState.SHOOTING
+
+enum Phase {
+	ARMS,
+	ONE_ARM,
+	CORE,
+	ENRAGED
+}
+
+var phase: Phase = Phase.ARMS
+
 func _ready() -> void:
-	set_process(false)
-	armLeft.health_comp.died.connect(part_died)
-	armRight.health_comp.died.connect(part_died)
-	boss.health_comp.died.connect(part_died)
-	armLeft.health_comp.value_changed.connect(change_arm_health)
-	armRight.health_comp.value_changed.connect(change_arm_health)
+	set_physics_process(false)
+	galaga_left.health_comp.died.connect(part_died)
+	galaga_right.health_comp.died.connect(part_died)
+	galaga_head.health_comp.died.connect(part_died)
+	galaga_left.health_comp.value_changed.connect(change_arm_health)
+	galaga_right.health_comp.value_changed.connect(change_arm_health)
 	change_arm_health()
 
 
-func shoot() -> void:
-	if armLeft.is_alive:
-		armLeft.shoot_comp.shoot_bullet()
-	if armRight.is_alive:
-		armRight.shoot_comp.shoot_bullet()
-	airshipDetector.changeTarget()
-
-
-func rotate_parts(delta: float, focused_airship: Airship) -> void:
-	if boss.is_alive:
-		boss.process(delta, focused_airship)
-	if armLeft.is_alive:
-		armLeft.process(delta, focused_airship)
-	if armRight.is_alive:
-		armRight.process(delta, focused_airship)
+func update_phase() -> void:
+	match alive:
+		3:
+			phase = Phase.ARMS
+		2:
+			phase = Phase.ONE_ARM
+		1:
+			phase = Phase.CORE
+	
+	if not phase == Phase.CORE:
+		return
+	
+	if galaga_head.health_comp.health <= galaga_head.health_comp.max_health * 0.3:
+		phase = Phase.ENRAGED
 
 
 func part_died() -> void:
 	alive -= 1
-	if alive == 2:
-		waitTimer.wait_time = 1.5
-		return
 	
-	if alive == 1:
-		boss.hurtbox_collision.set_deferred("disabled", false)
-		boss.health_comp.value_changed.connect(change_boss_health)
-		G.boss_label_changed.emit("Galaga")
-		change_boss_health()
-		return
+	update_phase()
+	
+	match phase:
+		Phase.ONE_ARM:
+			waitTimer.wait_time = 1.5
 		
-	G.emit_signal("boss_finished")
+		Phase.CORE:
+			galaga_head.hurtbox_collision.set_deferred("disabled",false)
+			
+			galaga_head.health_comp.value_changed.connect(change_boss_health)
+			
+			G.boss_label_changed.emit("Galaga")
+			change_boss_health()
+		
+		Phase.ENRAGED:
+			waitTimer.wait_time = 0.5
 
 
-func _process(delta: float) -> void:
-	if alive == 0:
-		set_process(false)
+func _physics_process(delta: float) -> void:
+	if alive <= 0:
 		return
 	
+	target_switch_timer -= delta
+	
+	if target_switch_timer <= 0:
+		target_switch_timer = 3
+		airshipDetector.changeTarget()
+	
+	var target: Airship = airshipDetector.focus_player
+	
+	if target:
+		rotate_parts(delta, target)
+	
+	match phase:
+		Phase.ARMS:
+			process_arm_phase()
+		
+		Phase.ONE_ARM:
+			process_one_arm_phase()
+		
+		Phase.CORE:
+			process_core_phase()
+		
+		Phase.ENRAGED:
+			process_enraged_phase()
+
+
+func process_arm_phase() -> void:
 	if waitTimer.is_stopped():
 		shoot()
-		waitTimer.start()
-		
-	if airshipDetector.focus_player:
-		rotate_parts(delta, airshipDetector.focus_player)
-	
-	if alive > 1:
-		return
-	
-	if laser_cooldown.is_stopped():
-		laser_duration.start()
-		laser_cooldown.start()
-		return
+		waitTimer.start(3)
 
-	if laser_duration.is_stopped():
-		if waitTimer.is_stopped():
-			boss_shoot()
-			waitTimer.start()
-	else:
-		if laser_duration.time_left > 3:
-			boss.Warning()
-		else:
-			boss.Laser()
+
+func process_one_arm_phase() -> void:
+	if waitTimer.is_stopped():
+		shoot()
+		waitTimer.start(1.5)
+
+
+func process_core_phase() -> void:
+	match head_state:
+		
+		HeadState.SHOOTING:
+			if not laser_cooldown.is_stopped():
+				if not waitTimer.is_stopped():
+					return
+				push_warning("shooting bullet")
+				boss_shoot()
+				waitTimer.start()
+				return
+			
+			head_state = HeadState.WARNING
+			push_warning("starting warning")
+			galaga_head.start_warning()
+			laser_cooldown.start()
+			laser_duration.start()
+	
+		HeadState.WARNING:
+			if laser_duration.time_left > 3.0:
+				return
+			
+			head_state = HeadState.LASER
+			push_warning("starting laser and stopping warning")
+			galaga_head.stop_warning()
+			galaga_head.start_laser()
+	
+		HeadState.LASER:
+			if not laser_duration.is_stopped():
+				return
+			
+			head_state = HeadState.SHOOTING
+			push_warning("stopping laser")
+			galaga_head.stop_laser()
+
+
+func process_enraged_phase() -> void:
+	pass
+#	if waitTimer.is_stopped():
+#		boss_shoot()
+
+#		galaga_head.shoot_comp[0].shoot_bullet()
+#		galaga_head.shoot_comp[1].shoot_bullet()
+
+#		waitTimer.start(0.4)
+
+#	if laser_cooldown.is_stopped():
+#		laser_duration.start(2.0)
+#		laser_cooldown.start(5.0)
+
+#	if not laser_duration.is_stopped():
+#		galaga_head.Laser()
+
+
+func shoot() -> void:
+	for arm: GalagaArm in [galaga_left, galaga_right]:
+		if arm.is_alive:
+			shoot_comp.shoot_bullet(arm, arm.marker)
+
+
+func rotate_parts(delta: float, focused_airship: Airship) -> void:
+	if galaga_head.is_alive and laser_duration.is_stopped():
+		rotate_part(delta, focused_airship, galaga_head)
+	
+	for arm: GalagaArm in [galaga_left, galaga_right]:
+		if arm.is_alive:
+			rotate_part(delta, focused_airship, arm)
+
+
+func rotate_part(d: float, a: Airship, g: Node2D) -> void:
+	var direction: Vector2 = (a.global_position - g.global_position)
+	var angleTo: float = g.transform.x.angle_to(direction)
+	var value: float = sign(angleTo) * min(d * 5, abs(angleTo))
+	g.rotate(value)
 
 
 func boss_shoot() -> void:
-	if boss.is_alive and alive == 1:
-		boss.shoot_comp[0].shoot_bullet()
-		boss.shoot_comp[1].shoot_bullet()
-
+	if galaga_head.is_alive:
+		for marker: Marker2D in galaga_head.bullet_markers:
+			shoot_comp.shoot_bullet(galaga_head, marker)
 
 func change_arm_health() -> void:
-	var health: float = armLeft.health_comp.health + armRight.health_comp.health
-	var max_health: float = armLeft.health_comp.max_health + armRight.health_comp.max_health
+	G.boss_value_changed.emit(get_arm_health_percent())
+
+
+func get_arm_health_percent() -> float:
+	var current: float = 0
+	var maximum: float = 0
 	
-	G.boss_value_changed.emit(health / max_health * 100)
+	for arm: GalagaArm in [galaga_left, galaga_right]:
+		current += arm.health_comp.health
+		maximum += arm.health_comp.max_health
+	
+	return current / maximum * 100
 
 
 func change_boss_health() -> void:
-	G.boss_value_changed.emit(boss.health_comp.health / boss.health_comp.max_health * 100)
+	G.boss_value_changed.emit(galaga_head.health_comp.health / galaga_head.health_comp.max_health * 100)
 
 
 func _on_airship_detector_body_entered(body: Node2D) -> void:
@@ -109,5 +226,5 @@ func _on_airship_detector_body_entered(body: Node2D) -> void:
 		
 	if body.is_in_group("airship"):
 		G.boss_begin.emit("Arm Bottom + Arm Top", 100)
-		set_process(true)
+		set_physics_process(true)
 		activated = true

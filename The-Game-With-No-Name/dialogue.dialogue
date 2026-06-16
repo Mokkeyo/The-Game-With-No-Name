@@ -2,7 +2,7 @@
 match Save.player.kristallCount
 	when 0
 		???: Who are you? What shall you portray, hollow Knight? So be it. I can't tell you very much. However. Why are you here, What is your task? 
-		You don't know? Oh well. How about collecting the three crystals? This also helps me to get my memory back. Then maybe I can tell you more. To get to a crystal, go through either the door at the top left or at the top right.
+		???: You don't know? Oh well. How about collecting the three crystals? This also helps me to get my memory back. Then maybe I can tell you more. To get to a crystal, go through either the door at the top left or at the top right.
 		do Save.set_dialog_flag("met_kratos_0")
 	when 1
 		Kratos: Wow. You got your first crystal. I didn't think you could do that. Can I tell you more now?  What I can tell you is that I can remember my name again. My name is Kratos. What is your name?... You don't have one? But everyone has a name. Why wouldn't you have one?
@@ -78,7 +78,7 @@ else
 => END
 
 ~ buschi
-if Save.has_dialog_flag("met_bushi_0") == false
+if Save.has_dialog_flag("met_buschi_0") == false
 	Buschi: Hi. I'm Bushie! I came from the garden of souls to visit a friend. If you want to know, why I'm in this Bush. I just like it that way. Its comfortable.
 	Buschi: Oh. and dont worry i'm not a pedophile. If you want i can give you a tutorial about the controlls and your movement. You just have to come into this bush.
 	do Save.set_dialog_flag("met_buschi_0")

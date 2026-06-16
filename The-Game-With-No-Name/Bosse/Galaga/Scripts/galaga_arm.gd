@@ -1,22 +1,15 @@
 extends StaticBody2D
-class_name bossArm
+class_name GalagaArm
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var shoot_comp: ShootComponent = $Shoot
 @onready var health_comp: HealthComponent = $healthComponent
 @onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var marker: Marker2D = $Marker2D
 
 var is_alive: bool = true
 
 func _ready() -> void:
 	health_comp.died.connect(play_die)
-
-
-func process(delta: float, airship: Airship) -> void:
-	var direction: Vector2 = (airship.global_position - global_position)
-	var angleTo: float = transform.x.angle_to(direction)
-	var value: float = sign(angleTo) * min(delta * 5, abs(angleTo))
-	rotate(value)
 
 
 func play_die() -> void:

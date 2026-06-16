@@ -26,7 +26,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		dialog_loader.action(npc_area.player, self)
 
 
-func end_kirstall_dialog() -> void:
+func end_dialog() -> void:
 	print("ending dialog")
 	if not Save.player.kristallCollected[kristall - 1]:
 		Save.player.checkpointActive = false

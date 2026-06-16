@@ -1,19 +1,15 @@
 extends StaticBody2D
-class_name Boss
+class_name GalagaHead
 
-@onready var marker: Array[Marker2D] = [$LaserPosition, $LaserPosition2]
-@onready var bullet_marker: Array[Marker2D] = [$bullet_position, $bullet_position2]
-@onready var shoot_comp: Array[ShootComponent] = [$Shoot, $Shoot2]
+@onready var lasers: Array[Laser] = [$laser, $laser2]
+@onready var warnings: Array[Warning] = [$warning, $warning2]
+
+@onready var bullet_markers: Array[Marker2D] = [$bullet_position, $bullet_position2]
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_comp: HealthComponent = $healthComponent
 @onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
-var laser: PackedScene = preload("res://Bosse/Galaga/Szene/laser.tscn")
-var l: Node2D
-
-var warning: PackedScene = preload("res://Bosse/Galaga/Szene/warning.tscn")
-var w: Node2D
 
 var is_alive: bool = true
 
@@ -23,33 +19,30 @@ func _ready() -> void:
 	health_comp.died.connect(play_die)
 
 
-func process(delta: float, airship: Airship) -> void:
-	var direction: Vector2 = (airship.global_position - global_position)
-	var angleTo: float = transform.x.angle_to(direction)
-	var value: float = sign(angleTo) * min(delta * 5, abs(angleTo))
-	rotate(value)
+func start_warning() -> void:
+	for warning: Warning in warnings:
+		warning.start_warning()
 
 
-func Laser() -> void:
-	for i: int in range(marker.size()):
-		l = laser.instantiate()
-		l.rotation = self.rotation
-		l.global_position = marker[i].global_position
-		get_parent().add_child(l)
+func stop_warning() -> void:
+	for warning: Warning in warnings:
+		warning.stop_warning()
+
+
+func start_laser() -> void:
+	for laser: Laser in lasers:
+		laser.start_laser()
+
+
+func stop_laser() -> void:
+	for laser: Laser in lasers:
+		laser.stop_laser()
 
 
 func play_die() -> void:
 	is_alive = false
 	animated_sprite.scale = Vector2(4, 4)
 	animated_sprite.play("die")
-
-
-func Warning() -> void:
-	for i: int in range(marker.size()):
-		w = warning.instantiate()
-		w.rotation = self.rotation
-		w.global_position = marker[i].global_position
-		get_parent().add_child(w)
 
 
 func _on_AnimatedSprite_animation_finished() -> void:

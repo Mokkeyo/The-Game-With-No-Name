@@ -21,3 +21,10 @@ func start_new_dialog(n: Npc, dialogue_resource: DialogueResource, dialogue_star
 	npc = n
 	is_dialog_active = true
 	new_textbox.start(dialogue_resource, dialogue_start)
+
+
+func end_dialog() -> void:
+	if npc:
+		npc.end_dialog()
+		npc = null
+	is_dialog_active = false

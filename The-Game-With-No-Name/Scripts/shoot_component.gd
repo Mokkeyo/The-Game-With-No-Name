@@ -55,11 +55,11 @@ func get_bullet() -> Node2D:
 	return null  # Return null if no bullets are available
 
 
-func shoot_bullet() -> void:
+func shoot_bullet(r_point:Node2D = rotation_point, s_point: Marker2D = shootingPoint) -> void:
 	var b: Bullet = get_bullet()
 	if b:
-		b.propertys(rotation_point.rotation, player, lifeTime, bulletSpeed)
-		b.global_position = shootingPoint.global_position
+		b.propertys(r_point.rotation, player, lifeTime, bulletSpeed)
+		b.global_position = s_point.global_position
 		b.visible = true
 		b.call_deferred("deactivate_hibox", false)
 		b.set_physics_process(true)

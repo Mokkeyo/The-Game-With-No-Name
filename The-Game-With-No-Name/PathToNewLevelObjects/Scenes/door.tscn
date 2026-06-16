@@ -19,9 +19,9 @@ script = ExtResource("2")
 level_number = 1
 
 [node name="Door" type="Sprite2D" parent="." unique_id=1976113074]
-position = Vector2(-1, -12.5)
+position = Vector2(0, -15.5)
 texture = SubResource("CanvasTexture_semyr")
-offset = Vector2(1, 0)
+offset = Vector2(0, -0.5)
 hframes = 2
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1511294640]
