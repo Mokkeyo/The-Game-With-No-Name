@@ -25,8 +25,8 @@ func unload_current_level() -> void:
 
 
 func load_level(level_number: int) -> Node2D:
-#	var packed: PackedScene = load("res://Level/level_5.tscn")
-	var packed: PackedScene = load("res://Level/level_%d.tscn" % level_number)
+	var packed: PackedScene = load("res://test.tscn")
+#	var packed: PackedScene = load("res://Level/level_%d.tscn" % level_number)
 	
 	current_level_number = level_number
 	current_level = packed.instantiate()

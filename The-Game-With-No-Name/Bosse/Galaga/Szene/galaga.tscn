@@ -27,6 +27,12 @@ position = Vector2(9, -42)
 collision_layer = 1
 collision_mask = 0
 
+[node name="laser" parent="Boss" index="11" unique_id=682531220]
+visible = false
+
+[node name="laser2" parent="Boss" index="12" unique_id=942909717]
+visible = false
+
 [node name="airshipDetector" parent="." unique_id=741414323 instance=ExtResource("4_qg4ys")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector" unique_id=888377993]
