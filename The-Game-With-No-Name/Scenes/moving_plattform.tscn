@@ -1,39 +1,9 @@
 [gd_scene format=3 uid="uid://wq7jtfjnavmo"]
 
+[ext_resource type="Script" uid="uid://b4esab5b0pisa" path="res://moving_plattform.gd" id="1_8bt3i"]
 [ext_resource type="Texture2D" uid="uid://bn8mfwaas3dwn" path="res://Objects/Textures/moving_plattform.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://c2fa73py015h3" path="res://NormalMap/moving_plattform_normal.png" id="2_b5tou"]
 [ext_resource type="PackedScene" uid="uid://c67wcimjdut0r" path="res://Scenes/mover_component.tscn" id="3_equn7"]
-
-[sub_resource type="GDScript" id="1"]
-script/source = "@tool
-extends AnimatableBody2D
-class_name MovingPlattform
-
-@export var move_speed: float = 0.5
-@export var move_distance: float = 50.0
-@export var move_direction: Vector2 = Vector2(0, 0)
-
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	set_variables()
-
-
-func _process(_delta: float) -> void:
-	if not Engine.is_editor_hint():
-		set_process(false)
-		return
-	
-	set_variables()
-
-
-func set_variables() -> void:
-	var move_comp: MoverComponent = $MoverComponent
-	move_comp.move_speed = move_speed
-	move_comp.move_distance = move_distance
-	move_comp.move_direction = move_direction
-"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ljeir"]
 diffuse_texture = ExtResource("2")
@@ -44,7 +14,7 @@ size = Vector2(40, 1)
 
 [node name="moving Plattform" type="AnimatableBody2D" unique_id=749741137 groups=["moving_plattform"]]
 collision_mask = 0
-script = SubResource("1")
+script = ExtResource("1_8bt3i")
 
 [node name="moving plattform" type="Sprite2D" parent="." unique_id=451292778]
 texture = SubResource("CanvasTexture_ljeir")

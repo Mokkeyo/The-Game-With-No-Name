@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="The Game With No Name Ver4.4"
 run/main_scene="res://Scenes/game_loader.tscn"
-config/features=PackedStringArray("4.6")
+config/features=PackedStringArray("4.7")
 boot_splash/show_image=false
 config/windows_native_icon="res://dog_icon(new).ico"
 
