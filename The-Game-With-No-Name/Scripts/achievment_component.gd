@@ -7,5 +7,5 @@ class_name AchievmentComponent
 func add_achievment() -> void:
 	if not Save.options.achievments.has(achievment_list):
 		Save.options.achievments.append(achievment_list)
-		AI._on_achievement_collected(achievment_list)
+#		AI._on_achievement_collected(achievment_list)
 		Save.save_options()

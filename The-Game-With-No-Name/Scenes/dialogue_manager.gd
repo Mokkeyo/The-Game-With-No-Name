@@ -24,6 +24,7 @@ func start_new_dialog(n: Npc, dialogue_resource: DialogueResource, dialogue_star
 
 
 func end_dialog() -> void:
+#	AI.check_if_chatter_unlocked()
 	if npc:
 		npc.end_dialog()
 		npc = null

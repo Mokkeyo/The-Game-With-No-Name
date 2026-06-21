@@ -32,6 +32,7 @@ enum DamageType {
 }
 
 var arena: int = 1 #Used for the Battle Mode to know which Arena to Load
+var dialog_index: int = 0
 
 #battle Mode Variables
 var sword: bool = true
@@ -53,17 +54,8 @@ func _ready() -> void:
 	calculate_max_text()
 
 
-
-
 func calculate_max_text() -> void:
-	max_text = 0
-	for i: int in range(D.allText.size()):
-		if typeof(D.dialogue[D.allText[i]][D.dialog]) == TYPE_ARRAY:
-			var temp: Array = D.dialogue[D.allText[i]][D.dialog]
-			max_text += temp.size()
-		else:
-			max_text += 1
-
+	max_text = 21
 
 func apply_display_settings() -> void:
 	DisplayServer.window_set_mode(
@@ -98,12 +90,6 @@ func _input(event: InputEvent) -> void:
 			apply_display_settings()
 		Save.save_options()
 		fullscreen_changed.emit()
-
-
-func check_if_chatter_unlocked() -> void:
-	if Save.options.textboxCount == max_text and not Save.options.achievments.has("Chatter"):
-		Save.options.achievments.append("Chatter")
-		Save.save_options()
 
 
 func change_resolution() -> void:

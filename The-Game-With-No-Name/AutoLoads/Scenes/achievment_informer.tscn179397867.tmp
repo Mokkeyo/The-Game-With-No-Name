@@ -103,7 +103,7 @@ _data = {
 &"Achievment": SubResource("5")
 }
 
-[node name="achievment_informer" type="Control" unique_id=1499341565]
+[node name="AchievmentInformer" type="Control" unique_id=1499341565]
 process_mode = 3
 z_index = -1
 layout_mode = 3

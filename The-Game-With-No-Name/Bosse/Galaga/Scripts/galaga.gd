@@ -1,6 +1,9 @@
 extends Node2D
 class_name Galaga
 
+@onready var lasers: Array[Laser] = [$laser, $laser2]
+@onready var warnings: Array[Warning] = [$warning, $warning2]
+
 @onready var galaga_head: GalagaHead = $Boss
 @onready var galaga_right: GalagaArm = $"BossArm(right)"
 @onready var galaga_left: GalagaArm = $"BossArm(left)"
@@ -9,6 +12,7 @@ class_name Galaga
 @onready var laser_cooldown: Timer = $laser_cooldown
 @onready var laser_duration: Timer = $laser_duration
 @onready var shoot_comp: ShootComponent = $ShootComponent
+@onready var reset_comp: EnemyResetComponent = $ResetComponent
 
 var target_switch_timer: float = 0
 var alive: int = 3
@@ -33,9 +37,7 @@ enum Phase {
 var phase: Phase = Phase.ARMS
 
 func _ready() -> void:
-	var lasers: Array[Laser] = [$laser, $laser2]
-	var warnings: Array[Warning] = [$warning, $warning2]
-	
+	reset_comp.enabling_stats.connect(resetting_boss)
 	galaga_head.lasers = lasers
 	galaga_head.warnings = warnings
 	
@@ -47,6 +49,28 @@ func _ready() -> void:
 	galaga_right.health_comp.value_changed.connect(change_arm_health)
 	change_arm_health()
 
+
+func resetting_boss() -> void:
+	galaga_head.health_comp.health = galaga_head.health_comp.max_health
+	galaga_head.is_alive = true
+	
+	for arm: GalagaArm in [galaga_left, galaga_right]:
+		arm.health_comp.health = arm.health_comp.max_health
+		arm.is_alive = true
+	
+	for i: int in lasers.size():
+		lasers[i].stop_laser()
+		warnings[i].stop_warning()
+	
+	alive = 3
+	G.boss_finished.emit()
+	
+	set_physics_process(false)
+	activated = false
+	shooting_laser = false
+	phase = Phase.ARMS
+	head_state = HeadState.SHOOTING
+	target_switch_timer = 0
 
 func update_phase() -> void:
 	match alive:
@@ -87,6 +111,7 @@ func part_died() -> void:
 
 func _physics_process(delta: float) -> void:
 	if alive <= 0:
+		G.boss_finished.emit()
 		return
 	
 	target_switch_timer -= delta

@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bpgmrpf47ni87" path="res://Scripts/shild.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="4_7x507"]
-[ext_resource type="Resource" uid="uid://dxtad4w8tmm7h" path="res://shild.dialogue" id="5_crita"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="5_ik166"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1i6d"]
@@ -24,8 +23,8 @@ position = Vector2(0, -41)
 
 [node name="DialogueLoader" parent="." unique_id=1432092159 node_paths=PackedStringArray("npc_area") instance=ExtResource("4_7x507")]
 npc_area = NodePath("../NPCArea")
-dialogue_resource = ExtResource("5_crita")
-dialogue_start = "s"
+check_for_input = false
+dialogue_start = "shild"
 
 [node name="NPCArea" parent="." unique_id=728636608 node_paths=PackedStringArray("ping") instance=ExtResource("5_ik166")]
 ping = NodePath("../Ping")

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="5_cp48w"]
 [ext_resource type="PackedScene" uid="uid://cyu85obj33ig7" path="res://Bosse/Galaga/Szene/warning.tscn" id="6_cib2n"]
 [ext_resource type="PackedScene" uid="uid://bksaw43m67sj5" path="res://Bosse/Galaga/Szene/laser.tscn" id="7_a4ytb"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_a4ytb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vspnw"]
 size = Vector2(386, 170)
@@ -58,6 +59,8 @@ pool_size = 10
 [node name="laser" parent="." unique_id=1205526207 instance=ExtResource("7_a4ytb")]
 
 [node name="laser2" parent="." unique_id=64071197 instance=ExtResource("7_a4ytb")]
+
+[node name="ResetComponent" parent="." unique_id=1883690726 instance=ExtResource("8_a4ytb")]
 
 [connection signal="body_entered" from="airshipDetector" to="." method="_on_airship_detector_body_entered"]
 

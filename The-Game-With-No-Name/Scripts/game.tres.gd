@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func setup_systems() -> void:
-	AI.fader = fader
+#	AI.fader = fader
 	
 	var players: Array[Player] = in_game.get_players()
 	
@@ -51,7 +51,7 @@ func setup_systems() -> void:
 
 
 func exit() -> void:
-	AI.fader = null
+#	AI.fader = null
 	SoundMusic.listeners = []
 
 

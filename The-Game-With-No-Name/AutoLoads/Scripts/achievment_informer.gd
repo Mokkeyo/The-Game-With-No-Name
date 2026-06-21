@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name AchievmentInformer
 
 @onready var label: Label = $CanvasLayer/Label

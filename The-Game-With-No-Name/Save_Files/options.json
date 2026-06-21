@@ -11,18 +11,31 @@
 	"deaths": [
 		0,
 		0,
-		6,
-		3
+		12,
+		0
 	],
 	"dialog_flags": {
+		"met_bossDoor_0": true,
 		"met_buschi_0": true,
+		"met_enemyGravestone_0": true,
+		"met_gravestone_0": true,
 		"met_houseDoor_0 ": true,
 		"met_houseDoor_1": true,
 		"met_kratos_0": true,
+		"met_kratos_1": true,
 		"met_kratos_2": true,
+		"met_kratos_3": true,
 		"met_kristall_0": true,
 		"met_rick_0": true,
-		"met_rick_2": true
+		"met_rick_1": true,
+		"met_rick_2": true,
+		"met_rick_3": true,
+		"met_shild_0": true,
+		"met_shild_1": true,
+		"met_shild_2": true,
+		"met_shild_3": true,
+		"met_shild_4": true,
+		"met_shild_5": true
 	},
 	"fullscreen": false,
 	"maxFps": 0,
@@ -32,7 +45,7 @@
 		"test",
 		"",
 		"",
-		"test"
+		""
 	],
 	"printFps": true,
 	"resolution": {
@@ -40,7 +53,7 @@
 		"y": 576
 	},
 	"sfxVolume": 1.0,
-	"textboxCount": 8,
+	"textboxCount": 21,
 	"version": 1,
 	"vsync": false
 }
