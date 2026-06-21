@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch26ku4linnxi"]
+
+[ext_resource type="Script" uid="uid://cgu3pjt25ihjk" path="res://Scripts/shoot_component.gd" id="1_fu2dj"]
+[ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="2_ivbil"]
+
+[node name="ShootComponent" type="Node2D"]
+script = ExtResource("1_fu2dj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ResetComponent" parent="." instance=ExtResource("2_ivbil")]
+setStartPosition = false

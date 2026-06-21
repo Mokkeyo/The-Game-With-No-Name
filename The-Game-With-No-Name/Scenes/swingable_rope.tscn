@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dawgg82qwgee0"]
+
+[ext_resource type="Script" uid="uid://qd264kol6kmt" path="res://Scripts/swingable_rope.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://d4dq7tc4pyg84" path="res://Objects/Textures/spikeball.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="4_fwwdr"]
+[ext_resource type="Texture2D" uid="uid://cn3uwwumg8pjf" path="res://NormalMap/spikeball_normal.png" id="4_ufff1"]
+[ext_resource type="PackedScene" uid="uid://cushvdfasdhwd" path="res://Scenes/swing_component.tscn" id="5_ehm86"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8stjc"]
+diffuse_texture = ExtResource("3")
+normal_texture = ExtResource("4_ufff1")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbgb5"]
+
+[node name="swingable Rope" type="Node2D" groups=["SwingableRope"]]
+script = ExtResource("2")
+swing_direction = "Right"
+rope_parts = 12
+grip_parts_count = 9
+
+[node name="RopeContainer" type="Node2D" parent="."]
+
+[node name="StachelKugel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 69)
+texture = SubResource("CanvasTexture_8stjc")
+
+[node name="Hitbox" parent="StachelKugel" instance=ExtResource("4_fwwdr")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StachelKugel/Hitbox"]
+shape = SubResource("CircleShape2D_vbgb5")
+disabled = true
+
+[node name="swing_component" parent="." node_paths=PackedStringArray("rotating_object") instance=ExtResource("5_ehm86")]
+length = 69
+swing_angle = 50.0
+speed = 1.5
+rotating_object = NodePath("..")

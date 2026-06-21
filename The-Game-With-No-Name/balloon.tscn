@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://c0hh1dv1aiucg"]
+
+[ext_resource type="Script" uid="uid://c26us6aypw4u1" path="res://balloon.gd" id="1_jj3vs"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="3_4nd2f"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
+[ext_resource type="Texture2D" uid="uid://dvbb0yptdmf57" path="res://GuiElements/Textures/Textbox_npc.png" id="4_wxbh2"]
+[ext_resource type="StyleBox" uid="uid://grsbq2mirovc" path="res://GuiElements/SytleBoxTexture/npc_button.tres" id="6_x2iu8"]
+[ext_resource type="StyleBox" uid="uid://cpa76blkcbtwa" path="res://GuiElements/SytleBoxTexture/focus_npc_button.tres" id="7_x2iu8"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="8_1xemn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.329412, 0.329412, 0.329412, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri4m3"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0njw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkmqt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_qq3yp"]
+default_font_size = 20
+Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
+Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
+Button/styles/hover = SubResource("StyleBoxFlat_e0njw")
+Button/styles/normal = SubResource("StyleBoxFlat_e0njw")
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 30
+MarginContainer/constants/margin_right = 30
+MarginContainer/constants/margin_top = 15
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_qkmqt")
+
+[node name="ExampleBalloon" type="Control" unique_id=1850085101]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jj3vs")
+next_action = &"enter"
+skip_action = &"enter"
+
+[node name="Balloon" type="Control" parent="." unique_id=359403728]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qq3yp")
+
+[node name="TextureRect" type="TextureRect" parent="Balloon" unique_id=424741681]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_top = 357.0
+offset_right = 992.0
+offset_bottom = 565.0
+texture = ExtResource("4_wxbh2")
+
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon" unique_id=507199029]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 0
+offset_left = 51.0
+offset_top = 368.0
+offset_right = 973.0
+offset_bottom = 549.0
+mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("3_4nd2f")
+bbcode_enabled = true
+text = "Character"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLabel" parent="Balloon" unique_id=1225160028 instance=ExtResource("2_a8ve6")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 51.0
+offset_top = 397.0
+offset_right = 973.0
+offset_bottom = 549.0
+grow_horizontal = 1
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_4nd2f")
+text = "Dialogue..."
+
+[node name="Control" type="Control" parent="Balloon" unique_id=1162966119]
+custom_minimum_size = Vector2(20, 10)
+anchors_preset = 0
+offset_left = 51.0
+offset_top = 368.0
+offset_right = 977.0
+offset_bottom = 551.0
+size_flags_vertical = 8
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" unique_id=966297223 node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 703.0
+offset_top = 228.0
+offset_right = 992.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 1
+script = ExtResource("3_72ixx")
+response_template = NodePath("ResponseExample")
+
+[node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu" unique_id=914537232]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4nd2f")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("7_x2iu8")
+theme_override_styles/pressed = ExtResource("7_x2iu8")
+theme_override_styles/hover = ExtResource("7_x2iu8")
+theme_override_styles/disabled = ExtResource("7_x2iu8")
+theme_override_styles/focus = ExtResource("6_x2iu8")
+text = "Response example"
+
+[node name="Ping" parent="Balloon" unique_id=1969545820 instance=ExtResource("8_1xemn")]
+unique_name_in_owner = true
+visible = true
+position = Vector2(963, 515)
+scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1116280512]
+unique_name_in_owner = true
+
+[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="response_selected" from="Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

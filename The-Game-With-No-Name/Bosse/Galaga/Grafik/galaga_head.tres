@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cfel3887iknvk"]
+
+[ext_resource type="Texture2D" uid="uid://b53fdc01gy60t" path="res://Bosse/Galaga/Grafik/galaga_head.png" id="1_40uyw"]
+[ext_resource type="Texture2D" uid="uid://123enqgjfb6e" path="res://NormalMap/bossHead.png" id="2_cakwa"]
+
+[resource]
+diffuse_texture = ExtResource("1_40uyw")
+normal_texture = ExtResource("2_cakwa")

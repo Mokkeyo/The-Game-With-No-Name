@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cjm6adsgwin5v"]
+
+[ext_resource type="Script" uid="uid://dyts1lm7rsdr6" path="res://abyss_checker_component.gd" id="1_ec081"]
+
+[node name="AbyssCheckerComponent" type="Node" unique_id=1079487560]
+script = ExtResource("1_ec081")

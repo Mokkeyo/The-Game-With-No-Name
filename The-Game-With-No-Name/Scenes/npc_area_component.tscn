@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://4krdafgnix1t"]
+
+[ext_resource type="Script" uid="uid://faqa2fs7orix" path="res://Scripts/npc_area_component.gd" id="1_8cu2d"]
+
+[node name="NPCArea" type="Area2D" unique_id=115994072]
+collision_layer = 0
+collision_mask = 2050
+script = ExtResource("1_8cu2d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

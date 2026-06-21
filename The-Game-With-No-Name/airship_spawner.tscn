@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dkwgx722fr6e8"]
+
+[ext_resource type="Script" uid="uid://qd8f0b88mn1l" path="res://airship_spawner.gd" id="1_7gtgn"]
+[ext_resource type="Texture2D" uid="uid://cnm67htuohhlo" path="res://addons/dialogue_manager/assets/banner.png" id="2_8kcd1"]
+[ext_resource type="PackedScene" uid="uid://qabv4vag8xq4" path="res://Player/Scenes/player_airship.tscn" id="2_uni3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kcd1"]
+size = Vector2(18, 42)
+
+[node name="Airship_Spawner" type="Node2D" unique_id=997328965]
+script = ExtResource("1_7gtgn")
+
+[node name="Banner" type="Sprite2D" parent="." unique_id=283721310]
+position = Vector2(1.5258789e-05, -20.999998)
+scale = Vector2(0.029999973, 0.20999998)
+texture = ExtResource("2_8kcd1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=489630522]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=493920829]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_8kcd1")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=52654398]
+position = Vector2(24, -9)
+
+[node name="AirshipPlayer1" parent="." unique_id=1590504782 groups=["airship_0"] instance=ExtResource("2_uni3k")]
+visible = false
+position = Vector2(24, -9)
+
+[node name="AirshipPlayer2" parent="." unique_id=982688701 groups=["airship_1"] instance=ExtResource("2_uni3k")]
+visible = false
+position = Vector2(24, -9)
+currentPlayer = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

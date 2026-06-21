@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://buhrytsm38dkp"]
+
+[ext_resource type="Script" uid="uid://bd1s72apfh2c5" path="res://ambient_manager.gd" id="1_538ju"]
+
+[node name="AmbientManager" type="Node" unique_id=340586383]
+script = ExtResource("1_538ju")

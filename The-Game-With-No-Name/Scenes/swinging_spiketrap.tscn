@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ck4c4oeoscdvj"]
+
+[ext_resource type="Texture2D" uid="uid://dcdotvukbylid" path="res://Objects/Textures/swinging_spiketrap.png" id="1"]
+[ext_resource type="Script" uid="uid://buww3sr80j3wu" path="res://Scripts/swinging_spiketrap.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://ckkm23jk3bsg6" path="res://Objects/Textures/swingingSpikeButton.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://8tatjwvtig5b" path="res://NormalMap/swinging_spiketrap_normal.png" id="3_auyxv"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_y2fjb"]
+[ext_resource type="PackedScene" uid="uid://cushvdfasdhwd" path="res://Scenes/swing_component.tscn" id="6_dhn6b"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tmyr8"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("3_auyxv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsoxp"]
+size = Vector2(23.9501, 29.3125)
+
+[node name="swing_trap" type="Node2D" unique_id=982823425]
+z_index = 3
+script = ExtResource("2")
+swing_angle = 90.0
+
+[node name="swing_component" parent="." unique_id=873169672 node_paths=PackedStringArray("rotating_object") instance=ExtResource("6_dhn6b")]
+length = 33
+swing_angle = 90.0
+speed = 1.0
+rotating_object = NodePath("../swinging_spike")
+
+[node name="swinging_spike" type="Sprite2D" parent="." unique_id=473136959]
+texture = SubResource("CanvasTexture_tmyr8")
+offset = Vector2(0, 19)
+
+[node name="Hitbox" parent="swinging_spike" unique_id=1825468143 instance=ExtResource("3_y2fjb")]
+visible = false
+position = Vector2(1.53209, 1.28558)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swinging_spike/Hitbox" unique_id=1640533988]
+position = Vector2(-1.42676, 22.4664)
+shape = SubResource("RectangleShape2D_xsoxp")
+
+[node name="swinging_spikes_button" type="Sprite2D" parent="." unique_id=200355703]
+texture = ExtResource("3")
