@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://frhjn1sy1er0"]
-
-[ext_resource type="Script" uid="uid://6gi6kflfuk5n" path="res://plattform_snap_component.gd" id="1_v52ux"]
-
-[node name="PlattformSnapComponent" type="Node" unique_id=902943255]
-script = ExtResource("1_v52ux")

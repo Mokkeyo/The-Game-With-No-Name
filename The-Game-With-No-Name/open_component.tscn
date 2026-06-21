@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi7ub2nqqfs78"]
-
-[ext_resource type="Script" uid="uid://dqt22ea3raaij" path="res://open_component.gd" id="1_6brsa"]
-
-[node name="OpenComponent" type="Node2D"]
-script = ExtResource("1_6brsa")
