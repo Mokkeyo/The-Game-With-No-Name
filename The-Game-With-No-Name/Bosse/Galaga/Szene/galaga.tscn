@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="4_qg4ys"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="5_cp48w"]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://cyu85obj33ig7" path="res://Bosse/Galaga/Szene/warning.tscn" id="6_cib2n"]
 [ext_resource type="PackedScene" uid="uid://bksaw43m67sj5" path="res://Bosse/Galaga/Szene/laser.tscn" id="7_a4ytb"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_a4ytb"]
+=======
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 =======
 >>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 
@@ -62,6 +65,7 @@ parent = NodePath("..")
 pool_size = 10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [node name="warning" parent="." unique_id=554903689 instance=ExtResource("6_cib2n")]
 
 [node name="warning2" parent="." unique_id=1900122722 instance=ExtResource("6_cib2n")]
@@ -72,6 +76,8 @@ pool_size = 10
 
 [node name="ResetComponent" parent="." unique_id=1883690726 instance=ExtResource("8_a4ytb")]
 
+=======
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 =======
 >>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 [connection signal="body_entered" from="airshipDetector" to="." method="_on_airship_detector_body_entered"]

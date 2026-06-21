@@ -38,10 +38,13 @@ var phase: Phase = Phase.ARMS
 
 func _ready() -> void:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reset_comp.enabling_stats.connect(resetting_boss)
 	galaga_head.lasers = lasers
 	galaga_head.warnings = warnings
 	
+=======
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 =======
 >>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 	set_physics_process(false)
