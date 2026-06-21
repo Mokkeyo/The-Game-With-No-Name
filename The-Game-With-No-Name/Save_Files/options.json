@@ -12,8 +12,13 @@
 	"deaths": [
 		0,
 		0,
+<<<<<<< HEAD
 		12,
 		0
+=======
+		4,
+		3
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 	],
 	"dialog_flags": {
 		"met_bossDoor_0": true,
@@ -48,9 +53,15 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
+<<<<<<< HEAD
 		"",
 		"",
 		""
+=======
+		"test",
+		"test2#",
+		"test"
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 	],
 	"printFps": true,
 	"resolution": {

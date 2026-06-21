@@ -5,9 +5,12 @@
 [ext_resource type="Script" uid="uid://b5nqdijepaf13" path="res://Bosse/Galaga/Scripts/galaga.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="4_qg4ys"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="5_cp48w"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://cyu85obj33ig7" path="res://Bosse/Galaga/Szene/warning.tscn" id="6_cib2n"]
 [ext_resource type="PackedScene" uid="uid://bksaw43m67sj5" path="res://Bosse/Galaga/Szene/laser.tscn" id="7_a4ytb"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_a4ytb"]
+=======
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vspnw"]
 size = Vector2(386, 170)
@@ -29,6 +32,12 @@ collision_mask = 0
 position = Vector2(9, -42)
 collision_layer = 1
 collision_mask = 0
+
+[node name="laser" parent="Boss" index="11" unique_id=682531220]
+visible = false
+
+[node name="laser2" parent="Boss" index="12" unique_id=942909717]
+visible = false
 
 [node name="airshipDetector" parent="." unique_id=741414323 instance=ExtResource("4_qg4ys")]
 
@@ -52,6 +61,7 @@ one_shot = true
 parent = NodePath("..")
 pool_size = 10
 
+<<<<<<< HEAD
 [node name="warning" parent="." unique_id=554903689 instance=ExtResource("6_cib2n")]
 
 [node name="warning2" parent="." unique_id=1900122722 instance=ExtResource("6_cib2n")]
@@ -62,7 +72,10 @@ pool_size = 10
 
 [node name="ResetComponent" parent="." unique_id=1883690726 instance=ExtResource("8_a4ytb")]
 
+=======
+>>>>>>> parent of 7d83985 (fixed the galaga bosses laser)
 [connection signal="body_entered" from="airshipDetector" to="." method="_on_airship_detector_body_entered"]
 
 [editable path="BossArm(left)"]
 [editable path="BossArm(right)"]
+[editable path="Boss"]

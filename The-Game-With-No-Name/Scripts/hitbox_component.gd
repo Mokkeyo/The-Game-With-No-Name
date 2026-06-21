@@ -37,7 +37,6 @@ func _on_area_entered(area: Area2D) -> void:
 		targets.append(hurtbox)
 	
 	if damage_timer.is_stopped():
-		_damage_targets()
 		damage_timer.start()
 
 

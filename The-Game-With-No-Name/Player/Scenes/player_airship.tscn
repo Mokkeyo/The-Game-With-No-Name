@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_ttgib")
 }],
-"loop": 0,
+"loop": false,
 "name": &"default_0",
 "speed": 5.0
 }, {
@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_mb17v")
 }],
-"loop": 0,
+"loop": false,
 "name": &"default_1",
 "speed": 5.0
 }, {
@@ -58,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4dwer")
 }],
-"loop": 0,
+"loop": false,
 "name": &"die",
 "speed": 15.0
 }]

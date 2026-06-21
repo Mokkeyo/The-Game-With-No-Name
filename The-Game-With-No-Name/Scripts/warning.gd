@@ -7,9 +7,7 @@ class_name Warning
 func _ready() -> void:
 	set_active(false)
 
-func start_warning(p: Vector2, r: float) -> void:
-	rotation_degrees = r
-	global_position = p
+func start_warning() -> void:
 	set_active(true)
 
 
@@ -23,16 +21,9 @@ func set_active(b: bool) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	
-	print(name, global_position)
-	
+	print(name,": ", global_position.x)
 	raycast.force_raycast_update()
-
-	var length: float
-
-	if raycast.is_colliding():
-		length = raycast.global_position.distance_to(raycast.get_collision_point())
-	else:
-		length = raycast.target_position.length()
-
-	sprite.scale.x = length / sprite.texture.get_size().x
+	var end_position: float = raycast.get_collision_point().x - global_position.x + 4    
+	var stretch_margin: float = end_position / sprite.texture.get_size().x
+	
+	sprite.scale.x = stretch_margin
