@@ -7,16 +7,18 @@ class_name Laser
 @onready var collision: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var hitbox: HitBox = $Hitbox
 
-var segment: SegmentShape2D
+var segment: RectangleShape2D
 
 var targets: Array[Player] = []
 
 func _ready() -> void:
-	segment = collision.shape.duplicate() as SegmentShape2D
+	segment = collision.shape.duplicate() as RectangleShape2D
 	collision.shape = segment
 	set_active(false)
 
-func start_laser() -> void:
+func start_laser(p: Vector2, r: float) -> void:
+	rotation_degrees = r
+	global_position = p
 	set_active(true)
 
 func stop_laser() -> void:
@@ -28,12 +30,20 @@ func set_active(b: bool) -> void:
 	visible = b
 
 func _physics_process(_delta: float) -> void:
-	print(name,": ", global_position.x)
-#	raycast.force_raycast_update()
-	var end_position: float = raycast.get_collision_point().x - global_position.x + 4    
-	var stretch_margin: float = end_position / sprite.texture.get_size().x
 	
-	sprite.scale.x = stretch_margin
+	print(name, global_position)
 	
-	var end_collision: float = raycast.get_collision_point().x - sprite.global_position.x
-	segment.b.x = end_collision
+	raycast.force_raycast_update()
+
+	var length: float
+
+	if raycast.is_colliding():
+		length = raycast.global_position.distance_to(raycast.get_collision_point())
+	else:
+		length = raycast.target_position.length()
+
+	sprite.scale.x = length / sprite.texture.get_size().x
+	
+	segment.size.x = length
+	collision.position.x = length * 0.5
+	

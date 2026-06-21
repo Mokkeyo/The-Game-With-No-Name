@@ -11,7 +11,7 @@
 	"deaths": [
 		0,
 		0,
-		4,
+		6,
 		3
 	],
 	"dialog_flags": {
@@ -30,8 +30,8 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"test",
-		"test2#",
+		"",
+		"",
 		"test"
 	],
 	"printFps": true,

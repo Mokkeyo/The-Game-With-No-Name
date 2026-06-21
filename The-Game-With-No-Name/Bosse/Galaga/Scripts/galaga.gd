@@ -33,6 +33,12 @@ enum Phase {
 var phase: Phase = Phase.ARMS
 
 func _ready() -> void:
+	var lasers: Array[Laser] = [$laser, $laser2]
+	var warnings: Array[Warning] = [$warning, $warning2]
+	
+	galaga_head.lasers = lasers
+	galaga_head.warnings = warnings
+	
 	set_physics_process(false)
 	galaga_left.health_comp.died.connect(part_died)
 	galaga_right.health_comp.died.connect(part_died)

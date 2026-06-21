@@ -5,14 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_vod8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0fe"]
-radius = 5.0
+radius = 8.0
 
 [node name="Bullet" type="Node2D" unique_id=358909494]
 z_as_relative = false
 script = ExtResource("2")
 
 [node name="bullet" type="Sprite2D" parent="." unique_id=1071204257]
-position = Vector2(-0.470613, 0.002083)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_hmh2x")
 hframes = 3

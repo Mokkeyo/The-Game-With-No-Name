@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bmagrkxkial83" path="res://Bosse/Galaga/Grafik/beam.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_tbput"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_p5r5o"]
-b = Vector2(100, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5r5o"]
+size = Vector2(100, 10)
 
 [node name="laser" type="Node2D" unique_id=682531220]
 z_as_relative = false
@@ -13,7 +13,6 @@ script = ExtResource("1")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=145865149]
 target_position = Vector2(1000, 0)
-collision_mask = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961467280]
 scale = Vector2(8.333333, 1)
@@ -26,5 +25,5 @@ continues_damage = true
 damage_interval = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1837724757]
-scale = Vector2(1, 2)
-shape = SubResource("SegmentShape2D_p5r5o")
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_p5r5o")

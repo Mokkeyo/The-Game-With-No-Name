@@ -1,8 +1,8 @@
 extends StaticBody2D
 class_name GalagaHead
 
-@onready var lasers: Array[Laser] = [$laser, $laser2]
-@onready var warnings: Array[Warning] = [$warning, $warning2]
+var lasers: Array[Laser] = []
+var warnings: Array[Warning] = []
 
 @onready var bullet_markers: Array[Marker2D] = [$bullet_position, $bullet_position2]
 
@@ -20,8 +20,11 @@ func _ready() -> void:
 
 
 func start_warning() -> void:
-	for warning: Warning in warnings:
-		warning.start_warning()
+	for i: int in warnings.size():
+		var p: Vector2
+		p.x = bullet_markers[i].global_position.x - 2
+		p.y = bullet_markers[i].global_position.y
+		warnings[i].start_warning(p, rotation_degrees)
 
 
 func stop_warning() -> void:
@@ -30,8 +33,11 @@ func stop_warning() -> void:
 
 
 func start_laser() -> void:
-	for laser: Laser in lasers:
-		laser.start_laser()
+	for i: int in lasers.size():
+		var p: Vector2
+		p.x = bullet_markers[i].global_position.x - 2
+		p.y = bullet_markers[i].global_position.y
+		lasers[i].start_laser(p, rotation_degrees)
 
 
 func stop_laser() -> void:
