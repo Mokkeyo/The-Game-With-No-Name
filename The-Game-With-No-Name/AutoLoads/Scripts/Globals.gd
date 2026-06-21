@@ -31,6 +31,7 @@ enum DamageType {
 	ON_JUMP,
 }
 
+var dialog_index: int = 0
 var arena: int = 1 #Used for the Battle Mode to know which Arena to Load
 var dialog_index: int = 0
 
@@ -56,6 +57,10 @@ func _ready() -> void:
 
 func calculate_max_text() -> void:
 	max_text = 21
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 func apply_display_settings() -> void:
 	DisplayServer.window_set_mode(

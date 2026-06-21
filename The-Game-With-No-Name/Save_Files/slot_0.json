@@ -17,10 +17,14 @@
 		"met_kratos_3": true,
 		"met_kristall_0": true,
 		"met_rick_0": true,
+<<<<<<< Updated upstream
 		"met_rick_1": true,
 		"met_rick_2": true,
 		"met_rick_3": true,
 		"met_shild_0": true,
+=======
+		"met_rick_2": true,
+>>>>>>> Stashed changes
 		"met_shild_1": true,
 		"met_shild_2": true,
 		"met_shild_3": true,
@@ -28,10 +32,17 @@
 		"met_shild_5": true
 	},
 	"door": [
+<<<<<<< Updated upstream
 		1.0,
 		2.0,
 		0.0,
 		3.0,
+=======
+		3.0,
+		0.0,
+		1.0,
+		2.0,
+>>>>>>> Stashed changes
 		4.0,
 		5.0
 	],
@@ -55,7 +66,11 @@
 		false,
 		false
 	],
+<<<<<<< Updated upstream
 	"kristallCount": 3.0,
+=======
+	"kristallCount": 2.0,
+>>>>>>> Stashed changes
 	"levelNumber": 1.0,
 	"mana": [
 		99.0,

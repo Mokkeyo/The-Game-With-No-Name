@@ -23,7 +23,10 @@ position = Vector2(0, -41)
 
 [node name="DialogueLoader" parent="." unique_id=1432092159 node_paths=PackedStringArray("npc_area") instance=ExtResource("4_7x507")]
 npc_area = NodePath("../NPCArea")
+<<<<<<< Updated upstream
 check_for_input = false
+=======
+>>>>>>> Stashed changes
 dialogue_start = "shild"
 
 [node name="NPCArea" parent="." unique_id=728636608 node_paths=PackedStringArray("ping") instance=ExtResource("5_ik166")]
