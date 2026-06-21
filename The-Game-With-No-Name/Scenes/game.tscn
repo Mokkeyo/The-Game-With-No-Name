@@ -182,7 +182,6 @@ script = ExtResource("4_rfjv2")
 script = ExtResource("5_1phco")
 
 [node name="achievmentComponent" parent="DialogueManager" unique_id=1941564920 instance=ExtResource("8_1phco")]
-achievment_list = "Chatter"
 
 [node name="BossUIManager" type="Control" parent="." unique_id=1706865187]
 anchors_preset = 0

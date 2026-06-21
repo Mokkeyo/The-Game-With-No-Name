@@ -25,12 +25,8 @@ func start_new_dialog(n: Npc, dialogue_resource: DialogueResource, dialogue_star
 
 
 func end_dialog() -> void:
-<<<<<<< Updated upstream
-#	AI.check_if_chatter_unlocked()
-=======
 	if Save.options.textboxCount == G.max_text:
 		ach_comp.add_achievment()
->>>>>>> Stashed changes
 	if npc:
 		npc.end_dialog()
 		npc = null
