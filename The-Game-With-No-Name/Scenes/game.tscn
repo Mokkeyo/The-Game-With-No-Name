@@ -223,4 +223,7 @@ layout_mode = 0
 [node name="textbox" parent="." unique_id=1850085101 instance=ExtResource("13_rfjv2")]
 layout_mode = 0
 
+[node name="achievmentComponent" parent="." unique_id=1194065303 instance=ExtResource("8_1phco")]
+achievment_list = "You Got A Friend In Me"
+
 [connection signal="timeout" from="PlayerManager/respawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

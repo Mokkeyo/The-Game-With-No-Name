@@ -9,6 +9,8 @@ signal achievment_collected
 signal start_dialog
 signal start_new_dialog(npc: Npc, dialogue_resource: DialogueResource, dialogue_start: String)
 
+signal game_finished
+
 signal player_died
 signal door_opend
 signal camera_active

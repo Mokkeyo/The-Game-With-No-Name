@@ -62,6 +62,8 @@ func connect_to_signals() -> void:
 	G.start_new_dialog.connect(dialogue_manager.start_new_dialog)
 	G.player_died.connect(player_manager.on_player_died)
 	
+	G.game_finished.connect(check_for_friend_ach)
+	
 	G.camera_active.connect(disable_cameras)
 	
 	new_textbox.dialog_ended.connect(end_dialog)
@@ -78,6 +80,19 @@ func connect_to_signals() -> void:
 	player_manager.player_count_changed.connect(resize_viewport.bind(player_manager.player_alive))
 
 #Penis
+
+func check_for_friend_ach() -> void:
+	var players: Array[Player] = player_manager.players
+	var alive_count: int = 0
+	var player_count: int = players.size()
+	
+	for player: Player in players:
+		if player.is_alive:
+			alive_count += 1
+	
+	if alive_count == player_count:
+		var ach_comp: AchievmentComponent = $achievmentComponent
+		ach_comp.add_achievment()
 
 
 func disable_cameras() -> void:

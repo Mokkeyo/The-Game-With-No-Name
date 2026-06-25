@@ -7,6 +7,8 @@ func _ready() -> void:
 func end_dialog() -> void:
 	var achievmentComponent: AchievmentComponent = $achievmentComponent
 	
+	G.game_finished.emit()
+	
 	achievmentComponent.add_achievment()
 	
 	Save.player.finished[0] = true

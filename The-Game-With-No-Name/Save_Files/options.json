@@ -4,7 +4,8 @@
 		"Unkillable",
 		"Secret With No Name",
 		"Does Someone Need A Tutorial?",
-		"Chatter"
+		"Chatter",
+		"You Got A Friend In Me"
 	],
 	"ambientVolume": 0.5,
 	"darknessOn": false,
@@ -12,7 +13,7 @@
 	"deaths": [
 		0,
 		0,
-		19,
+		21,
 		0
 	],
 	"dialog_flags": {
@@ -43,7 +44,7 @@
 	"maxVolume": 0.0,
 	"musicVolume": 1.0,
 	"playerName": [
-		"test",
+		"",
 		"",
 		"",
 		""

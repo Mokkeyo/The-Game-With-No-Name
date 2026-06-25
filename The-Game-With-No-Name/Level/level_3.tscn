@@ -190,7 +190,7 @@ position = Vector2(252, 483)
 [node name="DoorWithKey1" parent="Objects" unique_id=2131529152 node_paths=PackedStringArray("keys") instance=ExtResource("11")]
 position = Vector2(1142, 546)
 door_name = "DoorWithKey2"
-level_number = 3
+level_number = 303
 keys = [NodePath("../../Schlüssel"), NodePath("../../Schlüssel2"), NodePath("../../Schlüssel3")]
 door_nr = 5
 
@@ -213,12 +213,12 @@ position = Vector2(252, 904)
 [node name="DoorAndButton" parent="Objects" unique_id=497219578 instance=ExtResource("4")]
 position = Vector2(1009, 126)
 door_color = "Stone"
-Door_Nr = 3
+Door_Nr = 301
 
 [node name="DoorAndButton2" parent="Objects" unique_id=1861844413 instance=ExtResource("4")]
 position = Vector2(900, 434)
 door_color = "Player"
-Door_Nr = 4
+Door_Nr = 302
 
 [node name="FallingSpikeTrapWithRope" parent="Objects" unique_id=2073944550 instance=ExtResource("25_p038q")]
 position = Vector2(633, 850)
