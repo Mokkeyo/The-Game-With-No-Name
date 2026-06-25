@@ -18,6 +18,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
+	if not npc_area:
+		return
+	
 	if npc_area.check_for_player():
 		action()
 

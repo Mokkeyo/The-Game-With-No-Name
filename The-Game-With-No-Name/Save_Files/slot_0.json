@@ -1,52 +1,65 @@
 {
-	"checkpointActive": true,
+	"checkpointActive": false,
 	"checkpointPosition": {
 		"x": 1029.0,
 		"y": 392.0
 	},
 	"dialog_flags": {
+		"met_bossDoor_0": true,
 		"met_buschi_0": true,
+		"met_enemyGravestone_0": true,
+		"met_gravestone_0": true,
 		"met_houseDoor_0 ": true,
 		"met_houseDoor_1": true,
 		"met_kratos_0": true,
+		"met_kratos_1": true,
 		"met_kratos_2": true,
+		"met_kratos_3": true,
 		"met_kristall_0": true,
 		"met_rick_0": true,
-		"met_rick_2": true
+		"met_rick_1": true,
+		"met_rick_2": true,
+		"met_rick_3": true,
+		"met_shild_0": true,
+		"met_shild_1": true,
+		"met_shild_2": true,
+		"met_shild_3": true,
+		"met_shild_4": true,
+		"met_shild_5": true
 	},
 	"door": [
-		3.0,
-		0.0,
-		1.0,
-		2.0,
-		4.0,
-		5.0
+		1,
+		2,
+		0,
+		3,
+		4,
+		5
 	],
 	"enemysDefeated": [],
 	"finished": [
-		false,
+		true,
 		false,
 		false
 	],
 	"hp": [
-		100.0,
+		40.0,
 		100.0
 	],
 	"kristallCollected": [
 		true,
 		true,
-		false,
+		true,
 		false,
 		false,
 		false,
 		false,
 		false
 	],
-	"kristallCount": 2.0,
-	"levelNumber": 1.0,
+	"kristallCount": 3,
+	"levelNumber": 1,
 	"mana": [
-		99.0,
+		55.0,
 		99.0
 	],
-	"version": 1.0
+	"version": 1
 }

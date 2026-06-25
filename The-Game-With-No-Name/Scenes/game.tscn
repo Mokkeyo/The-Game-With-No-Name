@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dmbwnii5hqwja" path="res://Scenes/fader.tscn" id="6"]
 [ext_resource type="Script" uid="uid://bhrmfij84jval" path="res://Scenes/boss_ui_manager.gd" id="6_nb51f"]
 [ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
 [ext_resource type="PackedScene" uid="uid://c0hh1dv1aiucg" path="res://balloon.tscn" id="13_rfjv2"]
@@ -179,6 +180,9 @@ script = ExtResource("4_rfjv2")
 
 [node name="DialogueManager" type="Node" parent="." unique_id=1903935424]
 script = ExtResource("5_1phco")
+
+[node name="achievmentComponent" parent="DialogueManager" unique_id=1941564920 instance=ExtResource("8_1phco")]
+achievment_list = "Chatter"
 
 [node name="BossUIManager" type="Control" parent="." unique_id=1706865187]
 anchors_preset = 0

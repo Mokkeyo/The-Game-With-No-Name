@@ -56,7 +56,8 @@ func update_phase() -> void:
 			phase = Phase.ONE_ARM
 		1:
 			phase = Phase.CORE
-	
+		0:
+			G.boss_finished.emit()
 	if not phase == Phase.CORE:
 		return
 	

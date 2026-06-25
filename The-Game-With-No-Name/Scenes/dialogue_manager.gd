@@ -27,4 +27,7 @@ func end_dialog() -> void:
 	if dialog_loader:
 		dialog_loader.end_dialog()
 		dialog_loader = null
+		if Save.options.textboxCount == G.max_text:
+			var ach_comp: AchievmentComponent = $achievmentComponent
+			ach_comp.add_achievment()
 	is_dialog_active = false
