@@ -7,7 +7,7 @@ var textbox: TextBox
 var new_textbox: NewTextBox
 
 var is_dialog_active: bool = false
-var npc: Npc = null
+var dialog_loader: DialogLoader = null
 
 func _ready() -> void:
 	instance = self
@@ -17,14 +17,14 @@ func setup(tb: TextBox, ntb: NewTextBox) -> void:
 	textbox = tb
 	new_textbox = ntb
 
-func start_new_dialog(n: Npc, dialogue_resource: DialogueResource, dialogue_start: String) -> void:
-	npc = n
+func start_new_dialog(d: DialogLoader, dialogue_resource: DialogueResource, dialogue_start: String) -> void:
+	dialog_loader = d
 	is_dialog_active = true
 	new_textbox.start(dialogue_resource, dialogue_start)
 
 
 func end_dialog() -> void:
-	if npc:
-		npc.end_dialog()
-		npc = null
+	if dialog_loader:
+		dialog_loader.end_dialog()
+		dialog_loader = null
 	is_dialog_active = false

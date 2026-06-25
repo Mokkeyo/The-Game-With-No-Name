@@ -32,6 +32,7 @@ enum DamageType {
 }
 
 var arena: int = 1 #Used for the Battle Mode to know which Arena to Load
+var dialog_index: int = -1
 
 #battle Mode Variables
 var sword: bool = true
@@ -56,13 +57,13 @@ func _ready() -> void:
 
 
 func calculate_max_text() -> void:
-	max_text = 0
-	for i: int in range(D.allText.size()):
-		if typeof(D.dialogue[D.allText[i]][D.dialog]) == TYPE_ARRAY:
-			var temp: Array = D.dialogue[D.allText[i]][D.dialog]
-			max_text += temp.size()
-		else:
-			max_text += 1
+	max_text = 21
+#	for i: int in range(D.allText.size()):
+#		if typeof(D.dialogue[D.allText[i]][D.dialog]) == TYPE_ARRAY:
+#			var temp: Array = D.dialogue[D.allText[i]][D.dialog]
+#			max_text += temp.size()
+#		else:
+#			max_text += 1
 
 
 func apply_display_settings() -> void:

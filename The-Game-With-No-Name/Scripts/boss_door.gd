@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if npcArea.check_for_player() and state == category.CLOSED:
-		dialogLoader.action(npcArea.player, self)
+		dialogLoader.action(npcArea.player)
 	
 	if not state == category.OPEN:
 		return

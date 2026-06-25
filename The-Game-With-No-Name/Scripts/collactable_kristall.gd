@@ -7,6 +7,7 @@ class_name collactable_kristall
 @onready var dialog_loader: DialogLoader = $DialogueLoader
 
 func _ready() -> void:
+	dialog_loader.ending_dialog.connect(end_dialog)
 	var color: Array[Color] = [
 		Color.RED, Color. BLUE, Color.GREEN, Color.YELLOW, Color.DEEP_PINK, 
 		Color.ORANGE_RED, Color.DIM_GRAY, Color.LAVENDER_BLUSH
@@ -23,7 +24,7 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if npc_area.check_for_player():
-		dialog_loader.action(npc_area.player, self)
+		dialog_loader.action(npc_area.player)
 
 
 func end_dialog() -> void:

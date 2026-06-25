@@ -1,6 +1,8 @@
 extends Node2D
 class_name DialogLoader
 
+signal ending_dialog
+
 @export var npc_area: NpcArea = null
 @export var check_for_input: bool = true
 
@@ -19,15 +21,19 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if npc_area.check_for_player():
 		action()
 
-func action(player: Player = null, npc: Npc = get_parent()) -> void:
+func action(player: Player = null) -> void:
 	if npc_area and player == null:
 		player = npc_area.player
 	
 	if player == null:
-		push_warning("no player found inside: ", npc.name)
+		push_warning("no player found inside: ", get_parent().name)
 		return
 	
-	G.start_new_dialog.emit(npc, dialogue_resource, dialogue_start)
+	G.start_new_dialog.emit(self, dialogue_resource, dialogue_start)
 	player.velocity.x = 0
 	player.animation.play(player.animation.Anim.DOOR)
 	player.freeze = true
+
+
+func end_dialog() -> void:
+	ending_dialog.emit()
