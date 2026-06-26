@@ -5,10 +5,10 @@ class_name HurtBox
 
 signal damaged(amount: int, knockback: float, d_type: G.DamageType)
 
-func receive_hit(dmg: int, knockback: float, d_type: G.DamageType) -> void:
-	damaged.emit(dmg, knockback, d_type)
+func receive_hit(hit: HitData) -> void:
+	damaged.emit(hit)
 	
 	if damage_receiver:
-		damage_receiver.receive_damage(dmg, knockback, d_type)
+		damage_receiver.receive_damage(hit)
 	else:
 		push_warning("no damage reciever set for: " + get_parent().name)

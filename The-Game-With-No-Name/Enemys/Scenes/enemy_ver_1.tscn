@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="13_ckrvk"]
 [ext_resource type="PackedScene" uid="uid://cjm6adsgwin5v" path="res://abyss_checker_component.tscn" id="14_cc33w"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="14_lb0cv"]
+[ext_resource type="PackedScene" uid="uid://bvub8vvsg06rb" path="res://knockback_component.tscn" id="14_vb34i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxnv8"]
 atlas = ExtResource("2_nooeg")
@@ -55,7 +56,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yobpf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"air",
 "speed": 7.0
 }, {
@@ -72,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jptjr")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 15.0
 }, {
@@ -83,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xg3oe")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 10.0
 }]
@@ -142,7 +143,6 @@ shape = SubResource("RectangleShape2D_bi8kd")
 [node name="Hitbox" parent="." unique_id=1160487587 instance=ExtResource("13_ckrvk")]
 visible = false
 collision_mask = 2
-knockback = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2107993197]
 position = Vector2(-0.00838614, 0.070004)
@@ -164,8 +164,9 @@ physics_process = true
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("12_70vpd")]
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "knockback") instance=ExtResource("12_70vpd")]
 health = NodePath("../HealthComponent")
+knockback = NodePath("../knockback_component")
 
 [node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("13_0joxm")]
 water_detector = NodePath("../LavaWater_Detector")
@@ -177,5 +178,8 @@ JUMP_POWER = 80
 
 [node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("14_cc33w")]
 raycast = NodePath("../RayCast")
+
+[node name="knockback_component" parent="." unique_id=260293816 node_paths=PackedStringArray("body") instance=ExtResource("14_vb34i")]
+body = NodePath("..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

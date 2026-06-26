@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://dav4w6647w5l2" path="res://movement_component.gd" id="22_17k2o"]
 [ext_resource type="Script" uid="uid://b4bpfmt4j5jbn" path="res://player_combat.gd" id="23_e0sep"]
 [ext_resource type="PackedScene" uid="uid://2qfpcf84sism" path="res://sound_player.tscn" id="27_p0l7e"]
+[ext_resource type="PackedScene" uid="uid://bvub8vvsg06rb" path="res://knockback_component.tscn" id="28_drxtx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -138,7 +139,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rheas")
 }],
-"loop": false,
+"loop": 0,
 "name": &"door_0",
 "speed": 5.0
 }, {
@@ -146,7 +147,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wkote")
 }],
-"loop": false,
+"loop": 0,
 "name": &"door_1",
 "speed": 5.0
 }, {
@@ -154,7 +155,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_esn1r")
 }],
-"loop": false,
+"loop": 0,
 "name": &"fall_0",
 "speed": 5.0
 }, {
@@ -162,7 +163,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rs15g")
 }],
-"loop": false,
+"loop": 0,
 "name": &"fall_1",
 "speed": 5.0
 }, {
@@ -179,7 +180,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a1lh4")
 }],
-"loop": false,
+"loop": 0,
 "name": &"game_over",
 "speed": 15.0
 }, {
@@ -190,7 +191,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_25d23")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_0",
 "speed": 2.0
 }, {
@@ -201,7 +202,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gyv5m")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_1",
 "speed": 2.0
 }, {
@@ -209,7 +210,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mxn00")
 }],
-"loop": false,
+"loop": 0,
 "name": &"jump_0",
 "speed": 5.0
 }, {
@@ -217,7 +218,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7pvli")
 }],
-"loop": false,
+"loop": 0,
 "name": &"jump_1",
 "speed": 5.0
 }, {
@@ -240,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ii6jc")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_0",
 "speed": 12.0
 }, {
@@ -263,7 +264,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2nxmx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_1",
 "speed": 12.0
 }]
@@ -329,6 +330,8 @@ visible = false
 position = Vector2(0, 1)
 collision_mask = 4
 damage_type = 4
+knockback_force = 20.0
+upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1813998796]
 shape = SubResource("RectangleShape2D_3bitc")
@@ -341,14 +344,14 @@ position = Vector2(0, -10)
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_4w1dl")
 
-[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("9_e0sep")]
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility", "knockback") instance=ExtResource("9_e0sep")]
 health = NodePath("../healthComponent")
 invincibility = NodePath("../InvisibleFramesComp")
+knockback = NodePath("../knockback_component")
 
-[node name="healthComponent" parent="." unique_id=266553016 node_paths=PackedStringArray("invisibilityComp", "lavaDetector") instance=ExtResource("15_2ei6y")]
+[node name="healthComponent" parent="." unique_id=266553016 node_paths=PackedStringArray("lavaDetector") instance=ExtResource("15_2ei6y")]
 health = 100.0
 invisibiltyFrames = 2.0
-invisibilityComp = NodePath("../InvisibleFramesComp")
 lavaDetector = NodePath("../LavaWaterDetector")
 
 [node name="InvisibleFramesComp" parent="." unique_id=1899888523 node_paths=PackedStringArray("parent") instance=ExtResource("16_mxlaw")]
@@ -437,6 +440,9 @@ sound_player = NodePath("../SoundPlayer")
 
 [node name="SoundPlayer" parent="." unique_id=441477680 instance=ExtResource("27_p0l7e")]
 sound = "jump"
+
+[node name="knockback_component" parent="." unique_id=260293816 node_paths=PackedStringArray("body") instance=ExtResource("28_drxtx")]
+body = NodePath("..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

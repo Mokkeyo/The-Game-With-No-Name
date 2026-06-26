@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dsd5p6l7j427r" path="res://movement_component.tscn" id="12_wp81j"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="13_cmbwk"]
 [ext_resource type="PackedScene" uid="uid://cjm6adsgwin5v" path="res://abyss_checker_component.tscn" id="13_kvwxm"]
+[ext_resource type="PackedScene" uid="uid://bvub8vvsg06rb" path="res://knockback_component.tscn" id="13_ox3db"]
 [ext_resource type="PackedScene" uid="uid://8wj04cl43dvv" path="res://Scenes/lava_water_detector.tscn" id="14_w6fud"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvvxs"]
@@ -58,7 +59,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2lq2e")
 }],
-"loop": true,
+"loop": 1,
 "name": &"air",
 "speed": 5.0
 }, {
@@ -75,7 +76,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pky3b")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 15.0
 }, {
@@ -83,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ncx12")
 }],
-"loop": true,
+"loop": 1,
 "name": &"nothing",
 "speed": 5.0
 }, {
@@ -94,7 +95,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_enqx5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 10.0
 }]
@@ -135,7 +136,6 @@ shape = SubResource("CapsuleShape2D_kvwxm")
 [node name="Hitbox" parent="." unique_id=1036386492 instance=ExtResource("11_uxwv7")]
 visible = false
 collision_mask = 2
-knockback = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=878770219]
 position = Vector2(0.00282836, 0.210438)
@@ -164,12 +164,11 @@ physics_process = true
 body = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="HealthComponent" parent="." unique_id=470050883 node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("12_fypfs")]
-invisibilityComp = NodePath("")
+[node name="HealthComponent" parent="." unique_id=470050883 instance=ExtResource("12_fypfs")]
 
-[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("11_ykaej")]
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "knockback") instance=ExtResource("11_ykaej")]
 health = NodePath("../HealthComponent")
-invincibility = NodePath("")
+knockback = NodePath("../knockback_component")
 
 [node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("12_wp81j")]
 water_detector = NodePath("../LavaWater_Detector")
@@ -180,5 +179,8 @@ JUMP_POWER = 80
 
 [node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("13_kvwxm")]
 raycast = NodePath("../RayCast")
+
+[node name="knockback_component" parent="." unique_id=260293816 node_paths=PackedStringArray("body") instance=ExtResource("13_ox3db")]
+body = NodePath("..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]

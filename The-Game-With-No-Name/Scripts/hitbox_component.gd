@@ -4,9 +4,14 @@ class_name HitBox
 signal hit(target: HurtBox, damage: int, knockback: float)
 signal damaged_enemy
 
-@export var dmg: int = 20
-@export var knockback: float = 0
+@export var damage: int = 20
 @export var damage_type: G.DamageType = G.DamageType.NORMAL
+
+@export var knockback_force: float = 300
+@export var knockback_type: HitData.KnockbackType
+
+@export var upward_force: float = 0.2
+@export var explosion_radius: float = 180
 
 @export_category("continues damage")
 @export var continues_damage: bool = false
@@ -60,4 +65,18 @@ func _damage_targets() -> void:
 
 func apply_damage(hurtbox: HurtBox) -> void:
 	damaged_enemy.emit()
-	hurtbox.receive_hit(dmg, knockback, damage_type)
+	
+	var hit_d: HitData = HitData.new()
+	
+	hit_d.damage = damage
+	hit_d.damage_type = damage_type
+	
+	hit_d.source = self
+	
+	hit_d.knockback_force = knockback_force
+	hit_d.knockback_type = knockback_type
+	hit_d.updward_force = upward_force
+	hit_d.radius = explosion_radius
+	
+	
+	hurtbox.receive_hit(hit_d)

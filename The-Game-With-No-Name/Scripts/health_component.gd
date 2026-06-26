@@ -3,7 +3,6 @@ class_name HealthComponent
 
 signal value_changed
 signal died
-signal setKnockback(strength: float)
 
 @export_group("Stats")
 @export var health: float = 20
@@ -24,7 +23,7 @@ func _ready() -> void:
 		lavaDetector.lava_entered.connect(die)
 
 
-func damage(dmg: int, knockback: float) -> void:
+func damage(dmg: int) -> void:
 	if health <= 0:
 		return
 	print("old health: ",health)
@@ -37,9 +36,6 @@ func damage(dmg: int, knockback: float) -> void:
 	if health <=  0:
 		died.emit()
 		return
-	
-	if not knockback == 0:
-		setKnockback.emit(knockback)
 
 
 func refill_health(value: int) -> void:

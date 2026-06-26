@@ -24,7 +24,9 @@ offset = Vector2(0, -9)
 [node name="Hitbox" parent="Sprite2D" unique_id=1800519912 instance=ExtResource("3_idk6c")]
 unique_name_in_owner = true
 collision_mask = 4
-knockback = 10.0
+knockback_force = 200.0
+knockback_type = 1
+upward_force = 1.0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox" unique_id=1186965782]
