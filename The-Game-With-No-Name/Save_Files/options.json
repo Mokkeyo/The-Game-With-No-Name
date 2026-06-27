@@ -13,7 +13,7 @@
 	"deaths": [
 		0,
 		0,
-		21,
+		24,
 		0
 	],
 	"dialog_flags": {
@@ -45,7 +45,7 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"",
+		"test",
 		"",
 		""
 	],

@@ -1,7 +1,9 @@
-extends Npc
+extends Node2D
 
 @export var level_number: int
 @export var door_name: String = ""
+@export var npc_area: NpcArea = null
+@export var dialog_loader: DialogLoader = null
 
 @onready var marker: Marker2D = $Marker2D
 @onready var level_transition: LevelTransition = $LeveltransitionComponent
@@ -27,8 +29,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if npcArea.check_for_player() and state == category.CLOSED:
-		dialogLoader.action(npcArea.player)
+	if npc_area.check_for_player() and state == category.CLOSED:
+		dialog_loader.action(npc_area.player)
 	
 	if not state == category.OPEN:
 		return

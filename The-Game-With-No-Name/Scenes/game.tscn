@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
-[ext_resource type="PackedScene" uid="uid://dbokg7m3bstbv" path="res://Npcs/Scenes/textbox.tscn" id="12_k2rrv"]
 [ext_resource type="PackedScene" uid="uid://c0hh1dv1aiucg" path="res://balloon.tscn" id="13_rfjv2"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
 
@@ -209,18 +208,14 @@ theme_override_font_sizes/font_size = 20
 text = "Boss Galaga"
 
 [node name="Boss" type="Control" parent="." unique_id=290950282]
-visible = false
 anchors_preset = 0
-
-[node name="TextBox" parent="." unique_id=634832495 instance=ExtResource("12_k2rrv")]
-visible = false
-layout_mode = 0
 
 [node name="pause" parent="." unique_id=1356872677 instance=ExtResource("1")]
 visible = false
 layout_mode = 0
 
 [node name="textbox" parent="." unique_id=1850085101 instance=ExtResource("13_rfjv2")]
+visible = false
 layout_mode = 0
 
 [node name="achievmentComponent" parent="." unique_id=1194065303 instance=ExtResource("8_1phco")]

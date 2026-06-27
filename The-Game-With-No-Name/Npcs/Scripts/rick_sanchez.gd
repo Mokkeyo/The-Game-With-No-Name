@@ -1,1 +1,1 @@
-extends Npc
+extends Node2D

@@ -1,0 +1,40 @@
+{
+	"checkpointActive": true,
+	"checkpointPosition": {
+		"x": 1029.0,
+		"y": 392.0
+	},
+	"dialog_flags": {
+		"met_buschi_0": true,
+		"met_houseDoor_0 ": true,
+		"met_rick_0": true
+	},
+	"door": [],
+	"enemysDefeated": [],
+	"finished": [
+		false,
+		false,
+		false
+	],
+	"hp": [
+		100.0,
+		100.0
+	],
+	"kristallCollected": [
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
+	],
+	"kristallCount": 0.0,
+	"levelNumber": 1.0,
+	"mana": [
+		99.0,
+		99.0
+	],
+	"version": 1.0
+}

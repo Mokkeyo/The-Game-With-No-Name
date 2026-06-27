@@ -5,7 +5,7 @@ signal hit(target: HurtBox, damage: int, knockback: float)
 signal damaged_enemy
 
 @export var damage: int = 20
-@export var damage_type: G.DamageType = G.DamageType.NORMAL
+@export var damage_type: HitData.DamageType = HitData.DamageType.NORMAL
 
 @export var knockback_force: float = 300
 @export var knockback_type: HitData.KnockbackType

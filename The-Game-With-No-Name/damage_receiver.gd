@@ -8,22 +8,22 @@ class_name DamageReciever
 
 @export var invincibility_time: float = 0.5
 
-@export var ignore_damage: Array[G.DamageType]
+@export var ignore_damage: Array[HitData.DamageType]
 
 func receive_damage(hit: HitData) -> void:
 	if ignore_damage.has(hit.damage_type):
 		return
 	
 	match hit.damage_type:
-		G.DamageType.NORMAL:
+		HitData.DamageType.NORMAL:
 			if invincibility and invincibility.Iframes_active():
 				return
 			if invincibility:
 				invincibility.play_invible_frames(invincibility_time)
 		
-		G.DamageType.LAVA, G.DamageType.ENVIRONMENT:
+		HitData.DamageType.LAVA, HitData.DamageType.ENVIRONMENT:
 			pass
-		G.DamageType.DOT:
+		HitData.DamageType.DOT:
 			pass
 	
 	if health:

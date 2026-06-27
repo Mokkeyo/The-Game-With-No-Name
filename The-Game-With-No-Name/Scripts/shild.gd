@@ -1,4 +1,4 @@
-extends Npc
+extends Node2D
 
 @export var shildNumber: int = 0
 @onready var dialog_loader: DialogLoader = $DialogueLoader

@@ -4,6 +4,17 @@ class_name AchievmentComponent
 @export_enum("Unkillable", "Chatter", "Its Just The Beginning", "You Got A Friend In Me", 
 "Does Someone Need A Tutorial?", "Secret With No Name") var achievment_list: String
 
+enum Achievment {
+	UNKILLABLE,
+	CHATTER,
+	BEGINNING,
+	FRIEND,
+	TUTORIAL,
+	SECRET
+}
+
+var achievment: Achievment
+
 func add_achievment() -> void:
 	if not Save.options.achievments.has(achievment_list):
 		Save.options.achievments.append(achievment_list)

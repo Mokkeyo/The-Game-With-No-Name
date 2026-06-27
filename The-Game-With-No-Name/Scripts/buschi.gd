@@ -1,4 +1,4 @@
-extends Npc
+extends Node2D
 
 @onready var buschiFace: Sprite2D = $BuschieFace
 

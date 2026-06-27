@@ -7,7 +7,6 @@ class_name Game
 @onready var boss_ui: BossUIManager = $BossUIManager
 @onready var in_game: InGame = $InGame
 @onready var fader: Fader = $Fader
-@onready var textbox: TextBox = $TextBox
 @onready var new_textbox: NewTextBox = $textbox
 
 @onready var pause: PauseMenu = $pause
@@ -39,7 +38,7 @@ func setup_systems() -> void:
 	
 	tree_exited.connect(exit)
 	
-	dialogue_manager.setup(textbox, new_textbox)
+	dialogue_manager.setup(new_textbox)
 	
 	boss_ui.setup()
 	

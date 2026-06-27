@@ -6,8 +6,7 @@ signal fullscreen_changed
 signal enter_door(level_number: int, door_name: String)
 signal achievment_collected
 
-signal start_dialog
-signal start_new_dialog(npc: Npc, dialogue_resource: DialogueResource, dialogue_start: String)
+signal start_new_dialog(dialogloader: DialogLoader, dialogue_resource: DialogueResource, dialogue_start: String)
 
 signal game_finished
 
@@ -15,7 +14,7 @@ signal player_died
 signal door_opend
 signal camera_active
 signal health_value_changed(player: int, health: float)
-signal mana_value_changed
+signal mana_value_changed(player: int, health: float)
 
 signal boss_begin(label: String, hp: float)
 signal boss_finished
@@ -24,14 +23,6 @@ signal boss_label_changed(label: String)
 
 var listeners: Array[Node2D] = []
 var level_viewport: SubViewport
-
-enum DamageType {
-	NORMAL,
-	LAVA,
-	DOT,
-	ENVIRONMENT,
-	ON_JUMP,
-}
 
 var arena: int = 1 #Used for the Battle Mode to know which Arena to Load
 var dialog_index: int = -1

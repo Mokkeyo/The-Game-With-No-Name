@@ -9,8 +9,16 @@ enum KnockbackType {
 	DOWN, # Knockback Explezit nach Unten
 }
 
+enum  DamageType {
+	NORMAL,
+	LAVA,
+	DOT,
+	ENVIRONMENT,
+	ON_JUMP,
+	}
+
 var damage: int
-var damage_type: G.DamageType
+var damage_type: DamageType
 
 var source: Node2D
 

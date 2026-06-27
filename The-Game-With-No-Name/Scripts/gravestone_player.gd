@@ -1,4 +1,4 @@
-extends Npc
+extends Node2D
 
 func _ready() -> void:
 	var d_loader: DialogLoader = $DialogueLoader

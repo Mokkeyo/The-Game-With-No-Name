@@ -10,10 +10,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxspb"]
 size = Vector2(8, 54)
 
-[node name="BossDoor" type="Node2D" unique_id=182364045 node_paths=PackedStringArray("npcArea", "dialogLoader")]
+[node name="BossDoor" type="Node2D" unique_id=182364045 node_paths=PackedStringArray("npc_area", "dialog_loader")]
 script = ExtResource("1_ctxq3")
-npcArea = NodePath("NPCArea")
-dialogLoader = NodePath("DialogueLoader")
+npc_area = NodePath("NPCArea")
+dialog_loader = NodePath("DialogueLoader")
 
 [node name="BossDoorOpen" type="Sprite2D" parent="." unique_id=1336745127]
 position = Vector2(0, -25)

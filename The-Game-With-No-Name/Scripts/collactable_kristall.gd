@@ -1,4 +1,4 @@
-extends Npc
+extends Node2D
 class_name collactable_kristall
 
 @export var kristall: int = 1
