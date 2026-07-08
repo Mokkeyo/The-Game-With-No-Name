@@ -10,21 +10,21 @@ class_name Weapons
 
 func _ready() -> void:
 	super._ready()
-	jumpButton.button_pressed = G.jump
-	wandButton.button_pressed = G.wand
-	swordButton.button_pressed = G.sword
+	jumpButton.button_pressed = BattleData.jump
+	wandButton.button_pressed = BattleData.wand
+	swordButton.button_pressed = BattleData.sword
 
 
 func _on_JumpButton_toggled(button_pressed: bool) -> void:
 	jumpNo.visible = not button_pressed
-	G.jump = button_pressed
+	BattleData.jump = button_pressed
 
 
 func _on_SwordButton_toggled(button_pressed: bool) -> void:
 	swordNo.visible = not button_pressed
-	G.sword = button_pressed
+	BattleData.sword = button_pressed
 
 
 func _on_WandButton_toggled(button_pressed: bool) -> void:
 	wandNo.visible = not button_pressed
-	G.wand = button_pressed
+	BattleData.wand = button_pressed

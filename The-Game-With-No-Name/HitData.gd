@@ -7,6 +7,7 @@ enum KnockbackType {
 	EXPLOSION, #Je weiter das Ziel weg, desto kleiner der Knockback
 	UP, # Knockback Explezit nach Oben
 	DOWN, # Knockback Explezit nach Unten
+	VERTIKAL, # Knockback nu nach rechts und links
 }
 
 enum  DamageType {

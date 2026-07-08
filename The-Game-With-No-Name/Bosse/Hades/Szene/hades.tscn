@@ -847,17 +847,10 @@ offset = Vector2(-4, -26)
 [node name="hitbox" parent="Axt(Boss)" unique_id=728375505 instance=ExtResource("9_8pv0u")]
 position = Vector2(7, -41)
 collision_mask = 2
-dmg = null
-knockback = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Axt(Boss)/hitbox" unique_id=565712395]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_2t75w")
-
-[node name="Hitbox" parent="Axt(Boss)" unique_id=85804065 instance=ExtResource("9_8pv0u")]
-collision_mask = 2
-dmg = null
-knockback = null
 
 [node name="Speer(Boss)" type="Sprite2D" parent="." unique_id=1952985048]
 visible = false
@@ -868,8 +861,6 @@ texture = SubResource("CanvasTexture_hhyat")
 
 [node name="Hitbox" parent="Speer(Boss)" unique_id=320241933 instance=ExtResource("9_8pv0u")]
 collision_mask = 2
-dmg = null
-knockback = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Speer(Boss)/Hitbox" unique_id=159314580]
 position = Vector2(0.640879, -16.4054)
@@ -888,8 +879,6 @@ achievment_list = "Unkillable"
 [node name="Hitbox" parent="." unique_id=1779453352 instance=ExtResource("9_8pv0u")]
 visible = false
 collision_mask = 2
-dmg = null
-knockback = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1139954016]
 position = Vector2(0, -47)

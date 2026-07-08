@@ -46,7 +46,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4aw0i")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 4.0
 }, {
@@ -63,7 +63,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_spl7n")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 15.0
 }]
@@ -128,8 +128,8 @@ _data = {
 radius = 140.057
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00unu"]
-radius = 5.0
-height = 26.0
+radius = 4.0
+height = 22.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3pgo"]
 radius = 5.89303
@@ -164,12 +164,15 @@ metadata/_edit_use_anchors_ = true
 libraries/ = SubResource("AnimationLibrary_pf10q")
 
 [node name="PlayerDetector" parent="." unique_id=1047898143 instance=ExtResource("9_p1qei")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1839884933]
 shape = SubResource("CircleShape2D_uw242")
 
 [node name="Hitbox" parent="." unique_id=863446880 instance=ExtResource("10_5kiuv")]
 collision_mask = 2
+knockback_type = 1
+upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=750777086]
 position = Vector2(0, 2)
@@ -177,6 +180,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_00unu")
 
 [node name="Hurtbox" parent="." unique_id=570993747 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("11_7eflq")]
+visible = false
 collision_layer = 4
 damage_receiver = NodePath("../DamageReceiver")
 
@@ -185,9 +189,8 @@ position = Vector2(0.0258508, 2.10697)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k3pgo")
 
-[node name="HealthComponent" parent="." unique_id=1001707844 node_paths=PackedStringArray("invisibilityComp", "health_bar") instance=ExtResource("12_ek4ux")]
+[node name="HealthComponent" parent="." unique_id=1001707844 node_paths=PackedStringArray("health_bar") instance=ExtResource("12_ek4ux")]
 invisibiltyFrames = 0.1
-invisibilityComp = NodePath("../InvisibleFramesComp")
 health_bar = NodePath("../HPBar")
 
 [node name="EnemyResetComponent" parent="." unique_id=1735672738 node_paths=PackedStringArray("collisions", "hpBar", "healthComp") instance=ExtResource("9_cvypo")]

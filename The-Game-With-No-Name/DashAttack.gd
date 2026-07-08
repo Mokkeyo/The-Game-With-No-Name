@@ -43,11 +43,11 @@ func update(delta: float) -> void:
 		stun()
 
 
-func finish() -> void:
-	super.finish()
-	awaiting = 0.7
-
-
 func stun() -> void:
 	await boss.get_tree().create_timer(2).timeout
+	awaiting = 0.7
+	
+	if not boss.current_attack == self:
+		return
+	
 	finish()

@@ -19,6 +19,20 @@ func apply(hit: HitData) -> void:
 		
 		HitData.KnockbackType.EXPLOSION:
 			apply_explosion(hit)
+		
+		HitData.KnockbackType.VERTIKAL:
+			apply_vertikal(hit)
+
+
+func apply_vertikal(hit: HitData) -> void:
+	var dir: Vector2 = Vector2.ZERO
+	dir.x = (body.global_position.x - hit.source.global_position.x)
+	
+	dir.y -= hit.updward_force
+	dir = dir.normalized()
+	
+	body.velocity = dir * hit.knockback_force
+
 
 
 func apply_normal(hit: HitData) -> void:

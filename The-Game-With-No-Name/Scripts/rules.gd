@@ -1,4 +1,5 @@
 extends Menu
+class_name RulesMenu
 
 @onready var infinite_signe: Label = $Time/Infinite
 @onready var time_number: Label = $Time/Number
@@ -13,8 +14,8 @@ func _ready() -> void:
 	super._ready()
 	var hitpoints: Label = $Hitpoints/Number
 	var time: Label = $Time/Number
-	hitpoints.text = str(G.battle_player_heal[0])
-	time.text = str(G.battle_time)
+	hitpoints.text = str(BattleData.hp[0])
+	time.text = str(BattleData.time)
 	weapons.exited.connect(Callable(self, "weapons_exited"))
 
 func _input(_event: InputEvent) -> void:
@@ -27,17 +28,17 @@ func _input(_event: InputEvent) -> void:
 	
 	match state:
 		State.change_hitpoints:
-			if (G.battle_player_heal[0] > 1 and direction == -1) or (G.battle_player_heal[0] < 50 and direction == 1):
-				G.battle_player_heal[0] += direction 
-				hitpoints_number.text = str(G.battle_player_heal[0])
+			if (BattleData.hp[0] > 1 and direction == -1) or (BattleData.hp[0] < 50 and direction == 1):
+				BattleData.hp[0] += direction 
+				hitpoints_number.text = str(BattleData.hp[0])
 		
 		State.change_time:
-			if (G.battle_time > 0 and direction == -1) or (G.battle_time < 300 and direction == 1):
-				G.battle_time += direction * 10
-				infinite_signe.visible = G.battle_time == 0
+			if (BattleData.time > 0 and direction == -1) or (BattleData.time < 300 and direction == 1):
+				BattleData.time += direction * 10
+				infinite_signe.visible = BattleData.time == 0
 				time_number.visible = not infinite_signe.visible
 				if time_number.visible:
-					time_number.text = "%d sec" % G.battle_time
+					time_number.text = "%d sec" % BattleData.time
 
 
 func weapons_exited() -> void:

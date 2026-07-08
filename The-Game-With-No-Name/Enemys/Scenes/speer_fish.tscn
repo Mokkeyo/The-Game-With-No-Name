@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_2ohtj")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -50,7 +50,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_16c0u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 15.0
 }]
@@ -106,7 +106,6 @@ shape = SubResource("CircleShape2D_ts256")
 [node name="HealthComponent" parent="." unique_id=15569979 instance=ExtResource("8_ktq6o")]
 
 [node name="Hurtbox" parent="." unique_id=866635255 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("9_soqpa")]
-visible = false
 collision_layer = 4
 damage_receiver = NodePath("../DamageReceiver")
 

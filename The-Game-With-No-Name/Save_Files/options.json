@@ -8,12 +8,12 @@
 		"You Got A Friend In Me"
 	],
 	"ambientVolume": 0.5,
-	"darknessOn": false,
-	"darknessValue": 170,
+	"darknessOn": true,
+	"darknessValue": 150,
 	"deaths": [
 		0,
 		0,
-		24,
+		22,
 		0
 	],
 	"dialog_flags": {
@@ -45,7 +45,7 @@
 	"musicVolume": 1.0,
 	"playerName": [
 		"test",
-		"test",
+		"",
 		"",
 		""
 	],

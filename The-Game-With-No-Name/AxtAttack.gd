@@ -21,4 +21,7 @@ func start() -> void:
 	
 	await boss.animation_player.animation_finished
 	
+	if not boss.current_attack == self:
+		return
+	
 	finish()

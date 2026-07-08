@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://baayocn30olyt"]
 
+[ext_resource type="Script" uid="uid://b0uo2m7ibnxmm" path="res://test_2.gd" id="1_m0tip"]
 [ext_resource type="Texture2D" uid="uid://cedmmq24kehgw" path="res://TileMaps/Textures/ground_tilemap.png" id="1_tam42"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m0tip"]
@@ -126,6 +127,7 @@ physics_layer_0/collision_mask = 0
 sources/6 = SubResource("TileSetAtlasSource_m0tip")
 
 [node name="Test2" type="Node2D" unique_id=1716705573]
+script = ExtResource("1_m0tip")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1542825053]
 tile_map_data = PackedByteArray("AAASAAkABgAAAAAAAAASAAoABgAAAAAAAAASAAsABgAAAAAAAAASAAwABgAAAAAAAAASAA0ABgAAAAAAAAASAA4ABgAAAAAAAAATAAkABgAAAAAAAAATAAoABgAAAAAAAAATAAsABgAAAAAAAAATAAwABgAAAAAAAAATAA0ABgAAAAAAAAATAA4ABgAAAAAAAAAUAAkABgAAAAAAAAAUAAoABgAAAAAAAAAUAAsABgAAAAAAAAAUAAwABgAAAAAAAAAUAA0ABgAAAAAAAAAUAA4ABgAAAAAAAAAVAAkABgAAAAAAAAAVAAoABgAAAAAAAAAVAAsABgAAAAAAAAAVAAwABgAAAAAAAAAVAA0ABgAAAAAAAAAVAA4ABgAAAAAAAAA=")

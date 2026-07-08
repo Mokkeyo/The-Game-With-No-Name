@@ -29,13 +29,14 @@ rotating_object = NodePath("../swinging_spike")
 texture = SubResource("CanvasTexture_tmyr8")
 offset = Vector2(0, 19)
 
-[node name="Hitbox" parent="swinging_spike" unique_id=1825468143 instance=ExtResource("3_y2fjb")]
-visible = false
-position = Vector2(1.53209, 1.28558)
-collision_mask = 2
+[node name="Marker2D" type="Marker2D" parent="swinging_spike" unique_id=843884031]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="swinging_spike/Hitbox" unique_id=1640533988]
-position = Vector2(-1.42676, 22.4664)
+[node name="Hitbox" parent="swinging_spike/Marker2D" unique_id=1825468143 instance=ExtResource("3_y2fjb")]
+position = Vector2(0, 23)
+collision_mask = 2
+knockback_type = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="swinging_spike/Marker2D/Hitbox" unique_id=1640533988]
 shape = SubResource("RectangleShape2D_xsoxp")
 
 [node name="swinging_spikes_button" type="Sprite2D" parent="." unique_id=200355703]

@@ -1586,7 +1586,7 @@ cache/0/70/0/scale = 1.0
 cache/0/70/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/70/0/kerning_overrides/70/0 = Vector2(0, 0)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_mkpwh"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_4nkqq"]
 
 [sub_resource type="Animation" id="Animation_mlf8r"]
 resource_name = "RESET"
@@ -1955,7 +1955,7 @@ offset_right = 0.0
 layout_mode = 0
 offset_left = 1024.0
 offset_right = 2048.0
-group = SubResource("ButtonGroup_mkpwh")
+group = SubResource("ButtonGroup_4nkqq")
 
 [node name="Achievments" parent="." unique_id=259480525 instance=ExtResource("22_l2mxp")]
 layout_mode = 0

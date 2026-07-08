@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.DEAD:
 			velocity = Vector2.ZERO
-			move_and_slide()
 			return
 		
 		State.MOVING:

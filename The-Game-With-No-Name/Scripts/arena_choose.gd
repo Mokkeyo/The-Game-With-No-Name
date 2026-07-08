@@ -11,28 +11,29 @@ var max_arena: int = 6
 @onready var arrow_left: Sprite2D = $Arena_1/richtung_left
 @onready var rules_timer: Timer = $Timer
 @onready var arena_button: Button = $Arena_1
-@onready var battle_ready: Menu = $BattleReady
+@onready var battle_ready_menu: Menu = $BattleReady
 
 
 func _ready() -> void:
 	super._ready()
-	arrow_left.visible = (not G.arena == 1)
+	arrow_left.visible = (BattleData.arena == 1)
 	rules.exited.connect(Callable(main, "change_menu").bind(self))
-	battle_ready.visible = not G.battle_ready[0]
+	battle_ready_menu.visible = not BattleData.ready[0]
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
 	random_arena = rng.randi_range(1, 6)
 	G.last_number = random_arena
-	if G.battle_ready[0] and G.battle_ready[1]:
+	if BattleData.ready[0] and BattleData.ready[1]:
 		arena_button.grab_focus()
 
 
 func enter() -> void:
-	if G.battle_ready[0] and G.battle_ready[1]:
+	print(BattleData.ready)
+	if BattleData.ready[0] and BattleData.ready[1]:
 		super.enter()    
 		return
-	battle_ready.visible = true
-	battle_ready.enter()
+	battle_ready_menu.visible = true
+	battle_ready_menu.enter()
 
 
 func _input(_event: InputEvent) -> void:
@@ -42,17 +43,17 @@ func _input(_event: InputEvent) -> void:
 		return
 		
 	rules_timer.start()
-	if (G.arena < max_arena + 1 and direction == 1) or (G.arena > 1 and direction == -1):
-		G.arena = G.arena + direction
-		arena_sprite.texture = load("res://Arena/Textures/arena_%d.png" % G.arena)
-		arena_label.text = "Arena %d" % G.arena if not G.arena == max_arena + 1 else "Random"
+	if (BattleData.arena < max_arena + 1 and direction == 1) or (BattleData.arena > 1 and direction == -1):
+		BattleData.arena = BattleData.arena + direction
+		arena_sprite.texture = load("res://Arena/Textures/arena_%d.png" % BattleData.arena)
+		arena_label.text = "Arena %d" % BattleData.arena if not BattleData.arena == max_arena + 1 else "Random"
 		if direction == 1:
 			arrow_right.texture = load("res://Arena/Textures/arrow_pressed.png")
 		else:
 			arrow_left.texture = load("res://Arena/Textures/arrow_pressed.png")
 	
-		arrow_right.visible = not (G.arena == max_arena + 1)
-		arrow_left.visible = not (G.arena == 1)
+		arrow_right.visible = not (BattleData.arena == max_arena + 1)
+		arrow_left.visible = not (BattleData.arena == 1)
 
 
 func _on_timer_timeout() -> void:
@@ -61,13 +62,13 @@ func _on_timer_timeout() -> void:
 
 
 func _on_arena_1_pressed() -> void:
-	if G.arena == 7:
+	if BattleData.arena == 7:
 		if random_arena == G.last_number:
 			random_arena = random_arena + 1
 			if random_arena >= 7:
 				random_arena = 1
 			G.last_number = random_arena
-		G.arena = random_arena
+		BattleData.arena = random_arena
 		
 	get_tree().change_scene_to_file("res://Arena/Battle.tscn")
 

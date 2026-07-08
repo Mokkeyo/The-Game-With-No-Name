@@ -73,7 +73,6 @@ func _on_player_pressed() -> void: change_menu(two_player_mode)
 
 func _on_battle_button_pressed() -> void:
 	await fader.fade_out().animation_finished
-	G.battle_mode = true
 	SoundMusic.play_battle()
 	get_tree().change_scene_to_file("res://Scenes/battle_mode_menu.tscn")
 

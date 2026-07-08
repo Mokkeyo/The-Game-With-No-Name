@@ -32,6 +32,7 @@ func _ready() -> void:
 
 
 func reset_stats() -> void:
+	velocity = Vector2.ZERO
 	last_attack = null
 	queued_attack = null
 	current_attack = null
@@ -90,6 +91,7 @@ func choose_attack() -> void:
 
 
 func queue_attack(attack: BossAttack) -> void:
+	update_facing()
 	queued_attack = attack
 
 

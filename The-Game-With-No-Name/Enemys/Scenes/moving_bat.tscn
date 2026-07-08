@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hj0cq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 4.0
 }, {
@@ -66,13 +66,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mioms")
 }],
-"loop": false,
+"loop": 0,
 "name": &"die",
 "speed": 15.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb8kh"]
-size = Vector2(28, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0uu4l"]
+radius = 3.0
+height = 22.0
 
 [node name="MovingBat" type="CharacterBody2D" unique_id=219827100]
 z_index = 3
@@ -100,15 +101,16 @@ sprite_frames = SubResource("2")
 frame_progress = 0.49765
 
 [node name="Hitbox" parent="." unique_id=1244952728 instance=ExtResource("5_g3xa8")]
-visible = false
 collision_mask = 2
+knockback_type = 1
+upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=990793576]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_gb8kh")
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0uu4l")
 
-[node name="HealthComponent" parent="." unique_id=1185055785 node_paths=PackedStringArray("invisibilityComp") instance=ExtResource("6_cxfov")]
-invisibilityComp = NodePath("../InvisibleFramesComp")
+[node name="HealthComponent" parent="." unique_id=1185055785 instance=ExtResource("6_cxfov")]
 
 [node name="EnemyResetComponent" parent="." unique_id=1788503485 node_paths=PackedStringArray("collisions", "healthComp") instance=ExtResource("7_getqo")]
 collisions = [NodePath("../Hurtbox/CollisionShape2D"), NodePath("../CollisionShape2D"), NodePath("../Hitbox/CollisionShape2D")]

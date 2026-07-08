@@ -143,6 +143,8 @@ shape = SubResource("RectangleShape2D_bi8kd")
 [node name="Hitbox" parent="." unique_id=1160487587 instance=ExtResource("13_ckrvk")]
 visible = false
 collision_mask = 2
+knockback_type = 1
+upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2107993197]
 position = Vector2(-0.00838614, 0.070004)

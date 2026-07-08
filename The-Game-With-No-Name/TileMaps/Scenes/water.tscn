@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx8xxo1jihgy1"]
+[gd_scene format=3 uid="uid://dx8xxo1jihgy1"]
 
 [ext_resource type="Texture2D" uid="uid://dewxjnpbnlngg" path="res://TileMaps/Textures/water_bottom.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://c5eiphvw0302l" path="res://TileMaps/Textures/water.png" id="5_efcmi"]
@@ -185,7 +185,7 @@ physics_layer_0/collision_mask = 512
 sources/0 = SubResource("TileSetAtlasSource_pqdv3")
 sources/5 = SubResource("TileSetAtlasSource_brgur")
 
-[node name="Water" type="TileMapLayer" groups=["Water"]]
+[node name="Water" type="TileMapLayer" unique_id=800376831 groups=["Water"]]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = 2
 tile_set = SubResource("5")

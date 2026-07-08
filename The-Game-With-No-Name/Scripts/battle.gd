@@ -1,6 +1,6 @@
 extends Node2D
 
-var time: float = G.battle_time
+var time: float = 0
 var level: Node2D = null
 
 @onready var in_game: Node2D = $InGame
@@ -13,9 +13,11 @@ var level: Node2D = null
 var pause_game: bool = true
 var showVictory: bool = true
 
+
 func _ready() -> void:
 	loadArena()
-	if G.battle_time != 0:
+	time = BattleData.time
+	if BattleData.time != 0:
 		timerLabel.visible = true
 		timer.start()
 
@@ -33,16 +35,16 @@ func _process(_delta: float) -> void:
 	if time == 0 and pause_game and timer:
 		pause_game = false
 		
-		if G.battle_player_heal[0] == G.battle_player_heal[1]:
+		if BattleData.hp[0] == BattleData.hp[1]:
 			declareVictor(2, false)
-		elif G.battle_player_heal[0] > G.battle_player_heal[1]:
+		elif BattleData.hp[0] > BattleData.hp[1]:
 			declareVictor(1, false)
 		else:
 			declareVictor(0, false)
 	
 		get_tree().paused = true
 	
-	if G.battle_time != 0:
+	if BattleData.time != 0:
 		timerLabel.text = str(time)
 
 
@@ -55,7 +57,7 @@ func declareVictor(i: int, startTimer: bool) -> void:
 
 
 func loadArena() -> void:
-	var arena: PackedScene = load("res://Arena/Arena_%d.tscn" % G.arena)
+	var arena: PackedScene = load("res://Arena/Arena_%d.tscn" % BattleData.arena)
 	level = arena.instantiate()
 	in_game.add_child(level)
 
@@ -65,9 +67,6 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 
 
 func _on_FadeIn_animation_finished(_anim_name: String) -> void:
-	G.battle_damage = false
-#	G.playerAlive[0] = true
-#	G.playerAlive[1] = true
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Szenen/BattleMode.tscn")
 

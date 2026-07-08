@@ -24,20 +24,9 @@ signal boss_label_changed(label: String)
 var listeners: Array[Node2D] = []
 var level_viewport: SubViewport
 
-var arena: int = 1 #Used for the Battle Mode to know which Arena to Load
 var dialog_index: int = -1
 
-#battle Mode Variables
-var sword: bool = true
-var wand: bool = true
-var jump: bool = true
-var battle_player_heal: Array[int] = [20, 100, 100]
-var battle_hitpoints: int = 10
-var battle_time: int = 0
 var last_number: int = 0
-var battle_ready: Array[bool] = [false, false]
-var battle_damage: bool = false
-var battle_mode: bool = false
 
 var max_text: int = 0
 

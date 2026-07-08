@@ -24,10 +24,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
 size = Vector2(22, 24)
 
-[node name="Kristall_1" type="Node2D" unique_id=17957230 node_paths=PackedStringArray("npcArea", "dialogLoader") groups=["Door"]]
+[node name="Kristall_1" type="Node2D" unique_id=17957230 groups=["Door"]]
 script = ExtResource("2")
-npcArea = NodePath("NPCArea")
-dialogLoader = NodePath("DialogueLoader")
 
 [node name="Ping" parent="." unique_id=900391210 instance=ExtResource("1")]
 position = Vector2(0, -30)
@@ -56,4 +54,4 @@ hframes = 4
 vframes = 2
 
 [node name="KristallParticle" parent="." unique_id=358879524 instance=ExtResource("7")]
-visible = false
+amount = 6

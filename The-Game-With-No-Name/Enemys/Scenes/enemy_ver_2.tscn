@@ -136,6 +136,8 @@ shape = SubResource("CapsuleShape2D_kvwxm")
 [node name="Hitbox" parent="." unique_id=1036386492 instance=ExtResource("11_uxwv7")]
 visible = false
 collision_mask = 2
+knockback_type = 1
+upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=878770219]
 position = Vector2(0.00282836, 0.210438)

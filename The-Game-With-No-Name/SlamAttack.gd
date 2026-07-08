@@ -4,7 +4,7 @@ class_name SlamAttack
 var target_position: Vector2
 
 func can_use() -> bool:
-	var player: Player =boss.player_detector.focus_player
+	var player: Player = boss.player_detector.focus_player
 	
 	if player == null:
 		return false
@@ -42,6 +42,9 @@ func update(delta: float) -> void:
 		create_waves()
 		
 		await boss.animation_player.animation_finished
+		
+		if not boss.current_attack == self:
+			return
 		
 		finish()
 

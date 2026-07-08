@@ -22,7 +22,10 @@ func start() -> void:
 	explode() 
 	
 	if should_do_followup():
-		do_follow_up()
+		await do_follow_up()
+	
+	if not boss.current_attack == self:
+		return
 	
 	finish()
 

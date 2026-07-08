@@ -190,9 +190,9 @@ position = Vector2(252, 483)
 [node name="DoorWithKey1" parent="Objects" unique_id=2131529152 node_paths=PackedStringArray("keys") instance=ExtResource("11")]
 position = Vector2(1142, 546)
 door_name = "DoorWithKey2"
-level_number = 303
+level_number = 3
 keys = [NodePath("../../Schlüssel"), NodePath("../../Schlüssel2"), NodePath("../../Schlüssel3")]
-door_nr = 5
+door_nr = 303
 
 [node name="swing_trap" parent="Objects" unique_id=217938078 instance=ExtResource("8")]
 position = Vector2(235, 298)

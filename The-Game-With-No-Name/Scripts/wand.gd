@@ -9,8 +9,6 @@ var can_swing: bool = true
 
 func _ready() -> void:
 	sprite.visible = false
-	if G.battle_mode:
-		can_swing = G.wand
 
 
 func attack() -> void:
