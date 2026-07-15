@@ -18,10 +18,8 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwp8x"]
 size = Vector2(38, 34)
 
-[node name="Buschie" type="Node2D" unique_id=963445863 node_paths=PackedStringArray("npcArea", "dialogLoader")]
+[node name="Buschie" type="Node2D" unique_id=963445863]
 script = ExtResource("3")
-npcArea = NodePath("NPCArea")
-dialogLoader = NodePath("DialogueLoader")
 
 [node name="BuschieFace" type="Sprite2D" parent="." unique_id=585764626]
 position = Vector2(0, -5)

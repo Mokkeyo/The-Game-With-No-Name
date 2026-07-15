@@ -6,7 +6,7 @@ signal ending_dialog
 @export var npc_area: NpcArea = null
 @export var check_for_input: bool = true
 
-@export_category("new dialog system")
+@export_category("dialog system")
 @export var dialogue_resource: DialogueResource
 @export var dialogue_start: String = "kratos"
 
@@ -18,7 +18,13 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if not npc_area:
+	if npc_area == null:
+		return
+	
+	if npc_area.player == null:
+		return
+	
+	if npc_area.player.is_in_state(PlayerStates.ID.FREEZE):
 		return
 	
 	if npc_area.check_for_player():
@@ -35,7 +41,7 @@ func action(player: Player = null) -> void:
 	G.start_new_dialog.emit(self, dialogue_resource, dialogue_start)
 	player.velocity.x = 0
 	player.animation.play(player.animation.Anim.DOOR)
-	player.freeze = true
+	player.freeze()
 
 
 func end_dialog() -> void:

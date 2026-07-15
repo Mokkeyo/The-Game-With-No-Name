@@ -33,14 +33,14 @@ func physics_update(_delta: float) -> void:
 	
 	if player.lava_water_detector.in_water_elevator:
 		player.rotation_degrees = 0
-		player.state_machine.change_state(ID.ELEVATOR)
+		player.state_machine.change_state(PlayerStates.ID.ELEVATOR)
 		return
 	
 	if not player.is_on_floor():
 		player.rotation_degrees = 0
-		player.state_machine.change_state(ID.WATER_AIR)
+		player.state_machine.change_state(PlayerStates.ID.WATER_AIR)
 		return
 	
 	if not player.lava_water_detector.in_water:
-		player.state_machine.change_state(ID.GROUND)
+		player.state_machine.change_state(PlayerStates.ID.GROUND)
 		return

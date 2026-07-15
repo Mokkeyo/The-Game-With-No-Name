@@ -183,5 +183,5 @@ func _on_darkness_changed() -> void:
 
 func end_dialog() -> void:
 	await get_tree().create_timer(0.05).timeout
-	player_manager.players[0].freeze = false
+	player_manager.players[0].un_freeze()
 	dialogue_manager.end_dialog()

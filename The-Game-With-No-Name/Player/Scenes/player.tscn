@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://b4bpfmt4j5jbn" path="res://player_combat.gd" id="23_e0sep"]
 [ext_resource type="Script" uid="uid://blaa4ourwagro" path="res://Player/Scenes/water_air_state.gd" id="23_y1muo"]
 [ext_resource type="PackedScene" uid="uid://bvub8vvsg06rb" path="res://knockback_component.tscn" id="28_drxtx"]
+[ext_resource type="Script" uid="uid://dowfq8bgdfnwm" path="res://Player/Scenes/freeze_state.gd" id="28_efn1h"]
 [ext_resource type="PackedScene" uid="uid://by46qah463qwe" path="res://state_machine.tscn" id="31_nxnwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
@@ -449,6 +450,9 @@ script = ExtResource("17_17k2o")
 script = ExtResource("19_ut808")
 
 [node name="WaterElevatorState" parent="StateMachine" unique_id=1401453911 instance=ExtResource("21_ut808")]
+
+[node name="FreezeState" type="Node" parent="StateMachine" unique_id=1543820561]
+script = ExtResource("28_efn1h")
 
 [node name="PlayerAnimation" type="Node" parent="." unique_id=1528590889]
 script = ExtResource("20_aytf0")

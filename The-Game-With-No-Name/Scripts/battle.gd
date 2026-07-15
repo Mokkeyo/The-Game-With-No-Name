@@ -36,13 +36,11 @@ func _process(_delta: float) -> void:
 
 func player_died(_player: float) -> void:
 	await get_tree().process_frame
-	print("player died")
 	check_victory()
 
 
 func check_victory() -> void:
 	timer.stop()
-	print("cheking victory")
 	if not players[0].is_alive and not players[1].is_alive:
 		declareVictor(2)
 	elif not players[0].is_alive and players[1].is_alive:
@@ -82,7 +80,6 @@ func set_player_position(level: Node2D) -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	print("finished")
 #	var fader: Fader = $Fader
 	
 #	await fader.fade_in().animation_finished

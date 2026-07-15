@@ -13,16 +13,6 @@ func exit() -> void: pass
 func physics_update(_delta: float) -> void: pass
 func handle_input() -> void: pass
 
-enum ID {
-	GROUND,
-	AIR,
-	ROPE,
-	LAUNCH,
-	ELEVATOR,
-	WATER_GROUND,
-	WATER_AIR,
-}
-
 #region Helper
 func jump() -> void:
 	play_jump_sound()

@@ -3,8 +3,17 @@ class_name PlayerInput
 
 var inputs: Dictionary[String, String]
 
-func setup(input_map: Dictionary[String, String]) -> void:
-	inputs = input_map
+func setup(player_index: int) -> void:
+	inputs = {
+		"up": "player%d_up" % int(player_index),
+		"down": "player%d_down" % int(player_index),
+		"left": "player%d_left" % int(player_index),
+		"right": "player%d_right" % int(player_index),
+		"jump": "player%d_jump" % int(player_index),
+		"interact": "player%d_interact" % int(player_index),
+		"attack": "player%d_attack" % int(player_index),
+		"wand": "player%d_wand" % int(player_index)
+	}
 
 #region Movement
 func move_dir() -> int:

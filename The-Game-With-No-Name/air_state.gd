@@ -110,15 +110,15 @@ func physics_update(delta: float) -> void:
 			jump()
 			return
 		
-		player.state_machine.change_state(ID.GROUND)
+		player.state_machine.change_state(PlayerStates.ID.GROUND)
 		return
 	
 	if player.grab_zone.rope_part:
-		player.state_machine.change_state(ID.ROPE)
+		player.state_machine.change_state(PlayerStates.ID.ROPE)
 		return
 	
 	if player.lava_water_detector.in_water:
-		player.state_machine.change_state(ID.WATER_AIR)
+		player.state_machine.change_state(PlayerStates.ID.WATER_AIR)
 
 
 func _on_jump_buffer_timer_timeout() -> void:

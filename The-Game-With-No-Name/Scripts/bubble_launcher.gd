@@ -56,10 +56,10 @@ func shoot_bubble(i: int) -> void:
 		if body.is_in_group("Player_%d" %i):
 			arrow[i].visible = false
 			player_bodies[i] = null
-			body.freeze = false
+			body.un_freeze()
 			body.velocity = Vector2.ZERO
 			if not direction[i] == Vector2.ZERO:
-				body.state_machine.change_state(3)
+				body.state_machine.change_state(PlayerStates.ID.LAUNCH)
 				body.launch_direction = direction[i]
 			direction[i] = Vector2.ZERO
 			break
@@ -71,8 +71,7 @@ func _on_Area2D_body_entered(body: Player) -> void:
 			player_bodies[i] = body
 			body.velocity = Vector2.ZERO
 			body.launch_direction = Vector2.ZERO
-			body.state_machine.change_state(1)
-			body.freeze = true
+			body.freeze()
 			body.animation.play(body.animation.Anim.JUMP)
 			body.global_position = player_position
 			break

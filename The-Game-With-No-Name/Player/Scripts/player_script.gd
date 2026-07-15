@@ -25,25 +25,26 @@ const MAX_FLOOR_ANGLE: float = PI / 4.0
 @onready var combat: PlayerCombat = $PlayerCombat
 @onready var input: PlayerInput = $PlayerInput
 
+@onready var sword: Sword = $Sword
+@onready var wand: Wand = $Wand
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 @onready var state_machine: StateMachine = $StateMachine
 
 @export var current_player: int = 0
 
 var is_alive: bool = true
 var launch_direction: Vector2 = Vector2()
-var freeze: bool = false
-
 
 func _ready() -> void:
 	combat.player_index =  current_player
-	_set_player_inputs()
 	_setup_components()
 	_connect_signals()
 	_configure_floor_settings()
 	_setup_battle()
 	state_machine.setup(self)
 	
-	state_machine.change_state(0)
+	state_machine.change_state(PlayerStates.ID.GROUND)
 
 #region setups
 
@@ -56,33 +57,13 @@ func _setup_battle() -> void:
 
 
 func _setup_components() -> void:
-	var sword: Sword = $Sword
-	var wand: Wand = $Wand
-	var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-	
-	assert(sword)
-	assert(wand)
-	assert(animated_sprite)
-	
 	SoundMusic.listeners.append(self)
+	input.setup(current_player + 1)
 	movement.setup(self)
 	animation.setup(current_player, animated_sprite)
 	combat.setup(sword, wand)
 	push_component.setup(self)
 	airship_entry_component.setup(self)
-
-
-func _set_player_inputs() -> void:
-	input.setup({
-		"up": "player%d_up" % int(current_player + 1),
-		"down": "player%d_down" % int(current_player + 1),
-		"left": "player%d_left" % int(current_player + 1),
-		"right": "player%d_right" % int(current_player + 1),
-		"jump": "player%d_jump" % int(current_player + 1),
-		"interact": "player%d_interact" % int(current_player + 1),
-		"attack": "player%d_attack" % int(current_player + 1),
-		"wand": "player%d_wand" % int(current_player + 1)
-	})
 
 
 func _configure_floor_settings() -> void:
@@ -100,6 +81,17 @@ func _connect_signals() -> void:
 	reset_comp.disabling_stats.connect(disable_player)
 	lava_water_detector.lava_entered.connect(lava_entered)
 
+#endregion
+
+#region helper
+func un_freeze() -> void:
+	state_machine.change_state(PlayerStates.ID.GROUND)
+
+func freeze() -> void:
+	state_machine.change_state(PlayerStates.ID.FREEZE)
+
+func is_in_state(id: PlayerStates.ID) -> bool:
+	return state_machine.is_in_state(id)
 #endregion
 
 #region camera
@@ -143,7 +135,7 @@ func disable_player() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_alive or freeze:
+	if not is_alive:
 		return
 	
 	state_machine.physics_update(delta)
@@ -159,7 +151,7 @@ func enable_player() -> void:
 	SoundMusic.listeners.append(self)
 	is_alive = true
 	grab_zone.rope_part = null
-	state_machine.change_state(0)
+	state_machine.change_state(PlayerStates.ID.GROUND)
 	grab_zone.can_grab = true
 	velocity = Vector2.ZERO
 	health_component.health = 100
@@ -182,7 +174,6 @@ func next_to_right_wall() -> bool:
 func next_to_left_wall() -> bool: 
 	return raycast_left.is_colliding()
 #endregion
-
 
 #region Signal Callbacks
 func _on_AnimatedSprite_animation_finished() -> void:

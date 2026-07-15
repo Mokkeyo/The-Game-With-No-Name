@@ -10,9 +10,16 @@ func _ready() -> void:
 	parent.set_process_unhandled_input(false)
 
 func check_for_player() -> bool:
-	if player:
-		if not player.freeze and Input.is_action_just_pressed("player1_interact") and player.is_on_floor():
-			return true
+	if player == null:
+		return false
+	
+	if player.is_in_state(PlayerStates.ID.FREEZE):
+		return false
+	
+		
+	if Input.is_action_just_pressed("player1_interact") and player.is_on_floor():
+		return true
+	
 	return false
 
 
@@ -20,9 +27,10 @@ func check_for_player_inside_area(body: Node2D, add_player: bool) -> void:
 	if not body is Player:
 		return
 	
+	
 	var playerNode: Player = body
 	
-	if playerNode.is_in_group("Player_0") and not playerNode.freeze:
+	if playerNode.is_in_group("Player_0"):
 		parent.set_process_unhandled_input(add_player)
 		player = body if (add_player) else null
 		if ping:

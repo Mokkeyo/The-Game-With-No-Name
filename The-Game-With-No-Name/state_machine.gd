@@ -3,6 +3,7 @@ class_name StateMachine
 
 var player: Player
 var current_state: PlayerState
+var current_id: PlayerStates.ID
 
 @onready var states: Array[PlayerState] = [
 	$GroundState,
@@ -12,6 +13,7 @@ var current_state: PlayerState
 	$WaterElevatorState,
 	$WaterGroundState,
 	$WaterAirState,
+	$FreezeState,
 ]
 
 func setup(player_value: Player) -> void:
@@ -25,8 +27,8 @@ func setup(player_value: Player) -> void:
 		state.combat = player.combat
 		state.input = player.input
 
-func change_state(state: int) -> void:
-	var new_state: PlayerState = states[state]
+func change_state(id: PlayerStates.ID) -> void:
+	var new_state: PlayerState = states[id]
 	
 	if current_state == new_state:
 		return
@@ -35,6 +37,7 @@ func change_state(state: int) -> void:
 		current_state.exit()
 	
 	current_state = new_state
+	current_id = id
 	current_state.enter()
 
 
@@ -44,3 +47,6 @@ func physics_update(delta: float) -> void:
 	
 	current_state.handle_input()
 	current_state.physics_update(delta)
+
+func is_in_state(id: PlayerStates.ID) -> bool:
+	return current_id == id

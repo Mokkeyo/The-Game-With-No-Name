@@ -13,4 +13,4 @@ func physics_update(_delta: float) -> void:
 	player.move_and_slide()
 	
 	if player.get_slide_collision_count() > 0:
-		player.state_machine.change_state(ID.AIR)
+		player.state_machine.change_state(PlayerStates.ID.AIR)

@@ -32,7 +32,7 @@ func physics_update(_delta: float) -> void:
 	var rope_part: Area2D = player.grab_zone.rope_part
 	
 	if rope_part == null:
-		player.state_machine.change_state(ID.AIR)
+		player.state_machine.change_state(PlayerStates.ID.AIR)
 		return
 	
 	player.global_position = rope_part.global_position - ROPE_OFFSET

@@ -34,12 +34,12 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 	
 	if player.lava_water_detector.in_water_elevator:
-		player.state_machine.change_state(ID.ELEVATOR)
+		player.state_machine.change_state(PlayerStates.ID.ELEVATOR)
 		return
 	
 	if player.is_on_floor():
-		player.state_machine.change_state(ID.WATER_GROUND)
+		player.state_machine.change_state(PlayerStates.ID.WATER_GROUND)
 		return
 	
 	if not player.lava_water_detector.in_water:
-		player.state_machine.change_state(ID.AIR)
+		player.state_machine.change_state(PlayerStates.ID.AIR)
