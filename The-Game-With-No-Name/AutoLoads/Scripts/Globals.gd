@@ -22,11 +22,9 @@ signal boss_value_changed(hp: float)
 signal boss_label_changed(label: String)
 
 var listeners: Array[Node2D] = []
-var level_viewport: SubViewport
+var level_viewport: Node
 
 var dialog_index: int = -1
-
-var last_number: int = 0
 
 var max_text: int = 0
 

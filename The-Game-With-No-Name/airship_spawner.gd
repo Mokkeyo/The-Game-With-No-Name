@@ -6,7 +6,7 @@ var body_count: int = 0
 @onready var area: Area2D = $Area2D
 @onready var marker: Marker2D = $Marker2D
 @onready var airships: Array[Airship] = [$AirshipPlayer1, $AirshipPlayer2]
-
+@onready var ping: Ping = $Ping
 
 func _ready() -> void:
 	for airship: Airship in airships:
@@ -34,5 +34,11 @@ func check_for_player_in_area(body: Node2D, entered: bool) -> void:
 			set_process_unhandled_input(entered)
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:check_for_player_in_area(body, true)
-func _on_area_2d_body_exited(body: Node2D) -> void:check_for_player_in_area(body, false)
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	check_for_player_in_area(body, true)
+	ping.visible = true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	check_for_player_in_area(body, false)
+	ping.visible = false

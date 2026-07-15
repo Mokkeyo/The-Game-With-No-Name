@@ -133,9 +133,9 @@ func _physics_process(delta: float) -> void:
 	on_floor = is_on_floor()
 	on_ceiling = is_on_ceiling()
 	on_wall = is_on_wall()
-	in_water = lavaWaterDetector.inWater
+	in_water = lavaWaterDetector.in_water
 	
-	if lavaWaterDetector.inWaterElevator:
+	if lavaWaterDetector.in_water_elevator:
 		velocity.y = -200
 	   
 	

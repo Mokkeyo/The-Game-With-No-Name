@@ -1,22 +1,23 @@
 extends PlayerState
 class_name WaterElevatorState
 
-@export var lift_speed: int = 220
+@export var lift_speed: float = 220.0
 
 func enter() -> void:
-	player.animation.play(player.animation.Anim.JUMP)
+	animation.play(animation.Anim.JUMP)
 
 
 func handle_input() -> void:
-	var dir: int = player.input.move_dir()
+	var dir: Vector2 = input_direction()
 	
-	player.movement.move_horizontal(
-		dir, 
-		not player.combat.is_attacking()
-		)
+	update_combat(dir)
 	
-	if not dir == 0:
-		player.animation.flip(dir < 0)
+	movement.move_horizontal_water(
+		dir.x, 
+		combat.is_attacking()
+	)
+	
+	update_flip(dir)
 
 
 func physics_update(_delta: float) -> void:
@@ -24,5 +25,7 @@ func physics_update(_delta: float) -> void:
 	
 	player.move_and_slide()
 	
-	if not player.lava_water_detector.inWaterElevator:
-		player.change_state("air")
+	if not player.lava_water_detector.in_water:
+		player.state_machine.change_state(ID.AIR)
+	else:
+		player.state_machine.change_state(ID.WATER_AIR)

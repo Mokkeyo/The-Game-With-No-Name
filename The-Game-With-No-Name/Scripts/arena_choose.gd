@@ -3,8 +3,12 @@ extends Menu
 @export var rules: Menu
 @export var main: BattleMenu
 
+var rolled_arena: int
+
 var random_arena: int
-var max_arena: int = 6
+var max_arena: int
+var selected_arena: int = BattleData.arena
+
 @onready var arena_sprite: Sprite2D = $Arena_1/Arena
 @onready var arena_label: Label = $Arena_1/Label
 @onready var arrow_right: Sprite2D = $Arena_1/richtung_right
@@ -13,23 +17,43 @@ var max_arena: int = 6
 @onready var arena_button: Button = $Arena_1
 @onready var battle_ready_menu: Menu = $BattleReady
 
+@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+const ARROW_PRESSED: Texture2D = preload("res://Arena/Textures/arrow_pressed.png")
+const ARROW_UNPRESSED: Texture2D = preload("res://Arena/Textures/arrow_unpressed.png")
+
+const ARENA_TEXTURES: Array[Texture2D] = [
+	null,
+	preload("res://Arena/Textures/arena_1.png"),
+	preload("res://Arena/Textures/arena_2.png"),
+	preload("res://Arena/Textures/arena_3.png"),
+	preload("res://Arena/Textures/arena_4.png"),
+	preload("res://Arena/Textures/arena_5.png"),
+	preload("res://Arena/Textures/arena_6.png"),
+	preload("res://Arena/Textures/arena_7.png")
+]
+
 
 func _ready() -> void:
 	super._ready()
-	arrow_left.visible = (BattleData.arena == 1)
+	
+	var arena_size: int = ARENA_TEXTURES.size()
+	max_arena = arena_size - 2
+	random_arena = arena_size - 1
+	
+	rng.randomize()
+	rolled_arena = rng.randi_range(1, max_arena)
+	
+	update_arena_ui()
 	rules.exited.connect(Callable(main, "change_menu").bind(self))
 	battle_ready_menu.visible = not BattleData.ready[0]
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	rng.randomize()
-	random_arena = rng.randi_range(1, 6)
-	G.last_number = random_arena
-	if BattleData.ready[0] and BattleData.ready[1]:
+	if players_ready():
 		arena_button.grab_focus()
 
 
 func enter() -> void:
-	print(BattleData.ready)
-	if BattleData.ready[0] and BattleData.ready[1]:
+	if players_ready():
+		await get_tree().process_frame
 		super.enter()    
 		return
 	battle_ready_menu.visible = true
@@ -43,33 +67,40 @@ func _input(_event: InputEvent) -> void:
 		return
 		
 	rules_timer.start()
-	if (BattleData.arena < max_arena + 1 and direction == 1) or (BattleData.arena > 1 and direction == -1):
-		BattleData.arena = BattleData.arena + direction
-		arena_sprite.texture = load("res://Arena/Textures/arena_%d.png" % BattleData.arena)
-		arena_label.text = "Arena %d" % BattleData.arena if not BattleData.arena == max_arena + 1 else "Random"
-		if direction == 1:
-			arrow_right.texture = load("res://Arena/Textures/arrow_pressed.png")
-		else:
-			arrow_left.texture = load("res://Arena/Textures/arrow_pressed.png")
 	
-		arrow_right.visible = not (BattleData.arena == max_arena + 1)
-		arrow_left.visible = not (BattleData.arena == 1)
+	var next: int = selected_arena + direction
+	
+	if next < 1 or next > random_arena:
+		return
+	
+	selected_arena = next
+	update_arena_ui()
+	
+	var arrow :Sprite2D = arrow_right if direction > 0 else arrow_left
+	arrow.texture = ARROW_PRESSED
 
+
+func players_ready() -> bool:
+	return BattleData.ready[0] and BattleData.ready[1]
+
+
+func update_arena_ui() -> void:
+	arena_sprite.texture = ARENA_TEXTURES[selected_arena]
+	arena_label.text = ("Random" if selected_arena == random_arena else "Arena %d" % selected_arena)
+	
+	arrow_right.visible = selected_arena < random_arena
+	arrow_left.visible = selected_arena > 1
 
 func _on_timer_timeout() -> void:
-	arrow_right.texture = load("res://Arena/Textures/arrow_unpressed.png")
-	arrow_left.texture = load("res://Arena/Textures/arrow_unpressed.png")
-
+	for arrow: Sprite2D in [arrow_left, arrow_right]:
+		arrow.texture = ARROW_UNPRESSED
 
 func _on_arena_1_pressed() -> void:
-	if BattleData.arena == 7:
-		if random_arena == G.last_number:
-			random_arena = random_arena + 1
-			if random_arena >= 7:
-				random_arena = 1
-			G.last_number = random_arena
-		BattleData.arena = random_arena
-		
+	if selected_arena == random_arena:
+		BattleData.arena = rolled_arena
+	else:
+		BattleData.arena = selected_arena
+	
 	get_tree().change_scene_to_file("res://Arena/Battle.tscn")
 
 

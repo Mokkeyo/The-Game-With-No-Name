@@ -1,61 +1,32 @@
 {
-	"achievments": [
-		"Its Just The Beginning",
-		"Unkillable",
-		"Secret With No Name",
-		"Does Someone Need A Tutorial?",
-		"Chatter",
-		"You Got A Friend In Me"
-	],
+	"achievments": [],
 	"ambientVolume": 0.5,
 	"darknessOn": true,
-	"darknessValue": 150,
+	"darknessValue": 200,
 	"deaths": [
 		0,
 		0,
-		22,
+		0,
 		0
 	],
-	"dialog_flags": {
-		"met_bossDoor_0": true,
-		"met_buschi_0": true,
-		"met_enemyGravestone_0": true,
-		"met_gravestone_0": true,
-		"met_houseDoor_0 ": true,
-		"met_houseDoor_1": true,
-		"met_kratos_0": true,
-		"met_kratos_1": true,
-		"met_kratos_2": true,
-		"met_kratos_3": true,
-		"met_kristall_0": true,
-		"met_rick_0": true,
-		"met_rick_1": true,
-		"met_rick_2": true,
-		"met_rick_3": true,
-		"met_shild_0": true,
-		"met_shild_1": true,
-		"met_shild_2": true,
-		"met_shild_3": true,
-		"met_shild_4": true,
-		"met_shild_5": true
-	},
+	"dialog_flags": {},
 	"fullscreen": false,
 	"maxFps": 0,
-	"maxVolume": 0.0,
+	"maxVolume": 0.5,
 	"musicVolume": 1.0,
 	"playerName": [
-		"test",
+		"",
 		"",
 		"",
 		""
 	],
-	"printFps": true,
+	"printFps": false,
 	"resolution": {
 		"x": 1024,
 		"y": 576
 	},
-	"sfxVolume": 1.0,
-	"textboxCount": 21,
+	"sfxVolume": 0.5,
+	"textboxCount": 0,
 	"version": 1,
 	"vsync": false
 }

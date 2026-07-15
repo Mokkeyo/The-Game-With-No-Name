@@ -3,44 +3,125 @@ class_name PlayerCombat
 
 signal enemy_hit(jump_power: float)
 
+const SWORD_OFFSET_X: float = 10.0
+const SWORD_OFFSET_Y: float = 13.5
+const SWORD_BASE_Y: float = -10.0
+const SWORD_ROTATION: float = -145.0
+const SWORD_HAND_OFFSET: float = -4
+const MANA_REGEN: int = 11
+const MAX_MANA: int = 100
+const MANA_COST: int = 33
+
 @export var enemy_jump_power: int = 210
 @export var mana_timer: Timer
 @export var sound_player: SoundPlayer
 
-const MANA_COST: int = 33
-
 var spirit_ball_scene: PackedScene = preload("res://Scenes/spirit_ball.tscn")
 var spirit_ball_pool: Array[SpiritBall] = []
-
-var current_player: int = 0
-
+var player_index: int = 0
 var sword: Sword
 var wand: Wand
-var facing_x: float = 1
-#var sword_attack_position: Vector2 = Vector2.ZERO
-#var sword_rotation: float = -145
+var facing_x: int = 1
 
+#region Setup
 func setup(s: Sword, w: Wand) -> void:
+	assert(s != null)
+	assert(w != null)
+	assert(mana_timer != null)
+#	assert(sound_player != null)
+	
 	sword = s
 	wand = w
-	sword.end_position.y = -10
-	sword.end_rotation = -145
+	
+	setup_sword()
+	connect_signals()
+	
+	await get_tree().process_frame
+	initialize_pool()
+
+
+func connect_signals() -> void:
 	mana_timer.timeout.connect(_on_ManaTimer_timeout)
-	change_sword_direction(Vector2(1,0), 0)
 	if sword.hit_box:
 		sword.hit_box.hit.connect(_on_enemy_hit)
-	await get_tree().process_frame
 
+#endregion
+
+#region Sword
+func setup_sword() -> void:
+	sword.end_position.y = SWORD_BASE_Y
+	sword.end_rotation = SWORD_ROTATION
+	change_sword_direction(Vector2(1,0), 0)
+
+
+func is_attacking() -> bool:
+	return sword.state == sword.State.ATTACKING
+
+
+func attack() -> void:
+	sword.try_attack()
+
+
+func change_sword_direction(facing_direction: Vector2, player_rotation: float = 0) -> void:
+	if facing_direction != Vector2.ZERO:
+		var new_x_position: float = facing_direction.x * SWORD_OFFSET_X
+		sword.default_position.x = new_x_position
+		
+		var new_y_position: float = facing_direction.y * SWORD_OFFSET_Y + SWORD_BASE_Y
+		sword.default_position.y = new_y_position
+		
+		sword.facing_direction = facing_direction.normalized()
+	
+	if facing_direction.x != 0:
+		facing_x = int(facing_direction.x)
+	
+	if not is_attacking():
+		sword.position.x = SWORD_HAND_OFFSET * facing_x
+		
+		sword.end_position.x = sword.position.x
+		
+		sword.end_rotation = SWORD_ROTATION * facing_x + player_rotation
+		
+		sword.rotation_degrees = sword.end_rotation
+#endregion
+
+#region Wand
+func flip_wand(facing_direction: Vector2) -> void:
+	if facing_direction != Vector2.ZERO:
+		wand.flip(facing_direction.x < 0)
+
+
+func cast() -> void:
+	if not can_cast():
+		return
+
+#	sound_player.sound = "magic"
+#	sound_player.play_sound()
+	consume_mana()
+	wand.attack()
+	activate_ball()
+
+
+func can_cast() -> bool:
+	return (
+		wand.can_swing
+		and Save.player.mana[player_index] >= MANA_COST
+	)
+
+#endregion
+
+#region SpiritBall Pool
+func initialize_pool() -> void:
 	for i: int in 2:
 		create_spirit_ball()
 
+
 func create_spirit_ball() -> SpiritBall:
+	assert(G.level_viewport != null)
+	
 	var ball: SpiritBall = spirit_ball_scene.instantiate()
 	
-	if G.level_viewport:
-		G.level_viewport.add_child(ball)
-	else:
-		push_warning("no level viewport found")
+	G.level_viewport.add_child(ball)
 	
 	ball.died.connect(disable_ball)
 	
@@ -88,69 +169,32 @@ func disable_ball(ball: SpiritBall) -> void:
 		ball.hit_box.monitoring = false
 	
 	ball.global_position = Vector2.ZERO
+#endregion
 
-
-func can_cast() -> bool:
-	return wand.can_swing
-
-
-func cast() -> void:
-#	wand.flip(direction)
-	if Save.player.mana[current_player] >= MANA_COST and can_cast():
-		sound_player.sound = "magic"
-		sound_player.play_sound()
-		change_mana_value()
-		wand.attack()
-		activate_ball()
-
-
-func is_attacking() -> bool:
-	return sword.state == sword.State.ATTACKING
-
-
-func attack() -> void:
-	sword.try_attack()
-
-
-func change_sword_direction(facing_direction: Vector2, player_rotation: float = 0) -> void:
-	if facing_direction != Vector2.ZERO:
-		var new_x_position: float = facing_direction.x * 10
-		sword.default_position.x = new_x_position
-		
-		var new_y_position: float = facing_direction.y * 13.5 - 10
-		sword.default_position.y = new_y_position
-		
-		sword.facing_direction = facing_direction.normalized()
+#region Mana
+func consume_mana() -> void:
+	Save.player.mana[player_index] -= MANA_COST
 	
-	if facing_direction.x != 0:
-		facing_x = facing_direction.x
-	
-	if not is_attacking():
-		sword.position.x = -4 * facing_x
-		
-		sword.end_position.x = sword.position.x
-		
-		sword.end_rotation = -145 * facing_x + player_rotation
-		
-		sword.rotation_degrees = sword.end_rotation
+	update_mana_ui()
 
 
-func flip_wand(facing_direction: Vector2) -> void:
-	if facing_direction != Vector2.ZERO:
-		wand.flip(facing_direction.x < 0)
+func update_mana_ui() -> void:
+	G.mana_value_changed.emit(
+		player_index, 
+		Save.player.mana[player_index]
+	)
+#endregion
 
-
+#region Signal Callbacks
 func _on_enemy_hit(_damage: int) -> void:
 	enemy_hit.emit(enemy_jump_power)
 
 
-func change_mana_value() -> void:
-	Save.player.mana[current_player] -=MANA_COST
-	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
-
-
 func _on_ManaTimer_timeout() -> void:
-	Save.player.mana[current_player] += 11
-	if Save.player.mana[current_player] > 99:
-		Save.player.mana[current_player] = 99
-	G.mana_value_changed.emit(current_player, Save.player.mana[current_player])
+	Save.player.mana[player_index] = min(
+		Save.player.mana[player_index] + MANA_REGEN,
+		MAX_MANA
+	)
+	
+	update_mana_ui()
+#endregion

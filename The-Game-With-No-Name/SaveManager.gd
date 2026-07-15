@@ -1,7 +1,7 @@
 extends Node
 class_name SaveManager
 
-const SAVE_DIR: String = "res://Save_Files/"
+const SAVE_DIR: String = "user://Save_Files/"
 
 var active_slot: int = 0
 

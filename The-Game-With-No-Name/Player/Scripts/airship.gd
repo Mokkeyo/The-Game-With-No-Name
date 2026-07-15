@@ -86,7 +86,7 @@ func check_key_input() -> void:
 		shootComp.shoot_bullet()
 	
 	if Input.is_action_just_pressed(inputs["interact"]) and can_exit:
-		player_node.global_position = global_position
+		player_node.global_position = Vector2(global_position.x, global_position.y + 8) 
 		enable_player()
 
 func die() -> void:

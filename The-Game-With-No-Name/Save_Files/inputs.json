@@ -1,82 +1,82 @@
 {
 	"player1_attack": [
 		{
-			"button": 1.0,
+			"button": 1,
 			"type": "mouse"
 		},
 		{
-			"axis": 5.0,
+			"axis": 5,
 			"axis_sign": 1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player1_down": [
 		{
-			"keycode": 83.0,
+			"keycode": 83,
 			"type": "key"
 		},
 		{
-			"axis": 1.0,
+			"axis": 1,
 			"axis_sign": 1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player1_interact": [
 		{
-			"keycode": 4194325.0,
+			"keycode": 4194325,
 			"type": "key"
 		},
 		{
-			"button": 2.0,
-			"device": 0.0,
+			"button": 2,
+			"device": 0,
 			"type": "joy_button"
 		}
 	],
 	"player1_jump": [
 		{
-			"keycode": 32.0,
+			"keycode": 32,
 			"type": "key"
 		},
 		{
-			"button": 0.0,
-			"device": 0.0,
+			"button": 0,
+			"device": 0,
 			"type": "joy_button"
 		}
 	],
 	"player1_left": [
 		{
-			"keycode": 65.0,
+			"keycode": 65,
 			"type": "key"
 		},
 		{
-			"axis": 0.0,
+			"axis": 0,
 			"axis_sign": -1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player1_right": [
 		{
-			"keycode": 68.0,
+			"keycode": 68,
 			"type": "key"
 		},
 		{
-			"axis": 0.0,
+			"axis": 0,
 			"axis_sign": 1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player1_spawn": [
 		{
-			"keycode": 81.0,
+			"keycode": 69,
 			"type": "key"
 		},
 		{
-			"button": 3.0,
-			"device": 0.0,
+			"button": 3,
+			"device": 0,
 			"type": "joy_button"
 		}
 	],
@@ -86,126 +86,126 @@
 			"type": "key"
 		},
 		{
-			"axis": 1.0,
+			"axis": 1,
 			"axis_sign": -1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player1_wand": [
 		{
-			"button": 2.0,
+			"button": 2,
 			"type": "mouse"
 		},
 		{
-			"axis": 4.0,
+			"axis": 4,
 			"axis_sign": 1.0,
-			"device": 0.0,
+			"device": 0,
 			"type": "joy_motion"
 		}
 	],
 	"player2_attack": [
 		{
-			"keycode": 4194319.0,
+			"keycode": 4194319,
 			"type": "key"
 		},
 		{
-			"axis": 5.0,
+			"axis": 5,
 			"axis_sign": 1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	],
 	"player2_down": [
 		{
-			"keycode": 71.0,
+			"keycode": 71,
 			"type": "key"
 		},
 		{
-			"axis": 1.0,
+			"axis": 1,
 			"axis_sign": 1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	],
 	"player2_interact": [
 		{
-			"keycode": 4194322.0,
+			"keycode": 4194322,
 			"type": "key"
 		},
 		{
-			"button": 2.0,
-			"device": 1.0,
+			"button": 2,
+			"device": 1,
 			"type": "joy_button"
 		}
 	],
 	"player2_jump": [
 		{
-			"keycode": 4194320.0,
+			"keycode": 4194320,
 			"type": "key"
 		},
 		{
-			"button": 0.0,
-			"device": 1.0,
+			"button": 0,
+			"device": 1,
 			"type": "joy_button"
 		}
 	],
 	"player2_left": [
 		{
-			"keycode": 70.0,
+			"keycode": 70,
 			"type": "key"
 		},
 		{
-			"axis": 0.0,
+			"axis": 0,
 			"axis_sign": -1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	],
 	"player2_right": [
 		{
-			"keycode": 72.0,
+			"keycode": 72,
 			"type": "key"
 		},
 		{
-			"axis": 0.0,
+			"axis": 0,
 			"axis_sign": 1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	],
 	"player2_spawn": [
 		{
-			"keycode": 82.0,
+			"keycode": 82,
 			"type": "key"
 		},
 		{
-			"button": 3.0,
-			"device": 1.0,
+			"button": 3,
+			"device": 1,
 			"type": "joy_button"
 		}
 	],
 	"player2_up": [
 		{
-			"keycode": 84.0,
+			"keycode": 84,
 			"type": "key"
 		},
 		{
-			"axis": 1.0,
+			"axis": 1,
 			"axis_sign": -1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	],
 	"player2_wand": [
 		{
-			"keycode": 4194321.0,
+			"keycode": 4194321,
 			"type": "key"
 		},
 		{
-			"axis": 4.0,
+			"axis": 4,
 			"axis_sign": 1.0,
-			"device": 1.0,
+			"device": 1,
 			"type": "joy_motion"
 		}
 	]

@@ -45,6 +45,7 @@ func reset_stats() -> void:
 
 
 func setup() -> void:
+	move_comp.setup(self)
 	G.boss_begin.emit("Hades", 100)
 	health_comp.value_changed.connect(set_health_bar)
 	health_comp.died.connect(died)
@@ -151,7 +152,7 @@ func _physics_process(delta: float) -> void:
 		if current_attack:
 			current_attack.update(delta)
 	
-	move_comp.apply_gravity(delta)
+	move_comp.apply_normal_gravity(delta)
 	
 	if state == State.IDLE:
 		update_facing()
@@ -164,7 +165,7 @@ func update_facing() -> void:
 
 	if player == null:
 		return
-
+	
 	sprite.flip_h = player.global_position.x > global_position.x
 
 

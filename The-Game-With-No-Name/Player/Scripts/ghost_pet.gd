@@ -41,4 +41,4 @@ func flip(value: bool) -> void:
 
 
 func on_tween_finished() -> void:
-	animatedSprite.flip_h = playerNode.animated_sprite.flip_h
+	animatedSprite.flip_h = playerNode.animation.sprite.flip_h

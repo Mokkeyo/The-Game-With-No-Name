@@ -26,7 +26,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3923, -34, 3919, 217, 1
 size = Vector2(1, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g21ss"]
-size = Vector2(279, 98)
+size = Vector2(8, 5)
 
 [node name="Level4" type="Node2D" unique_id=1118564919]
 
@@ -52,26 +52,32 @@ navigation_polygon = SubResource("NavigationPolygon_hloeb")
 
 [node name="bat" parent="Enemys" unique_id=1701657894 instance=ExtResource("16")]
 position = Vector2(2929, 82)
+hitoints = 100.0
 SPEED = 120
 
 [node name="bat2" parent="Enemys" unique_id=282271844 instance=ExtResource("16")]
 position = Vector2(2327, 162)
+hitoints = 100.0
 SPEED = 120
 
 [node name="bat3" parent="Enemys" unique_id=1287184221 instance=ExtResource("16")]
 position = Vector2(2327, 59)
+hitoints = 100.0
 SPEED = 120
 
 [node name="bat4" parent="Enemys" unique_id=597341107 instance=ExtResource("16")]
 position = Vector2(922, 144)
+hitoints = 100.0
 SPEED = 120
 
 [node name="bat5" parent="Enemys" unique_id=1705325396 instance=ExtResource("16")]
 position = Vector2(562, 131)
+hitoints = 100.0
 SPEED = 120
 
 [node name="bat6" parent="Enemys" unique_id=638495550 instance=ExtResource("16")]
 position = Vector2(730, 74)
+hitoints = 100.0
 SPEED = 120
 
 [node name="airship(enemy)" parent="Enemys" unique_id=708060559 instance=ExtResource("12")]
@@ -404,15 +410,15 @@ shape = SubResource("RectangleShape2D_gxrqi")
 position = Vector2(149, 112)
 
 [node name="AirshipExitArea2" parent="." unique_id=1056693205 instance=ExtResource("15_gxrqi")]
-position = Vector2(3827, 117)
+position = Vector2(3775, 127)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirshipExitArea2" unique_id=1408046465]
-position = Vector2(23.5, -20)
+position = Vector2(69, 2)
 shape = SubResource("RectangleShape2D_g21ss")
 
 [node name="AirshipExitArea" parent="." unique_id=903220294 instance=ExtResource("15_gxrqi")]
 position = Vector2(104, 76)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirshipExitArea" unique_id=1068060444]
-position = Vector2(-20.5, -13)
+position = Vector2(92, 24.5)
 shape = SubResource("RectangleShape2D_g21ss")

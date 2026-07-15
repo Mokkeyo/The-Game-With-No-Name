@@ -1,21 +1,25 @@
 extends Menu
 class_name RulesMenu
 
+const MIN_TIME: int = 0
+@export var max_time: int = 300
+
+const MIN_HP: int = 1
+@export var max_hp: int = 50
+
 @onready var infinite_signe: Label = $Time/Infinite
 @onready var time_number: Label = $Time/Number
 @onready var hitpoints_number: Label = $Hitpoints/Number
 @onready var rules_timer: Timer = $Timer
 @onready var weapons: Menu = $Weapons
 
-enum State {change_hitpoints, change_time}
+enum State {HP, TIME}
 var state: State
 
 func _ready() -> void:
 	super._ready()
-	var hitpoints: Label = $Hitpoints/Number
-	var time: Label = $Time/Number
-	hitpoints.text = str(BattleData.hp[0])
-	time.text = str(BattleData.time)
+	update_hp()
+	update_time()
 	weapons.exited.connect(Callable(self, "weapons_exited"))
 
 func _input(_event: InputEvent) -> void:
@@ -24,21 +28,41 @@ func _input(_event: InputEvent) -> void:
 	if direction == 0 or not rules_timer.is_stopped():
 		return
 	
-	rules_timer.start(0.1)
+	rules_timer.start()
 	
 	match state:
-		State.change_hitpoints:
-			if (BattleData.hp[0] > 1 and direction == -1) or (BattleData.hp[0] < 50 and direction == 1):
-				BattleData.hp[0] += direction 
-				hitpoints_number.text = str(BattleData.hp[0])
+		State.HP:
+			change_hp(direction)
 		
-		State.change_time:
-			if (BattleData.time > 0 and direction == -1) or (BattleData.time < 300 and direction == 1):
-				BattleData.time += direction * 10
-				infinite_signe.visible = BattleData.time == 0
-				time_number.visible = not infinite_signe.visible
-				if time_number.visible:
-					time_number.text = "%d sec" % BattleData.time
+		State.TIME:
+			change_time(direction * 10)
+
+
+func change_hp(direction: int) -> void:
+	var next: int = clamp(BattleData.hp + direction, MIN_HP, max_hp)
+	
+	if not next == BattleData.hp:
+		BattleData.hp = next
+		update_hp()
+
+
+func change_time(direction: int) -> void:
+	var next: int = clamp(BattleData.time + direction, MIN_TIME, max_time)
+	
+	if not next == BattleData.time:
+		BattleData.time = next
+		update_time()
+
+
+func update_hp() -> void:
+	hitpoints_number.text = str(BattleData.hp)
+
+func update_time() -> void:
+	infinite_signe.visible = BattleData.time == 0
+	time_number.visible = not infinite_signe.visible
+	
+	if BattleData.time > 0:
+		time_number.text = "%d sec" % BattleData.time
 
 
 func weapons_exited() -> void:
@@ -47,15 +71,15 @@ func weapons_exited() -> void:
 
 
 func _on_hitpoints_focus_entered() -> void:
-	state = State.change_hitpoints
+	state = State.HP
 
 
 func _on_time_focus_entered() -> void:
-	state = State.change_time
+	state = State.TIME
 
 
 func _on_weapons_button_pressed() -> void:
 	set_process_input(false)
 	set_process_unhandled_input(false)
-	weapons.enter()
 	weapons.visible = true
+	weapons.enter()

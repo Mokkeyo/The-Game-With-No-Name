@@ -18,20 +18,16 @@ var max_health: float
 
 func _ready() -> void:
 	max_health = health
-	
-	if lavaDetector:
-		lavaDetector.lava_entered.connect(die)
 
 
 func damage(dmg: int) -> void:
 	if health <= 0:
 		return
-	print("old health: ",health)
-	update_hpbar(int(health))
 	
 	health -= dmg
-	print("new health: ", health)
 	value_changed.emit()
+	
+	update_hpbar(int(health))
 	
 	if health <=  0:
 		died.emit()

@@ -1,61 +1,57 @@
 extends CharacterBody2D
 class_name SpeerFish
 
-const rotationSpeed: int = 5
+const ROTATION_SPEED: float = 5.0
 
 enum State {DEAD, IDLE, FOKUSING, MOVING}
 var state: State = State.IDLE
 
-@onready var DetectPlayer: PlayerDetector = $PlayerDetector
-@onready var animatedSprite: AnimatedSprite2D = $SpeerFish
+@onready var player_det: PlayerDetector = $PlayerDetector
+@onready var animated_sprite: AnimatedSprite2D = $SpeerFish
 @onready var wait_timer: Timer = $wait_timer
 @onready var move_dur_timer: Timer = $move_dur_timer
-@onready var lavaWaterDetector: LavaWaterDetector = $LavaWater_Detector
-@onready var healthComp: HealthComponent = $HealthComponent
-@onready var resetComp: EnemyResetComponent = $EnemyResetComponent
+@onready var water_det: LavaWaterDetector = $LavaWater_Detector
+@onready var health_comp: HealthComponent = $HealthComponent
+@onready var reset_comp: EnemyResetComponent = $EnemyResetComponent
 
-const SPEED: int = 400
+const SPEED: float = 400.0
 
 func _ready() -> void:
-	lavaWaterDetector.water_exited.connect(on_stomp)
-	resetComp.enabling_stats.connect(resseting)
+	water_det.water_entered.connect(on_stomp)
+	reset_comp.enabling_stats.connect(resetting)
+
 
 func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
 	
 	match state:
 		State.DEAD:
-			velocity = Vector2.ZERO
 			return
 		
 		State.MOVING:
-			velocity = Vector2(1, 0).rotated(self.rotation) * SPEED
+			velocity = transform.x * SPEED
 		
 		State.IDLE:
-			velocity = Vector2.ZERO
-			
-			if DetectPlayer.focus_player:
+			if player_det.focus_player:
 				state = State.FOKUSING
+				wait_timer.start()
 		
 		State.FOKUSING:
-			velocity = Vector2.ZERO
-			
-			if not DetectPlayer.focus_player:
+			if not player_det.focus_player:
 				state = State.IDLE
+				wait_timer.stop()
 				return
 			
-			rotate_to_target(DetectPlayer.focus_player, delta)
+			rotate_to_target(player_det.focus_player, delta)
 			
-			if wait_timer.is_stopped():
-				wait_timer.start()
-				
 	var previous_velocity: Vector2 = velocity
 	
-	move_and_slide()
 	check_for_collision(previous_velocity)
+	move_and_slide()
 
 
 func check_for_collision(vel: Vector2) -> void:
-	if vel.length() < 0.01:
+	if vel.length_squared() < 0.0001:
 		return
 		
 	for i: int in get_slide_collision_count():
@@ -73,33 +69,32 @@ func check_for_collision(vel: Vector2) -> void:
 
 
 func rotate_to_target(target: Node2D, delta: float) -> void:
-	var direction: Vector2 = (target.global_position - global_position)
-	var angleTo: float = global_transform.x.angle_to(direction)
-	var value: float = sign(angleTo) * min(delta * rotationSpeed, abs(angleTo))
-	rotate(value)
+	var direction: Vector2 = (target.global_position - global_position).normalized()
+	var angle_to_target: float = global_transform.x.angle_to(direction)
+	var rotation_step: float = sign(angle_to_target) * min(delta * ROTATION_SPEED, abs(angle_to_target))
+	rotate(rotation_step)
 
 
-func defeated() -> void:
-	healthComp.health = healthComp.max_health
-
-
-func on_stomp() -> void:
-	if not state == State.DEAD:
+func on_stomp(entered: bool) -> void:
+	if not state == State.DEAD and not entered:
 		state = State.DEAD
-		animatedSprite.play("die")
+		animated_sprite.play("die")
 
 
 func _on_SpeerFish_animation_finished() -> void:
-	if animatedSprite.animation == "die":
-		resetComp.disable_stats()
+	if animated_sprite.animation == "die":
+		reset_comp.disable_stats()
 
-func resseting() -> void:
+func resetting() -> void:
 	state = State.IDLE
-	animatedSprite.play("default")
+	water_det.in_water = true
+	wait_timer.stop()
+	move_dur_timer.stop()
+	animated_sprite.play("default")
 
 func _on_move_duration_timeout() -> void:
 	state = State.IDLE
-	DetectPlayer.changeTarget()
+	player_det.changeTarget()
 
 
 func _on_wait_time_timeout() -> void:

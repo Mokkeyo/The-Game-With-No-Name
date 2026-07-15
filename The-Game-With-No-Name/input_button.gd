@@ -44,7 +44,6 @@ func get_key() -> Array:
 	if arr.size() < 2:
 		arr = arr.duplicate()
 		arr.resize(2)
-	print(arr)
 	return arr
 
 

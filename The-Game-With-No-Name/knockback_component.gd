@@ -41,10 +41,13 @@ func apply_normal(hit: HitData) -> void:
 	dir.y -= hit.updward_force
 	dir = dir.normalized()
 	
+	body.velocity = Vector2.ZERO
+	
 	body.velocity = dir * hit.knockback_force
 
 
 func apply_up(hit: HitData) -> void:
+	body.velocity.y = 0
 	body.velocity.y = -hit.knockback_force
 
 

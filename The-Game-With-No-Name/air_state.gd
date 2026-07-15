@@ -1,89 +1,102 @@
 extends PlayerState
 class_name AirState
 
+@onready var coyote_timer: Timer = $CoyoteTimer
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+
 var is_walljumping: bool = false
-var dir: Vector2
+var buffered_jump: bool = false
+var can_doublejump: bool = false
+
+const CUT_JUMP_SPEED: float = -100.0
+const JUMP_BUFFER_TIME: float = 0.15
+const COYOTE_TIME: float = 0.15
+
 
 func enter() -> void:
-	player.animation.play(player.animation.Anim.JUMP)
+	coyote_timer.start(COYOTE_TIME)
+	animation.play(animation.Anim.JUMP)
 	is_walljumping = false
+	can_doublejump = true
+
 
 func exit() -> void:
 	is_walljumping = false
-	dir = Vector2.ZERO
+
 
 func handle_input() -> void:
-	dir = Vector2(player.input.move_dir(), player.input.y_dir())
+	var dir: Vector2 = input_direction()
 	
-	player.combat.flip_wand(dir)
+	update_combat(dir)
 	
-	player.movement.move_horizontal(
+	movement.move_horizontal_normal(
 		dir.x, 
-		player.combat.is_attacking()
+		combat.is_attacking()
 	)
 	
-	if not dir.x == 0:
-		player.animation.flip(dir.x < 0)
+	update_flip(dir)
 	
-	if player.input.attack_pressed():
-		player.combat.attack()
 	
-	if player.input.wand_pressed():
-		player.combat.cast()
-	
-	if player.input.jump_released() and player.velocity.y < -100:
+	if input.jump_released() and player.velocity.y < CUT_JUMP_SPEED:
 		cut_jump()
 	
-	if not player.input.jump_pressed():
+	if not input.jump_pressed():
 		return
 	
-	player.animation.play(player.animation.Anim.JUMP)
-	
-	if player.lava_water_detector.inWater:
+	if not coyote_timer.is_stopped():
 		jump()
+		coyote_timer.stop()
 		return
 	
-	if not player.coyote_timer.is_stopped():
-		jump()
-		player.coyote_timer.stop()
-		return
+	var wall_dir: int = wall_direction()
 	
-	if player.next_to_wall():
-		player.sound_player.sound = "jump"
-		player.sound_player.play_sound()
-		var wall_dir: int = 1 if player.next_to_left_wall() else -1
-		player.movement.wall_jump(wall_dir)
+	if wall_dir != 0:
+		play_jump_sound()
+		movement.wall_jump(wall_dir)
 		is_walljumping = true
+		can_doublejump = true
 		return
 	
-	if player.can_doublejump:
-		player.can_doublejump = false
+	if can_doublejump:
+		can_doublejump = false
 		jump()
 		return
 	
-	player.buffered_jump = true
-	player.jump_buffer_timer.start(0.15)
+	start_jump_buffer()
 
 
 func cut_jump() -> void:
-	player.velocity.y = -100
-	if is_walljumping:
-		player.velocity.x = 0
-		is_walljumping = false
-
-func jump() -> void:
-	player.sound_player.sound = "jump"
-	player.sound_player.play_sound()
-	player.movement.jump()
+	player.velocity.y = CUT_JUMP_SPEED
+	
+	if not is_walljumping:
+		return
+	
+	player.velocity.x = 0
 	is_walljumping = false
 
+func start_jump_buffer() -> void:
+	buffered_jump = true
+	jump_buffer_timer.start(JUMP_BUFFER_TIME)
+
+func clear_jump_buffer() -> void:
+	buffered_jump = false
+	jump_buffer_timer.stop()
+
+
+func wall_direction() -> int:
+	return int(player.next_to_left_wall()) - int(player.next_to_right_wall())
+
+
+func jump() -> void:
+	super.jump()
+	is_walljumping = false
+
+
 func physics_update(delta: float) -> void:
-	player.movement.apply_gravity(delta, player.combat.is_attacking())
-	player.combat.change_sword_direction(dir, player.animated_sprite.rotation_degrees)
+	movement.apply_normal_gravity(delta, combat.is_attacking())
 	
-	if player.velocity.y > 0:
-		player.animation.play(player.animation.Anim.FALL)
-		is_walljumping = false
+	if player.velocity.y > 20:
+		animation.play(animation.Anim.FALL)
 	
 	player.move_and_slide()
 	
@@ -91,12 +104,27 @@ func physics_update(delta: float) -> void:
 		cut_jump()
 	
 	if player.is_on_floor():
-		if player.buffered_jump:
-			player.buffered_jump = false
-			player.movement.jump()
+		if buffered_jump:
+			clear_jump_buffer()
+			can_doublejump = true
+			jump()
 			return
-		player.change_state("ground")
+		
+		player.state_machine.change_state(ID.GROUND)
 		return
 	
 	if player.grab_zone.rope_part:
-		player.change_state("rope")
+		player.state_machine.change_state(ID.ROPE)
+		return
+	
+	if player.lava_water_detector.in_water:
+		player.state_machine.change_state(ID.WATER_AIR)
+
+
+func _on_jump_buffer_timer_timeout() -> void:
+	clear_jump_buffer()
+
+
+func _on_hitbox_damaged_enemy() -> void:
+	can_doublejump = true
+	jump()

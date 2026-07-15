@@ -22,6 +22,7 @@ func _ready() -> void:
 	animatedSprite.play("walk")
 	healthComp.died.connect(die)
 	resetComp.enabling_stats.connect(respawn)
+	movement_comp.setup(self)
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -43,9 +44,9 @@ func _physics_process(delta: float) -> void:
 				on_landing()
 				return
 			
-			movement_comp.apply_gravity(delta)
+			movement_comp.apply_normal_gravity(delta)
 	
-	movement_comp.move_horizontal(direction, false)
+	movement_comp.move_horizontal_normal(direction, false)
 	move_and_slide()
 
 

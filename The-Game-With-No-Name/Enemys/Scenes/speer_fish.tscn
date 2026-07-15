@@ -63,8 +63,8 @@ height = 10.0
 radius = 5.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_868ff"]
-radius = 8.0
-height = 26.0
+radius = 6.0
+height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ft63"]
 radius = 5.0
@@ -84,7 +84,6 @@ sprite_frames = SubResource("1")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=843421419]
-position = Vector2(0, -0.5)
 rotation = 1.5708
 shape = SubResource("2")
 
@@ -110,12 +109,10 @@ collision_layer = 4
 damage_receiver = NodePath("../DamageReceiver")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=856820598]
-position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_868ff")
 
 [node name="Hitbox" parent="." unique_id=467697135 instance=ExtResource("10_7mhxu")]
-visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1618251236]
@@ -134,6 +131,7 @@ physics_process = true
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("10_sl2rw")]
 health = NodePath("../HealthComponent")
+ignore_damage = Array[int]([4])
 
 [connection signal="animation_finished" from="SpeerFish" to="." method="_on_SpeerFish_animation_finished"]
 [connection signal="timeout" from="wait_timer" to="." method="_on_wait_time_timeout"]

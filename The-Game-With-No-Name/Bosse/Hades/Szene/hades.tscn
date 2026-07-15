@@ -908,10 +908,7 @@ shape = SubResource("RectangleShape2D_ij02o")
 health = 800.0
 invisibiltyFrames = 0.1
 
-[node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("body") instance=ExtResource("13_gdkal")]
-body = NodePath("..")
-SPEED = 240
-JUMP_POWER = 440
+[node name="MovementComponent" parent="." unique_id=85911161 instance=ExtResource("13_gdkal")]
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("15_swoep")]
 health = NodePath("../healthComponent")

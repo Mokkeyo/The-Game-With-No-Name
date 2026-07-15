@@ -108,7 +108,6 @@ static func apply_inputmap_from_dict(data: Dictionary) -> void:
 
 
 static func set_inputs(data: Dictionary, action: String, event: InputEvent) -> void:
-	print(event)
 	if not data.has(action):
 		push_warning("data doesnt have action: " + action)
 		data[action] = [null, null]
@@ -120,7 +119,6 @@ static func set_inputs(data: Dictionary, action: String, event: InputEvent) -> v
 	
 	var serialized: Dictionary = event_to_dict(event)
 	if event is InputEventKey or event is InputEventMouseButton:
-		print(serialized)
 		data[action][0] = serialized
 		return
 	

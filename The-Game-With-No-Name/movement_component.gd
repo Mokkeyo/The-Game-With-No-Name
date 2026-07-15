@@ -4,106 +4,85 @@ class_name MovementComponent
 signal walljumped(direction: float)
 signal moved_horizontal(direction: float)
 signal jumped
-signal knockbacked(force: Vector2)
 
-@export_category("Nodes")
-@export var water_detector: LavaWaterDetector
-@export var body: CharacterBody2D
+const SLOWED_SPEED_FACTOR: float = 0.05
+const WALL_JUMP_HEIGHT_MULTIPLIER: float = 1.2
 
 @export_category("X Velocity")
-@export var SPEED: int = 120
-@export var WATER_SPEED: int = 80
-@export var ACCELERATION: int = 20
+@export var speed: float = 120
+@export var water_speed: float = 80
+@export var acceleration: float = 20
 
 @export_category("Gravity")
-@export var GRAVITY: int = 600
-@export var WATER_GRAVITY: int = 200
+@export var gravity: float = 600
+@export var water_gravity: float = 200
 
 @export_category("Y Velocity")
-@export var JUMP_POWER: int = 210
-@export var WATER_JUMP_POWER: int = 100
-@export var WALL_JUMP_FORCE: float = 2.6
-@export var KNOCKBACK_DAMPENING: int = 900
+@export var jump_power: float = 210
+@export var water_jump_power: float = 100
+@export var wall_jump_force: float = 2.6
 
+var body: CharacterBody2D
 
-var knockback_velocity: Vector2 = Vector2.ZERO
-var in_knockback: bool = false
-
-func setup(p: CharacterBody2D, water: LavaWaterDetector = null) -> void:
+func setup(p: CharacterBody2D) -> void:
+	assert(p != null)
 	body = p
-	water_detector = water
 
-func move_horizontal(dir: float, slowed: bool = false) -> void:
-	var target_speed: float = SPEED
-	if in_water():
-		target_speed = WATER_SPEED
-	
+#region movement
+func move_horizontal_normal(dir: float, slowed: bool = false) -> void:
+	_move_horizontal(speed, dir, slowed)
+
+
+func move_horizontal_water(dir: float, slowed: bool = false) -> void:
+	_move_horizontal(water_speed, dir, slowed)
+
+
+func _move_horizontal(speed_value: float, dir: float, slowed: bool = false) -> void:
 	if slowed:
-		target_speed *= 0.05
+		speed_value *= SLOWED_SPEED_FACTOR
 	
 	body.velocity.x = move_toward(
 		body.velocity.x,
-		dir * target_speed,
-		ACCELERATION
+		dir * speed_value,
+		acceleration
 	)
 	moved_horizontal.emit(dir)
+#endregion
+
+#region gravity
+func apply_normal_gravity(delta: float, slowed: bool = false) -> void:
+	_apply_gravity(gravity, delta, slowed)
 
 
-func apply_gravity(delta: float, slowed: bool = false) -> void:
-	var g: float = GRAVITY
-	if in_water():
-		g = WATER_GRAVITY
+func apply_water_gravity(delta: float, slowed: bool = false) -> void:
+	_apply_gravity(water_gravity, delta, slowed)
+
+
+func _apply_gravity(gravity_value: float, delta: float, slowed: bool = false) -> void:
 	if slowed and body.velocity.y > 0:
+		# Limit falling speed while attacking.
 		body.velocity.y = 0
-#		g *= 0.05
 	
-	body.velocity.y += g * delta
+	body.velocity.y += gravity_value * delta
+#endregion
 
-
+#region jump
 func jump() -> void:
-	body.velocity.y = 0
-	
-	var vel_y: float = JUMP_POWER
-	if in_water():
-		vel_y = WATER_JUMP_POWER
-	
-	body.velocity.y -= vel_y
+	_apply_jump(jump_power)
+
+
+func jump_water() -> void:
+	_apply_jump(water_jump_power)
+
+func _apply_jump(jump_value: float) -> void:
+	body.velocity.y = -jump_value
 	jumped.emit()
 
 func wall_jump(direction: float) -> void:
-	# direction: -1 = rechts, +1 = links
-	body.velocity.y = 0
-	body.velocity =Vector2(
-		direction * SPEED * WALL_JUMP_FORCE, - JUMP_POWER * 1.2
-		)
-	walljumped.emit(direction)
-
-func start_knockback(force: Vector2) -> void:
-	knockback_velocity = force
-	in_knockback = true
-	knockbacked.emit(force)
-
-
-func in_water() -> bool:
-	if not water_detector:
-		return false
-	
-	if water_detector.inWater:
-		return true
-		
-	return false
-
-
-func update_knockback(delta: float) -> void:
-	if not in_knockback:
-		return
-	
-	body.velocity = knockback_velocity
-	knockback_velocity = knockback_velocity.move_toward(
-		Vector2.ZERO,
-		KNOCKBACK_DAMPENING * delta
+	body.velocity = Vector2(
+		direction * speed * wall_jump_force, - 
+		jump_power * WALL_JUMP_HEIGHT_MULTIPLIER
 	)
-
-	if knockback_velocity.length() < 10.0:
-		knockback_velocity = Vector2.ZERO
-		in_knockback = false
+	
+	walljumped.emit(direction)
+#endregion

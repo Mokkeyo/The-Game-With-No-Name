@@ -181,6 +181,7 @@ text = "Back"
 [node name="BattleReady" parent="." unique_id=704194739 node_paths=PackedStringArray("arena_choose") instance=ExtResource("8_veym4")]
 visible = false
 layout_mode = 0
+offset_top = 1.0
 arena_choose = NodePath("..")
 
 [node name="Timer" type="Timer" parent="." unique_id=269585135]

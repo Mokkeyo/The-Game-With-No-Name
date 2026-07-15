@@ -170,13 +170,8 @@ sprite = NodePath("../AnimatedSprite2D")
 health = NodePath("../HealthComponent")
 knockback = NodePath("../knockback_component")
 
-[node name="MovementComponent" parent="." unique_id=85911161 node_paths=PackedStringArray("water_detector", "body") instance=ExtResource("13_0joxm")]
-water_detector = NodePath("../LavaWater_Detector")
-body = NodePath("..")
-SPEED = 80
-GRAVITY = 100
-WATER_GRAVITY = 80
-JUMP_POWER = 80
+[node name="MovementComponent" parent="." unique_id=85911161 instance=ExtResource("13_0joxm")]
+speed = 70.0
 
 [node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("14_cc33w")]
 raycast = NodePath("../RayCast")

@@ -25,7 +25,7 @@ func _on_Area2D_body_entered(body: Player) -> void:
 	
 	if body.velocity.y >= 0 \
 	and body.global_position.y < global_position.y + 10 \
-	and (body.is_on_floor() or body.buffered_jump):
+	and (body.is_on_floor()):
 		state = State.WARNING
 		invisible_frames.play_invible_frames(cooldown)
 

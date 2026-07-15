@@ -1,64 +1,55 @@
 extends PlayerState
 class_name GroundState
 
-var dir: Vector2
 @export var footstep_sound: FootStepComp
-
-func enter() -> void:
-	player.can_doublejump = true
-	player.animation.play(player.animation.Anim.IDLE)
-	player.floor_snap_length = 15
-	player.position.y = roundi(player.position.y)
+const FOOTSTEP_FRAMES: Array[int] = [2, 4, 6]
 
 func exit() -> void:
 	player.rotater_component.rotate_sprite(0)
-	player.floor_snap_length = 0
-	dir = Vector2.ZERO
 
-func handle_input() -> void:
-	dir = Vector2(player.input.move_dir(), player.input.y_dir())
-	
-	player.combat.flip_wand(dir)
-	
-	player.movement.move_horizontal(
-		dir.x, 
-		player.combat.is_attacking()
-	)
-	
-	if not dir.x == 0:
-		player.animation.flip(dir.x < 0)
-		player.animation.play(player.animation.Anim.WALK)
-		
-	else:
-		player.animation.play(player.animation.Anim.IDLE)
-	
-	if player.input.jump_pressed():
-		player.sound_player.sound = "jump"
-		player.sound_player.play_sound()
-		player.movement.jump()
-		player.change_state("air")
+
+func play_walk_sound() -> void:
+	var sprite: AnimatedSprite2D = animation.sprite
+	if sprite.animation != "walk_%d" % player.current_player:
 		return
 	
-	if player.input.attack_pressed():
-		player.combat.attack()
+	if sprite.frame in FOOTSTEP_FRAMES:
+		SoundComp.play_footstep(player.global_position)
+
+
+func handle_input() -> void:
+	var dir: Vector2 = input_direction()
 	
-	if player.input.wand_pressed():
-		player.combat.cast()
+	update_combat(dir)
 	
-	if player.input.interact_pressed():
-		player.handle_airship_entry()
+	movement.move_horizontal_normal(
+		dir.x, 
+		combat.is_attacking()
+	)
+	
+	update_flip(dir)
+	
+	if dir.x != 0:
+		animation.play(animation.Anim.WALK)
+		play_walk_sound()
+	else:
+		animation.play(animation.Anim.IDLE)
+	
+	if input.jump_pressed():
+		jump()
+		return
+	
+	if input.interact_pressed():
+		player.airship_entry_component.handle_airship_entry()
+
 
 func physics_update(_delta: float) -> void:
-	player.rotater_component.update_rotation()
-	player.combat.change_sword_direction(dir, player.animated_sprite.rotation_degrees)
-	var on_moving_plattform: bool = player.get_platform_velocity().length() > 0.01
-	var is_flat: bool = player.get_floor_angle() == 0
+	update_ground_state()
 	
-	if not on_moving_plattform and is_flat:
-		player.position.y = roundi(player.position.y)
-	
-	player.move_and_slide()
+	if player.lava_water_detector.in_water:
+		player.state_machine.change_state(ID.WATER_GROUND)
+		return
 	
 	if not player.is_on_floor():
-		player.coyote_timer.start(0.15)
-		player.change_state("air")
+		player.rotation_degrees = 0
+		player.state_machine.change_state(ID.AIR)

@@ -23,7 +23,7 @@ func _ready() -> void:
 	healthComp.health = health
 	healthComp.max_health = health
 	resetComp.enabling_stats.connect(respawn)
-	movement.setup(self, lava_water_detector)
+	movement.setup(self)
 
 
 func _physics_process(delta: float) -> void:
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 	floorComp.update_rotation()
 	if not on_floor:
-		movement.apply_gravity(delta)
+		movement.apply_normal_gravity(delta)
 	else:
 		if animatedSprite.animation == "air":
 			on_landing()
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if not floor_snap_length == snap_value:
 		floor_snap_length = snap_value
 	
-	movement.move_horizontal(direction, false)
+	movement.move_horizontal_normal(direction, false)
 	move_and_slide()
 
 

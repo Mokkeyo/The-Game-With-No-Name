@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxggnnokitwnq"
-path="res://.godot/imported/player_b1.png-10b9bbe2c3e7150c28cf96f377c59d82.ctex"
+uid="uid://dxqvu3n555imm"
+path="res://.godot/imported/Flame-0002.png-bfbade8e1ff6e4f4b835a8451fd8d5ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Textures_P1/player_b1.png"
-dest_files=["res://.godot/imported/player_b1.png-10b9bbe2c3e7150c28cf96f377c59d82.ctex"]
+source_file="res://Bosse/Hades/Grafik/Flame-0002.png"
+dest_files=["res://.godot/imported/Flame-0002.png-bfbade8e1ff6e4f4b835a8451fd8d5ef.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

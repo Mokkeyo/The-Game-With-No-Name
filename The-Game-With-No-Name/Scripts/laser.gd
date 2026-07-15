@@ -30,9 +30,6 @@ func set_active(b: bool) -> void:
 	visible = b
 
 func _physics_process(_delta: float) -> void:
-	
-	print(name, global_position)
-	
 	raycast.force_raycast_update()
 
 	var length: float

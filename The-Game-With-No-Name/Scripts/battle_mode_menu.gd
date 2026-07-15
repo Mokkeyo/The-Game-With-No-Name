@@ -17,8 +17,8 @@ func _ready() -> void:
 	camera.global_position = Vector2(0, 0)
 	var animation_player: AnimationPlayer = fader.fade_in()
 	await  animation_player.animation_finished
-	if not BattleData.ready[0] and not BattleData.ready[1]:
-		battle_button.grab_focus()
+#	if not BattleData.ready[0] and not BattleData.ready[1]:
+	battle_button.grab_focus()
 
 	var menus: Array[Menu] = [controlls, options, explanation, arena_choose]
 	for menu: Menu in menus:
@@ -54,6 +54,7 @@ func _on_options_pressed() -> void: change_menu(options)
 func _on_back_to_normal_mode_pressed() -> void:
 	await fader.fade_out().animation_finished
 	BattleData.ready.fill(false)
+	BattleData.battle = false
 	SoundMusic.play_underground()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 

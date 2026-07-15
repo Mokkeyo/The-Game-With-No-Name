@@ -26,6 +26,10 @@ const sound_effect: Dictionary[String, AudioStream] = {
 
 func play_footstep(position: Vector2) -> void:
 	var tile_data: Array = []
+	
+	if tilemaps == null:
+		return
+	
 	for tilemap: TileMapLayer in tilemaps:
 		var tile_position: Vector2 = tilemap.local_to_map(position)
 		var data: TileData = tilemap.get_cell_tile_data(tile_position)

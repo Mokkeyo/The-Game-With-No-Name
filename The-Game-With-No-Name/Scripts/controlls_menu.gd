@@ -46,8 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				return
 			
 			reset_controller_assignment()
-			await get_tree().create_timer(0.1).timeout
-			state = State.IDLE
+			await get_tree().process_frame
 			return
 
 
@@ -60,7 +59,8 @@ func handle_device_assignment(device: int) -> void:
 
 func reset_controller_assignment() -> void:
 	assign_ui.visible = false
-
+	assign_controller_btn.disabled = false
+	state = State.IDLE
 
 func change_input_device(device_name: String) -> void:
 	if not previous_device == device_name:
@@ -104,7 +104,7 @@ func remap_key(action: String, event: InputEvent, save: bool = true) -> void:
 func changePlayer(current_player: int) -> void:
 	player = current_player
 	var other_player: int = 1 - current_player
-	var backgrounds: Array[Panel] = [$PlayerControlls/Player1Background, $PlayerControlls/Player2Background]
+	var backgrounds: Array[Panel] = [%Player1Background, %Player2Background]
 	var buttons: Array[Button] = [$ControllButtons/Player1Button, $ControllButtons/Player2Button]
 	
 	buttons[current_player].disabled = true
@@ -140,7 +140,7 @@ func _on_assign_controller_pressed() -> void:
 	assign_ui.visible = true
 	assign_controller_btn.disabled = true
 	assign_controller_btn.grab_focus()
-
+	state = State.CONTROLLER_ASSIGN
 
 func _on_restore_default_pressed() -> void:
 	restore_default_bindings()

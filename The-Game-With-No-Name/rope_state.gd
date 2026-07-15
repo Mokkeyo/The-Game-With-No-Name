@@ -4,56 +4,35 @@ class_name RopeState
 signal entered_rope
 signal exited_rope
 
-var dir: Vector2
+const ROPE_OFFSET: Vector2 = Vector2(0, -10)
 
 func enter() -> void:
 	player.velocity = Vector2.ZERO
-	player.animation.play(player.animation.Anim.JUMP)
+	animation.play(animation.Anim.JUMP)
 	entered_rope.emit()
 
 
-func exit() -> void:
-	dir = Vector2.ZERO
-
-
 func handle_input() -> void:
-	dir = Vector2(player.input.move_dir(), player.input.y_dir())
+	var dir: Vector2 = input_direction()
 	
-	player.combat.flip_wand(dir)
+	update_combat(dir)
 	
-	player.movement.move_horizontal(
-		dir.x, 
-		player.combat.is_attacking()
-	)
+	update_flip(dir)
 	
-	if not dir.x == 0:
-		player.animation.flip(dir.x < 0)
-	
-	if player.input.attack_pressed():
-		player.combat.attack()
-	
-	if player.input.wand_pressed():
-		player.combat.cast()
-	
-	if player.input.jump_pressed():
-		player.sound_player.sound = "jump"
-		player.sound_player.play_sound()
-		player.velocity.y = 0
+	if input.jump_pressed():
+		jump()
+		exited_rope.emit()
+		
 		player.grab_zone.rope_part = null
 		player.grab_zone.cool_down_timer.start()
-		player.movement.jump()
-		player.change_state("air")
-		exited_rope.emit()
-		return
+
+
 
 func physics_update(_delta: float) -> void:
+	var rope_part: Area2D = player.grab_zone.rope_part
 	
-	player.combat.change_sword_direction(dir, player.animated_sprite.rotation_degrees)
-	
-	if not player.grab_zone.rope_part:
-		player.change_state("air")
-		player.can_doublejump = true
+	if rope_part == null:
+		player.state_machine.change_state(ID.AIR)
 		return
 	
-	player.global_position = \
-		player.grab_zone.rope_part.global_position - Vector2(0, -4)
+	player.global_position = rope_part.global_position - ROPE_OFFSET
