@@ -14,7 +14,7 @@ radius = 3.0
 height = 18.0
 
 [node name="Sword" type="Node2D" unique_id=844629985]
-z_index = 3
+z_index = 15
 script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2028281339]

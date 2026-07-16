@@ -172,6 +172,8 @@ knockback = NodePath("../knockback_component")
 
 [node name="MovementComponent" parent="." unique_id=85911161 instance=ExtResource("13_0joxm")]
 speed = 70.0
+gravity = 200.0
+jump_power = 140.0
 
 [node name="AbyssCheckerComponent" parent="." unique_id=1079487560 node_paths=PackedStringArray("raycast") instance=ExtResource("14_cc33w")]
 raycast = NodePath("../RayCast")

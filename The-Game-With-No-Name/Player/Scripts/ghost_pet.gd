@@ -1,44 +1,34 @@
 extends CharacterBody2D
 class_name Pet
 
-@export var stop_distance: float = 23
+@export var stop_distance: float = 40
 
-@onready var animatedSprite: AnimatedSprite2D = $ghost_dog
+@onready var animated_sprite: AnimatedSprite2D = $ghost_dog
 
-@export var playerNode: Player
-var SPEED: int = 120
+@export var player_node: Player
+@export var speed: float = 120.0
+@export var acceleration: float = 900.0
 @export var player: int = 1
 
 func _ready() -> void:   
-	animatedSprite.play("pet_%d" % player)
-	await get_tree().process_frame
-	playerNode.animation.flip_changed.connect(flip)
+	animated_sprite.play("pet_%d" % player)
 
-func _physics_process(_delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
+	visible = player_node.visible
 	
-	visible = playerNode.visible
-	var direction: Vector2 = playerNode.global_position - global_position
+	var direction: Vector2 = player_node.global_position - global_position
 	var distance: float = direction.length()
-	
+
 	if distance > stop_distance:
-		velocity = direction.normalized() * SPEED
+		var target_velocity: Vector2 = direction.normalized() * speed
+		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 	else:
-		velocity = velocity.lerp(Vector2.ZERO, 0.15)
-
+		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
+	
+	if velocity.x < 0:
+		animated_sprite.flip_h = true 
+	elif velocity.x > 0:
+		animated_sprite.flip_h = false
+	
 	move_and_slide()
-
-func distance_to_player() -> float:
-	var direction: Vector2 = playerNode.global_position - global_position
-	var distance: float = direction.length()
-	return distance
-
-func flip(value: bool) -> void:
-	var tween: Tween
-	tween = create_tween()
-	var x_position: float = 23 if value else -23
-	tween.finished.connect(Callable(self, "on_tween_finished"))
-	tween.tween_property(animatedSprite, "position", Vector2(x_position, 0) , 0.2)
-
-
-func on_tween_finished() -> void:
-	animatedSprite.flip_h = playerNode.animation.sprite.flip_h

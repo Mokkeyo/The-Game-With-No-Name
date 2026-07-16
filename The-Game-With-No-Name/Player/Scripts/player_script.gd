@@ -148,6 +148,7 @@ func respawn() -> void:
 
 
 func enable_player() -> void:
+	print("enabling player")
 	SoundMusic.listeners.append(self)
 	is_alive = true
 	grab_zone.rope_part = null

@@ -18,10 +18,10 @@ class_name InGame
 	$HBoxContainer/ViewportContainerP2/SubViewport/Camera2D
 ]
 
-@onready var hp_bars: Array[HealthBar] = [$Player1/HPBar, $Player2/HPBar]
-@onready var mana_bars: Array[HealthBar] = [$Player1/Mana, $Player2/Mana]
-@onready var player_bars: Array[Control] = [$Player1, $Player2]
-@onready var panel: Panel = $Panel
+@onready var hp_bars: Array[HealthBar] = [%HpP1, %HpP2]
+@onready var mana_bars: Array[HealthBar] = [%ManaP1, %ManaP2]
+@onready var player_bars: Array[Control] = [$CanvasLayer/Player1, $CanvasLayer/Player2]
+@onready var panel: Panel = $CanvasLayer/Panel
 
 var old_level: Node2D = null
 

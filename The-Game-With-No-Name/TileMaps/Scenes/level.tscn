@@ -1357,6 +1357,6 @@ sources/8 = SubResource("TileSetAtlasSource_8ohbt")
 sources/11 = SubResource("TileSetAtlasSource_g8uvq")
 
 [node name="Level" type="TileMapLayer" unique_id=1742881770 groups=["Dirt", "Floor"]]
-z_index = 2
+z_index = 10
 tile_set = SubResource("21")
 script = ExtResource("3_dsdku")

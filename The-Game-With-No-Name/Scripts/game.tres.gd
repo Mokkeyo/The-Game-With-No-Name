@@ -4,12 +4,12 @@ class_name Game
 @onready var level_manager: LevelManager = $LevelManager
 @onready var player_manager: PlayerManager = $PlayerManager
 @onready var dialogue_manager: TextboxManager = $DialogueManager
-@onready var boss_ui: BossUIManager = $BossUIManager
+@onready var boss_ui: BossUIManager = $CanvasLayer/BossUIManager
 @onready var in_game: InGame = $InGame
 @onready var fader: Fader = $Fader
-@onready var new_textbox: NewTextBox = $textbox
+@onready var new_textbox: NewTextBox = $CanvasLayer/textbox
 
-@onready var pause: PauseMenu = $pause
+@onready var pause: PauseMenu = $CanvasLayer/pause
 
 var temp_door: Array[int]
 
@@ -173,6 +173,8 @@ func game_over(player: int) -> void:
 	
 	player_manager.respawn_player(player, spawn_position)
 	
+	Save.options.deaths[Save.active_slot] += 1
+	Save.save_options()
 	fader.fade_in()
 
 

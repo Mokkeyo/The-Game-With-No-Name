@@ -52,32 +52,32 @@ navigation_polygon = SubResource("NavigationPolygon_hloeb")
 
 [node name="bat" parent="Enemys" unique_id=1701657894 instance=ExtResource("16")]
 position = Vector2(2929, 82)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="bat2" parent="Enemys" unique_id=282271844 instance=ExtResource("16")]
 position = Vector2(2327, 162)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="bat3" parent="Enemys" unique_id=1287184221 instance=ExtResource("16")]
 position = Vector2(2327, 59)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="bat4" parent="Enemys" unique_id=597341107 instance=ExtResource("16")]
 position = Vector2(922, 144)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="bat5" parent="Enemys" unique_id=1705325396 instance=ExtResource("16")]
 position = Vector2(562, 131)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="bat6" parent="Enemys" unique_id=638495550 instance=ExtResource("16")]
 position = Vector2(730, 74)
-hitoints = 100.0
+hitoints = 60.0
 SPEED = 120
 
 [node name="airship(enemy)" parent="Enemys" unique_id=708060559 instance=ExtResource("12")]

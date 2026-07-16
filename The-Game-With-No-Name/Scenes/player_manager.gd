@@ -56,7 +56,6 @@ func on_player_died(player: int) -> void:
 	player_alive[player] = false
 	
 	if all_players_dead():
-		Save.options.deaths[SaveStateButton.state - 1] += 1
 		Save.save_options()
 		all_player_died.emit(player)
 		return

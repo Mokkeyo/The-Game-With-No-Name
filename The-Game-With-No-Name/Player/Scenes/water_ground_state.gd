@@ -16,7 +16,6 @@ func handle_input() -> void:
 	
 	if dir.x != 0:
 		animation.play(animation.Anim.WALK)
-#		play_walk_sound()
 	else:
 		animation.play(animation.Anim.IDLE)
 	

@@ -31,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0fyr7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"pet_0",
 "speed": 3.0
 }, {
@@ -42,21 +42,21 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uhh26")
 }],
-"loop": true,
+"loop": 1,
 "name": &"pet_1",
 "speed": 5.0
 }]
 
 [node name="ghost_pet" type="CharacterBody2D" unique_id=799677968]
-z_index = 3
+z_index = 15
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_toswg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1916017403]
-position = Vector2(-23, 0)
 shape = SubResource("1")
 disabled = true
 
 [node name="ghost_dog" type="AnimatedSprite2D" parent="." unique_id=1912678976]
-position = Vector2(-23, 0)
 sprite_frames = SubResource("4")
 animation = &"pet_0"

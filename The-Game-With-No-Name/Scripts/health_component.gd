@@ -6,6 +6,7 @@ signal died
 
 @export_group("Stats")
 @export var health: float = 20
+
 @export var invisibiltyFrames: float = 0.5
 @export var knockbackDirection: Vector2
 @export var knockbackDuration: float = 0.1
@@ -25,22 +26,23 @@ func damage(dmg: int) -> void:
 		return
 	
 	health -= dmg
-	value_changed.emit()
 	
 	update_hpbar(int(health))
-	
+	value_changed.emit()
 	if health <=  0:
 		died.emit()
 		return
 
 
 func refill_health(value: int) -> void:
-	health = value
+	health += value
 	
 	if health > max_health:
 		health = max_health
-
+	
+	
 	update_hpbar(int(health))
+	value_changed.emit()
 
 
 func update_hpbar(value: int) -> void:
@@ -50,6 +52,5 @@ func update_hpbar(value: int) -> void:
 
 func die() -> void:
 	health = 0
-	
 	value_changed.emit()
 	died.emit()

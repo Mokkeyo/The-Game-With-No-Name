@@ -15,7 +15,7 @@ normal_texture = ExtResource("3_auyxv")
 size = Vector2(23.9501, 29.3125)
 
 [node name="swing_trap" type="Node2D" unique_id=982823425]
-z_index = 3
+z_index = 15
 script = ExtResource("2")
 swing_angle = 90.0
 

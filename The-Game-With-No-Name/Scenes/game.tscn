@@ -183,11 +183,17 @@ script = ExtResource("5_1phco")
 [node name="achievmentComponent" parent="DialogueManager" unique_id=1941564920 instance=ExtResource("8_1phco")]
 achievment_list = "Chatter"
 
-[node name="BossUIManager" type="Control" parent="." unique_id=1706865187]
+[node name="achievmentComponent" parent="." unique_id=1194065303 instance=ExtResource("8_1phco")]
+achievment_list = "You Got A Friend In Me"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1372785356]
+
+[node name="BossUIManager" type="Control" parent="CanvasLayer" unique_id=1706865187]
+layout_mode = 3
 anchors_preset = 0
 script = ExtResource("6_nb51f")
 
-[node name="BossHP" parent="BossUIManager" unique_id=285235706 instance=ExtResource("11")]
+[node name="BossHP" parent="CanvasLayer/BossUIManager" unique_id=285235706 instance=ExtResource("11")]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 536.0
@@ -195,7 +201,7 @@ offset_right = 132.0
 offset_bottom = 540.0
 scale = Vector2(40, 3)
 
-[node name="Label" type="Label" parent="BossUIManager" unique_id=334307819]
+[node name="Label" type="Label" parent="CanvasLayer/BossUIManager" unique_id=334307819]
 layout_mode = 0
 offset_left = 152.0
 offset_top = 507.0
@@ -207,18 +213,14 @@ theme_override_fonts/font = SubResource("7")
 theme_override_font_sizes/font_size = 20
 text = "Boss Galaga"
 
-[node name="Boss" type="Control" parent="." unique_id=290950282]
+[node name="Boss" type="Control" parent="CanvasLayer" unique_id=290950282]
+layout_mode = 3
 anchors_preset = 0
 
-[node name="pause" parent="." unique_id=1356872677 instance=ExtResource("1")]
+[node name="pause" parent="CanvasLayer" unique_id=1356872677 instance=ExtResource("1")]
 visible = false
-layout_mode = 0
 
-[node name="textbox" parent="." unique_id=1850085101 instance=ExtResource("13_rfjv2")]
+[node name="textbox" parent="CanvasLayer" unique_id=1850085101 instance=ExtResource("13_rfjv2")]
 visible = false
-layout_mode = 0
-
-[node name="achievmentComponent" parent="." unique_id=1194065303 instance=ExtResource("8_1phco")]
-achievment_list = "You Got A Friend In Me"
 
 [connection signal="timeout" from="PlayerManager/respawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

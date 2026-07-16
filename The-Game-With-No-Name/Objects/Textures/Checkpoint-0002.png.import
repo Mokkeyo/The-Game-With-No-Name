@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d18bxrapelbsa"
-path="res://.godot/imported/torch_normal.png-d0a3f9504dff54f8e8ab3ce6de4e65b9.ctex"
+uid="uid://dccgot0tsnrsu"
+path="res://.godot/imported/Checkpoint-0002.png-d1a34be47c546e98d001de631d492c89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NormalMap/torch_normal.png"
-dest_files=["res://.godot/imported/torch_normal.png-d0a3f9504dff54f8e8ab3ce6de4e65b9.ctex"]
+source_file="res://Objects/Textures/Checkpoint-0002.png"
+dest_files=["res://.godot/imported/Checkpoint-0002.png-d1a34be47c546e98d001de631d492c89.ctex"]
 
 [params]
 

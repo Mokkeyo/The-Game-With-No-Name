@@ -508,17 +508,17 @@ curve = SubResource("Curve2D_lu1xx")
 position = Vector2(1063, 413)
 
 [node name="Checkpoint" parent="Area6" unique_id=1488396410 instance=ExtResource("14_kxvel")]
-position = Vector2(1410, 322)
+position = Vector2(1414, 322)
 
 [node name="swing_trap5" parent="Area6" unique_id=121310865 instance=ExtResource("18_wwsk3")]
 position = Vector2(1203, 363)
 
 [node name="Button" parent="." unique_id=356706222 node_paths=PackedStringArray("door") instance=ExtResource("25_hf0r0")]
-position = Vector2(48, -280)
+position = Vector2(49, -280)
 door = NodePath("../Objects/DoorAndButton")
 
 [node name="Button2" parent="." unique_id=976418944 node_paths=PackedStringArray("door") instance=ExtResource("25_hf0r0")]
-position = Vector2(1287, 280)
+position = Vector2(1288, 280)
 door = NodePath("../Objects/DoorAndButton2")
 required_input = 1
 
