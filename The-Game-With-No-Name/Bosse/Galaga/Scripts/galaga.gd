@@ -184,7 +184,7 @@ func process_enraged_phase() -> void:
 func shoot() -> void:
 	for arm: GalagaArm in [galaga_left, galaga_right]:
 		if arm.is_alive:
-			shoot_comp.shoot_bullet(arm, arm.marker)
+			shoot_comp.shoot()
 
 
 func rotate_parts(delta: float, focused_airship: Airship) -> void:
@@ -206,7 +206,7 @@ func rotate_part(d: float, a: Airship, g: Node2D) -> void:
 func boss_shoot() -> void:
 	if galaga_head.is_alive:
 		for marker: Marker2D in galaga_head.bullet_markers:
-			shoot_comp.shoot_bullet(galaga_head, marker)
+			shoot_comp.shoot()
 
 func change_arm_health() -> void:
 	G.boss_value_changed.emit(get_arm_health_percent())

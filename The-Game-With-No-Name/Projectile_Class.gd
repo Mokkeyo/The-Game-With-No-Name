@@ -3,12 +3,19 @@ class_name Projectile
 
 signal finished(projetile: Projectile)
 
-func shoot(_position: Vector2, _rotation: float, _owner: Node2D) -> void:
+@export var hitbox: HitBox
+
+func configure(_definition: ProjectileDefinition) -> void:
+	pass
+
+func shoot(_pos: Vector2, _rot: float, _owner: Node2D) -> void:
 	pass
 
 func deactivate() -> void:
 	visible = false
+	hitbox.monitoring = false
 	set_physics_process(false)
+	global_position = Vector2(-1000, -1000)
 
 func finish() -> void:
 	finished.emit(self)

@@ -5,11 +5,18 @@
 [ext_resource type="Script" uid="uid://b5nqdijepaf13" path="res://Bosse/Galaga/Scripts/galaga.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="4_qg4ys"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="5_cp48w"]
+[ext_resource type="Script" uid="uid://bxg7b6cxs4c5s" path="res://BulletDefinition.gd" id="6_a4ytb"]
 [ext_resource type="PackedScene" uid="uid://cyu85obj33ig7" path="res://Bosse/Galaga/Szene/warning.tscn" id="6_cib2n"]
 [ext_resource type="PackedScene" uid="uid://bksaw43m67sj5" path="res://Bosse/Galaga/Szene/laser.tscn" id="7_a4ytb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vspnw"]
 size = Vector2(386, 170)
+
+[sub_resource type="Resource" id="Resource_h7ogw"]
+script = ExtResource("6_a4ytb")
+bullet_type = 2
+pool_size = 5
+metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [node name="Boss Galaga" type="Node2D" unique_id=1197561045]
 script = ExtResource("3")
@@ -49,7 +56,7 @@ one_shot = true
 
 [node name="ShootComponent" parent="." unique_id=1202248916 node_paths=PackedStringArray("parent") instance=ExtResource("5_cp48w")]
 parent = NodePath("..")
-pool_size = 10
+projectile = SubResource("Resource_h7ogw")
 
 [node name="warning" parent="." unique_id=554903689 instance=ExtResource("6_cib2n")]
 

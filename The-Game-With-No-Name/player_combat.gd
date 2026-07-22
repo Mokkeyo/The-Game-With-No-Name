@@ -16,8 +16,8 @@ const MANA_COST: int = 33
 @export var mana_timer: Timer
 @export var sound_player: SoundPlayer
 
-var spirit_ball_scene: PackedScene = preload("res://Scenes/spirit_ball.tscn")
-var spirit_ball_pool: Array[SpiritBall] = []
+@onready var shoot_comp: ShootComponent = $ShootComponent
+
 var player_index: int = 0
 var sword: Sword
 var wand: Wand
@@ -35,9 +35,6 @@ func setup(s: Sword, w: Wand) -> void:
 	
 	setup_sword()
 	connect_signals()
-	
-	await get_tree().process_frame
-	initialize_pool()
 
 
 func connect_signals() -> void:
@@ -99,7 +96,10 @@ func cast() -> void:
 #	sound_player.play_sound()
 	consume_mana()
 	wand.attack()
-	activate_ball()
+	var def: SpiritballDefinition = shoot_comp.projectile as SpiritballDefinition
+	def.direction = -1 if wand.sprite.flip_h == true else +1
+	print(def.direction)
+	shoot_comp.shoot()
 
 
 func can_cast() -> bool:
@@ -110,66 +110,7 @@ func can_cast() -> bool:
 
 #endregion
 
-#region SpiritBall Pool
-func initialize_pool() -> void:
-	for i: int in 2:
-		create_spirit_ball()
 
-
-func create_spirit_ball() -> SpiritBall:
-	assert(G.level_viewport != null)
-	
-	var ball: SpiritBall = spirit_ball_scene.instantiate()
-	
-	G.level_viewport.add_child(ball)
-	
-	ball.died.connect(disable_ball)
-	
-	disable_ball(ball)
-	
-	spirit_ball_pool.append(ball)
-	
-	return ball
-
-
-func get_ball() -> SpiritBall:
-	for ball: SpiritBall in spirit_ball_pool:
-		if not ball.visible:
-			return ball
-	
-	return create_spirit_ball()
-
-
-func activate_ball() -> void:
-	var ball: SpiritBall = get_ball()
-	ball.left = wand.sprite.flip_h
-	ball.sprite.flip_h = ball.left
-	ball.global_position = wand.marker.global_position
-	
-	ball.visible = true
-	
-	ball.set_process(true)
-	ball.set_physics_process(true)
-	
-	if ball.hit_box:
-		ball.hit_box.monitoring = true
-
-
-func disable_ball(ball: SpiritBall) -> void:
-	if not is_instance_valid(ball):
-		push_warning("instance spiritball not valid")
-		return
-	
-	ball.visible = false
-	ball.time = ball.life_time
-	ball.set_process(false)
-	ball.set_physics_process(false)
-	
-	if ball.hit_box:
-		ball.hit_box.monitoring = false
-	
-	ball.global_position = Vector2.ZERO
-#endregion
 
 #region Mana
 func consume_mana() -> void:

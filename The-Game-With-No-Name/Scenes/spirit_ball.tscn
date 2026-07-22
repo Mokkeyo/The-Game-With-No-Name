@@ -40,9 +40,10 @@ animations = [{
 radius = 5.0
 height = 10.0
 
-[node name="Kamehameha" type="Node2D" unique_id=1027732331 groups=["Spiritball"]]
+[node name="Kamehameha" type="Node2D" unique_id=1027732331 node_paths=PackedStringArray("hitbox") groups=["Spiritball"]]
 z_index = 15
 script = ExtResource("1")
+hitbox = NodePath("Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438909330]
 sprite_frames = SubResource("1")

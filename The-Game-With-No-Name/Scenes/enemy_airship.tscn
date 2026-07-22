@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="4_gylce"]
 [ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="5_skqmn"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_f2h7g"]
+[ext_resource type="Script" uid="uid://bxg7b6cxs4c5s" path="res://BulletDefinition.gd" id="7_w37rj"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="8_hpl2s"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_mklbp"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_ms50j"]
@@ -163,6 +164,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbunf"]
 size = Vector2(519.5, 256)
 
+[sub_resource type="Resource" id="Resource_qxy4c"]
+script = ExtResource("7_w37rj")
+bullet_type = 2
+pool_size = 5
+metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqaaj"]
 radius = 8.0
 height = 22.0
@@ -204,10 +211,11 @@ visible = false
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_jbunf")
 
-[node name="Shoot" parent="." unique_id=1641969374 node_paths=PackedStringArray("shootingPoint", "parent") instance=ExtResource("6_f2h7g")]
-shootingPoint = NodePath("../Marker2D")
+[node name="Shoot" parent="." unique_id=1641969374 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("6_f2h7g")]
 parent = NodePath("..")
-bulletSpeed = -250
+shooting_point = NodePath("../Marker2D")
+rotation_point = NodePath("..")
+projectile = SubResource("Resource_qxy4c")
 
 [node name="healthComponent" parent="." unique_id=378003970 node_paths=PackedStringArray("health_bar") instance=ExtResource("8_hpl2s")]
 health = 100.0

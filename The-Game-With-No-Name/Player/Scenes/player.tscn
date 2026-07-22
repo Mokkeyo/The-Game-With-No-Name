@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://bvub8vvsg06rb" path="res://knockback_component.tscn" id="28_drxtx"]
 [ext_resource type="Script" uid="uid://dowfq8bgdfnwm" path="res://Player/Scenes/freeze_state.gd" id="28_efn1h"]
 [ext_resource type="PackedScene" uid="uid://by46qah463qwe" path="res://state_machine.tscn" id="31_nxnwp"]
+[ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="33_kqrd2"]
+[ext_resource type="Script" uid="uid://cj5q4j46h0f5l" path="res://SpiritballDefinition.gd" id="34_ypisy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -307,6 +309,12 @@ size = Vector2(12, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w1dl"]
 size = Vector2(9, 17)
 
+[sub_resource type="Resource" id="Resource_6rmpw"]
+script = ExtResource("34_ypisy")
+lifetime = 2.5
+pool_size = 2
+metadata/_custom_type_script = "uid://cj5q4j46h0f5l"
+
 [node name="Player" type="CharacterBody2D" unique_id=1056553489 groups=["Player"]]
 collision_layer = 4098
 collision_mask = 2065
@@ -467,8 +475,16 @@ script = ExtResource("22_17k2o")
 script = ExtResource("23_e0sep")
 mana_timer = NodePath("../Timer/ManaTimer")
 
+[node name="ShootComponent" parent="PlayerCombat" unique_id=989885909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("33_kqrd2")]
+parent = NodePath("../..")
+shooting_point = NodePath("../../Wand/Marker2D")
+rotation_point = NodePath("../../Wand")
+projectile = SubResource("Resource_6rmpw")
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=90872901]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="damaged_enemy" from="Hitbox" to="StateMachine/AirState" method="_on_hitbox_damaged_enemy"]
 [connection signal="timeout" from="StateMachine/AirState/JumpBufferTimer" to="StateMachine/AirState" method="_on_jump_buffer_timer_timeout"]
+
+[editable path="Wand"]

@@ -1,55 +1,64 @@
-extends Node2D
+extends Projectile
 class_name Bullet
 
-signal timeout
-
-var velocity: Vector2
-var moveSPEED: int = 250
-var dir: float
 @onready var timer: Timer = $Timer
 
+var speed: int
+var lifetime: float
+var bullet_type: BulletDefinition.BulletType
+
+var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	var hitbox: HitBox = $Hitbox
 	hitbox.damaged_enemy.connect(died)
+
+func configure(definition: ProjectileDefinition) -> void:
+	var data: BulletDefinition = definition as BulletDefinition
+	
+	speed = data.speed
+	lifetime = data.lifetime
+	bullet_type = data.bullet_type
+	
+
+
+func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
+	var sprite: Sprite2D = $bullet
+	
+	global_position = pos
+	global_rotation = rot
+	
+	match bullet_type:
+		BulletDefinition.BulletType.PLAYER_1:
+			player_bullet(sprite)
+		BulletDefinition.BulletType.PLAYER_2:
+			player_bullet(sprite)
+		BulletDefinition.BulletType.ENEMY:
+			lifetime = 0.5
+			hitbox.set_collision_mask_value(3, true)
+			direction = Vector2.LEFT.rotated(rotation)
+	
+	visible = true
+	set_physics_process(true)
+	timer.start(lifetime)
+
+
+func player_bullet(sprite: Sprite2D) -> void:
+	sprite.flip_h = true
+	hitbox.set_collision_mask_value(2, true)
+	direction = Vector2.RIGHT.rotated(rotation)
 
 
 func _physics_process(delta: float) -> void:
-	velocity = Vector2( moveSPEED, 0).rotated(dir)
-	global_position += velocity * delta
+	global_position += direction * speed * delta
+
 
 func deactivate_hibox(boolean: bool) -> void:
 	var hitbox_collision: CollisionShape2D = $Hitbox/CollisionShape2D
 	hitbox_collision.disabled = boolean
 
 
-func propertys(bulletRotation: float, player: int, time: float, SPEED: int) -> void:
-	var sprite: Sprite2D = $bullet
-	var hitbox: HitBox = $Hitbox
-	moveSPEED = SPEED
-	global_rotation = bulletRotation
-	dir = bulletRotation
-	
-	sprite.frame = player
-	
-	var life_time: float = 1
-	
-	sprite.flip_h = player == 0
-	hitbox.set_collision_mask_value(1, true)
-	if player == 0:
-		sprite.flip_h = true
-		hitbox.set_collision_mask_value(2, true)
-	else:
-		moveSPEED = SPEED * 2
-		life_time = 0.5
-		hitbox.set_collision_mask_value(3, true)
-	timer.stop()
-	timer.wait_time = time
-	timer.start(life_time)
-
-
 func died() -> void:
-	timeout.emit(self)
+	finished.emit(self)
 
 
 func _on_timer_timeout() -> void:

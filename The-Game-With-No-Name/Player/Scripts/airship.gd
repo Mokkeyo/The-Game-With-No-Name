@@ -26,6 +26,12 @@ const DECELERATION: int = 40
 var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
+	var definition: BulletDefinition = shootComp.projectile as BulletDefinition
+	if currentPlayer == 0:
+		definition.bullet_type = definition.BulletType.PLAYER_1
+	else:
+		definition.bullet_type = definition.BulletType.PLAYER_2
+	
 	set_inputs()
 	tree_exited.connect(enable_player)
 	sprite.play(str("default_", currentPlayer))
@@ -83,7 +89,7 @@ func check_key_input() -> void:
 
 	if Input.is_action_pressed(inputs["attack"]) and wait_timer.is_stopped():
 		wait_timer.start(0.5)
-		shootComp.shoot_bullet()
+		shootComp.shoot()
 	
 	if Input.is_action_just_pressed(inputs["interact"]) and can_exit:
 		player_node.global_position = Vector2(global_position.x, global_position.y + 8) 
