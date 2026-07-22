@@ -5,6 +5,8 @@ enum ProjectileType {BULLET, SPIRIT_BALL , LASER, WARNING}
 
 @export var projectileType: ProjectileType = ProjectileType.BULLET
 
+@export var projectile: Projectile
+
 @export var shootingPoint: Marker2D
 @export var parent: Node2D
 @export var rotation_point: Node2D
