@@ -18,11 +18,13 @@ func configure(definition: ProjectileDefinition) -> void:
 	speed = data.speed
 	lifetime = data.lifetime
 	bullet_type = data.bullet_type
-	
 
 
 func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
-	var sprite: Sprite2D = $bullet
+	var sprite: Sprite2D = $Sprite
+	assert(sprite)
+	
+	sprite.frame = bullet_type
 	
 	global_position = pos
 	global_rotation = rot
@@ -34,7 +36,7 @@ func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
 			player_bullet(sprite)
 		BulletDefinition.BulletType.ENEMY:
 			lifetime = 0.5
-			hitbox.set_collision_mask_value(3, true)
+			hitbox.set_collision_mask_value(2, true)
 			direction = Vector2.LEFT.rotated(rotation)
 	
 	visible = true
@@ -44,7 +46,7 @@ func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
 
 func player_bullet(sprite: Sprite2D) -> void:
 	sprite.flip_h = true
-	hitbox.set_collision_mask_value(2, true)
+	hitbox.set_collision_mask_value(3, true)
 	direction = Vector2.RIGHT.rotated(rotation)
 
 

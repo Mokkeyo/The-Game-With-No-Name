@@ -17,6 +17,7 @@ var player_in_airship: Array[bool] = [false, false]
 
 
 func _ready() -> void:
+	AudioManager.play_music(Sounds.BOSS_THEME)
 	setup_systems()
 	connect_to_signals()
 	
@@ -51,7 +52,6 @@ func setup_systems() -> void:
 
 func exit() -> void:
 	AI.fader = null
-	SoundMusic.listeners = []
 
 
 func connect_to_signals() -> void:
@@ -154,7 +154,7 @@ func on_checkpoint_activated() -> void:
 	for door_nr: int in temp_door:
 		if door_nr not in Save.player.door:
 			Save.player.door.append(door_nr)
-	Save.save_data()
+	Save.save_data(Save.active_slot)
 
 
 func on_door_opend(door_nr: int) -> void:

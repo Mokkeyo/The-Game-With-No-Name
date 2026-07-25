@@ -35,8 +35,8 @@ func get_alive_players() -> Array[Player]:
 
 
 func clear_footsteps_tilemap() -> void:
-	SoundComp.tilemaps.clear()
-
+#	SoundComp.tilemaps.clear()
+	pass
 
 func get_dead_players() -> Array[Player]:
 	var arr: Array[Player] = []

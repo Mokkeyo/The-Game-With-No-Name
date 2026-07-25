@@ -22,4 +22,4 @@ func _on_shoot_timeout() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: StringName) -> void:
-	shootComponent.shoot_bullet()
+	shootComponent.shoot()

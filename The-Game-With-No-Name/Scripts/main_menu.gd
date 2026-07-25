@@ -19,6 +19,7 @@ var menus: Array[Menu]
 var tween: Tween
 
 func _ready() -> void:
+	AudioManager.play_music(Sounds.MAIN_THEME)
 	fader.visible = true
 	menus = [controlls, options, save_stats, achievments, two_player_mode]
 	for menu: Menu in menus:
@@ -73,7 +74,6 @@ func _on_player_pressed() -> void: change_menu(two_player_mode)
 
 func _on_battle_button_pressed() -> void:
 	await fader.fade_out().animation_finished
-	SoundMusic.play_battle()
 	BattleData.battle = true
 	get_tree().change_scene_to_file("res://Scenes/battle_mode_menu.tscn")
 

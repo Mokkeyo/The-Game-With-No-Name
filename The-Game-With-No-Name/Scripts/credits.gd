@@ -48,9 +48,8 @@ func _on_AnimationPlayer_animation_finished(_default: String) -> void:
 
 func _on_Button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-	SoundMusic.play_underground()
 	Save.player.levelNumber = 1
-	Save.save_data()
+	Save.save_data(Save.active_slot)
 
 func _on_Timer_timeout() -> void:
 	code_index = 0

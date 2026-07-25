@@ -18,6 +18,7 @@ func receive_damage(hit: HitData) -> void:
 		HitData.DamageType.NORMAL:
 			if invincibility and invincibility.Iframes_active():
 				return
+			
 			if invincibility:
 				invincibility.play_invible_frames(invincibility_time)
 		

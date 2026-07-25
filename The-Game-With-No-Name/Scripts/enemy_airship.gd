@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if timer.is_stopped():
 		timer.start(0.5)
-		shoot_comp.shoot_bullet()
+		shoot_comp.shoot()
 	
 	var delta_y: float = player.global_position.y - global_position.y
 	

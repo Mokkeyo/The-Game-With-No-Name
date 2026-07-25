@@ -10,7 +10,8 @@ class_name ShootComponent
 var pool: Array[Projectile]
 
 func _ready() -> void:
-	await get_tree().process_frame
+	if projectile:
+		projectile = projectile.duplicate(true)
 	
 	for i: int in projectile.pool_size:
 		var p: Projectile = projectile.scene.instantiate()
@@ -20,7 +21,8 @@ func _ready() -> void:
 		p.visible = false
 		p.set_physics_process(false)
 		
-		G.level_viewport.add_child(p)
+		if G.level_viewport:
+			G.level_viewport.add_child(p)
 		
 		pool.append(p)
 
@@ -33,7 +35,7 @@ func shoot() -> void:
 		return
 	
 	p.configure(projectile)
-	
+	p.hitbox.monitoring = true
 	p.shoot(
 		shooting_point.global_position,
 		rotation_point.global_rotation,

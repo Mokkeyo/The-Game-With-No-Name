@@ -57,7 +57,6 @@ func _setup_battle() -> void:
 
 
 func _setup_components() -> void:
-	SoundMusic.listeners.append(self)
 	input.setup(current_player + 1)
 	movement.setup(self)
 	animation.setup(current_player, animated_sprite)
@@ -78,7 +77,6 @@ func _connect_signals() -> void:
 	health_component.value_changed.connect(_on_value_changed)
 	health_component.died.connect(respawn)
 	reset_comp.enabling_stats.connect(enable_player)
-	reset_comp.disabling_stats.connect(disable_player)
 	lava_water_detector.lava_entered.connect(lava_entered)
 
 #endregion
@@ -129,11 +127,6 @@ func _apply_lava_damage() -> void:
 	hurtbox.receive_hit(hit)
 
 #endregion
-
-func disable_player() -> void:
-	SoundMusic.listeners.erase(self)
-
-
 func _physics_process(delta: float) -> void:
 	if not is_alive:
 		return
@@ -148,8 +141,6 @@ func respawn() -> void:
 
 
 func enable_player() -> void:
-	print("enabling player")
-	SoundMusic.listeners.append(self)
 	is_alive = true
 	grab_zone.rope_part = null
 	state_machine.change_state(PlayerStates.ID.GROUND)

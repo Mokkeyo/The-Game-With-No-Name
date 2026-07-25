@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bqlfus07w3dpx" path="res://Scripts/in_game.gd" id="1_sbfge"]
 [ext_resource type="Script" uid="uid://d2mx8pvd6i05j" path="res://Scenes/canvas_modulate.gd" id="2_r382v"]
-[ext_resource type="PackedScene" uid="uid://dmjjrssxkjy7w" path="res://Scenes/sound_manager.tscn" id="2_rl3tg"]
 [ext_resource type="PackedScene" uid="uid://blleebef2ijss" path="res://Player/Scenes/ghost_pet.tscn" id="2_tikr8"]
 [ext_resource type="PackedScene" uid="uid://da7p34a4g111f" path="res://Player/Scenes/player.tscn" id="3_2fron"]
-[ext_resource type="PackedScene" uid="uid://buhrytsm38dkp" path="res://ambient_manager.tscn" id="4_r382v"]
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="4_u5pl2"]
 [ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
 [ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="6_m0r43"]
@@ -62,10 +60,6 @@ canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
-
-[node name="SoundManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1331626733 instance=ExtResource("2_rl3tg")]
-
-[node name="AmbientManager" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=340586383 instance=ExtResource("4_r382v")]
 
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1804773222]
 texture_filter = 1

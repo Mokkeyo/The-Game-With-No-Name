@@ -9,8 +9,6 @@ class_name Laser
 
 var segment: RectangleShape2D
 
-var targets: Array[Player] = []
-
 func _ready() -> void:
 	segment = collision.shape.duplicate() as RectangleShape2D
 	collision.shape = segment

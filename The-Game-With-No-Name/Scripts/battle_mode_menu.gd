@@ -55,7 +55,6 @@ func _on_back_to_normal_mode_pressed() -> void:
 	await fader.fade_out().animation_finished
 	BattleData.ready.fill(false)
 	BattleData.battle = false
-	SoundMusic.play_underground()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 

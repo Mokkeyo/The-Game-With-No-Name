@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://by46qah463qwe" path="res://state_machine.tscn" id="31_nxnwp"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="33_kqrd2"]
 [ext_resource type="Script" uid="uid://cj5q4j46h0f5l" path="res://SpiritballDefinition.gd" id="34_ypisy"]
+[ext_resource type="Texture2D" uid="uid://b1fkjqviu66lh" path="res://Player/Textures/indikator.png" id="35_ypisy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
 atlas = ExtResource("3_f5fds")
@@ -471,9 +472,10 @@ script = ExtResource("21_p0l7e")
 [node name="PlayerMovement" type="Node" parent="." unique_id=598592374]
 script = ExtResource("22_17k2o")
 
-[node name="PlayerCombat" type="Node" parent="." unique_id=51226752 node_paths=PackedStringArray("mana_timer")]
+[node name="PlayerCombat" type="Node" parent="." unique_id=51226752 node_paths=PackedStringArray("mana_timer", "indikator")]
 script = ExtResource("23_e0sep")
 mana_timer = NodePath("../Timer/ManaTimer")
+indikator = NodePath("../Indikator")
 
 [node name="ShootComponent" parent="PlayerCombat" unique_id=989885909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("33_kqrd2")]
 parent = NodePath("../..")
@@ -482,6 +484,13 @@ rotation_point = NodePath("../../Wand")
 projectile = SubResource("Resource_6rmpw")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=90872901]
+
+[node name="Indikator" type="Sprite2D" parent="." unique_id=1009733866]
+z_index = 20
+position = Vector2(0, -10)
+texture = ExtResource("35_ypisy")
+offset = Vector2(15, 0)
+flip_h = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="damaged_enemy" from="Hitbox" to="StateMachine/AirState" method="_on_hitbox_damaged_enemy"]

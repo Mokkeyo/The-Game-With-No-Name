@@ -13,8 +13,8 @@ func _ready() -> void:
 	ensure_dir()
 
 
-func delete_data() -> void:
-	var file_path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
+func delete_data(save_stat: int) -> void:
+	var file_path: String = SAVE_DIR + "slot_" + str(save_stat) + ".json"
 	if FileAccess.file_exists(file_path):
 		var err: Error = DirAccess.remove_absolute(file_path)
 		if not err == OK:
@@ -32,7 +32,7 @@ func delete_data() -> void:
 	save_options()
 
 
-func start_new_game() -> void:
+func start_new_game(save_state: int) -> void:
 	for i: int in player.kristallCollected.size():
 		player.kristallCollected[i] = false
 		
@@ -50,19 +50,19 @@ func start_new_game() -> void:
 	player.dialog_flags = {}
 	if player.door:
 		player.door.clear() 
-	save_data()
+	save_data(save_state)
 
 #-------------------
 #SAVE
 #-------------------
 
-func save_all() -> void:
-	save_data()
-	save_options()
-	save_inputs()
+#func save_all() -> void:
+#	save_data()
+#	save_options()
+#	save_inputs()
 
-func save_data() -> void:
-	var path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
+func save_data(save_state: int) -> void:
+	var path: String = SAVE_DIR + "slot_" + str(save_state) + ".json"
 	save_json(path, player.to_dict())
 
 func save_options() -> void:
@@ -78,19 +78,19 @@ func save_inputs() -> void:
 #LOAD
 #-------------------
 
-func load_all() -> void:
-	load_data()
-	load_options()
-	load_inputs()
+#func load_all() -> void:
+#	load_data()
+#	load_options()
+#	load_inputs()
 
 
-func load_data() -> void:
+func load_data(save_state: int) -> void:
 	var path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
 	var a_data: Dictionary = load_json(path)
 	
 	if a_data.is_empty():
 		push_warning("Save file is missing or invalid -> slot_" + str(active_slot))
-		save_data()
+		save_data(save_state)
 		return
 	
 	player.from_dict(a_data)

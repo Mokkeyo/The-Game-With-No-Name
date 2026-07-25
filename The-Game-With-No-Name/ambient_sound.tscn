@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://gnrecg4fh4ys"]
-
-[ext_resource type="Script" uid="uid://drbx7dhw33kv3" path="res://ambient_sound.gd" id="1_aelac"]
-
-[node name="AmbientSound" type="AudioStreamPlayer2D" unique_id=2019004485]
-script = ExtResource("1_aelac")

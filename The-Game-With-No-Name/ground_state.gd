@@ -1,7 +1,6 @@
 extends PlayerState
 class_name GroundState
 
-@export var footstep_sound: FootStepComp
 const FOOTSTEP_FRAMES: Array[int] = [2, 4, 6]
 
 func exit() -> void:
@@ -14,8 +13,7 @@ func play_walk_sound() -> void:
 		return
 	
 	if sprite.frame in FOOTSTEP_FRAMES:
-		SoundComp.play_footstep(player.global_position)
-
+		AudioManager.play_sfx_at(Sounds.PLAYER_WALKING, player.global_position)
 
 func handle_input() -> void:
 	var dir: Vector2 = input_direction()

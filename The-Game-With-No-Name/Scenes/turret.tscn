@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4aouv1eodo1n"]
+[gd_scene format=3 uid="uid://4aouv1eodo1n"]
 
 [ext_resource type="Texture2D" uid="uid://dg8fypubwnoc1" path="res://Objects/Textures/turret_eye.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cjykk7f204yd0" path="res://Objects/Textures/turret_plattform.png" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://djrgri111eoa5" path="res://Scripts/turret.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://cgwuws6dkqgdr" path="res://NormalMap/turret_plattform_normal.png" id="5_jqxwu"]
 [ext_resource type="PackedScene" uid="uid://cikrmoipekog2" path="res://Scenes/airship_detector_component.tscn" id="7_hyxdo"]
+[ext_resource type="Script" uid="uid://bxg7b6cxs4c5s" path="res://BulletDefinition.gd" id="8_74mb1"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="8_x83vg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_shxg7"]
@@ -124,48 +125,52 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnj7k"]
 radius = 122.262
 
-[node name="Geschütz" type="CharacterBody2D"]
+[sub_resource type="Resource" id="Resource_kvu5x"]
+script = ExtResource("8_74mb1")
+pool_size = 2
+metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
+
+[node name="Geschütz" type="CharacterBody2D" unique_id=241740159]
 script = ExtResource("4")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=1324070024]
 position = Vector2(0, -16)
 
-[node name="geschütz(2)" type="Sprite2D" parent="Node2D"]
+[node name="geschütz(2)" type="Sprite2D" parent="Node2D" unique_id=1946989839]
 rotation = 2.26893
 texture = SubResource("CanvasTexture_shxg7")
 
-[node name="Marker2D" type="Marker2D" parent="Node2D/geschütz(2)"]
+[node name="Marker2D" type="Marker2D" parent="Node2D/geschütz(2)" unique_id=1734474797]
 visible = false
 rotation = -2.26893
 
-[node name="geschütz" type="Sprite2D" parent="."]
+[node name="geschütz" type="Sprite2D" parent="." unique_id=44394493]
 position = Vector2(0, -4)
 texture = SubResource("CanvasTexture_h1rt8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1376625022]
 visible = false
 position = Vector2(0, -10)
 shape = SubResource("1")
 
-[node name="shootTimer" type="Timer" parent="."]
+[node name="shootTimer" type="Timer" parent="." unique_id=1291331596]
 wait_time = 1.5
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ss6qi")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=307058041]
+libraries/ = SubResource("AnimationLibrary_ss6qi")
 
-[node name="airshipDetector" parent="." instance=ExtResource("7_hyxdo")]
+[node name="airshipDetector" parent="." unique_id=1013015231 instance=ExtResource("7_hyxdo")]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="airshipDetector" unique_id=1332905738]
 shape = SubResource("CircleShape2D_cnj7k")
 
-[node name="Shoot" parent="." node_paths=PackedStringArray("shootingPoint", "parent", "rotation_point") instance=ExtResource("8_x83vg")]
-shootingPoint = NodePath("../Node2D/geschütz(2)/Marker2D")
+[node name="Shoot" parent="." unique_id=548319555 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("8_x83vg")]
 parent = NodePath("..")
+shooting_point = NodePath("../Node2D/geschütz(2)/Marker2D")
 rotation_point = NodePath("../Node2D")
+projectile = SubResource("Resource_kvu5x")
 
 [connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

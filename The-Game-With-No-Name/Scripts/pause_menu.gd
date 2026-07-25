@@ -70,7 +70,7 @@ func _on_player_pressed() -> void: change_menu(3)
 
 func _on_return_to_main_menu_pressed() -> void:
 	get_tree().paused = false
-	SoundComp.tilemaps = []
+#	SoundComp.tilemaps = []
 	if not BattleData.battle:
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	else:

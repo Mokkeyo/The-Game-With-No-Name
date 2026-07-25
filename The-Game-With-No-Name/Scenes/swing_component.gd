@@ -13,8 +13,6 @@ class_name SwingComponent
 @export_category("Sound")
 @export var swing_volume_db: float = 2
 
-@onready var sound_player: SoundPlayer = $SoundPlayer
-
 var swing_tween: Tween
 var swing_direction_sign: float = 1
 
@@ -36,14 +34,8 @@ func _start_swing_tween() -> void:
 	var from_angle: float = -swing_angle * swing_direction_sign
 	var to_angle: float = swing_angle * swing_direction_sign
 	swing_tween.tween_property(rotating_object, "rotation_degrees", from_angle, speed)
-	swing_tween.tween_callback(_on_swing_end)
 	swing_tween.tween_property(rotating_object, "rotation_degrees", to_angle, speed)
-	swing_tween.tween_callback(_on_swing_end)
 	swing_tween.set_loops()
-
-
-func _on_swing_end() -> void:
-	sound_player.play_sound()
 
 
 func _draw() -> void:

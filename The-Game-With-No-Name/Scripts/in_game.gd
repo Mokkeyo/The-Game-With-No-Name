@@ -1,8 +1,6 @@
 extends Control
 class_name InGame
 
-@onready var sound_manager: Node = $HBoxContainer/ViewportContainerP1/SubViewport/SoundManager
-
 @onready var viewport_containers: Array[SubViewportContainer] = [
 	$HBoxContainer/ViewportContainerP1,
 	$HBoxContainer/ViewportContainerP2

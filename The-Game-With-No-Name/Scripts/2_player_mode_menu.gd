@@ -4,7 +4,7 @@ class_name TwoPlayerMode
 
 func _ready() -> void:
 	var timer: Timer = $Timer
-	super.connect("exited", Callable(timer, "start"))
+	exited.connect(timer.start)
 	super._ready()
 
 

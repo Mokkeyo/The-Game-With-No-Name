@@ -12,7 +12,7 @@ z_as_relative = false
 script = ExtResource("2")
 hitbox = NodePath("Hitbox")
 
-[node name="bullet" type="Sprite2D" parent="." unique_id=1071204257]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1071204257]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_hmh2x")
 hframes = 3

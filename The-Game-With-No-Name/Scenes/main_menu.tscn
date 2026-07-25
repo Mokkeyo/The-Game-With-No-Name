@@ -1816,7 +1816,6 @@ tile_set = SubResource("TileSet_3e3su")
 anchor_mode = 0
 
 [node name="lightmap" parent="Camera2D" unique_id=335586309 instance=ExtResource("10_qh4yw")]
-visible = true
 
 [node name="Fader" parent="." unique_id=1699671938 instance=ExtResource("21_bjkxx")]
 z_index = 2

@@ -1,7 +1,7 @@
 extends ProjectileDefinition
 class_name BulletDefinition
 
-enum BulletType {PLAYER_1, PLAYER_2, ENEMY}
+enum BulletType {ENEMY, PLAYER_1, PLAYER_2}
 
 @export var speed: int = 300
 @export var lifetime: float = 2.0

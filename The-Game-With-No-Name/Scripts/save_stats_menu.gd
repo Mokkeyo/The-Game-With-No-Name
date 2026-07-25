@@ -1,66 +1,113 @@
 extends Menu
 class_name SaveStatMenu
 
+enum States {Nothing, Copying, Erasing, EnteringName}
+var state: States = States.Nothing
+
 @export var fader: Fader
 
 @onready var label: Label = $Label
 @onready var back_button: Button = $BackButton
 
+@onready var conformation: Control = $Conformation
+@onready var conformation_text: Label = $Conformation/Label
+@onready var no_button: Button = $Conformation/Panel4/Panel2/No
+
 @onready var name_enterer: Control = $NameEnterer
 @onready var line_edit: LineEdit = $NameEnterer/LineEdit
 @onready var save_stats: Array[SaveStateButton] = [$SaveStat1, $SaveStat2, $SaveStat3, $SaveStat4] 
 
-var copy_data_from_save: int
+var selected_slot: int
+var target_slot: int
+
+func _ready() -> void:
+	for i: int in save_stats.size():
+		var save_stat: SaveStateButton = save_stats[i]
+		
+		save_stat.copy_pressed.connect(copy_data)
+		save_stat.erase_pressed.connect(erase_data)
+		save_stat.state_pressed.connect(start_game)
+		save_stat.file_exists = FileAccess.file_exists(get_save_path(i))
+		if save_stat.file_exists:
+			Save.load_data(i)
+		save_stats[i].update_ui()
+
+func get_save_path(slot: int) -> String:
+	return "%sslot_%d.json" % [Save.SAVE_DIR, slot]  
+
+func copy_data(save_state: int) -> void:
+	selected_slot = save_state
+	state = States.Copying
+	show_copy_data_text()
+	set_state_visible(false)
+
+func set_state_visible(value: bool) -> void:
+	for i: int in save_stats.size():
+		if selected_slot == i:
+			continue
+		
+		var save_stat: SaveStateButton = save_stats[i]
+		
+		if value:
+			save_stat.stats.visible = save_stat.file_exists
+			save_stat.new_game_label.visible = !save_stat.file_exists
+		else:
+			save_stat.stats.visible = false
+			save_stat.new_game_label.visible = false
+
+func erase_data(save_state: int) -> void:
+	selected_slot = save_state
+	state = States.Erasing
+	enter_conformation("Erase Data?")
+
 
 func _unhandled_input(event: InputEvent) -> void:
-	var path: int = Save.active_slot
-	var save_stat: SaveStateButton = save_stats[path]
-	if save_stat.state == save_stat.States.Nothing:
+	if state == States.Nothing:
 		super._unhandled_input(event)
-		
-	if Input.is_action_just_pressed("back") and name_enterer.visible:
-		save_stat.grab_focus()
-		save_stat.state = save_stat.States.Nothing
-		name_enterer.visible = false
+		return
+	
+	if Input.is_action_just_pressed("back"):
+		return_to_default()
 
 
 func show_normal_text() -> void:
 	label.text = "Choose a file"
 	back_button.text = "back"
-	update_save_state_visibility(true)
 
 
 func show_copy_data_text() -> void:
 	label.text = "Choose a File to copy to"
 	back_button.text = "Cancel"
-	update_save_state_visibility(true)
-
-
-func update_save_state_visibility(is_copy: bool) -> void:
-	for saveStateButton: SaveStateButton in save_stats:
-		saveStateButton.copy_panel.visible = is_copy and saveStateButton.saveState != copy_data_from_save or not is_copy
 
 
 func start_fader() -> void:
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
+	Save.active_slot = selected_slot
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
-func start_new_game() -> void:
-	Save.start_new_game()
-	start_fader()
-
-
-func start_game() -> void:
-	if save_stats[Save.active_slot].file_exists:
-		Save.load_data()
+func start_game(save_state: int) -> void:
+	if state == States.Copying:
+		enter_conformation("Copy Data?")
+		target_slot = save_state
+		return
+	
+	if save_stats[save_state].file_exists:
+		Save.load_data(save_state)
 		start_fader()
 	else:
+		selected_slot = save_state
+		state = States.EnteringName
 		name_enterer.visible = true
 		line_edit.grab_focus()
+
+
+func start_new_game() -> void:
+	Save.start_new_game(selected_slot)
+	start_fader()
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
@@ -69,7 +116,49 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
-	Save.options.playerName[Save.active_slot] = line_edit.text
+	Save.options.playerName[selected_slot] = line_edit.text
 	line_edit.release_focus()
 	Save.save_options() 
 	start_new_game()
+
+
+func _on_yes_pressed() -> void:
+	var save_stat: SaveStateButton = save_stats[selected_slot]
+	match state:
+		States.Erasing:
+			save_stat.file_exists = false
+			Save.delete_data(selected_slot)
+			save_stat.update_ui()
+	
+		States.Copying:
+			var target_stat: SaveStateButton = save_stats[target_slot]
+			save_stat.file_exists = true
+			target_stat.file_exists = true
+			Save.options.playerName[target_slot] = \
+				Save.options.playerName[selected_slot]
+			Save.options.deaths[target_slot] = \
+				Save.options.deaths[selected_slot]
+			Save.save_options()
+			Save.save_data(target_slot)
+			
+			target_stat.update_ui()
+	
+	return_to_default()
+
+func _on_no_pressed() -> void:
+	return_to_default()
+
+
+func enter_conformation(text: String) -> void:
+	conformation_text.text = text
+	conformation.visible = true
+	no_button.grab_focus()
+
+
+func return_to_default() -> void:
+	show_normal_text()
+	save_stats[selected_slot].grab_focus()
+	state = States.Nothing
+	conformation.visible = false
+	set_state_visible(true)
+	name_enterer.visible = false

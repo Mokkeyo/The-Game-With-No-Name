@@ -14,8 +14,8 @@ const MANA_COST: int = 33
 
 @export var enemy_jump_power: int = 210
 @export var mana_timer: Timer
-@export var sound_player: SoundPlayer
 
+@export var indikator: Sprite2D
 @onready var shoot_comp: ShootComponent = $ShootComponent
 
 var player_index: int = 0
@@ -48,7 +48,7 @@ func connect_signals() -> void:
 func setup_sword() -> void:
 	sword.end_position.y = SWORD_BASE_Y
 	sword.end_rotation = SWORD_ROTATION
-	change_sword_direction(Vector2(1,0), 0)
+	change_sword_direction(Vector2.RIGHT, 0)
 
 
 func is_attacking() -> bool:
@@ -60,26 +60,30 @@ func attack() -> void:
 
 
 func change_sword_direction(facing_direction: Vector2, player_rotation: float = 0) -> void:
-	if facing_direction != Vector2.ZERO:
-		var new_x_position: float = facing_direction.x * SWORD_OFFSET_X
-		sword.default_position.x = new_x_position
-		
-		var new_y_position: float = facing_direction.y * SWORD_OFFSET_Y + SWORD_BASE_Y
-		sword.default_position.y = new_y_position
-		
-		sword.facing_direction = facing_direction.normalized()
+	if facing_direction == Vector2.ZERO:
+		return
+	
+	indikator.rotation_degrees = rad_to_deg(facing_direction.angle())
+	
+	sword.default_position = Vector2(
+		facing_direction.x * SWORD_OFFSET_X,
+		facing_direction.y * SWORD_OFFSET_Y + SWORD_BASE_Y
+	)
+	
+	sword.facing_direction = facing_direction.normalized()
 	
 	if facing_direction.x != 0:
 		facing_x = int(facing_direction.x)
 	
-	if not is_attacking():
-		sword.position.x = SWORD_HAND_OFFSET * facing_x
-		
-		sword.end_position.x = sword.position.x
-		
-		sword.end_rotation = SWORD_ROTATION * facing_x + player_rotation
-		
-		sword.rotation_degrees = sword.end_rotation
+	if is_attacking():
+		return
+	
+	sword.position.x = SWORD_HAND_OFFSET * facing_x
+	sword.end_position.x = sword.position.x
+	
+	var rotation: float = SWORD_ROTATION * facing_x + player_rotation
+	sword.end_rotation = rotation
+	sword.rotation_degrees = rotation
 #endregion
 
 #region Wand
@@ -97,15 +101,14 @@ func cast() -> void:
 	consume_mana()
 	wand.attack()
 	var def: SpiritballDefinition = shoot_comp.projectile as SpiritballDefinition
-	def.direction = -1 if wand.sprite.flip_h == true else +1
-	print(def.direction)
+	def.direction = -1 if wand.sprite.flip_h == true else 1
 	shoot_comp.shoot()
 
 
 func can_cast() -> bool:
 	return (
 		wand.can_swing
-		and Save.player.mana[player_index] >= MANA_COST
+		and mana() >= MANA_COST
 	)
 
 #endregion
@@ -113,16 +116,18 @@ func can_cast() -> bool:
 
 
 #region Mana
+func mana() -> float:
+	return Save.player.mana[player_index]
+
 func consume_mana() -> void:
 	Save.player.mana[player_index] -= MANA_COST
-	
 	update_mana_ui()
 
 
 func update_mana_ui() -> void:
 	G.mana_value_changed.emit(
 		player_index, 
-		Save.player.mana[player_index]
+		mana()
 	)
 #endregion
 
@@ -133,7 +138,7 @@ func _on_enemy_hit(_damage: int) -> void:
 
 func _on_ManaTimer_timeout() -> void:
 	Save.player.mana[player_index] = min(
-		Save.player.mana[player_index] + MANA_REGEN,
+		mana() + MANA_REGEN,
 		MAX_MANA
 	)
 	

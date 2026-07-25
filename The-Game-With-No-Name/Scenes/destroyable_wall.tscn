@@ -36,7 +36,7 @@ visible = false
 shape = SubResource("2")
 
 [node name="Hurtbox" parent="." unique_id=827685932 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("4_3u1dm")]
-collision_layer = 1
+collision_layer = 4
 damage_receiver = NodePath("../DamageReceiver")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1378905716]
