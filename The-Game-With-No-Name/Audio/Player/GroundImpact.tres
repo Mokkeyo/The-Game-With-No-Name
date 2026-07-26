@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://ci4mafucs3g5v"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_07d84"]
+[ext_resource type="AudioStream" uid="uid://ch3ixkfm85tyc" path="res://Audio/Files/human-impact-on-ground.mp3" id="2_8twl4"]
+
+[resource]
+script = ExtResource("1_07d84")
+streams = Array[AudioStream]([ExtResource("2_8twl4")])
+volume_db = -15.0
+pitch_variation = 0.1
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

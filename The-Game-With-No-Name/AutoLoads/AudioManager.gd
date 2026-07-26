@@ -1,71 +1,122 @@
 extends Node
 
-const MAX_SFX_PLAYERS: int = 16
+const MAX_UI_SFX_PLAYERS: int = 2
 const MAX_MUSIC_PLAYERS: int = 2
-const MAX_SPATIAL_PLAYERS: int = 32
+const MAX_SFX_PLAYERS: int = 32
+const MAX_AMBIENT_PLAYERS: int = 5
 
 const AMBIENT_SWITCH_HYSTERESIS: float = 50.0
 const SILENT_DB: float = -80.0
 
-const MUSIC_BUS: String = "Music"
+var listener: Node2D = null
+var world: Node = null
 
-var world: Node
 var ambient_timer: float = 0.0
+var ambient_sources: Dictionary[SoundEffect, Array] = {}
+var active_sources: Dictionary[SoundEffect, AudioSource2D] = {}
+var active_players: Dictionary[SoundEffect, AudioStreamPlayer2D] = {}
+var playback_positions: Dictionary[SoundEffect, float] = {}
 
-var music_tween: Tween
-var fade_time: float = 1.0
+var _last_variant: Dictionary[SoundEffect, int] = {}
+
+var pending_sfx: Array[SFXRequest] = []
+
+#music players helper var
 var current_music_player: int = 0
-
-var ambient_sources: Dictionary[StringName, Array] = {}
-var active_sources: Dictionary[StringName, AudioSource2D] = {}
-var playback_positions: Dictionary [StringName, float] = {}
-var _last_played_frame: Dictionary = {}
+var music_tween: Tween
+var fade_time: float = 0.5
 
 var music_players: Array[AudioStreamPlayer] = []
-
-var sfx_players: Array[AudioStreamPlayer] = []
-
-var spatial_players: Array[AudioStreamPlayer2D] = []
-
-var _last_variant: Dictionary = {}
+var ui_sfx_players: Array[AudioStreamPlayer] = []
+var sfx_players: Array[AudioStreamPlayer2D] = []
+var ambient_players: Array[AudioStreamPlayer2D] = []
 
 func _ready() -> void:
-	await get_tree().process_frame
+	setup_audio()
+
+func _process(delta: float) -> void:
+	_process_pending_sfx()
+	
+	ambient_timer += delta
+	
+	if ambient_timer >= 0.2:
+		ambient_timer = 0.0
+		_update_ambient()
+	
+	_update_ambient_players()
+
+#region Audio Creator Functions
+func setup_audio() -> void:
 	_create_music_player()
-	_create_sfx_players()
-#	_create_spatial_players()
+	_create_ui_sfx_player()
 
-#region player creators
 func _create_music_player() -> void:
-	for i: int in MAX_MUSIC_PLAYERS:
+	music_players = _create_audio_player(MAX_MUSIC_PLAYERS, "Music")
+
+func _create_ui_sfx_player() -> void:
+	ui_sfx_players = _create_audio_player(MAX_UI_SFX_PLAYERS)
+
+
+func _create_audio_player(count: int, bus: String = "") -> Array[AudioStreamPlayer]:
+	var players: Array[AudioStreamPlayer] = []
+	
+	for i: int in count:
 		var player: AudioStreamPlayer = AudioStreamPlayer.new()
-		player.bus = MUSIC_BUS
 		player.process_mode = Node.PROCESS_MODE_ALWAYS
+		if bus != "":
+			player.bus = bus
+		
 		add_child(player)
-		music_players.append(player)
-
-func _create_sfx_players() -> void:
-	for i: int in MAX_SFX_PLAYERS:
-		var player: AudioStreamPlayer = AudioStreamPlayer.new()
-		add_child(player)
-		sfx_players.append(player)
-
-
-func _create_spatial_players() -> void:
-	if !world:
-		return
-	for i: int in MAX_SPATIAL_PLAYERS:
-		var player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-		world.add_child(player)
-		spatial_players.append(player)
-	print("spatial world", spatial_players[0].get_world_2d())
+		players.append(player)
+	
+	return players
 #endregion
 
-#region music functions
+#region Audio 2D Creator Functions
+
+func setup_audio_2d(w: Node) -> void:
+	world = w
+	listener = get_tree().get_first_node_in_group("Player")
+	free_player(sfx_players)
+	free_player(ambient_players)
+	_create_sfx_player()
+	_create_ambient_player()
+
+
+func free_player(players: Array[AudioStreamPlayer2D]) -> void:
+	for player: AudioStreamPlayer2D in players:
+		if is_instance_valid(player):
+			player.queue_free()
+	
+	players.clear()
+
+
+func _create_sfx_player() -> void:
+	sfx_players = _create_audio_2d_player(MAX_SFX_PLAYERS, "SFX")
+
+func _create_ambient_player() -> void:
+	ambient_players = _create_audio_2d_player(MAX_AMBIENT_PLAYERS, "Ambient")
+
+func _create_audio_2d_player(count: int, bus: String) -> Array[AudioStreamPlayer2D]:
+	var players: Array[AudioStreamPlayer2D] = []
+	
+	for i: int in count:
+		var player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		
+		player.bus = bus
+		
+		world.add_child(player)
+		players.append(player)
+	
+	return players
+#endregion
+
+#region Music Functions
 func play_music(sound: SoundEffect) -> void:
 	var stream: AudioStream = _get_stream(sound)
 	
 	if stream == null:
+		push_warning("No Stream found in: ", sound.resource_name)
 		return
 	
 	var current_player: AudioStreamPlayer = music_players[current_music_player]
@@ -76,8 +127,9 @@ func play_music(sound: SoundEffect) -> void:
 		current_player.play()
 		return
 	
-	if current_player.stream == stream and current_player.playing:
+	if current_player.stream == stream:
 		return
+	
 	
 	var next_index: int = _get_inactive_music_player()
 	var next_player: AudioStreamPlayer = music_players[next_index]
@@ -96,10 +148,10 @@ func play_music(sound: SoundEffect) -> void:
 	tween.parallel().tween_property(
 		current_player,
 		"volume_db",
-		SILENT_DB,
+		SILENT_DB,+
 		fade_time
 	)
-	
+
 	tween.parallel().tween_property(
 		next_player,
 		"volume_db",
@@ -119,197 +171,247 @@ func play_music(sound: SoundEffect) -> void:
 	current_music_player = next_index
 
 
-func stop_music() -> void:
-	var player: AudioStreamPlayer= music_players[current_music_player]
-
-	if !player.playing:
-		return
-
-	if music_tween:
-		music_tween.kill()
-	
-	var tween: Tween = create_tween()
-	music_tween = tween
-	
-	tween.tween_property(player, "volume_db", SILENT_DB, fade_time)
-
-	await tween.finished
-	
-	if music_tween != tween:
-		return
-	
-	music_tween = null
-	
-	player.stop()
-
-
 func _get_inactive_music_player() -> int:
 	return (current_music_player + 1) % MAX_MUSIC_PLAYERS
 #endregion
 
-#region sfx functions
-func play_sfx_at(sound: SoundEffect, position: Vector2) -> void:
+#region UI SFX Functions
+
+func play_ui_sfx(sound: SoundEffect) -> void:
 	var stream: AudioStream = _get_stream(sound)
 	
 	if stream == null:
+		push_warning("No Stream found in: ", sound.resource_name)
 		return
 	
-	if !_can_play(sound, stream, spatial_players):
+	var player: AudioStreamPlayer = _get_free_audio_player(ui_sfx_players)
+	
+	if player == null:
+		push_warning("No Free Player found")
 		return
 	
-	
-	for player: AudioStreamPlayer2D in spatial_players:
-		if player.playing:
+	player.stream = stream
+	player.volume_db = sound.volume_db
+	player.pitch_scale = sound.random_pitch
+	player.play()
+
+func _get_free_audio_player(players: Array[AudioStreamPlayer]) -> AudioStreamPlayer:
+	for i: int in players.size():
+		if players[i].playing:
 			continue
 		
-		player.max_distance = sound.max_distance
-			
-		player.global_position = position
-		player.stream = stream
-		player.bus = sound.bus
-		player.volume_db = sound.volume_db
-		
-		if sound.random_pitch:
-			player.pitch_scale = randf_range(
-				1.0 - sound.pitch_variation,
-				1.0 + sound.pitch_variation
-			)
-		else:
-			player.pitch_scale = 1.0
+		return players[i]
 	
-		player.play()
-		return
+	return null
 
-
-func play_sfx(sound: SoundEffect) -> void:
-	if sound == null:
-		return
-	
-	var stream: AudioStream = _get_stream(sound)
-	
-	if stream == null:
-		return
-	
-	if !_can_play(sound, stream, sfx_players):
-		return
-	
-	for player: AudioStreamPlayer in sfx_players:
-		if player.playing:
-			continue
-		
-		player.stream = stream
-		player.bus = sound.bus
-		player.volume_db = sound.volume_db
-		
-		if sound.random_pitch:
-			player.pitch_scale = randf_range(
-				1.0 - sound.pitch_variation,
-				1.0 + sound.pitch_variation
-			)
-		else:
-			player.pitch_scale = 1.0
-	
-		player.play()
-		return
-
-
-func _get_stream(sound: SoundEffect) -> AudioStream:
-	var count: int = sound.streams.size()
-	
-	if count == 0:
-		return
-	
-	if count == 1:
-		return sound.streams[0]
-	
-	var last: int = _last_variant.get(sound, -1)
-	var index: int = randi_range(0, count -1)
-	
-	while count > 1 and index == last:
-		index = randi_range(0, count -1)
-	
-	_last_variant[sound] = index
-	
-	return sound.streams[index]
 #endregion
 
-#region ambient functions
+#region SFX Functions
 
-func _process(delta: float) -> void:
-	ambient_timer += delta
+func play_sfx(sound: SoundEffect, position: Vector2) -> void:
+	var stream: AudioStream = _get_stream(sound)
 	
-	if ambient_timer >= 0.2:
-		ambient_timer = 0.0
-		_update_ambient()
+	if stream == null:
+		push_warning("No Stream found in: ", sound.resource_name)
+		return
+	
+	pending_sfx.append(
+		SFXRequest.new(sound, stream, position)
+	)
 
-
-func _update_ambient() -> void:
-	var player: Node2D = get_tree().get_first_node_in_group("Player")
+func _play_request(request: SFXRequest) -> void:
+	var player: AudioStreamPlayer2D = _get_free_audio_2d_player(sfx_players)
 	
 	if player == null:
 		return
 	
-	for group: StringName in ambient_sources.keys():
-		var sources: Array = ambient_sources[group]
-		
-		var closest: AudioSource2D
-		var closest_distance: float = INF
-		
-		for source: AudioSource2D in sources:
-			var distance: float = source.global_position.distance_to(
-				player.global_position
-			)
-			
-			if distance > source.activation_distance:
-				continue
-			
-			if distance < closest_distance:
-				closest = source
-				closest_distance = distance
-		
-		var current: AudioSource2D = active_sources.get(group)
+	var sound: SoundEffect = request.sound
+	
+	player.global_position = request.position
+	player.max_distance = sound.max_distance
+	
+	player.stream = request.stream
+	player.volume_db = sound.volume_db
+	
+	if sound.random_pitch:
+		player.pitch_scale = randf_range(
+			1.0 - sound.pitch_variation,
+			1.0 + sound.pitch_variation
+		)
+	else:
+		player.pitch_scale = 1.0
+	
+	player.play()
 
-		# Hysterese
-		if current != null and closest != null and current != closest:
-			var current_distance: float = current.global_position.distance_to(
-				player.global_position
-			)
 
-			# Nur wechseln, wenn die neue Quelle deutlich näher ist
-			if closest_distance + AMBIENT_SWITCH_HYSTERESIS >= current_distance:
-				closest = current
+func _get_free_audio_2d_player(players: Array[AudioStreamPlayer2D]) -> AudioStreamPlayer2D:
+	for player: AudioStreamPlayer2D in players:
+		if player.playing:
+			continue
+		
+		return player
+	
+	return null
 
-		# Keine Änderung
+
+func _process_pending_sfx() -> void:
+	if pending_sfx.is_empty():
+		return
+	
+	if listener == null:
+		pending_sfx.clear()
+		return
+	
+	var listener_position: Vector2 = listener.global_position
+	
+	pending_sfx.sort_custom(
+		func(a:SFXRequest, b: SFXRequest) -> bool:
+			return a.position.distance_squared_to(listener_position) \
+			< b.position.distance_squared_to(listener_position)
+	)
+	
+	var played: Dictionary = {}
+	
+	for request: SFXRequest in pending_sfx:
+		if played.has(request.sound):
+			continue
+	
+		_play_request(request)
+		played[request.sound] = true
+	
+	pending_sfx.clear()
+	
+#endregion
+
+#region Ambient Functions
+
+func _update_ambient() -> void:
+	if listener == null:
+		return
+	
+	for sound: SoundEffect in ambient_sources:
+		var closest: AudioSource2D = _get_closest_source(sound)
+		var current: AudioSource2D = active_sources.get(sound)
+		
+		if current != null and closest != null:
+			closest = _apply_hysteresis(current, closest)
+		
 		if current == closest:
 			continue
+		
+		_switch_ambient(sound, current, closest)
 
-		# Keine Quelle mehr -> ausfaden
-		if closest == null:
-			if current:
-				playback_positions[group] = current.playback_position()
-				current.fade_out()
-
-			active_sources.erase(group)
+func _get_closest_source(sound: SoundEffect) -> AudioSource2D:
+	var closest: AudioSource2D
+	var closest_distance: float  = INF
+	
+	for source: AudioSource2D in ambient_sources[sound]:
+		var distance: float = source.global_position.distance_to(
+			listener.global_position
+		)
+		
+		if distance > source.activation_distance:
 			continue
+		
+		if distance < closest_distance:
+			closest = source
+			closest_distance = distance
+	
+	return closest
 
-		# Erste Quelle der Gruppe
-		if current == null:
-			var pos: float= playback_positions.get(group, 0.0)
-			closest.fade_in(pos)
-			active_sources[group] = closest
+
+func _apply_hysteresis(
+	current: AudioSource2D,
+	closest: AudioSource2D
+) -> AudioSource2D:
+
+	var listener_position :Vector2 = listener.global_position
+
+	var current_distance: float = current.global_position.distance_squared_to(
+		listener_position
+	)
+
+	var closest_distance:float = closest.global_position.distance_squared_to(
+		listener_position
+	)
+
+	if closest_distance + AMBIENT_SWITCH_HYSTERESIS * AMBIENT_SWITCH_HYSTERESIS >= current_distance:
+		return current
+
+	return closest
+
+
+func _switch_ambient(
+	sound: SoundEffect,
+	current: AudioSource2D,
+	closest: AudioSource2D
+) -> void:
+
+	if closest == null:
+		_stop_ambient(sound)
+		return
+
+	if current == null:
+		_start_ambient(sound, closest)
+		return
+
+	playback_positions[sound] = \
+		active_players[sound].get_playback_position()
+
+	active_sources[sound] = closest
+
+	active_players[sound].play(
+		playback_positions[sound]
+	)
+
+func _start_ambient(
+	sound: SoundEffect,
+	source: AudioSource2D
+) -> void:
+
+	var player : AudioStreamPlayer2D = _get_free_audio_2d_player(ambient_players)
+
+	if player == null:
+		return
+
+	player.global_position = source.global_position
+	player.stream = _get_stream(sound)
+	player.volume_db = sound.volume_db
+	player.max_distance = sound.max_distance
+	var pos: float = playback_positions.get(sound, 0.0)
+	player.play(pos)
+
+	active_sources[sound] = source
+	active_players[sound] = player
+
+func _stop_ambient(sound: SoundEffect) -> void:
+	var player: AudioStreamPlayer2D = active_players.get(sound)
+
+	if player == null:
+		return
+
+	playback_positions[sound] = player.get_playback_position()
+
+	player.stop()
+
+	active_players.erase(sound)
+	active_sources.erase(sound)
+
+func _update_ambient_players() -> void:
+	
+	for sound: SoundEffect in active_players:
+		if !active_sources.has(sound):
 			continue
+		
+		var player :AudioStreamPlayer2D = active_players[sound]
+		var source : AudioSource2D = active_sources[sound]
 
-		# Wechsel auf andere Quelle
-		playback_positions[group] = current.playback_position()
+		player.global_position = source.global_position
 
-		current.stop()
-
-		closest.play(playback_positions[group])
-
-		active_sources[group] = closest
 
 func register_source(source: AudioSource2D) -> void:
-	var group: StringName = source.sound.ambient_group
+	var group: SoundEffect = source.sound
+	
 	if !ambient_sources.has(group):
 		ambient_sources[group] = []
 	
@@ -325,7 +427,7 @@ func unregister_source(source: AudioSource2D) -> void:
 	if source == null:
 		return
 	
-	var group: StringName = source.sound.ambient_group
+	var group: SoundEffect = source.sound
 	
 	if ambient_sources.has(group):
 		var sources: Array = ambient_sources[group]
@@ -337,59 +439,27 @@ func unregister_source(source: AudioSource2D) -> void:
 	if active_sources.get(group) == source:
 		active_sources.erase(group)
 
+
 #endregion
 
-#region help functions
-func setup_player(player: AudioStreamPlayer2D, sound: SoundEffect) -> void:
-	if sound == null:
+#region Helper Functions
+func _get_stream(sound: SoundEffect) -> AudioStream:
+	var count: int  = sound.streams.size()
+	
+	if count == 0:
+		push_warning("no sounds found in: ", sound.resource_name)
 		return
 	
-	var stream: AudioStream = _get_stream(sound)
+	if count == 1:
+		return sound.streams[0]
 	
-	if stream == null:
-		return
+	var last: int = _last_variant.get(sound, -1)
+	var index: int = randi_range(0, count -1)
 	
-	player.stream = stream
-	player.bus = sound.bus
-	player.volume_db = sound.volume_db
-		
-	if sound.random_pitch:
-		player.pitch_scale = randf_range(
-			1.0 - sound.pitch_variation,
-			1.0 + sound.pitch_variation
-		)
-	else:
-		player.pitch_scale = 1.0
-
-
-func _can_play(sound: SoundEffect, stream: AudioStream, players: Array) -> bool:
-	var frame:int = Engine.get_process_frames()
-
-	if sound.min_frame_interval > 0:
-		var last: int = _last_played_frame.get(sound, -999999)
-
-		if frame - last < sound.min_frame_interval:
-			return false
-
-	var instances: int= 0
-
-	for player: AudioStreamPlayer2D in players:
-		if player.playing and player.stream == stream:
-			instances += 1
-
-	if instances >= sound.max_instances:
-		return false
-
-	_last_played_frame[sound] = frame
-	return true
+	while index == last:
+		index = randi_range(0, count -1)
+	
+	_last_variant[sound] = index
+	
+	return sound.streams[index]
 #endregion
-
-func set_world(new_world: Node) -> void:
-	world = new_world
-
-	for player: AudioStreamPlayer2D in spatial_players:
-		if is_instance_valid(player):
-			player.queue_free()
-
-	spatial_players.clear()
-	_create_spatial_players()

@@ -1,5 +1,5 @@
 extends RefCounted
-class_name SpatialSFXRequest
+class_name SFXRequest
 
 var sound: SoundEffect
 var stream: AudioStream

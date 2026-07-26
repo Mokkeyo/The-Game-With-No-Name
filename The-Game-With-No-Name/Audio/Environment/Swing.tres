@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_s38u3")
 streams = Array[AudioStream]([ExtResource("2_fw2ux")])
-spatial = true
-max_distance = 242.121
-max_instances = 1
+volume_db = -5.0
+max_distance = 500.0
+attenuation = 0.1
 metadata/_custom_type_script = "uid://ui0oudtjqu2k"

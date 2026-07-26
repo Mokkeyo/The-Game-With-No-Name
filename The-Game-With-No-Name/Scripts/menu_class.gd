@@ -7,7 +7,7 @@ signal exited
 @export var exitButton: Button
 
 func _ready() -> void:
-	exitButton.connect("pressed", Callable(self, "exit"))
+	exitButton.pressed.connect(exit)
 	set_process_unhandled_input(false)
 	set_process_input(false)
 
@@ -26,4 +26,4 @@ func enter() -> void:
 func exit() -> void:
 	set_process_unhandled_input(false)
 	set_process_input(false)
-	emit_signal("exited")
+	exited.emit()

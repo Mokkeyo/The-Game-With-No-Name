@@ -24,8 +24,9 @@ func _ready() -> void:
 	var level: Node2D = level_manager.load_level(Save.player.levelNumber)
 	in_game.add_level(level)
 	
-	AudioManager.set_world(audio_root)
-	AudioManager.play_music(Sounds.BOSS_THEME)
+	AudioManager.setup_audio_2d(audio_root)
+	
+#	AudioManager.play_music(Sounds.BOSS_THEME)
 	
 	player_manager.set_player_position(0, level_manager.get_spawn_position())
 	fader.fade_in()

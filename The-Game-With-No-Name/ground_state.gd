@@ -13,7 +13,7 @@ func play_walk_sound() -> void:
 		return
 	
 	if sprite.frame in FOOTSTEP_FRAMES:
-		AudioManager.play_sfx_at(Sounds.PLAYER_WALKING, player.global_position)
+		AudioManager.play_sfx(Sounds.PLAYER_WALKING, player.global_position)
 
 func handle_input() -> void:
 	var dir: Vector2 = input_direction()
@@ -46,6 +46,7 @@ func physics_update(_delta: float) -> void:
 	
 	if player.lava_water_detector.in_water:
 		player.state_machine.change_state(PlayerStates.ID.WATER_GROUND)
+		AudioManager.play_sfx(Sounds.WATER_ENTER, player.global_position)
 		return
 	
 	if not player.is_on_floor():

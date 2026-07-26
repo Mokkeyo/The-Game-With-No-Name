@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://b1kttweqnsue2"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_03d7e"]
+[ext_resource type="AudioStream" uid="uid://rxvdjefgpc8a" path="res://Audio/Files/jump-into-water-splash-sound.mp3" id="2_0dfmm"]
+
+[resource]
+script = ExtResource("1_03d7e")
+streams = Array[AudioStream]([ExtResource("2_0dfmm")])
+volume_db = -15.0
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

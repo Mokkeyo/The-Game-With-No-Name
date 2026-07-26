@@ -98,6 +98,8 @@ func physics_update(delta: float) -> void:
 	if player.velocity.y > 20:
 		animation.play(animation.Anim.FALL)
 	
+	var player_velocity: float = player.velocity.y
+	
 	player.move_and_slide()
 	
 	if is_walljumping and player.is_on_wall():
@@ -111,6 +113,9 @@ func physics_update(delta: float) -> void:
 			return
 		
 		player.state_machine.change_state(PlayerStates.ID.GROUND)
+		print(player_velocity)
+		if player_velocity >= 180:
+			AudioManager.play_sfx(Sounds.PLAYER_IMPACT, player.global_position)
 		return
 	
 	if player.grab_zone.rope_part:
@@ -119,7 +124,7 @@ func physics_update(delta: float) -> void:
 	
 	if player.lava_water_detector.in_water:
 		player.state_machine.change_state(PlayerStates.ID.WATER_AIR)
-
+		AudioManager.play_sfx(Sounds.WATER_ENTER, player.global_position)
 
 func _on_jump_buffer_timer_timeout() -> void:
 	clear_jump_buffer()

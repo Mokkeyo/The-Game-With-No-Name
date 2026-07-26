@@ -20,15 +20,10 @@ func delete_data(save_stat: int) -> void:
 		if not err == OK:
 			push_error("Could not delete save files %s" % file_path)
 	
-	var temp_index: int = active_slot
-	
-	if temp_index < 0:
-		return
-	
-	if temp_index < options.deaths.size():
-		options.deaths[temp_index] = 0
-	if temp_index < options.playerName.size():
-		options.playerName[temp_index] = ""
+	if save_stat < options.deaths.size():
+		options.deaths[save_stat] = 0
+	if save_stat < options.playerName.size():
+		options.playerName[save_stat] = ""
 	save_options()
 
 

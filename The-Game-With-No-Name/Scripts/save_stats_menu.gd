@@ -80,7 +80,8 @@ func show_copy_data_text() -> void:
 	back_button.text = "Cancel"
 
 
-func start_fader() -> void:
+func start_fader(save_state: int) -> void:
+	Save.active_slot = save_state
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
 	Save.active_slot = selected_slot
@@ -97,7 +98,7 @@ func start_game(save_state: int) -> void:
 	
 	if save_stats[save_state].file_exists:
 		Save.load_data(save_state)
-		start_fader()
+		start_fader(save_state)
 	else:
 		selected_slot = save_state
 		state = States.EnteringName
@@ -107,7 +108,7 @@ func start_game(save_state: int) -> void:
 
 func start_new_game() -> void:
 	Save.start_new_game(selected_slot)
-	start_fader()
+	start_fader(selected_slot)
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:

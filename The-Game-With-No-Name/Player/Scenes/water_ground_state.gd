@@ -42,4 +42,5 @@ func physics_update(_delta: float) -> void:
 	
 	if not player.lava_water_detector.in_water:
 		player.state_machine.change_state(PlayerStates.ID.GROUND)
+		AudioManager.play_sfx(Sounds.WATER_ENTER, player.global_position)
 		return

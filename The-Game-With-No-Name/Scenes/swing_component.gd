@@ -34,12 +34,12 @@ func _start_swing_tween() -> void:
 	swing_tween.tween_property(rotating_object, "rotation_degrees", from_angle, speed)
 	
 	swing_tween.tween_callback(func() ->void:
-		AudioManager.play_sfx_at(Sounds.SWING, rotating_object.global_position)
+		AudioManager.play_sfx(Sounds.SWING, rotating_object.global_position)
 	)
 	
 	swing_tween.tween_property(rotating_object, "rotation_degrees", to_angle, speed)
 	swing_tween.tween_callback(func() ->void:
-		AudioManager.play_sfx_at(Sounds.SWING, rotating_object.global_position)
+		AudioManager.play_sfx(Sounds.SWING, rotating_object.global_position)
 	)
 
 	swing_tween.set_loops()

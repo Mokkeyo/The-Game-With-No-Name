@@ -15,6 +15,7 @@ func configure(definition: ProjectileDefinition) -> void:
 	dir = def.direction
 
 func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
+	
 	global_position = pos
 	global_rotation = rot
 	sprite.flip_h = dir == - 1
