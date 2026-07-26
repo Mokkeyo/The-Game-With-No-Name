@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://desaq7rosii1c" path="res://NormalMap/spinning_blade_normal.png" id="3_rvdcg"]
 [ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_wl07d"]
 [ext_resource type="PackedScene" uid="uid://d0n5n0m16idmh" path="res://Scenes/path_follow_component.tscn" id="5_oms2q"]
-[ext_resource type="PackedScene" uid="uid://gnrecg4fh4ys" path="res://ambient_sound.tscn" id="6_qt216"]
+[ext_resource type="PackedScene" uid="uid://cckk5r4th2ks1" path="res://audio_source_2d.tscn" id="6_vmj2r"]
+[ext_resource type="Resource" uid="uid://ce0rcr7s0r43y" path="res://Audio/Environment/SpinningBlade.tres" id="7_i0k1l"]
 
 [sub_resource type="Animation" id="Animation_gc0oq"]
 length = 0.001
@@ -70,10 +71,10 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blade/Hitbox" unique_id=570438517]
 shape = SubResource("CircleShape2D_8y8ah")
 
+[node name="AudioSource2D" parent="Blade" unique_id=1772767002 instance=ExtResource("6_vmj2r")]
+sound = ExtResource("7_i0k1l")
+
 [node name="PathFollowComponent" parent="." unique_id=447170998 node_paths=PackedStringArray("path", "target_node") instance=ExtResource("5_oms2q")]
 path = NodePath("..")
 target_node = NodePath("../Blade")
 speed = 150.0
-
-[node name="AmbientSound" parent="." unique_id=2019004485 instance=ExtResource("6_qt216")]
-sound_id = "spin"

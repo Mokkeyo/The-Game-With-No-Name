@@ -177,6 +177,8 @@ libraries/ = SubResource("AnimationLibrary_h5g3y")
 [node name="LevelManager" type="Node" parent="." unique_id=2042275682]
 script = ExtResource("4_rfjv2")
 
+[node name="AudioRoot" type="Node2D" parent="." unique_id=147850459]
+
 [node name="DialogueManager" type="Node" parent="." unique_id=1903935424]
 script = ExtResource("5_1phco")
 

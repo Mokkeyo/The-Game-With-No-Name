@@ -10,9 +10,6 @@ class_name SwingComponent
 @export var speed: float
 @export var rotating_object: Node2D
 
-@export_category("Sound")
-@export var swing_volume_db: float = 2
-
 var swing_tween: Tween
 var swing_direction_sign: float = 1
 
@@ -33,8 +30,18 @@ func _start_swing_tween() -> void:
 	
 	var from_angle: float = -swing_angle * swing_direction_sign
 	var to_angle: float = swing_angle * swing_direction_sign
+	
 	swing_tween.tween_property(rotating_object, "rotation_degrees", from_angle, speed)
+	
+	swing_tween.tween_callback(func() ->void:
+		AudioManager.play_sfx_at(Sounds.SWING, rotating_object.global_position)
+	)
+	
 	swing_tween.tween_property(rotating_object, "rotation_degrees", to_angle, speed)
+	swing_tween.tween_callback(func() ->void:
+		AudioManager.play_sfx_at(Sounds.SWING, rotating_object.global_position)
+	)
+
 	swing_tween.set_loops()
 
 

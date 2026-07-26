@@ -61,6 +61,8 @@ audio_listener_enable_2d = true
 size = Vector2i(512, 576)
 render_target_update_mode = 4
 
+[node name="AudioRoot" type="Node" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=568164520]
+
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1804773222]
 texture_filter = 1
 zoom = Vector2(2, 2)
@@ -85,6 +87,9 @@ player_node = NodePath("../Player2")
 [node name="Player1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1056553489 groups=["Player_0"] instance=ExtResource("3_2fron")]
 unique_name_in_owner = true
 z_index = 1
+
+[node name="AudioListener2D" type="AudioListener2D" parent="HBoxContainer/ViewportContainerP1/SubViewport/Player1" unique_id=942811464]
+current = true
 
 [node name="Player2" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1874813584 groups=["Player_1"] instance=ExtResource("3_2fron")]
 unique_name_in_owner = true

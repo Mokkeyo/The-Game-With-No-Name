@@ -8,6 +8,7 @@ class_name Game
 @onready var in_game: InGame = $InGame
 @onready var fader: Fader = $Fader
 @onready var new_textbox: NewTextBox = $CanvasLayer/textbox
+@onready var audio_root: Node = $InGame/HBoxContainer/ViewportContainerP1/SubViewport/AudioRoot
 
 @onready var pause: PauseMenu = $CanvasLayer/pause
 
@@ -17,12 +18,14 @@ var player_in_airship: Array[bool] = [false, false]
 
 
 func _ready() -> void:
-	AudioManager.play_music(Sounds.BOSS_THEME)
 	setup_systems()
 	connect_to_signals()
 	
 	var level: Node2D = level_manager.load_level(Save.player.levelNumber)
 	in_game.add_level(level)
+	
+	AudioManager.set_world(audio_root)
+	AudioManager.play_music(Sounds.BOSS_THEME)
 	
 	player_manager.set_player_position(0, level_manager.get_spawn_position())
 	fader.fade_in()

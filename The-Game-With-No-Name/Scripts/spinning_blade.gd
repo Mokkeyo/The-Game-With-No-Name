@@ -4,5 +4,3 @@ extends Path2D
 
 func _ready() -> void:
 	animationPlayer.play("default")
-#	SoundMusic.play
-#	soundPlayer.play_sound()
