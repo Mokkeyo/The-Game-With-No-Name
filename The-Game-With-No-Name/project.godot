@@ -21,6 +21,10 @@ config/features=PackedStringArray("4.7")
 boot_splash/show_image=false
 config/windows_native_icon="res://dog_icon(new).ico"
 
+[audio]
+
+buses/default_bus_layout="uid://dhbnnnyl7mxfj"
+
 [autoload]
 
 G="*res://AutoLoads/Scripts/Globals.gd"

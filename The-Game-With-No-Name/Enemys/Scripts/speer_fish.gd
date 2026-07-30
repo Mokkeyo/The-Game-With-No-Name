@@ -60,12 +60,7 @@ func check_for_collision(vel: Vector2) -> void:
 		if not collision:
 			continue
 		
-		var normal: Vector2 = collision.get_normal()
-		
-		if vel.dot(normal) < -0.7:
-			velocity = vel.bounce(normal)
-			state = State.IDLE
-			break
+		velocity = Vector2.ZERO
 
 
 func rotate_to_target(target: Node2D, delta: float) -> void:
@@ -76,7 +71,12 @@ func rotate_to_target(target: Node2D, delta: float) -> void:
 
 
 func on_stomp(entered: bool) -> void:
-	if not state == State.DEAD and not entered:
+	await get_tree().physics_frame
+	if not state == State.DEAD and entered == false:
+		
+		if water_det.in_water:
+			return
+		
 		state = State.DEAD
 		animated_sprite.play("die")
 
@@ -87,10 +87,17 @@ func _on_SpeerFish_animation_finished() -> void:
 
 func resetting() -> void:
 	state = State.IDLE
+	
+	velocity = Vector2.ZERO
+	rotation = 0
+	
 	water_det.in_water = true
+	player_det.focus_player = null
+	
 	wait_timer.stop()
 	move_dur_timer.stop()
 	animated_sprite.play("default")
+	print("resseting")
 
 func _on_move_duration_timeout() -> void:
 	state = State.IDLE

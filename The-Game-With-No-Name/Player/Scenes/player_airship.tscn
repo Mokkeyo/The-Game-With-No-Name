@@ -173,7 +173,7 @@ _data = {
 script = ExtResource("7_2bdys")
 lifetime = 1.0
 bullet_type = 1
-pool_size = 5
+pool_size = 2
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyywu"]

@@ -10,13 +10,13 @@ var bullet_type: BulletDefinition.BulletType
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	super._ready()
 	hitbox.damaged_enemy.connect(died)
 
 func configure(definition: ProjectileDefinition) -> void:
 	var data: BulletDefinition = definition as BulletDefinition
-	
 	speed = data.speed
-	lifetime = data.lifetime
+	lifetime = data.life_time
 	bullet_type = data.bullet_type
 
 

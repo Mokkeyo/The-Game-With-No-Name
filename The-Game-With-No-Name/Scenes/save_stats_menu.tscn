@@ -28,6 +28,11 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/80/0 = Vector2(0, 0)
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
 cache/0/80/0/ascent = 0.0
 cache/0/80/0/descent = 0.0
 cache/0/80/0/underline_position = 0.0
@@ -40,11 +45,6 @@ cache/0/15/0/descent = 0.0
 cache/0/15/0/underline_position = 0.0
 cache/0/15/0/underline_thickness = 0.0
 cache/0/15/0/scale = 1.0
-cache/0/64/0/ascent = 0.0
-cache/0/64/0/descent = 0.0
-cache/0/64/0/underline_position = 0.0
-cache/0/64/0/underline_thickness = 0.0
-cache/0/64/0/scale = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etpa8"]
 bg_color = Color(0, 0, 0, 1)

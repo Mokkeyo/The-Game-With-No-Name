@@ -16,7 +16,7 @@ const MANA_COST: int = 33
 @export var mana_timer: Timer
 
 @export var indikator: Sprite2D
-@onready var shoot_comp: ShootComponent = $ShootComponent
+@export var shoot_comp: ShootComponent
 
 var player_index: int = 0
 var sword: Sword
@@ -96,12 +96,11 @@ func cast() -> void:
 	if not can_cast():
 		return
 
-#	sound_player.sound = "magic"
-#	sound_player.play_sound()
 	consume_mana()
 	wand.attack()
+	
 	var def: SpiritballDefinition = shoot_comp.projectile as SpiritballDefinition
-	def.direction = -1 if wand.sprite.flip_h == true else 1
+	def.direction = -1 if wand.sprite.flip_h else 1
 	shoot_comp.shoot()
 
 

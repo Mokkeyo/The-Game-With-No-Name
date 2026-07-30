@@ -1,8 +1,6 @@
 extends ProjectileDefinition
 class_name SpiritballDefinition
 
-@export var lifetime: float
-
 # -1 = Left 
 # +1 = Right
 var direction: int = -1

@@ -26,8 +26,6 @@ func _ready() -> void:
 	
 	AudioManager.setup_audio_2d(audio_root)
 	
-#	AudioManager.play_music(Sounds.BOSS_THEME)
-	
 	player_manager.set_player_position(0, level_manager.get_spawn_position())
 	fader.fade_in()
 
@@ -61,7 +59,6 @@ func exit() -> void:
 func connect_to_signals() -> void:
 	G.enter_door.connect(change_level)
 	G.darkness_changed.connect(_on_darkness_changed)
-#	G.start_dialog.connect(dialogue_manager.start_dialog)
 	G.start_new_dialog.connect(dialogue_manager.start_new_dialog)
 	G.player_died.connect(player_manager.on_player_died)
 	

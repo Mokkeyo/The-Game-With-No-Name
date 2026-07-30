@@ -5,8 +5,14 @@ signal finished(projetile: Projectile)
 
 @export var hitbox: HitBox
 
+func _init() -> void:
+	visible = false
+
+
 func _ready() -> void:
 	assert(hitbox)
+	set_physics_process(false)
+	hitbox.monitoring = false
 
 func configure(_definition: ProjectileDefinition) -> void:
 	pass

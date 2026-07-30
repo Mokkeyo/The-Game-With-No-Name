@@ -113,7 +113,6 @@ func physics_update(delta: float) -> void:
 			return
 		
 		player.state_machine.change_state(PlayerStates.ID.GROUND)
-		print(player_velocity)
 		if player_velocity >= 180:
 			AudioManager.play_sfx(Sounds.PLAYER_IMPACT, player.global_position)
 		return

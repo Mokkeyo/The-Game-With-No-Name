@@ -84,7 +84,6 @@ func start_fader(save_state: int) -> void:
 	Save.active_slot = save_state
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
-	Save.active_slot = selected_slot
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")

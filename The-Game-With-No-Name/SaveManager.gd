@@ -80,7 +80,7 @@ func save_inputs() -> void:
 
 
 func load_data(save_state: int) -> void:
-	var path: String = SAVE_DIR + "slot_" + str(active_slot) + ".json"
+	var path: String = SAVE_DIR + "slot_" + str(save_state) + ".json"
 	var a_data: Dictionary = load_json(path)
 	
 	if a_data.is_empty():

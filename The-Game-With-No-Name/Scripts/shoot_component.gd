@@ -10,26 +10,24 @@ class_name ShootComponent
 var pool: Array[Projectile]
 
 func _ready() -> void:
+	await get_tree().process_frame
+	
 	if projectile:
 		projectile = projectile.duplicate(true)
 	
-	for i: int in projectile.pool_size:
+	for i: int in projectile.pool_size + 1:
 		var p: Projectile = projectile.scene.instantiate()
 		
 		p.finished.connect(_on_projectile_finished)
-		p.hitbox.monitoring = false
 		p.visible = false
-		p.set_physics_process(false)
 		
 		if G.level_viewport:
-			G.level_viewport.add_child(p)
+			G.level_viewport.add_child(p) 
 		
 		pool.append(p)
 
-
 func shoot() -> void:
 	var p: Projectile = get_projectile()
-	
 	if p == null:
 		push_warning("no bullet in pool")
 		return
@@ -41,6 +39,7 @@ func shoot() -> void:
 		rotation_point.global_rotation,
 		self
 	)
+	p.set_physics_process(true)
 
 
 func get_projectile() -> Projectile:
@@ -48,6 +47,7 @@ func get_projectile() -> Projectile:
 		if p.visible == false:
 			return p
 	
+	print("no projectile found")
 	return null
 
 func _on_projectile_finished(proj: Projectile) -> void:

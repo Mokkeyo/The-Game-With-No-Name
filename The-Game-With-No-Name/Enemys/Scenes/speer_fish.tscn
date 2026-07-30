@@ -60,7 +60,7 @@ radius = 5.0
 height = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ts256"]
-radius = 5.0
+radius = 4.031129
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_868ff"]
 radius = 6.0
@@ -96,10 +96,8 @@ wait_time = 0.7
 one_shot = true
 
 [node name="LavaWater_Detector" parent="." unique_id=987998655 instance=ExtResource("7_m3kvb")]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWater_Detector" unique_id=776755061]
-position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_ts256")
 
 [node name="HealthComponent" parent="." unique_id=15569979 instance=ExtResource("8_ktq6o")]

@@ -245,18 +245,6 @@ func check_key_input() -> void:
 	
 	if Input.is_action_just_pressed(inputs["interact"]) and on_floor:
 		handle_airship_entry()
-	
-#	if Input.is_action_just_pressed(inputs["wand"]) and wand.can_swing and G.save_stat.playerMana[currentPlayer] > 29:
-#		var w: SpiritBall = bullet.instantiate()
-#		w.left = wand.sprite.flip_h
-#		w.global_position = wand.marker.global_position
-#		wand.attack()
-#		SoundMusic.play_sound_effect("magic")
-#		get_parent().add_child(w)
-#		change_mana_value()
-	
-#	if Input.is_action_just_pressed(inputs["attack"]) and sword.can_swing:
-#		sword.attack()
 
 
 func check_for_horizontal_movement() -> void:
