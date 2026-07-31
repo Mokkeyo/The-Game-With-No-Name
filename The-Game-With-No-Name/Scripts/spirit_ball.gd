@@ -8,6 +8,7 @@ var speed: int = 300
 func _ready() -> void:
 	super._ready()
 
+
 func configure(definition: ProjectileDefinition) -> void:
 	var data: SpiritballDefinition = definition as SpiritballDefinition
 	life_time = data.life_time

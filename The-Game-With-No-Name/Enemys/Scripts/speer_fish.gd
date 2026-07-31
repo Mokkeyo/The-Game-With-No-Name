@@ -19,7 +19,7 @@ const SPEED: float = 400.0
 func _ready() -> void:
 	water_det.water_entered.connect(on_stomp)
 	reset_comp.enabling_stats.connect(resetting)
-
+	health_comp.died.connect(die)
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
@@ -77,8 +77,12 @@ func on_stomp(entered: bool) -> void:
 		if water_det.in_water:
 			return
 		
-		state = State.DEAD
-		animated_sprite.play("die")
+		die()
+
+
+func die() -> void:
+	state = State.DEAD
+	animated_sprite.play("die")
 
 
 func _on_SpeerFish_animation_finished() -> void:
