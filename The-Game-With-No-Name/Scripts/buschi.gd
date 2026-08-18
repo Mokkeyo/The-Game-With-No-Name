@@ -3,6 +3,7 @@ extends Node2D
 @onready var buschiFace: Sprite2D = $BuschieFace
 
 func start_tween(y_position: float) -> void:
+	AudioManager.play_sfx(Sounds.BUSH_RUSTLE, global_position)
 	var tween: Tween = create_tween()
 	tween.tween_property(buschiFace, "position", Vector2(0, y_position), 0.2)
 

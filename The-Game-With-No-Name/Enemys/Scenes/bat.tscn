@@ -13,13 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://dlqeh10u6vr34" path="res://navigation_component.tscn" id="12_0uu4l"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="12_ek4ux"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b08is"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uu4l"]
 atlas = ExtResource("2_0loop")
 region = Rect2(0, 0, 32, 19)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4aw0i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_libva"]
 atlas = ExtResource("2_0loop")
-region = Rect2(33, 0, 32, 19)
+region = Rect2(32, 0, 32, 19)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q21qr"]
 atlas = ExtResource("3_pejrr")
@@ -41,10 +41,10 @@ region = Rect2(45, 0, 14, 14)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b08is")
+"texture": SubResource("AtlasTexture_0uu4l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4aw0i")
+"texture": SubResource("AtlasTexture_libva")
 }],
 "loop": 1,
 "name": &"default",
@@ -223,3 +223,4 @@ one_shot = true
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1336323145]
 
 [connection signal="animation_finished" from="bat" to="." method="_on_bat_animation_finished"]
+[connection signal="frame_changed" from="bat" to="." method="_on_bat_frame_changed"]

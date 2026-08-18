@@ -53,3 +53,8 @@ func on_stomp() -> void:
 func _on_bat_animation_finished() -> void:
 	if animatedSprite.animation == "die":
 		resetComp.disable_stats()
+
+
+func _on_bat_sprite_frames_changed() -> void:
+	if animatedSprite.frame == 0:
+		AudioManager.play_sfx(Sounds.WING_FLAP, global_position)

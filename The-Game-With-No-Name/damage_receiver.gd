@@ -1,8 +1,11 @@
 extends Node
 class_name DamageReciever
 
+signal damage_dealt
+
 @export var health: HealthComponent = null
 @export var invincibility: InvisibleFramesComp = null
+@export var damage_sound: SoundEffect = null
 
 @export var knockback: KnockbackComponent
 
@@ -26,6 +29,11 @@ func receive_damage(hit: HitData) -> void:
 			pass
 		HitData.DamageType.DOT:
 			pass
+	
+	if damage_sound:
+		var parent: Node2D = get_parent() as Node2D
+		AudioManager.play_sfx(damage_sound, parent.global_position)
+	damage_dealt.emit()
 	
 	if health:
 		health.damage(hit.damage)

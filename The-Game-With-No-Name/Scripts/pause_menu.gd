@@ -1,65 +1,106 @@
 extends Control
 class_name PauseMenu
 
-@onready var paused: Control = $Paused 
-@onready var continueButton: Button = $Paused/Continue
-@onready var nothingButton: Button = $NothingButton
+const MENU_TWEEN_DURATION: float = 0.4
+const PAUSE_DELAY: float = 0.05
+
+@onready var paused_menu: Control = $Paused 
+@onready var continue_button: Button = $Paused/Continue
+@onready var focus_blocker: Button = $NothingButton
+
+var is_transitioning: bool = false
 
 @export var menus: Array[Menu]
 
 func _ready() -> void:
 	visible = false
 	for i: int in menus.size():
-		menus[i].visible = false
-		menus[i].exited.connect(to_start_menu.bind(i))
+		var menu: Menu = menus[i]
+		menu.visible = false
+		menu.exited.connect(_on_menu_exited.bind(i))
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("start") and not get_tree().paused:
-		get_tree().paused = true
-		visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		continueButton.grab_focus()
+		open_pause_menu()
 		return
 		
 	if Input.is_action_just_pressed("escape"):
 		exit_pause()
 
 
-func to_start_menu(index: int) -> void:
-	await start_tween(paused, menus[index])
-	continueButton.grab_focus()
-	set_process_unhandled_input(true)
-
-
-func change_menu(index: int) -> void:
-	set_process_unhandled_input(false)
-	await start_tween(menus[index], paused)
-	menus[index].enter()
-
-
-func start_tween(going_to_zero: Control, active_menu: Control) -> void:
-	nothingButton.grab_focus()
-	going_to_zero.visible = true
-	var tween: Tween = create_tween()
-	var route: Vector2 = -going_to_zero.global_position
-	tween.set_parallel(true)
-	tween.tween_property(going_to_zero, "global_position", Vector2(0, 0), 0.4)
-	tween.tween_property(active_menu, "global_position",route, 0.4)
-	await tween.finished
-	active_menu.visible = false
+func open_pause_menu() -> void:
+	get_tree().paused = true
+	visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	continue_button.grab_focus()
 
 
 func exit_pause() -> void:
-	if get_tree().paused:
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-		var timer: Timer = Timer.new()
-		add_child(timer)
-		timer.start(0.05)
-		await timer.timeout
-		timer.queue_free()
-		get_tree().paused = false
-		visible = false
+	if not get_tree().paused:
+		return
+	
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
+	await get_tree().create_timer(PAUSE_DELAY).timeout
+	
+	get_tree().paused = false
+	visible = false
+
+
+func change_menu(index: int) -> void:
+	if is_transitioning:
+		return
+	
+	is_transitioning = true
+	
+	set_process_unhandled_input(false)
+	
+	await switch_menu(menus[index], paused_menu)
+	menus[index].enter()
+
+
+func _on_menu_exited(index: int) -> void:
+	if is_transitioning:
+		return
+	
+	is_transitioning = true
+	
+	await switch_menu(paused_menu, menus[index])
+	
+	continue_button.grab_focus()
+	set_process_unhandled_input(true)
+
+
+func switch_menu(from: Control, to: Control) -> void:
+	focus_blocker.grab_focus()
+	
+	from.visible = true
+	
+	var tween: Tween = create_tween()
+	tween.set_parallel()
+	
+	var from_position: Vector2 = from.global_position
+#	var to_position: Vector2 = to.global_position
+	
+	tween.tween_property(
+		from,
+		"global_position",
+		Vector2.ZERO,
+		MENU_TWEEN_DURATION
+	)
+	
+	tween.tween_property(
+		to,
+		"global_position",
+		-from_position,
+		MENU_TWEEN_DURATION
+	)
+	
+	await tween.finished
+	is_transitioning = false
+	to.visible = false
 
 
 func _on_controlls_pressed() -> void: change_menu(0)
@@ -70,7 +111,6 @@ func _on_player_pressed() -> void: change_menu(3)
 
 func _on_return_to_main_menu_pressed() -> void:
 	get_tree().paused = false
-#	SoundComp.tilemaps = []
 	if not BattleData.battle:
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	else:

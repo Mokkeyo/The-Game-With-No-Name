@@ -135,6 +135,7 @@ func _physics_process(delta: float) -> void:
 	
 	push_component.push()
 
+
 func respawn() -> void:
 	is_alive = false
 	animation.play(animation.Anim.DEAD)

@@ -94,4 +94,5 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _on_pressed() -> void:
+	AudioManager.play_ui_sfx(Sounds.BUTTON_PRESSED)
 	state_pressed.emit(saveState)

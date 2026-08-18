@@ -3,7 +3,7 @@ class_name VolumeSlider
 
 var start_time: float = 1
 var time_left: float = start_time
-enum Sound {MASTER, MUSIC, SFX, AMBIENT}
+enum Sound {MASTER, MUSIC, SFX, AMBIENT, UI_SFX}
 
 @export var sound: Sound
 
@@ -11,7 +11,6 @@ func _ready() -> void:
 	start()
 
 func start() -> void:
-	
 	match sound:
 		Sound.MUSIC:
 			value = Save.options.musicVolume
@@ -25,6 +24,9 @@ func start() -> void:
 		Sound.MASTER:
 			value = Save.options.maxVolume
 			set_bus_volume("Master", value)
+		Sound.UI_SFX:
+			value = Save.options.uiSfxVolume
+			set_bus_volume("UI_SFX", value)
 
 func _on_value_changed(_value: float) -> void:
 	match sound:
@@ -40,6 +42,9 @@ func _on_value_changed(_value: float) -> void:
 		Sound.AMBIENT:
 			Save.options.ambientVolume = value
 			set_bus_volume("Ambient", value)
+		Sound.UI_SFX:
+			Save.options.uiSfxVolume = value
+			set_bus_volume("UI_SFX", value)
 	
 	Save.save_options()
 

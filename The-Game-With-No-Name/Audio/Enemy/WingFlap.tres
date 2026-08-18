@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://0ityutofkdc6"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_6hi62"]
+[ext_resource type="AudioStream" uid="uid://bklht8mndm6es" path="res://Audio/Files/freesound_community-wing-flap-1-6434 (mp3cut.net).mp3" id="2_t656c"]
+
+[resource]
+script = ExtResource("1_6hi62")
+streams = Array[AudioStream]([ExtResource("2_t656c")])
+volume_db = -5.0
+pitch_variation = 0.1
+max_distance = 300.0
+attenuation = 0.1
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

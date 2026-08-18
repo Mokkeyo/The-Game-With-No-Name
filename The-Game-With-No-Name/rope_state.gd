@@ -27,11 +27,11 @@ func handle_input() -> void:
 		player.grab_zone.cool_down_timer.start()
 
 
-
 func physics_update(_delta: float) -> void:
 	var rope_part: Area2D = player.grab_zone.rope_part
 	
 	if rope_part == null:
+		AudioManager.play_sfx(Sounds.PLAYER_JUMP, player.global_position)
 		player.state_machine.change_state(PlayerStates.ID.AIR)
 		return
 	

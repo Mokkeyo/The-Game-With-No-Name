@@ -1,13 +1,11 @@
 extends Node2D
 class_name AudioSource2D
 
-@export var sound: SoundEffect
+@export var sound: SoundEffect = null
 @export var activation_distance: float = 300.0
 
 func _ready() -> void:
-	if sound == null:
-		return
-	
+	await get_tree().process_frame
 	AudioManager.register_source(self)
 
 

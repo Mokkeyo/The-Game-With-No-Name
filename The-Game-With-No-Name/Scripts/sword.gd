@@ -54,6 +54,8 @@ func _buffer_attack() -> void:
 func _start_attack() -> void:
 	buffered_attack = false
 	
+	AudioManager.play_sfx(Sounds.SWORD_ATTACK, global_position)
+	
 	state = State.ATTACKING
 	
 	combo_count += 1

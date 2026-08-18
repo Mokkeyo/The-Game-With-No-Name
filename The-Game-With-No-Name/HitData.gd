@@ -16,6 +16,7 @@ enum  DamageType {
 	DOT,
 	ENVIRONMENT,
 	ON_JUMP,
+	PROJECTILE,
 	}
 
 var damage: int

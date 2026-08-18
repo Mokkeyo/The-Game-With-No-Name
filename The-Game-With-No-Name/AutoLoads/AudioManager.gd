@@ -54,7 +54,7 @@ func _create_music_player() -> void:
 	music_players = _create_audio_player(MAX_MUSIC_PLAYERS, "Music")
 
 func _create_ui_sfx_player() -> void:
-	ui_sfx_players = _create_audio_player(MAX_UI_SFX_PLAYERS)
+	ui_sfx_players = _create_audio_player(MAX_UI_SFX_PLAYERS, "UI_SFX")
 
 
 func _create_audio_player(count: int, bus: String = "") -> Array[AudioStreamPlayer]:
@@ -192,7 +192,14 @@ func play_ui_sfx(sound: SoundEffect) -> void:
 	
 	player.stream = stream
 	player.volume_db = sound.volume_db
-	player.pitch_scale = sound.random_pitch
+	if sound.random_pitch:
+		player.pitch_scale = randf_range(
+			1.0 - sound.pitch_variation,
+			1.0 + sound.pitch_variation
+		)
+	else:
+		player.pitch_scale = 1.0
+		
 	player.play()
 
 func _get_free_audio_player(players: Array[AudioStreamPlayer]) -> AudioStreamPlayer:
@@ -223,6 +230,7 @@ func _play_request(request: SFXRequest) -> void:
 	var player: AudioStreamPlayer2D = _get_free_audio_2d_player(sfx_players)
 	
 	if player == null:
+		push_warning("No free SFX player for: ", request.sound.resource_name)
 		return
 	
 	var sound: SoundEffect = request.sound
@@ -260,7 +268,9 @@ func _process_pending_sfx() -> void:
 	
 	if listener == null:
 		pending_sfx.clear()
+		
 		return
+	
 	
 	var listener_position: Vector2 = listener.global_position
 	
@@ -300,6 +310,7 @@ func _update_ambient() -> void:
 			continue
 		
 		_switch_ambient(sound, current, closest)
+
 
 func _get_closest_source(sound: SoundEffect) -> AudioSource2D:
 	var closest: AudioSource2D

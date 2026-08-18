@@ -128,6 +128,67 @@ cache/0/20/0/scale = 1.0
 cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 
+[sub_resource type="Animation" id="Animation_rfjv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1phco"]
+resource_name = "Saving"
+length = 2.5000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nb51f"]
+_data = {
+&"RESET": SubResource("Animation_rfjv2"),
+&"Saving": SubResource("Animation_1phco")
+}
+
 [node name="Game" type="Control" unique_id=120643031]
 layout_mode = 3
 anchors_preset = 0
@@ -224,5 +285,23 @@ visible = false
 
 [node name="textbox" parent="CanvasLayer" unique_id=1850085101 instance=ExtResource("13_rfjv2")]
 visible = false
+
+[node name="Label" type="Label" parent="." unique_id=645288435]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 824.0
+offset_top = 520.0
+offset_right = 1016.0
+offset_bottom = 568.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 32
+text = "Saved Game"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=856193740]
+libraries/ = SubResource("AnimationLibrary_nb51f")
 
 [connection signal="timeout" from="PlayerManager/respawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

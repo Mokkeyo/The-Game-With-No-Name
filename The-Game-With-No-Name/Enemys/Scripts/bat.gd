@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Bat
 
 var start_position: Vector2
+var sprite_y_position: float
 
 @onready var animatedSprite: AnimatedSprite2D = $bat
 @onready var detectPlayer: PlayerDetector = $PlayerDetector
@@ -14,6 +15,7 @@ var start_position: Vector2
 enum State {DEAD, IDLE, CHASE, RETURN}
 var state: State = State.IDLE
 
+@export var flap_height: int = 2
 @export var hitoints: float = 20
 @export var SPEED: int = 1000
 
@@ -27,7 +29,7 @@ func _ready() -> void:
 	healthComp.max_health = hitoints
 	healthComp.died.connect(die)
 	resetComp.enabling_stats.connect(respawn)
-
+	sprite_y_position = animatedSprite.position.y
 
 func _physics_process(_delta: float) -> void:
 	match state:
@@ -80,3 +82,14 @@ func respawn() -> void:
 func _on_bat_animation_finished() -> void:
 	if animatedSprite.animation == "die":
 		resetComp.disable_stats()
+
+
+func _on_bat_frame_changed() -> void:
+	if animatedSprite.animation != "default":
+		return
+	
+	if animatedSprite.frame == 0:
+		animatedSprite.position.y = sprite_y_position - flap_height
+		AudioManager.play_sfx(Sounds.WING_FLAP, global_position)
+	else:
+		animatedSprite.position.y = sprite_y_position + flap_height

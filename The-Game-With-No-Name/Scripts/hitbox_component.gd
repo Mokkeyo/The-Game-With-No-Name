@@ -34,6 +34,9 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	var hurtbox: HurtBox = area as HurtBox
 	
+	if not hurtbox.damage_receiver.damage_dealt.is_connected(damaged_enemy.emit):
+		hurtbox.damage_receiver.damage_dealt.connect(damaged_enemy.emit)
+	
 	if not continues_damage:
 		apply_damage(hurtbox)
 		return
@@ -50,12 +53,18 @@ func _on_area_exited(area: Area2D) -> void:
 	if not continues_damage:
 		return
 	
+	var hurtbox : HurtBox= area as HurtBox
+	
+	if hurtbox.damage_receiver.damage_dealt.is_connected(damaged_enemy.emit):
+		hurtbox.damage_receiver.damage_dealt.disconnect(damaged_enemy.emit)
+	
 	if area is HurtBox:
 		targets.erase(area)
 	
 	if targets.is_empty():
 		damage_timer.stop()
-
+	
+	
 
 func _damage_targets() -> void:
 	for hurtbox: HurtBox in targets:
@@ -64,8 +73,6 @@ func _damage_targets() -> void:
 
 
 func apply_damage(hurtbox: HurtBox) -> void:
-	damaged_enemy.emit()
-	
 	var hit_d: HitData = HitData.new()
 	
 	hit_d.damage = damage

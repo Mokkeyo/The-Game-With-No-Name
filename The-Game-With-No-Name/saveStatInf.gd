@@ -8,6 +8,7 @@ class_name SaveStatInf
 @export var musicVolume: float = 1
 @export var sfxVolume: float = 0.5
 @export var ambientVolume: float = 0.5
+@export var uiSfxVolume: float = 0.5
 @export var maxVolume: float = 0.5
 @export var printFps: bool = false
 @export var resolutionIndex: int = 0
@@ -30,6 +31,7 @@ func to_dict() -> Dictionary:
 		"sfxVolume": sfxVolume,
 		"ambientVolume": ambientVolume,
 		"maxVolume": maxVolume,
+		"uiSfxVolume": uiSfxVolume,
 		"printFps": printFps,
 		"resolution": {
 			"x": resolution.x,
@@ -56,8 +58,9 @@ func from_dict(data: Dictionary) -> void:
 	
 	vsync = data.get("vsync", false)
 	musicVolume = data.get("musicVolume", 1.0)
-	ambientVolume = data.get("ambientVolume", 0.5)
-	sfxVolume = data.get("sfxVolume", 0.5)
+	ambientVolume = data.get("ambientVolume", 1)
+	sfxVolume = data.get("sfxVolume", 1)
+	uiSfxVolume = data.get("uiSfxVolume", 1)
 	maxVolume = data.get("maxVolume", 0.5)
 	printFps = data.get("printFps", false)
 	

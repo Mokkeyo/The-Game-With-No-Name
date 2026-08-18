@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _on_Checkpoint_body_entered(body: Player) -> void:
 	if not global_position == Save.player.checkpointPosition or not Save.player.checkpointActive:
+		AudioManager.play_sfx(Sounds.CHECKPOINT_ACTIVATE, global_position)
 		body.health_component.refill_health(40)
 		update_checkpoint()
 

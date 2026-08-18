@@ -43,6 +43,7 @@ cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
 
 [node name="pause" type="Control" unique_id=601769773 node_paths=PackedStringArray("menus")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4")
@@ -169,6 +170,8 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 mouse_filter = 2
 
 [connection signal="pressed" from="Paused/Continue" to="." method="_on_continue_pressed"]

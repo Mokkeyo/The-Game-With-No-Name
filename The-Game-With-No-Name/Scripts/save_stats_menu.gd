@@ -21,6 +21,7 @@ var selected_slot: int
 var target_slot: int
 
 func _ready() -> void:
+	super._ready()
 	for i: int in save_stats.size():
 		var save_stat: SaveStateButton = save_stats[i]
 		
@@ -153,6 +154,10 @@ func enter_conformation(text: String) -> void:
 	conformation_text.text = text
 	conformation.visible = true
 	no_button.grab_focus()
+
+func exit() -> void:
+	if state == States.Nothing:
+		super.exit()
 
 
 func return_to_default() -> void:

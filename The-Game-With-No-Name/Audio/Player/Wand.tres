@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://cg6jg6mwmy3xd"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_1w54m"]
+[ext_resource type="AudioStream" uid="uid://e4iteunost34" path="res://Audio/Files/mixkit-wind-magic-whoosh-2610.wav" id="2_60l7l"]
+
+[resource]
+script = ExtResource("1_1w54m")
+streams = Array[AudioStream]([ExtResource("2_60l7l")])
+volume_db = -30.0
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

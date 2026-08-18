@@ -4,22 +4,10 @@
 [ext_resource type="Script" uid="uid://c6yd1ti1jfc1l" path="res://Scripts/collactable_kristall.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bqsitp0h23poh" path="res://Objects/CanvasTexture/kristalls.tres" id="5_t1rro"]
 [ext_resource type="PackedScene" uid="uid://bbykd4v5sd0lc" path="res://Objects/Scenes/kristall_particle.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cckk5r4th2ks1" path="res://audio_source_2d.tscn" id="7_nuiol"]
+[ext_resource type="Resource" uid="uid://bxgkbowbin2c1" path="res://Audio/Environment/Crystal.tres" id="8_rje8e"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="9_un3nd"]
 [ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="10_2vjcu"]
-
-[sub_resource type="Animation" id="Animation_rj6au"]
-length = 0.001
-
-[sub_resource type="Animation" id="3"]
-resource_name = "default"
-length = 2.0
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gpnhf"]
-_data = {
-&"RESET": SubResource("Animation_rj6au"),
-&"default": SubResource("3")
-}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
 size = Vector2(22, 24)
@@ -29,9 +17,6 @@ script = ExtResource("2")
 
 [node name="Ping" parent="." unique_id=900391210 instance=ExtResource("1")]
 position = Vector2(0, -30)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=77167457]
-libraries/ = SubResource("AnimationLibrary_gpnhf")
 
 [node name="DialogueLoader" parent="." unique_id=1504707778 node_paths=PackedStringArray("npc_area") instance=ExtResource("9_un3nd")]
 visible = false
@@ -49,9 +34,13 @@ position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_8rjsi")
 
 [node name="Kristall" type="Sprite2D" parent="." unique_id=146202927]
+position = Vector2(0, -5)
 texture = ExtResource("5_t1rro")
 hframes = 4
 vframes = 2
 
-[node name="KristallParticle" parent="." unique_id=358879524 instance=ExtResource("7")]
+[node name="KristallParticle" parent="Kristall" unique_id=358879524 instance=ExtResource("7")]
 amount = 6
+
+[node name="AudioSource2D" parent="Kristall" unique_id=450062180 instance=ExtResource("7_nuiol")]
+sound = ExtResource("8_rje8e")

@@ -6,5 +6,4 @@
 [resource]
 script = ExtResource("1_7lrqu")
 streams = Array[AudioStream]([ExtResource("2_cij2m")])
-spatial = true
 metadata/_custom_type_script = "uid://ui0oudtjqu2k"

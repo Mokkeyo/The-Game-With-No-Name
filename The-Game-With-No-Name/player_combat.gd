@@ -95,7 +95,8 @@ func flip_wand(facing_direction: Vector2) -> void:
 func cast() -> void:
 	if not can_cast():
 		return
-
+	
+	AudioManager.play_sfx(Sounds.WAND_ATTACK, wand.global_position)
 	consume_mana()
 	wand.attack()
 	

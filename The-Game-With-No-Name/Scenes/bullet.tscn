@@ -18,6 +18,7 @@ texture = ExtResource("2_hmh2x")
 hframes = 3
 
 [node name="Hitbox" parent="." unique_id=1807173393 instance=ExtResource("3_vod8l")]
+damage_type = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=916332767]
 scale = Vector2(0.5, 0.5)

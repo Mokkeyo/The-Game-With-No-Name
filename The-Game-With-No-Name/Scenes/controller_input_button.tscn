@@ -9,6 +9,8 @@
 [node name="ControllerInputButton" type="Button" unique_id=110806582]
 offset_right = 92.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_focus_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)

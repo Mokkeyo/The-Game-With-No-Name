@@ -52,3 +52,4 @@ healthComp = NodePath("../healthComponent")
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("7_uk0aw")]
 health = NodePath("../healthComponent")
+ignore_damage = Array[int]([0, 4])

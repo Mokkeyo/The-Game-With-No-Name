@@ -57,7 +57,5 @@ func update_flip(dir: Vector2) -> void:
 		animation.flip(dir.x < 0)
 
 func play_jump_sound() -> void:
-#	player.sound_player.sound = "jump"
-#	player.sound_player.play_sound()
 	animation.play(animation.Anim.JUMP)
 #endregion

@@ -46,8 +46,9 @@ func _physics_process(delta: float) -> void:
 			
 	var previous_velocity: Vector2 = velocity
 	
-	check_for_collision(previous_velocity)
 	move_and_slide()
+	
+	check_for_collision(previous_velocity)
 
 
 func check_for_collision(vel: Vector2) -> void:
@@ -101,7 +102,6 @@ func resetting() -> void:
 	wait_timer.stop()
 	move_dur_timer.stop()
 	animated_sprite.play("default")
-	print("resseting")
 
 func _on_move_duration_timeout() -> void:
 	state = State.IDLE

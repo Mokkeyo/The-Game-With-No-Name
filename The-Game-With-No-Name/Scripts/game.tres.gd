@@ -9,6 +9,7 @@ class_name Game
 @onready var fader: Fader = $Fader
 @onready var new_textbox: NewTextBox = $CanvasLayer/textbox
 @onready var audio_root: Node = $InGame/HBoxContainer/ViewportContainerP1/SubViewport/AudioRoot
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var pause: PauseMenu = $CanvasLayer/pause
 
@@ -151,6 +152,7 @@ func change_level(level_number: int, door_name: String = "") -> void:
 
 
 func on_checkpoint_activated() -> void:
+	animation_player.play("Saving")
 	Save.player.levelNumber = level_manager.current_level_number
 	for door_nr: int in temp_door:
 		if door_nr not in Save.player.door:

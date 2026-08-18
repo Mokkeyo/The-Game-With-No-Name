@@ -8,5 +8,5 @@
 [resource]
 script = ExtResource("1_oq4bw")
 streams = Array[AudioStream]([ExtResource("2_80g7i"), ExtResource("3_jyraj"), ExtResource("4_e8x3b")])
-volume_db = -15.0
+volume_db = -5.0
 metadata/_custom_type_script = "uid://ui0oudtjqu2k"

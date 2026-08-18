@@ -167,6 +167,7 @@ size = Vector2(519.5, 256)
 [sub_resource type="Resource" id="Resource_qxy4c"]
 script = ExtResource("7_w37rj")
 pool_size = 2
+life_time = 1.0
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqaaj"]

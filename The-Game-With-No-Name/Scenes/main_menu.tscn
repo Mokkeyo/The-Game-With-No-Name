@@ -1681,7 +1681,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Main/Creator Name/Label:visible")
+tracks/0/path = NodePath("Main/Label2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1827,34 +1827,25 @@ anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
 
-[node name="Creator Name" type="VBoxContainer" parent="Main" unique_id=1212047391]
+[node name="Label2" type="Label" parent="Main" unique_id=554549489]
 layout_mode = 0
 offset_left = 350.0
 offset_top = 92.0
 offset_right = 650.0
-offset_bottom = 132.0
-
-[node name="Label" type="Label" parent="Main/Creator Name" unique_id=554549489]
-layout_mode = 2
+offset_bottom = 123.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("36")
 theme_override_font_sizes/font_size = 30
 text = "       by Umut-Can"
-metadata/_edit_lock_ = true
 
-[node name="NothingButton" type="Button" parent="Main" unique_id=1531174642]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="Main" unique_id=1057660271]
 layout_mode = 0
-offset_left = 1074.0
-offset_top = 624.0
-offset_right = 1130.0
-offset_bottom = 644.0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-text = "nothing button"
+offset_left = 192.0
+offset_top = 268.0
+offset_right = 832.0
+offset_bottom = 554.0
+alignment = 1
 
 [node name="Label" type="Label" parent="Main" unique_id=1991294846]
 z_index = 2
@@ -1868,49 +1859,6 @@ theme_override_fonts/font = SubResource("58")
 theme_override_font_sizes/font_size = 70
 text = "The Game With no Name"
 horizontal_alignment = 1
-
-[node name="BattleButton" parent="Main" unique_id=837630525 instance=ExtResource("22_68w0m")]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 340.0
-offset_right = 831.99976
-offset_bottom = 410.0
-focus_neighbor_bottom = NodePath("../ControllButton")
-text = "Battle Mode"
-
-[node name="ControllButton" parent="Main" unique_id=1881996588 instance=ExtResource("22_68w0m")]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 412.0
-offset_right = 511.0
-offset_bottom = 482.0
-focus_neighbor_right = NodePath("../OptionButton")
-text = "Controlls"
-
-[node name="StartButton" parent="Main" unique_id=1513495464 instance=ExtResource("22_68w0m")]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 268.0
-offset_right = 832.0
-offset_bottom = 338.0
-text = "Story Mode"
-clip_text = true
-
-[node name="OptionButton" parent="Main" unique_id=2111641256 instance=ExtResource("22_68w0m")]
-layout_mode = 0
-offset_left = 513.0
-offset_top = 412.0
-offset_right = 832.0001
-offset_bottom = 482.0
-text = "Options"
-
-[node name="QuitButton" parent="Main" unique_id=235688460 instance=ExtResource("22_68w0m")]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 484.0
-offset_right = 832.0
-offset_bottom = 554.0
-text = "Quit Game"
 
 [node name="Pokal" parent="Main" unique_id=1226327779 instance=ExtResource("22_68w0m")]
 layout_mode = 0
@@ -1938,6 +1886,68 @@ position = Vector2(45, 43)
 scale = Vector2(2, 2)
 texture = ExtResource("14_bvqy3")
 metadata/_edit_lock_ = true
+
+[node name="ControllButton" parent="Main" unique_id=1881996588 instance=ExtResource("22_68w0m")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 412.0
+offset_right = 510.0
+offset_bottom = 480.0
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../OptionButton")
+text = "Controlls"
+
+[node name="OptionButton" parent="Main" unique_id=2111641256 instance=ExtResource("22_68w0m")]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 412.0
+offset_right = 831.00024
+offset_bottom = 480.0
+size_flags_horizontal = 3
+text = "Options"
+
+[node name="StartButton" parent="Main" unique_id=1513495464 instance=ExtResource("22_68w0m")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 268.0
+offset_right = 832.0
+offset_bottom = 336.0
+size_flags_vertical = 3
+text = "Story Mode"
+clip_text = true
+
+[node name="BattleButton" parent="Main" unique_id=837630525 instance=ExtResource("22_68w0m")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 340.0
+offset_right = 832.0005
+offset_bottom = 409.0
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../ControllButton")
+text = "Battle Mode"
+
+[node name="QuitButton" parent="Main" unique_id=235688460 instance=ExtResource("22_68w0m")]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 484.0
+offset_right = 832.0
+offset_bottom = 553.0
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../ControllButton")
+focus_neighbor_bottom = NodePath(".")
+text = "Quit Game"
+
+[node name="NothingButton" type="Button" parent="Main" unique_id=1531174642]
+layout_mode = 0
+offset_left = 1074.0
+offset_top = 624.0
+offset_right = 1199.0
+offset_bottom = 655.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "nothing button"
 
 [node name="SaveStats" parent="." unique_id=20983596 node_paths=PackedStringArray("fader") instance=ExtResource("16_ry84y")]
 layout_mode = 0
@@ -1970,10 +1980,10 @@ offset_bottom = 1152.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1859925855]
 libraries/ = SubResource("AnimationLibrary_kbkax")
 
-[connection signal="pressed" from="Main/BattleButton" to="." method="_on_battle_button_pressed"]
-[connection signal="pressed" from="Main/ControllButton" to="." method="_on_controll_button_pressed"]
-[connection signal="pressed" from="Main/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Main/OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="Main/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Main/Pokal" to="." method="_on_pokal_pressed"]
 [connection signal="pressed" from="Main/2Player" to="." method="_on_player_pressed"]
+[connection signal="pressed" from="Main/ControllButton" to="." method="_on_controll_button_pressed"]
+[connection signal="pressed" from="Main/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Main/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Main/BattleButton" to="." method="_on_battle_button_pressed"]
+[connection signal="pressed" from="Main/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -8,7 +8,7 @@ var volume_db: float = 0.0
 
 @export var random_pitch: bool = true
 @export_range(0.0, 0.5, 0.01)
-var pitch_variation: float = 0.05
+var pitch_variation: float = 0.1
 
 @export_range(1.0, 10000.0)
 var max_distance: float = 200

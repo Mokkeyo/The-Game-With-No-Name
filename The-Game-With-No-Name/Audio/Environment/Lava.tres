@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_e8c3x")
 streams = Array[AudioStream]([ExtResource("2_d42qf")])
+max_distance = 300.0
 metadata/_custom_type_script = "uid://ui0oudtjqu2k"

@@ -82,6 +82,7 @@ shape = SubResource("1")
 [node name="Crystall" type="Node2D" parent="." unique_id=1218127243]
 
 [node name="PointLight2D" parent="Crystall" unique_id=1912073140 instance=ExtResource("3_e75gc")]
+visible = false
 position = Vector2(0, -18)
 shadow_enabled = true
 
