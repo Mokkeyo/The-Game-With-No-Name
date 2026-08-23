@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c32irumryilnl"]
 
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_n8a31"]
 [ext_resource type="PackedScene" uid="uid://xs4mgs21ekcp" path="res://Scenes/adv_button.tscn" id="2_u2yt6"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="5"]
 [ext_resource type="Script" uid="uid://cbd4e1ksw40qg" path="res://Scripts/achievments_menu.gd" id="7"]
@@ -128,6 +129,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
+theme = ExtResource("1_n8a31")
 script = ExtResource("7")
 startButton = NodePath("BackButton")
 exitButton = NodePath("BackButton")

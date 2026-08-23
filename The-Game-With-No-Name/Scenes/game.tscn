@@ -189,16 +189,12 @@ _data = {
 &"Saving": SubResource("Animation_1phco")
 }
 
-[node name="Game" type="Control" unique_id=120643031]
-layout_mode = 3
-anchors_preset = 0
+[node name="Game" type="Node" unique_id=1753355899]
 script = ExtResource("7")
 
 [node name="InGame" parent="." unique_id=470547863 instance=ExtResource("2_5u1uf")]
-layout_mode = 0
 
 [node name="Fader" parent="." unique_id=517439101 instance=ExtResource("6")]
-layout_mode = 0
 
 [node name="PlayerManager" type="Node" parent="." unique_id=1512251564]
 script = ExtResource("3_rku1e")
@@ -281,7 +277,6 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="pause" parent="CanvasLayer" unique_id=1356872677 instance=ExtResource("1")]
-visible = false
 
 [node name="textbox" parent="CanvasLayer" unique_id=1850085101 instance=ExtResource("13_rfjv2")]
 visible = false
@@ -289,7 +284,6 @@ visible = false
 [node name="Label" type="Label" parent="." unique_id=645288435]
 visible = false
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
 offset_left = 824.0
 offset_top = 520.0
 offset_right = 1016.0

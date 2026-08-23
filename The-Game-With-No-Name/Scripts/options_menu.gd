@@ -18,9 +18,6 @@ func _ready() -> void:
 	
 	connect("exited", Callable(wait_timer, "start"))
 	
-	for button: BaseButton in group.get_buttons():
-		button.pressed.connect(Callable(self, "buttonpressed"))
-	
 	brightness.exited.connect(brightness_exited)
 
 

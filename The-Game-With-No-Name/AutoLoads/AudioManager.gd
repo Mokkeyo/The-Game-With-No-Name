@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_UI_SFX_PLAYERS: int = 2
+const MAX_UI_SFX_PLAYERS: int = 4
 const MAX_MUSIC_PLAYERS: int = 2
 const MAX_SFX_PLAYERS: int = 32
 const MAX_AMBIENT_PLAYERS: int = 5
@@ -449,6 +449,15 @@ func unregister_source(source: AudioSource2D) -> void:
 	
 	if active_sources.get(group) == source:
 		active_sources.erase(group)
+
+
+func stop_all_ambients() -> void:
+	for sound: SoundEffect in active_players.keys():
+		_stop_ambient(sound)
+	
+	playback_positions.clear()
+	active_players.clear()
+	active_sources.clear()
 
 
 #endregion

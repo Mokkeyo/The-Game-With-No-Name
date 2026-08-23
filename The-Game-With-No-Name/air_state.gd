@@ -105,7 +105,7 @@ func cut_jump(direction: Vector2) -> void:
 	if not is_walljumping:
 		return
 	
-	if direction.x == 0.0:
+	if direction.x * player.velocity.x  <= 0:
 		player.velocity.x = 0.0
 	
 	is_walljumping = false

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bm3q1m66y457b" path="res://Scripts/save_stats_menu.gd" id="1_q7khg"]
 [ext_resource type="PackedScene" uid="uid://btywad8nch0tx" path="res://Scenes/save_stat.tscn" id="2_itox8"]
 [ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="3_nedyd"]
-[ext_resource type="Texture2D" uid="uid://b44k67t81aj86" path="res://Objects/Textures/ping.png" id="6_tbm6i"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="5_tbm6i"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="6_vxfum"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="8_jcprx"]
 
@@ -46,30 +46,10 @@ cache/0/15/0/underline_position = 0.0
 cache/0/15/0/underline_thickness = 0.0
 cache/0/15/0/scale = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etpa8"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0ixx"]
-bg_color = Color(0.419608, 0.172549, 0.0156863, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el623"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0twba"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcxx0"]
-bg_color = Color(0.6, 0.282353, 0, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwi2s"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjqr7"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6mip"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gu57"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4j5g"]
+[sub_resource type="Theme" id="Theme_6rmpw"]
 
 [sub_resource type="FontFile" id="FontFile_hyxy3"]
 fallbacks = Array[Font]([ExtResource("3_nedyd")])
@@ -100,11 +80,18 @@ cache/0/48/0/scale = 1.0
 cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etpa8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0ixx"]
+bg_color = Color(0.419608, 0.172549, 0.0156863, 1)
+
 [node name="SaveStats" type="Control" unique_id=1197597751 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
+theme = ExtResource("5_tbm6i")
 script = ExtResource("1_q7khg")
 startButton = NodePath("SaveStat1")
 exitButton = NodePath("BackButton")
@@ -113,7 +100,7 @@ exitButton = NodePath("BackButton")
 layout_mode = 0
 offset_top = 18.0
 offset_right = 1024.0
-offset_bottom = 98.0
+offset_bottom = 82.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("37")
@@ -123,45 +110,112 @@ horizontal_alignment = 1
 
 [node name="SaveStat1" parent="." unique_id=127190731 instance=ExtResource("2_itox8")]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 80.0
-offset_right = 484.0
-offset_bottom = 297.0
+offset_left = 74.0
+offset_top = 79.0
+offset_right = 510.0
+offset_bottom = 296.0
 
 [node name="SaveStat2" parent="." unique_id=121897328 instance=ExtResource("2_itox8")]
 layout_mode = 0
-offset_left = 544.0
-offset_top = 80.0
-offset_right = 980.0
-offset_bottom = 297.0
+offset_left = 514.0
+offset_top = 79.0
+offset_right = 950.0
+offset_bottom = 296.0
+focus_neighbor_right = NodePath(".")
 saveState = 1
 
 [node name="SaveStat3" parent="." unique_id=2058258679 instance=ExtResource("2_itox8")]
 layout_mode = 0
-offset_left = 48.0
+offset_left = 74.0
 offset_top = 300.0
-offset_right = 484.0
+offset_right = 510.0
 offset_bottom = 517.0
 focus_neighbor_right = NodePath("../SaveStat4")
 saveState = 2
 
 [node name="SaveStat4" parent="." unique_id=1663362132 instance=ExtResource("2_itox8")]
 layout_mode = 0
-offset_left = 544.0
+offset_left = 514.0
 offset_top = 300.0
-offset_right = 980.0
+offset_right = 950.0
 offset_bottom = 517.0
 focus_neighbor_left = NodePath("../SaveStat3")
+focus_neighbor_right = NodePath(".")
 saveState = 3
 
 [node name="BackButton" parent="." unique_id=95712660 instance=ExtResource("6_vxfum")]
 layout_mode = 0
-offset_left = 416.0
+offset_left = 448.0
 offset_top = 520.0
-offset_right = 608.0
+offset_right = 576.0
 offset_bottom = 568.0
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
+
+[node name="Conformation" type="Control" parent="." unique_id=1482160478]
+visible = false
+anchors_preset = 0
+offset_left = 294.0
+offset_top = 182.0
+offset_right = 741.0
+offset_bottom = 389.0
+theme = ExtResource("5_tbm6i")
+
+[node name="Panel2" type="Panel" parent="Conformation" unique_id=1704958703]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 420.0
+offset_bottom = 205.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_el623")
+
+[node name="Panel" type="Panel" parent="Conformation" unique_id=388622809]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 201.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_el623")
+
+[node name="Yes" type="Button" parent="Conformation" unique_id=767456529]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 124.0
+offset_right = 188.0
+offset_bottom = 181.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../No")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 32
+text = "YES"
+
+[node name="No" type="Button" parent="Conformation" unique_id=1863079330]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 124.0
+offset_right = 356.0
+offset_bottom = 181.0
+focus_neighbor_left = NodePath("../Yes")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme = SubResource("Theme_6rmpw")
+theme_override_font_sizes/font_size = 32
+text = "NO"
+
+[node name="Label" type="Label" parent="Conformation" unique_id=201101121]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 48.0
+offset_right = 422.0
+offset_bottom = 96.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontFile_hyxy3")
+theme_override_font_sizes/font_size = 48
+text = "Delete?"
+horizontal_alignment = 1
 
 [node name="NameEnterer" type="Control" parent="." unique_id=1969293275]
 visible = false
@@ -171,18 +225,18 @@ offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="NameEnterer" unique_id=1545853190]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 80.0
-offset_right = 960.0
-offset_bottom = 528.0
+offset_left = 74.0
+offset_top = 79.0
+offset_right = 950.0
+offset_bottom = 517.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_etpa8")
 
 [node name="Panel2" type="Panel" parent="NameEnterer" unique_id=1032474397]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 88.0
-offset_right = 952.0
-offset_bottom = 520.0
+offset_left = 82.0
+offset_top = 87.0
+offset_right = 942.0
+offset_bottom = 509.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_o0ixx")
 
 [node name="LineEdit" type="LineEdit" parent="NameEnterer" unique_id=1314291184]
@@ -191,6 +245,12 @@ offset_left = 344.0
 offset_top = 344.0
 offset_right = 648.0
 offset_bottom = 394.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_jcprx")
@@ -212,131 +272,8 @@ theme_override_font_sizes/font_size = 80
 text = "Enter a Name"
 horizontal_alignment = 1
 
-[node name="Conformation" type="Control" parent="." unique_id=1482160478]
-visible = false
-anchors_preset = 0
-offset_left = 294.0
-offset_top = 182.0
-offset_right = 741.0
-offset_bottom = 389.0
-
-[node name="Panel2" type="Panel" parent="Conformation" unique_id=1704958703]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 12.0
-offset_right = 420.0
-offset_bottom = 205.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_el623")
-
-[node name="Panel" type="Panel" parent="Conformation" unique_id=388622809]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 16.0
-offset_right = 424.0
-offset_bottom = 201.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_el623")
-
-[node name="Panel3" type="Panel" parent="Conformation" unique_id=984264542]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 124.0
-offset_right = 188.0
-offset_bottom = 181.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0twba")
-
-[node name="Panel2" type="Panel" parent="Conformation/Panel3" unique_id=1167449468]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 106.0
-offset_bottom = 55.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mcxx0")
-
-[node name="Yes" type="Button" parent="Conformation/Panel3/Panel2" unique_id=767456529]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 106.0
-offset_bottom = 55.0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath("../../../Panel4/Panel2/No")
-focus_neighbor_bottom = NodePath(".")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_jcprx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_lwi2s")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_jjqr7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_a6mip")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_3gu57")
-theme_override_styles/focus = SubResource("StyleBoxTexture_k4j5g")
-text = "YES"
-
-[node name="PingYes" type="Sprite2D" parent="Conformation/Panel3" unique_id=1847930946]
-visible = false
-position = Vector2(-22, 28)
-rotation = -1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("6_tbm6i")
-
-[node name="Panel4" type="Panel" parent="Conformation" unique_id=668381866]
-layout_mode = 0
-offset_left = 248.0
-offset_top = 124.0
-offset_right = 356.0
-offset_bottom = 181.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0twba")
-
-[node name="Panel2" type="Panel" parent="Conformation/Panel4" unique_id=232163473]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 106.0
-offset_bottom = 55.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mcxx0")
-
-[node name="No" type="Button" parent="Conformation/Panel4/Panel2" unique_id=1863079330]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 106.0
-offset_bottom = 55.0
-focus_neighbor_left = NodePath("../../../Panel3/Panel2/Yes")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_jcprx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_lwi2s")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_jjqr7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_a6mip")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_3gu57")
-theme_override_styles/focus = SubResource("StyleBoxTexture_k4j5g")
-text = "NO"
-
-[node name="PingNo" type="Sprite2D" parent="Conformation/Panel4" unique_id=1725762776]
-position = Vector2(-22, 28)
-rotation = -1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("6_tbm6i")
-
-[node name="Label" type="Label" parent="Conformation" unique_id=201101121]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 48.0
-offset_right = 422.0
-offset_bottom = 96.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("FontFile_hyxy3")
-theme_override_font_sizes/font_size = 48
-text = "Delete?"
-horizontal_alignment = 1
-
+[connection signal="pressed" from="Conformation/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Conformation/No" to="." method="_on_no_pressed"]
+[connection signal="editing_toggled" from="NameEnterer/LineEdit" to="." method="_on_line_edit_editing_toggled"]
 [connection signal="text_changed" from="NameEnterer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="NameEnterer/LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="Conformation/Panel3/Panel2/Yes" to="." method="_on_yes_pressed"]
-[connection signal="pressed" from="Conformation/Panel4/Panel2/No" to="." method="_on_no_pressed"]

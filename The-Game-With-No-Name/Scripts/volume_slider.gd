@@ -28,6 +28,7 @@ func start() -> void:
 			value = Save.options.uiSfxVolume
 			set_bus_volume("UI_SFX", value)
 
+
 func _on_value_changed(_value: float) -> void:
 	match sound:
 		Sound.MASTER:

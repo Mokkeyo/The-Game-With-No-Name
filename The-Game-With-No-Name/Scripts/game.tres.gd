@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name Game
 
 @onready var level_manager: LevelManager = $LevelManager
@@ -124,6 +124,7 @@ func resize_viewport(value: Array[bool]) -> void:
 
 func change_level(level_number: int, door_name: String = "") -> void:
 	player_manager.clear_footsteps_tilemap()
+	AudioManager.stop_all_ambients()
 	end_dialog()
 	
 	Save.player.checkpointActive = false

@@ -62,6 +62,7 @@ func reset_controller_assignment() -> void:
 	assign_controller_btn.disabled = false
 	state = State.IDLE
 
+
 func change_input_device(device_name: String) -> void:
 	if not previous_device == device_name:
 		previous_device = device_name

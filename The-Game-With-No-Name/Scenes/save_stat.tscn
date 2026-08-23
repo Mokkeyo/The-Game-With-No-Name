@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://btywad8nch0tx"]
 
-[ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="1_agvbu"]
-[ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_bwyf3"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_uuvst"]
 [ext_resource type="Script" uid="uid://dbos4i3vgrgjd" path="res://Scripts/save_stat.gd" id="3_m86f8"]
 [ext_resource type="Texture2D" uid="uid://bscwb7kektkm5" path="res://Objects/Textures/kristall_1.png" id="5_3wqpg"]
 [ext_resource type="Texture2D" uid="uid://bpnv7kawl3fm1" path="res://Objects/Textures/kristall_2.png" id="6_3mjvc"]
@@ -63,12 +62,7 @@ cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 [node name="SaveStat" type="Button" unique_id=1534233320]
 offset_right = 436.0
 offset_bottom = 217.0
-theme_override_styles/normal = ExtResource("2_bwyf3")
-theme_override_styles/pressed = ExtResource("2_bwyf3")
-theme_override_styles/hover = ExtResource("2_bwyf3")
-theme_override_styles/hover_pressed = ExtResource("2_bwyf3")
-theme_override_styles/disabled = ExtResource("2_bwyf3")
-theme_override_styles/focus = ExtResource("1_agvbu")
+theme = ExtResource("1_uuvst")
 script = ExtResource("3_m86f8")
 
 [node name="Stats" type="Control" parent="." unique_id=1527156649]

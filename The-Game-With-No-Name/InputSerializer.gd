@@ -1,7 +1,5 @@
 class_name InputSerializer
 
-static func get_device(_action: String) -> void:
-	pass
 
 static func event_to_dict(event: InputEvent) -> Dictionary:
 	if event is InputEventKey:

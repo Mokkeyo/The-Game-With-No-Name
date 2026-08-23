@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name InGame
 
 @onready var viewport_containers: Array[SubViewportContainer] = [

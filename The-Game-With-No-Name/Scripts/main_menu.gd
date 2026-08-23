@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name MainMenu
 
 @onready var main: Control = $Main

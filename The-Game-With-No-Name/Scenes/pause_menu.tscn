@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="1"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="2"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="2_ix48p"]
 [ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Scenes/options_menu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_jlidi"]
 [ext_resource type="Script" uid="uid://dqrl7t5nlu8s5" path="res://Scripts/pause_menu.gd" id="4"]
@@ -41,9 +42,8 @@ cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_stj27"]
 
-[node name="pause" type="Control" unique_id=601769773 node_paths=PackedStringArray("menus")]
+[node name="pause" type="Control" unique_id=640878741 node_paths=PackedStringArray("menus")]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4")
@@ -53,6 +53,7 @@ menus = [NodePath("Controlls"), NodePath("Options"), NodePath("Achievments"), No
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
+theme = ExtResource("2_ix48p")
 
 [node name="Pause_Label" type="Label" parent="Paused" unique_id=180040724]
 layout_mode = 0
@@ -146,7 +147,9 @@ offset_right = 0.0
 [node name="Options" parent="." unique_id=237068943 instance=ExtResource("3")]
 layout_mode = 0
 offset_left = 1024.0
+offset_top = 0.0
 offset_right = 2048.0
+offset_bottom = 576.0
 group = SubResource("ButtonGroup_stj27")
 
 [node name="Achievments" parent="." unique_id=1561657080 instance=ExtResource("5")]
