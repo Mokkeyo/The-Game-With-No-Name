@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c224ayp2t6h4m" path="res://Scenes/dialogue_manager.gd" id="5_1phco"]
 [ext_resource type="PackedScene" uid="uid://dmbwnii5hqwja" path="res://Scenes/fader.tscn" id="6"]
 [ext_resource type="Script" uid="uid://bhrmfij84jval" path="res://Scenes/boss_ui_manager.gd" id="6_nb51f"]
-[ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.tres.gd" id="7"]
+[ext_resource type="Script" uid="uid://dj5fh83outgpq" path="res://Scripts/game.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c0hh1dv1aiucg" path="res://balloon.tscn" id="13_rfjv2"]
@@ -16,6 +16,9 @@
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -42,6 +45,9 @@ cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -104,6 +110,9 @@ _data = {
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("15")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0

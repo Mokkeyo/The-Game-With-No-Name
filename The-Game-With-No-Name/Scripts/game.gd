@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	var level: Node2D = level_manager.load_level(Save.player.levelNumber)
 	in_game.add_level(level)
-	
+
 	AudioManager.setup_audio_2d(audio_root)
 	
 	player_manager.set_player_position(0, level_manager.get_spawn_position())
