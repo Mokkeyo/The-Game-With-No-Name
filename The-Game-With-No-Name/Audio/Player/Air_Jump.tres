@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://nowkij4tuip"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_kav4f"]
+[ext_resource type="AudioStream" uid="uid://dxrxcwdssgcom" path="res://Audio/Files/air jump.mp3" id="2_f1w6x"]
+
+[resource]
+script = ExtResource("1_kav4f")
+streams = Array[AudioStream]([ExtResource("2_f1w6x")])
+volume_db = -6.0
+pitch_variation = 0.2
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

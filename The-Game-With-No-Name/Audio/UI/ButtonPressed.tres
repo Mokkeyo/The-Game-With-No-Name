@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://cl4cywx8q8n8v"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_a2ebd"]
+[ext_resource type="AudioStream" uid="uid://bbabfd56b7ydb" path="res://Audio/Files/dragon-studio-button-press-382713.mp3" id="2_eyly4"]
+
+[resource]
+script = ExtResource("1_a2ebd")
+streams = Array[AudioStream]([ExtResource("2_eyly4")])
+volume_db = -10.0
+pitch_variation = 0.1
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

@@ -1,0 +1,92 @@
+[gd_resource type="Theme" format=3 uid="uid://c5j1cdeixt42w"]
+
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1_touxu"]
+[ext_resource type="StyleBox" uid="uid://dbmdiblblldgl" path="res://GuiElements/SytleBoxTexture/unfocused_button.tres" id="2_2pn01"]
+[ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="3_tbeor"]
+[ext_resource type="Texture2D" uid="uid://dvd1ivnrm35gr" path="res://GuiElements/Textures/slider_unfocused_button.png" id="4_5kxjo"]
+[ext_resource type="Texture2D" uid="uid://djxoh5j8ewi3x" path="res://GuiElements/Textures/frame_checked.png" id="4_5y56j"]
+[ext_resource type="Texture2D" uid="uid://bb7okfnhietun" path="res://GuiElements/Textures/frame_uncheked.png" id="5_g4wr8"]
+[ext_resource type="Texture2D" uid="uid://bjoqdh0a0s6af" path="res://GuiElements/Textures/slider_focused_button.png" id="5_g7fvb"]
+[ext_resource type="Texture2D" uid="uid://b2oslmict7f4g" path="res://GuiElements/Textures/Arrow.png" id="6_g7fvb"]
+[ext_resource type="StyleBox" uid="uid://djec3voccpsp8" path="res://GuiElements/SytleBoxTexture/unfocused_rahmen.tres" id="9_uo360"]
+[ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="11_cn8e6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk0s6"]
+bg_color = Color(0.24705882, 0.14117648, 0.050980393, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rmpw"]
+bg_color = Color(0.24705882, 0.14117648, 0.050980393, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbeor"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+default_font = ExtResource("1_touxu")
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_touxu")
+Button/styles/disabled = ExtResource("2_2pn01")
+Button/styles/focus = ExtResource("3_tbeor")
+Button/styles/hover = ExtResource("3_tbeor")
+Button/styles/normal = ExtResource("2_2pn01")
+Button/styles/pressed = ExtResource("2_2pn01")
+CheckBox/icons/checked = ExtResource("4_5y56j")
+CheckBox/icons/unchecked = ExtResource("5_g4wr8")
+CheckBox/styles/disabled = ExtResource("2_2pn01")
+CheckBox/styles/focus = ExtResource("3_tbeor")
+CheckBox/styles/hover = ExtResource("3_tbeor")
+CheckBox/styles/hover_pressed = ExtResource("2_2pn01")
+CheckBox/styles/normal = ExtResource("2_2pn01")
+CheckBox/styles/pressed = ExtResource("2_2pn01")
+HSlider/icons/grabber = ExtResource("4_5kxjo")
+HSlider/icons/grabber_disabled = ExtResource("4_5kxjo")
+HSlider/icons/grabber_highlight = ExtResource("5_g7fvb")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_mk0s6")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_6rmpw")
+HSlider/styles/slider = SubResource("StyleBoxFlat_tbeor")
+OptionButton/constants/arrow_margin = 8
+OptionButton/constants/outline_size = 8
+OptionButton/font_sizes/font_size = 32
+OptionButton/icons/arrow = ExtResource("6_g7fvb")
+OptionButton/styles/disabled = ExtResource("2_2pn01")
+OptionButton/styles/focus = ExtResource("3_tbeor")
+OptionButton/styles/hover = ExtResource("3_tbeor")
+OptionButton/styles/hover_pressed = ExtResource("2_2pn01")
+OptionButton/styles/normal = ExtResource("2_2pn01")
+OptionButton/styles/pressed = ExtResource("2_2pn01")
+PopupMenu/constants/outline_size = 2
+PopupMenu/styles/embedded_border = ExtResource("9_uo360")
+PopupMenu/styles/embedded_unfocused_border = null
+PopupMenu/styles/hover = ExtResource("11_cn8e6")
+PopupMenu/styles/labeled_separator_left = ExtResource("11_cn8e6")
+PopupMenu/styles/panel = ExtResource("9_uo360")

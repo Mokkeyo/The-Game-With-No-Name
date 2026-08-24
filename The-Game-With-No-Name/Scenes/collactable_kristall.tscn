@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b3rfkjntxnk5o"]
+
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="1"]
+[ext_resource type="Script" uid="uid://c6yd1ti1jfc1l" path="res://Scripts/collactable_kristall.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqsitp0h23poh" path="res://Objects/CanvasTexture/kristalls.tres" id="5_t1rro"]
+[ext_resource type="PackedScene" uid="uid://bbykd4v5sd0lc" path="res://Objects/Scenes/kristall_particle.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cckk5r4th2ks1" path="res://audio_source_2d.tscn" id="7_nuiol"]
+[ext_resource type="Resource" uid="uid://bxgkbowbin2c1" path="res://Audio/Environment/Crystal.tres" id="8_rje8e"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="9_un3nd"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="10_2vjcu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
+size = Vector2(22, 24)
+
+[node name="Kristall_1" type="Node2D" unique_id=17957230 groups=["Door"]]
+script = ExtResource("2")
+
+[node name="Ping" parent="." unique_id=900391210 instance=ExtResource("1")]
+position = Vector2(0, -30)
+
+[node name="DialogueLoader" parent="." unique_id=1504707778 node_paths=PackedStringArray("npc_area") instance=ExtResource("9_un3nd")]
+visible = false
+npc_area = NodePath("../NPCArea")
+check_for_input = false
+dialogue_start = "kristall"
+
+[node name="NPCArea" parent="." unique_id=529331466 node_paths=PackedStringArray("ping") instance=ExtResource("10_2vjcu")]
+visible = false
+collision_mask = 10
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=708208110]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_8rjsi")
+
+[node name="Kristall" type="Sprite2D" parent="." unique_id=146202927]
+position = Vector2(0, -5)
+texture = ExtResource("5_t1rro")
+hframes = 4
+vframes = 2
+
+[node name="KristallParticle" parent="Kristall" unique_id=358879524 instance=ExtResource("7")]
+amount = 6
+
+[node name="AudioSource2D" parent="Kristall" unique_id=450062180 instance=ExtResource("7_nuiol")]
+sound = ExtResource("8_rje8e")

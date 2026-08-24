@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://d032eljn7mggn"]
+
+[ext_resource type="Script" uid="uid://cds7cpv3e3g3j" path="res://Scripts/spirit_ball.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://wgf4amtg8m0x" path="res://Player/CanvasTextures/spirit_ball.tres" id="2_1avbx"]
+[ext_resource type="PackedScene" uid="uid://bn0vo2ep18048" path="res://Scenes/hitbox_component.tscn" id="3_snana"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay8pq"]
+atlas = ExtResource("2_1avbx")
+region = Rect2(0, 0, 14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q710l"]
+atlas = ExtResource("2_1avbx")
+region = Rect2(15, 0, 14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo8dt"]
+atlas = ExtResource("2_1avbx")
+region = Rect2(30, 0, 14, 10)
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay8pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q710l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo8dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q710l")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hkmie"]
+radius = 5.0
+height = 10.0
+
+[node name="Kamehameha" type="Node2D" unique_id=1027732331 node_paths=PackedStringArray("hitbox")]
+z_index = 15
+script = ExtResource("1")
+hitbox = NodePath("Hitbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438909330]
+sprite_frames = SubResource("1")
+frame_progress = 0.862224
+
+[node name="Hitbox" parent="." unique_id=1879883263 instance=ExtResource("3_snana")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=976656607]
+position = Vector2(2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hkmie")
+debug_color = Color(0.67426, 0, 0.220701, 0.42)
+
+[node name="Timer" type="Timer" parent="." unique_id=1367326572]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,341 @@
+[gd_scene format=3 uid="uid://qivw5tgghjvf"]
+
+[ext_resource type="Script" uid="uid://bxdtpjyppgoox" path="res://Scripts/battle.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="3"]
+[ext_resource type="PackedScene" uid="uid://b2yvgcbsekcx7" path="res://Arena/battle_pause.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="4_fethu"]
+[ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="5_sql65"]
+[ext_resource type="PackedScene" uid="uid://da7p34a4g111f" path="res://Player/Scenes/player.tscn" id="6_lqpkn"]
+[ext_resource type="PackedScene" uid="uid://bgjgn30nuvrb3" path="res://Scenes/hp_bar_player_2.tscn" id="6_my1bg"]
+[ext_resource type="PackedScene" uid="uid://f35a2dk8xal2" path="res://Scenes/mana_player_2.tscn" id="7_4r1f8"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("3")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Animation" id="5"]
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Player2Won:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Player2Won:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Draw:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Draw:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Player1Won:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Player1Won:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1oq2x"]
+_data = {
+&"DeclareVictory": SubResource("5")
+}
+
+[sub_resource type="Animation" id="6"]
+length = 0.7
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jeu6r"]
+_data = {
+&"FadeIn": SubResource("6")
+}
+
+[node name="Battle" type="Node2D" unique_id=1636079921]
+script = ExtResource("1")
+
+[node name="InGame" type="Node2D" parent="." unique_id=465671841]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1069784481]
+
+[node name="lightmap" parent="CanvasLayer2" unique_id=292466257 instance=ExtResource("5")]
+offset_right = 9.84614
+offset_bottom = 9.163648
+scale = Vector2(104, 62.8571)
+
+[node name="pause" parent="CanvasLayer2" unique_id=2036945555 node_paths=PackedStringArray("menus") instance=ExtResource("4")]
+visible = false
+menus = []
+
+[node name="Player1" type="Control" parent="CanvasLayer2" unique_id=178559432]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" parent="CanvasLayer2/Player1" unique_id=979582049 instance=ExtResource("4_fethu")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="CanvasLayer2/Player1" unique_id=1134673786 instance=ExtResource("5_sql65")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 50.0
+offset_right = 42.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+
+[node name="Player2" type="Control" parent="CanvasLayer2" unique_id=1130200649]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HPBar" parent="CanvasLayer2/Player2" unique_id=11033540 instance=ExtResource("6_my1bg")]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 4.0
+offset_right = 904.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+
+[node name="Mana" parent="CanvasLayer2/Player2" unique_id=1637887457 instance=ExtResource("7_4r1f8")]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 50.0
+offset_right = 944.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1307544675]
+layer = 2
+
+[node name="Player2Won" type="Label" parent="CanvasLayer" unique_id=1692895537]
+visible = false
+offset_right = 584.0
+offset_bottom = 80.0
+theme_override_fonts/font = SubResource("1")
+text = "Player 2 Won!!!"
+
+[node name="Draw" type="Label" parent="CanvasLayer" unique_id=180579695]
+visible = false
+offset_right = 215.0
+offset_bottom = 80.0
+theme_override_fonts/font = SubResource("2")
+text = "DRAW"
+
+[node name="Player1Won" type="Label" parent="CanvasLayer" unique_id=1859315029]
+visible = false
+offset_right = 584.0
+offset_bottom = 80.0
+theme_override_fonts/font = SubResource("3")
+text = "Player 1 Won!!!"
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=1545476922]
+visible = false
+offset_top = -16.0
+offset_right = 1024.0
+offset_bottom = 78.0
+theme_override_fonts/font = SubResource("4")
+text = "300"
+max_lines_visible = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=60954554]
+visible = false
+modulate = Color(0, 0, 0, 0)
+offset_right = 1024.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1961752825]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_1oq2x")
+
+[node name="FadeIn" type="AnimationPlayer" parent="." unique_id=1612069983]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_jeu6r")
+
+[node name="Timer" type="Timer" parent="." unique_id=93832173]
+one_shot = true
+
+[node name="Player1" parent="." unique_id=1056553489 instance=ExtResource("6_lqpkn")]
+
+[node name="Player2" parent="." unique_id=1058485591 instance=ExtResource("6_lqpkn")]
+position = Vector2(66, 0)
+current_player = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="FadeIn" to="." method="_on_FadeIn_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

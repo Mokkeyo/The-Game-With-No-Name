@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://b3qktyxhnvihe"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_g03at"]
+[ext_resource type="AudioStream" uid="uid://d2btjchggx3ap" path="res://Audio/Files/squarebun-sliding-notes-synth-intro-316786.mp3" id="2_ny55j"]
+
+[resource]
+script = ExtResource("1_g03at")
+streams = Array[AudioStream]([ExtResource("2_ny55j")])
+volume_db = -10.0
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://tkw5uqnsxbd4"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_b4tnw"]
+[ext_resource type="AudioStream" uid="uid://bhdrulukqqchi" path="res://Audio/Files/Dark Souls III Soundtrack OST - Vordt of the Boreal Valley.mp3" id="2_b4tnw"]
+
+[resource]
+script = ExtResource("1_b4tnw")
+streams = Array[AudioStream]([ExtResource("2_b4tnw")])
+bus = "Music"
+volume_db = -20.799999999999997
+random_pitch = false
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

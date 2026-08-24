@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://bf2idqkgg0uqr"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_rjvan"]
+[ext_resource type="AudioStream" uid="uid://dju4nfvxglsn7" path="res://Audio/Files/mixkit-sword-blade-attack-in-medieval-battle-2762.wav" id="2_dghu0"]
+
+[resource]
+script = ExtResource("1_rjvan")
+streams = Array[AudioStream]([ExtResource("2_dghu0")])
+volume_db = -35.0
+pitch_variation = 0.1
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

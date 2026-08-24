@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bprfqrry27xnf"]
+
+[ext_resource type="Texture2D" uid="uid://bya1c2mwojtme" path="res://Objects/Textures/shild.png" id="1"]
+[ext_resource type="Script" uid="uid://bpgmrpf47ni87" path="res://Scripts/shild.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="4_7x507"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="5_ik166"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1i6d"]
+size = Vector2(18, 21)
+
+[node name="Schild" type="Node2D" unique_id=1325647235 node_paths=PackedStringArray("npcArea", "dialogLoader")]
+script = ExtResource("2")
+npcArea = NodePath("NPCArea")
+dialogLoader = NodePath("DialogueLoader")
+
+[node name="Schild" type="Sprite2D" parent="." unique_id=1003794765]
+position = Vector2(0, -10.5)
+texture = ExtResource("1")
+
+[node name="Ping" parent="." unique_id=1803177409 instance=ExtResource("4")]
+position = Vector2(0, -41)
+
+[node name="DialogueLoader" parent="." unique_id=1432092159 node_paths=PackedStringArray("npc_area") instance=ExtResource("4_7x507")]
+npc_area = NodePath("../NPCArea")
+check_for_input = false
+dialogue_start = "shild"
+
+[node name="NPCArea" parent="." unique_id=728636608 node_paths=PackedStringArray("ping") instance=ExtResource("5_ik166")]
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea" unique_id=1789851351]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_t1i6d")

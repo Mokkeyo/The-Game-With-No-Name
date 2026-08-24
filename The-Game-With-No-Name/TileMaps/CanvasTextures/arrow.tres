@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://b6jrr8hkafuwq"]
+
+[ext_resource type="Texture2D" uid="uid://cs72pqv1k3vcr" path="res://TileMaps/Textures/arrow.png" id="1_huls1"]
+[ext_resource type="Texture2D" uid="uid://d2yp77n0tgawe" path="res://NormalMap/arrow_normal.png" id="2_4eusu"]
+
+[resource]
+diffuse_texture = ExtResource("1_huls1")
+normal_texture = ExtResource("2_4eusu")

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cushvdfasdhwd"]
+
+[ext_resource type="Script" uid="uid://bk07yh07nt0ot" path="res://Scenes/swing_component.gd" id="1_tkii7"]
+
+[node name="swing_component" type="Node2D" unique_id=606613189]
+script = ExtResource("1_tkii7")
+length = 1

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://wq7jtfjnavmo"]
+
+[ext_resource type="Script" uid="uid://b4esab5b0pisa" path="res://moving_plattform.gd" id="1_8bt3i"]
+[ext_resource type="Texture2D" uid="uid://bn8mfwaas3dwn" path="res://Objects/Textures/moving_plattform.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c2fa73py015h3" path="res://NormalMap/moving_plattform_normal.png" id="2_b5tou"]
+[ext_resource type="PackedScene" uid="uid://c67wcimjdut0r" path="res://Scenes/mover_component.tscn" id="3_equn7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ljeir"]
+diffuse_texture = ExtResource("2")
+normal_texture = ExtResource("2_b5tou")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj2s0"]
+size = Vector2(40, 1)
+
+[node name="moving Plattform" type="AnimatableBody2D" unique_id=749741137 groups=["moving_plattform"]]
+collision_mask = 0
+script = ExtResource("1_8bt3i")
+
+[node name="moving plattform" type="Sprite2D" parent="." unique_id=451292778]
+texture = SubResource("CanvasTexture_ljeir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1564883773]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_xj2s0")
+one_way_collision = true
+
+[node name="MoverComponent" parent="." unique_id=225387512 node_paths=PackedStringArray("static_object") instance=ExtResource("3_equn7")]
+move_speed = 0.5
+do_process = true
+static_object = NodePath("..")

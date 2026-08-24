@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://coxv5xkad53ev"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_s38u3"]
+[ext_resource type="AudioStream" uid="uid://b372t0y3o5jy6" path="res://Audio/Files/swing-whoosh-110410.mp3" id="2_fw2ux"]
+
+[resource]
+script = ExtResource("1_s38u3")
+streams = Array[AudioStream]([ExtResource("2_fw2ux")])
+volume_db = -5.0
+max_distance = 500.0
+attenuation = 0.1
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://byjg1ihmjvywo"]
+
+[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_xwrc8"]
+[ext_resource type="AudioStream" uid="uid://b8ukyn23dop1c" path="res://Audio/Files/dragon-studio-bush-rustling-467467.mp3" id="2_017rt"]
+
+[resource]
+script = ExtResource("1_xwrc8")
+streams = Array[AudioStream]([ExtResource("2_017rt")])
+volume_db = -10.0
+metadata/_custom_type_script = "uid://ui0oudtjqu2k"
