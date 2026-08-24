@@ -1,10 +1,15 @@
+# Godot 4.2+ specific ignores
+~*.dll
+
 # Godot 4+ specific ignores
-.godot/
+*.godot
+.nomedia
 
 # Godot-specific ignores
-.import/
+*.import
 export.cfg
-export_presets.cfg
+export_credentials.cfg
+*.tmp
 
 # Imported translations (automatically generated from CSV files)
 *.translation
