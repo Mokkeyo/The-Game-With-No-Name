@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://o15k8noklt7x"]
-
-[ext_resource type="Script" uid="uid://kv2r51aaf85w" path="res://airship_entry_component.gd" id="1_ndmt6"]
-
-[node name="AirshipEntryComponent" type="Node" unique_id=604810441]
-script = ExtResource("1_ndmt6")

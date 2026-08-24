@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://bcqh6xyc513hf"]
-
-[ext_resource type="Script" uid="uid://kn6pe1fushc6" path="res://Scripts/dialogue_loader_component.gd" id="1_1q2u6"]
-[ext_resource type="Resource" uid="uid://b0e3mvy7ohubg" path="res://dialogue.dialogue" id="2_ksfto"]
-
-[node name="DialogueLoader" type="Node2D" unique_id=1093062860]
-script = ExtResource("1_1q2u6")
-dialogue_resource = ExtResource("2_ksfto")

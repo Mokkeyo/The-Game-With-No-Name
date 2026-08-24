@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://co8ixcon7auhw"]
-
-[ext_resource type="Script" uid="uid://bxs126nhj3sh2" path="res://level_camera.gd" id="1_rceew"]
-
-[node name="LevelCamera" type="Camera2D" unique_id=1396914036]
-enabled = false
-zoom = Vector2(2, 2)
-script = ExtResource("1_rceew")

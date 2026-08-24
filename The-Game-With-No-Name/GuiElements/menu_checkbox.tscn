@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://oyiue23v8dul"]
-
-[node name="menu_checkbox" type="CheckBox" unique_id=134117732]
-offset_right = 180.0
-offset_bottom = 84.0

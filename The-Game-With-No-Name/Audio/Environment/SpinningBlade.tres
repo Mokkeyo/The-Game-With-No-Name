@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://ce0rcr7s0r43y"]
-
-[ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_7lrqu"]
-[ext_resource type="AudioStream" uid="uid://bk0c2augc0p7c" path="res://Audio/Files/spin.mp3" id="2_cij2m"]
-
-[resource]
-script = ExtResource("1_7lrqu")
-streams = Array[AudioStream]([ExtResource("2_cij2m")])
-metadata/_custom_type_script = "uid://ui0oudtjqu2k"
