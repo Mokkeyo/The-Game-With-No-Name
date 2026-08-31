@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b2cggka1ix7ys" path="res://TileMaps/Scenes/background_element.tscn" id="3_ijqqe"]
 [ext_resource type="PackedScene" uid="uid://bgpiw2qmnrmcw" path="res://Scenes/lightmap.tscn" id="4_m64t4"]
 [ext_resource type="Texture2D" uid="uid://cm76l3nuy2ivf" path="res://Player/Textures/sword.png" id="5_05uap"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="5_nu4su"]
 [ext_resource type="FontFile" uid="uid://bw0klgwc6v2e3" path="res://Font/Robus-BWqOd.otf" id="6_vqkap"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="7_51wur"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="12_4r47o"]
@@ -60,7 +61,7 @@ cache/0/80/0/underline_position = 0.0
 cache/0/80/0/underline_thickness = 0.0
 cache/0/80/0/scale = 1.0
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_mu6of"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_6u1nd"]
 
 [node name="BattleMode" type="Control" unique_id=707122848]
 layout_mode = 3
@@ -85,6 +86,7 @@ anchor_mode = 0
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("5_nu4su")
 
 [node name="Label" type="Label" parent="Navigation" unique_id=412884203]
 layout_mode = 0
@@ -177,7 +179,7 @@ text = "Quit Game"
 layout_mode = 0
 offset_left = 1024.0
 offset_right = 2048.0
-group = SubResource("ButtonGroup_mu6of")
+group = SubResource("ButtonGroup_6u1nd")
 
 [node name="explanation" parent="." unique_id=1937164267 instance=ExtResource("12_agddd")]
 layout_mode = 0

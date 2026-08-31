@@ -142,7 +142,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
+tracks/0/path = NodePath("CanvasLayer/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -154,7 +154,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label:visible")
+tracks/1/path = NodePath("CanvasLayer/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -163,6 +163,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Label:visible_characters")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
 
 [sub_resource type="Animation" id="Animation_1phco"]
 resource_name = "Saving"
@@ -170,7 +182,7 @@ length = 2.5000000000000004
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
+tracks/0/path = NodePath("CanvasLayer/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -182,7 +194,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Label:visible")
+tracks/1/path = NodePath("CanvasLayer/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -190,6 +202,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Label:visible_characters")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.93333334, 1.5666667, 2.2333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 11, 12, 13, 14]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nb51f"]
@@ -255,6 +279,7 @@ achievment_list = "Chatter"
 achievment_list = "You Got A Friend In Me"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1372785356]
+layer = 2
 
 [node name="BossUIManager" type="Control" parent="CanvasLayer" unique_id=1706865187]
 layout_mode = 3
@@ -285,24 +310,26 @@ text = "Boss Galaga"
 layout_mode = 3
 anchors_preset = 0
 
-[node name="pause" parent="CanvasLayer" unique_id=1356872677 instance=ExtResource("1")]
-
 [node name="textbox" parent="CanvasLayer" unique_id=1850085101 instance=ExtResource("13_rfjv2")]
 visible = false
 
-[node name="Label" type="Label" parent="." unique_id=645288435]
+[node name="pause" parent="CanvasLayer" unique_id=1356872677 instance=ExtResource("1")]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=645288435]
 visible = false
 modulate = Color(1, 1, 1, 0)
-offset_left = 824.0
-offset_top = 520.0
-offset_right = 1016.0
-offset_bottom = 568.0
+offset_left = 845.0
+offset_top = 538.0
+offset_right = 1019.0
+offset_bottom = 570.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("15")
-theme_override_font_sizes/font_size = 32
-text = "Saved Game"
+theme_override_font_sizes/font_size = 24
+text = "Saving Game..."
+visible_characters = 11
+visible_ratio = 0.78571427
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=856193740]
 libraries/ = SubResource("AnimationLibrary_nb51f")

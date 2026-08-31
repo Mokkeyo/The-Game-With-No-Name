@@ -20,8 +20,8 @@ var keyboard_inputs: Array[KInputButton] = []
 
 func _ready() -> void:
 	super._ready()
-	var key_buttons: Control = $KeyButtons
-	var controller_buttons: Control = $ControllerButtons
+	var key_buttons: Node = $KeyButtons
+	var controller_buttons: Node = $ControllerButtons
 	for Ki: KInputButton in key_buttons.get_children():
 		Ki.rebinding_started.connect(disable_all_buttons)
 		Ki.remap_key.connect(remap_key)

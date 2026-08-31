@@ -2,6 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://cfh8dgxoaerqx" path="res://GuiElements/SytleBoxTexture/focused_rahmen.tres" id="1_wbjyb"]
 [ext_resource type="StyleBox" uid="uid://djec3voccpsp8" path="res://GuiElements/SytleBoxTexture/unfocused_rahmen.tres" id="2_4qas8"]
+[ext_resource type="StyleBox" uid="uid://dlrq4u5yb37td" path="res://GuiElements/SytleBoxTexture/hovered_rahmen.tres" id="2_vqiew"]
 [ext_resource type="Script" uid="uid://dad6hi5ecoa00" path="res://Scripts/ach_info_button.gd" id="3_u4wew"]
 
 [node name="Adv_Button" type="Button" unique_id=571017748]
@@ -9,7 +10,7 @@ offset_right = 154.0
 offset_bottom = 154.0
 theme_override_styles/normal = ExtResource("2_4qas8")
 theme_override_styles/pressed = ExtResource("2_4qas8")
-theme_override_styles/hover = ExtResource("2_4qas8")
+theme_override_styles/hover = ExtResource("2_vqiew")
 theme_override_styles/hover_pressed = ExtResource("2_4qas8")
 theme_override_styles/disabled = ExtResource("2_4qas8")
 theme_override_styles/focus = ExtResource("1_wbjyb")

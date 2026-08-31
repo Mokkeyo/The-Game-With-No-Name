@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://licmk3k5m56w" path="res://Scripts/keyboard_input_button.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="2"]
 [ext_resource type="StyleBox" uid="uid://8p3r6a0q6mfn" path="res://GuiElements/SytleBoxTexture/focused_controlls.tres" id="2_xjqet"]
+[ext_resource type="StyleBox" uid="uid://rnevyiv68gr6" path="res://GuiElements/SytleBoxTexture/hovered_ controlls.tres" id="3_m3cpk"]
 [ext_resource type="StyleBox" uid="uid://cwsv8jinepp38" path="res://GuiElements/SytleBoxTexture/unfocused_controlls.tres" id="3_uqw7h"]
 [ext_resource type="Texture2D" uid="uid://8tsa20tmqajd" path="res://Button/Left Mouse Button.png" id="5_0wacc"]
 
@@ -29,6 +30,20 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/167/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/167/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 cache/0/25/0/ascent = 0.0
 cache/0/25/0/descent = 0.0
 cache/0/25/0/underline_position = 0.0
@@ -47,20 +62,32 @@ cache/0/167/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/167/0/kerning_overrides/25/0 = Vector2(0, 0)
 cache/0/167/0/kerning_overrides/167/0 = Vector2(0, 0)
 cache/0/167/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/20/0/ascent = 0.0
-cache/0/20/0/descent = 0.0
-cache/0/20/0/underline_position = 0.0
-cache/0/20/0/underline_thickness = 0.0
-cache/0/20/0/scale = 1.0
-cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/25/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/167/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
 
 [node name="InputButton" type="Button" unique_id=85666872]
 offset_right = 92.0
 offset_bottom = 40.0
 scale = Vector2(0.997825, 1)
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_focus_color = Color(0.592157, 0.160784, 0.0745098, 1)
 theme_override_colors/font_pressed_color = Color(0.592157, 0.160784, 0.0745098, 1)
@@ -73,22 +100,31 @@ theme_override_fonts/font = SubResource("6")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("3_uqw7h")
 theme_override_styles/pressed = ExtResource("3_uqw7h")
-theme_override_styles/hover = ExtResource("2_xjqet")
+theme_override_styles/hover = ExtResource("3_m3cpk")
 theme_override_styles/hover_pressed = ExtResource("3_uqw7h")
 theme_override_styles/disabled = ExtResource("3_uqw7h")
 theme_override_styles/focus = ExtResource("2_xjqet")
 toggle_mode = true
 text = "Test"
 clip_text = true
+icon_alignment = 1
 expand_icon = true
 script = ExtResource("1")
 action = "jump"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1139060203]
-visible = false
-position = Vector2(46, 20)
-texture = ExtResource("5_0wacc")
-
 [node name="Timer" type="Timer" parent="." unique_id=504941750]
 wait_time = 0.05
 one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=957281700]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=934825567]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_0wacc")

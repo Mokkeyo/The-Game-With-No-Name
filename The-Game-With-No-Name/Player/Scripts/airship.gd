@@ -26,10 +26,11 @@ const DECELERATION: int = 40
 var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
+	print(name, " CURRENT PLAYER: ", currentPlayer)
 	var definition: BulletDefinition = shootComp.projectile as BulletDefinition
 	if currentPlayer == 0:
 		definition.bullet_type = definition.BulletType.PLAYER_1
-	else:
+	elif currentPlayer == 1:
 		definition.bullet_type = definition.BulletType.PLAYER_2
 	
 	set_inputs()
@@ -113,7 +114,6 @@ func set_player() -> void:
 		return
 	set_collision_layer_value(13, false)
 	velocity = Vector2.ZERO
-	G.health_value_changed.emit(currentPlayer, Save.player.hp[currentPlayer])
 	is_in = false
 	var temp_p: NodePath = remote_transform.remote_path
 	remote_transform.remote_path = ""

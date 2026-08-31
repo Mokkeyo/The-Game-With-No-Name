@@ -74,6 +74,9 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	if animation.sprite.animation != "walk_%d" % player.current_player:
 		return
 	
+	if player.state_machine.current_id == PlayerStates.ID.FREEZE:
+		return
+
 	if animation.sprite.frame not in FOOTSTEP_FRAMES:
 		return
 	

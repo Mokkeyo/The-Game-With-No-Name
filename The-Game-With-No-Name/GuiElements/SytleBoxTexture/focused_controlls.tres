@@ -4,8 +4,8 @@
 
 [resource]
 texture = ExtResource("1_7ogyn")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-region_rect = Rect2(9, 0, 9, 9)
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(10, 0, 10, 10)

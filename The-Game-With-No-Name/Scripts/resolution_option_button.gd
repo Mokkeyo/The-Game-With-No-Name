@@ -1,4 +1,4 @@
-extends OptionButton
+extends MenuOptionButton
 class_name ResolutionButton
 
 var Resolution: Dictionary = {"1024 x 576" : Vector2i(1024,576),
@@ -10,21 +10,24 @@ var Resolution: Dictionary = {"1024 x 576" : Vector2i(1024,576),
 	 }
 
 func _ready() -> void:
+	super._ready()
 	start()
 
 
 func start() -> void:
 	for r: String in Resolution:
 		add_item(r)
-	select(Save.options.resolutionIndex)
 
+	var index: int = Resolution.values().find(Save.options.resolution)
+	
+	if index != -1:
+		_on_item_selected(index)
 
 func _on_item_selected(index: int) -> void:
 	var value: Vector2i = Resolution.values()[index]
 	Save.options.resolution = value
-	Save.options.resolutionIndex = index
 	Save.save_options()
-	
+	select(index)
 	if not Save.options.fullscreen:
 		get_window().set_size(value)
 		G.center_window()

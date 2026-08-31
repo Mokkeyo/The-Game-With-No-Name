@@ -185,187 +185,101 @@ script = ExtResource("2")
 startButton = NodePath("ControllButtons/Back")
 exitButton = NodePath("ControllButtons/Back")
 
-[node name="ControllButtons" type="Control" parent="." unique_id=78734557]
+[node name="ControllerButtons" type="Control" parent="." unique_id=2004971477]
 anchors_preset = 0
-offset_left = 18.0
-offset_top = 39.0
-offset_right = 342.0
-offset_bottom = 537.0
-
-[node name="RestoreDefault" parent="ControllButtons" unique_id=1610184761 instance=ExtResource("7_7ov7i")]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 95.0
-offset_right = 160.0
-offset_bottom = 171.0
-focus_neighbor_top = NodePath(".")
-
-[node name="RestoreDefaultLabel" type="RichTextLabel" parent="ControllButtons/RestoreDefault" unique_id=712625334]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 10.0
-offset_right = 125.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("3_rlqrm")
-theme_override_font_sizes/normal_font_size = 20
-text = " Restore 
- Default"
-metadata/_edit_lock_ = true
-
-[node name="AssignController" parent="ControllButtons" unique_id=1417836777 instance=ExtResource("7_7ov7i")]
-layout_mode = 0
-offset_left = 164.0
-offset_top = 95.0
-offset_right = 320.0
-offset_bottom = 171.0
-focus_neighbor_top = NodePath(".")
-
-[node name="AssignLabel" type="RichTextLabel" parent="ControllButtons/AssignController" unique_id=578280786]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 9.0
-offset_right = 142.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("3_rlqrm")
-theme_override_font_sizes/normal_font_size = 20
-text = "    Assign
- Controller"
-metadata/_edit_lock_ = true
-
-[node name="Player1Button" parent="ControllButtons" unique_id=1923246423 instance=ExtResource("7_7ov7i")]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 190.0
-offset_right = 278.0
-offset_bottom = 266.0
-disabled = true
-text = "Player 1"
-
-[node name="Player2Button" parent="ControllButtons" unique_id=1979497076 instance=ExtResource("7_7ov7i")]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 276.0
-offset_right = 278.0
-offset_bottom = 352.0
-text = "Player 2"
-
-[node name="Back" parent="ControllButtons" unique_id=1059582130 instance=ExtResource("7_7ov7i")]
-layout_mode = 0
-offset_left = 105.0
-offset_top = 377.0
-offset_right = 215.0
-offset_bottom = 453.0
-text = "Back"
-
-[node name="ControllerButtons" type="Control" parent="." unique_id=1778630160]
-anchors_preset = 0
-offset_left = 803.0
-offset_top = 129.0
-offset_right = 1005.0
-offset_bottom = 537.0
 
 [node name="UpButton" parent="ControllerButtons" unique_id=999257491 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 2.0
-offset_right = 150.0
-offset_bottom = 42.0
+offset_left = 832.0
+offset_top = 131.0
+offset_right = 976.0
+offset_bottom = 171.0
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 action = "player1_up"
 
 [node name="DownButton" parent="ControllerButtons" unique_id=1953698849 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 45.0
-offset_right = 150.0
-offset_bottom = 85.0
+offset_left = 832.0
+offset_top = 174.0
+offset_right = 976.0
+offset_bottom = 214.0
 focus_neighbor_right = NodePath(".")
 action = "player1_down"
 
 [node name="LeftButton" parent="ControllerButtons" unique_id=842345273 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 88.0
-offset_right = 150.0
-offset_bottom = 128.0
+offset_left = 832.0
+offset_top = 217.0
+offset_right = 976.0
+offset_bottom = 257.0
 focus_neighbor_right = NodePath(".")
 action = "player1_left"
 
 [node name="RightButton" parent="ControllerButtons" unique_id=490105762 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 131.0
-offset_right = 150.0
-offset_bottom = 171.0
+offset_left = 832.0
+offset_top = 260.0
+offset_right = 976.0
+offset_bottom = 300.0
 focus_neighbor_right = NodePath(".")
 action = "player1_right"
 
 [node name="JumpButton" parent="ControllerButtons" unique_id=20054846 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 174.0
-offset_right = 150.0
-offset_bottom = 214.0
+offset_left = 832.0
+offset_top = 303.0
+offset_right = 976.0
+offset_bottom = 343.0
 focus_neighbor_right = NodePath(".")
 action = "player1_jump"
 
 [node name="AttackButton" parent="ControllerButtons" unique_id=1269824867 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 217.0
-offset_right = 150.0
-offset_bottom = 257.0
+offset_left = 832.0
+offset_top = 346.0
+offset_right = 976.0
+offset_bottom = 386.0
 focus_neighbor_right = NodePath(".")
 action = "player1_attack"
 
 [node name="WandButton" parent="ControllerButtons" unique_id=954194548 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 260.0
-offset_right = 150.0
-offset_bottom = 300.0
+offset_left = 832.0
+offset_top = 389.0
+offset_right = 976.0
+offset_bottom = 429.0
 focus_neighbor_right = NodePath(".")
 action = "player1_wand"
 
 [node name="InteractButton" parent="ControllerButtons" unique_id=195227153 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 303.0
-offset_right = 150.0
-offset_bottom = 343.0
+offset_left = 832.0
+offset_top = 432.0
+offset_right = 976.0
+offset_bottom = 472.0
 focus_neighbor_right = NodePath(".")
 action = "player1_interact"
 
 [node name="SpawnButton" parent="ControllerButtons" unique_id=1252841461 instance=ExtResource("10_4wto1")]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 365.0
-offset_right = 149.0
-offset_bottom = 405.0
+offset_left = 832.0
+offset_top = 494.0
+offset_right = 976.0
+offset_bottom = 534.0
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 action = "player1_spawn"
 
-[node name="KeyButtons" type="Control" parent="." unique_id=2049802663]
+[node name="KeyButtons" type="Control" parent="." unique_id=942072283]
 anchors_preset = 0
-offset_left = 596.0
-offset_top = 129.0
-offset_right = 796.0
-offset_bottom = 537.0
 
 [node name="UpButton" parent="KeyButtons" unique_id=697631464 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 2.0
-offset_right = 139.0
-offset_bottom = 42.0
+offset_left = 624.0
+offset_top = 131.0
+offset_right = 768.0
+offset_bottom = 171.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 focus_neighbor_top = NodePath(".")
@@ -373,86 +287,85 @@ action = "player1_up"
 
 [node name="DownButton" parent="KeyButtons" unique_id=1671641546 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 45.0
-offset_right = 139.0
-offset_bottom = 85.0
+offset_left = 624.0
+offset_top = 174.0
+offset_right = 768.0
+offset_bottom = 214.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_down"
 
 [node name="LeftButton" parent="KeyButtons" unique_id=327127744 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 88.0
-offset_right = 139.0
-offset_bottom = 128.0
+offset_left = 624.0
+offset_top = 217.0
+offset_right = 768.0
+offset_bottom = 257.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_left"
 
 [node name="RightButton" parent="KeyButtons" unique_id=1989257862 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 131.0
-offset_right = 139.0
-offset_bottom = 172.0
+offset_left = 624.0
+offset_top = 260.0
+offset_right = 768.0
+offset_bottom = 301.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_right"
 
 [node name="JumpButton" parent="KeyButtons" unique_id=704699949 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 175.0
-offset_right = 139.0
-offset_bottom = 215.0
+offset_left = 624.0
+offset_top = 304.0
+offset_right = 768.0
+offset_bottom = 344.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_jump"
 
 [node name="AttackButton" parent="KeyButtons" unique_id=1398475081 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 218.0
-offset_right = 139.0
-offset_bottom = 258.0
+offset_left = 624.0
+offset_top = 347.0
+offset_right = 768.0
+offset_bottom = 387.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_attack"
 
 [node name="WandButton" parent="KeyButtons" unique_id=1744131895 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 261.0
-offset_right = 139.0
-offset_bottom = 301.0
+offset_left = 624.0
+offset_top = 390.0
+offset_right = 768.0
+offset_bottom = 430.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_wand"
 
 [node name="InteractButton" parent="KeyButtons" unique_id=1144646193 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 304.0
-offset_right = 139.0
-offset_bottom = 345.0
+offset_left = 624.0
+offset_top = 433.0
+offset_right = 768.0
+offset_bottom = 474.0
 scale = Vector2(1, 1)
 size_flags_vertical = 3
 action = "player1_interact"
 
 [node name="SpawnButton" parent="KeyButtons" unique_id=41293508 instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 365.0
-offset_right = 139.0
-offset_bottom = 405.0
+offset_left = 624.00006
+offset_top = 494.0
+offset_right = 768.31396
+offset_bottom = 534.0
 focus_neighbor_bottom = NodePath(".")
 action = "player1_spawn"
 
-[node name="UI" type="Control" parent="." unique_id=1701284180]
+[node name="UI" type="Control" parent="." unique_id=1244307757]
 anchors_preset = 0
-mouse_filter = 2
 
 [node name="Controlls" type="Label" parent="UI" unique_id=918872659]
 layout_mode = 0
@@ -813,6 +726,83 @@ theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 32
 text = "Pres ESC to Cancel"
+
+[node name="ControllButtons" type="Control" parent="." unique_id=1554802054]
+anchors_preset = 0
+
+[node name="RestoreDefault" parent="ControllButtons" unique_id=1610184761 instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 134.0
+offset_right = 178.0
+offset_bottom = 210.0
+focus_neighbor_top = NodePath(".")
+
+[node name="RestoreDefaultLabel" type="RichTextLabel" parent="ControllButtons/RestoreDefault" unique_id=712625334]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 10.0
+offset_right = 125.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rlqrm")
+theme_override_font_sizes/normal_font_size = 20
+text = " Restore 
+ Default"
+metadata/_edit_lock_ = true
+
+[node name="AssignController" parent="ControllButtons" unique_id=1417836777 instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 134.0
+offset_right = 338.0
+offset_bottom = 210.0
+focus_neighbor_top = NodePath(".")
+
+[node name="AssignLabel" type="RichTextLabel" parent="ControllButtons/AssignController" unique_id=578280786]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 142.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rlqrm")
+theme_override_font_sizes/normal_font_size = 20
+text = "    Assign
+ Controller"
+metadata/_edit_lock_ = true
+
+[node name="Player1Button" parent="ControllButtons" unique_id=1923246423 instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 229.0
+offset_right = 296.0
+offset_bottom = 305.0
+focus_neighbor_right = NodePath("../../KeyButtons/UpButton")
+disabled = true
+text = "Player 1"
+
+[node name="Player2Button" parent="ControllButtons" unique_id=1979497076 instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 315.0
+offset_right = 296.0
+offset_bottom = 391.0
+focus_neighbor_right = NodePath("../../KeyButtons/UpButton")
+text = "Player 2"
+
+[node name="Back" parent="ControllButtons" unique_id=1059582130 instance=ExtResource("7_7ov7i")]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 416.0
+offset_right = 240.0
+offset_bottom = 492.0
+focus_neighbor_right = NodePath("../../KeyButtons/UpButton")
+text = "Back"
 
 [connection signal="pressed" from="ControllButtons/RestoreDefault" to="." method="_on_restore_default_pressed"]
 [connection signal="pressed" from="ControllButtons/AssignController" to="." method="_on_assign_controller_pressed"]

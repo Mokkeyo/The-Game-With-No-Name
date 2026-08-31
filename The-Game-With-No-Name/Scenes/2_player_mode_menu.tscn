@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://chdt1oeflseao"]
+[gd_scene format=3 uid="uid://chdt1oeflseao"]
 
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_ryf34"]
 [ext_resource type="Texture2D" uid="uid://ciyfo7g877qr8" path="res://GuiElements/Textures/die.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://weij3kif7qhe" path="res://Player/Textures_P2/player_2.png" id="4_7vrv8"]
 [ext_resource type="Texture2D" uid="uid://bqvvpt1ppfimu" path="res://GuiElements/Textures/controll_button.png" id="8"]
@@ -9,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="10_m2618"]
 [ext_resource type="Texture2D" uid="uid://cs72pqv1k3vcr" path="res://TileMaps/Textures/arrow.png" id="11"]
 [ext_resource type="Script" uid="uid://bua0dc2p360kg" path="res://Scripts/2_player_mode_menu.gd" id="12"]
-
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.219608, 0.0980392, 0, 1)
@@ -25,6 +25,15 @@ fallbacks = Array[Font]([ExtResource("1")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -45,6 +54,15 @@ fallbacks = Array[Font]([ExtResource("1")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -65,6 +83,15 @@ fallbacks = Array[Font]([ExtResource("1")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -85,6 +112,15 @@ fallbacks = Array[Font]([ExtResource("1")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -100,16 +136,17 @@ cache/0/31/0/scale = 1.0
 cache/0/31/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/31/0/kerning_overrides/31/0 = Vector2(0, 0)
 
-[node name="2PlayerMode" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+[node name="2PlayerMode" type="Control" unique_id=1539074429 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
+theme = ExtResource("1_ryf34")
 script = ExtResource("12")
 startButton = NodePath("BackButton")
 exitButton = NodePath("BackButton")
 
-[node name="Panel5" type="Panel" parent="."]
+[node name="Panel5" type="Panel" parent="." unique_id=2042981545]
 visible = false
 layout_mode = 0
 offset_left = -10.0
@@ -117,7 +154,7 @@ offset_top = -581.0
 offset_right = 1030.0
 offset_bottom = 11.0
 
-[node name="Panel4" type="Panel" parent="."]
+[node name="Panel4" type="Panel" parent="." unique_id=103447133]
 visible = false
 layout_mode = 0
 offset_left = 7.0
@@ -126,21 +163,21 @@ offset_right = 1014.0
 offset_bottom = -5.0
 theme_override_styles/panel = SubResource("1")
 
-[node name="Panel6" type="Panel" parent="."]
+[node name="Panel6" type="Panel" parent="." unique_id=1560839944]
 layout_mode = 0
 offset_left = 686.0
 offset_right = 710.0
 offset_bottom = 576.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_muffq")
 
-[node name="Panel7" type="Panel" parent="."]
+[node name="Panel7" type="Panel" parent="." unique_id=2000198073]
 layout_mode = 0
 offset_left = 318.0
 offset_right = 342.0
 offset_bottom = 576.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hmcob")
 
-[node name="1Step" type="RichTextLabel" parent="."]
+[node name="1Step" type="RichTextLabel" parent="." unique_id=248434075]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 394.0
@@ -153,7 +190,7 @@ theme_override_font_sizes/normal_font_size = 22
 text = " 1. Step:
  get a friend to play with"
 
-[node name="2Step" type="RichTextLabel" parent="."]
+[node name="2Step" type="RichTextLabel" parent="." unique_id=700812110]
 layout_mode = 0
 offset_left = 339.0
 offset_top = 393.0
@@ -169,7 +206,7 @@ text = " 2. Step:
  Keyboard to spawn into the 
  action (look controlls)"
 
-[node name="3Step" type="RichTextLabel" parent="."]
+[node name="3Step" type="RichTextLabel" parent="." unique_id=1360479484]
 layout_mode = 0
 offset_left = 703.0
 offset_top = 394.0
@@ -185,7 +222,7 @@ text = " 3. Step
  pressing the \"Spawn\" 
  button"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1592013144]
 layout_mode = 0
 offset_left = -18.0
 offset_top = 5.0
@@ -198,15 +235,15 @@ theme_override_font_sizes/font_size = 31
 text = "Every game is more     fun with a friend      to play with  :D"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Node2D" parent="."]
+[node name="Sprite2D" type="Node2D" parent="." unique_id=1028667971]
 position = Vector2(0, 566)
 
-[node name="Computer" type="Sprite2D" parent="Sprite2D"]
+[node name="Computer" type="Sprite2D" parent="Sprite2D" unique_id=1596933904]
 position = Vector2(160, -316.5)
 scale = Vector2(9, 9)
 texture = ExtResource("10")
 
-[node name="Spieler2(Ver4)" type="Sprite2D" parent="Sprite2D"]
+[node name="Spieler2(Ver4)" type="Sprite2D" parent="Sprite2D" unique_id=649965622]
 position = Vector2(800, -416)
 scale = Vector2(5, 5)
 texture = ExtResource("4_7vrv8")
@@ -214,46 +251,46 @@ hframes = 6
 vframes = 2
 frame = 11
 
-[node name="Die 4" type="Sprite2D" parent="Sprite2D"]
+[node name="Die 4" type="Sprite2D" parent="Sprite2D" unique_id=1838805798]
 position = Vector2(920, -413)
 scale = Vector2(8, 8)
 texture = ExtResource("4")
 hframes = 4
 
-[node name="controll_button2" type="Sprite2D" parent="Sprite2D"]
+[node name="controll_button2" type="Sprite2D" parent="Sprite2D" unique_id=881119801]
 position = Vector2(72, -212)
 scale = Vector2(4, 4)
 texture = ExtResource("8")
 
-[node name="controll_button" type="Sprite2D" parent="Sprite2D"]
+[node name="controll_button" type="Sprite2D" parent="Sprite2D" unique_id=2006840265]
 position = Vector2(864, -258)
 scale = Vector2(8, 8)
 texture = ExtResource("8")
 
-[node name="controll_button3" type="Sprite2D" parent="Sprite2D"]
+[node name="controll_button3" type="Sprite2D" parent="Sprite2D" unique_id=918951100]
 position = Vector2(232, -197)
 scale = Vector2(5, 5)
 texture = ExtResource("8")
 
-[node name="controll_button4" type="Sprite2D" parent="Sprite2D"]
+[node name="controll_button4" type="Sprite2D" parent="Sprite2D" unique_id=189512097]
 position = Vector2(496, -252)
 scale = Vector2(8, 8)
 texture = ExtResource("8")
 
-[node name="Arrow" type="Sprite2D" parent="Sprite2D"]
+[node name="Arrow" type="Sprite2D" parent="Sprite2D" unique_id=2076775345]
 position = Vector2(854, -322)
 rotation = -2.59705
 scale = Vector2(5, 5)
 texture = ExtResource("11")
 offset = Vector2(0, 2.46224)
 
-[node name="Arrow2" type="Sprite2D" parent="Sprite2D"]
+[node name="Arrow2" type="Sprite2D" parent="Sprite2D" unique_id=56985510]
 position = Vector2(492, -328)
 rotation = -2.59705
 scale = Vector2(5, 5)
 texture = ExtResource("11")
 
-[node name="Spieler2(Ver4)fall" type="Sprite2D" parent="Sprite2D"]
+[node name="Spieler2(Ver4)fall" type="Sprite2D" parent="Sprite2D" unique_id=906100225]
 position = Vector2(544, -418)
 scale = Vector2(5, 5)
 texture = ExtResource("4_7vrv8")
@@ -261,7 +298,7 @@ hframes = 6
 vframes = 2
 frame = 4
 
-[node name="Spieler(Ver4)Door_enter" type="Sprite2D" parent="Sprite2D"]
+[node name="Spieler(Ver4)Door_enter" type="Sprite2D" parent="Sprite2D" unique_id=1445933203]
 position = Vector2(432, -418)
 scale = Vector2(5, 5)
 texture = ExtResource("8_riiw0")
@@ -269,11 +306,11 @@ hframes = 6
 vframes = 2
 frame = 10
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=13261442]
 wait_time = 0.5
 one_shot = true
 
-[node name="BackButton" parent="." instance=ExtResource("10_m2618")]
+[node name="BackButton" parent="." unique_id=1194508479 instance=ExtResource("10_m2618")]
 layout_mode = 0
 offset_left = 17.0
 offset_top = 471.0

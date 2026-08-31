@@ -6,5 +6,3 @@
 offset_right = 34.0
 offset_bottom = 34.0
 script = ExtResource("4_03cxe")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

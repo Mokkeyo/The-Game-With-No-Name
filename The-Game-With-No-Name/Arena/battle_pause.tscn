@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b2yvgcbsekcx7"]
 
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_du0tw"]
 [ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Scenes/options_menu.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="3_kcwph"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_s555s"]
@@ -35,13 +36,14 @@ cache/0/100/0/scale = 1.0
 cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_acdfc"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_7x5ee"]
 
 [node name="pause" type="Control" unique_id=1334423775 node_paths=PackedStringArray("menus")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
+theme = ExtResource("1_du0tw")
 script = ExtResource("11")
 menus = [NodePath("Options"), NodePath("Controlls")]
 
@@ -102,7 +104,7 @@ visible = false
 layout_mode = 0
 offset_left = 1024.0
 offset_right = 2048.0
-group = SubResource("ButtonGroup_acdfc")
+group = SubResource("ButtonGroup_7x5ee")
 
 [node name="Controlls" parent="." unique_id=2125042587 instance=ExtResource("3_kcwph")]
 visible = false

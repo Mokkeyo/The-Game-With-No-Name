@@ -249,7 +249,8 @@ func _play_request(request: SFXRequest) -> void:
 	else:
 		player.pitch_scale = 1.0
 	
-	player.play()
+	if player.is_inside_tree():
+		player.play()
 
 
 func _get_free_audio_2d_player(players: Array[AudioStreamPlayer2D]) -> AudioStreamPlayer2D:

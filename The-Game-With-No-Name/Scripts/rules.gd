@@ -10,47 +10,32 @@ const MIN_HP: int = 1
 @onready var infinite_signe: Label = $Time/Infinite
 @onready var time_number: Label = $Time/Number
 @onready var hitpoints_number: Label = $Hitpoints/Number
-@onready var rules_timer: Timer = $Timer
 @onready var weapons: Menu = $Weapons
+@onready var time_button: ValueButton = %Time
+@onready var hp_button: ValueButton = %Hitpoints
 
-enum State {HP, TIME}
-var state: State
 
 func _ready() -> void:
 	super._ready()
 	update_hp()
 	update_time()
-	weapons.exited.connect(Callable(self, "weapons_exited"))
+	weapons.exited.connect(weapons_exited)
+	time_button.current_value = BattleData.time
+	hp_button.current_value = BattleData.hp
+	time_button.value_changed.connect(change_time)
+	hp_button.value_changed.connect(change_hp)
+	hp_button.update_ui()
+	time_button.update_ui()
 
-func _input(_event: InputEvent) -> void:
-	var direction: int = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	
-	if direction == 0 or not rules_timer.is_stopped():
-		return
-	
-	rules_timer.start()
-	
-	match state:
-		State.HP:
-			change_hp(direction)
-		
-		State.TIME:
-			change_time(direction * 10)
-
-
-func change_hp(direction: int) -> void:
-	var next: int = clamp(BattleData.hp + direction, MIN_HP, max_hp)
-	
-	if not next == BattleData.hp:
-		BattleData.hp = next
+func change_hp(value: int) -> void:
+	if not value == BattleData.hp:
+		BattleData.hp = value
 		update_hp()
 
 
-func change_time(direction: int) -> void:
-	var next: int = clamp(BattleData.time + direction, MIN_TIME, max_time)
-	
-	if not next == BattleData.time:
-		BattleData.time = next
+func change_time(value: int) -> void:
+	if not value == BattleData.time:
+		BattleData.time = value
 		update_time()
 
 
@@ -68,14 +53,6 @@ func update_time() -> void:
 func weapons_exited() -> void:
 	enter()
 	weapons.visible = false
-
-
-func _on_hitpoints_focus_entered() -> void:
-	state = State.HP
-
-
-func _on_time_focus_entered() -> void:
-	state = State.TIME
 
 
 func _on_weapons_button_pressed() -> void:

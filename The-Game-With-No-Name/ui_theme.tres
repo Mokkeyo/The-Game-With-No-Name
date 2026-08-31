@@ -5,6 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://d0o7pm0ffnej8" path="res://GuiElements/SytleBoxTexture/focused_button.tres" id="3_tbeor"]
 [ext_resource type="Texture2D" uid="uid://dvd1ivnrm35gr" path="res://GuiElements/Textures/slider_unfocused_button.png" id="4_5kxjo"]
 [ext_resource type="Texture2D" uid="uid://djxoh5j8ewi3x" path="res://GuiElements/Textures/frame_checked.png" id="4_5y56j"]
+[ext_resource type="StyleBox" uid="uid://csa5u38puav8b" path="res://GuiElements/SytleBoxTexture/hovered_button.tres" id="4_uo360"]
 [ext_resource type="Texture2D" uid="uid://bb7okfnhietun" path="res://GuiElements/Textures/frame_uncheked.png" id="5_g4wr8"]
 [ext_resource type="Texture2D" uid="uid://bjoqdh0a0s6af" path="res://GuiElements/Textures/slider_focused_button.png" id="5_g7fvb"]
 [ext_resource type="Texture2D" uid="uid://b2oslmict7f4g" path="res://GuiElements/Textures/Arrow.png" id="6_g7fvb"]
@@ -57,14 +58,14 @@ Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_touxu")
 Button/styles/disabled = ExtResource("2_2pn01")
 Button/styles/focus = ExtResource("3_tbeor")
-Button/styles/hover = ExtResource("3_tbeor")
+Button/styles/hover = ExtResource("4_uo360")
 Button/styles/normal = ExtResource("2_2pn01")
 Button/styles/pressed = ExtResource("2_2pn01")
 CheckBox/icons/checked = ExtResource("4_5y56j")
 CheckBox/icons/unchecked = ExtResource("5_g4wr8")
 CheckBox/styles/disabled = ExtResource("2_2pn01")
 CheckBox/styles/focus = ExtResource("3_tbeor")
-CheckBox/styles/hover = ExtResource("3_tbeor")
+CheckBox/styles/hover = ExtResource("4_uo360")
 CheckBox/styles/hover_pressed = ExtResource("2_2pn01")
 CheckBox/styles/normal = ExtResource("2_2pn01")
 CheckBox/styles/pressed = ExtResource("2_2pn01")
@@ -80,7 +81,7 @@ OptionButton/font_sizes/font_size = 32
 OptionButton/icons/arrow = ExtResource("6_g7fvb")
 OptionButton/styles/disabled = ExtResource("2_2pn01")
 OptionButton/styles/focus = ExtResource("3_tbeor")
-OptionButton/styles/hover = ExtResource("3_tbeor")
+OptionButton/styles/hover = ExtResource("4_uo360")
 OptionButton/styles/hover_pressed = ExtResource("2_2pn01")
 OptionButton/styles/normal = ExtResource("2_2pn01")
 OptionButton/styles/pressed = ExtResource("2_2pn01")

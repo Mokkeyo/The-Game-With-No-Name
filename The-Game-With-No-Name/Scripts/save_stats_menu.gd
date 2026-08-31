@@ -1,7 +1,7 @@
 extends Menu
 class_name SaveStatMenu
 
-enum States {Nothing, Copying, Erasing, EnteringName}
+enum States {Nothing, Copying, Erasing, EnteringName, LoadingGame}
 var state: States = States.Nothing
 
 @export var fader: Fader
@@ -39,9 +39,13 @@ func get_save_path(slot: int) -> String:
 
 
 func copy_data(save_state: int) -> void:
+	if state == States.LoadingGame:
+		return
+
 	selected_slot = save_state
 	state = States.Copying
 	label.text = "Choose a File to copy to"
+	back_button.text = "Cancel"
 	set_state_visible(false)
 
 
@@ -61,12 +65,18 @@ func set_state_visible(value: bool) -> void:
 
 
 func erase_data(save_state: int) -> void:
+	if state == States.LoadingGame:
+		return
+	
 	selected_slot = save_state
 	state = States.Erasing
 	enter_conformation("Erase Data?")
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if state == States.LoadingGame:
+		return
+
 	if state == States.Nothing:
 		super._unhandled_input(event)
 		return
@@ -87,19 +97,24 @@ func start_fader(save_state: int) -> void:
 	Save.active_slot = save_state
 	get_tree().paused = true
 	await fader.fade_out().animation_finished
+	
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
 func start_game(save_state: int) -> void:
+	if state == States.LoadingGame:
+		return
+
 	if state == States.Copying:
 		enter_conformation("Copy Data?")
 		target_slot = save_state
 		return
-	
+
 	if save_stats[save_state].file_exists:
 		Save.load_data(save_state)
+		state = States.LoadingGame
 		start_fader(save_state)
 	else:
 		back_button.text = "Cancel"

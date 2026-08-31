@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://duirrk2ta88b3"]
+[gd_scene format=3 uid="uid://duirrk2ta88b3"]
 
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_evk7j"]
 [ext_resource type="Script" uid="uid://fm2rhlt1jf1g" path="res://Scripts/explanation.gd" id="1_r41kg"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="1_wokp5"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_fjur3"]
@@ -9,6 +10,15 @@ fallbacks = Array[Font]([ExtResource("1_wokp5")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -58,16 +68,17 @@ cache/0/37/8/glyphs/0/size = Vector2(0, 0)
 cache/0/37/8/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
 cache/0/37/8/glyphs/0/texture_idx = -1
 
-[node name="explanation" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+[node name="explanation" type="Control" unique_id=1978136447 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 576.0
+theme = ExtResource("1_evk7j")
 script = ExtResource("1_r41kg")
 startButton = NodePath("BackButton")
 exitButton = NodePath("BackButton")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=530318772]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,7 +95,7 @@ The player has a sword and a wand to damage the other player, but you can just j
 the player cannot swing ropes in this game mode.
 whoever dies, loses!!!"
 
-[node name="BackButton" parent="." instance=ExtResource("3_fjur3")]
+[node name="BackButton" parent="." unique_id=599371899 instance=ExtResource("3_fjur3")]
 layout_mode = 0
 offset_left = 276.0
 offset_top = 446.0

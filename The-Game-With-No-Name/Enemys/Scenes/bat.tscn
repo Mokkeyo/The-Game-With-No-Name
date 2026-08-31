@@ -214,7 +214,6 @@ parent = NodePath("..")
 path_desired_distance = 5.0
 target_desired_distance = 5.0
 path_max_distance = 20.0
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="." unique_id=587020877]
 wait_time = 0.2

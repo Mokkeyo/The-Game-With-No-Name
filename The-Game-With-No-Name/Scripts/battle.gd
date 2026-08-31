@@ -59,7 +59,7 @@ func declareVictor(i: int) -> void:
 
 
 func loadArena(in_game: Node2D) -> void:
-	var arena: PackedScene = load("res://Arena/Arena_%d.tscn" % BattleData.arena)
+	var arena: PackedScene = load("res://Arena/arena_%d.tscn" % BattleData.arena)
 	
 	if arena == null:
 		push_error("No Arena Found")

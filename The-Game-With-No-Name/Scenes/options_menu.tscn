@@ -23,13 +23,12 @@ bg_color = Color(0, 0, 0, 1)
 [node name="Options" type="Control" unique_id=205874480 node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -16.0
 offset_right = 1024.0
-offset_bottom = 560.0
+offset_bottom = 576.0
 theme = ExtResource("1_838ek")
 script = ExtResource("8")
 group = ExtResource("12")
-startButton = NodePath("GrafikOptions/BrightnessButton")
+startButton = NodePath("Panel/GrafikButton")
 exitButton = NodePath("BackButton")
 
 [node name="BackButton" parent="." unique_id=1265080537 instance=ExtResource("6_e8upl")]

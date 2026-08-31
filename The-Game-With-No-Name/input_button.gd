@@ -1,4 +1,4 @@
-extends Button
+extends Menu_Button
 class_name InputButton
 
 signal rebinding_started(toggled: bool)
@@ -7,7 +7,7 @@ signal remap_key(action: String, device_index: int, event: InputEvent)
 @export var action: String = ""
 @export var device_index: int
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: TextureRect = %TextureRect
 @onready var timer: Timer = $Timer
 
 func _init() -> void:
@@ -16,6 +16,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	super._ready()
 	timer.timeout.connect(_on_timer_timeout)
 	if FileAccess.file_exists(Save.SAVE_DIR + "inputs.json"):
 		display_key()

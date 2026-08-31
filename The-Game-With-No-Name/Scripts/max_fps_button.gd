@@ -1,4 +1,4 @@
-extends OptionButton
+extends MenuOptionButton
 class_name MaxFpsButton
 
 const Fps: Dictionary = {"0":0,
@@ -12,6 +12,7 @@ const Fps: Dictionary = {"0":0,
 }
 
 func _ready() -> void:
+	super._ready()
 	for f: String in Fps:
 		add_item(f)
 	

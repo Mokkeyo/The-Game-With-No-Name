@@ -1,7 +1,8 @@
-extends CheckBox
+extends MenuCheckBox
 class_name FullscreenButton
 
 func _ready() -> void:
+	super._ready()
 	button_pressed = Save.options.fullscreen
 	G.fullscreen_changed.connect(toggle_button)
 

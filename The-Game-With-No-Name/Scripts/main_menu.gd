@@ -73,6 +73,7 @@ func _on_player_pressed() -> void: change_menu(two_player_mode)
 
 
 func _on_battle_button_pressed() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
 	await fader.fade_out().animation_finished
 	BattleData.battle = true
 	get_tree().change_scene_to_file("res://Scenes/battle_mode_menu.tscn")

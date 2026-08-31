@@ -4,32 +4,10 @@
 [ext_resource type="Script" uid="uid://d2mx8pvd6i05j" path="res://Scenes/canvas_modulate.gd" id="2_r382v"]
 [ext_resource type="PackedScene" uid="uid://blleebef2ijss" path="res://Player/Scenes/ghost_pet.tscn" id="2_tikr8"]
 [ext_resource type="PackedScene" uid="uid://da7p34a4g111f" path="res://Player/Scenes/player.tscn" id="3_2fron"]
-[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="4_u5pl2"]
 [ext_resource type="PackedScene" uid="uid://bo71jy617wjp8" path="res://Scenes/hp_bar_player_1.tscn" id="5_uw4fe"]
 [ext_resource type="PackedScene" uid="uid://bt77os0lde6em" path="res://Scenes/mana_player_1.tscn" id="6_m0r43"]
 [ext_resource type="PackedScene" uid="uid://bgjgn30nuvrb3" path="res://Scenes/hp_bar_player_2.tscn" id="7_pi7ch"]
 [ext_resource type="PackedScene" uid="uid://f35a2dk8xal2" path="res://Scenes/mana_player_2.tscn" id="8_rlmnr"]
-
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("4_u5pl2")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 1)
@@ -102,17 +80,6 @@ texture_filter = 1
 zoom = Vector2(2, 2)
 limit_left = 0
 position_smoothing_speed = 8.0
-
-[node name="Coin_Label" type="Label" parent="." unique_id=57352793]
-visible = false
-offset_left = 388.0
-offset_top = 33.0
-offset_right = 501.0
-offset_bottom = 68.0
-theme_override_colors/font_color = Color(0.72549, 0.780392, 0.152941, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("2")
-text = "Coins: 0"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1015903690]
 

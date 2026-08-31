@@ -8,6 +8,7 @@ enum Sound {MASTER, MUSIC, SFX, AMBIENT, UI_SFX}
 @export var sound: Sound
 
 func _ready() -> void:
+	drag_started.connect(grab_focus)
 	start()
 
 func start() -> void:

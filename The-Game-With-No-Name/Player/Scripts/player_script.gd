@@ -76,6 +76,7 @@ func _configure_floor_settings() -> void:
 func _connect_signals() -> void:
 	health_component.value_changed.connect(_on_value_changed)
 	health_component.died.connect(respawn)
+	reset_comp.disabling_stats.connect(freeze)
 	reset_comp.enabling_stats.connect(enable_player)
 	lava_water_detector.lava_entered.connect(lava_entered)
 

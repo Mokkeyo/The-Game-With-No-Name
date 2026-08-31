@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	for button: AchievmentButton in achievements_panel.get_children():
 		button.focus_entered.connect(change_text.bind(button))
-		button.pressed.connect(change_text.bind(button))
+		button.mouse_entered.connect(change_text.bind(button))
 		
 		if Save.options.achievments.has(button.achievment_name):
 			button.icon = button.unlocked_icon

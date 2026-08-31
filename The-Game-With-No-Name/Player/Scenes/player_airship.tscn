@@ -225,7 +225,7 @@ shape = SubResource("CapsuleShape2D_cyywu")
 wait_time = 0.5
 one_shot = true
 
-[node name="ResetComponent" parent="." unique_id=213301967 node_paths=PackedStringArray("collisions", "visible_nodes") instance=ExtResource("8_eqdrp")]
+[node name="ResetComponent" parent="." unique_id=213301967 node_paths=PackedStringArray("collisions", "visible_nodes") groups=["airship"] instance=ExtResource("8_eqdrp")]
 collisions = [NodePath("../Hurtbox/CollisionShape2D"), NodePath("../CollisionPolygon2D")]
 visible_nodes = [NodePath("..")]
 setStartPosition = false

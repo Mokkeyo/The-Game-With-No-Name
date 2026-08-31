@@ -4,8 +4,8 @@ class_name NewTextBox
 
 signal dialog_ended
 
-var npc_texture: Texture2D = preload("res://GuiElements/Textures/Textbox_npc.png")
-var player_texture: Texture2D = preload("res://GuiElements/Textures/Textbox_player.png")
+#var npc_texture: Texture2D = preload()
+#var player_texture: Texture2D = preload()
 
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
@@ -159,10 +159,10 @@ func apply_dialogue_line() -> void:
 	character_label.visible = not dialogue_line.character.is_empty()
 	character_label.text = tr(dialogue_line.character, "dialogue")
 	
-	if not dialogue_line.character.is_empty():
-		texture_rect.texture = npc_texture 
-	else:
-		texture_rect.texture = player_texture
+#	if not dialogue_line.character.is_empty():
+#		texture_rect.texture = npc_texture 
+#	else:
+#		texture_rect.texture = player_texture
 	
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line

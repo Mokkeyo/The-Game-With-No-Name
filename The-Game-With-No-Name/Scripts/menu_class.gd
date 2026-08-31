@@ -7,10 +7,11 @@ signal exited
 @export var exitButton: Button
 
 func _ready() -> void:
-	exitButton.pressed.connect(exit)
+	if exitButton:
+		exitButton.pressed.connect(exit)
+	
 	set_process_unhandled_input(false)
 	set_process_input(false)
-
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("escape"):

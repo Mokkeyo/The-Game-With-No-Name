@@ -11,14 +11,6 @@ size = Vector2(11, 32)
 [node name="Airship_Spawner" type="Node2D" unique_id=997328965]
 script = ExtResource("1_7gtgn")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=489630522]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=493920829]
-position = Vector2(0.5, -16)
-shape = SubResource("RectangleShape2D_8kcd1")
-
 [node name="Marker2D" type="Marker2D" parent="." unique_id=52654398]
 position = Vector2(47, -9)
 
@@ -34,6 +26,15 @@ currentPlayer = 1
 [node name="AirshipSpawner" type="Sprite2D" parent="." unique_id=930545228]
 position = Vector2(30, -20)
 texture = ExtResource("3_8kcd1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=489630522]
+position = Vector2(-2, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=493920829]
+position = Vector2(0.5, -16)
+shape = SubResource("RectangleShape2D_8kcd1")
 
 [node name="Ping" parent="." unique_id=977693011 instance=ExtResource("4_6vw2f")]
 visible = true

@@ -1940,13 +1940,13 @@ text = "Quit Game"
 layout_mode = 0
 offset_left = 1074.0
 offset_top = 624.0
-offset_right = 1199.0
-offset_bottom = 655.0
+offset_right = 1137.0923
+offset_bottom = 673.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
-text = "nothing button"
+text = "Nothing"
 
 [node name="SaveStats" parent="." unique_id=20983596 node_paths=PackedStringArray("fader") instance=ExtResource("16_ry84y")]
 offset_top = -576.0
@@ -1959,9 +1959,7 @@ offset_right = 0.0
 
 [node name="Options" parent="." unique_id=544530474 instance=ExtResource("18_f3gas")]
 offset_left = 1024.0
-offset_top = 0.0
 offset_right = 2048.0
-offset_bottom = 576.0
 group = SubResource("ButtonGroup_ehtkc")
 
 [node name="Achievments" parent="." unique_id=259480525 instance=ExtResource("22_l2mxp")]

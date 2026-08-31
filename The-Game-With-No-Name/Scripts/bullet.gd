@@ -18,6 +18,7 @@ func configure(definition: ProjectileDefinition) -> void:
 	speed = data.speed
 	lifetime = data.life_time
 	bullet_type = data.bullet_type
+	print("BULLET TYPE: ", bullet_type)
 
 
 func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:

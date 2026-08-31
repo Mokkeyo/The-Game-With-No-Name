@@ -11,7 +11,7 @@ var body_count: int = 0
 func _ready() -> void:
 	for airship: Airship in airships:
 		airship.reset_comp.disable_stats()
-	
+		
 	set_process_unhandled_input(false)
 
 

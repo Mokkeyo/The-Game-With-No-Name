@@ -11,7 +11,6 @@ class_name SaveStatInf
 @export var uiSfxVolume: float = 0.5
 @export var maxVolume: float = 0.5
 @export var printFps: bool = false
-@export var resolutionIndex: int = 0
 @export var resolution: Vector2i = Vector2i(1024,576)
 @export var maxFps: int = 0
 @export var fullscreen: bool = false

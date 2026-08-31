@@ -87,6 +87,8 @@ func respawn_player(player_index: int , position: Vector2) -> void:
 	
 	var player: Player = players[player_index]
 	
+	G.health_value_changed.emit(player_index, player.health_component.health)
+
 	set_player_position(player_index, position)
 	
 	player.reset_comp.enable_stats()

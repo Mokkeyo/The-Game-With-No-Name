@@ -145,9 +145,9 @@ saveState = 3
 
 [node name="BackButton" parent="." unique_id=95712660 instance=ExtResource("6_vxfum")]
 layout_mode = 0
-offset_left = 448.0
+offset_left = 432.0
 offset_top = 520.0
-offset_right = 576.0
+offset_right = 592.0
 offset_bottom = 568.0
 focus_neighbor_bottom = NodePath(".")
 text = "Back"

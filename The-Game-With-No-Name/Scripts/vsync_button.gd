@@ -1,7 +1,8 @@
-extends CheckBox
+extends MenuCheckBox
 class_name  VsyncButton
 
 func _ready() -> void:
+	super._ready()
 	start()
 
 
