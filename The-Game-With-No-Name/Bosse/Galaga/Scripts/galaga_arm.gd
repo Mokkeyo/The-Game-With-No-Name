@@ -5,6 +5,7 @@ class_name GalagaArm
 @onready var health_comp: HealthComponent = $healthComponent
 @onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var marker: Marker2D = $Marker2D
+@onready var shoot_comp: ShootComponent = %ShootComponent
 
 var is_alive: bool = true
 

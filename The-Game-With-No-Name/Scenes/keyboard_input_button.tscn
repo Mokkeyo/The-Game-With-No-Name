@@ -105,6 +105,7 @@ theme_override_styles/hover_pressed = ExtResource("3_uqw7h")
 theme_override_styles/disabled = ExtResource("3_uqw7h")
 theme_override_styles/focus = ExtResource("2_xjqet")
 toggle_mode = true
+action_mode = 0
 text = "Test"
 clip_text = true
 icon_alignment = 1

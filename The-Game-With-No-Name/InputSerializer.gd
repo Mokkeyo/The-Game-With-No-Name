@@ -130,9 +130,6 @@ static func apply_action_from_dict(data: Dictionary, action: String) -> void:
 		return
 	
 	var events: Array = data[action]
-	if typeof(events) != TYPE_ARRAY:
-		push_warning("Invalid event array for: " + action)
-		return
 	
 	if not InputMap.has_action(action):
 		push_warning("couldnt find action -> added it")
@@ -141,8 +138,6 @@ static func apply_action_from_dict(data: Dictionary, action: String) -> void:
 	InputMap.action_erase_events(action)
 	
 	for ev_data: Dictionary in events:
-		if typeof(ev_data) != TYPE_DICTIONARY:
-			continue
 		
 		var ev: InputEvent = dict_to_event(ev_data)
 		if ev:
@@ -155,18 +150,12 @@ static func get_event_from_action(data: Dictionary, action: String, index: int) 
 		return null
 	
 	var arr: Array = data[action]
-	if typeof(arr) != TYPE_ARRAY:
-		push_warning("Invalid arrar for: " + action)
-		return null
 	
 	if index < 0 or index >= arr.size():
 		push_warning("Index out of bounds for: " + action)
 		return null
 	
 	var ev_data: Dictionary = arr[index]
-	
-	if typeof(ev_data) != TYPE_DICTIONARY:
-		return null
 	
 	return dict_to_event(ev_data)
 
@@ -180,15 +169,29 @@ static func change_device_for_player(data: Dictionary, player_index: int, new_de
 			continue
 		
 		var events: Array = data[action]
-		if typeof(events) != TYPE_ARRAY:
-			continue
 		
 		for ev: Dictionary in events:
-			if typeof(ev) != TYPE_DICTIONARY:
-				continue
 			
 			var type: String = ev.get("type", "")
 			
 			if type == "joy_button" or type == "joy_motion":
 				ev["device"] = new_device
 				print("assinged controller")
+
+
+static func get_device_from_player(data: Dictionary, player_index: int) -> int:
+	var prefix: String = "player%d_" % (player_index + 1)
+
+	for action: StringName in data.keys():
+		if not action.begins_with(prefix):
+			continue
+		
+		var events: Array = data[action]
+
+		for ev: Dictionary in events:
+			var type: String = ev.get("type", "")
+
+			if type == "joy_button" or type == "joy_motion":
+				return ev.get("device", -1)
+	
+	return -1

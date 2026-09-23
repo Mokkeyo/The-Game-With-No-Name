@@ -5,10 +5,10 @@ var player: int = 0
 var previous_device: String
 var mouse_position: Vector2
 
-enum State {IDLE, CONTROLLER_ASSIGN, INPUT_MAPPING}
+enum State {IDLE, INPUT_MAPPING}
 var state: State = State.IDLE
 
-@onready var assign_ui: Control = $UI/AssignUI
+@onready var assign_ui: AssignControllerMenu = %AssignUIMenu
 @onready var assign_controller_btn: Button = $ControllButtons/AssignController
 @onready var player_controlls_label: Label = $UI/PlayerControlls/PlayerLabel
 
@@ -20,6 +20,7 @@ var keyboard_inputs: Array[KInputButton] = []
 
 func _ready() -> void:
 	super._ready()
+	assign_ui.exited.connect(exit_assign)
 	var key_buttons: Node = $KeyButtons
 	var controller_buttons: Node = $ControllerButtons
 	for Ki: KInputButton in key_buttons.get_children():
@@ -38,29 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	match state:
 		State.IDLE:
 			super._unhandled_input(event)
-		State.CONTROLLER_ASSIGN:
-			if event.is_pressed() and event is InputEventJoypadButton:
-				handle_device_assignment(event.device)
-			
-			if not Input.is_action_just_pressed("escape"):
-				return
-			
-			reset_controller_assignment()
-			await get_tree().process_frame
-			return
-
-
-func handle_device_assignment(device: int) -> void:
-	InputSerializer.change_device_for_player(Save.inputs, player, device)
-	InputSerializer.apply_inputmap_from_dict(Save.inputs)
-	Save.save_inputs()
-	reset_controller_assignment()
-
-
-func reset_controller_assignment() -> void:
-	assign_ui.visible = false
-	assign_controller_btn.disabled = false
-	state = State.IDLE
 
 
 func change_input_device(device_name: String) -> void:
@@ -138,10 +116,15 @@ func display_key() -> void:
 
 
 func _on_assign_controller_pressed() -> void:
-	assign_ui.visible = true
-	assign_controller_btn.disabled = true
+	assign_ui.enter(player)
+	set_process_unhandled_input(false)
+	assign_ui.grab_focus()
+
+
+func exit_assign() -> void:
+	print("true")
 	assign_controller_btn.grab_focus()
-	state = State.CONTROLLER_ASSIGN
+	set_process_unhandled_input(true)
 
 func _on_restore_default_pressed() -> void:
 	restore_default_bindings()

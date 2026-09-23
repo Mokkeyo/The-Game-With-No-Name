@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://dqoqjohhvn5x1"]
 
 [ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_i6svg"]
-[ext_resource type="AudioStream" uid="uid://cr6m2570tbg3r" path="res://Audio/Files/WhistlingWindStead PE033401.mp3" id="2_i6svg"]
+[ext_resource type="AudioStream" uid="uid://bg8j8wsl2sdvm" path="res://Audio/Files/WhistlingWindStead PE033401 (mp3cut.net).mp3" id="2_i6svg"]
 
 [resource]
 script = ExtResource("1_i6svg")

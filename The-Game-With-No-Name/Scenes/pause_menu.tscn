@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bowcmya00mvsq"]
 
-[ext_resource type="FontFile" uid="uid://mqkk1vgansn4" path="res://Font/Movement.ttf" id="1"]
 [ext_resource type="PackedScene" uid="uid://dwteec0yfwt0f" path="res://Scenes/controlls_menu.tscn" id="2"]
 [ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="2_ix48p"]
 [ext_resource type="PackedScene" uid="uid://dy1fgoh5bt2i6" path="res://Scenes/options_menu.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://pstuple2el0o" path="res://Font/Extrude.ttf" id="3_ix48p"]
 [ext_resource type="PackedScene" uid="uid://bnnje3fa3iubo" path="res://GuiElements/menu_buttons.tscn" id="3_jlidi"]
 [ext_resource type="Script" uid="uid://dqrl7t5nlu8s5" path="res://Scripts/pause_menu.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://c32irumryilnl" path="res://Scenes/achievments_menu.tscn" id="5"]
@@ -11,36 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://rlxkncbl4m5a" path="res://GuiElements/Textures/pokal.png" id="28"]
 [ext_resource type="Texture2D" uid="uid://pg8n0i7gx02u" path="res://GuiElements/Textures/multyplayer.png" id="29"]
 
-[sub_resource type="FontFile" id="23"]
-fallbacks = Array[Font]([ExtResource("1")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
-cache/0/100/0/ascent = 0.0
-cache/0/100/0/descent = 0.0
-cache/0/100/0/underline_position = 0.0
-cache/0/100/0/underline_thickness = 0.0
-cache/0/100/0/scale = 1.0
-cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_stj27"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_ix48p"]
 
 [node name="pause" type="Control" unique_id=640878741 node_paths=PackedStringArray("menus")]
 process_mode = 3
@@ -57,15 +28,14 @@ theme = ExtResource("2_ix48p")
 
 [node name="Pause_Label" type="Label" parent="Paused" unique_id=180040724]
 layout_mode = 0
-offset_left = 350.0
-offset_top = 182.0
-offset_right = 679.0
-offset_bottom = 282.0
-theme_override_colors/font_color = Color(0.968627, 1, 0, 1)
+offset_left = 392.0
+offset_top = 280.0
+offset_right = 616.0
+offset_bottom = 344.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
-theme_override_fonts/font = SubResource("23")
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("3_ix48p")
+theme_override_font_sizes/font_size = 64
 text = "Paused"
 
 [node name="Continue" parent="Paused" unique_id=1127025680 instance=ExtResource("3_jlidi")]
@@ -147,10 +117,8 @@ offset_right = 0.0
 [node name="Options" parent="." unique_id=237068943 instance=ExtResource("3")]
 layout_mode = 0
 offset_left = 1024.0
-offset_top = 0.0
 offset_right = 2048.0
-offset_bottom = 576.0
-group = SubResource("ButtonGroup_stj27")
+group = SubResource("ButtonGroup_ix48p")
 
 [node name="Achievments" parent="." unique_id=1561657080 instance=ExtResource("5")]
 layout_mode = 0

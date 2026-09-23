@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://bxgkbowbin2c1"]
 
 [ext_resource type="Script" uid="uid://ui0oudtjqu2k" path="res://Audio/SoundEffect.gd" id="1_x4qpn"]
-[ext_resource type="AudioStream" uid="uid://cgtkiypikgo6h" path="res://Audio/Files/freesound_community-meditation-pad-61609.mp3" id="2_1j6o1"]
+[ext_resource type="AudioStream" uid="uid://c6sj7xiu8vg1n" path="res://Audio/Files/freesound_community-meditation-pad-61609 (mp3cut.net).mp3" id="2_1j6o1"]
 
 [resource]
 script = ExtResource("1_x4qpn")

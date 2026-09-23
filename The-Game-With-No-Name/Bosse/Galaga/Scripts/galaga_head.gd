@@ -11,6 +11,8 @@ var warnings: Array[Warning] = []
 @onready var health_comp: HealthComponent = $healthComponent
 @onready var hurtbox_collision: CollisionShape2D = $Hurtbox/CollisionShape2D
 
+@onready var shoot_components: Array[ShootComponent] = [%ShootComponent, %ShootComponent2]
+
 var is_alive: bool = true
 
 
