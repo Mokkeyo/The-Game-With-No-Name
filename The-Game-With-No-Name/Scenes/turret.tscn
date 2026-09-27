@@ -128,6 +128,7 @@ radius = 122.262
 [sub_resource type="Resource" id="Resource_kvu5x"]
 script = ExtResource("8_74mb1")
 pool_size = 2
+speed = -300
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [node name="Geschütz" type="CharacterBody2D" unique_id=241740159]

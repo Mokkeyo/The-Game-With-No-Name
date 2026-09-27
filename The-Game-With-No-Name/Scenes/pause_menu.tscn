@@ -28,9 +28,9 @@ theme = ExtResource("2_ix48p")
 
 [node name="Pause_Label" type="Label" parent="Paused" unique_id=180040724]
 layout_mode = 0
-offset_left = 392.0
+offset_left = 412.0
 offset_top = 280.0
-offset_right = 616.0
+offset_right = 636.0
 offset_bottom = 344.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16

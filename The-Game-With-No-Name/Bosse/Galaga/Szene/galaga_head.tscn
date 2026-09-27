@@ -166,13 +166,15 @@ radius = 32.0156
 [sub_resource type="Resource" id="Resource_6rmpw"]
 script = ExtResource("8_o7r3f")
 pool_size = 3
-life_time = 2.0
+speed = -300
+life_time = 4.0
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [sub_resource type="Resource" id="Resource_oarcc"]
 script = ExtResource("8_o7r3f")
 pool_size = 5
-life_time = 2.0
+speed = -300
+life_time = 4.0
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [node name="Boss(Head)" type="StaticBody2D" unique_id=199189116]

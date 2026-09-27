@@ -397,6 +397,10 @@ func _start_ambient(
 	active_players[sound] = player
 
 func _stop_ambient(sound: SoundEffect) -> void:
+	if active_players.is_empty():
+		push_warning("no active players")
+		return
+
 	var player: AudioStreamPlayer2D = active_players.get(sound)
 
 	if player == null:

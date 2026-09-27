@@ -215,7 +215,7 @@ position = Vector2(1792, 14)
 waittime = 1
 
 [node name="Kristall_1" parent="Objects" unique_id=416296656 instance=ExtResource("17")]
-position = Vector2(3742, 127)
+position = Vector2(3742, 118)
 kristall = 3
 
 [node name="Spikes" type="Node2D" parent="." unique_id=19706573]

@@ -166,7 +166,8 @@ radius = 28.0
 [sub_resource type="Resource" id="Resource_6rmpw"]
 script = ExtResource("8_kctvo")
 pool_size = 3
-life_time = 2.0
+speed = -300
+life_time = 4.0
 metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
 
 [node name="Boss(arm)" type="StaticBody2D" unique_id=449463280]
@@ -209,6 +210,7 @@ invisibiltyFrames = 0.1
 health = NodePath("../healthComponent")
 
 [node name="ShootComponent" type="Node2D" parent="." unique_id=1917582909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point")]
+unique_name_in_owner = true
 script = ExtResource("7_s7hv1")
 parent = NodePath("..")
 shooting_point = NodePath("../Marker2D")
