@@ -100,12 +100,11 @@ func check_for_respawn_input() -> void:
 				despawn_input = -1
 				just_despawned = false
 				return
-
-			if not multiplayer_enabled:
-				multiplayer_enabled = true
 			
 			if not player_alive[i]:
 				player_respawned.emit(i)
+				if not multiplayer_enabled:
+					multiplayer_enabled = true
 
 
 func respawn_player(player_index: int , position: Vector2) -> void:
@@ -148,6 +147,8 @@ func deactivate_player_2() -> void:
 
 	if player_alive[1]:
 		on_player_died(1)
+
+	player_alive[1] = false
 
 	multiplayer_enabled = false
 
