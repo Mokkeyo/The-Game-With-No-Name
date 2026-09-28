@@ -14,70 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://c0hh1dv1aiucg" path="res://balloon.tscn" id="13_rfjv2"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
 
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("5")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
-cache/0/25/0/ascent = 0.0
-cache/0/25/0/descent = 0.0
-cache/0/25/0/underline_position = 0.0
-cache/0/25/0/underline_thickness = 0.0
-cache/0/25/0/scale = 1.0
-cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("5")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
-cache/0/25/0/ascent = 0.0
-cache/0/25/0/descent = 0.0
-cache/0/25/0/underline_position = 0.0
-cache/0/25/0/underline_thickness = 0.0
-cache/0/25/0/scale = 1.0
-cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
-
 [sub_resource type="Animation" id="8"]
 length = 4.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Player2Label:visible")
+tracks/0/path = NodePath("CanvasLayer/Player2Label:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/Player1Label:visible")
+tracks/1/path = NodePath("CanvasLayer/Player1Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -136,6 +78,64 @@ cache/0/20/0/underline_thickness = 0.0
 cache/0/20/0/scale = 1.0
 cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("5")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/25/0 = Vector2(0, 0)
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/25/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/25/0/kerning_overrides/25/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_rfjv2"]
 length = 0.001
@@ -229,40 +229,21 @@ script = ExtResource("7")
 
 [node name="Fader" parent="." unique_id=517439101 instance=ExtResource("6")]
 
-[node name="PlayerManager" type="Node" parent="." unique_id=1512251564]
+[node name="PlayerManager" type="Node" parent="." unique_id=1512251564 node_paths=PackedStringArray("player_label")]
 script = ExtResource("3_rku1e")
+player_label = [NodePath("../CanvasLayer/Player1Label"), NodePath("../CanvasLayer/Player2Label")]
 
-[node name="Player2Label" type="Label" parent="PlayerManager" unique_id=1284848523]
-visible = false
-offset_left = 748.0
-offset_top = 8.0
-offset_right = 1010.0
-offset_bottom = 34.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("3")
-theme_override_font_sizes/font_size = 25
-text = "Player 2 can respawn"
-
-[node name="Player1Label" type="Label" parent="PlayerManager" unique_id=721011760]
-visible = false
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 270.0
-offset_bottom = 34.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("4")
-theme_override_font_sizes/font_size = 25
-text = "Player 1 can respawn"
-
-[node name="respawnTimer" type="Timer" parent="PlayerManager" unique_id=829841168]
+[node name="RespawnTimer" type="Timer" parent="PlayerManager" unique_id=829841168]
 wait_time = 5.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerManager" unique_id=1105948417]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_h5g3y")
+
+[node name="DespawnTimer" type="Timer" parent="PlayerManager" unique_id=1319234538]
+wait_time = 3.0
+one_shot = true
 
 [node name="LevelManager" type="Node" parent="." unique_id=2042275682]
 script = ExtResource("4_rfjv2")
@@ -279,7 +260,7 @@ achievment_list = "Chatter"
 achievment_list = "You Got A Friend In Me"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1372785356]
-layer = 2
+layer = 20
 
 [node name="BossUIManager" type="Control" parent="CanvasLayer" unique_id=1706865187]
 layout_mode = 3
@@ -331,7 +312,41 @@ text = "Saving Game..."
 visible_characters = 11
 visible_ratio = 0.78571427
 
+[node name="Player1Label" type="Label" parent="CanvasLayer" unique_id=721011760]
+visible = false
+offset_left = 51.0
+offset_top = 248.0
+offset_right = 313.0
+offset_bottom = 274.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("4")
+theme_override_font_sizes/font_size = 25
+text = "Player 1 can respawn"
+
+[node name="Player2Label" type="Label" parent="CanvasLayer" unique_id=1284848523]
+visible = false
+offset_left = 694.0
+offset_top = 249.0
+offset_right = 956.0
+offset_bottom = 275.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 25
+text = "Player 2 can respawn"
+
+[node name="RespawnLabel1" type="Label" parent="CanvasLayer" unique_id=2092609230]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RespawnLabel2" type="Label" parent="CanvasLayer" unique_id=923419109]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=856193740]
 libraries/ = SubResource("AnimationLibrary_nb51f")
 
-[connection signal="timeout" from="PlayerManager/respawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="PlayerManager/RespawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

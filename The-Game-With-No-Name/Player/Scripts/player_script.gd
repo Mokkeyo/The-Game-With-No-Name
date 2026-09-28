@@ -174,7 +174,6 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	if is_alive:
 		return
 	
-	reset_comp.disable_stats()
 	G.player_died.emit(current_player)
 
 

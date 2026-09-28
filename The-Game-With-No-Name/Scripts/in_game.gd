@@ -20,6 +20,9 @@ class_name InGame
 @onready var mana_bars: Array[HealthBar] = [%ManaP1, %ManaP2]
 @onready var player_bars: Array[Control] = [$CanvasLayer/Player1, $CanvasLayer/Player2]
 @onready var panel: Panel = $CanvasLayer/Panel
+@onready var canvas_modulate: CanvasModulate = %CanvasModulate
+
+@onready var black_screen: Array[Panel] = [%Blackscreen_1, %Blackscreen_2]
 
 var old_level: Node2D = null
 
@@ -31,6 +34,8 @@ func get_pets() -> Array[Pet]:
 
 
 func _ready() -> void:
+	canvas_modulate.visible = true
+
 	G.level_viewport = $HBoxContainer/ViewportContainerP1/SubViewport
 	G.health_value_changed.connect(on_health_value_changed)
 	G.mana_value_changed.connect(on_mana_value_changed)
@@ -50,19 +55,16 @@ func add_level(level: Node2D) -> void:
 	viewports[1].world_2d = viewports[0].world_2d
 
 
-func set_viewport_size(player_alive: Array[bool]) -> void:
-	panel.visible = player_alive[0] and player_alive[1]
-	
+func set_viewport_size(value: bool) -> void:
+	panel.visible = value
+
 	if panel.visible:
-		for i: int in player_alive.size():
-			show_player_bar(i, true)
+		show_player_bar(1, true)
+		for i: int in player_bars.size():
 			_set_player_viewport(i, 512, true)
 	else:
-		var active: int = 0 if player_alive[0] else 1
-		_set_player_viewport(active, 1024, true)
-		show_player_bar(active, true)
-		_set_player_viewport(1 - active, 0, false)
-		show_player_bar(1- active, false)
+		_set_player_viewport(0, 1024, true)
+		_set_player_viewport(1, 0, false)
 
 
 func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
@@ -74,13 +76,14 @@ func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 func show_player_bar(index: int, show_bar: bool) -> void:
 	player_bars[index].visible = show_bar
 
+func show_black_screen(index: int, show_screen: bool) -> void:
+	black_screen[index].visible = show_screen
 
 func disable_cameras() -> void:
 	for camera: Camera2D in cameras:
 		camera.enabled = false
 	
-	var p: Array[bool] = [true, false]
-	set_viewport_size(p)
+	set_viewport_size(false)
 
 
 func enable_cameras() -> void:

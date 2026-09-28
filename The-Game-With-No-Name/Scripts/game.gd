@@ -48,7 +48,7 @@ func setup_systems() -> void:
 	
 	in_game.connect_camera_to_players(players)
 	
-	in_game.set_viewport_size(player_manager.get_alive_states())
+	in_game.set_viewport_size(false)
 	
 	fader.visible = true
 
@@ -62,7 +62,8 @@ func connect_to_signals() -> void:
 	G.darkness_changed.connect(_on_darkness_changed)
 	G.start_new_dialog.connect(dialogue_manager.start_new_dialog)
 	G.player_died.connect(player_manager.on_player_died)
-	
+	G.player_died.connect(deactivate_cam)
+
 	G.game_finished.connect(check_for_friend_ach)
 	
 	G.camera_active.connect(disable_cameras)
@@ -77,8 +78,9 @@ func connect_to_signals() -> void:
 	G.checkpoint_activated.connect(on_checkpoint_activated)
 
 	player_manager.player_respawned.connect(respawn_player)
+
 	player_manager.all_player_died.connect(game_over)
-	player_manager.player_count_changed.connect(resize_viewport.bind(player_manager.player_alive))
+	player_manager.multiplayer_changed.connect(resize_viewport)
 
 #Penis
 
@@ -99,6 +101,7 @@ func check_for_friend_ach() -> void:
 func disable_cameras() -> void:
 	in_game.disable_cameras()
 
+
 func respawn_player(i: int) -> void:
 	var spawn_position: Vector2 = Vector2.ZERO
 	
@@ -109,17 +112,11 @@ func respawn_player(i: int) -> void:
 		spawn_position = player_manager.players[1 - i].global_position
 	
 	player_manager.respawn_player(i, spawn_position)
+	activate_cam(i)
 
 
 func enable_cameras() -> void:
 	in_game.enable_cameras()
-
-
-func resize_viewport(value: Array[bool]) -> void:
-	if in_game.cameras[0].enabled == false:
-		return
-	
-	in_game.set_viewport_size(value)
 
 
 func change_level(level_number: int, door_name: String = "") -> void:
@@ -131,7 +128,6 @@ func change_level(level_number: int, door_name: String = "") -> void:
 	
 	await fader.fade_out().animation_finished
 	enable_cameras()
-	resize_viewport(player_manager.player_alive)
 	
 	var level: Node2D = null
 	
@@ -191,3 +187,33 @@ func end_dialog() -> void:
 	await get_tree().create_timer(0.05).timeout
 	player_manager.players[0].un_freeze()
 	dialogue_manager.end_dialog()
+
+
+func resize_viewport(value: bool) -> void:
+	if in_game.cameras[0].enabled == false:
+		return
+
+	if value == false:
+		player_manager.respawn_timer.stop()
+
+
+		in_game.show_player_bar(1, false)
+		in_game.show_player_bar(0, true)
+
+		for i: int in player_manager.player_alive.size():
+			player_manager.player_label[i].visible = false
+			in_game.show_black_screen(i, false)
+	else:
+		in_game.show_player_bar(1, false)
+
+	in_game.set_viewport_size(value)
+
+
+func activate_cam(player: int) -> void:
+	in_game.show_black_screen(player, false)
+	in_game.show_player_bar(player, true)
+
+
+func deactivate_cam(player: int) -> void:
+	in_game.show_black_screen(player, true)
+	in_game.show_player_bar(player, false)
