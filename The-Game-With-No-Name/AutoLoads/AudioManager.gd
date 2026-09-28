@@ -75,10 +75,16 @@ func _create_audio_player(count: int, bus: String = "") -> Array[AudioStreamPlay
 #region Audio 2D Creator Functions
 
 func setup_audio_2d(w: Node) -> void:
+	if w == null or !is_instance_valid(w):
+		push_warning("Cannot setup 2D audio without a valid world node")
+		return
+
 	world = w
 	listener = get_tree().get_first_node_in_group("Player")
+
 	free_player(sfx_players)
 	free_player(ambient_players)
+
 	_create_sfx_player()
 	_create_ambient_player()
 
@@ -148,7 +154,7 @@ func play_music(sound: SoundEffect) -> void:
 	tween.parallel().tween_property(
 		current_player,
 		"volume_db",
-		SILENT_DB,+
+		SILENT_DB,
 		fade_time
 	)
 
@@ -267,10 +273,12 @@ func _process_pending_sfx() -> void:
 	if pending_sfx.is_empty():
 		return
 	
-	if listener == null:
-		pending_sfx.clear()
-		
-		return
+	if listener == null or !is_instance_valid(listener):
+		listener = get_tree().get_first_node_in_group("Player")
+
+		if listener == null:
+			pending_sfx.clear()
+			return
 	
 	
 	var listener_position: Vector2 = listener.global_position
@@ -297,13 +305,21 @@ func _process_pending_sfx() -> void:
 #region Ambient Functions
 
 func _update_ambient() -> void:
-	if listener == null:
-		return
+	if listener == null or !is_instance_valid(listener):
+		listener = get_tree().get_first_node_in_group("Player")
+
+		if listener == null:
+			return
 	
 	for sound: SoundEffect in ambient_sources:
 		var closest: AudioSource2D = _get_closest_source(sound)
 		var current: AudioSource2D = active_sources.get(sound)
 		
+		if current != null and !is_instance_valid(current):
+			current = null
+			active_sources.erase(sound)
+			active_players.erase(sound)
+
 		if current != null and closest != null:
 			closest = _apply_hysteresis(current, closest)
 		
@@ -318,6 +334,9 @@ func _get_closest_source(sound: SoundEffect) -> AudioSource2D:
 	var closest_distance: float  = INF
 	
 	for source: AudioSource2D in ambient_sources[sound]:
+		if source == null or !is_instance_valid(source):
+			continue
+
 		var distance: float = source.global_position.distance_to(
 			listener.global_position
 		)
@@ -367,10 +386,20 @@ func _switch_ambient(
 		_start_ambient(sound, closest)
 		return
 
-	playback_positions[sound] = \
-		active_players[sound].get_playback_position()
+	var player: AudioStreamPlayer2D = active_players.get(sound)
+
+	if player == null or !is_instance_valid(player):
+		active_players.erase(sound)
+		active_sources.erase(sound)
+		_start_ambient(sound, closest)
+		return
+
+	playback_positions[sound] = player.get_playback_position()
 
 	active_sources[sound] = closest
+
+	player.global_position = closest.global_position
+	player.max_distance = sound.max_distance
 
 	active_players[sound].play(
 		playback_positions[sound]
@@ -381,29 +410,37 @@ func _start_ambient(
 	source: AudioSource2D
 ) -> void:
 
+	if source == null or !is_instance_valid(source):
+		return
+
 	var player : AudioStreamPlayer2D = _get_free_audio_2d_player(ambient_players)
 
 	if player == null:
+		return
+
+	var stream: AudioStream = _get_stream(sound)
+
+	if stream == null:
 		return
 
 	player.global_position = source.global_position
 	player.stream = _get_stream(sound)
 	player.volume_db = sound.volume_db
 	player.max_distance = sound.max_distance
+
 	var pos: float = playback_positions.get(sound, 0.0)
+
 	player.play(pos)
 
 	active_sources[sound] = source
 	active_players[sound] = player
 
 func _stop_ambient(sound: SoundEffect) -> void:
-	if active_players.is_empty():
-		push_warning("no active players")
-		return
-
 	var player: AudioStreamPlayer2D = active_players.get(sound)
 
-	if player == null:
+	if player == null or !is_instance_valid(player):
+		active_players.erase(sound)
+		active_sources.erase(sound)
 		return
 
 	playback_positions[sound] = player.get_playback_position()
@@ -426,8 +463,14 @@ func _update_ambient_players() -> void:
 
 
 func register_source(source: AudioSource2D) -> void:
+	if source == null or !is_instance_valid(source):
+		return
+
 	var group: SoundEffect = source.sound
 	
+	if group == null:
+		return
+
 	if !ambient_sources.has(group):
 		ambient_sources[group] = []
 	
@@ -440,11 +483,14 @@ func register_source(source: AudioSource2D) -> void:
 
 
 func unregister_source(source: AudioSource2D) -> void:
-	if source == null:
+	if source == null or !is_instance_valid(source):
 		return
 	
 	var group: SoundEffect = source.sound
 	
+	if group == null:
+		return
+
 	if ambient_sources.has(group):
 		var sources: Array = ambient_sources[group]
 		sources.erase(source)
@@ -453,7 +499,7 @@ func unregister_source(source: AudioSource2D) -> void:
 			ambient_sources.erase(group)
 	
 	if active_sources.get(group) == source:
-		active_sources.erase(group)
+		_stop_ambient(group)
 
 
 func stop_all_ambients() -> void:
