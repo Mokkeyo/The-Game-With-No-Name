@@ -5,9 +5,17 @@ signal all_player_died
 signal player_respawned(value: int)
 signal multiplayer_changed(value: bool)
 
+var time: float = 1
+var time_left: int = 3:
+	set(value):
+		time_left -= value
+		timer_label.text = str(value)
+
+
+
 @export var player_label: Array[Label]
-@onready var respawn_timer: Timer = $RespawnTimer
 @onready var despawn_timer: Timer = $DespawnTimer
+@onready var timer_label: Label
 
 var multiplayer_enabled: bool = false:
 	set(value):
@@ -23,15 +31,31 @@ var respawn_time: float = 5.0
 var players: Array[Player] = []
 var pets: Array[Pet] = []
 
-func setup(t_players: Array[Player], t_pets: Array[Pet]) -> void:
+func setup(t_players: Array[Player], t_pets: Array[Pet], t_label: Label) -> void:
 	players = t_players
+	t_label.visible = false
+	timer_label = t_label
 	pets = t_pets
 	t_players[1].reset_comp.disable_stats()
+	set_process(false)
 	despawn_timer.timeout.connect(deactivate_player_2)
 
 	player_alive[1] = false
 	for i: int in t_players.size():
 		t_players[i].health_component.health = Save.player.hp[i]
+
+
+func _process(delta: float) -> void:
+	time -= delta
+	
+	if time <= 0:
+		time = 1
+		time_left -= 1
+	
+
+	if time_left <= 0:
+		_on_respawn_timer_timeout()
+		set_process(false)
 
 
 func get_alive_players() -> Array[Player]:
@@ -72,8 +96,9 @@ func on_player_died(player: int) -> void:
 		all_player_died.emit(player)
 		return
 	
-	respawn_timer.stop()
-	respawn_timer.start()
+	time = 1
+	time_left = 3
+	set_process(true)
 
 
 func all_players_dead() -> bool:
@@ -91,6 +116,7 @@ func check_for_respawn_input() -> void:
 
 			if multiplayer_enabled:
 				despawn_timer.start()
+
 
 		elif Input.is_action_just_released(player_input):
 			if not despawn_timer.is_stopped():

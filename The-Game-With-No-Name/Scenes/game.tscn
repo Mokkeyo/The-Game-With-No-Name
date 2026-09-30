@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://uqu2t6hugyy0" path="res://Bosse/BossHP.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c0hh1dv1aiucg" path="res://balloon.tscn" id="13_rfjv2"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="14_1phco"]
 [ext_resource type="FontFile" uid="uid://d1678mwadxbyu" path="res://Font/Lemon Days.ttf" id="15"]
 
 [sub_resource type="Animation" id="8"]
@@ -233,17 +234,13 @@ script = ExtResource("7")
 script = ExtResource("3_rku1e")
 player_label = [NodePath("../CanvasLayer/Player1Label"), NodePath("../CanvasLayer/Player2Label")]
 
-[node name="RespawnTimer" type="Timer" parent="PlayerManager" unique_id=829841168]
-wait_time = 5.0
+[node name="DespawnTimer" type="Timer" parent="PlayerManager" unique_id=829841168]
+wait_time = 2.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerManager" unique_id=1105948417]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_h5g3y")
-
-[node name="DespawnTimer" type="Timer" parent="PlayerManager" unique_id=1319234538]
-wait_time = 3.0
-one_shot = true
 
 [node name="LevelManager" type="Node" parent="." unique_id=2042275682]
 script = ExtResource("4_rfjv2")
@@ -346,7 +343,18 @@ unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=2124347687]
+unique_name_in_owner = true
+visible = false
+offset_left = 448.0
+offset_top = 208.0
+offset_right = 576.0
+offset_bottom = 292.0
+theme = ExtResource("14_1phco")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 96
+text = "4"
+horizontal_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=856193740]
 libraries/ = SubResource("AnimationLibrary_nb51f")
-
-[connection signal="timeout" from="PlayerManager/RespawnTimer" to="PlayerManager" method="_on_respawn_timer_timeout"]

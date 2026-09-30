@@ -12,6 +12,7 @@ class_name Game
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var pause: PauseMenu = $CanvasLayer/pause
+@onready var timer_label: Label = %TimerLabel
 
 var temp_door: Array[int]
 
@@ -33,10 +34,10 @@ func _ready() -> void:
 
 func setup_systems() -> void:
 	AI.fader = fader
-	
+
 	var players: Array[Player] = in_game.get_players()
 	
-	player_manager.setup(players, in_game.get_pets())
+	player_manager.setup(players, in_game.get_pets(), timer_label)
 	
 	player_manager.clear_footsteps_tilemap()
 	
@@ -194,7 +195,7 @@ func resize_viewport(value: bool) -> void:
 		return
 
 	if value == false:
-		player_manager.respawn_timer.stop()
+		player_manager.set_process(false)
 
 
 		in_game.show_player_bar(1, false)

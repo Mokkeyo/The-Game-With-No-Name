@@ -153,7 +153,6 @@ offset_bottom = 64.0
 scale = Vector2(3, 3)
 
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1671001183]
-visible = false
 offset_left = 508.0
 offset_right = 516.0
 offset_bottom = 576.0

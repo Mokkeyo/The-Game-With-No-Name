@@ -22,6 +22,8 @@ class_name InGame
 @onready var panel: Panel = $CanvasLayer/Panel
 @onready var canvas_modulate: CanvasModulate = %CanvasModulate
 
+@onready var timer_label: Label = %TimerLabel
+
 @onready var black_screen: Array[Panel] = [%Blackscreen_1, %Blackscreen_2]
 
 var old_level: Node2D = null
