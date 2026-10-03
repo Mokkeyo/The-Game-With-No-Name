@@ -150,6 +150,8 @@ func change_level(level_number: int, door_name: String = "") -> void:
 
 
 func on_checkpoint_activated() -> void:
+	player_manager.players[0].health_component.refill_health(40)
+	player_manager.players[1].health_component.refill_health(40)
 	animation_player.play("Saving")
 	Save.player.levelNumber = level_manager.current_level_number
 	for door_nr: int in temp_door:
@@ -211,10 +213,13 @@ func resize_viewport(value: bool) -> void:
 
 
 func activate_cam(player: int) -> void:
-	in_game.show_black_screen(player, false)
-	in_game.show_player_bar(player, true)
+	if player_manager.multiplayer_enabled:
+		in_game.show_black_screen(player, false)
+		in_game.show_player_bar(player, true)
 
 
 func deactivate_cam(player: int) -> void:
-	in_game.show_black_screen(player, true)
-	in_game.show_player_bar(player, false)
+	if player_manager.multiplayer_enabled:
+		print("deactivating")
+		in_game.show_black_screen(player, true)
+		in_game.show_player_bar(player, false)

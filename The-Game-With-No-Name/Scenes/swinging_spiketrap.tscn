@@ -11,8 +11,9 @@
 diffuse_texture = ExtResource("1")
 normal_texture = ExtResource("3_auyxv")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsoxp"]
-size = Vector2(23.9501, 29.3125)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uo360"]
+radius = 11.0
+height = 34.0
 
 [node name="swing_trap" type="Node2D" unique_id=982823425]
 z_index = 15
@@ -37,7 +38,8 @@ collision_mask = 2
 knockback_type = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="swinging_spike/Marker2D/Hitbox" unique_id=1640533988]
-shape = SubResource("RectangleShape2D_xsoxp")
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_uo360")
 
 [node name="swinging_spikes_button" type="Sprite2D" parent="." unique_id=200355703]
 texture = ExtResource("3")

@@ -28,8 +28,7 @@ func setup(s: Sword, w: Wand) -> void:
 	assert(s != null)
 	assert(w != null)
 	assert(mana_timer != null)
-#	assert(sound_player != null)
-	
+
 	sword = s
 	wand = w
 	
@@ -134,6 +133,7 @@ func update_mana_ui() -> void:
 #region Signal Callbacks
 func _on_enemy_hit(_damage: int) -> void:
 	enemy_hit.emit(enemy_jump_power)
+
 
 
 func _on_ManaTimer_timeout() -> void:

@@ -199,7 +199,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n5dh6")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=508889054]
-position = Vector2(13, 5)
+position = Vector2(16, 5.5)
 
 [node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=960581153]
 libraries/ = SubResource("AnimationLibrary_n0bj1")
@@ -234,6 +234,7 @@ physics_process = true
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("10_1os2m")]
 health = NodePath("../healthComponent")
+invincibility_time = 1.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=912091956]
 

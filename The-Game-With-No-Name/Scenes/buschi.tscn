@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dbw7086lgiilg" path="res://Scripts/buschi.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://dgiu74lu48xaf" path="res://NormalMap/buschi_normal.png" id="3_3bnww"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="5_nrcdm"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="5_nrcdm"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="6_nhcy5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sgen2"]
@@ -49,9 +49,9 @@ ping = NodePath("../Ping")
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_hwp8x")
 
-[node name="DialogueLoader" parent="." unique_id=1919213186 node_paths=PackedStringArray("npc_area") instance=ExtResource("6_nhcy5")]
+[node name="DialogueLoader" parent="." unique_id=1919213186 node_paths=PackedStringArray("interaction_area") instance=ExtResource("6_nhcy5")]
 visible = false
-npc_area = NodePath("../NPCArea")
+interaction_area = NodePath("../NPCArea")
 dialogue_start = "buschi"
 
 [connection signal="body_entered" from="Quit_area" to="." method="_on_Quit_area_body_entered"]

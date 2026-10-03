@@ -5,14 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://cis2y5nx4qcfq" path="res://NormalMap/door_normal.png" id="3_5y01b"]
 [ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="5_uxktu"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="7_qdo1v"]
 [ext_resource type="PackedScene" uid="uid://mo43aiilsn42" path="res://Scenes/achievment_component.tscn" id="13_lftvb"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_semyr"]
 diffuse_texture = ExtResource("1")
 normal_texture = ExtResource("3_5y01b")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqsjr"]
-size = Vector2(2, 25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rmpw"]
+size = Vector2(4, 20)
 
 [node name="Door" type="Node2D" unique_id=49897850 groups=["Door"]]
 script = ExtResource("2")
@@ -29,20 +30,16 @@ hframes = 2
 [node name="achievmentComponent" parent="." unique_id=1237216921 instance=ExtResource("13_lftvb")]
 achievment_list = "Does Someone Need A Tutorial?"
 
-[node name="LeveltransitionComponent" parent="." unique_id=172493408 node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_uxktu")]
+[node name="LeveltransitionComponent" parent="." unique_id=172493408 node_paths=PackedStringArray("marker") instance=ExtResource("5_uxktu")]
 marker = NodePath("../Marker2D")
-area = NodePath("../Area2D")
 
 [node name="Ping" parent="." unique_id=1272557851 instance=ExtResource("6")]
 position = Vector2(0, -44)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1121555961]
-collision_layer = 0
-collision_mask = 2
+[node name="InteractArea" parent="." unique_id=115994072 node_paths=PackedStringArray("ping") instance=ExtResource("7_qdo1v")]
+unique_name_in_owner = true
+ping = NodePath("../Ping")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=833729078]
-position = Vector2(0, -12.5)
-shape = SubResource("RectangleShape2D_yqsjr")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=486025278]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_6rmpw")

@@ -9,6 +9,7 @@ extends Node2D
 var last_second: int = -1
 
 func _ready() -> void:
+	AudioManager.world = self
 	var in_game: Node2D = $InGame
 	loadArena(in_game)
 	G.level_viewport = in_game
@@ -19,7 +20,9 @@ func _ready() -> void:
 	for player: Player in players:
 		player.health_component.max_health = BattleData.hp * 20
 		player.health_component.health = BattleData.hp * 20
-	
+		Save.player.mana[0] = 99
+		Save.player.mana[1] = 99
+
 	if not BattleData.time == 0:
 		timer.wait_time = BattleData.time
 		timer_label.visible = true
@@ -80,9 +83,6 @@ func set_player_position(level: Node2D) -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-#	var fader: Fader = $Fader
-	
-#	await fader.fade_in().animation_finished
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/battle_mode_menu.tscn")
 

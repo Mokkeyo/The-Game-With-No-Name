@@ -96,8 +96,9 @@ height = 14.0007
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bi8kd"]
 size = Vector2(10, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvo"]
-size = Vector2(10.2306, 13.86)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0uu4l"]
+radius = 5.008386
+height = 13.859992
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t33p0"]
 size = Vector2(10, 14)
@@ -141,14 +142,13 @@ damage_receiver = NodePath("../DamageReceiver")
 shape = SubResource("RectangleShape2D_bi8kd")
 
 [node name="Hitbox" parent="." unique_id=1160487587 instance=ExtResource("13_ckrvk")]
-visible = false
 collision_mask = 2
 knockback_type = 1
 upward_force = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2107993197]
 position = Vector2(-0.00838614, 0.070004)
-shape = SubResource("RectangleShape2D_epjvo")
+shape = SubResource("CapsuleShape2D_0uu4l")
 
 [node name="LavaWater_Detector" parent="." unique_id=895309481 instance=ExtResource("14_lb0cv")]
 visible = false

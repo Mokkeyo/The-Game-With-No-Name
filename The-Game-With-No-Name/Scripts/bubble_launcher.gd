@@ -21,6 +21,9 @@ func _physics_process(_delta: float) -> void:
 		if player == null:
 			continue
 		
+		if not player.state_machine.is_in_state(PlayerStates.ID.LAUNCH):
+			enter(player)
+
 		var dir: Vector2 = Vector2.ZERO
 		
 		if Input.is_action_pressed("player%d_left" % int(i + 1)):
@@ -40,7 +43,9 @@ func _physics_process(_delta: float) -> void:
 		if not d == Vector2.ZERO:
 			arrow[i].rotation = atan2(d.y, d.x) + PI / 2.0
 		
-		
+		if direction[i] == Vector2.ZERO:
+			return
+
 		if Input.is_action_just_pressed("player%d_interact" % int(i + 1)) or Input.is_action_just_pressed("player%d_jump" % int(i + 1)):
 			shoot_bubble(i)
 
@@ -55,12 +60,14 @@ func shoot_bubble(i: int) -> void:
 	for body: Player in area.get_overlapping_bodies():
 		if body.is_in_group("Player_%d" %i):
 			arrow[i].visible = false
-			player_bodies[i] = null
 			body.un_freeze()
 			body.velocity = Vector2.ZERO
-			if not direction[i] == Vector2.ZERO:
-				body.state_machine.change_state(PlayerStates.ID.LAUNCH)
-				body.launch_direction = direction[i]
+
+			if direction[i] == Vector2.ZERO:
+				return
+
+			body.state_machine.change_state(PlayerStates.ID.LAUNCH)
+			body.launch_direction = direction[i]
 			direction[i] = Vector2.ZERO
 			break
 
@@ -69,9 +76,19 @@ func _on_Area2D_body_entered(body: Player) -> void:
 	for i: int in range(arrow_count):
 		if body.is_in_group("Player_%d" %i):
 			player_bodies[i] = body
-			body.velocity = Vector2.ZERO
-			body.launch_direction = Vector2.ZERO
-			body.freeze()
-			body.animation.play(body.animation.Anim.JUMP)
-			body.global_position = player_position
-			break
+			enter(body)
+
+
+func enter(body: Player) -> void:
+	body.velocity = Vector2.ZERO
+	body.launch_direction = Vector2.ZERO
+	body.freeze()
+	body.animation.play(body.animation.Anim.JUMP)
+	body.global_position = player_position
+
+
+func _on_area_2d_body_exited(body: Player) -> void:
+	for i: int in range(arrow_count):
+		if body.is_in_group("Player_%d" %i):
+			player_bodies[i] = null
+

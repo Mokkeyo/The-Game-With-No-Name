@@ -3,11 +3,13 @@ class_name collactable_kristall
 
 @export var kristall: int = 1
 @export var level_number: int = 1
-@onready var npc_area: NpcArea = $NPCArea
+@onready var interact_area: InteractionArea = $NPCArea
 @onready var dialog_loader: DialogLoader = $DialogueLoader
 
 
 func _ready() -> void:
+	if not interact_area.interacted.is_connected:
+		interact_area.interacted.connect(dialog_loader.action)
 	dialog_loader.ending_dialog.connect(end_dialog)
 	var color: Array[Color] = [
 		Color.RED, Color. BLUE, Color.GREEN, Color.YELLOW, Color.DEEP_PINK, 
@@ -27,11 +29,6 @@ func _ready() -> void:
 	var kristallParticle: GPUParticles2D = $Kristall/KristallParticle
 	kristallParticle.modulate = color[index]
 	sprite.frame = index
-
-
-func _unhandled_input(_event: InputEvent) -> void:
-	if npc_area.check_for_player():
-		dialog_loader.action(npc_area.player)
 
 
 func end_dialog() -> void:

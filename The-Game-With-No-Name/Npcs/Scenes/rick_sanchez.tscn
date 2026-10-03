@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="5_odlst"]
 [ext_resource type="Texture2D" uid="uid://bkb65txl1jf0f" path="res://Npcs/Textures/npc.tres" id="5_xv46x"]
-[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="6_4t8cm"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="6_4t8cm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xat4m"]
 size = Vector2(24, 30)
@@ -20,8 +20,8 @@ texture = ExtResource("5_xv46x")
 [node name="Ping" parent="." unique_id=88589339 instance=ExtResource("5")]
 position = Vector2(-1, -35)
 
-[node name="DialogueLoader" parent="." unique_id=2077140972 node_paths=PackedStringArray("npc_area") instance=ExtResource("5_odlst")]
-npc_area = NodePath("../NPCArea")
+[node name="DialogueLoader" parent="." unique_id=2077140972 node_paths=PackedStringArray("interaction_area") instance=ExtResource("5_odlst")]
+interaction_area = NodePath("../NPCArea")
 dialogue_start = "rick"
 
 [node name="NPCArea" parent="." unique_id=1631335125 node_paths=PackedStringArray("ping") instance=ExtResource("6_4t8cm")]

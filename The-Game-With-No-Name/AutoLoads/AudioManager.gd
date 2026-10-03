@@ -121,7 +121,7 @@ func _create_audio_2d_player(count: int, bus: String) -> Array[AudioStreamPlayer
 func play_music(sound: SoundEffect) -> void:
 	var stream: AudioStream = _get_stream(sound)
 	
-	if stream == null:
+	if stream == null or !is_instance_valid(stream):
 		push_warning("No Stream found in: ", sound.resource_name)
 		return
 	
@@ -186,7 +186,7 @@ func _get_inactive_music_player() -> int:
 func play_ui_sfx(sound: SoundEffect) -> void:
 	var stream: AudioStream = _get_stream(sound)
 	
-	if stream == null:
+	if stream == null or !is_instance_valid(stream):
 		push_warning("No Stream found in: ", sound.resource_name)
 		return
 	
@@ -224,7 +224,7 @@ func _get_free_audio_player(players: Array[AudioStreamPlayer]) -> AudioStreamPla
 func play_sfx(sound: SoundEffect, position: Vector2) -> void:
 	var stream: AudioStream = _get_stream(sound)
 	
-	if stream == null:
+	if stream == null or !is_instance_valid(stream):
 		push_warning("No Stream found in: ", sound.resource_name)
 		return
 	
@@ -235,7 +235,7 @@ func play_sfx(sound: SoundEffect, position: Vector2) -> void:
 func _play_request(request: SFXRequest) -> void:
 	var player: AudioStreamPlayer2D = _get_free_audio_2d_player(sfx_players)
 	
-	if player == null:
+	if player == null or !is_instance_valid(player):
 		push_warning("No free SFX player for: ", request.sound.resource_name)
 		return
 	
@@ -261,6 +261,9 @@ func _play_request(request: SFXRequest) -> void:
 
 func _get_free_audio_2d_player(players: Array[AudioStreamPlayer2D]) -> AudioStreamPlayer2D:
 	for player: AudioStreamPlayer2D in players:
+		if player == null or !is_instance_valid(player):
+			continue
+		
 		if player.playing:
 			continue
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkmqrm7so4u62"]
+[gd_scene format=3 uid="uid://dkmqrm7so4u62"]
 
 [ext_resource type="Texture2D" uid="uid://rndsi05feq4w" path="res://Objects/Textures/bubble_launcher.png" id="1"]
 [ext_resource type="Script" uid="uid://dkwa84wuddgfc" path="res://Scripts/bubble_launcher.gd" id="2"]
@@ -12,23 +12,23 @@ normal_texture = ExtResource("3_3lrp7")
 [sub_resource type="CircleShape2D" id="1"]
 radius = 13.0
 
-[node name="Bubble Launcher" type="Node2D"]
+[node name="Bubble Launcher" type="Node2D" unique_id=968020681]
 z_index = 1
 script = ExtResource("2")
 
-[node name="Bubble" type="Sprite2D" parent="."]
+[node name="Bubble" type="Sprite2D" parent="." unique_id=1403483359]
 modulate = Color(0.376471, 0.898039, 1, 0.823529)
 texture = SubResource("CanvasTexture_ay00c")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1947900383]
 visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=140678473]
 shape = SubResource("1")
 
-[node name="Arrow2" type="Sprite2D" parent="."]
+[node name="Arrow2" type="Sprite2D" parent="." unique_id=1306574296]
 visible = false
 modulate = Color(0.556863, 0, 0, 1)
 z_index = 3
@@ -36,7 +36,7 @@ rotation = 1.5708
 texture = ExtResource("3")
 offset = Vector2(0, -25)
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="Arrow" type="Sprite2D" parent="." unique_id=642724137]
 visible = false
 z_index = 3
 rotation = 1.5708
@@ -44,3 +44,4 @@ texture = ExtResource("3")
 offset = Vector2(0, -25)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

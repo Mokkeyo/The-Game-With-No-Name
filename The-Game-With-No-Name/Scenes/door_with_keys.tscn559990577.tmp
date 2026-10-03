@@ -13,8 +13,8 @@
 diffuse_texture = ExtResource("1")
 normal_texture = ExtResource("3_j6bfr")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rmpw"]
-size = Vector2(6, 29)
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(6, 38)
 
 [node name="DoorWithKey" type="Node2D" unique_id=1922657109 groups=["Door"]]
 script = ExtResource("4")
@@ -24,6 +24,15 @@ position = Vector2(0, -23)
 texture = SubResource("CanvasTexture_28mx3")
 offset = Vector2(0, 0.5)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1845137089]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=212460113]
+position = Vector2(0, -19)
+shape = SubResource("5")
+
 [node name="Ping" parent="." unique_id=2146525745 instance=ExtResource("5")]
 position = Vector2(0.5, -45)
 metadata/_edit_lock_ = true
@@ -31,8 +40,9 @@ metadata/_edit_lock_ = true
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1692606399]
 metadata/_edit_lock_ = true
 
-[node name="LeveltransitionComponent" parent="." unique_id=626914331 node_paths=PackedStringArray("marker") instance=ExtResource("7_0hl4c")]
+[node name="LeveltransitionComponent" parent="." unique_id=626914331 node_paths=PackedStringArray("marker", "area") instance=ExtResource("7_0hl4c")]
 marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
 
 [node name="ResetComponent" parent="." unique_id=2031016032 instance=ExtResource("6_dy30t")]
 setStartPosition = false
@@ -48,10 +58,5 @@ text = "3"
 horizontal_alignment = 1
 
 [node name="InteractArea" parent="." unique_id=115994072 node_paths=PackedStringArray("ping") instance=ExtResource("8_q24x5")]
-unique_name_in_owner = true
 ping = NodePath("../Ping")
 unhandled_input = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=421319525]
-position = Vector2(0, -14.5)
-shape = SubResource("RectangleShape2D_6rmpw")

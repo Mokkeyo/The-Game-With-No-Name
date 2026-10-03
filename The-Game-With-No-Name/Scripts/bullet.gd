@@ -3,8 +3,8 @@ class_name Bullet
 
 @onready var timer: Timer = $Timer
 
-var speed: int
-var lifetime: float
+@export var speed: int
+@export var lifetime: float
 var bullet_type: BulletDefinition.BulletType
 
 var direction: Vector2 = Vector2.ZERO
@@ -14,7 +14,7 @@ func _ready() -> void:
 	hitbox.damaged_enemy.connect(died)
 
 func configure(definition: ProjectileDefinition) -> void:
-	var data: BulletDefinition = definition as BulletDefinition
+	var data: BulletDefinition = definition.duplicate() as BulletDefinition
 	speed = data.speed
 	lifetime = data.life_time
 	bullet_type = data.bullet_type

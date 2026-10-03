@@ -314,6 +314,7 @@ size = Vector2(9, 17)
 [sub_resource type="Resource" id="Resource_ypisy"]
 script = ExtResource("34_ypisy")
 pool_size = 2
+life_time = 1.0
 metadata/_custom_type_script = "uid://cj5q4j46h0f5l"
 
 [node name="Player" type="CharacterBody2D" unique_id=1056553489 groups=["Player"]]
@@ -347,7 +348,6 @@ position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_0k8br")
 
 [node name="Hurtbox" parent="." unique_id=1637853140 node_paths=PackedStringArray("damage_receiver") instance=ExtResource("16_g5r0a")]
-visible = false
 position = Vector2(0, -10)
 collision_layer = 2
 collision_mask = 8

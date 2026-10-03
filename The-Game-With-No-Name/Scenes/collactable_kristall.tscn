@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cckk5r4th2ks1" path="res://audio_source_2d.tscn" id="7_nuiol"]
 [ext_resource type="Resource" uid="uid://bxgkbowbin2c1" path="res://Audio/Environment/Crystal.tres" id="8_rje8e"]
 [ext_resource type="PackedScene" uid="uid://bcqh6xyc513hf" path="res://Scenes/dialogue_loader_component.tscn" id="9_un3nd"]
-[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/npc_area_component.tscn" id="10_2vjcu"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="10_2vjcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rjsi"]
 size = Vector2(22, 24)
@@ -18,9 +18,9 @@ script = ExtResource("2")
 [node name="Ping" parent="." unique_id=900391210 instance=ExtResource("1")]
 position = Vector2(0, -30)
 
-[node name="DialogueLoader" parent="." unique_id=1504707778 node_paths=PackedStringArray("npc_area") instance=ExtResource("9_un3nd")]
+[node name="DialogueLoader" parent="." unique_id=1504707778 node_paths=PackedStringArray("interaction_area") instance=ExtResource("9_un3nd")]
 visible = false
-npc_area = NodePath("../NPCArea")
+interaction_area = NodePath("../NPCArea")
 check_for_input = false
 dialogue_start = "kristall"
 

@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://diai8r6cbmdvu" path="res://PathToNewLevelObjects/Textures/end_door_frame_1.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://ct3qm576je77h" path="res://Scenes/leveltransition_component.tscn" id="5_ftskw"]
-
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(3.30828, 20)
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="6_l7bat"]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -18,24 +16,19 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 1.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jll8d"]
+size = Vector2(2.2055216, 21.027607)
 
 [node name="End_door" type="Sprite2D" unique_id=1026938079]
 position = Vector2(-9.53674e-07, 0)
 scale = Vector2(1.81363, 1.81363)
 script = ExtResource("2")
 level_number = 6
-
-[node name="Area2D" type="Area2D" parent="." unique_id=534361987]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1081196117]
-position = Vector2(5.25837e-07, 1.10276)
-shape = SubResource("1")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1859752457]
 position = Vector2(5.25837e-07, 11.0276)
@@ -48,9 +41,14 @@ sprite_frames = SubResource("2")
 position = Vector2(0.2, -21.504)
 scale = Vector2(0.5, 0.5)
 
-[node name="LeveltransitionComponent" parent="." unique_id=134570438 node_paths=PackedStringArray("marker", "area") instance=ExtResource("5_ftskw")]
+[node name="LeveltransitionComponent" parent="." unique_id=134570438 node_paths=PackedStringArray("marker") instance=ExtResource("5_ftskw")]
 marker = NodePath("../Marker2D")
-area = NodePath("../Area2D")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[node name="InteractArea" parent="." unique_id=115994072 node_paths=PackedStringArray("ping") instance=ExtResource("6_l7bat")]
+unique_name_in_owner = true
+position = Vector2(-1.4901161e-07, 0)
+ping = NodePath("../Ping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=2077310949]
+position = Vector2(5.258373e-07, 0.51380396)
+shape = SubResource("RectangleShape2D_jll8d")

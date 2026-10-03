@@ -49,8 +49,9 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1804773222]
 texture_filter = 1
 zoom = Vector2(2, 2)
-limit_left = 0
-position_smoothing_speed = 8.0
+limit_left = -2
+limit_right = 9999998
+position_smoothing_speed = 14.0
 
 [node name="GhostPet1" parent="HBoxContainer/ViewportContainerP1/SubViewport" unique_id=1903566082 node_paths=PackedStringArray("player_node") instance=ExtResource("2_tikr8")]
 unique_name_in_owner = true
@@ -87,7 +88,7 @@ render_target_update_mode = 4
 texture_filter = 1
 zoom = Vector2(2, 2)
 limit_left = 0
-position_smoothing_speed = 8.0
+position_smoothing_speed = 14.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1015903690]
 

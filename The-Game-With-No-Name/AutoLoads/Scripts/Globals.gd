@@ -25,7 +25,7 @@ var listeners: Array[Node2D] = []
 var level_viewport: Node
 
 var dialog_index: int = -1
-
+var dialog_active: bool = false
 var max_text: int = 0
 
 func _ready() -> void:

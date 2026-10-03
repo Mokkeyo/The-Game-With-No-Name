@@ -222,6 +222,7 @@ text = "Back"
 
 [node name="Weapons" parent="." unique_id=1133365040 instance=ExtResource("6_rjita")]
 visible = false
+z_index = 1
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

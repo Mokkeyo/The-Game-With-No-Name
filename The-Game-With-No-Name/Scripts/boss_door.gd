@@ -2,7 +2,7 @@ extends Node2D
 
 @export var level_number: int
 @export var door_name: String = ""
-@export var npc_area: NpcArea = null
+@export var interaction_area: InteractionArea = null
 @export var dialog_loader: DialogLoader = null
 
 @onready var marker: Marker2D = $Marker2D
@@ -19,21 +19,23 @@ func _ready() -> void:
 		sprite.frame = 2
 	elif Save.player.kristallCount == 2:
 		state = category.OPEN
+		interaction_area.interacted.connect(interact)
 		sprite.frame = 0
 	else:
 		state = category.CLOSED
+		interaction_area.interacted.connect(interact)
 		sprite.frame = 1
 	
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	if npc_area.check_for_player() and state == category.CLOSED:
-		dialog_loader.action(npc_area.player)
+
+func interact(player: Player) -> void:
+	if state == category.CLOSED:
+		dialog_loader.action(player)
 	
 	if not state == category.OPEN:
 		return
 		
-	level_transition.check_for_transition()
-	
+	level_transition.transition(player)

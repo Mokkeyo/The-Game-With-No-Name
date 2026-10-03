@@ -164,6 +164,7 @@ _data = {
 radius = 28.0
 
 [sub_resource type="Resource" id="Resource_6rmpw"]
+resource_local_to_scene = true
 script = ExtResource("8_kctvo")
 pool_size = 3
 speed = -300

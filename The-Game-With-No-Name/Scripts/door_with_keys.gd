@@ -9,11 +9,14 @@ signal enter_door
 @onready var ping: Ping = $Ping
 @onready var level_transition: LevelTransition = $LeveltransitionComponent
 @onready var label: Label = $Label
+@onready var interact_area: InteractionArea = %InteractArea
 
 var key_count: int
 var array_size: int
 
 func _ready() -> void:
+	interact_area.interacted.connect(level_transition.transition)
+	interact_area.unhandled_input = false
 	var reset_comp: EnemyResetComponent = $ResetComponent
 	reset_comp.enabling_stats.connect(reset_door)
 	
@@ -31,9 +34,6 @@ func _ready() -> void:
 			key.disable_collision()
 		open_door()
 
-func _unhandled_input(_event: InputEvent) -> void:
-	level_transition.check_for_transition()
-
 
 func update_key_count() -> void:
 	key_count = key_count + 1
@@ -49,12 +49,12 @@ func reset_door() -> void:
 	
 	key_count = 0
 	label.text = str(array_size)
-	set_process_unhandled_input(false)
+	interact_area.unhandled_input = false
 	ping.visible = false
 
 
 func open_door() -> void:
 	label.text = str(0)
-	set_process_unhandled_input(true)
 	ping.visible = true
+	interact_area.unhandled_input = true
 	G.door_opend.emit(door_nr)
