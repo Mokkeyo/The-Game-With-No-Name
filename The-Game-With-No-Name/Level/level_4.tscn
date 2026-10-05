@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dkwgx722fr6e8" path="res://airship_spawner.tscn" id="14_gxrqi"]
 [ext_resource type="PackedScene" uid="uid://be7kuqteg4ioi" path="res://transition_area.tscn" id="14_pj26l"]
 [ext_resource type="PackedScene" uid="uid://4aouv1eodo1n" path="res://Scenes/turret.tscn" id="15"]
-[ext_resource type="PackedScene" uid="uid://egklw6jho6ca" path="res://airship_exit_area.tscn" id="15_gxrqi"]
 [ext_resource type="PackedScene" uid="uid://834mkf0t3knb" path="res://Enemys/Scenes/bat.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://b3rfkjntxnk5o" path="res://Scenes/collactable_kristall.tscn" id="17"]
 
@@ -24,9 +23,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3923, -34, 3919, 217, 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxrqi"]
 size = Vector2(1, 42)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g21ss"]
-size = Vector2(8, 5)
 
 [node name="Level4" type="Node2D" unique_id=1118564919]
 
@@ -408,17 +404,3 @@ shape = SubResource("RectangleShape2D_gxrqi")
 
 [node name="Airship_Spawner" parent="." unique_id=997328965 instance=ExtResource("14_gxrqi")]
 position = Vector2(149, 112)
-
-[node name="AirshipExitArea2" parent="." unique_id=1056693205 instance=ExtResource("15_gxrqi")]
-position = Vector2(3775, 127)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirshipExitArea2" unique_id=1408046465]
-position = Vector2(69, 2)
-shape = SubResource("RectangleShape2D_g21ss")
-
-[node name="AirshipExitArea" parent="." unique_id=903220294 instance=ExtResource("15_gxrqi")]
-position = Vector2(104, 76)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AirshipExitArea" unique_id=1068060444]
-position = Vector2(92, 24.5)
-shape = SubResource("RectangleShape2D_g21ss")

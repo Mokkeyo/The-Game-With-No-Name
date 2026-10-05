@@ -43,6 +43,7 @@ height = 10.0
 [node name="Kamehameha" type="Node2D" unique_id=1027732331 node_paths=PackedStringArray("hitbox")]
 z_index = 15
 script = ExtResource("1")
+life_time = 1.0
 hitbox = NodePath("Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=438909330]

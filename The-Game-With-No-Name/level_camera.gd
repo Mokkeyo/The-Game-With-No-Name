@@ -6,7 +6,13 @@ func _ready() -> void:
 	if activate_on_ready:
 		activate_camera()
 
+func _exit_tree() -> void:
+	disable_camera()
 
 func activate_camera() -> void:
 	enabled = true
-	G.camera_active.emit()
+	G.disable_camera.emit(false)
+
+func disable_camera() -> void:
+	enabled = false
+	G.disable_camera.emit(true)

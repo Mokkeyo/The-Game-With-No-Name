@@ -5,20 +5,16 @@ class_name Bullet
 
 @export var speed: int
 @export var lifetime: float
-var bullet_type: BulletDefinition.BulletType
+enum BulletType {ENEMY, PLAYER_1, PLAYER_2}
+
+@export var bullet_type: BulletType
+
 
 var direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	super._ready()
 	hitbox.damaged_enemy.connect(died)
-
-func configure(definition: ProjectileDefinition) -> void:
-	var data: BulletDefinition = definition.duplicate() as BulletDefinition
-	speed = data.speed
-	lifetime = data.life_time
-	bullet_type = data.bullet_type
-	print("BULLET TYPE: ", bullet_type)
 
 
 func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
@@ -31,16 +27,15 @@ func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:
 	global_rotation = rot
 	
 	match bullet_type:
-		BulletDefinition.BulletType.PLAYER_1:
+		BulletType.PLAYER_1:
 			player_bullet(sprite)
-		BulletDefinition.BulletType.PLAYER_2:
+		BulletType.PLAYER_2:
 			player_bullet(sprite)
-		BulletDefinition.BulletType.ENEMY:
-			lifetime = 0.5
+		BulletType.ENEMY:
 			hitbox.set_collision_mask_value(2, true)
 			direction = Vector2.LEFT.rotated(rotation)
 	
-	visible = true
+	show()
 	set_physics_process(true)
 	timer.start(lifetime)
 

@@ -50,7 +50,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_area_exited(area: Area2D) -> void:
-	if not continues_damage:
+	if not area is HurtBox:
 		return
 	
 	var hurtbox : HurtBox= area as HurtBox
@@ -58,6 +58,9 @@ func _on_area_exited(area: Area2D) -> void:
 	if hurtbox.damage_receiver.damage_dealt.is_connected(damaged_enemy.emit):
 		hurtbox.damage_receiver.damage_dealt.disconnect(damaged_enemy.emit)
 	
+	if not continues_damage:
+		return
+
 	if area is HurtBox:
 		targets.erase(area)
 	

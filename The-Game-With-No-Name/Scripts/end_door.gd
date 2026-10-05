@@ -12,9 +12,10 @@ signal enter_door
 var open: bool
 
 func _ready() -> void:
-	if open:
-		interaction_area.interacted.connect(level_transition.transition)
 	level_transition.level_number = level_number
 	level_transition.door_name = door_name
 	open = Save.player.kristallCollected[0] and Save.player.kristallCollected[1] and Save.player.kristallCollected[2]
 	visible = open
+	
+	if open:
+		interaction_area.interacted.connect(level_transition.transition)

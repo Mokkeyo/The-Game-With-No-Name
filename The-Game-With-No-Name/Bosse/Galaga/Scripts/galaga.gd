@@ -8,7 +8,6 @@ class_name Galaga
 @onready var waitTimer: Timer = $shoot_cooldown
 @onready var laser_cooldown: Timer = $laser_cooldown
 @onready var laser_duration: Timer = $laser_duration
-#@onready var shoot_comp: ShootComponent = $ShootComponent
 
 var target_switch_timer: float = 0
 var alive: int = 3
@@ -57,6 +56,8 @@ func update_phase() -> void:
 		1:
 			phase = Phase.CORE
 		0:
+			galaga_head.lasers[1].stop_laser()
+			galaga_head.lasers[0].stop_laser()
 			G.boss_finished.emit()
 	if not phase == Phase.CORE:
 		return

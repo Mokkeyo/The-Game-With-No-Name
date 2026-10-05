@@ -38,7 +38,7 @@ func apply_vertikal(hit: HitData) -> void:
 func apply_normal(hit: HitData) -> void:
 	var dir: Vector2 = (body.global_position - hit.source.global_position).normalized()
 	
-	dir.y -= hit.updward_force
+	#dir.y -= hit.updward_force
 	dir = dir.normalized()
 	
 	body.velocity = Vector2.ZERO

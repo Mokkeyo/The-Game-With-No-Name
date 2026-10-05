@@ -34,7 +34,7 @@
 [ext_resource type="Script" uid="uid://dowfq8bgdfnwm" path="res://Player/Scenes/freeze_state.gd" id="28_efn1h"]
 [ext_resource type="PackedScene" uid="uid://by46qah463qwe" path="res://state_machine.tscn" id="31_nxnwp"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="33_kqrd2"]
-[ext_resource type="Script" uid="uid://cj5q4j46h0f5l" path="res://Projectiles/Definitions/SpiritballDefinition.gd" id="34_ypisy"]
+[ext_resource type="PackedScene" uid="uid://d032eljn7mggn" path="res://Scenes/spirit_ball.tscn" id="35_58d4g"]
 [ext_resource type="Texture2D" uid="uid://b1fkjqviu66lh" path="res://Player/Textures/indikator.png" id="35_ypisy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rheas"]
@@ -311,12 +311,6 @@ size = Vector2(12, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w1dl"]
 size = Vector2(9, 17)
 
-[sub_resource type="Resource" id="Resource_ypisy"]
-script = ExtResource("34_ypisy")
-pool_size = 2
-life_time = 1.0
-metadata/_custom_type_script = "uid://cj5q4j46h0f5l"
-
 [node name="Player" type="CharacterBody2D" unique_id=1056553489 groups=["Player"]]
 collision_layer = 4098
 collision_mask = 2065
@@ -358,7 +352,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("CapsuleShape2D_yajsf")
 
 [node name="Hitbox" parent="." unique_id=1032672602 instance=ExtResource("15_kprxa")]
-visible = false
 position = Vector2(0, 1)
 collision_mask = 4
 damage_type = 4
@@ -479,11 +472,13 @@ mana_timer = NodePath("../Timer/ManaTimer")
 indikator = NodePath("../Indikator")
 shoot_comp = NodePath("../Shoot")
 
-[node name="Shoot" parent="." unique_id=989885909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("33_kqrd2")]
+[node name="Shoot" parent="." unique_id=989885909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point", "projectile") instance=ExtResource("33_kqrd2")]
 parent = NodePath("..")
 shooting_point = NodePath("../Wand/Marker2D")
 rotation_point = NodePath("..")
-projectile = SubResource("Resource_ypisy")
+projectile = NodePath("Kamehameha")
+
+[node name="Kamehameha" parent="Shoot" unique_id=1027732331 instance=ExtResource("35_58d4g")]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=90872901]
 

@@ -67,7 +67,7 @@ func connect_to_signals() -> void:
 
 	G.game_finished.connect(check_for_friend_ach)
 	
-	G.camera_active.connect(disable_cameras)
+	G.disable_camera.connect(disable_cameras)
 	
 	new_textbox.dialog_ended.connect(end_dialog)
 	
@@ -99,8 +99,16 @@ func check_for_friend_ach() -> void:
 		ach_comp.add_achievment()
 
 
-func disable_cameras() -> void:
-	in_game.disable_cameras()
+func disable_cameras(value: bool = true) -> void:
+	in_game.disable_cameras(value)
+
+
+	for i: int in player_manager.player_alive.size():
+		if not player_manager.player_alive[i]:
+			if value:
+				deactivate_cam(i)
+			else:
+				activate_cam(i)
 
 
 func respawn_player(i: int) -> void:

@@ -11,11 +11,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	assert(hitbox)
+	
 	set_physics_process(false)
 	hitbox.monitoring = false
 
-func configure(_definition: ProjectileDefinition) -> void:
-	pass
 
 func shoot(_pos: Vector2, _rot: float, _owner: Node2D) -> void:
 	pass

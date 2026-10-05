@@ -68,7 +68,6 @@ func start_warning() -> void:
 func set_health_bar() -> void:
 	update_phase()
 	G.boss_value_changed.emit(health_comp.health / health_comp.max_health * 100)
-#	animation_player.play("Damage")
 
 
 func choose_attack() -> void:

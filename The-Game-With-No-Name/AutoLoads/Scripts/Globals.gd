@@ -12,7 +12,7 @@ signal game_finished
 
 signal player_died
 signal door_opend
-signal camera_active
+signal disable_camera(value: bool)
 signal health_value_changed(player: int, health: float)
 signal mana_value_changed(player: int, health: float)
 

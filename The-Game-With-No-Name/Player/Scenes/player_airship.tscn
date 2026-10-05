@@ -6,11 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://n6uvvqq3lnpa" path="res://Player/Textures_P2/airship_player_2.png" id="4_mb17v"]
 [ext_resource type="Script" uid="uid://b1vb4dlb3er7h" path="res://Player/Scripts/airship.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_xbjoc"]
-[ext_resource type="Script" uid="uid://bxg7b6cxs4c5s" path="res://BulletDefinition.gd" id="7_2bdys"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="7_kq3h5"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="8_eqdrp"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_vmje8"]
 [ext_resource type="PackedScene" uid="uid://sbh5qd044k47" path="res://damage_receiver.tscn" id="10_1os2m"]
+[ext_resource type="PackedScene" uid="uid://dqyq6pohl8ehg" path="res://Scenes/bullet.tscn" id="11_2bdys"]
+[ext_resource type="PackedScene" uid="uid://c5dtvmxqaq5ik" path="res://Scenes/invisible_frames_comp.tscn" id="12_vrloo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2gr4"]
 atlas = ExtResource("3_hn1h1")
@@ -169,14 +170,6 @@ _data = {
 &"damage": SubResource("4")
 }
 
-[sub_resource type="Resource" id="Resource_2bdys"]
-script = ExtResource("7_2bdys")
-bullet_type = 1
-pool_size = 2
-speed = 700
-life_time = 0.35
-metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyywu"]
 radius = 8.0
 height = 17.999992
@@ -204,11 +197,11 @@ position = Vector2(16, 5.5)
 [node name="DamagePlayer" type="AnimationPlayer" parent="." unique_id=960581153]
 libraries/ = SubResource("AnimationLibrary_n0bj1")
 
-[node name="Shoot" parent="." unique_id=1726789944 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("6_xbjoc")]
+[node name="Shoot" parent="." unique_id=1726789944 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point", "projectile") instance=ExtResource("6_xbjoc")]
 parent = NodePath("..")
 shooting_point = NodePath("../Marker2D")
 rotation_point = NodePath("..")
-projectile = SubResource("Resource_2bdys")
+projectile = NodePath("../Bullet")
 
 [node name="healthComponent" parent="." unique_id=1602271427 instance=ExtResource("7_kq3h5")]
 health = 100.0
@@ -232,11 +225,19 @@ visible_nodes = [NodePath("..")]
 setStartPosition = false
 physics_process = true
 
-[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("10_1os2m")]
+[node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health", "invincibility") instance=ExtResource("10_1os2m")]
 health = NodePath("../healthComponent")
+invincibility = NodePath("../InvisibleFramesComp")
 invincibility_time = 1.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=912091956]
+
+[node name="Bullet" parent="." unique_id=358909494 instance=ExtResource("11_2bdys")]
+lifetime = 0.58
+bullet_type = 1
+
+[node name="InvisibleFramesComp" parent="." unique_id=1149070329 node_paths=PackedStringArray("parent") instance=ExtResource("12_vrloo")]
+parent = NodePath("../airship")
 
 [connection signal="animation_finished" from="airship" to="." method="_on_airship_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

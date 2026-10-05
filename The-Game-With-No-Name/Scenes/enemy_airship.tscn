@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wsakdem6biyh" path="res://Scenes/hp_bar_enemy.tscn" id="4_gylce"]
 [ext_resource type="PackedScene" uid="uid://bdxpuixmp63w0" path="res://Scenes/player_detector_component.tscn" id="5_skqmn"]
 [ext_resource type="PackedScene" uid="uid://ch26ku4linnxi" path="res://Scenes/shoot_component.tscn" id="6_f2h7g"]
-[ext_resource type="Script" uid="uid://bxg7b6cxs4c5s" path="res://BulletDefinition.gd" id="7_w37rj"]
+[ext_resource type="PackedScene" uid="uid://dqyq6pohl8ehg" path="res://Scenes/bullet.tscn" id="7_w37rj"]
 [ext_resource type="PackedScene" uid="uid://cd44bc5ro42ae" path="res://Scenes/health_component.tscn" id="8_hpl2s"]
 [ext_resource type="PackedScene" uid="uid://ba7svta3vvg05" path="res://Scenes/hurtbox_component.tscn" id="8_mklbp"]
 [ext_resource type="PackedScene" uid="uid://h34illvwh1cv" path="res://Enemys/Scenes/reset_component.tscn" id="9_ms50j"]
@@ -162,14 +162,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbunf"]
-size = Vector2(234, 256)
-
-[sub_resource type="Resource" id="Resource_w37rj"]
-resource_local_to_scene = true
-script = ExtResource("7_w37rj")
-pool_size = 2
-life_time = 5.0
-metadata/_custom_type_script = "uid://bxg7b6cxs4c5s"
+size = Vector2(392, 256)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqaaj"]
 radius = 8.0
@@ -194,6 +187,7 @@ shape = SubResource("8")
 position = Vector2(-16, 5.5)
 
 [node name="Timer" type="Timer" parent="." unique_id=544911109]
+wait_time = 2.0
 one_shot = true
 
 [node name="HPbar" parent="." unique_id=1584253897 instance=ExtResource("4_gylce")]
@@ -208,13 +202,18 @@ libraries/ = SubResource("AnimationLibrary_e7f1u")
 [node name="PlayerDetector" parent="." unique_id=1617919071 instance=ExtResource("5_skqmn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1594435291]
+position = Vector2(-79, 0)
 shape = SubResource("RectangleShape2D_jbunf")
 
-[node name="Shoot" parent="." unique_id=1641969374 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point") instance=ExtResource("6_f2h7g")]
+[node name="Shoot" parent="." unique_id=1641969374 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point", "projectile") instance=ExtResource("6_f2h7g")]
 parent = NodePath("..")
 shooting_point = NodePath("../Marker2D")
 rotation_point = NodePath("..")
-projectile = SubResource("Resource_w37rj")
+projectile = NodePath("Bullet")
+
+[node name="Bullet" parent="Shoot" unique_id=358909494 instance=ExtResource("7_w37rj")]
+speed = 300
+lifetime = 2.0
 
 [node name="healthComponent" parent="." unique_id=378003970 node_paths=PackedStringArray("health_bar") instance=ExtResource("8_hpl2s")]
 health = 100.0

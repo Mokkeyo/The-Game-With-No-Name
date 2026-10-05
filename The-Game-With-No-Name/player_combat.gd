@@ -1,8 +1,6 @@
 extends Node
 class_name PlayerCombat
 
-signal enemy_hit(jump_power: float)
-
 const SWORD_OFFSET_X: float = 10.0
 const SWORD_OFFSET_Y: float = 13.5
 const SWORD_BASE_Y: float = -10.0
@@ -38,8 +36,6 @@ func setup(s: Sword, w: Wand) -> void:
 
 func connect_signals() -> void:
 	mana_timer.timeout.connect(_on_ManaTimer_timeout)
-	if sword.hit_box:
-		sword.hit_box.hit.connect(_on_enemy_hit)
 
 #endregion
 
@@ -99,9 +95,14 @@ func cast() -> void:
 	consume_mana()
 	wand.attack()
 	
-	var def: SpiritballDefinition = shoot_comp.projectile as SpiritballDefinition
-	def.direction = -1 if wand.sprite.flip_h else 1
-	shoot_comp.shoot()
+	var def: SpiritBall = shoot_comp.get_projectile() as SpiritBall
+
+	if def == null:
+		push_warning("Player Combat: projectile is no SpiritBall")
+		return
+
+	def.dir = -1 if wand.sprite.flip_h else 1
+	shoot_comp.shoot(def)
 
 
 func can_cast() -> bool:
@@ -131,10 +132,6 @@ func update_mana_ui() -> void:
 #endregion
 
 #region Signal Callbacks
-func _on_enemy_hit(_damage: int) -> void:
-	enemy_hit.emit(enemy_jump_power)
-
-
 
 func _on_ManaTimer_timeout() -> void:
 	Save.player.mana[player_index] = min(

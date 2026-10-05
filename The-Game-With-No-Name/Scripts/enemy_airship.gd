@@ -7,7 +7,7 @@ class_name EnemyAirship
 @onready var shoot_comp: ShootComponent = $Shoot
 @onready var reset_comp: EnemyResetComponent = $ResetComponent
 
-const KEEP_DISTANCE: float = 200.0
+const KEEP_DISTANCE: float = 150.0
 const Y_TOLERANCE:float = 8.0
 const SPEED: int = 140
 

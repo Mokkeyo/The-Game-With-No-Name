@@ -1,19 +1,12 @@
 extends Projectile
 class_name SpiritBall
 
-var life_time: float = 0.58
+@export var life_time: float = 0.58
 var dir: int
-var speed: int = 300
+@export var speed: int = 300
 
 func _ready() -> void:
 	super._ready()
-
-
-func configure(definition: ProjectileDefinition) -> void:
-	var data: SpiritballDefinition = definition as SpiritballDefinition
-	life_time = data.life_time
-	dir = data.direction
-	speed = data.speed
 
 
 func shoot(pos: Vector2, rot: float, _owner: Node2D) -> void:

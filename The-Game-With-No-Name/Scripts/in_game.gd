@@ -78,14 +78,17 @@ func _set_player_viewport(index: int, width: int, view_visible: bool) -> void:
 func show_player_bar(index: int, show_bar: bool) -> void:
 	player_bars[index].visible = show_bar
 
-func show_black_screen(index: int, show_screen: bool) -> void:
-	black_screen[index].visible = show_screen
 
-func disable_cameras() -> void:
+func show_black_screen(index: int, show_screen: bool) -> void:
+	if panel.is_visible_in_tree():
+		black_screen[index].visible = show_screen
+
+
+func disable_cameras(value: bool = true) -> void:
 	for camera: Camera2D in cameras:
-		camera.enabled = false
+		camera.enabled = value
 	
-	set_viewport_size(false)
+	set_viewport_size(value)
 
 
 func enable_cameras() -> void:
@@ -105,6 +108,7 @@ func on_health_value_changed(player_number: int, health_value: float) -> void:
 	else:
 		bar.set_percent_value_int(health_value)
 	Save.player.hp[player_number] = health_value
+
 
 func on_mana_value_changed(player_number: int, mana_value: float) -> void:
 	var bar: HealthBar = mana_bars[player_number]

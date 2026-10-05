@@ -27,11 +27,14 @@ var inputs: Dictionary[String, String] = {}
 
 func _ready() -> void:
 	print(name, " CURRENT PLAYER: ", currentPlayer)
-	var definition: BulletDefinition = shootComp.projectile as BulletDefinition
-	if currentPlayer == 0:
-		definition.bullet_type = definition.BulletType.PLAYER_1
-	elif currentPlayer == 1:
-		definition.bullet_type = definition.BulletType.PLAYER_2
+
+	var proj: Bullet = shootComp.projectile as Bullet
+
+	if proj:
+		if currentPlayer == 0:
+			proj.bullet_type = proj.BulletType.PLAYER_1
+		elif currentPlayer == 1:
+			proj.bullet_type = proj.BulletType.PLAYER_2
 	
 	set_inputs()
 	tree_exited.connect(enable_player)

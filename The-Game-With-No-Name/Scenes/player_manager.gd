@@ -5,10 +5,10 @@ signal all_player_died
 signal player_respawned(value: int)
 signal multiplayer_changed(value: bool)
 
-var time: float = 1
+var time: float = 1.0
 var time_left: int = 3:
 	set(value):
-		time_left -= value
+		time_left = value
 		timer_label.text = str(value)
 
 
@@ -47,14 +47,15 @@ func setup(t_players: Array[Player], t_pets: Array[Pet], t_label: Label) -> void
 
 func _process(delta: float) -> void:
 	time -= delta
-	
+
 	if time <= 0:
-		time = 1
+		time += 1
 		time_left -= 1
 	
 
 	if time_left <= 0:
 		_on_respawn_timer_timeout()
+		timer_label.hide()
 		set_process(false)
 
 
@@ -96,8 +97,12 @@ func on_player_died(player: int) -> void:
 		all_player_died.emit(player)
 		return
 	
+	if not multiplayer_enabled:
+		return
+	
 	time = 1
 	time_left = 3
+	timer_label.show()
 	set_process(true)
 
 
