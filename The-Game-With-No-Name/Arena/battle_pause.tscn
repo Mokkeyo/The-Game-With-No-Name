@@ -16,7 +16,7 @@ anchors_preset = 0
 mouse_filter = 2
 theme = ExtResource("1_du0tw")
 script = ExtResource("11")
-menus = [NodePath("Options"), NodePath("Controlls")]
+menus = [NodePath("Controlls"), NodePath("Options")]
 
 [node name="Paused" type="Control" parent="." unique_id=1307319397]
 anchors_preset = 0

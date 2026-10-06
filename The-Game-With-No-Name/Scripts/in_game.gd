@@ -88,7 +88,24 @@ func disable_cameras(value: bool = true) -> void:
 	for camera: Camera2D in cameras:
 		camera.enabled = value
 	
-	set_viewport_size(value)
+	set_splitscreen_size(value)
+
+
+func set_splitscreen_size(value: bool) -> void:
+	panel.visible = value
+
+	if panel.visible:
+		show_player_bar(1, true)
+		for i: int in player_bars.size():
+			_set_splitscreen(i, 512, true)
+	else:
+		_set_splitscreen(0, 1024, true)
+		_set_splitscreen(1, 0, false)
+
+
+func _set_splitscreen(index: int, width: int, view_visible: bool) -> void:
+	viewports[index].size.x = width
+	viewport_containers[index].visible = view_visible
 
 
 func enable_cameras() -> void:

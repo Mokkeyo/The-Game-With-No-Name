@@ -300,9 +300,8 @@ offset_right = 9.84614
 offset_bottom = 9.163648
 scale = Vector2(104, 62.8571)
 
-[node name="pause" parent="CanvasLayer2" unique_id=2036945555 node_paths=PackedStringArray("menus") instance=ExtResource("4")]
+[node name="pause" parent="CanvasLayer2" unique_id=2036945555 instance=ExtResource("4")]
 visible = false
-menus = []
 
 [node name="Player1" type="Control" parent="CanvasLayer2" unique_id=178559432]
 layout_mode = 3

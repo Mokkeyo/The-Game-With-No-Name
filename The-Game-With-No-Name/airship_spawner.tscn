@@ -8,6 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kcd1"]
 size = Vector2(11, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rmpw"]
+size = Vector2(20, 15)
+
 [node name="Airship_Spawner" type="Node2D" unique_id=997328965]
 script = ExtResource("1_7gtgn")
 
@@ -45,6 +48,14 @@ position = Vector2(48, -4)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1247444623]
 polygon = PackedVector2Array(-25, 4, -16, -5, 13, -5, 22, 4)
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1576946414 groups=["airship"]]
+collision_layer = 10
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=365518217]
+position = Vector2(47, -16.5)
+shape = SubResource("RectangleShape2D_6rmpw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

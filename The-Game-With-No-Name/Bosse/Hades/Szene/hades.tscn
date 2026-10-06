@@ -882,6 +882,8 @@ achievment_list = "Unkillable"
 visible = false
 collision_mask = 2
 knockback_type = 1
+continues_damage = true
+damage_interval = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1139954016]
 position = Vector2(0, -47)

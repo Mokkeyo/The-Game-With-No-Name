@@ -50,6 +50,9 @@ func exit_pause() -> void:
 
 
 func change_menu(index: int) -> void:
+	print("menus size: ", menus.size())
+	print("requested index: ", index)
+	print("menus: ", menus)
 	if is_transitioning:
 		return
 	

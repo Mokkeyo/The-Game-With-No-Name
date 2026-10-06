@@ -12,7 +12,6 @@ class_name Game
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var pause: PauseMenu = $CanvasLayer/pause
-@onready var timer_label: Label = %TimerLabel
 
 var temp_door: Array[int]
 
@@ -36,7 +35,7 @@ func setup_systems() -> void:
 	AI.fader = fader
 
 	var players: Array[Player] = in_game.get_players()
-	
+	var timer_label: Label = %TimerLabel
 	player_manager.setup(players, in_game.get_pets(), timer_label)
 	
 	player_manager.clear_footsteps_tilemap()
@@ -105,6 +104,7 @@ func disable_cameras(value: bool = true) -> void:
 
 	for i: int in player_manager.player_alive.size():
 		if not player_manager.player_alive[i]:
+			print("player ", i, " alive ", player_manager.player_alive[i])
 			if value:
 				deactivate_cam(i)
 			else:
@@ -197,6 +197,7 @@ func _on_darkness_changed() -> void:
 func end_dialog() -> void:
 	await get_tree().create_timer(0.05).timeout
 	player_manager.players[0].un_freeze()
+	player_manager.players[1].un_freeze()
 	dialogue_manager.end_dialog()
 
 
@@ -221,13 +222,9 @@ func resize_viewport(value: bool) -> void:
 
 
 func activate_cam(player: int) -> void:
-	if player_manager.multiplayer_enabled:
-		in_game.show_black_screen(player, false)
-		in_game.show_player_bar(player, true)
-
+	in_game.show_black_screen(player, false)
+	in_game.show_player_bar(player, true)
 
 func deactivate_cam(player: int) -> void:
-	if player_manager.multiplayer_enabled:
-		print("deactivating")
-		in_game.show_black_screen(player, true)
-		in_game.show_player_bar(player, false)
+	in_game.show_black_screen(player, true)
+	in_game.show_player_bar(player, false)

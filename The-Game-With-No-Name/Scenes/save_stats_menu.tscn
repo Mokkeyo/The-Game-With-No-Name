@@ -45,6 +45,11 @@ cache/0/15/0/descent = 0.0
 cache/0/15/0/underline_position = 0.0
 cache/0/15/0/underline_thickness = 0.0
 cache/0/15/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el623"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -98,47 +103,47 @@ exitButton = NodePath("BackButton")
 
 [node name="Label" type="Label" parent="." unique_id=1933073368]
 layout_mode = 0
-offset_top = 18.0
+offset_top = 12.0
 offset_right = 1024.0
-offset_bottom = 82.0
+offset_bottom = 60.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("37")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Choose a file"
 horizontal_alignment = 1
 
 [node name="SaveStat1" parent="." unique_id=127190731 instance=ExtResource("2_itox8")]
 layout_mode = 0
 offset_left = 74.0
-offset_top = 79.0
+offset_top = 56.0
 offset_right = 510.0
-offset_bottom = 296.0
+offset_bottom = 273.0
 
 [node name="SaveStat2" parent="." unique_id=121897328 instance=ExtResource("2_itox8")]
 layout_mode = 0
 offset_left = 514.0
-offset_top = 79.0
+offset_top = 56.0
 offset_right = 950.0
-offset_bottom = 296.0
+offset_bottom = 273.0
 focus_neighbor_right = NodePath(".")
 saveState = 1
 
 [node name="SaveStat3" parent="." unique_id=2058258679 instance=ExtResource("2_itox8")]
 layout_mode = 0
 offset_left = 74.0
-offset_top = 300.0
+offset_top = 277.0
 offset_right = 510.0
-offset_bottom = 517.0
+offset_bottom = 494.0
 focus_neighbor_right = NodePath("../SaveStat4")
 saveState = 2
 
 [node name="SaveStat4" parent="." unique_id=1663362132 instance=ExtResource("2_itox8")]
 layout_mode = 0
 offset_left = 514.0
-offset_top = 300.0
+offset_top = 277.0
 offset_right = 950.0
-offset_bottom = 517.0
+offset_bottom = 494.0
 focus_neighbor_left = NodePath("../SaveStat3")
 focus_neighbor_right = NodePath(".")
 saveState = 3
@@ -146,11 +151,12 @@ saveState = 3
 [node name="BackButton" parent="." unique_id=95712660 instance=ExtResource("6_vxfum")]
 layout_mode = 0
 offset_left = 432.0
-offset_top = 520.0
+offset_top = 496.0
 offset_right = 592.0
-offset_bottom = 568.0
+offset_bottom = 574.0
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
+autowrap_mode = 2
 
 [node name="Conformation" type="Control" parent="." unique_id=1482160478]
 visible = false
