@@ -13,6 +13,7 @@ signal game_finished
 signal player_died
 signal door_opend
 signal disable_camera(value: bool)
+signal set_camera_offset(player: int, value: Vector2)
 signal health_value_changed(player: int, health: float)
 signal mana_value_changed(player: int, health: float)
 
@@ -23,6 +24,8 @@ signal boss_label_changed(label: String)
 
 var listeners: Array[Node2D] = []
 var level_viewport: Node
+
+var multiplayer_enabled: bool = false
 
 var dialog_index: int = -1
 var dialog_active: bool = false

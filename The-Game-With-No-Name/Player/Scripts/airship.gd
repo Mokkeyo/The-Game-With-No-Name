@@ -123,6 +123,7 @@ func set_player() -> void:
 	player_node.connect_camera(temp_p)
 	sprite.z_index = 0
 	player_node = null
+	G.set_camera_offset.emit(currentPlayer, Vector2(0, 0))
 
 
 func respawn() -> void:
@@ -136,7 +137,7 @@ func go_in(playerNode: Player) -> void:
 	player_node = playerNode
 	playerNode.reset_comp.disable_stats()
 	remote_transform.remote_path = playerNode.disconnect_camera()
-	
+	G.set_camera_offset.emit(currentPlayer, Vector2(100, 0))
 	is_in = true
 	sprite.z_index = 1
 

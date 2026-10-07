@@ -201,6 +201,7 @@ invisibiltyFrames = 0.1
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("7_fowb4")]
 health = NodePath("../healthComponent")
+half_damage_when_multiplayer_enabled = true
 
 [node name="ShootComponent" type="Node2D" parent="." unique_id=1917582909 node_paths=PackedStringArray("parent", "shooting_point", "rotation_point", "projectile")]
 unique_name_in_owner = true

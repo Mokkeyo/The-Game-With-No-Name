@@ -21,6 +21,7 @@ var multiplayer_enabled: bool = false:
 	set(value):
 		multiplayer_enabled = value
 		multiplayer_changed.emit(value)
+		G.multiplayer_enabled = value
 
 var despawn_input: int = -1
 var just_despawned: bool = false

@@ -32,13 +32,12 @@ func _physics_process(_delta: float) -> void:
 		timer.start(0.5)
 		shoot_comp.shoot()
 	
-	var delta_y: float = player.global_position.y - global_position.y
+	var delta_y: float = player.global_position.y - global_position.y - 5
 	
 	if abs(delta_y) > Y_TOLERANCE:
 		velocity.y = sign(delta_y)
 	else:
 		velocity.y = 0
-	# Nur fliehen, wenn der Spieler zu nah ist
 	var distance: float = global_position.distance_to(player.global_position)
 
 	if distance < KEEP_DISTANCE:

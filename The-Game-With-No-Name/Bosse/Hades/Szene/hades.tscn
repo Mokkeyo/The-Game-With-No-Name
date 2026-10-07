@@ -916,6 +916,7 @@ invisibiltyFrames = 0.1
 
 [node name="DamageReceiver" parent="." unique_id=1096494935 node_paths=PackedStringArray("health") instance=ExtResource("15_swoep")]
 health = NodePath("../healthComponent")
+half_damage_when_multiplayer_enabled = true
 invincibility_time = 0.1
 ignore_damage = Array[int]([4])
 

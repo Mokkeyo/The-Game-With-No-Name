@@ -30,6 +30,8 @@ func _ready() -> void:
 	player_manager.set_player_position(0, level_manager.get_spawn_position())
 	fader.fade_in()
 
+func _exit_tree() -> void:
+	G.multiplayer_enabled = false
 
 func setup_systems() -> void:
 	AI.fader = fader
@@ -67,7 +69,8 @@ func connect_to_signals() -> void:
 	G.game_finished.connect(check_for_friend_ach)
 	
 	G.disable_camera.connect(disable_cameras)
-	
+	G.set_camera_offset.connect(_on_set_camera_offset)
+
 	new_textbox.dialog_ended.connect(end_dialog)
 	
 	G.door_opend.connect(on_door_opend)
@@ -228,3 +231,6 @@ func activate_cam(player: int) -> void:
 func deactivate_cam(player: int) -> void:
 	in_game.show_black_screen(player, true)
 	in_game.show_player_bar(player, false)
+
+func _on_set_camera_offset(player: int, value: Vector2) -> void:
+	in_game.cameras[player].offset = value

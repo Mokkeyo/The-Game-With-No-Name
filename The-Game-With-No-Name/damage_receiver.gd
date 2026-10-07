@@ -9,6 +9,8 @@ signal damage_dealt
 
 @export var knockback: KnockbackComponent
 
+@export var half_damage_when_multiplayer_enabled: bool = false
+
 @export var invincibility_time: float = 0.5
 
 @export var ignore_damage: Array[HitData.DamageType]
@@ -36,7 +38,11 @@ func receive_damage(hit: HitData) -> void:
 	damage_dealt.emit()
 	
 	if health:
-		health.damage(hit.damage)
+		var damage: float = hit.damage
+		if half_damage_when_multiplayer_enabled and G.multiplayer_enabled:
+			damage = round(damage / 2)
+
+		health.damage(int(damage))
 		
 	if knockback:
 		knockback.apply(hit)
