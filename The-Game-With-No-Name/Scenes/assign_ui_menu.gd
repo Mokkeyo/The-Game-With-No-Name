@@ -5,6 +5,8 @@ signal exited
 
 var player: int = 0
 var input_device: int = 0
+var other_player: int = -1
+var other_player_input: int = -1
 @onready var conformation: Control = %Conformation
 @onready var yes_button: Menu_Button = %YesButton
 @onready var no_button: Menu_Button = %NoButton
@@ -39,8 +41,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func device_taken() -> bool:
-    var other_player: int = 0 if player == 1 else 1
-    var other_player_input: int = InputSerializer.get_device_from_player(Save.inputs, other_player)
+    other_player = 0 if player == 1 else 1
+    other_player_input = InputSerializer.get_device_from_player(Save.inputs, other_player)
 
     if other_player_input == input_device:
         return true
@@ -58,6 +60,9 @@ func handle_device_assignment() -> void:
         return
 
     InputSerializer.change_device_for_player(Save.inputs, player, input_device)
+
+    if other_player >= 0:
+        InputSerializer.change_device_for_player(Save.inputs, other_player, other_player_input)
     InputSerializer.apply_inputmap_from_dict(Save.inputs)
     Save.save_inputs()
     exit()
@@ -77,4 +82,6 @@ func exit() -> void:
     conformation.hide()
     set_process_unhandled_input(false)
     input_device = -1
+    other_player = -1
+    other_player_input = -1
     exited.emit()

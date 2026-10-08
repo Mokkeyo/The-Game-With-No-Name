@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://ceo180p122bkx"]
+
+[ext_resource type="Script" uid="uid://doae4dko88si6" path="res://controller_disconnect_menu.gd" id="1_nl0f2"]
+[ext_resource type="Theme" uid="uid://c5j1cdeixt42w" path="res://ui_theme.tres" id="1_sgnf2"]
+[ext_resource type="Texture2D" uid="uid://bqvvpt1ppfimu" path="res://GuiElements/Textures/controll_button.png" id="3_iqpxl"]
+
+[node name="ControllerDisconnectMenu" type="Control" unique_id=918687987]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_sgnf2")
+script = ExtResource("1_nl0f2")
+
+[node name="Panel" type="Panel" parent="." unique_id=1119441907]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+
+[node name="ControllButton" type="Sprite2D" parent="." unique_id=170888695]
+position = Vector2(512, 224)
+scale = Vector2(10.95, 10.95)
+texture = ExtResource("3_iqpxl")
+
+[node name="PlayerLabel" type="Label" parent="." unique_id=818583479]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 32.0
+offset_right = 1024.0
+offset_bottom = 95.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Controller from Player Disconnected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=592836938]
+layout_mode = 0
+offset_top = 368.0
+offset_right = 1024.0
+offset_bottom = 410.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Press ESC or reconnect the Controller"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=90031126]
+layout_mode = 0
+offset_top = 416.0
+offset_right = 1024.0
+offset_bottom = 458.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "to Continue the Game"
+horizontal_alignment = 1

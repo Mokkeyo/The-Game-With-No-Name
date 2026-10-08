@@ -9,6 +9,7 @@ const PAUSE_DELAY: float = 0.05
 @onready var focus_blocker: Button = $NothingButton
 
 var is_transitioning: bool = false
+var is_pausing: bool = false
 
 @export var menus: Array[Menu]
 
@@ -25,12 +26,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 		open_pause_menu()
 		return
 		
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") and is_pausing:
 		exit_pause()
 
 
 func open_pause_menu() -> void:
 	get_tree().paused = true
+	is_pausing = true
 	visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
@@ -41,6 +43,7 @@ func exit_pause() -> void:
 	if not get_tree().paused:
 		return
 	
+	is_pausing = false
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
 	await get_tree().create_timer(PAUSE_DELAY).timeout

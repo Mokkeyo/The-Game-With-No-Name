@@ -19,6 +19,7 @@ var player_in_airship: Array[bool] = [false, false]
 
 
 func _ready() -> void:
+
 	setup_systems()
 	connect_to_signals()
 	
