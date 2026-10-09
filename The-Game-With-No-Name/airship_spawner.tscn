@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qabv4vag8xq4" path="res://Player/Scenes/player_airship.tscn" id="2_uni3k"]
 [ext_resource type="Texture2D" uid="uid://brddcptcp4wdm" path="res://Player/Textures_P1/airship_spawner.png" id="3_8kcd1"]
 [ext_resource type="PackedScene" uid="uid://c0vsw377uwxkh" path="res://Scenes/ping.tscn" id="4_6vw2f"]
+[ext_resource type="PackedScene" uid="uid://4krdafgnix1t" path="res://Scenes/interact_area_component.tscn" id="4_vften"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kcd1"]
 size = Vector2(11, 32)
@@ -30,17 +31,15 @@ currentPlayer = 1
 position = Vector2(30, -20)
 texture = ExtResource("3_8kcd1")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=489630522]
-position = Vector2(-2, 0)
-collision_layer = 0
-collision_mask = 2
+[node name="InteractArea" parent="." unique_id=115994072 node_paths=PackedStringArray("ping") instance=ExtResource("4_vften")]
+unique_name_in_owner = true
+ping = NodePath("../Ping")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=493920829]
-position = Vector2(0.5, -16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=493920829]
+position = Vector2(-1.5, -16)
 shape = SubResource("RectangleShape2D_8kcd1")
 
 [node name="Ping" parent="." unique_id=977693011 instance=ExtResource("4_6vw2f")]
-visible = true
 position = Vector2(-1.5, -55.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=640020394]
@@ -56,6 +55,3 @@ collision_mask = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=365518217]
 position = Vector2(47, -16.5)
 shape = SubResource("RectangleShape2D_6rmpw")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

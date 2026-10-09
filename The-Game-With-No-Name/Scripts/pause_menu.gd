@@ -26,7 +26,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		open_pause_menu()
 		return
 		
-	if Input.is_action_just_pressed("escape") and is_pausing:
+	elif Input.is_action_just_pressed("escape") and is_pausing:
 		exit_pause()
 
 

@@ -51,7 +51,9 @@ func check_for_player_inside_area(body: Node2D, add_player: bool) -> void:
 	if unhandled_input:
 		set_process_unhandled_input(not players.is_empty())
 		if ping:
-			ping.visible = not players.is_empty()
+			var player_numb: int = 0 if body.is_in_group("Player_0") else 1
+			ping.display_key(player_numb, not players.is_empty())
+
 
 
 

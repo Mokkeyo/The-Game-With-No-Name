@@ -10,6 +10,7 @@ var is_disconnected: bool = false
 func _ready() -> void:
     hide()
     Input.joy_connection_changed.connect(_on_controller_disconnected)
+    set_process_unhandled_input(false)
 
 
 func _unhandled_input(event: InputEvent) -> void:
